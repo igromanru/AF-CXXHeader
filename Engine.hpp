@@ -13408,6 +13408,7 @@ class UDataTable : public UObject
 {
     class UScriptStruct* RowStruct;                                                   // 0x0028 (size: 0x8)
     uint8 bStripFromClientBuilds;                                                     // 0x0080 (size: 0x1)
+    uint8 bLoadFromJSON;                                                              // 0x0080 (size: 0x1)
     uint8 bIgnoreExtraFields;                                                         // 0x0080 (size: 0x1)
     uint8 bIgnoreMissingFields;                                                       // 0x0080 (size: 0x1)
     FString ImportKeyField;                                                           // 0x0088 (size: 0x10)
@@ -24661,6 +24662,7 @@ class UWorldPartitionRuntimeCell : public UObject
 class UWorldPartitionRuntimeCellData : public UObject
 {
     FBox ContentBounds;                                                               // 0x0050 (size: 0x38)
+    TOptional<FBox> CellBounds;                                                       // 0x0088 (size: 0x40)
     FName GridName;                                                                   // 0x00C8 (size: 0x8)
     int32 Priority;                                                                   // 0x00D0 (size: 0x4)
     int32 HierarchicalLevel;                                                          // 0x00D4 (size: 0x4)

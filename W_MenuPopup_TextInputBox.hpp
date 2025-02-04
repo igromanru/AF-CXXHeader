@@ -31,21 +31,23 @@ class UW_MenuPopup_TextInputBox_C : public UUserWidget
     bool IsDefaultText;                                                               // 0x03CC (size: 0x1)
     bool CharIsOnRepeat;                                                              // 0x03CD (size: 0x1)
     bool Is Password;                                                                 // 0x03CE (size: 0x1)
+    bool IgnoreFirstKeyUp;                                                            // 0x03CF (size: 0x1)
 
     FEventReply OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
     FEventReply OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void BndEvt__W_BetaNotice_Button_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
+    void BndEvt__W_BetaNotice_Button_Enter_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature();
+    void Construct();
     void DisplayErrorText(bool Remove, FText NewText);
     void BndEvt__W_MenuPopup_TextInputBox_EditableTextInput_K2Node_ComponentBoundEvent_1_OnEditableTextBoxChangedEvent__DelegateSignature(const FText& Text);
     void Destruct();
-    void Construct();
     void BndEvt__W_MenuPopup_TextInputBox_EditableTextInput_K2Node_ComponentBoundEvent_3_OnEditableTextBoxCommittedEvent__DelegateSignature(const FText& Text, TEnumAsByte<ETextCommit::Type> CommitMethod);
     void BndEvt__W_HostGameSetup_Button_ShowPassword_K2Node_ComponentBoundEvent_0_OnButtonPressedEvent__DelegateSignature();
     void BndEvt__W_HostGameSetup_Button_ShowPassword_K2Node_ComponentBoundEvent_1_OnButtonReleasedEvent__DelegateSignature();
-    void BndEvt__W_BetaNotice_Button_Enter_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature();
-    void BndEvt__W_BetaNotice_Button_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
+    void HandleButtonClick();
     void ExecuteUbergraph_W_MenuPopup_TextInputBox(int32 EntryPoint);
     void NoClicked__DelegateSignature();
     void YesClicked__DelegateSignature();
-}; // Size: 0x3CF
+}; // Size: 0x3D0
 
 #endif

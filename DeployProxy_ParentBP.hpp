@@ -15,6 +15,7 @@ class ADeployProxy_ParentBP_C : public AActor
     float ForwardPlacementOffset;                                                     // 0x02F4 (size: 0x4)
     float UpPlacementOffset;                                                          // 0x02F8 (size: 0x4)
     TArray<TEnumAsByte<EObjectTypeQuery>> Overlap Object Types Allowed;               // 0x0300 (size: 0x10)
+    FName LinkedItemRow;                                                              // 0x0310 (size: 0x8)
 
     void Can Place In Vignette(bool& VignettePlaceable, bool& Placeable);
     void RunOverlapChecks(TArray<class UPrimitiveComponent*>& Components to Overlap, bool& PlacementBlocked, TArray<class AActor*>& OverlappedActors);
@@ -27,6 +28,6 @@ class ADeployProxy_ParentBP_C : public AActor
     void ReceiveBeginPlay();
     void SetupHologramArrow(TEnumAsByte<E_DeployableOrientations::Type> Orientation);
     void ExecuteUbergraph_DeployProxy_ParentBP(int32 EntryPoint);
-}; // Size: 0x310
+}; // Size: 0x318
 
 #endif

@@ -7,6 +7,7 @@ class UBP_FishTankMesh_C : public USkeletalMeshComponent
     FName CurrentRow;                                                                 // 0x0F78 (size: 0x8)
     FName CurrentVariant;                                                             // 0x0F80 (size: 0x8)
 
+    void GetFishAnimBP(TSubclassOf<class UFishTankAnimInstance>& OutAnimBP);
     void ClearCurrentMeshMaterials();
     void ClearFishRow();
     void SetFishRow(FName InFishRow, FName InVariant);

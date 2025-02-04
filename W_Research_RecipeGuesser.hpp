@@ -33,6 +33,7 @@ class UW_Research_RecipeGuesser_C : public UUserWidget
     FButtonStyle BrainStyle_3;                                                        // 0x0870 (size: 0x3F0)
     FButtonStyle BrainStyle_2;                                                        // 0x0C60 (size: 0x3F0)
     FButtonStyle BrainStyle_1;                                                        // 0x1050 (size: 0x3F0)
+    FLinearColor DefaultTitleColor;                                                   // 0x1440 (size: 0x10)
 
     void ResetBrainButton();
     void Reset Receiving Slot(class UW_Research_RG_ReceivingSlot_C* ReceivingSlot);
@@ -48,6 +49,6 @@ class UW_Research_RecipeGuesser_C : public UUserWidget
     void BndEvt__W_Research_RecipeGuesser_Button_Debug_Skip_1_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature();
     void SlotHasReset();
     void ExecuteUbergraph_W_Research_RecipeGuesser(int32 EntryPoint);
-}; // Size: 0x1440
+}; // Size: 0x1450
 
 #endif

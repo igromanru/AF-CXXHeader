@@ -9,20 +9,23 @@ class UW_MainMenu_Master_C : public UAbioticWidget
     class UWidgetSwitcher* MainMenuWidgetSwitcher;                                    // 0x02F8 (size: 0x8)
     class UImage* Splash_ABFLogo;                                                     // 0x0300 (size: 0x8)
     class UImage* Splash_Image;                                                       // 0x0308 (size: 0x8)
-    class UTextBlock* Splash_PressAnything;                                           // 0x0310 (size: 0x8)
-    class UImage* SplashBGCover;                                                      // 0x0318 (size: 0x8)
-    class UCanvasPanel* SplashCanvas;                                                 // 0x0320 (size: 0x8)
-    class UW_BetaNotice_C* W_BetaNotice_129;                                          // 0x0328 (size: 0x8)
-    class UW_DemoNotice_C* W_DemoNotice;                                              // 0x0330 (size: 0x8)
-    class UW_MainMenu_ContinueGame_C* W_MainMenu_ContinueGame;                        // 0x0338 (size: 0x8)
-    class UW_MainMenu_CustomizeCharacter_C* W_MainMenu_CustomizeCharacter;            // 0x0340 (size: 0x8)
-    class UW_MainMenu_HostGame_C* W_MainMenu_HostGame;                                // 0x0348 (size: 0x8)
-    class UW_MainMenu_Initial_C* W_MainMenu_Initial;                                  // 0x0350 (size: 0x8)
-    class UW_MainMenu_Play_C* W_MainMenu_Play;                                        // 0x0358 (size: 0x8)
-    class UW_ServerBrowser_C* W_ServerBrowser;                                        // 0x0360 (size: 0x8)
-    class UW_SettingsMenu_C* W_SettingsMenu;                                          // 0x0368 (size: 0x8)
-    class UW_SettingsPage_FirstTime_C* W_SettingsPage_FirstTime;                      // 0x0370 (size: 0x8)
-    class ACharacterCustomization_BP_C* CharacterCustomizationRef;                    // 0x0378 (size: 0x8)
+    class UCanvasPanel* Splash_Loading;                                               // 0x0310 (size: 0x8)
+    class UTextBlock* Splash_LoadingText;                                             // 0x0318 (size: 0x8)
+    class UTextBlock* Splash_PressAnything;                                           // 0x0320 (size: 0x8)
+    class UImage* SplashBGCover;                                                      // 0x0328 (size: 0x8)
+    class UCanvasPanel* SplashCanvas;                                                 // 0x0330 (size: 0x8)
+    class UW_BetaNotice_C* W_BetaNotice_129;                                          // 0x0338 (size: 0x8)
+    class UW_DemoNotice_C* W_DemoNotice;                                              // 0x0340 (size: 0x8)
+    class UW_MainMenu_ContinueGame_C* W_MainMenu_ContinueGame;                        // 0x0348 (size: 0x8)
+    class UW_MainMenu_CustomizeCharacter_C* W_MainMenu_CustomizeCharacter;            // 0x0350 (size: 0x8)
+    class UW_MainMenu_HostGame_C* W_MainMenu_HostGame;                                // 0x0358 (size: 0x8)
+    class UW_MainMenu_Initial_C* W_MainMenu_Initial;                                  // 0x0360 (size: 0x8)
+    class UW_MainMenu_Play_C* W_MainMenu_Play;                                        // 0x0368 (size: 0x8)
+    class UW_ServerBrowser_C* W_ServerBrowser;                                        // 0x0370 (size: 0x8)
+    class UW_SettingsMenu_C* W_SettingsMenu;                                          // 0x0378 (size: 0x8)
+    class UW_SettingsPage_FirstTime_C* W_SettingsPage_FirstTime;                      // 0x0380 (size: 0x8)
+    class ACharacterCustomization_BP_C* CharacterCustomizationRef;                    // 0x0388 (size: 0x8)
+    bool HasStartedSplashFade;                                                        // 0x0390 (size: 0x1)
 
     void WidgetAction_CloseMenu(bool& Handled);
     void WidgetAction_CycleMenu(bool Next, bool& Handled);
@@ -33,13 +36,14 @@ class UW_MainMenu_Master_C : public UAbioticWidget
     void SetMainMenuDemoMode();
     void OnFailure_E8952CF74CB5ADEDE9BD26B826E4E6D2();
     void OnSuccess_E8952CF74CB5ADEDE9BD26B826E4E6D2();
+    void FadeOutSplash();
     void SessionInviteAccepted(FBlueprintSessionResult Session);
+    void Construct();
     void CustomizationFinished();
     void FirstTimeSettings_Completed();
-    void Construct();
-    void FadeOutSplash();
     void Continue_EarlyAccess();
+    void OnOnlineLoginComplete(bool bWasSuccessful);
     void ExecuteUbergraph_W_MainMenu_Master(int32 EntryPoint);
-}; // Size: 0x380
+}; // Size: 0x391
 
 #endif

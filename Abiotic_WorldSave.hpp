@@ -28,6 +28,8 @@ class UAbiotic_WorldSave_C : public UAbioticSave
     TMap<class FString, class FSaveData_NPCState_Struct> PetNPC;                      // 0x05B8 (size: 0x50)
     TMap<class FString, class FSaveData_DroppedItem_Struct> DroppedItemMap;           // 0x0608 (size: 0x50)
     TMap<class FString, class FCorpseSave_Struct> CorpseMap;                          // 0x0658 (size: 0x50)
+    TMap<class FName, class FSaveData_TravelingNPC_Struct> TravelingNPCsMap;          // 0x06A8 (size: 0x50)
+    TMap<class FString, class FSaveData_EncounterDirector_Struct> EncounterDirectorsMap; // 0x06F8 (size: 0x50)
 
     void ResetSimpleDoorMap();
     bool ApplyVersion2Upgrade();
@@ -35,6 +37,6 @@ class UAbiotic_WorldSave_C : public UAbioticSave
     void GenerateLevelGUID();
     void AddWorldFlag(FWorldFlagRowHandle WorldFlagToSet);
     void ExecuteUbergraph_Abiotic_WorldSave(int32 EntryPoint);
-}; // Size: 0x6A8
+}; // Size: 0x748
 
 #endif

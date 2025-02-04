@@ -3,9 +3,9 @@
 
 class APowerSocket_ChildOfActor_C : public APowerSocket_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x03A8 (size: 0x8)
-    class UTextRenderComponent* TextRender;                                           // 0x03B0 (size: 0x8)
-    int32 SocketIndex;                                                                // 0x03B8 (size: 0x4)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x03D0 (size: 0x8)
+    class UTextRenderComponent* TextRender;                                           // 0x03D8 (size: 0x8)
+    int32 SocketIndex;                                                                // 0x03E0 (size: 0x4)
 
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
@@ -15,6 +15,6 @@ class APowerSocket_ChildOfActor_C : public APowerSocket_ParentBP_C
     void ReceiveBeginPlay();
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void ExecuteUbergraph_PowerSocket_ChildOfActor(int32 EntryPoint);
-}; // Size: 0x3BC
+}; // Size: 0x3E4
 
 #endif

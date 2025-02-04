@@ -3,16 +3,16 @@
 
 class AItem_Consumable_ParentBP_C : public AAbiotic_Item_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B10 (size: 0x8)
-    class UDrinkableComponent_C* DrinkableComponent;                                  // 0x0B18 (size: 0x8)
-    bool HasBeenUsed;                                                                 // 0x0B20 (size: 0x1)
-    bool Is Liquid Container;                                                         // 0x0B21 (size: 0x1)
-    bool Useable On Others;                                                           // 0x0B22 (size: 0x1)
-    TArray<EBodyLimbs> On Limbs;                                                      // 0x0B28 (size: 0x10)
-    bool TransferrableToOthers;                                                       // 0x0B38 (size: 0x1)
-    FInventorySlotSelected_Struct LastKnownItemSlot;                                  // 0x0B40 (size: 0x10)
-    FString LastKnownID;                                                              // 0x0B50 (size: 0x10)
-    FGuid Consume Delay GUID;                                                         // 0x0B60 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B18 (size: 0x8)
+    class UDrinkableComponent_C* DrinkableComponent;                                  // 0x0B20 (size: 0x8)
+    bool HasBeenUsed;                                                                 // 0x0B28 (size: 0x1)
+    bool Is Liquid Container;                                                         // 0x0B29 (size: 0x1)
+    bool Useable On Others;                                                           // 0x0B2A (size: 0x1)
+    TArray<EBodyLimbs> On Limbs;                                                      // 0x0B30 (size: 0x10)
+    bool TransferrableToOthers;                                                       // 0x0B40 (size: 0x1)
+    FInventorySlotSelected_Struct LastKnownItemSlot;                                  // 0x0B48 (size: 0x10)
+    FString LastKnownID;                                                              // 0x0B58 (size: 0x10)
+    FGuid Consume Delay GUID;                                                         // 0x0B68 (size: 0x10)
 
     bool GetFPArmsUseMontageOverride(bool SecondaryUse, TSoftObjectPtr<UAnimMontage>& Montage);
     bool GetBroadcastedTPMontageOverride(bool Secondary, class UAnimMontage*& Montage);
@@ -48,6 +48,6 @@ class AItem_Consumable_ParentBP_C : public AAbiotic_Item_ParentBP_C
     void ShareableItemInteractionText(class AAbiotic_PlayerCharacter_C* TargetCharacter, class AAbiotic_PlayerCharacter_C* UsingCharacter);
     void Server_OnLiquidValueUpdated();
     void ExecuteUbergraph_Item_Consumable_ParentBP(int32 EntryPoint);
-}; // Size: 0xB70
+}; // Size: 0xB78
 
 #endif

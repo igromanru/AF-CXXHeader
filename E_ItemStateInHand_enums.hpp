@@ -7,7 +7,8 @@ namespace E_ItemStateInHand {
         NewEnumerator3 = 4,
         NewEnumerator6 = 5,
         NewEnumerator8 = 6,
-        E_MAX = 7,
+        NewEnumerator10 = 7,
+        E_MAX = 8,
     };
 }
 

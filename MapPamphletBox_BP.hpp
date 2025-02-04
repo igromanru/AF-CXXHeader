@@ -3,16 +3,16 @@
 
 class AMapPamphletBox_BP_C : public AAbioticActor_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C0 (size: 0x8)
-    class UStaticMeshComponent* Glass;                                                // 0x02C8 (size: 0x8)
-    class USpotLightComponent* SpotLight;                                             // 0x02D0 (size: 0x8)
-    class UStaticMeshComponent* Cube;                                                 // 0x02D8 (size: 0x8)
-    class UTextRenderComponent* TextRender;                                           // 0x02E0 (size: 0x8)
-    class UStaticMeshComponent* StaticMesh;                                           // 0x02E8 (size: 0x8)
-    FDataTableRowHandle MapRow;                                                       // 0x02F0 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
+    class UStaticMeshComponent* Glass;                                                // 0x02D0 (size: 0x8)
+    class USpotLightComponent* SpotLight;                                             // 0x02D8 (size: 0x8)
+    class UStaticMeshComponent* Cube;                                                 // 0x02E0 (size: 0x8)
+    class UTextRenderComponent* TextRender;                                           // 0x02E8 (size: 0x8)
+    class UStaticMeshComponent* StaticMesh;                                           // 0x02F0 (size: 0x8)
+    FDataTableRowHandle MapRow;                                                       // 0x02F8 (size: 0x10)
 
     void CanUseSharedInteraction(bool& Can Use);
-    void GetPowerCordHighlightColor(class UActorComponent*& Cable, int32& Color);
+    void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
     bool IsRadioactive();
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
@@ -29,7 +29,7 @@ class AMapPamphletBox_BP_C : public AAbioticActor_C
     void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void RequiresToolToDismantle(bool& Tool Required);
-    void ShowPotentialInteraction(bool& Show);
+    void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void GetStoredString(FString& String);
     FText GetItemNameText();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
@@ -52,6 +52,6 @@ class AMapPamphletBox_BP_C : public AAbioticActor_C
     void InteractTeleportUpdate(class AAbiotic_Character_ParentBP_C* InteractingCharacter, bool TryingToTeleport, bool TeleportSuccessful);
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void ExecuteUbergraph_MapPamphletBox_BP(int32 EntryPoint);
-}; // Size: 0x300
+}; // Size: 0x308
 
 #endif

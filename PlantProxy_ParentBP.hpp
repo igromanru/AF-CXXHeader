@@ -9,7 +9,7 @@ class APlantProxy_ParentBP_C : public AItemProxyParent_BP_C
     bool DestroyPlantAfterHarvest;                                                    // 0x03F1 (size: 0x1)
 
     void CanUseSharedInteraction(bool& Can Use);
-    void GetPowerCordHighlightColor(class UActorComponent*& Cable, int32& Color);
+    void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
     bool IsRadioactive();
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
@@ -25,12 +25,13 @@ class APlantProxy_ParentBP_C : public AItemProxyParent_BP_C
     void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void RequiresToolToDismantle(bool& Tool Required);
-    void ShowPotentialInteraction(bool& Show);
+    void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void GetStoredString(FString& String);
     FText GetItemNameText();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void Landing Damage Multiplier(double Damage, double& DamageMultiplier);
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
+    void SetAttachedTextureOverride(TArray<TSoftObjectPtr<UMaterialInterface>>& TextureVariance);
     void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
     bool CanDecay();
     TArray<class UActorComponent*> GetInteractionHighlights();

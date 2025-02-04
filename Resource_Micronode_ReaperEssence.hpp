@@ -3,8 +3,8 @@
 
 class AResource_Micronode_ReaperEssence_C : public AResource_MicroNode_ParentBP_C
 {
-    class UPointLightComponent* PointLight;                                           // 0x04D8 (size: 0x8)
+    class UPointLightComponent* PointLight;                                           // 0x04E0 (size: 0x8)
 
-}; // Size: 0x4E0
+}; // Size: 0x4E8
 
 #endif

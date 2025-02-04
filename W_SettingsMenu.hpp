@@ -14,18 +14,22 @@ class UW_SettingsMenu_C : public UUserWidget
     class UTextBlock* ControlsTextLabel;                                              // 0x0320 (size: 0x8)
     class UTextBlock* GameplayTextLabel;                                              // 0x0328 (size: 0x8)
     class UTextBlock* GraphicsTextLabel;                                              // 0x0330 (size: 0x8)
-    class UWidgetSwitcher* SettingsMenu_WidgetSwitcher;                               // 0x0338 (size: 0x8)
-    class UW_MainMenu_BackgroundSelection_C* W_MainMenu_BackgroundSelection;          // 0x0340 (size: 0x8)
-    class UW_MainMenuButton_C* W_MainMenuButton_Back;                                 // 0x0348 (size: 0x8)
-    class UW_MenuTitleBig_C* W_MenuTitleBig;                                          // 0x0350 (size: 0x8)
-    class UW_MainMenuButton_C* W_ResetSettings;                                       // 0x0358 (size: 0x8)
-    class UW_SettingsPage_Accessibility_C* W_SettingsPage_Accessibility;              // 0x0360 (size: 0x8)
-    class UW_SettingsPage_Audio_C* W_SettingsPage_Audio;                              // 0x0368 (size: 0x8)
-    class UW_SettingsPage_Controls_C* W_SettingsPage_Controls;                        // 0x0370 (size: 0x8)
-    class UW_SettingsPage_Gameplay_C* W_SettingsPage_Gameplay;                        // 0x0378 (size: 0x8)
-    class UW_SettingsPage_Video_C* W_SettingsPage_Video;                              // 0x0380 (size: 0x8)
-    TArray<class UW_SettingsPanel_C*> SettingsPanels;                                 // 0x0388 (size: 0x10)
+    class UW_Keybind_C* Keybind_MenuLeft;                                             // 0x0338 (size: 0x8)
+    class UW_Keybind_C* Keybind_MenuRight;                                            // 0x0340 (size: 0x8)
+    class UWidgetSwitcher* SettingsMenu_WidgetSwitcher;                               // 0x0348 (size: 0x8)
+    class UW_MainMenu_BackgroundSelection_C* W_MainMenu_BackgroundSelection;          // 0x0350 (size: 0x8)
+    class UW_MainMenuButton_C* W_MainMenuButton_Back;                                 // 0x0358 (size: 0x8)
+    class UW_MenuTitleBig_C* W_MenuTitleBig;                                          // 0x0360 (size: 0x8)
+    class UW_MainMenuButton_C* W_ResetSettings;                                       // 0x0368 (size: 0x8)
+    class UW_SettingsPage_Accessibility_C* W_SettingsPage_Accessibility;              // 0x0370 (size: 0x8)
+    class UW_SettingsPage_Audio_C* W_SettingsPage_Audio;                              // 0x0378 (size: 0x8)
+    class UW_SettingsPage_Controls_C* W_SettingsPage_Controls;                        // 0x0380 (size: 0x8)
+    class UW_SettingsPage_Gameplay_C* W_SettingsPage_Gameplay;                        // 0x0388 (size: 0x8)
+    class UW_SettingsPage_Video_C* W_SettingsPage_Video;                              // 0x0390 (size: 0x8)
+    TArray<class UW_SettingsPanel_C*> SettingsPanels;                                 // 0x0398 (size: 0x10)
+    TEnumAsByte<ESettingsMode::Type> SettingsPanelMode;                               // 0x03A8 (size: 0x1)
 
+    void CycleWidgetSettingsTab(bool Next);
     void RefreshEntireUI_State();
     void GetGameInst(class UAbiotic_GameInstance_C*& ABF_Game_Instance);
     void SaveAllSettings();
@@ -41,6 +45,6 @@ class UW_SettingsMenu_C : public UUserWidget
     void OnInitialized();
     void CustomMenuBG();
     void ExecuteUbergraph_W_SettingsMenu(int32 EntryPoint);
-}; // Size: 0x398
+}; // Size: 0x3A9
 
 #endif

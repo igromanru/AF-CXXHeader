@@ -3,55 +3,64 @@
 
 class ANarrativeNPC_ParentBP_C : public AAbiotic_Character_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x1408 (size: 0x8)
-    class USceneComponent* ButtonPrompt;                                              // 0x1410 (size: 0x8)
-    class UBoxComponent* ExternalInteractBox;                                         // 0x1418 (size: 0x8)
-    class UBoxComponent* DialogZone;                                                  // 0x1420 (size: 0x8)
-    class UBoxComponent* BeckonZone;                                                  // 0x1428 (size: 0x8)
-    float LookAtTimeline_NewTrack_0_F8E77C5040FF1DE65474A28ED34C66CE;                 // 0x1430 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> LookAtTimeline__Direction_F8E77C5040FF1DE65474A28ED34C66CE; // 0x1434 (size: 0x1)
-    class UTimelineComponent* LookAtTimeline;                                         // 0x1438 (size: 0x8)
-    FWorldFlagRowHandle WorldFlagToAppear;                                            // 0x1440 (size: 0x20)
-    FWorldFlagRowHandle WorldFlagToDisappear;                                         // 0x1460 (size: 0x20)
-    bool IsCorpse;                                                                    // 0x1480 (size: 0x1)
-    FDataTableRowHandle NarrativeNPC_ConversationRow;                                 // 0x1488 (size: 0x10)
-    TMap<class FWorldFlagRowHandle, class FNPCConversationRowHandle> ConversationOverrides; // 0x1498 (size: 0x50)
-    bool HeadBoneLookAtTarget;                                                        // 0x14E8 (size: 0x1)
-    TEnumAsByte<E_NarrativeNPCStates::Type> NarrativeState;                           // 0x14E9 (size: 0x1)
-    TEnumAsByte<E_NarrativeNPCStates::Type> LastPlayedNarrativeState;                 // 0x14EA (size: 0x1)
-    FTimerHandle BeckonTimer;                                                         // 0x14F0 (size: 0x8)
-    TSoftObjectPtr<UDialogueWave> LastDialogCue;                                      // 0x14F8 (size: 0x28)
-    TArray<class AAbiotic_PlayerCharacter_C*> PlayerCharactersInDialogZone;           // 0x1520 (size: 0x10)
-    bool IsSpeakingDialog;                                                            // 0x1530 (size: 0x1)
-    TArray<class AAbiotic_PlayerCharacter_C*> PlayerCharactersInBeckon;               // 0x1538 (size: 0x10)
-    FTimerHandle AttemptToSpeakTimer;                                                 // 0x1548 (size: 0x8)
-    class UAnimSequence* IdleAnimation;                                               // 0x1550 (size: 0x8)
-    int32 CurrentMessageIndex;                                                        // 0x1558 (size: 0x4)
-    class UAnimSequence* AimOffsetBase;                                               // 0x1560 (size: 0x8)
-    class UAimOffsetBlendSpace* AimOffset;                                            // 0x1568 (size: 0x8)
-    bool NoHeadLook;                                                                  // 0x1570 (size: 0x1)
-    bool NoBeckonZone;                                                                // 0x1571 (size: 0x1)
-    bool NoDialogZone;                                                                // 0x1572 (size: 0x1)
-    float HeadLookAlpha;                                                              // 0x1574 (size: 0x4)
-    float BeckonInterval;                                                             // 0x1578 (size: 0x4)
-    bool LastDialogWasBeckon;                                                         // 0x157C (size: 0x1)
-    FText To Interact with Text;                                                      // 0x1580 (size: 0x10)
-    FTimerHandle EndDialogTimer;                                                      // 0x1590 (size: 0x8)
-    int32 LastVoiceLineIndex;                                                         // 0x1598 (size: 0x4)
-    bool AutoSpeakNextDialog;                                                         // 0x159C (size: 0x1)
-    FNarrativeNPC_ParentBP_CNPCFinishedDialogLine NPCFinishedDialogLine;              // 0x15A0 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x1460 (size: 0x8)
+    class USceneComponent* ButtonPrompt;                                              // 0x1468 (size: 0x8)
+    class UBoxComponent* ExternalInteractBox;                                         // 0x1470 (size: 0x8)
+    class UBoxComponent* DialogZone;                                                  // 0x1478 (size: 0x8)
+    class UBoxComponent* BeckonZone;                                                  // 0x1480 (size: 0x8)
+    float LookAtTimeline_NewTrack_0_F8E77C5040FF1DE65474A28ED34C66CE;                 // 0x1488 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> LookAtTimeline__Direction_F8E77C5040FF1DE65474A28ED34C66CE; // 0x148C (size: 0x1)
+    class UTimelineComponent* LookAtTimeline;                                         // 0x1490 (size: 0x8)
+    FWorldFlagRowHandle WorldFlagToAppear;                                            // 0x1498 (size: 0x20)
+    FWorldFlagRowHandle WorldFlagToDisappear;                                         // 0x14B8 (size: 0x20)
+    bool IsCorpse;                                                                    // 0x14D8 (size: 0x1)
+    FDataTableRowHandle NarrativeNPC_ConversationRow;                                 // 0x14E0 (size: 0x10)
+    TMap<class FWorldFlagRowHandle, class FNPCConversationRowHandle> ConversationOverrides; // 0x14F0 (size: 0x50)
+    bool HeadBoneLookAtTarget;                                                        // 0x1540 (size: 0x1)
+    TEnumAsByte<E_NarrativeNPCStates::Type> NarrativeState;                           // 0x1541 (size: 0x1)
+    TEnumAsByte<E_NarrativeNPCStates::Type> LastPlayedNarrativeState;                 // 0x1542 (size: 0x1)
+    FTimerHandle BeckonTimer;                                                         // 0x1548 (size: 0x8)
+    TSoftObjectPtr<UDialogueWave> LastDialogCue;                                      // 0x1550 (size: 0x28)
+    TArray<class AAbiotic_PlayerCharacter_C*> PlayerCharactersInDialogZone;           // 0x1578 (size: 0x10)
+    bool IsSpeakingDialog;                                                            // 0x1588 (size: 0x1)
+    TArray<class AAbiotic_PlayerCharacter_C*> PlayerCharactersInBeckon;               // 0x1590 (size: 0x10)
+    FTimerHandle AttemptToSpeakTimer;                                                 // 0x15A0 (size: 0x8)
+    class UAnimSequence* IdleAnimation;                                               // 0x15A8 (size: 0x8)
+    int32 CurrentMessageIndex;                                                        // 0x15B0 (size: 0x4)
+    class UAnimSequence* AimOffsetBase;                                               // 0x15B8 (size: 0x8)
+    class UAimOffsetBlendSpace* AimOffset;                                            // 0x15C0 (size: 0x8)
+    bool NoHeadLook;                                                                  // 0x15C8 (size: 0x1)
+    bool NoBeckonZone;                                                                // 0x15C9 (size: 0x1)
+    bool NoDialogZone;                                                                // 0x15CA (size: 0x1)
+    float HeadLookAlpha;                                                              // 0x15CC (size: 0x4)
+    float BeckonInterval;                                                             // 0x15D0 (size: 0x4)
+    bool LastDialogWasBeckon;                                                         // 0x15D4 (size: 0x1)
+    FText To Interact with Text;                                                      // 0x15D8 (size: 0x10)
+    FTimerHandle EndDialogTimer;                                                      // 0x15E8 (size: 0x8)
+    int32 LastVoiceLineIndex;                                                         // 0x15F0 (size: 0x4)
+    bool AutoSpeakNextDialog;                                                         // 0x15F4 (size: 0x1)
+    FNarrativeNPC_ParentBP_CNPCFinishedDialogLine NPCFinishedDialogLine;              // 0x15F8 (size: 0x10)
     void NPCFinishedDialogLine();
-    FName ButtonPromptBone;                                                           // 0x15B0 (size: 0x8)
-    FText LongInteractBText;                                                          // 0x15B8 (size: 0x10)
-    class ANarrativeNPC_ParentBP_C* LinkedNarrativeNPC;                               // 0x15C8 (size: 0x8)
-    class ANarrativeNPC_ParentBP_C* ParentNPC;                                        // 0x15D0 (size: 0x8)
-    double DistanceForBeckonSubtitles;                                                // 0x15D8 (size: 0x8)
-    bool NonInteractable;                                                             // 0x15E0 (size: 0x1)
-    TSoftClassPtr<UUserWidget> ActiveSubtitleWidgetClass;                             // 0x15E8 (size: 0x28)
+    FName ButtonPromptBone;                                                           // 0x1608 (size: 0x8)
+    FText LongInteractBText;                                                          // 0x1610 (size: 0x10)
+    class ANarrativeNPC_ParentBP_C* LinkedNarrativeNPC;                               // 0x1620 (size: 0x8)
+    class ANarrativeNPC_ParentBP_C* ParentNPC;                                        // 0x1628 (size: 0x8)
+    double DistanceForBeckonSubtitles;                                                // 0x1630 (size: 0x8)
+    bool NonInteractable;                                                             // 0x1638 (size: 0x1)
+    TSoftClassPtr<UUserWidget> ActiveSubtitleWidgetClass;                             // 0x1640 (size: 0x28)
+    bool CanWander;                                                                   // 0x1668 (size: 0x1)
+    TSoftObjectPtr<AActor> Spawner;                                                   // 0x1670 (size: 0x28)
+    FGameplayTagContainer TagsRequiredToSpeakWith;                                    // 0x1698 (size: 0x20)
+    FGameplayTagContainer TagsRequiredToTradeWith;                                    // 0x16B8 (size: 0x20)
+    bool AnimBP_AllowWalking;                                                         // 0x16D8 (size: 0x1)
+    class UAnimMontage* DamageFlinchMontage;                                          // 0x16E0 (size: 0x8)
+    bool DamageFlinchCooldown;                                                        // 0x16E8 (size: 0x1)
+    double DamageFlinchCooldownDuration;                                              // 0x16F0 (size: 0x8)
+    class UAnimSequenceBase* AdditiveAnimation;                                       // 0x16F8 (size: 0x8)
 
     void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
     void CanUseSharedInteraction(bool& Can Use);
-    void GetPowerCordHighlightColor(class UActorComponent*& Cable, int32& Color);
+    void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
     bool IsRadioactive();
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
@@ -72,7 +81,15 @@ class ANarrativeNPC_ParentBP_C : public AAbiotic_Character_ParentBP_C
     void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void RequiresToolToDismantle(bool& Tool Required);
-    void ShowPotentialInteraction(bool& Show);
+    void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
+    void Interaction Tag Check(class AAbioticCharacter* InteractingCharacter, bool TradeCheck, bool& CanInteract);
+    bool IsNPCBusy();
+    bool ShouldTick();
+    void RefreshWanderState();
+    void OnRep_CanWander();
+    bool GetCanWander();
+    void SetWanderEnabled(bool WanderingEnabled);
+    void GetOutlineComponent(bool& ComponentEnabled, class UOutlineComponent_C*& Components);
     void UpdateSubtitleWidgetClass();
     void ValidateWorldFlagsFromLoad(TEnumAsByte<E_NarrativeNPCStates::Type> LoadedNarrativeState);
     void CancelDialogOverRadio(TSoftObjectPtr<UDialogueWave> SoundCue);
@@ -108,6 +125,7 @@ class ANarrativeNPC_ParentBP_C : public AAbiotic_Character_ParentBP_C
     void LookAtTimeline__UpdateFunc();
     void OnLoaded_4161CFD74F95620BEA25A2BFD9174B9B(class UObject* Loaded);
     void OnLoaded_D721F4C64E32E3ACB8626C83BE8D45BE(class UObject* Loaded);
+    void DeliverString(FString String, bool FromSave);
     void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbiotic_InventoryItemSlotStruct SlotData);
     void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbiotic_InventoryItemSlotStruct SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
     void OnInteractHighlightStart(class UActorComponent* Component);
@@ -120,20 +138,17 @@ class ANarrativeNPC_ParentBP_C : public AAbiotic_Character_ParentBP_C
     void BndEvt__NarrativeNPC_ParentBP_BeckonZone_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
     void TryBeckon();
     void BndEvt__NarrativeNPC_ParentBP_DialogZone_K2Node_ComponentBoundEvent_1_ComponentBeginOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-    void DeliverString(FString String, bool FromSave);
     void NPC_InteractWith(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
-    void BndEvt__NarrativeNPC_ParentBP_DialogZone_K2Node_ComponentBoundEvent_2_ComponentEndOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-    void InteractWith_B_LocalFX(bool Hold);
-    void TrySpeakAppropriateDialog(bool InterruptCurrentDialog);
     void InteractWith_A_LocalFX(bool Hold);
+    void BndEvt__NarrativeNPC_ParentBP_DialogZone_K2Node_ComponentBoundEvent_2_ComponentEndOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+    void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
+    void TrySpeakAppropriateDialog(bool InterruptCurrentDialog);
     void ReceiveTick(float DeltaSeconds);
     void BndEvt__NarrativeNPC_ParentBP_BeckonZone_K2Node_ComponentBoundEvent_3_ComponentEndOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-    void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void ReceiveBeginPlay();
     void BlendLookAt(bool BlendTo, bool Force);
     void All_PerformDeathSequence();
     void RestartBeckonTimer();
-    void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void SpeakDialog_RetryViaTimer();
     void ClearSpeakingFlag();
@@ -147,8 +162,11 @@ class ANarrativeNPC_ParentBP_C : public AAbiotic_Character_ParentBP_C
     void PlaySecondaryDialog(TEnumAsByte<E_NarrativeNPCStates::Type> State, int32 Index);
     void OnCharacterSpeakingStart();
     void Broadcast_UpdateLastDialogSpeak(TSoftObjectPtr<UDialogueWave> Cue);
+    void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
+    void InteractWith_B_LocalFX(bool Hold);
+    void ReceiveAnyDamage(float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, class AActor* DamageCauser);
     void ExecuteUbergraph_NarrativeNPC_ParentBP(int32 EntryPoint);
     void NPCFinishedDialogLine__DelegateSignature();
-}; // Size: 0x1610
+}; // Size: 0x1700
 
 #endif

@@ -3,6 +3,6 @@
 
 class ADeployed_WarningSign_C : public AAbioticDeployed_Lamp_ParentBP_C
 {
-}; // Size: 0x990
+}; // Size: 0x9A0
 
 #endif

@@ -45,7 +45,7 @@ class UW_PlayerHUD_InteractionPrompt_C : public UUserWidget
     void UpdateJumpPromptLine(bool ShowFlag, FText Action, FText Item Name);
     void UpdatePrimaryPromptLine(bool ShowFlag, FText Action, FText Item Name);
     void UpdateTextPromptLine(class UWidget* WidgetToToggle, class UTextBlock* TextToChange, bool ShowFlag, FText& FormatString);
-    void UpdateInteractionPrompts(bool ShowPressInteract, bool ShowHoldInteract, bool ShowPressPackage, bool ShowHoldPackage, bool ObjectUnderConstruction, double ConstructionPercent, bool RequiresPower, bool Radioactive, bool ShowDescription, TArray<FText>& ExtraNoteLines, class AActor* HitActor);
+    void UpdateInteractionPrompts(bool ShowPressInteract, bool ShowHoldInteract, bool ShowPressPackage, bool ShowHoldPackage, bool ObjectUnderConstruction, double ConstructionPercent, bool RequiresPower, bool Radioactive, bool ShowDescription, TArray<FText>& ExtraNoteLines, class AActor* HitActor, class UActorComponent* HitComponent);
 }; // Size: 0x3FC
 
 #endif

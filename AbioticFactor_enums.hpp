@@ -1,3 +1,12 @@
+enum EABFGamepadType {
+    ABFGT_Default = 0,
+    ABFGT_Xbox = 1,
+    ABFGT_DS4 = 2,
+    ABFGT_DS5 = 3,
+    ABFGT_Steam = 4,
+    ABFGT_MAX = 5,
+};
+
 namespace EAbioticCrossplaySetting {
     enum Type {
         Initial = 0,
@@ -131,6 +140,17 @@ enum class EDayOfTheWeek {
     EDayOfTheWeek_MAX = 7,
 };
 
+enum class EDayOfWeekFlags {
+    Monday = 1,
+    Tuesday = 2,
+    Wednesday = 4,
+    Thursday = 8,
+    Friday = 16,
+    Saturday = 32,
+    Sunday = 64,
+    EDayOfWeekFlags_MAX = 65,
+};
+
 enum class EDynamicProperty {
     CurrentAmmo = 0,
     TimerState = 1,
@@ -174,8 +194,9 @@ enum EGameSettingPlatformType {
     EGSPT_PS5 = 1,
     EGSPT_XSX = 2,
     EGSPT_WinGDK = 3,
-    EGSPT_Windows = 4,
-    EGSPT_MAX = 5,
+    EGSPT_SteamDeck = 4,
+    EGSPT_Windows = 5,
+    EGSPT_MAX = 6,
 };
 
 enum class EGameSettingType {
@@ -199,7 +220,8 @@ enum class EInventoryMode {
     Transmog = 9,
     Custom = 10,
     Butchering = 11,
-    EInventoryMode_MAX = 12,
+    Trading = 12,
+    EInventoryMode_MAX = 13,
 };
 
 enum class EItemSortMethod {
@@ -266,6 +288,20 @@ enum class EPlantGrowthStage {
     Regrowing = 6,
     Dead = 7,
     EPlantGrowthStage_MAX = 8,
+};
+
+enum class EProjectileHomingType {
+    Default = 0,
+    MaintainForwardMomentum = 1,
+    EProjectileHomingType_MAX = 2,
+};
+
+enum class EReleaseGroup {
+    Core = 0,
+    DarkEnergy = 1,
+    Residence = 2,
+    Future = 3,
+    EReleaseGroup_MAX = 4,
 };
 
 enum class ERowValid {

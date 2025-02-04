@@ -3,8 +3,8 @@
 
 class AGardenPlot_Small_C : public AGardenPlot_ParentBP_C
 {
-    class UChildActorComponent* Plot1;                                                // 0x0A48 (size: 0x8)
+    class UChildActorComponent* Plot1;                                                // 0x0A58 (size: 0x8)
 
-}; // Size: 0xA50
+}; // Size: 0xA60
 
 #endif

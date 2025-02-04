@@ -3,18 +3,18 @@
 
 class AAbioticDeployed_CraftingBench_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0920 (size: 0x8)
-    class UAbiotic_InventoryComponent_C* UpgradeInventory;                            // 0x0928 (size: 0x8)
-    FDataTableRowHandle BenchDataTableRow;                                            // 0x0930 (size: 0x10)
-    double AntiSpawnRadius;                                                           // 0x0940 (size: 0x8)
-    EInventoryMode CraftBenchMode;                                                    // 0x0948 (size: 0x1)
-    FGameplayTagContainer UpgradeTagContainer;                                        // 0x0950 (size: 0x20)
-    FAbioticDeployed_CraftingBench_ParentBP_CTagContainerUpdated TagContainerUpdated; // 0x0970 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0930 (size: 0x8)
+    class UAbiotic_InventoryComponent_C* UpgradeInventory;                            // 0x0938 (size: 0x8)
+    FDataTableRowHandle BenchDataTableRow;                                            // 0x0940 (size: 0x10)
+    double AntiSpawnRadius;                                                           // 0x0950 (size: 0x8)
+    EInventoryMode CraftBenchMode;                                                    // 0x0958 (size: 0x1)
+    FGameplayTagContainer UpgradeTagContainer;                                        // 0x0960 (size: 0x20)
+    FAbioticDeployed_CraftingBench_ParentBP_CTagContainerUpdated TagContainerUpdated; // 0x0980 (size: 0x10)
     void TagContainerUpdated();
-    bool SupportsUpgrades;                                                            // 0x0980 (size: 0x1)
-    TArray<class UAbiotic_InventoryComponent_C*> AdditionalInventories;               // 0x0988 (size: 0x10)
-    TArray<FName> RecipesToUnlockOnAccess;                                            // 0x0998 (size: 0x10)
-    class UTexture2D* BenchUpgradeIcon;                                               // 0x09A8 (size: 0x8)
+    bool SupportsUpgrades;                                                            // 0x0990 (size: 0x1)
+    TArray<class UAbiotic_InventoryComponent_C*> AdditionalInventories;               // 0x0998 (size: 0x10)
+    TArray<FName> RecipesToUnlockOnAccess;                                            // 0x09A8 (size: 0x10)
+    class UTexture2D* BenchUpgradeIcon;                                               // 0x09B8 (size: 0x8)
 
     void Update Upgrade Current States On Load();
     void UpdateOverlappingContainers();
@@ -33,6 +33,6 @@ class AAbioticDeployed_CraftingBench_ParentBP_C : public AAbioticDeployed_Furnit
     void Broadcast_BenchUpgradeInteraction(FGameplayTag BenchUpgradeTag, double Duration);
     void ExecuteUbergraph_AbioticDeployed_CraftingBench_ParentBP(int32 EntryPoint);
     void TagContainerUpdated__DelegateSignature();
-}; // Size: 0x9B0
+}; // Size: 0x9C0
 
 #endif

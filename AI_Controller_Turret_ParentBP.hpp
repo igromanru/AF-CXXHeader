@@ -5,6 +5,6 @@ class AAI_Controller_Turret_ParentBP_C : public AAbiotic_AI_Controller_ParentBP_
 {
 
     void SetIsInCombatFlag(bool InCombat);
-}; // Size: 0x900
+}; // Size: 0x8A8
 
 #endif

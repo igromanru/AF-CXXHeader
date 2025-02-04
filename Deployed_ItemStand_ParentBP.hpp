@@ -3,9 +3,9 @@
 
 class ADeployed_ItemStand_ParentBP_C : public ADeployed_Container_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x09E8 (size: 0x8)
-    class UStaticMeshComponent* ItemDisplay;                                          // 0x09F0 (size: 0x8)
-    class USceneComponent* ItemRoot;                                                  // 0x09F8 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x09F8 (size: 0x8)
+    class UStaticMeshComponent* ItemDisplay;                                          // 0x0A00 (size: 0x8)
+    class USceneComponent* ItemRoot;                                                  // 0x0A08 (size: 0x8)
 
     void GetHighlightComponents(TArray<class UActorComponent*>& Components);
     void GetPossibleTextureVariantFromItemDisplay(FAbiotic_InventoryItemSlotStruct SlotData, FDataTableRowHandle& TextureDataRow);
@@ -18,6 +18,6 @@ class ADeployed_ItemStand_ParentBP_C : public ADeployed_Container_ParentBP_C
     void SetupItemBox(TSoftObjectPtr<UStaticMesh> 3DModel, FDataTableRowHandle TextureDataRow);
     void ApplyItemDisplayTextureVariant(class UStaticMeshComponent* CurrentMesh, FDataTableRowHandle TextureDataRow);
     void ExecuteUbergraph_Deployed_ItemStand_ParentBP(int32 EntryPoint);
-}; // Size: 0xA00
+}; // Size: 0xA10
 
 #endif

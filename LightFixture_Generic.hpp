@@ -3,6 +3,6 @@
 
 class ALightFixture_Generic_C : public AAbioticLightFixture_ParentBP_C
 {
-}; // Size: 0x429
+}; // Size: 0x431
 
 #endif

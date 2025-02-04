@@ -26,11 +26,13 @@ class UW_HostGameSetup_C : public UAbioticWidget
     class UEditableTextBox* TextInput_ServerName;                                     // 0x0380 (size: 0x8)
     class UEditableTextBox* TextInput_WorldName;                                      // 0x0388 (size: 0x8)
     int32 Character_Limit;                                                            // 0x0390 (size: 0x4)
+    int32 Character_Limit_Password;                                                   // 0x0394 (size: 0x4)
     class UW_MenuPopup_YesNo_C* CurrentPopup;                                         // 0x0398 (size: 0x8)
     FW_HostGameSetup_CSandboxSettingsPressed SandboxSettingsPressed;                  // 0x03A0 (size: 0x10)
     void SandboxSettingsPressed();
     TArray<FString> ABC_Strings;                                                      // 0x03B0 (size: 0x10)
 
+    void SetupSoloOrLanOnly();
     void SetupDifficultyButtons();
     void CheckForSpecialCharacters(FString SourceString, bool& FoundBadCharacter);
     void GetParentHostScreen(class UW_MainMenu_HostGame_C*& W_MainMenu_HostGame);

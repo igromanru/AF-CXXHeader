@@ -3,11 +3,11 @@
 
 class AToilet_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0920 (size: 0x8)
-    class UArrowComponent* ExitFailsafe;                                              // 0x0928 (size: 0x8)
-    class USceneComponent* SitSpot1;                                                  // 0x0930 (size: 0x8)
-    class ASimpleDoor_ParentBP_C* StallDoor;                                          // 0x0938 (size: 0x8)
-    bool NoFlushSound;                                                                // 0x0940 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0930 (size: 0x8)
+    class UArrowComponent* ExitFailsafe;                                              // 0x0938 (size: 0x8)
+    class USceneComponent* SitSpot1;                                                  // 0x0940 (size: 0x8)
+    class ASimpleDoor_ParentBP_C* StallDoor;                                          // 0x0948 (size: 0x8)
+    bool NoFlushSound;                                                                // 0x0950 (size: 0x1)
 
     FTransform GetExitFailsafeLocation();
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
@@ -20,6 +20,6 @@ class AToilet_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
     void Broadcast_FlushToilet();
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void ExecuteUbergraph_Toilet_ParentBP(int32 EntryPoint);
-}; // Size: 0x941
+}; // Size: 0x951
 
 #endif

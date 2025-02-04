@@ -3,7 +3,7 @@
 
 class AAbiotic_Weapon_Melee_ParentBP_C : public AAbiotic_Weapon_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B70 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B78 (size: 0x8)
 
     void GetOverrideSwingTrace(bool& Override, FDataTableRowHandle& MeleeSwingData);
     void GetSwingData(FDataTableRowHandle& MeleeSwingData);
@@ -13,6 +13,6 @@ class AAbiotic_Weapon_Melee_ParentBP_C : public AAbiotic_Weapon_ParentBP_C
     void Local_OnMeleeTraceCosmetic(const FHitResult HitResult);
     void Broadcast_OnMeleeSwing();
     void ExecuteUbergraph_Abiotic_Weapon_Melee_ParentBP(int32 EntryPoint);
-}; // Size: 0xB78
+}; // Size: 0xB80
 
 #endif

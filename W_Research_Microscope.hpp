@@ -16,7 +16,7 @@ class UW_Research_Microscope_C : public UUserWidget
     class UCanvasPanel* RotationCanvas;                                               // 0x0330 (size: 0x8)
     class UImage* Rotator;                                                            // 0x0338 (size: 0x8)
     class UTextBlock* SchematicTitle;                                                 // 0x0340 (size: 0x8)
-    TArray<FVector2D> Lens;                                                           // 0x0348 (size: 0x10)
+    TArray<FVector2D> lens;                                                           // 0x0348 (size: 0x10)
     TArray<double> LensTypes;                                                         // 0x0358 (size: 0x10)
     TEnumAsByte<E_MicroscopeMinigameLenses::Type> CurrentLens;                        // 0x0368 (size: 0x1)
     int32 ActiveLensType;                                                             // 0x036C (size: 0x4)

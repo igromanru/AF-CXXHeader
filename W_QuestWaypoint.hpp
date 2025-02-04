@@ -11,6 +11,7 @@ class UW_QuestWaypoint_C : public UW_Waypoint_ParentBP_C
     void GetWaypointLocation(FVector& Location);
     void Tick(FGeometry MyGeometry, float InDeltaTime);
     void Construct();
+    void CheckCompletion();
     void ExecuteUbergraph_W_QuestWaypoint(int32 EntryPoint);
 }; // Size: 0x360
 

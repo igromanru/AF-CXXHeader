@@ -3,10 +3,10 @@
 
 class AButton_LightSwitch_C : public AButton_Generic_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0430 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0438 (size: 0x8)
 
     void TogglePowerFX();
     void ExecuteUbergraph_Button_LightSwitch(int32 EntryPoint);
-}; // Size: 0x438
+}; // Size: 0x440
 
 #endif

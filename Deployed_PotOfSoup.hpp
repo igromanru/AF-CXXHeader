@@ -3,19 +3,19 @@
 
 class ADeployed_PotOfSoup_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0920 (size: 0x8)
-    class UNiagaraComponent* particle;                                                // 0x0928 (size: 0x8)
-    class UStaticMeshComponent* LiquidMesh;                                           // 0x0930 (size: 0x8)
-    int32 Portions;                                                                   // 0x0938 (size: 0x4)
-    int32 DefaultPortions;                                                            // 0x093C (size: 0x4)
-    FName ItemRow;                                                                    // 0x0940 (size: 0x8)
-    double Liquid_Z_Top;                                                              // 0x0948 (size: 0x8)
-    double Liquid_Z_Bottom;                                                           // 0x0950 (size: 0x8)
-    FDataTableRowHandle ItemWhenEmpty;                                                // 0x0958 (size: 0x10)
-    bool Drop Success;                                                                // 0x0968 (size: 0x1)
-    class UDataTable* Recipe Table;                                                   // 0x0970 (size: 0x8)
-    FName CookedSoupDataRowName;                                                      // 0x0978 (size: 0x8)
-    bool CanFillSoupBowl;                                                             // 0x0980 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0930 (size: 0x8)
+    class UNiagaraComponent* particle;                                                // 0x0938 (size: 0x8)
+    class UStaticMeshComponent* LiquidMesh;                                           // 0x0940 (size: 0x8)
+    int32 Portions;                                                                   // 0x0948 (size: 0x4)
+    int32 DefaultPortions;                                                            // 0x094C (size: 0x4)
+    FName ItemRow;                                                                    // 0x0950 (size: 0x8)
+    double Liquid_Z_Top;                                                              // 0x0958 (size: 0x8)
+    double Liquid_Z_Bottom;                                                           // 0x0960 (size: 0x8)
+    FDataTableRowHandle ItemWhenEmpty;                                                // 0x0968 (size: 0x10)
+    bool Drop Success;                                                                // 0x0978 (size: 0x1)
+    class UDataTable* Recipe Table;                                                   // 0x0980 (size: 0x8)
+    FName CookedSoupDataRowName;                                                      // 0x0988 (size: 0x8)
+    bool CanFillSoupBowl;                                                             // 0x0990 (size: 0x1)
 
     void SetupCookwareType();
     void FillSoupBowl(class AAbiotic_PlayerCharacter_C* Character);
@@ -31,6 +31,6 @@ class ADeployed_PotOfSoup_C : public AAbioticDeployed_Furniture_ParentBP_C
     void ReceiveBeginPlay();
     void OnLoadedFromSave();
     void ExecuteUbergraph_Deployed_PotOfSoup(int32 EntryPoint);
-}; // Size: 0x981
+}; // Size: 0x991
 
 #endif

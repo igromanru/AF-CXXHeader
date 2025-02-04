@@ -3,39 +3,39 @@
 
 class AAbioticDeployed_Furniture_ParentBP_C : public AAbioticDeployed_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x05C8 (size: 0x8)
-    class UAbioticTargetingComponent* AbioticTargeting;                               // 0x05D0 (size: 0x8)
-    class UTextRenderComponent* EditorText;                                           // 0x05D8 (size: 0x8)
-    class USceneComponent* SitSpots;                                                  // 0x05E0 (size: 0x8)
-    class UStaticMeshComponent* FurnitureMesh;                                        // 0x05E8 (size: 0x8)
-    bool CanBePackaged;                                                               // 0x05F0 (size: 0x1)
-    bool HasBeenPackagedUp;                                                           // 0x05F1 (size: 0x1)
-    TArray<bool> SeatsOccupied;                                                       // 0x05F8 (size: 0x10)
-    TArray<class USceneComponent*> Seats;                                             // 0x0608 (size: 0x10)
-    TArray<class AAbiotic_Character_ParentBP_C*> SeatOccupiers;                       // 0x0618 (size: 0x10)
-    FAbioticDeployed_Furniture_ParentBP_COccupantSittingStateChanged OccupantSittingStateChanged; // 0x0628 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x05D8 (size: 0x8)
+    class UAbioticTargetingComponent* AbioticTargeting;                               // 0x05E0 (size: 0x8)
+    class UTextRenderComponent* EditorText;                                           // 0x05E8 (size: 0x8)
+    class USceneComponent* SitSpots;                                                  // 0x05F0 (size: 0x8)
+    class UStaticMeshComponent* FurnitureMesh;                                        // 0x05F8 (size: 0x8)
+    bool CanBePackaged;                                                               // 0x0600 (size: 0x1)
+    bool HasBeenPackagedUp;                                                           // 0x0601 (size: 0x1)
+    TArray<bool> SeatsOccupied;                                                       // 0x0608 (size: 0x10)
+    TArray<class USceneComponent*> Seats;                                             // 0x0618 (size: 0x10)
+    TArray<class AAbiotic_Character_ParentBP_C*> SeatOccupiers;                       // 0x0628 (size: 0x10)
+    FAbioticDeployed_Furniture_ParentBP_COccupantSittingStateChanged OccupantSittingStateChanged; // 0x0638 (size: 0x10)
     void OccupantSittingStateChanged(int32 SeatIndex, bool Sitting);
-    bool BrokeWhenPackaged;                                                           // 0x0638 (size: 0x1)
-    double DefaultBreakChanceOnPackage;                                               // 0x0640 (size: 0x8)
-    double WorldSpawnChance;                                                          // 0x0648 (size: 0x8)
-    int32 BreakChanceReductionPerLevel;                                               // 0x0650 (size: 0x4)
-    FSaveData_Deployable_Struct SaveData;                                             // 0x0660 (size: 0x240)
-    FText To Interact with Text;                                                      // 0x08A0 (size: 0x10)
-    FString PlayerMadeString;                                                         // 0x08B0 (size: 0x10)
-    FVector RepGroundPosition;                                                        // 0x08C0 (size: 0x18)
-    bool PendingStructuralSetup;                                                      // 0x08D8 (size: 0x1)
-    bool PendingFloatCheck;                                                           // 0x08D9 (size: 0x1)
-    bool IgnoreSupports;                                                              // 0x08DA (size: 0x1)
-    bool Targetable;                                                                  // 0x08DB (size: 0x1)
-    bool CanBeNPCTarget;                                                              // 0x08DC (size: 0x1)
-    TEnumAsByte<E_Factions::Type> Faction;                                            // 0x08DD (size: 0x1)
-    class UBlendSpace* DefaultSittingBlendspace;                                      // 0x08E0 (size: 0x8)
-    double SeatExitOffset;                                                            // 0x08E8 (size: 0x8)
-    class USoundCue* BreakSound;                                                      // 0x08F0 (size: 0x8)
-    TEnumAsByte<E_TargetPriority::Type> NPCTargetPriority;                            // 0x08F8 (size: 0x1)
-    float SupportOffsetUp;                                                            // 0x08FC (size: 0x4)
-    FRotator CurrentActorRotation;                                                    // 0x0900 (size: 0x18)
-    class UAnimSequenceBase* DefaultSleepingAnim;                                     // 0x0918 (size: 0x8)
+    bool BrokeWhenPackaged;                                                           // 0x0648 (size: 0x1)
+    double DefaultBreakChanceOnPackage;                                               // 0x0650 (size: 0x8)
+    double WorldSpawnChance;                                                          // 0x0658 (size: 0x8)
+    int32 BreakChanceReductionPerLevel;                                               // 0x0660 (size: 0x4)
+    FSaveData_Deployable_Struct SaveData;                                             // 0x0670 (size: 0x240)
+    FText To Interact with Text;                                                      // 0x08B0 (size: 0x10)
+    FString PlayerMadeString;                                                         // 0x08C0 (size: 0x10)
+    FVector RepGroundPosition;                                                        // 0x08D0 (size: 0x18)
+    bool PendingStructuralSetup;                                                      // 0x08E8 (size: 0x1)
+    bool PendingFloatCheck;                                                           // 0x08E9 (size: 0x1)
+    bool IgnoreSupports;                                                              // 0x08EA (size: 0x1)
+    bool Targetable;                                                                  // 0x08EB (size: 0x1)
+    bool CanBeNPCTarget;                                                              // 0x08EC (size: 0x1)
+    TEnumAsByte<E_Factions::Type> Faction;                                            // 0x08ED (size: 0x1)
+    class UBlendSpace* DefaultSittingBlendspace;                                      // 0x08F0 (size: 0x8)
+    double SeatExitOffset;                                                            // 0x08F8 (size: 0x8)
+    class USoundCue* BreakSound;                                                      // 0x0900 (size: 0x8)
+    TEnumAsByte<E_TargetPriority::Type> NPCTargetPriority;                            // 0x0908 (size: 0x1)
+    float SupportOffsetUp;                                                            // 0x090C (size: 0x4)
+    FRotator CurrentActorRotation;                                                    // 0x0910 (size: 0x18)
+    class UAnimSequenceBase* DefaultSleepingAnim;                                     // 0x0928 (size: 0x8)
 
     void TargetableByTurrets(bool& Targetable);
     void GetWandererNPC(class ANPC_Base_ParentBP_C*& Wanderer);
@@ -54,7 +54,7 @@ class AAbioticDeployed_Furniture_ParentBP_C : public AAbioticDeployed_ParentBP_C
     void OnRep_CurrentActorRotation();
     class UPrimitiveComponent* GetLaserReceiverPort();
     FVector GetPackageDropLocation();
-    void ShowPotentialInteraction(bool& Show);
+    void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     bool IsSeatLocationBlocked(int32 SeatIndex, class AAbioticCharacter* Character, bool Debug);
     class USceneComponent* GetSeatAttachComponent();
@@ -101,6 +101,6 @@ class AAbioticDeployed_Furniture_ParentBP_C : public AAbioticDeployed_ParentBP_C
     void OnLevelUnloaded(class ULevelStreaming* Level);
     void ExecuteUbergraph_AbioticDeployed_Furniture_ParentBP(int32 EntryPoint);
     void OccupantSittingStateChanged__DelegateSignature(int32 SeatIndex, bool Sitting);
-}; // Size: 0x920
+}; // Size: 0x930
 
 #endif

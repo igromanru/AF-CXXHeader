@@ -3,15 +3,15 @@
 
 class ADeployed_Megalight_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0920 (size: 0x8)
-    class UStaticMeshComponent* MegalightTurret;                                      // 0x0928 (size: 0x8)
-    class USkeletalMeshComponent* TurretSkeleton;                                     // 0x0930 (size: 0x8)
-    class USpotLightComponent* SpotLight;                                             // 0x0938 (size: 0x8)
-    class USceneComponent* RotatorJoint;                                              // 0x0940 (size: 0x8)
-    class USphereComponent* DetectionSphere;                                          // 0x0948 (size: 0x8)
-    class UAbiotic_MegalightComponent_C* MegalightComponent;                          // 0x0950 (size: 0x8)
-    class AAbioticCharacter* ActiveTarget;                                            // 0x0958 (size: 0x8)
-    bool TurretIsPowered;                                                             // 0x0960 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0930 (size: 0x8)
+    class UStaticMeshComponent* MegalightTurret;                                      // 0x0938 (size: 0x8)
+    class USkeletalMeshComponent* TurretSkeleton;                                     // 0x0940 (size: 0x8)
+    class USpotLightComponent* SpotLight;                                             // 0x0948 (size: 0x8)
+    class USceneComponent* RotatorJoint;                                              // 0x0950 (size: 0x8)
+    class USphereComponent* DetectionSphere;                                          // 0x0958 (size: 0x8)
+    class UAbiotic_MegalightComponent_C* MegalightComponent;                          // 0x0960 (size: 0x8)
+    class AAbioticCharacter* ActiveTarget;                                            // 0x0968 (size: 0x8)
+    bool TurretIsPowered;                                                             // 0x0970 (size: 0x1)
 
     void CheckExistingOverlappingTargets();
     void HitActiveTarget();
@@ -26,6 +26,6 @@ class ADeployed_Megalight_C : public AAbioticDeployed_Furniture_ParentBP_C
     void ZapTargetFX();
     void DelayedOverlapCheck();
     void ExecuteUbergraph_Deployed_Megalight(int32 EntryPoint);
-}; // Size: 0x961
+}; // Size: 0x971
 
 #endif

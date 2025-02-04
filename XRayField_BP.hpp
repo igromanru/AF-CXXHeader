@@ -3,16 +3,16 @@
 
 class AXRayField_BP_C : public AAbiotic_GenericDestructible_BP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0380 (size: 0x8)
-    class USceneComponent* ButtonPrompt_0;                                            // 0x0388 (size: 0x8)
-    class UStaticMeshComponent* Webbing_mesh;                                         // 0x0390 (size: 0x8)
-    bool Destroyed;                                                                   // 0x0398 (size: 0x1)
-    FText ObjectName;                                                                 // 0x03A0 (size: 0x10)
-    int32 FireHitsToMelt;                                                             // 0x03B0 (size: 0x4)
-    int32 CurrentFireHits;                                                            // 0x03B4 (size: 0x4)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0388 (size: 0x8)
+    class USceneComponent* ButtonPrompt_0;                                            // 0x0390 (size: 0x8)
+    class UStaticMeshComponent* Webbing_mesh;                                         // 0x0398 (size: 0x8)
+    bool Destroyed;                                                                   // 0x03A0 (size: 0x1)
+    FText ObjectName;                                                                 // 0x03A8 (size: 0x10)
+    int32 FireHitsToMelt;                                                             // 0x03B8 (size: 0x4)
+    int32 CurrentFireHits;                                                            // 0x03BC (size: 0x4)
 
     void CanUseSharedInteraction(bool& Can Use);
-    void GetPowerCordHighlightColor(class UActorComponent*& Cable, int32& Color);
+    void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
     bool IsRadioactive();
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
@@ -20,7 +20,7 @@ class AXRayField_BP_C : public AAbiotic_GenericDestructible_BP_C
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     FText GetItemNameText();
     void GetStoredString(FString& String);
-    void ShowPotentialInteraction(bool& Show);
+    void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanLongInteractWith_A(bool& Success);
@@ -53,6 +53,6 @@ class AXRayField_BP_C : public AAbiotic_GenericDestructible_BP_C
     void DeliverDynamicProperty(bool FromSave, FDynamicProperty Property);
     void InteractTeleportUpdate(class AAbiotic_Character_ParentBP_C* InteractingCharacter, bool TryingToTeleport, bool TeleportSuccessful);
     void ExecuteUbergraph_XRayField_BP(int32 EntryPoint);
-}; // Size: 0x3B8
+}; // Size: 0x3C0
 
 #endif

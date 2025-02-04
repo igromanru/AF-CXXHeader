@@ -3,6 +3,6 @@
 
 class AItem_Helmet_Cascade_C : public AItem_Gear_ParentBP_C
 {
-}; // Size: 0xB31
+}; // Size: 0xB39
 
 #endif

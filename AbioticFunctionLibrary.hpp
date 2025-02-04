@@ -4,10 +4,13 @@
 class UAbioticFunctionLibrary_C : public UBlueprintFunctionLibrary
 {
 
+    FVector TargetDropCapsuleLocationCheck(class AAbiotic_Character_ParentBP_C* Instigator, class AAbiotic_Character_ParentBP_C* Target, class UObject* __WorldContext, bool& LocationHit);
+    void TargetGrabHeightCheck(class AAbiotic_Character_ParentBP_C* Instigator, class AAbiotic_Character_ParentBP_C* Target, class UObject* __WorldContext, bool& CanGrabTarget, FVector& Location);
+    void GetAssaultTypeList(bool WorldFlagsRequiredOnly, class UObject* __WorldContext, TArray<FName>& Return);
     void CheckAndRemoveSpecialCharacter(FString SourceString, const TArray<FString>& ABCStrings, bool CheckOnly, class UObject* __WorldContext, bool& FoundBadCharacter, FString& FinalString);
     void FilterString(bool AllowSpecialCharacters, const TArray<FString>& ABCStrings, FString SourceString, int32 CharacterLimit, class UObject* __WorldContext, FString& FilteredString, bool& HasSpecialCharacters);
     void HasCustomizationUnlocked(TArray<FDataTableRowHandle>& CustomizationUnlocksToCheck, class UObject* __WorldContext, bool& AllUnlocked, TArray<FDataTableRowHandle>& Leftovers);
-    void CreateHitscanTracer(FVector StartLocation, const FVector& EndLocation, double Velocity, bool RicochetEnabled, class UObject* __WorldContext);
+    void CreateHitscanTracer(FVector StartLocation, const FVector& EndLocation, double Velocity, bool RicochetEnabled, bool TargetIsPlayerCharacter, class UObject* __WorldContext);
     void Modify Item Liquid In Slot(class UAbiotic_InventoryComponent_C* Inventory, int32 Index, int32 BatteryAmount, const TEnumAsByte<E_LiquidType::Type> LiquidType, class UObject* __WorldContext);
     void GetPawnFromDamageInstigator(class AActor* Actor, class UObject* __WorldContext, class APawn*& Pawn);
     void Server_GrantFishingReward(class AAbiotic_PlayerCharacter_C* Player, FFishRowHandle Reward, bool Lucky, class UObject* __WorldContext);

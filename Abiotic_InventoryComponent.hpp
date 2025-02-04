@@ -41,6 +41,7 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     void FavoritedSlotsUpdated(class UAbiotic_InventoryComponent_C* Inventory);
     FAbiotic_InventoryComponent_COwnerStateUpdated OwnerStateUpdated;                 // 0x02B0 (size: 0x10)
     void OwnerStateUpdated();
+    bool CustomDisplayName;                                                           // 0x02C0 (size: 0x1)
 
     void GetSlotAppearanceForSlot(int32 Index, TEnumAsByte<E_InventorySlotAppearance::Type>& Appearance);
     void GetTagRequirementForSlot(int32 Index, FGameplayTagQuery& Requirement);
@@ -109,6 +110,6 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     void SlotHighlighted__DelegateSignature(int32 SlotIndex);
     void InventoryUpdated__DelegateSignature(class UAbiotic_InventoryComponent_C* Inventory);
     void AnySlotStateChanged__DelegateSignature(int32 SlotIndex);
-}; // Size: 0x2C0
+}; // Size: 0x2C1
 
 #endif

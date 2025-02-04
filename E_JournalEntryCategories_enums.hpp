@@ -32,7 +32,10 @@ namespace E_JournalEntryCategories {
         NewEnumerator35 = 29,
         NewEnumerator36 = 30,
         NewEnumerator37 = 31,
-        E_MAX = 32,
+        NewEnumerator39 = 32,
+        NewEnumerator40 = 33,
+        NewEnumerator41 = 34,
+        E_MAX = 35,
     };
 }
 

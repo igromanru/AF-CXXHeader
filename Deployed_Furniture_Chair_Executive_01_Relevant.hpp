@@ -3,6 +3,6 @@
 
 class ADeployed_Furniture_Chair_Executive_01_Relevant_C : public ADeployed_Furniture_Chair_Executive_01_C
 {
-}; // Size: 0x958
+}; // Size: 0x968
 
 #endif

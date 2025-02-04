@@ -3,6 +3,6 @@
 
 class ADeployed_Rug_Mat_C : public ADeployed_Rug_ParentBP_C
 {
-}; // Size: 0x920
+}; // Size: 0x930
 
 #endif

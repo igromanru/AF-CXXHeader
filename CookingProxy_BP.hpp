@@ -42,7 +42,7 @@ class ACookingProxy_BP_C : public AItemProxyParent_BP_C
     FName FoodRow;                                                                    // 0x0554 (size: 0x8)
 
     void CanUseSharedInteraction(bool& Can Use);
-    void GetPowerCordHighlightColor(class UActorComponent*& Cable, int32& Color);
+    void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
     bool IsRadioactive();
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
@@ -62,7 +62,7 @@ class ACookingProxy_BP_C : public AItemProxyParent_BP_C
     void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void RequiresToolToDismantle(bool& Tool Required);
-    void ShowPotentialInteraction(bool& Show);
+    void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void GetStoredString(FString& String);
     int32 DoesCookwareExist(const FDataTableRowHandle& DataTableRowHandle, bool& Exist);
     void GetCorrectItemProxyMesh(class UStaticMesh* Mesh, bool IsPot, class UStaticMesh*& OutMesh);
@@ -71,7 +71,7 @@ class ACookingProxy_BP_C : public AItemProxyParent_BP_C
     void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
     void Server_TryBoilTaintedWater(bool& Success);
     void OnRep_BoilingTaintedWater();
-    void UpdateSoupLiquidLevel();
+    void UpdateSoupLiquidLevel(TEnumAsByte<E_CookingTypes::Type> CookType, int32 LiquidLevel, TEnumAsByte<E_LiquidType::Type> LiquidType);
     void UpdateParticleAndSoundFX();
     void GetPrimarySoupTypeFromIngredients(bool RecipeExists);
     void OnRep_CurrentFoodRowName();
@@ -99,8 +99,8 @@ class ACookingProxy_BP_C : public AItemProxyParent_BP_C
     void RefreshItemAppearance();
     void RefreshItemStates(FDataTableRowHandle OriginalItem, FAbiotic_InventoryChangeableDataStruct ChangeableData, TEnumAsByte<EFoodCookStates::Type> ChefSkill, double TimeToCook, double TimeToBurn, class AAbiotic_PlayerCharacter_C* OriginalChef, bool ShowCookwareMesh, bool Cookware, bool StartCookingSoup, bool New Ingredient Added, bool CanCookSoup);
     void Server_ResumeCooking();
-    void Broadcast_Splash_NewIngredient();
-    void Local_Splash_NewIngredient();
+    void Broadcast_Splash_NewIngredient(TEnumAsByte<E_CookingTypes::Type> CookingType, int32 LiquidLevel, TEnumAsByte<E_LiquidType::Type> LiquidType);
+    void Local_Splash_NewIngredient(TEnumAsByte<E_CookingTypes::Type> CookingType, int32 LiquidLevel, TEnumAsByte<E_LiquidType::Type> LiquidType);
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void OnInteractHighlightStart(class UActorComponent* Component);

@@ -18,6 +18,7 @@ class UW_MainMenu_ContinueGame_C : public UW_HostMenu_Parent_C
     class UW_PopupPleaseWait_C* PleaseWaitPopup;                                      // 0x0348 (size: 0x8)
     FString LastSandboxFolder;                                                        // 0x0350 (size: 0x10)
 
+    void SetMapToHost();
     void CheckCloudSaveConflict(bool& Conflict, int32& MainSaveMinutes, int32& BackupSaveMinutes);
     void BndEvt__W_MainMenu_HostGame_W_MainMenuButton_Back_K2Node_ComponentBoundEvent_0_ButtonPressed__DelegateSignature();
     void BndEvt__W_MainMenu_HostGame_W_MainMenuButton_Host_K2Node_ComponentBoundEvent_1_ButtonPressed__DelegateSignature();

@@ -3,6 +3,6 @@
 
 class ADeployed_Barricade_Plank_Half_C : public ADeployed_Barricade_ParentBP_C
 {
-}; // Size: 0x920
+}; // Size: 0x930
 
 #endif

@@ -18,7 +18,8 @@ namespace E_SaveType {
         NewEnumerator16 = 15,
         NewEnumerator17 = 16,
         NewEnumerator18 = 17,
-        E_MAX = 18,
+        NewEnumerator19 = 18,
+        E_MAX = 19,
     };
 }
 

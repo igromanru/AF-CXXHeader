@@ -3,9 +3,9 @@
 
 class ADeployed_Chair_Beanbag_01_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    class USceneComponent* SitSpot;                                                   // 0x0920 (size: 0x8)
+    class USceneComponent* SitSpot;                                                   // 0x0930 (size: 0x8)
 
     void HasSitLocations(bool& IsSittable);
-}; // Size: 0x928
+}; // Size: 0x938
 
 #endif

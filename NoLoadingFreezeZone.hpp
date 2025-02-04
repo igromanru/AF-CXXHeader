@@ -3,6 +3,6 @@
 
 class ANoLoadingFreezeZone_C : public ABuffZone_ParentBP_C
 {
-}; // Size: 0x308
+}; // Size: 0x328
 
 #endif

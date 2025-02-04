@@ -10,7 +10,8 @@ struct FSaveData_NPCState_Struct
     FVector Location_22_4A2FC732466C4BFB7DD7D28401ECCA3C;                             // 0x0038 (size: 0x18)
     TMap<EBodyLimbs, double> CurrentHealthMap_37_3DCC36A344E90F15026001BAEBBFFA26;    // 0x0050 (size: 0x50)
     TSoftClassPtr<ANPC_Base_ParentBP_C> NPCClass_40_6B707D0B4E3EA501567782B7473C4B3C; // 0x00A0 (size: 0x28)
+    TArray<FDynamicProperty> DynamicProperties_44_6B93027F469540FB2E6F04AA8D04608B;   // 0x00C8 (size: 0x10)
 
-}; // Size: 0xC8
+}; // Size: 0xD8
 
 #endif

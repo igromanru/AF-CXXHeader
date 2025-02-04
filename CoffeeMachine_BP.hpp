@@ -3,10 +3,10 @@
 
 class ACoffeeMachine_BP_C : public AVendingMachine_BP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B00 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B10 (size: 0x8)
 
     void ReceiveBeginPlay();
     void ExecuteUbergraph_CoffeeMachine_BP(int32 EntryPoint);
-}; // Size: 0xB08
+}; // Size: 0xB18
 
 #endif

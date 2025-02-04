@@ -3,11 +3,11 @@
 
 class ANarrativeNPC_Human_Hologram_C : public ANarrativeNPC_Human_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x1678 (size: 0x8)
-    class UStaticMeshComponent* HoloStand1;                                           // 0x1680 (size: 0x8)
-    class UPointLightComponent* PointLight;                                           // 0x1688 (size: 0x8)
-    class UStaticMeshComponent* HoloStand;                                            // 0x1690 (size: 0x8)
-    class UStaticMeshComponent* HoloBeam;                                             // 0x1698 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x1770 (size: 0x8)
+    class UStaticMeshComponent* HoloStand1;                                           // 0x1778 (size: 0x8)
+    class UPointLightComponent* PointLight;                                           // 0x1780 (size: 0x8)
+    class UStaticMeshComponent* HoloStand;                                            // 0x1788 (size: 0x8)
+    class UStaticMeshComponent* HoloBeam;                                             // 0x1790 (size: 0x8)
 
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void CanLongInteractWith_A(bool& Success);
@@ -17,6 +17,6 @@ class ANarrativeNPC_Human_Hologram_C : public ANarrativeNPC_Human_ParentBP_C
     void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void Broadcast_ShutUpHologram();
     void ExecuteUbergraph_NarrativeNPC_Human_Hologram(int32 EntryPoint);
-}; // Size: 0x16A0
+}; // Size: 0x1798
 
 #endif

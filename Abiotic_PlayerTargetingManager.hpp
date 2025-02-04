@@ -3,6 +3,6 @@
 
 class UAbiotic_PlayerTargetingManager_C : public UAbioticTargetingManager
 {
-}; // Size: 0x2B0
+}; // Size: 0x2E0
 
 #endif

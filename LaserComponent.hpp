@@ -37,7 +37,14 @@ class ULaserComponent_C : public USceneComponent
     class UNiagaraComponent* LaserEndComponent;                                       // 0x0390 (size: 0x8)
     bool LaserEndHandled;                                                             // 0x0398 (size: 0x1)
     FLinearColor CurrentLaserColor;                                                   // 0x039C (size: 0x10)
+    bool LaserEndsEnabled;                                                            // 0x03AC (size: 0x1)
+    FLaserComponent_CLaserFX_Start LaserFX_Start;                                     // 0x03B0 (size: 0x10)
+    void LaserFX_Start();
+    FLaserComponent_CLaserFX_End LaserFX_End;                                         // 0x03C0 (size: 0x10)
+    void LaserFX_End();
 
+    void OnRep_CurrentBounceCount();
+    void ReflectLaser(class AActor* TargetActor, FHitResult& Hit, int32 MaxSimultaneousReflects, FVector DirectionOverride);
     void OnRep_LaserEndHandled();
     void ToggleSounds(bool On);
     int32 GetLaserIntensity();
@@ -55,7 +62,10 @@ class ULaserComponent_C : public USceneComponent
     void ReceiveTick(float DeltaSeconds);
     void OnDestroyed_Event(class AActor* DestroyedActor);
     void ReceiveBeginPlay();
+    void ReceiveEndPlay(TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
     void ExecuteUbergraph_LaserComponent(int32 EntryPoint);
-}; // Size: 0x3AC
+    void LaserFX_End__DelegateSignature();
+    void LaserFX_Start__DelegateSignature();
+}; // Size: 0x3D0
 
 #endif

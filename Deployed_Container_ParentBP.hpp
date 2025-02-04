@@ -3,20 +3,20 @@
 
 class ADeployed_Container_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0920 (size: 0x8)
-    class UChildActorComponent* RadioactiveActor;                                     // 0x0928 (size: 0x8)
-    class UTextRenderComponent* ContainerLabelText;                                   // 0x0930 (size: 0x8)
-    class UBoxComponent* InteractionBlocker;                                          // 0x0938 (size: 0x8)
-    class UAbiotic_InventoryComponent_C* ContainerInventory;                          // 0x0940 (size: 0x8)
-    bool IsContainerBeingUsed;                                                        // 0x0948 (size: 0x1)
-    TSoftObjectPtr<USoundBase> OpenCue;                                               // 0x0950 (size: 0x28)
-    TSoftObjectPtr<USoundBase> CloseCue;                                              // 0x0978 (size: 0x28)
-    FDataTableRowHandle InitialContainerLoot;                                         // 0x09A0 (size: 0x10)
-    TArray<class AAbiotic_Character_ParentBP_C*> ContainerUsers;                      // 0x09B0 (size: 0x10)
-    bool CloseFullyWhenEmpty;                                                         // 0x09C0 (size: 0x1)
-    FDeployed_Container_ParentBP_CContainerIsSaving ContainerIsSaving;                // 0x09C8 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0930 (size: 0x8)
+    class UChildActorComponent* RadioactiveActor;                                     // 0x0938 (size: 0x8)
+    class UTextRenderComponent* ContainerLabelText;                                   // 0x0940 (size: 0x8)
+    class UBoxComponent* InteractionBlocker;                                          // 0x0948 (size: 0x8)
+    class UAbiotic_InventoryComponent_C* ContainerInventory;                          // 0x0950 (size: 0x8)
+    bool IsContainerBeingUsed;                                                        // 0x0958 (size: 0x1)
+    TSoftObjectPtr<USoundBase> OpenCue;                                               // 0x0960 (size: 0x28)
+    TSoftObjectPtr<USoundBase> CloseCue;                                              // 0x0988 (size: 0x28)
+    FDataTableRowHandle InitialContainerLoot;                                         // 0x09B0 (size: 0x10)
+    TArray<class AAbiotic_Character_ParentBP_C*> ContainerUsers;                      // 0x09C0 (size: 0x10)
+    bool CloseFullyWhenEmpty;                                                         // 0x09D0 (size: 0x1)
+    FDeployed_Container_ParentBP_CContainerIsSaving ContainerIsSaving;                // 0x09D8 (size: 0x10)
     void ContainerIsSaving();
-    FDeployed_Container_ParentBP_CContainerDestroyed ContainerDestroyed;              // 0x09D8 (size: 0x10)
+    FDeployed_Container_ParentBP_CContainerDestroyed ContainerDestroyed;              // 0x09E8 (size: 0x10)
     void ContainerDestroyed();
 
     bool IsRadioactive();
@@ -44,6 +44,6 @@ class ADeployed_Container_ParentBP_C : public AAbioticDeployed_Furniture_ParentB
     void ExecuteUbergraph_Deployed_Container_ParentBP(int32 EntryPoint);
     void ContainerDestroyed__DelegateSignature();
     void ContainerIsSaving__DelegateSignature();
-}; // Size: 0x9E8
+}; // Size: 0x9F8
 
 #endif

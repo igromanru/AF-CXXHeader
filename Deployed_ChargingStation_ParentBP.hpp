@@ -3,24 +3,24 @@
 
 class ADeployed_ChargingStation_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0920 (size: 0x8)
-    class UNiagaraComponent* ChargingParticle;                                        // 0x0928 (size: 0x8)
-    class UPointLightComponent* PointLight;                                           // 0x0930 (size: 0x8)
-    class UAbiotic_InventoryComponent_C* ChargeStationInventory;                      // 0x0938 (size: 0x8)
-    float Timeline_NewTrack_0_2970AB954481CD0A5EE5A6B0C726E9CA;                       // 0x0940 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> Timeline__Direction_2970AB954481CD0A5EE5A6B0C726E9CA; // 0x0944 (size: 0x1)
-    class UTimelineComponent* Timeline;                                               // 0x0948 (size: 0x8)
-    bool Local_HoldingChargeableItem;                                                 // 0x0950 (size: 0x1)
-    bool IsChargingItem;                                                              // 0x0951 (size: 0x1)
-    class AAbiotic_Item_ParentBP_C* ChargingItem;                                     // 0x0958 (size: 0x8)
-    double ChargingInterval;                                                          // 0x0960 (size: 0x8)
-    FTimerHandle ChargingTimer;                                                       // 0x0968 (size: 0x8)
-    double ChargingIncreasePerTick;                                                   // 0x0970 (size: 0x8)
-    double CurrentChargePercent;                                                      // 0x0978 (size: 0x8)
-    TArray<class AChargedProxy_BP_C*> ChargingProxies;                                // 0x0980 (size: 0x10)
-    int32 LastLightElement;                                                           // 0x0990 (size: 0x4)
-    bool BlinkOn;                                                                     // 0x0994 (size: 0x1)
-    FTimerHandle BeepTimer;                                                           // 0x0998 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0930 (size: 0x8)
+    class UNiagaraComponent* ChargingParticle;                                        // 0x0938 (size: 0x8)
+    class UPointLightComponent* PointLight;                                           // 0x0940 (size: 0x8)
+    class UAbiotic_InventoryComponent_C* ChargeStationInventory;                      // 0x0948 (size: 0x8)
+    float Timeline_NewTrack_0_2970AB954481CD0A5EE5A6B0C726E9CA;                       // 0x0950 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> Timeline__Direction_2970AB954481CD0A5EE5A6B0C726E9CA; // 0x0954 (size: 0x1)
+    class UTimelineComponent* Timeline;                                               // 0x0958 (size: 0x8)
+    bool Local_HoldingChargeableItem;                                                 // 0x0960 (size: 0x1)
+    bool IsChargingItem;                                                              // 0x0961 (size: 0x1)
+    class AAbiotic_Item_ParentBP_C* ChargingItem;                                     // 0x0968 (size: 0x8)
+    double ChargingInterval;                                                          // 0x0970 (size: 0x8)
+    FTimerHandle ChargingTimer;                                                       // 0x0978 (size: 0x8)
+    double ChargingIncreasePerTick;                                                   // 0x0980 (size: 0x8)
+    double CurrentChargePercent;                                                      // 0x0988 (size: 0x8)
+    TArray<class AChargedProxy_BP_C*> ChargingProxies;                                // 0x0990 (size: 0x10)
+    int32 LastLightElement;                                                           // 0x09A0 (size: 0x4)
+    bool BlinkOn;                                                                     // 0x09A4 (size: 0x1)
+    FTimerHandle BeepTimer;                                                           // 0x09A8 (size: 0x8)
 
     void CanLongInteractWith_A(bool& Success);
     void OnLoadedFromSave();
@@ -50,6 +50,6 @@ class ADeployed_ChargingStation_ParentBP_C : public AAbioticDeployed_Furniture_P
     void SetTimer_BeepPeriodically(bool End);
     void PlayBeep();
     void ExecuteUbergraph_Deployed_ChargingStation_ParentBP(int32 EntryPoint);
-}; // Size: 0x9A0
+}; // Size: 0x9B0
 
 #endif

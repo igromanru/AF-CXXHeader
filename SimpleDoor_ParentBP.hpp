@@ -3,68 +3,68 @@
 
 class ASimpleDoor_ParentBP_C : public AAbioticActor_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C0 (size: 0x8)
-    class UBoxComponent* Box;                                                         // 0x02C8 (size: 0x8)
-    class UNavModifierComponent* Door_NavBlocker;                                     // 0x02D0 (size: 0x8)
-    class UTextRenderComponent* EditorTextLockedSide;                                 // 0x02D8 (size: 0x8)
-    class UBoxComponent* KickKnockbackZone;                                           // 0x02E0 (size: 0x8)
-    class USceneComponent* DoorCenter;                                                // 0x02E8 (size: 0x8)
-    class USceneComponent* MoveThroughInward;                                         // 0x02F0 (size: 0x8)
-    class USceneComponent* MoveThroughOutward;                                        // 0x02F8 (size: 0x8)
-    class UStaticMeshComponent* EditorOutwardDoorMesh;                                // 0x0300 (size: 0x8)
-    class UStaticMeshComponent* EditorInwardDoorMesh;                                 // 0x0308 (size: 0x8)
-    class USceneComponent* EditorOutwardRoot;                                         // 0x0310 (size: 0x8)
-    class USceneComponent* EditorInwardRoot;                                          // 0x0318 (size: 0x8)
-    class UStaticMeshComponent* DoorMesh;                                             // 0x0320 (size: 0x8)
-    class USceneComponent* DoorRotationRoot;                                          // 0x0328 (size: 0x8)
-    class UArrowComponent* Back;                                                      // 0x0330 (size: 0x8)
-    class UArrowComponent* Front;                                                     // 0x0338 (size: 0x8)
-    float ChangeDoorState_NewTrack_0_99922EB94C1739893298C0AB4B22DF23;                // 0x0340 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> ChangeDoorState__Direction_99922EB94C1739893298C0AB4B22DF23; // 0x0344 (size: 0x1)
-    class UTimelineComponent* ChangeDoorState;                                        // 0x0348 (size: 0x8)
-    TEnumAsByte<E_DoorStates::Type> DoorState;                                        // 0x0350 (size: 0x1)
-    FRotator BeginTimelineRotation;                                                   // 0x0358 (size: 0x18)
-    TEnumAsByte<E_DoorSwingAllowance::Type> DoorSwingAllowance;                       // 0x0370 (size: 0x1)
-    FRotator ClosedRotation;                                                          // 0x0378 (size: 0x18)
-    FRotator OpenOutwardRotation;                                                     // 0x0390 (size: 0x18)
-    FRotator OpenInwardRotation;                                                      // 0x03A8 (size: 0x18)
-    int32 DoorStyle;                                                                  // 0x03C0 (size: 0x4)
-    int32 DoorTexture;                                                                // 0x03C4 (size: 0x4)
-    TSoftObjectPtr<UMaterialInterface> DoorSignTexture;                               // 0x03C8 (size: 0x28)
-    double MaxOutwardDegrees;                                                         // 0x03F0 (size: 0x8)
-    double MaxInwardDegrees;                                                          // 0x03F8 (size: 0x8)
-    bool Flipped;                                                                     // 0x0400 (size: 0x1)
-    TEnumAsByte<E_DoorStates::Type> LastSideInteractedFrom;                           // 0x0401 (size: 0x1)
-    bool OneWayDoor;                                                                  // 0x0402 (size: 0x1)
-    bool OneWayDoor_HasBeenUnlocked;                                                  // 0x0403 (size: 0x1)
-    class ASimpleDoor_ParentBP_C* LinkedDoor;                                         // 0x0408 (size: 0x8)
-    bool ShareDoorStateWithLinkedDoor;                                                // 0x0410 (size: 0x1)
-    TArray<class AActor*> IgnoreActorsWhenSwinging;                                   // 0x0418 (size: 0x10)
-    FSaveData_Door_Struct DoorSaveData;                                               // 0x0428 (size: 0x38)
-    class AButton_Generic_C* ButtonTiedToLockMechanism;                               // 0x0460 (size: 0x8)
-    double LastDoorTime;                                                              // 0x0468 (size: 0x8)
-    bool ToiletLocked;                                                                // 0x0470 (size: 0x1)
-    class AActor* LastInteractor;                                                     // 0x0478 (size: 0x8)
-    TEnumAsByte<E_DoorStates::Type> PreviousDoorState;                                // 0x0480 (size: 0x1)
-    TArray<class AActor*> StoppedByActors;                                            // 0x0488 (size: 0x10)
-    class AToilet_ParentBP_C* LinkedToilet;                                           // 0x0498 (size: 0x8)
-    TArray<class AActor*> DoorSwingIgnoreActors;                                      // 0x04A0 (size: 0x10)
-    double TimeNPCLastInteractedWith;                                                 // 0x04B0 (size: 0x8)
-    bool FakeDoor;                                                                    // 0x04B8 (size: 0x1)
-    double DoorYawRot;                                                                // 0x04C0 (size: 0x8)
-    class AButton_Generic_C* ButtonToForceMeOpen;                                     // 0x04C8 (size: 0x8)
-    FSimpleDoor_ParentBP_CDoorStateChanged DoorStateChanged;                          // 0x04D0 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
+    class UBoxComponent* Box;                                                         // 0x02D0 (size: 0x8)
+    class UNavModifierComponent* Door_NavBlocker;                                     // 0x02D8 (size: 0x8)
+    class UTextRenderComponent* EditorTextLockedSide;                                 // 0x02E0 (size: 0x8)
+    class UBoxComponent* KickKnockbackZone;                                           // 0x02E8 (size: 0x8)
+    class USceneComponent* DoorCenter;                                                // 0x02F0 (size: 0x8)
+    class USceneComponent* MoveThroughInward;                                         // 0x02F8 (size: 0x8)
+    class USceneComponent* MoveThroughOutward;                                        // 0x0300 (size: 0x8)
+    class UStaticMeshComponent* EditorOutwardDoorMesh;                                // 0x0308 (size: 0x8)
+    class UStaticMeshComponent* EditorInwardDoorMesh;                                 // 0x0310 (size: 0x8)
+    class USceneComponent* EditorOutwardRoot;                                         // 0x0318 (size: 0x8)
+    class USceneComponent* EditorInwardRoot;                                          // 0x0320 (size: 0x8)
+    class UStaticMeshComponent* DoorMesh;                                             // 0x0328 (size: 0x8)
+    class USceneComponent* DoorRotationRoot;                                          // 0x0330 (size: 0x8)
+    class UArrowComponent* Back;                                                      // 0x0338 (size: 0x8)
+    class UArrowComponent* Front;                                                     // 0x0340 (size: 0x8)
+    float ChangeDoorState_NewTrack_0_99922EB94C1739893298C0AB4B22DF23;                // 0x0348 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> ChangeDoorState__Direction_99922EB94C1739893298C0AB4B22DF23; // 0x034C (size: 0x1)
+    class UTimelineComponent* ChangeDoorState;                                        // 0x0350 (size: 0x8)
+    TEnumAsByte<E_DoorStates::Type> DoorState;                                        // 0x0358 (size: 0x1)
+    FRotator BeginTimelineRotation;                                                   // 0x0360 (size: 0x18)
+    TEnumAsByte<E_DoorSwingAllowance::Type> DoorSwingAllowance;                       // 0x0378 (size: 0x1)
+    FRotator ClosedRotation;                                                          // 0x0380 (size: 0x18)
+    FRotator OpenOutwardRotation;                                                     // 0x0398 (size: 0x18)
+    FRotator OpenInwardRotation;                                                      // 0x03B0 (size: 0x18)
+    int32 DoorStyle;                                                                  // 0x03C8 (size: 0x4)
+    int32 DoorTexture;                                                                // 0x03CC (size: 0x4)
+    TSoftObjectPtr<UMaterialInterface> DoorSignTexture;                               // 0x03D0 (size: 0x28)
+    double MaxOutwardDegrees;                                                         // 0x03F8 (size: 0x8)
+    double MaxInwardDegrees;                                                          // 0x0400 (size: 0x8)
+    bool Flipped;                                                                     // 0x0408 (size: 0x1)
+    TEnumAsByte<E_DoorStates::Type> LastSideInteractedFrom;                           // 0x0409 (size: 0x1)
+    bool OneWayDoor;                                                                  // 0x040A (size: 0x1)
+    bool OneWayDoor_HasBeenUnlocked;                                                  // 0x040B (size: 0x1)
+    class ASimpleDoor_ParentBP_C* LinkedDoor;                                         // 0x0410 (size: 0x8)
+    bool ShareDoorStateWithLinkedDoor;                                                // 0x0418 (size: 0x1)
+    TArray<class AActor*> IgnoreActorsWhenSwinging;                                   // 0x0420 (size: 0x10)
+    FSaveData_Door_Struct DoorSaveData;                                               // 0x0430 (size: 0x38)
+    class AButton_Generic_C* ButtonTiedToLockMechanism;                               // 0x0468 (size: 0x8)
+    double LastDoorTime;                                                              // 0x0470 (size: 0x8)
+    bool ToiletLocked;                                                                // 0x0478 (size: 0x1)
+    class AActor* LastInteractor;                                                     // 0x0480 (size: 0x8)
+    TEnumAsByte<E_DoorStates::Type> PreviousDoorState;                                // 0x0488 (size: 0x1)
+    TArray<class AActor*> StoppedByActors;                                            // 0x0490 (size: 0x10)
+    class AToilet_ParentBP_C* LinkedToilet;                                           // 0x04A0 (size: 0x8)
+    TArray<class AActor*> DoorSwingIgnoreActors;                                      // 0x04A8 (size: 0x10)
+    double TimeNPCLastInteractedWith;                                                 // 0x04B8 (size: 0x8)
+    bool FakeDoor;                                                                    // 0x04C0 (size: 0x1)
+    double DoorYawRot;                                                                // 0x04C8 (size: 0x8)
+    class AButton_Generic_C* ButtonToForceMeOpen;                                     // 0x04D0 (size: 0x8)
+    FSimpleDoor_ParentBP_CDoorStateChanged DoorStateChanged;                          // 0x04D8 (size: 0x10)
     void DoorStateChanged();
-    bool DoorDisabled;                                                                // 0x04E0 (size: 0x1)
-    class USoundBase* DoorSFX;                                                        // 0x04E8 (size: 0x8)
-    bool NoVignetteReset;                                                             // 0x04F0 (size: 0x1)
-    FWorldFlagRowHandle WorldFlagToUnlock;                                            // 0x04F8 (size: 0x20)
-    double DoorSwingRateDefault;                                                      // 0x0518 (size: 0x8)
-    bool NeverBeBlocked;                                                              // 0x0520 (size: 0x1)
-    bool CanAutoClose;                                                                // 0x0521 (size: 0x1)
+    bool DoorDisabled;                                                                // 0x04E8 (size: 0x1)
+    class USoundBase* DoorSFX;                                                        // 0x04F0 (size: 0x8)
+    bool NoVignetteReset;                                                             // 0x04F8 (size: 0x1)
+    FWorldFlagRowHandle WorldFlagToUnlock;                                            // 0x0500 (size: 0x20)
+    double DoorSwingRateDefault;                                                      // 0x0520 (size: 0x8)
+    bool NeverBeBlocked;                                                              // 0x0528 (size: 0x1)
+    bool CanAutoClose;                                                                // 0x0529 (size: 0x1)
 
     void CanUseSharedInteraction(bool& Can Use);
-    void GetPowerCordHighlightColor(class UActorComponent*& Cable, int32& Color);
+    void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
     bool IsRadioactive();
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
@@ -72,7 +72,7 @@ class ASimpleDoor_ParentBP_C : public AAbioticActor_C
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     FText GetItemNameText();
     void GetStoredString(FString& String);
-    void ShowPotentialInteraction(bool& Show);
+    void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void RequiresToolToDismantle(bool& Tool Required);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
@@ -142,6 +142,6 @@ class ASimpleDoor_ParentBP_C : public AAbioticActor_C
     void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void ExecuteUbergraph_SimpleDoor_ParentBP(int32 EntryPoint);
     void DoorStateChanged__DelegateSignature();
-}; // Size: 0x522
+}; // Size: 0x52A
 
 #endif

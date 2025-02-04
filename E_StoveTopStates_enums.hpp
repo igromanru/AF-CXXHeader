@@ -10,7 +10,8 @@ namespace E_StoveTopStates {
         NewEnumerator6 = 7,
         NewEnumerator7 = 8,
         NewEnumerator10 = 9,
-        E_MAX = 10,
+        NewEnumerator11 = 10,
+        E_MAX = 11,
     };
 }
 

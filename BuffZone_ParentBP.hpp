@@ -12,6 +12,7 @@ class ABuffZone_ParentBP_C : public AActor
     void CharacterLeftVolume(class AAbiotic_Character_ParentBP_C* Character);
     FBuffZone_ParentBP_CCharacterEnteredVolume CharacterEnteredVolume;                // 0x02F8 (size: 0x10)
     void CharacterEnteredVolume(class AAbiotic_Character_ParentBP_C* Character);
+    FGameplayTagContainer BuffBlockingTags;                                           // 0x0308 (size: 0x20)
 
     void ProcessBuffZoneEndOverlap(class UObject* NewActor, FBuffDebuffRowHandle BuffToRemove);
     void ProcessNewBuffZoneOverlap(class AActor* NewActor, FBuffDebuffRowHandle BuffToAdd);
@@ -24,6 +25,6 @@ class ABuffZone_ParentBP_C : public AActor
     void ExecuteUbergraph_BuffZone_ParentBP(int32 EntryPoint);
     void CharacterEnteredVolume__DelegateSignature(class AAbiotic_Character_ParentBP_C* Character);
     void CharacterLeftVolume__DelegateSignature(class AAbiotic_Character_ParentBP_C* Character);
-}; // Size: 0x308
+}; // Size: 0x328
 
 #endif

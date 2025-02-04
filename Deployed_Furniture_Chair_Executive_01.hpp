@@ -6,6 +6,6 @@ class ADeployed_Furniture_Chair_Executive_01_C : public ADeployed_Furniture_Chai
 
     void SitLocations(TArray<FVector>& Locations);
     void HasSitLocations(bool& IsSittable);
-}; // Size: 0x958
+}; // Size: 0x968
 
 #endif

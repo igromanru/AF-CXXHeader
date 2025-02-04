@@ -3,6 +3,6 @@
 
 class ADeployed_Furniture_RoundTable_Office_01_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-}; // Size: 0x920
+}; // Size: 0x930
 
 #endif

@@ -78,6 +78,9 @@ class UW_InventoryItemSlot_Tooltip_C : public UUserWidget
     bool FoundActiveSetBonus;                                                         // 0x0C99 (size: 0x1)
     TArray<class UW_Tooltip_TextLine_C*> FoundSetBonusText;                           // 0x0CA0 (size: 0x10)
 
+    void SetWeaponDamageText();
+    void CheckIfItemStripped(bool IsStripped);
+    void CheckIfRecipeStripped();
     void CheckSoupRecipeCount(bool RequireSoupSkill, int32& SoupRecipes);
     void CenterDividerVisibillityCheck(bool& Visible);
     FAbiotic_InventoryItemStruct GetCorrectConsumeItemData();

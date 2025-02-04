@@ -8,12 +8,17 @@ class AAbiotic_Survival_GameMode_C : public AAbioticGameMode
     class AAbiotic_AIDirector_C* AI_Director;                                         // 0x0388 (size: 0x8)
     FString ServerID;                                                                 // 0x0390 (size: 0x10)
     FString RCON_ChatLog;                                                             // 0x03A0 (size: 0x10)
-    bool SaveDataLoaded;                                                              // 0x03B0 (size: 0x1)
+    bool PersistentSaveDataLoaded;                                                    // 0x03B0 (size: 0x1)
     FTimerHandle AnalyticsHeartbeatHandle;                                            // 0x03B8 (size: 0x8)
     bool DebugSaving;                                                                 // 0x03C0 (size: 0x1)
     TArray<FString> CurrentModerators;                                                // 0x03C8 (size: 0x10)
     bool ServerConfigIsLoaded;                                                        // 0x03D8 (size: 0x1)
 
+    void IsActorReadyToSave(class AActor* ActorToCheck, bool& Ready);
+    void ApplyWorldSaveData|EncounterDirectors(class UAbiotic_WorldSave_C*& SaveGame, class UObject* WorldObject);
+    void UpdateEncounterDirectorToWorldSave(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
+    void ApplyWorldSaveData|TravelingNPCs(class UAbiotic_WorldSave_C* Save);
+    void UpdateTravelingNPCsToWorldSave();
     void ApplyWorldSaveData|Corpses(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
     void UpdateCorpseToWorldSave(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
     void UpdateActiveLeyakContainmentID();

@@ -3,13 +3,13 @@
 
 class APaperTowelDispenser_BP_C : public AAbioticActor_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C0 (size: 0x8)
-    class UAudioComponent* DispenserAudio;                                            // 0x02C8 (size: 0x8)
-    class UStaticMeshComponent* Paper;                                                // 0x02D0 (size: 0x8)
-    class UStaticMeshComponent* Dispenser;                                            // 0x02D8 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
+    class UAudioComponent* DispenserAudio;                                            // 0x02D0 (size: 0x8)
+    class UStaticMeshComponent* Paper;                                                // 0x02D8 (size: 0x8)
+    class UStaticMeshComponent* Dispenser;                                            // 0x02E0 (size: 0x8)
 
     void CanUseSharedInteraction(bool& Can Use);
-    void GetPowerCordHighlightColor(class UActorComponent*& Cable, int32& Color);
+    void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
@@ -24,7 +24,7 @@ class APaperTowelDispenser_BP_C : public AAbioticActor_C
     void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void RequiresToolToDismantle(bool& Tool Required);
-    void ShowPotentialInteraction(bool& Show);
+    void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void GetStoredString(FString& String);
     FText GetItemNameText();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
@@ -49,6 +49,6 @@ class APaperTowelDispenser_BP_C : public AAbioticActor_C
     void DeliverDynamicProperty(bool FromSave, FDynamicProperty Property);
     void InteractTeleportUpdate(class AAbiotic_Character_ParentBP_C* InteractingCharacter, bool TryingToTeleport, bool TeleportSuccessful);
     void ExecuteUbergraph_PaperTowelDispenser_BP(int32 EntryPoint);
-}; // Size: 0x2E0
+}; // Size: 0x2E8
 
 #endif

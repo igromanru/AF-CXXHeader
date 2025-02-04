@@ -3,6 +3,6 @@
 
 class AVehicle_Seat_Tram_Narrow_Labs_C : public AVehicle_Seat_Tram_Narrow_C
 {
-}; // Size: 0x950
+}; // Size: 0x960
 
 #endif

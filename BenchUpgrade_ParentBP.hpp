@@ -21,7 +21,7 @@ class ABenchUpgrade_ParentBP_C : public ABenchUpgradeActor
     void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void RequiresToolToDismantle(bool& Tool Required);
-    void ShowPotentialInteraction(bool& Show);
+    void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void GetStoredString(FString& String);
     FText GetItemNameText();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
@@ -29,7 +29,7 @@ class ABenchUpgrade_ParentBP_C : public ABenchUpgradeActor
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
     bool IsRadioactive();
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
-    void GetPowerCordHighlightColor(class UActorComponent*& Cable, int32& Color);
+    void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
     void IsPowered(bool& PowerOn);
     void GetPowerParentIndex(int32& Index);

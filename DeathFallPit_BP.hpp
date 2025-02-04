@@ -10,11 +10,13 @@ class ADeathFallPit_BP_C : public AActor
     class USceneComponent* DefaultSceneRoot;                                          // 0x02B8 (size: 0x8)
     FVector VolumeSize;                                                               // 0x02C0 (size: 0x18)
     TSubclassOf<class UDamageType_DeathPit_C> DeathType;                              // 0x02D8 (size: 0x8)
+    TArray<class TSubclassOf<AActor>> AffectedClasses;                                // 0x02E0 (size: 0x10)
+    bool KillAllVehicles;                                                             // 0x02F0 (size: 0x1)
 
-    void DealDamage(class AAbiotic_Character_ParentBP_C* ActorToDamage, const FHitResult& HitInfo);
+    void DealDamage(class AActor* ActorToDamage, const FHitResult& HitInfo);
     void UserConstructionScript();
     void BndEvt__Deathvolume_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
     void ExecuteUbergraph_DeathFallPit_BP(int32 EntryPoint);
-}; // Size: 0x2E0
+}; // Size: 0x2F1
 
 #endif

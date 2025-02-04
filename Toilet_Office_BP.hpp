@@ -3,6 +3,6 @@
 
 class AToilet_Office_BP_C : public AToilet_ParentBP_C
 {
-}; // Size: 0x941
+}; // Size: 0x951
 
 #endif

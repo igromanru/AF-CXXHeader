@@ -3,14 +3,14 @@
 
 class AAI_Controller_Leyak_C : public AAbiotic_AI_Controller_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0900 (size: 0x8)
-    TArray<class AAbioticCharacter*> ValidTargets;                                    // 0x0908 (size: 0x10)
-    bool SkipLeyakLevelCheck;                                                         // 0x0918 (size: 0x1)
-    TSoftObjectPtr<UWorld> LeyakLevel;                                                // 0x0920 (size: 0x28)
-    double MaxLeyakChaseDistance;                                                     // 0x0948 (size: 0x8)
-    double LeyakAggroRange;                                                           // 0x0950 (size: 0x8)
-    bool WantsToDespawn;                                                              // 0x0958 (size: 0x1)
-    double MaxLeyakChaseDistance_Aggrod;                                              // 0x0960 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x08A8 (size: 0x8)
+    TArray<class AAbioticCharacter*> ValidTargets;                                    // 0x08B0 (size: 0x10)
+    bool SkipLeyakLevelCheck;                                                         // 0x08C0 (size: 0x1)
+    TSoftObjectPtr<UWorld> LeyakLevel;                                                // 0x08C8 (size: 0x28)
+    double MaxLeyakChaseDistance;                                                     // 0x08F0 (size: 0x8)
+    double LeyakAggroRange;                                                           // 0x08F8 (size: 0x8)
+    bool WantsToDespawn;                                                              // 0x0900 (size: 0x1)
+    double MaxLeyakChaseDistance_Aggrod;                                              // 0x0908 (size: 0x8)
 
     bool ExtraFocusCheck();
     void BT_CheckObstruction();
@@ -23,6 +23,6 @@ class AAI_Controller_Leyak_C : public AAbiotic_AI_Controller_ParentBP_C
     void ReceiveBeginPlay();
     void ReceiveTick(float DeltaSeconds);
     void ExecuteUbergraph_AI_Controller_Leyak(int32 EntryPoint);
-}; // Size: 0x968
+}; // Size: 0x910
 
 #endif

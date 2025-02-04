@@ -5,7 +5,7 @@ class UW_Research_RG_DraggingVisual_C : public UUserWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UBorder* ClickDragBorder;                                                   // 0x02E8 (size: 0x8)
-    class UImage* ItemIcon;                                                           // 0x02F0 (size: 0x8)
+    class UImage* itemicon;                                                           // 0x02F0 (size: 0x8)
     FName ItemMaterialRow;                                                            // 0x02F8 (size: 0x8)
     FName ItemRowName;                                                                // 0x0300 (size: 0x8)
     FVector2D DragOffset;                                                             // 0x0308 (size: 0x10)

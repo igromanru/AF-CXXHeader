@@ -130,6 +130,7 @@ class UAdvancedSessionsLibrary : public UBlueprintFunctionLibrary
 {
 
     void UniqueNetIdToString(const FBPUniqueNetId& UniqueNetId, FString& String);
+    TArray<FString> SplitServerNameForSearch(class UObject* WorldContextObject, FString InServerName);
     void SetPlayerName(class APlayerController* PlayerController, FString playerName);
     bool ServerTravel(class UObject* WorldContextObject, FString InURL, bool bAbsolute, bool bShouldSkipGameNotify);
     FSessionsSearchSetting MakeLiteralSessionSearchProperty(FSessionPropertyKeyPair SessionSearchProperty, EOnlineComparisonOpRedux ComparisonOp);
@@ -165,6 +166,7 @@ class UAdvancedSessionsLibrary : public UBlueprintFunctionLibrary
     void FindSessionPropertyByName(const TArray<FSessionPropertyKeyPair>& ExtraSettings, FName SettingsName, EBlueprintResultSwitch& Result, FSessionPropertyKeyPair& OutProperty);
     bool EqualEqual_UNetIDUnetID(const FBPUniqueNetId& A, const FBPUniqueNetId& B);
     FUniqueNetIdRepl Conv_BPUniqueIDToUniqueNetIDRepl(const FBPUniqueNetId& InUniqueID);
+    TArray<FSessionsSearchSetting> BuildSessionSearchForServerName(class UObject* WorldContextObject, FString InServerName);
     bool BanPlayer(class UObject* WorldContextObject, class APlayerController* PlayerToBan, FText BanReason);
     void AddOrModifyExtraSettings(TArray<FSessionPropertyKeyPair>& SettingsArray, TArray<FSessionPropertyKeyPair>& NewOrChangedSettings, TArray<FSessionPropertyKeyPair>& ModifiedSettingsArray);
 }; // Size: 0x28

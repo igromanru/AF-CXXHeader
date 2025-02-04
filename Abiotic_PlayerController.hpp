@@ -95,6 +95,7 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     bool NPCMusicActive;                                                              // 0x1158 (size: 0x1)
     FName TerminalRespawnID;                                                          // 0x115C (size: 0x8)
     FVector2D LastMousePosition;                                                      // 0x1168 (size: 0x10)
+    int32 PlayerSpawnAttempts;                                                        // 0x1178 (size: 0x4)
 
     void GetJoystickDirection(TEnumAsByte<EJoystickTypes::Type> Stick, FVector2D& StickInput);
     void TargetableByTurrets(bool& Targetable);
@@ -124,7 +125,7 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     void Server_DoDragDropTransaction(FInventorySlotSelected_Struct IncomingItemSlot, TEnumAsByte<E_InventorySlotType::Type> IncomingSlotType, FInventorySlotSelected_Struct ItemSlotToCheck, TEnumAsByte<E_InventorySlotType::Type> SlotTypeToCheck, bool IsSplitStack, int32 StackSize, TEnumAsByte<E_ItemDragDropOutcome::Type> LocalOutcome);
     void Server_AddToItemStack(class UAbiotic_InventoryComponent_C* Inventory, int32 SlotIndex, int32 StackSize);
     void StopItemDragOperation();
-    void StartItemDragOperation(FInventorySlotSelected_Struct ItemOrigin, bool DraggedBySplitStack, int32 StackAmount, class UTexture2D* ItemIcon, TEnumAsByte<E_InventorySlotType::Type> InventorySlotFrom, class UW_InventoryItemSlot_C* SlotOrigin);
+    void StartItemDragOperation(FInventorySlotSelected_Struct ItemOrigin, bool DraggedBySplitStack, int32 StackAmount, class UTexture2D* itemicon, TEnumAsByte<E_InventorySlotType::Type> InventorySlotFrom, class UW_InventoryItemSlot_C* SlotOrigin);
     void UpdatePushToTalk(bool Enabled);
     void AttemptVOIPInit();
     void Highlighted Draggable Gear Slot Update (bool StopHighlight, TEnumAsByte<E_InventorySlotType::Type> Slot Type);
@@ -268,11 +269,12 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     void OnAchievementUnlocked_Event(FAchievementRowHandle Achievement);
     void Input Changed(bool bUsingGamepad);
     void Client_DisplayTutorialPanel(const FName& TutorialPanelRow);
+    void Request_Trader_BuyItem(class UTraderComponent_C* Component, int32 TraderItemIndex);
     void ExecuteUbergraph_Abiotic_PlayerController(int32 EntryPoint);
     void ItemDragFinished__DelegateSignature();
     void ItemDragStarted__DelegateSignature(TEnumAsByte<E_InventorySlotType::Type> Item Type);
     void HeldInteractEnded__DelegateSignature();
     void HeldInteractStarted__DelegateSignature(double InteractionDuration);
-}; // Size: 0x1178
+}; // Size: 0x117C
 
 #endif

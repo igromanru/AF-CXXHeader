@@ -8,6 +8,7 @@ class UStyledBindCapturePrompt_C : public UBindCapturePrompt
     class UW_Keybind_C* Keybind_Escape;                                               // 0x0358 (size: 0x8)
 
     void StopListening();
+    void Construct();
     void ExecuteUbergraph_StyledBindCapturePrompt(int32 EntryPoint);
 }; // Size: 0x360
 

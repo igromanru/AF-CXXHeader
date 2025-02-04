@@ -3,6 +3,6 @@
 
 class ADeployed_Shelf_Large_C : public ADeployed_Shelf_Small_C
 {
-}; // Size: 0x920
+}; // Size: 0x930
 
 #endif

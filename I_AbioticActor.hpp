@@ -4,7 +4,8 @@
 class II_AbioticActor_C : public IInterface
 {
 
-    void GetPinnedHighlightColor(int32& Color, bool& IsPinnedIngredient);
+    void GetOutlineComponent(bool& ComponentEnabled, class UOutlineComponent_C*& Components);
+    void IsItemInPinnedRecipes(bool& IsPinnedIngredient);
     void GetNewButtonPromptLocation(class UActorComponent* Component, FVector& NewLocation);
 }; // Size: 0x28
 

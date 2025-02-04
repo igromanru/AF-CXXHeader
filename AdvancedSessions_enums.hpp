@@ -62,7 +62,10 @@ enum class EOnlineComparisonOpRedux {
     GreaterThanEquals = 3,
     LessThan = 4,
     LessThanEquals = 5,
-    EOnlineComparisonOpRedux_MAX = 6,
+    Near = 6,
+    In = 7,
+    NotIn = 8,
+    EOnlineComparisonOpRedux_MAX = 9,
 };
 
 enum class ESessionSettingSearchResult {

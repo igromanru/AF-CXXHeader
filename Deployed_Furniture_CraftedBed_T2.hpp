@@ -3,6 +3,6 @@
 
 class ADeployed_Furniture_CraftedBed_T2_C : public ADeployed_Furniture_Bed_ParentBP_C
 {
-}; // Size: 0x990
+}; // Size: 0x9A0
 
 #endif

@@ -4,12 +4,12 @@
 class AAbioticProjectile_ParentBP_C : public AActor
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0298 (size: 0x8)
-    class UNiagaraComponent* ProjectileGlint;                                         // 0x02A0 (size: 0x8)
-    class UAudioComponent* TravelLoopAudio;                                           // 0x02A8 (size: 0x8)
-    class USphereComponent* ProjectileCollision;                                      // 0x02B0 (size: 0x8)
-    class USkeletalMeshComponent* SK_Appearance;                                      // 0x02B8 (size: 0x8)
-    class UStaticMeshComponent* SM_Appearance;                                        // 0x02C0 (size: 0x8)
-    class UProjectileMovementComponent* ProjectileMovement;                           // 0x02C8 (size: 0x8)
+    class UAbioticProjectileComponent* ProjectileMovement;                            // 0x02A0 (size: 0x8)
+    class UNiagaraComponent* ProjectileGlint;                                         // 0x02A8 (size: 0x8)
+    class UAudioComponent* TravelLoopAudio;                                           // 0x02B0 (size: 0x8)
+    class USphereComponent* ProjectileCollision;                                      // 0x02B8 (size: 0x8)
+    class USkeletalMeshComponent* SK_Appearance;                                      // 0x02C0 (size: 0x8)
+    class UStaticMeshComponent* SM_Appearance;                                        // 0x02C8 (size: 0x8)
     FDataTableRowHandle ProjectileDataRowHandle;                                      // 0x02D0 (size: 0x10)
     FAbiotic_InventoryChangeableDataStruct ChangeableData;                            // 0x02E0 (size: 0x118)
     FAbiotic_ProjectileStruct ProjectileData;                                         // 0x03F8 (size: 0x158)
@@ -51,6 +51,9 @@ class AAbioticProjectile_ParentBP_C : public AActor
     bool DisruptElectronicsInRadius;                                                  // 0x0788 (size: 0x1)
     bool PlayFallbackExplosionSFX;                                                    // 0x0789 (size: 0x1)
 
+    bool TryOverrideBlock(const FHitResult& Hit);
+    bool CheckOverriddenByBlock(const FHitResult& Hit);
+    class AAbiotic_Item_Dropped_C* SpawnDroppedProjectile(bool& Spawned);
     void BodyShieldCheck(class AActor* Target, bool& DamageNotBlocked);
     void IgnoreOwnerCollision();
     void GetFXLocation(FVector& Location);
@@ -87,6 +90,7 @@ class AAbioticProjectile_ParentBP_C : public AActor
     void TryApplyBounceDamage();
     void Broadcast_TryDisruptLights(double Radius);
     void PlaySurfaceHitSound(TEnumAsByte<EPhysicalSurface> surface, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType, FVector Location);
+    void SetVelocityNextTick(FVector Velocity);
     void ExecuteUbergraph_AbioticProjectile_ParentBP(int32 EntryPoint);
     void ProjectileHitUpdate__DelegateSignature(bool Hit Established);
 }; // Size: 0x78A

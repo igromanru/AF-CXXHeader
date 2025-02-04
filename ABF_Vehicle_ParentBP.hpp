@@ -56,8 +56,9 @@ class AABF_Vehicle_ParentBP_C : public AAbioticWheeledVehiclePawn
     bool VehicleBeingDriven;                                                          // 0x0558 (size: 0x1)
     double MaxImpactDamage;                                                           // 0x0560 (size: 0x8)
 
+    void GetOutlineComponent(bool& ComponentEnabled, class UOutlineComponent_C*& Components);
     void GetNewButtonPromptLocation(class UActorComponent* Component, FVector& NewLocation);
-    void GetPinnedHighlightColor(int32& Color, bool& IsPinnedIngredient);
+    void IsItemInPinnedRecipes(bool& IsPinnedIngredient);
     void HasOccupants?(TArray<class AActor*>& Occupants);
     bool SupportsRecall?();
     bool IsVehicleDriveable();
@@ -66,7 +67,7 @@ class AABF_Vehicle_ParentBP_C : public AAbioticWheeledVehiclePawn
     void GetDriver(bool& Success, class AAbiotic_Character_ParentBP_C*& Character);
     bool CheckVehicleFreezeState();
     void CanUseSharedInteraction(bool& Can Use);
-    void GetPowerCordHighlightColor(class UActorComponent*& Cable, int32& Color);
+    void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
     bool IsRadioactive();
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
@@ -82,7 +83,7 @@ class AABF_Vehicle_ParentBP_C : public AAbioticWheeledVehiclePawn
     void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void RequiresToolToDismantle(bool& Tool Required);
-    void ShowPotentialInteraction(bool& Show);
+    void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void GetStoredString(FString& String);
     FText GetItemNameText();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);

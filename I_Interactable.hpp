@@ -8,7 +8,7 @@ class II_Interactable_C : public IInterface
     void DeliverDynamicProperty(bool FromSave, FDynamicProperty Property);
     void CanUseSharedInteraction(bool& Can Use);
     void RadialWheelInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed, FName SelectionWheelContentName);
-    void GetPowerCordHighlightColor(class UActorComponent*& Cable, int32& Color);
+    void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void Set New Attached Power Cord(class UCableComponent* New Power Cord);
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
     void DeliverInt(bool FromSave, const int32 New Int);
@@ -23,7 +23,7 @@ class II_Interactable_C : public IInterface
     void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbiotic_InventoryItemSlotStruct SlotData);
     void GetStoredString(FString& String);
     void DeliverString(FString String, bool FromSave);
-    void ShowPotentialInteraction(bool& Show);
+    void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void RequiresToolToDismantle(bool& Tool Required);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);

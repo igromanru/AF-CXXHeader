@@ -29,9 +29,11 @@ class AMoveableCart_ParentBP_C : public ACharacter
     double TimeOfLastWheelSqueak;                                                     // 0x0748 (size: 0x8)
     class UAudioComponent* LastSqueakSound;                                           // 0x0750 (size: 0x8)
     bool MovementAudioAllowed;                                                        // 0x0758 (size: 0x1)
+    float MoveForwardRate;                                                            // 0x075C (size: 0x4)
+    float MoveRightRate;                                                              // 0x0760 (size: 0x4)
 
     void CanUseSharedInteraction(bool& Can Use);
-    void GetPowerCordHighlightColor(class UActorComponent*& Cable, int32& Color);
+    void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
@@ -46,7 +48,7 @@ class AMoveableCart_ParentBP_C : public ACharacter
     void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void RequiresToolToDismantle(bool& Tool Required);
-    void ShowPotentialInteraction(bool& Show);
+    void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void GetStoredString(FString& String);
     FText GetItemNameText();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
@@ -60,6 +62,7 @@ class AMoveableCart_ParentBP_C : public ACharacter
     FString GetVehicleID();
     void GetDriver(bool& Success, class AAbiotic_Character_ParentBP_C*& Character);
     bool CheckVehicleFreezeState();
+    void StorageActorSetup(class ADeployed_Container_ParentBP_C* Storage);
     void AutoMoveCheck(double AxisValue, double& OutValue);
     void CalculateCurrentAudio();
     void GetLocalDriver(bool& Success, class AAbiotic_PlayerCharacter_C*& Character);
@@ -111,7 +114,9 @@ class AMoveableCart_ParentBP_C : public ACharacter
     void InpAxisEvt_LookUp_K2Node_InputAxisEvent_172(float AxisValue);
     void InpAxisEvt_TurnRate_K2Node_InputAxisEvent_34(float AxisValue);
     void InpAxisEvt_LookUpRate_K2Node_InputAxisEvent_62(float AxisValue);
+    void InpAxisEvt_MoveForwardRate_K2Node_InputAxisEvent_2(float AxisValue);
+    void InpAxisEvt_MoveRightRate_K2Node_InputAxisEvent_3(float AxisValue);
     void ExecuteUbergraph_MoveableCart_ParentBP(int32 EntryPoint);
-}; // Size: 0x759
+}; // Size: 0x764
 
 #endif

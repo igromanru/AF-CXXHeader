@@ -6,6 +6,7 @@
 struct FChangeClientStreamFrequencyResponse
 {
     TMap<class FSoftObjectPath, class EMultiUserChangeFrequencyErrorCode> ObjectErrors; // 0x0000 (size: 0x50)
+    TOptional<EMultiUserChangeFrequencyErrorCode> DefaultChangeErrorCode;             // 0x0050 (size: 0x2)
 
 }; // Size: 0x58
 

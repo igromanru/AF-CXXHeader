@@ -27,6 +27,7 @@ class UW_MenuPopup_YesNo_C : public UAbioticWidget
     bool CloseBlockedByDelay;                                                         // 0x03A0 (size: 0x1)
     int32 DelayTimeLeft;                                                              // 0x03A4 (size: 0x4)
     FTimerHandle InputCountdown;                                                      // 0x03A8 (size: 0x8)
+    bool AutomateClickDisable;                                                        // 0x03B0 (size: 0x1)
 
     void WidgetAction_CloseMenu(bool& Handled);
     void WidgetAction_CycleMenu(bool Next, bool& Handled);
@@ -42,6 +43,6 @@ class UW_MenuPopup_YesNo_C : public UAbioticWidget
     void ExecuteUbergraph_W_MenuPopup_YesNo(int32 EntryPoint);
     void NoClicked__DelegateSignature();
     void YesClicked__DelegateSignature();
-}; // Size: 0x3B0
+}; // Size: 0x3B1
 
 #endif

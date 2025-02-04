@@ -3,22 +3,22 @@
 
 class AZipline_C : public AAbioticActor_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C0 (size: 0x8)
-    class UDecalComponent* Decal;                                                     // 0x02C8 (size: 0x8)
-    class UPointLightComponent* PointLight;                                           // 0x02D0 (size: 0x8)
-    class UStaticMeshComponent* LED;                                                  // 0x02D8 (size: 0x8)
-    class UCapsuleComponent* InteractionCapsule;                                      // 0x02E0 (size: 0x8)
-    class USceneComponent* CableInteractionRoot;                                      // 0x02E8 (size: 0x8)
-    class UStaticMeshComponent* StaticMesh;                                           // 0x02F0 (size: 0x8)
-    class USceneComponent* EndWorldLocation;                                          // 0x02F8 (size: 0x8)
-    class UCableComponent* ZiplineCable;                                              // 0x0300 (size: 0x8)
-    bool NoEarlyExit;                                                                 // 0x0308 (size: 0x1)
-    double SpeedModifier;                                                             // 0x0310 (size: 0x8)
-    FVector NewZiplineStartLocation;                                                  // 0x0318 (size: 0x18)
-    bool BlinkingLight;                                                               // 0x0330 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
+    class UDecalComponent* Decal;                                                     // 0x02D0 (size: 0x8)
+    class UPointLightComponent* PointLight;                                           // 0x02D8 (size: 0x8)
+    class UStaticMeshComponent* LED;                                                  // 0x02E0 (size: 0x8)
+    class UCapsuleComponent* InteractionCapsule;                                      // 0x02E8 (size: 0x8)
+    class USceneComponent* CableInteractionRoot;                                      // 0x02F0 (size: 0x8)
+    class UStaticMeshComponent* StaticMesh;                                           // 0x02F8 (size: 0x8)
+    class USceneComponent* EndWorldLocation;                                          // 0x0300 (size: 0x8)
+    class UCableComponent* ZiplineCable;                                              // 0x0308 (size: 0x8)
+    bool NoEarlyExit;                                                                 // 0x0310 (size: 0x1)
+    double SpeedModifier;                                                             // 0x0318 (size: 0x8)
+    FVector NewZiplineStartLocation;                                                  // 0x0320 (size: 0x18)
+    bool BlinkingLight;                                                               // 0x0338 (size: 0x1)
 
     void CanUseSharedInteraction(bool& Can Use);
-    void GetPowerCordHighlightColor(class UActorComponent*& Cable, int32& Color);
+    void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
     bool IsRadioactive();
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
@@ -26,7 +26,7 @@ class AZipline_C : public AAbioticActor_C
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     FText GetItemNameText();
     void GetStoredString(FString& String);
-    void ShowPotentialInteraction(bool& Show);
+    void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void RequiresToolToDismantle(bool& Tool Required);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
@@ -62,6 +62,6 @@ class AZipline_C : public AAbioticActor_C
     void ReceiveBeginPlay();
     void ReceiveTick(float DeltaSeconds);
     void ExecuteUbergraph_Zipline(int32 EntryPoint);
-}; // Size: 0x331
+}; // Size: 0x339
 
 #endif

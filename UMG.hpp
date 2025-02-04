@@ -1499,6 +1499,7 @@ class USpinBox : public UWidget
     float MinSliderValue;                                                             // 0x0874 (size: 0x4)
     float MaxSliderValue;                                                             // 0x0878 (size: 0x4)
     bool AllowConsoleKeyboardPopup;                                                   // 0x0890 (size: 0x1)
+    bool AllowGamepadMouseWheelSimulation;                                            // 0x0891 (size: 0x1)
 
     void SetValue(float NewValue);
     void SetMinValue(float NewValue);
@@ -1510,6 +1511,7 @@ class USpinBox : public UWidget
     void SetForegroundColor(FSlateColor InForegroundColor);
     void SetDelta(float NewValue);
     void SetAlwaysUsesDeltaSnap(bool bNewValue);
+    void SetAllowGamepadMouseWheelSimulation(bool NewValue);
     void SetAllowConsoleKeyboardPopup(bool NewValue);
     void OnSpinBoxValueCommittedEvent__DelegateSignature(float InValue, TEnumAsByte<ETextCommit::Type> CommitMethod);
     void OnSpinBoxValueChangedEvent__DelegateSignature(float InValue);
@@ -1523,6 +1525,7 @@ class USpinBox : public UWidget
     int32 GetMaxFractionalDigits();
     float GetDelta();
     bool GetAlwaysUsesDeltaSnap();
+    bool GetAllowGamepadMouseWheelSimulation();
     bool GetAllowConsoleKeyboardPopup();
     void ClearMinValue();
     void ClearMinSliderValue();

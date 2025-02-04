@@ -4,8 +4,9 @@
 class AAbiotic_DebugCameraController_C : public ADebugCameraController
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x09F0 (size: 0x8)
-    double Ctrls_GamepadXSensitivity;                                                 // 0x09F8 (size: 0x8)
-    double Ctrls_GamepadYSensitivity;                                                 // 0x0A00 (size: 0x8)
+    class UCheatComponent_C* CheatComponent;                                          // 0x09F8 (size: 0x8)
+    double Ctrls_GamepadXSensitivity;                                                 // 0x0A00 (size: 0x8)
+    double Ctrls_GamepadYSensitivity;                                                 // 0x0A08 (size: 0x8)
 
     void InpActEvt_E_K2Node_InputKeyEvent_3(FKey Key);
     void InpActEvt_E_K2Node_InputKeyEvent_2(FKey Key);
@@ -16,6 +17,6 @@ class AAbiotic_DebugCameraController_C : public ADebugCameraController
     void GamepadXSensitivityCallback(float NewValue);
     void GamepadYSensitivityCallback(float NewValue);
     void ExecuteUbergraph_Abiotic_DebugCameraController(int32 EntryPoint);
-}; // Size: 0xA08
+}; // Size: 0xA10
 
 #endif

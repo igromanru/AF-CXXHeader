@@ -14,6 +14,7 @@ class UW_Waypoint_Generic_C : public UUserWidget
     double TimeCreated;                                                               // 0x0320 (size: 0x8)
     FWaypointData_Struct WaypointData;                                                // 0x0328 (size: 0x80)
     double CallForHelpStart;                                                          // 0x03A8 (size: 0x8)
+    FName WaypointRowName;                                                            // 0x03B0 (size: 0x8)
 
     void OnLoaded_A3D3539E4A95F1B5962DC8BAE7A8AFEB(class UObject* Loaded);
     void UpdateProgressBar();
@@ -21,6 +22,6 @@ class UW_Waypoint_Generic_C : public UUserWidget
     void WaypointVFXDataUpdate();
     void Construct();
     void ExecuteUbergraph_W_Waypoint_Generic(int32 EntryPoint);
-}; // Size: 0x3B0
+}; // Size: 0x3B8
 
 #endif

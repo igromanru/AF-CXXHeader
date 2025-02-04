@@ -3,9 +3,9 @@
 
 class ADeployed_Sign_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0920 (size: 0x8)
-    class UWidgetComponent* Widget;                                                   // 0x0928 (size: 0x8)
-    class UW_PlayerSign_C* As W Player Sign;                                          // 0x0930 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0930 (size: 0x8)
+    class UWidgetComponent* Widget;                                                   // 0x0938 (size: 0x8)
+    class UW_PlayerSign_C* As W Player Sign;                                          // 0x0940 (size: 0x8)
 
     void GetStoredString(FString& String);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
@@ -16,6 +16,6 @@ class ADeployed_Sign_C : public AAbioticDeployed_Furniture_ParentBP_C
     void NewPlayerMadeString();
     void OnLoadedFromSave();
     void ExecuteUbergraph_Deployed_Sign(int32 EntryPoint);
-}; // Size: 0x938
+}; // Size: 0x948
 
 #endif

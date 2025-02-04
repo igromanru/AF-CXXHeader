@@ -3,11 +3,11 @@
 
 class ADeployed_PowerStrip_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0920 (size: 0x8)
-    TArray<class APowerSocket_ChildOfActor_C*> PlugStripPowerSockets;                 // 0x0928 (size: 0x10)
-    int32 PowerSocketCount;                                                           // 0x0938 (size: 0x4)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0930 (size: 0x8)
+    TArray<class APowerSocket_ChildOfActor_C*> PlugStripPowerSockets;                 // 0x0938 (size: 0x10)
+    int32 PowerSocketCount;                                                           // 0x0948 (size: 0x4)
 
-    void GetPowerCordHighlightColor(class UActorComponent*& Cable, int32& Color);
+    void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void GetHighlightComponents(TArray<class UActorComponent*>& Components);
     void GetPluggedInDeviceCount(int32& Count);
     void RequiresPowerSocket(bool& MustBePluggedIn);
@@ -16,6 +16,6 @@ class ADeployed_PowerStrip_ParentBP_C : public AAbioticDeployed_Furniture_Parent
     void TogglePowerFX();
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void ExecuteUbergraph_Deployed_PowerStrip_ParentBP(int32 EntryPoint);
-}; // Size: 0x93C
+}; // Size: 0x94C
 
 #endif

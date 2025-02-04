@@ -6,6 +6,6 @@ class AVinePlantZone_C : public ABuffZone_ParentBP_C
 
     void ExtraRemoveCheck(class AAbiotic_Character_ParentBP_C* Character, bool& ShouldRemoveBuff);
     void IsValidCharacterInsideZone?(class AAbiotic_Character_ParentBP_C* CharacterToCheck, bool& Valid);
-}; // Size: 0x308
+}; // Size: 0x328
 
 #endif

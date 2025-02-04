@@ -3,14 +3,46 @@
 
 #include "AbioticFactor_enums.hpp"
 
+struct FAIDebugState
+{
+    FString ControllerName;                                                           // 0x0000 (size: 0x10)
+    FString PawnName;                                                                 // 0x0010 (size: 0x10)
+    FString MovementBaseInfo;                                                         // 0x0020 (size: 0x10)
+    FString MovementModeInfo;                                                         // 0x0030 (size: 0x10)
+    FString PathFollowingInfo;                                                        // 0x0040 (size: 0x10)
+    int32 NextPathPointIndex;                                                         // 0x0050 (size: 0x4)
+    FVector PathGoalLocation;                                                         // 0x0058 (size: 0x18)
+    FString CurrentAITask;                                                            // 0x0070 (size: 0x10)
+    FString CurrentAIState;                                                           // 0x0080 (size: 0x10)
+    FString CurrentAIAssets;                                                          // 0x0090 (size: 0x10)
+    FString NavDataInfo;                                                              // 0x00A0 (size: 0x10)
+    FString MontageInfo;                                                              // 0x00B0 (size: 0x10)
+    FString TaskQueueInfo;                                                            // 0x00C0 (size: 0x10)
+    FString TickingTaskInfo;                                                          // 0x00D0 (size: 0x10)
+    int32 NumTasksInQueue;                                                            // 0x00E0 (size: 0x4)
+    int32 NumTickingTasks;                                                            // 0x00E4 (size: 0x4)
+    bool bHasController;                                                              // 0x00E8 (size: 0x1)
+    bool bPathHasGoalActor;                                                           // 0x00E9 (size: 0x1)
+    bool bIsUsingPathFollowing;                                                       // 0x00EA (size: 0x1)
+    bool bIsUsingCharacter;                                                           // 0x00EB (size: 0x1)
+    bool bIsUsingBehaviorTree;                                                        // 0x00EC (size: 0x1)
+    bool bIsUsingGameplayTasks;                                                       // 0x00ED (size: 0x1)
+
+}; // Size: 0xF0
+
 struct FAISpawnerData
 {
     TArray<class AAbioticCharacter*> SpawnedAI;                                       // 0x0000 (size: 0x10)
     TArray<class AActor*> NearbyPlayersOnDeath;                                       // 0x0010 (size: 0x10)
     float LastTotalCooldown;                                                          // 0x0020 (size: 0x4)
     float TimeLastCooldownStarted;                                                    // 0x0024 (size: 0x4)
-    bool bShouldOnlySpawnOnce;                                                        // 0x0028 (size: 0x1)
+    int32 LastDayOnCooldown;                                                          // 0x0028 (size: 0x4)
+    bool bShouldOnlySpawnOnce;                                                        // 0x002C (size: 0x1)
 
+}; // Size: 0x30
+
+struct FAbioticTargetingManagerTickFunction : public FTickFunction
+{
 }; // Size: 0x30
 
 struct FAccessibilitySettingRowHandle : public FRowHandle
@@ -110,35 +142,36 @@ struct FBlackboardName
 
 struct FBuffDebuff : public FTableRowBase
 {
-    FText DisplayName;                                                                // 0x0008 (size: 0x10)
-    FText DisplayDescription;                                                         // 0x0018 (size: 0x10)
-    FText TooltipText_Remove;                                                         // 0x0028 (size: 0x10)
-    FText TooltipText_Apply;                                                          // 0x0038 (size: 0x10)
-    FGameplayTagContainer BuffTags;                                                   // 0x0048 (size: 0x20)
-    EBuffType BuffType;                                                               // 0x0068 (size: 0x1)
-    TSoftClassPtr<UBuffDebuffObject> BuffLogic_Object;                                // 0x0070 (size: 0x28)
-    TSoftClassPtr<ABuffActor> BuffLogic_Actor;                                        // 0x0098 (size: 0x28)
-    FGameplayTagContainer TagsAppliedOnPlayer;                                        // 0x00C0 (size: 0x20)
-    TMap<FStatModifierRowHandle, int32> StatModifierMap;                              // 0x00E0 (size: 0x50)
-    TSoftObjectPtr<UTexture2D> Icon;                                                  // 0x0130 (size: 0x28)
-    float DefaultDuration;                                                            // 0x0158 (size: 0x4)
-    bool bNoExpiration;                                                               // 0x015C (size: 0x1)
-    EBuffApplyStyle ApplyStyle;                                                       // 0x015D (size: 0x1)
-    float BuffTickRate;                                                               // 0x0160 (size: 0x4)
-    EBuffSeverity Severity;                                                           // 0x0164 (size: 0x1)
-    TArray<FBuffDebuffRowHandle> BuffsToRemoveWhenApplied;                            // 0x0168 (size: 0x10)
-    FGameplayTagQuery TaggedBuffsToRemoveWhenApplied;                                 // 0x0178 (size: 0x48)
-    EBuffVisibility BuffVisibility;                                                   // 0x01C0 (size: 0x1)
-    bool bRunTickOnApply;                                                             // 0x01C1 (size: 0x1)
-    TArray<EBodyLimbs> LimbWhitelist;                                                 // 0x01C8 (size: 0x10)
-    bool bRemoveOnMaxLimbHP;                                                          // 0x01D8 (size: 0x1)
-    TSoftObjectPtr<UNiagaraSystem> BodyParticleEffect;                                // 0x01E0 (size: 0x28)
-    TSoftObjectPtr<UMaterialInterface> MaterialEffect;                                // 0x0208 (size: 0x28)
-    EVoiceLineType PlayerVoiceLine;                                                   // 0x0230 (size: 0x1)
-    float PlayerDialogLineDelay;                                                      // 0x0234 (size: 0x4)
-    bool bStrippedFromBuild;                                                          // 0x0238 (size: 0x1)
+    EReleaseGroup ReleaseGroup;                                                       // 0x0008 (size: 0x1)
+    FText DisplayName;                                                                // 0x0010 (size: 0x10)
+    FText DisplayDescription;                                                         // 0x0020 (size: 0x10)
+    FText TooltipText_Remove;                                                         // 0x0030 (size: 0x10)
+    FText TooltipText_Apply;                                                          // 0x0040 (size: 0x10)
+    FGameplayTagContainer BuffTags;                                                   // 0x0050 (size: 0x20)
+    EBuffType BuffType;                                                               // 0x0070 (size: 0x1)
+    TSoftClassPtr<UBuffDebuffObject> BuffLogic_Object;                                // 0x0078 (size: 0x28)
+    TSoftClassPtr<ABuffActor> BuffLogic_Actor;                                        // 0x00A0 (size: 0x28)
+    FGameplayTagContainer TagsAppliedOnPlayer;                                        // 0x00C8 (size: 0x20)
+    TMap<FStatModifierRowHandle, int32> StatModifierMap;                              // 0x00E8 (size: 0x50)
+    TSoftObjectPtr<UTexture2D> Icon;                                                  // 0x0138 (size: 0x28)
+    float DefaultDuration;                                                            // 0x0160 (size: 0x4)
+    bool bNoExpiration;                                                               // 0x0164 (size: 0x1)
+    EBuffApplyStyle ApplyStyle;                                                       // 0x0165 (size: 0x1)
+    float BuffTickRate;                                                               // 0x0168 (size: 0x4)
+    EBuffSeverity Severity;                                                           // 0x016C (size: 0x1)
+    TArray<FBuffDebuffRowHandle> BuffsToRemoveWhenApplied;                            // 0x0170 (size: 0x10)
+    FGameplayTagQuery TaggedBuffsToRemoveWhenApplied;                                 // 0x0180 (size: 0x48)
+    EBuffVisibility BuffVisibility;                                                   // 0x01C8 (size: 0x1)
+    bool bRunTickOnApply;                                                             // 0x01C9 (size: 0x1)
+    TArray<EBodyLimbs> LimbWhitelist;                                                 // 0x01D0 (size: 0x10)
+    bool bRemoveOnMaxLimbHP;                                                          // 0x01E0 (size: 0x1)
+    TSoftObjectPtr<UNiagaraSystem> BodyParticleEffect;                                // 0x01E8 (size: 0x28)
+    FName BodyParticleSocket;                                                         // 0x0210 (size: 0x8)
+    TSoftObjectPtr<UMaterialInterface> MaterialEffect;                                // 0x0218 (size: 0x28)
+    EVoiceLineType PlayerVoiceLine;                                                   // 0x0240 (size: 0x1)
+    float PlayerDialogLineDelay;                                                      // 0x0244 (size: 0x4)
 
-}; // Size: 0x240
+}; // Size: 0x248
 
 struct FBuffDebuffEntry
 {
@@ -168,14 +201,14 @@ struct FCachedInputData
 
 struct FCompendiumEntry : public FTableRowBase
 {
-    FText Title;                                                                      // 0x0008 (size: 0x10)
-    FText Subtitle;                                                                   // 0x0018 (size: 0x10)
-    FGameplayTagContainer Tags;                                                       // 0x0028 (size: 0x20)
-    FDataTableRowHandle NPCRow;                                                       // 0x0048 (size: 0x10)
-    TArray<FCompendiumSection> Sections;                                              // 0x0058 (size: 0x10)
-    bool bHasKillRequirementSection;                                                  // 0x0068 (size: 0x1)
-    FKillCompendiumSection KillRequirementSection;                                    // 0x0070 (size: 0x58)
-    bool bStrippedFromBuild;                                                          // 0x00C8 (size: 0x1)
+    EReleaseGroup ReleaseGroup;                                                       // 0x0008 (size: 0x1)
+    FText Title;                                                                      // 0x0010 (size: 0x10)
+    FText Subtitle;                                                                   // 0x0020 (size: 0x10)
+    FGameplayTagContainer Tags;                                                       // 0x0030 (size: 0x20)
+    FDataTableRowHandle NPCRow;                                                       // 0x0050 (size: 0x10)
+    TArray<FCompendiumSection> Sections;                                              // 0x0060 (size: 0x10)
+    bool bHasKillRequirementSection;                                                  // 0x0070 (size: 0x1)
+    FKillCompendiumSection KillRequirementSection;                                    // 0x0078 (size: 0x58)
 
 }; // Size: 0xD0
 
@@ -376,17 +409,17 @@ struct FMainMenuBackground : public FTableRowBase
 
 struct FNPCConversation : public FTableRowBase
 {
-    FText NPCName;                                                                    // 0x0008 (size: 0x10)
-    TArray<FNPCConversationLine> BeckoningLines;                                      // 0x0018 (size: 0x10)
-    TArray<FNPCConversationLine> IdleLines;                                           // 0x0028 (size: 0x10)
-    TArray<FNPCConversationLine> InitalContactMessages;                               // 0x0038 (size: 0x10)
-    TArray<FNPCConversationLine> ReturnMessages;                                      // 0x0048 (size: 0x10)
-    FWorldFlagRowHandle WorldFlagToComplete;                                          // 0x0058 (size: 0x20)
-    TArray<FNPCConversationLine> VendorInteraction_Positive;                          // 0x0078 (size: 0x10)
-    TArray<FNPCConversationLine> VendorInteraction_Negative;                          // 0x0088 (size: 0x10)
-    TSoftObjectPtr<UDialogueWave> DeathSound;                                         // 0x0098 (size: 0x28)
-    TSoftClassPtr<UUserWidget> SubtitleClass;                                         // 0x00C0 (size: 0x28)
-    bool bStrippedFromBuild;                                                          // 0x00E8 (size: 0x1)
+    EReleaseGroup ReleaseGroup;                                                       // 0x0008 (size: 0x1)
+    FText NPCName;                                                                    // 0x0010 (size: 0x10)
+    TArray<FNPCConversationLine> BeckoningLines;                                      // 0x0020 (size: 0x10)
+    TArray<FNPCConversationLine> IdleLines;                                           // 0x0030 (size: 0x10)
+    TArray<FNPCConversationLine> InitalContactMessages;                               // 0x0040 (size: 0x10)
+    TArray<FNPCConversationLine> ReturnMessages;                                      // 0x0050 (size: 0x10)
+    FWorldFlagRowHandle WorldFlagToComplete;                                          // 0x0060 (size: 0x20)
+    TArray<FNPCConversationLine> VendorInteraction_Positive;                          // 0x0080 (size: 0x10)
+    TArray<FNPCConversationLine> VendorInteraction_Negative;                          // 0x0090 (size: 0x10)
+    TSoftObjectPtr<UDialogueWave> DeathSound;                                         // 0x00A0 (size: 0x28)
+    TSoftClassPtr<UUserWidget> SubtitleClass;                                         // 0x00C8 (size: 0x28)
 
 }; // Size: 0xF0
 
@@ -405,6 +438,19 @@ struct FNPCConversationLine
 struct FNPCConversationRowHandle : public FRowHandle
 {
 }; // Size: 0x20
+
+struct FNPCTrader : public FTableRowBase
+{
+    EReleaseGroup ReleaseGroup;                                                       // 0x0008 (size: 0x1)
+    TSoftClassPtr<AAbioticCharacter> NPCClass;                                        // 0x0010 (size: 0x28)
+    FDataTableRowHandle NPCConversation;                                              // 0x0038 (size: 0x10)
+    FDataTableRowHandle NPCTradeInventory;                                            // 0x0048 (size: 0x10)
+    int32 DaysOfTheWeek;                                                              // 0x0058 (size: 0x4)
+    float ChanceToSpawn;                                                              // 0x005C (size: 0x4)
+    TArray<FWorldFlagRowHandle> RequiredWorldFlags;                                   // 0x0060 (size: 0x10)
+    TSoftObjectPtr<UTexture2D> NPCImage;                                              // 0x0070 (size: 0x28)
+
+}; // Size: 0x98
 
 struct FNPCVoice : public FTableRowBase
 {
@@ -467,11 +513,18 @@ struct FPlantData : public FTableRowBase
     TSoftClassPtr<AActor> ProxyBP;                                                    // 0x0018 (size: 0x28)
     FDataTableRowHandle PlantItem;                                                    // 0x0040 (size: 0x10)
     FDataTableRowHandle HarvestedItem;                                                // 0x0050 (size: 0x10)
-    TMap<class EPlantGrowthStage, class TSoftObjectPtr<UStaticMesh>> GrowthStages;    // 0x0060 (size: 0x50)
+    TMap<class EPlantGrowthStage, class FPlantMeshData> GrowthStages;                 // 0x0060 (size: 0x50)
     TSoftObjectPtr<UStaticMesh> FruitMesh;                                            // 0x00B0 (size: 0x28)
     int32 FruitMeshCount;                                                             // 0x00D8 (size: 0x4)
 
 }; // Size: 0xE0
+
+struct FPlantMeshData
+{
+    TSoftObjectPtr<UStaticMesh> GrowthStageMesh;                                      // 0x0000 (size: 0x28)
+    TArray<TSoftObjectPtr<UMaterialInterface>> GrowthStageTexture;                    // 0x0028 (size: 0x10)
+
+}; // Size: 0x38
 
 struct FPlantRowHandle : public FRowHandle
 {
@@ -479,13 +532,13 @@ struct FPlantRowHandle : public FRowHandle
 
 struct FQuestData : public FTableRowBase
 {
-    FText QuestText;                                                                  // 0x0008 (size: 0x10)
-    FText QuestDescription;                                                           // 0x0018 (size: 0x10)
-    FWorldFlagRowHandle StartWorldFlag;                                               // 0x0028 (size: 0x20)
-    FWorldFlagRowHandle CompletionWorldFlag;                                          // 0x0048 (size: 0x20)
-    TArray<FQuestRowHandle> SubQuests;                                                // 0x0068 (size: 0x10)
-    FName WaypointActorTag;                                                           // 0x0078 (size: 0x8)
-    bool bStrippedFromBuild;                                                          // 0x0080 (size: 0x1)
+    EReleaseGroup ReleaseGroup;                                                       // 0x0008 (size: 0x1)
+    FText QuestText;                                                                  // 0x0010 (size: 0x10)
+    FText QuestDescription;                                                           // 0x0020 (size: 0x10)
+    FWorldFlagRowHandle StartWorldFlag;                                               // 0x0030 (size: 0x20)
+    FWorldFlagRowHandle CompletionWorldFlag;                                          // 0x0050 (size: 0x20)
+    TArray<FQuestRowHandle> SubQuests;                                                // 0x0070 (size: 0x10)
+    FName WaypointActorTag;                                                           // 0x0080 (size: 0x8)
 
 }; // Size: 0x88
 
@@ -709,13 +762,13 @@ struct FVideoSettingRowHandle : public FRowHandle
 
 struct FWeatherEvent : public FTableRowBase
 {
-    FText WeatherName;                                                                // 0x0008 (size: 0x10)
-    FText ChatWarningMessage;                                                         // 0x0018 (size: 0x10)
-    FDataTableRowHandle AnnouncementRow;                                              // 0x0028 (size: 0x10)
-    TSoftClassPtr<AWeatherDirector> WeatherDirector;                                  // 0x0038 (size: 0x28)
-    FWorldFlagRowHandle RequiredWorldFlag;                                            // 0x0060 (size: 0x20)
-    FDataTableRowHandle LevelFXRow;                                                   // 0x0080 (size: 0x10)
-    bool bStrippedFromBuild;                                                          // 0x0090 (size: 0x1)
+    EReleaseGroup ReleaseGroup;                                                       // 0x0008 (size: 0x1)
+    FText WeatherName;                                                                // 0x0010 (size: 0x10)
+    FText ChatWarningMessage;                                                         // 0x0020 (size: 0x10)
+    FDataTableRowHandle AnnouncementRow;                                              // 0x0030 (size: 0x10)
+    TSoftClassPtr<AWeatherDirector> WeatherDirector;                                  // 0x0040 (size: 0x28)
+    FWorldFlagRowHandle RequiredWorldFlag;                                            // 0x0068 (size: 0x20)
+    FDataTableRowHandle LevelFXRow;                                                   // 0x0088 (size: 0x10)
 
 }; // Size: 0x98
 
@@ -725,8 +778,8 @@ struct FWeatherEventRowHandle : public FRowHandle
 
 struct FWorldFlag : public FTableRowBase
 {
-    FString DebugText;                                                                // 0x0008 (size: 0x10)
-    bool bStrippedFromBuild;                                                          // 0x0018 (size: 0x1)
+    EReleaseGroup ReleaseGroup;                                                       // 0x0008 (size: 0x1)
+    FString DebugText;                                                                // 0x0010 (size: 0x10)
 
 }; // Size: 0x20
 
@@ -744,6 +797,12 @@ struct FWorldFlagTrigger : public FTableRowBase
 struct FWorldFlagTriggerRowHandle : public FRowHandle
 {
 }; // Size: 0x20
+
+class AAbioticAIController : public AAIController
+{
+
+    FAIDebugState CollectDebugAIData();
+}; // Size: 0x3C0
 
 class AAbioticCharacter : public ACharacter
 {
@@ -866,13 +925,14 @@ class AAbioticGameState : public AGameState
     void TeleporterLocationUpdated();
     class ULevelManagerComponent* LevelManager;                                       // 0x0378 (size: 0x8)
     TArray<FWorldFlagRowHandle> WorldFlags;                                           // 0x0380 (size: 0x10)
+    FString SessionShortCode;                                                         // 0x0390 (size: 0x10)
 
     void SetTeleporterLocation(class AActor* Teleporter, FString LocationName, bool bSkipBroadcast);
     void RemoveTeleporterLocation(class AActor* Teleporter);
     void OnRep_WorldFlags();
     int32 GetElapsedMinutes();
     bool DoesLocationHaveMatchingTeleporter(FString LocationName, class AActor* Teleporter);
-}; // Size: 0x390
+}; // Size: 0x3A0
 
 class AAbioticLevelStreamingVolume : public AVolume
 {
@@ -964,7 +1024,8 @@ class UAIDirectorSubsystem : public UWorldSubsystem
     FAIDirectorSubsystemOnSpawnerCooldownUpdated OnSpawnerCooldownUpdated;            // 0x0080 (size: 0x10)
     void SpawnerCooldownUpdated(TSoftObjectPtr<AActor> Spawner);
 
-    void SetCooldownForSpawner(const class UObject* WorldContextObject, class AActor* Spawner, float TimeRemaining, bool bOnlySpawnOnce);
+    void UpdateCurrentDay(int32 Day);
+    void SetCooldownForSpawner(const class UObject* WorldContextObject, class AActor* Spawner, float TimeRemaining, int32 InCurrentDay, bool bOnlySpawnOnce);
     void RemoveVignetteAISpawnData(const TArray<FString>& VignetteNames);
     bool RefreshCooldownOnOwningSpawner(const class UObject* WorldContextObject, class AAbioticCharacter* AI, TArray<class AActor*> NearbyPlayers);
     bool NPCSpawnDebug();
@@ -972,14 +1033,16 @@ class UAIDirectorSubsystem : public UWorldSubsystem
     int32 GetSpawnedAIFromSpawner(class AActor* Spawner, TArray<class AAbioticCharacter*>& SpawnedAI);
     TArray<class AActor*> GetNearbyPlayersOnDeathFromSpawner(const class UObject* WorldContextObject, class AActor* Spawner);
     float GetLastTotalCooldownFromSpawner(class AActor* Spawner);
+    int32 GetLastCooldownDayForSpawner(const class UObject* WorldContextObject, class AActor* Spawner);
     float GetCurrentCooldownRemainingFromSpawner(const class UObject* WorldContextObject, class AActor* Spawner);
+    int32 GetCooldownDaysRemainingFromSpawner(const class UObject* WorldContextObject, class AActor* Spawner, int32 DaysRequired);
     bool FastNPCDormancy();
     bool DoesSpawnerDataExist(class AActor* Spawner);
     void ClearNearbyPlayersOnSpawner(const class UObject* WorldContextObject, class AActor* Spawner);
     bool ClearCooldownOnOwningSpawner(const class UObject* WorldContextObject, class AAbioticCharacter* AI);
     bool ClearCooldownOnAllCachedSpawns();
     void AddSpawnedAIToSpawnList(class AActor* Spawner, class AAbioticCharacter* AI);
-}; // Size: 0x90
+}; // Size: 0x98
 
 class UAIFunctionLibrary : public UBlueprintFunctionLibrary
 {
@@ -1056,6 +1119,7 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     void SetPrimitiveCanEverAffectNavigation(class UPrimitiveComponent* Primitive, bool bCanEverAffectNavigation);
     void SetMouseSmoothing(bool bEnabled);
     void SetActorCanEverAffectNavigation(class AActor* Actor, bool bCanEverAffectNavigation);
+    FString SanitizeSaveFolderName(FString FolderName);
     void ProcessDamageResults(TArray<FHitResult>& HitResults, TEnumAsByte<ECollisionChannel> TraceChannel, TArray<FHitData>& OutHitData, TArray<class AActor*>& OutHitPawns);
     void OpenFolderDirectory(FString FolderPath);
     void ModifyPhysicsLocks(class UPrimitiveComponent* Primitive, bool bLockXRotation, bool bLockYRotation, bool bLockZRotation);
@@ -1065,12 +1129,16 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     bool IsUsingAnimBlueprint(const class USkeletalMeshComponent* SkeletalMeshComponent);
     bool IsSubscribedApp(int32 AppID);
     bool IsSteamSocketsInitialized();
+    bool IsSteamdeck();
     bool IsReleaseMode();
+    bool IsReleaseGroupActive(EReleaseGroup ReleaseGroup);
     bool IsFilmMode();
     bool IsFeatureEnabled(FName FeatureName);
     bool IsEditor();
     bool IsDemoMode();
     bool IsConsoleBuild();
+    bool IsBuildType(TEnumAsByte<EGameSettingPlatformType> BuildType);
+    void InitSteamdeck();
     bool HasValidOnlineSubsystem();
     bool HasActorRecentlyLoaded(class UObject* WorldContextObject, class AActor* Actor, float Tolerance);
     TArray<FString> GetWorldSaveFileList(FString WorldFolder);
@@ -1099,7 +1167,9 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     int32 GetGameplaySetting_Int(FGameplaySettingRowHandle GameplaySetting);
     float GetGameplaySetting_Float(FGameplaySettingRowHandle GameplaySetting);
     bool GetGameplaySetting_Bool(FGameplaySettingRowHandle GameplaySetting);
+    TEnumAsByte<EABFGamepadType> GetGamepadIdentifierEnum();
     FString GetGamepadIdentifier();
+    TEnumAsByte<EABFGamepadType> GetGamepadEnumID(class UObject* WorldContextObject);
     void GetCurrectFacilityDate(const int32 DaysPassed, EDayOfTheWeek& CurrentWeekday, int32& CurrentDay, EMonthOfTheYear& CurrentMonth, int32& CurrentYear);
     FString GetControlSetting_String(FControlSettingRowHandle VideoSetting);
     int32 GetControlSetting_Int(FControlSettingRowHandle ControlSetting);
@@ -1120,10 +1190,14 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     bool GetAccessibilitySetting_Bool(FAccessibilitySettingRowHandle AccessibilitySetting);
     class AAbioticCharacter* GetAbioticPlayerCharacter(const class UObject* WorldContextObject, int32 PlayerIndex);
     TArray<FName> FuzzySearch(const TArray<FName>& NameArray, FString SearchInput);
+    void ForceDestroyComponent(class UActorComponent* Component);
     void EnableLumenOptimizations(const class UObject* WorldContextObject);
     TArray<int32> DistributeValueRandomlyToArray(int32 ValueToBeDistributed, int32 ArraySize);
+    int32 DayOfTheWeekToFlag(const EDayOfTheWeek DayOfWeek);
     FString ConvertStringToSave(FString String);
     FSoftObjectPath ConvertSoftObjectToSave(const TSoftObjectPtr<UObject> SoftObject);
+    float CharacterItemWeightModifiers(class AAbioticCharacter* Character, float InItemWeight, float ItemRadioactivity, const FGameplayTagContainer& ItemTags);
+    bool CanReleaseGroupBeStripped(EReleaseGroup ReleaseGroup);
     bool CalculateFishingReward(FFishingZoneRowHandle FishingZone, int32 TimeOfDayHour, const FGameplayTagContainer& RodTags, const FGameplayTagContainer& BaitTags, const FGameplayTagContainer& PlayerTags, const FGameplayTagContainer& WeatherTags, bool bHotspot, bool bNoRares, const TArray<FWorldFlagRowHandle>& WorldFlags, bool bDebug, bool& bWasJunkCatch, FDataTableRowHandle& OutJunkSalvage, FFishRowHandle& OutFishReward);
     FVector AdjustAimForAimCorrection(class UObject* WorldContextObject, const FVector& AimStartLocation, const FVector& AimVector, float MaxAdjustmentAngle, int32 PlayerIndex);
     void AddVideoSettingCallback_String(FVideoSettingRowHandle VideoSetting, FAddVideoSettingCallback_StringChangedCallback ChangedCallback, bool CallbackImmediately);
@@ -1163,6 +1237,7 @@ class UAbioticGameInstance : public UAdvancedFriendsGameInstance
     uint8 bCanPlayOnline;                                                             // 0x0288 (size: 0x1)
     uint8 bCanCrossplay;                                                              // 0x0288 (size: 0x1)
     uint8 bCanCommunicate;                                                            // 0x0288 (size: 0x1)
+    uint8 bIsSoloOrLanPlayOnly;                                                       // 0x0288 (size: 0x1)
     FString ActiveWorldSaveName;                                                      // 0x0290 (size: 0x10)
     TArray<class UAbioticSave*> PendingWorldSaves;                                    // 0x02A0 (size: 0x10)
     TArray<class UAbioticSave*> PendingPlayerSaves;                                   // 0x02B0 (size: 0x10)
@@ -1183,8 +1258,11 @@ class UAbioticGameInstance : public UAdvancedFriendsGameInstance
     void MappingsChanged(class APlayerController* Player);
     bool HasPendingSaves();
     class UAbioticSave* GetWorldSave(FString LevelSuffix, bool& bNewSave);
+    FString GetSessionShortCode();
     class UAbioticSave* GetPlayerSave(FString PlayerId, bool bCreateIfNotFound);
     class UAbioticSave* GetMetaDataSave(bool& bNewSave);
+    TArray<FSessionPropertyKeyPair> GetBaseSessionSettings();
+    FString GenerateSessionShortCode();
     FString FixupPlayerSuffix(FString PlayerSuffix);
     FString FixupLevelSuffix(FString LevelSuffix);
     class APlayerState* FindPlayerStateForUniqueId(FString InUniqueID);
@@ -1195,7 +1273,7 @@ class UAbioticGameInstance : public UAdvancedFriendsGameInstance
     void ClientWasKicked(const FText& KickReason);
     void AddWorldSaveToQueue(class UAbioticSave* SaveGame);
     void AddPlayerSaveToQueue(class UAbioticSave* SaveGame);
-}; // Size: 0x380
+}; // Size: 0x390
 
 class UAbioticGameUserSettings : public UGameUserSettings
 {
@@ -1215,7 +1293,7 @@ class UAbioticGameViewportClient : public UGameViewportClient
     FAbioticGameViewportClientOnInputKey OnInputKey;                                  // 0x03C0 (size: 0x10)
     void OnInputKey(const FKey& InKey);
 
-}; // Size: 0x3D8
+}; // Size: 0x3E0
 
 class UAbioticLocalPlayer : public ULocalPlayer
 {
@@ -1241,20 +1319,38 @@ class UAbioticPlayerInputComponent : public UInputComponent
     class UCurveFloat* FrictionAngleCurve;                                            // 0x0230 (size: 0x8)
     class UCurveFloat* FrictionInputCurve;                                            // 0x0238 (size: 0x8)
     class UCurveFloat* AdhesionPowerCurve;                                            // 0x0240 (size: 0x8)
+    class UCurveFloat* AdhesionMaxAngleCurve;                                         // 0x0248 (size: 0x8)
+    float UserRadialCloseInputCancelDelay;                                            // 0x0250 (size: 0x4)
 
     void SetGamepadActive(bool bActive);
+    void ResumePostRadialInput();
+    void RadialClosed();
     void OnRadialDeadzoneChanged(float NewValue);
     void OnMotionSensitivityYChanged(float NewValue);
     void OnMotionSensitivityXChanged(float NewValue);
     void OnInvertYAxisChanged(bool NewValue);
     void OnGamepadYSensitivityChanged(float NewValue);
     void OnGamepadXSensitivityChanged(float NewValue);
+    void OnGamepadRadialCloseCameraDelayChanged(float NewValue);
     void OnAxialDeadzoneYChanged(float NewValue);
     void OnAxialDeadzoneXChanged(float NewValue);
     void OnAimAssistMotionChanged(bool NewValue);
     void OnAimAssistFrictionChanged(bool NewValue);
     void OnAimAssistAdhesionChanged(bool NewValue);
-}; // Size: 0x248
+}; // Size: 0x258
+
+class UAbioticProjectileComponent : public UProjectileMovementComponent
+{
+    EProjectileHomingType HomingType;                                                 // 0x0258 (size: 0x1)
+    bool UseHomingTargetBoundsCenter;                                                 // 0x0259 (size: 0x1)
+    bool KeepVelocityMagnitude;                                                       // 0x025A (size: 0x1)
+    bool bUseHomingTargetLocation;                                                    // 0x025B (size: 0x1)
+    FVector HomingTargetLocation;                                                     // 0x0260 (size: 0x18)
+    FAbioticProjectileComponentOnOverrideImpactHit OnOverrideImpactHit;               // 0x0278 (size: 0x10)
+    bool OnOverrideImpactHit(const FHitResult& Hit);
+
+    void SetImpactOverride(const FSetImpactOverrideNewOverride NewOverride);
+}; // Size: 0x290
 
 class UAbioticReplicationGraph : public UReplicationGraph
 {
@@ -1343,7 +1439,7 @@ class UAbioticTargetingManager : public UObject
 
     void OnAimAssistCorrectionChanged(bool NewValue);
     FTargetingInfo GetBestTarget(TEnumAsByte<ETargetingCategory> TargetingCategory);
-}; // Size: 0x2B0
+}; // Size: 0x2E0
 
 class UAbioticTargetingSubsystem : public UWorldSubsystem
 {
@@ -1357,8 +1453,9 @@ class UAbioticUIActionRouter : public ULocalPlayerSubsystem
     void OnInputTypeChanged(bool bUsingGamepad);
 
     void ViewportOnInputTypeChanged(bool bUsingGamepad);
+    void TriggerBindCaptureActive(bool bActive);
     bool IsUsingGamepad();
-}; // Size: 0x50
+}; // Size: 0x60
 
 class UAbioticVehicleMovementComponent : public UChaosWheeledVehicleMovementComponent
 {
@@ -1955,6 +2052,7 @@ class UKeybindSubsystem : public UGameInstanceSubsystem
     TMap<class TSoftClassPtr<UAbioticWidget>, class FKeybindActionArray> SupportedKeybindActions; // 0x0080 (size: 0x50)
     TMap<class FUIKeybindActionRowHandle, class UKeybindAction*> KeybindActionInstances; // 0x00D0 (size: 0x50)
 
+    bool GetKeybindActionsForWidget(const FKey& Key, class UAbioticWidget* Widget, TArray<FUIKeybindActionRowHandle>& ActionArray);
     class UKeybindAction* GetKeybindAction(FUIKeybindActionRowHandle RowHandle);
 }; // Size: 0x120
 
@@ -1995,9 +2093,11 @@ class ULevelManagerSubsystem : public UWorldSubsystem
     FLevelManagerSubsystemOnLevelLoadingUpdated OnLevelLoadingUpdated;                // 0x0060 (size: 0x10)
     void LevelStreamingLoadingIndicator(bool bIsLoading);
 
+    void MarkLevelAsLoadedFromSave(const TSoftObjectPtr<UWorld>& Level);
     bool IsLocationLoaded(const FVector& Location);
     bool IsLevelLoaded(const TSoftObjectPtr<UWorld>& Level);
     bool IsAnyLevelLoading();
+    bool HasOwningLevelFinishedLoadedFromSave(const class AActor*& ActorToCheck);
     TSoftObjectPtr<UWorld> GetOwningWorldFromActor(const class AActor* Actor);
     bool GetLoadedLevelState(const TSoftObjectPtr<UWorld>& Level, bool& bPendingUnload, FString& VisibleState, TArray<class AAbioticCharacter*>& PlayersInLevel, bool& bLocalPlayerInLevel);
     TSoftObjectPtr<UWorld> GetLevelAtLocation(const FVector& Location);
@@ -2198,11 +2298,11 @@ class USaveCurrentWorld : public UBlueprintAsyncActionBase
 {
     FSaveCurrentWorldSaveWorld SaveWorld;                                             // 0x0030 (size: 0x10)
     void SaveCurrentWorldOutputPin(bool bSuccess);
-    TArray<class UAbioticSave*> DuplicatedWorldSaves;                                 // 0x0048 (size: 0x10)
-    TArray<class UAbioticSave*> DuplicatedPlayerSaves;                                // 0x0058 (size: 0x10)
+    TArray<class UAbioticSave*> WorldSaveDuplicates;                                  // 0x0068 (size: 0x10)
+    TArray<class UAbioticSave*> PlayerSaveDuplicates;                                 // 0x0078 (size: 0x10)
 
     class USaveCurrentWorld* SaveCurrentWorld(const class UObject* WorldContextObject);
-}; // Size: 0x68
+}; // Size: 0x88
 
 class USessionResultItem : public UObject
 {

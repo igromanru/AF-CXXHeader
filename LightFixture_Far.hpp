@@ -3,8 +3,8 @@
 
 class ALightFixture_Far_C : public AAbioticLightFixture_ParentBP_C
 {
-    class UTextRenderComponent* TextRender;                                           // 0x0430 (size: 0x8)
+    class UTextRenderComponent* TextRender;                                           // 0x0438 (size: 0x8)
 
-}; // Size: 0x438
+}; // Size: 0x440
 
 #endif

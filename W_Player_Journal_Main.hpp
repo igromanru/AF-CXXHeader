@@ -66,32 +66,34 @@ class UW_Player_Journal_Main_C : public UUserWidget
     class UW_Player_JournalSectorTab_C* V_Canaan;                                     // 0x04C0 (size: 0x8)
     class UW_Player_JournalSectorTab_C* V_DistantShore_Tab;                           // 0x04C8 (size: 0x8)
     class UW_Player_JournalSectorTab_C* V_Flathill_Tab;                               // 0x04D0 (size: 0x8)
-    class UW_Player_JournalSectorTab_C* V_Intro_Tab;                                  // 0x04D8 (size: 0x8)
-    class UW_Player_JournalSectorTab_C* V_MirrorWorldTab;                             // 0x04E0 (size: 0x8)
-    class UW_Player_JournalSectorTab_C* V_NightTab;                                   // 0x04E8 (size: 0x8)
-    class UW_Player_JournalSectorTab_C* V_RiseTab;                                    // 0x04F0 (size: 0x8)
-    class UW_Player_JournalSectorTab_C* V_SI;                                         // 0x04F8 (size: 0x8)
-    class UW_Player_JournalSectorTab_C* V_SUOMI;                                      // 0x0500 (size: 0x8)
-    class UW_Player_JournalSectorTab_C* V_Tile;                                       // 0x0508 (size: 0x8)
-    class UW_Player_JournalSectorTab_C* V_Train_Tab;                                  // 0x0510 (size: 0x8)
-    class UW_Player_JournalSectorTab_C* V_Voussoir_Tab;                               // 0x0518 (size: 0x8)
-    class UW_Player_JournalSectorTab_C* V_WALL;                                       // 0x0520 (size: 0x8)
-    class UVerticalBox* VBox_Entries;                                                 // 0x0528 (size: 0x8)
-    class UW_Compendium_FishDatabase_C* W_Compendium_FishDatabase;                    // 0x0530 (size: 0x8)
-    class UW_Compendium_Index_C* W_Compendium_Index;                                  // 0x0538 (size: 0x8)
-    class UW_Compendium_SoupRecipes_C* W_Compendium_SoupRecipes;                      // 0x0540 (size: 0x8)
-    TEnumAsByte<E_JournalEntryCategories::Type> CurrentPage;                          // 0x0548 (size: 0x1)
-    FW_Player_Journal_Main_CJournalEntriesViewed JournalEntriesViewed;                // 0x0550 (size: 0x10)
+    class UW_Player_JournalSectorTab_C* V_Inq_Tab;                                    // 0x04D8 (size: 0x8)
+    class UW_Player_JournalSectorTab_C* V_Intro_Tab;                                  // 0x04E0 (size: 0x8)
+    class UW_Player_JournalSectorTab_C* V_MirrorWorldTab;                             // 0x04E8 (size: 0x8)
+    class UW_Player_JournalSectorTab_C* V_NightTab;                                   // 0x04F0 (size: 0x8)
+    class UW_Player_JournalSectorTab_C* V_RiseTab;                                    // 0x04F8 (size: 0x8)
+    class UW_Player_JournalSectorTab_C* V_SI;                                         // 0x0500 (size: 0x8)
+    class UW_Player_JournalSectorTab_C* V_SUOMI;                                      // 0x0508 (size: 0x8)
+    class UW_Player_JournalSectorTab_C* V_Tile;                                       // 0x0510 (size: 0x8)
+    class UW_Player_JournalSectorTab_C* V_Train_Tab;                                  // 0x0518 (size: 0x8)
+    class UW_Player_JournalSectorTab_C* V_Voussoir_Tab;                               // 0x0520 (size: 0x8)
+    class UW_Player_JournalSectorTab_C* V_WALL;                                       // 0x0528 (size: 0x8)
+    class UVerticalBox* VBox_Entries;                                                 // 0x0530 (size: 0x8)
+    class UW_Compendium_FishDatabase_C* W_Compendium_FishDatabase;                    // 0x0538 (size: 0x8)
+    class UW_Compendium_Index_C* W_Compendium_Index;                                  // 0x0540 (size: 0x8)
+    class UW_Compendium_SoupRecipes_C* W_Compendium_SoupRecipes;                      // 0x0548 (size: 0x8)
+    TEnumAsByte<E_JournalEntryCategories::Type> CurrentPage;                          // 0x0550 (size: 0x1)
+    FW_Player_Journal_Main_CJournalEntriesViewed JournalEntriesViewed;                // 0x0558 (size: 0x10)
     void JournalEntriesViewed();
-    bool MapViewActive;                                                               // 0x0560 (size: 0x1)
-    class ADayNightManager_C* DayNightManager;                                        // 0x0568 (size: 0x8)
-    bool Use24Hour;                                                                   // 0x0570 (size: 0x1)
-    FText CurrentTabText;                                                             // 0x0578 (size: 0x10)
-    bool CurrentTabHasMaps;                                                           // 0x0588 (size: 0x1)
-    FSlateBrush CurrentTabBrush;                                                      // 0x0590 (size: 0xD0)
-    class UWidget* CurrentBackButtonGoToWidget;                                       // 0x0660 (size: 0x8)
-    FName CurrentEntry;                                                               // 0x0668 (size: 0x8)
-    TArray<FName> NewlyReadEntries;                                                   // 0x0670 (size: 0x10)
+    bool MapViewActive;                                                               // 0x0568 (size: 0x1)
+    class ADayNightManager_C* DayNightManager;                                        // 0x0570 (size: 0x8)
+    bool Use24Hour;                                                                   // 0x0578 (size: 0x1)
+    FText CurrentTabText;                                                             // 0x0580 (size: 0x10)
+    bool CurrentTabHasMaps;                                                           // 0x0590 (size: 0x1)
+    FSlateBrush CurrentTabBrush;                                                      // 0x05A0 (size: 0xD0)
+    class UWidget* CurrentBackButtonGoToWidget;                                       // 0x0670 (size: 0x8)
+    FName CurrentEntry;                                                               // 0x0678 (size: 0x8)
+    TArray<FName> NewlyReadEntries;                                                   // 0x0680 (size: 0x10)
+    bool bIsCompendiumOpen;                                                           // 0x0690 (size: 0x1)
 
     void Update Date(int32 DayNumber);
     void Select Map Background();
@@ -124,6 +126,6 @@ class UW_Player_Journal_Main_C : public UUserWidget
     void EscapeInputActivated();
     void ExecuteUbergraph_W_Player_Journal_Main(int32 EntryPoint);
     void JournalEntriesViewed__DelegateSignature();
-}; // Size: 0x680
+}; // Size: 0x691
 
 #endif

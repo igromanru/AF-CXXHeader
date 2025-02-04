@@ -14,7 +14,8 @@ namespace E_Factions {
         NewEnumerator12 = 11,
         NewEnumerator13 = 12,
         NewEnumerator14 = 13,
-        E_MAX = 14,
+        NewEnumerator16 = 14,
+        E_MAX = 15,
     };
 }
 

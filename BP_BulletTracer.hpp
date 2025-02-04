@@ -33,6 +33,7 @@ class ABP_BulletTracer_C : public AActor
     FVector ProjectilesVector;                                                        // 0x04D0 (size: 0x18)
     FTransform ProjectileTransform;                                                   // 0x04F0 (size: 0x60)
     double RicochetDot;                                                               // 0x0550 (size: 0x8)
+    bool CreateBulletWhizzAudio;                                                      // 0x0558 (size: 0x1)
 
     void ProjectileBounce(FHitResult ImpactResult, const FVector& InputPin);
     void RicochetON();
@@ -44,6 +45,6 @@ class ABP_BulletTracer_C : public AActor
     void ReceiveTick(float DeltaSeconds);
     void BndEvt__Projectile_K2Node_ComponentBoundEvent_9_OnProjectileStopDelegate__DelegateSignature(const FHitResult& ImpactResult);
     void ExecuteUbergraph_BP_BulletTracer(int32 EntryPoint);
-}; // Size: 0x558
+}; // Size: 0x559
 
 #endif

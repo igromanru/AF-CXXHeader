@@ -31,6 +31,7 @@ class ABP_Teleporter_ParentBP_C : public AActor
     FWorldFlagRowHandle WorldFlagToTriggerOnUse;                                      // 0x03C8 (size: 0x20)
     class USoundBase* PortalActivateSound;                                            // 0x03E8 (size: 0x8)
     bool NoFlashOnEnter;                                                              // 0x03F0 (size: 0x1)
+    TArray<class AActor*> RecentArrivals;                                             // 0x03F8 (size: 0x10)
 
     void UpdateControlRotation(class AAbiotic_PlayerCharacter_C* Player, class USceneComponent* TeleportLocation);
     void TryApplyBuffsOnUse(class AAbiotic_Character_ParentBP_C* Character);
@@ -45,7 +46,9 @@ class ABP_Teleporter_ParentBP_C : public AActor
     void BndEvt__Box_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
     void PortalActivateOnPickup();
     void PortalActivateOnButtonPress(bool Activated);
+    void CheckRecentArrivals();
+    void AddRecentArrival(class ABP_Teleporter_ParentBP_C* Teleporter, const class AActor*& NewArrival);
     void ExecuteUbergraph_BP_Teleporter_ParentBP(int32 EntryPoint);
-}; // Size: 0x3F1
+}; // Size: 0x408
 
 #endif

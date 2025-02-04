@@ -53,7 +53,9 @@ class UW_ServerBrowser_C : public UUserWidget
     class UW_PopupPleaseWait_C* PleaseWaitPopup;                                      // 0x0578 (size: 0x8)
     TArray<class USessionResultItem*> SessionResults;                                 // 0x0580 (size: 0x10)
     FString FilterString;                                                             // 0x0590 (size: 0x10)
+    TArray<FSessionsSearchSetting> CachedServerFilters;                               // 0x05A0 (size: 0x10)
 
+    void BuildSessionFilters();
     void ForceJoinSession(FBlueprintSessionResult Session);
     void ToggleRefreshButtons(bool Enabled);
     void UpdateStatusText(FText Text, TEnumAsByte<ECriticalityLevels::Type> CriticalityLevel);
@@ -61,14 +63,13 @@ class UW_ServerBrowser_C : public UUserWidget
     void ToggleSearchStatus(bool ShowText, FText Text, bool ShowThrobber);
     void OnFailure_06683391485E0CE7EB05878C8E49BF7B(const TArray<FBlueprintSessionResult>& Results);
     void OnSuccess_06683391485E0CE7EB05878C8E49BF7B(const TArray<FBlueprintSessionResult>& Results);
+    void OnFailure_0ECF2DE64CC1E5251500798EE4EE3C73(const TArray<FBlueprintSessionResult>& Results);
+    void OnSuccess_0ECF2DE64CC1E5251500798EE4EE3C73(const TArray<FBlueprintSessionResult>& Results);
     void OnFailure_511C492E423F047E9329F9A576EFA5A5();
     void OnSuccess_511C492E423F047E9329F9A576EFA5A5();
-    void BndEvt__W_ServerBrowser_W_MainMenuButton_Back_1_K2Node_ComponentBoundEvent_3_ButtonPressed__DelegateSignature();
-    void BndEvt__W_ServerBrowser_W_MainMenuButton_Back_K2Node_ComponentBoundEvent_4_ButtonPressed__DelegateSignature();
-    void RefreshSessionList();
-    void BndEvt__W_ServerBrowser_W_MainMenuButton_LANSwitch_K2Node_ComponentBoundEvent_1_ButtonPressed__DelegateSignature();
     void Construct();
     void BndEvt__W_ServerBrowser_W_MainMenuButton_Join_K2Node_ComponentBoundEvent_0_ButtonPressed__DelegateSignature();
+    void RefreshSessionList();
     void ContinueJoin();
     void TestPassword();
     void ClosePopup();
@@ -77,6 +78,9 @@ class UW_ServerBrowser_C : public UUserWidget
     void ModJoin_No();
     void FilterSessions();
     void BndEvt__W_ServerBrowser_EditableTextBox_K2Node_ComponentBoundEvent_2_OnEditableTextBoxChangedEvent__DelegateSignature(const FText& Text);
+    void BndEvt__W_ServerBrowser_W_MainMenuButton_Back_K2Node_ComponentBoundEvent_4_ButtonPressed__DelegateSignature();
+    void BndEvt__W_ServerBrowser_W_MainMenuButton_Back_1_K2Node_ComponentBoundEvent_3_ButtonPressed__DelegateSignature();
+    void BndEvt__W_ServerBrowser_W_MainMenuButton_LANSwitch_K2Node_ComponentBoundEvent_1_ButtonPressed__DelegateSignature();
     void BndEvt__W_ServerBrowser_CheckBox_ShowDedicated_K2Node_ComponentBoundEvent_5_OnCheckBoxComponentStateChanged__DelegateSignature(bool bIsChecked);
     void BndEvt__W_ServerBrowser_CheckBox_ShowLocked_K2Node_ComponentBoundEvent_6_OnCheckBoxComponentStateChanged__DelegateSignature(bool bIsChecked);
     void BndEvt__W_ServerBrowser_Checkbox_ShowModified_K2Node_ComponentBoundEvent_7_OnCheckBoxComponentStateChanged__DelegateSignature(bool bIsChecked);
@@ -84,7 +88,8 @@ class UW_ServerBrowser_C : public UUserWidget
     void BndEvt__W_ServerBrowser_W_MainMenuButton_DirectConnect_K2Node_ComponentBoundEvent_9_ButtonPressed__DelegateSignature();
     void DirectConnect_No();
     void DirectConnect_Yes();
+    void RefreshSessionListForJoinCode();
     void ExecuteUbergraph_W_ServerBrowser(int32 EntryPoint);
-}; // Size: 0x5A0
+}; // Size: 0x5B0
 
 #endif

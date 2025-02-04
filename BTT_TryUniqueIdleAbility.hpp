@@ -7,6 +7,7 @@ class UBTT_TryUniqueIdleAbility_C : public UBTTask_BlueprintBase
 
     void ReceiveExecuteAI(class AAIController* OwnerController, class APawn* ControlledPawn);
     void UniqueIdleReset(bool Success);
+    void ReceiveAbortAI(class AAIController* OwnerController, class APawn* ControlledPawn);
     void ExecuteUbergraph_BTT_TryUniqueIdleAbility(int32 EntryPoint);
 }; // Size: 0xB0
 

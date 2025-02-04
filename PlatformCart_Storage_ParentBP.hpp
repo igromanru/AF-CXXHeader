@@ -3,8 +3,9 @@
 
 class APlatformCart_Storage_ParentBP_C : public ADeployed_Container_Cargo_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x09F0 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0A00 (size: 0x8)
 
+    FText GetItemNameText();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void RefreshContainerVisuals();
@@ -13,6 +14,6 @@ class APlatformCart_Storage_ParentBP_C : public ADeployed_Container_Cargo_C
     void ReceiveBeginPlay();
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void ExecuteUbergraph_PlatformCart_Storage_ParentBP(int32 EntryPoint);
-}; // Size: 0x9F8
+}; // Size: 0xA08
 
 #endif

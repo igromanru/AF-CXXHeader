@@ -75,14 +75,19 @@ class UW_InventoryItemSlot_C : public UUserWidget
     bool HiddenItem;                                                                  // 0x081A (size: 0x1)
     TSoftObjectPtr<UTexture2D> UnknownItemIcon;                                       // 0x0820 (size: 0x28)
     bool CanBeFavorited;                                                              // 0x0848 (size: 0x1)
+    FW_InventoryItemSlot_COnSpecialClick OnSpecialClick;                              // 0x0850 (size: 0x10)
+    void OnSpecialClick(bool Clicked);
 
+    void TryToggleFavoriteSlot();
+    void SetNewBackgroundColorFromTheme();
+    FEventReply PerformMouseButtonDown(const FPointerEvent& MouseEvent);
     void Local Try Perform Scrap Action(bool ForceScrap, TEnumAsByte<E_CursorMode::Type> CursorModeToCheck, bool& Success);
     void ToggleFavoritedSlot();
     FEventReply OnMouseButtonDoubleClick(FGeometry InMyGeometry, const FPointerEvent& InMouseEvent);
     bool CanEquipGear?();
     void Is Gear Slot(TEnumAsByte<E_InventorySlotType::Type> SlotType, bool& Return);
     void OnEmptySlotClicked();
-    double GetItemWeightMultiplier(double BaseWeight);
+    double GetItemWeightMultiplier(double BaseWeight, FAbiotic_InventoryItemStruct& ItemData);
     void ClientDragDropPrediction(class UW_InventoryItemSlot_C* OriginWidget, FInventorySlotSelected_Struct IncomingItemSlot, TEnumAsByte<E_ItemDragDropOutcome::Type> Outcome, int32 Leftovers, int32 StackSize);
     double GetLiquidWeightMultiplier();
     void SetupTextureVariantData(FDataTableRowHandle TextureVariantRow, bool& FoundRow);
@@ -115,9 +120,9 @@ class UW_InventoryItemSlot_C : public UUserWidget
     void OnLoaded_5BE9753D47238C254B96898F51F5AE85(class UObject* Loaded);
     void OnLoaded_46D259C94A3C21F3E04BA6AD42D9E4DE(class UObject* Loaded);
     void OnLoaded_80C00AE842035BF319B84E86CF5B3C02(class UObject* Loaded);
-    void UpdateSlot_UI(FAbiotic_InventoryItemSlotStruct ItemInSlot, FAbiotic_InventoryChangeableDataStruct ItemChangeableStats, bool Selected, bool HigherCost, bool RecipePinHighlighted, bool ClientPrediction, bool HiddenItem);
     void OnMouseEnter(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
     void OnMouseLeave(const FPointerEvent& MouseEvent);
+    void UpdateSlot_UI(FAbiotic_InventoryItemSlotStruct ItemInSlot, FAbiotic_InventoryChangeableDataStruct ItemChangeableStats, bool Selected, bool HigherCost, bool RecipePinHighlighted, bool ClientPrediction, bool HiddenItem);
     void SetupEmptyIcon();
     void Construct();
     void PickupMoney();
@@ -127,7 +132,9 @@ class UW_InventoryItemSlot_C : public UUserWidget
     void Close Item Scrap Popup();
     void StartDisplayScrapConfirmMenu(TEnumAsByte<E_CursorMode::Type> CursorModeToCheck);
     void TryPerformRechargeAnim();
+    void Destruct();
     void ExecuteUbergraph_W_InventoryItemSlot(int32 EntryPoint);
-}; // Size: 0x849
+    void OnSpecialClick__DelegateSignature(bool Clicked);
+}; // Size: 0x860
 
 #endif

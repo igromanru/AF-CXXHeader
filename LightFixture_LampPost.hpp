@@ -3,6 +3,6 @@
 
 class ALightFixture_LampPost_C : public ALightFixture_Generic_C
 {
-}; // Size: 0x429
+}; // Size: 0x431
 
 #endif

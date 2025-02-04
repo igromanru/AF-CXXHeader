@@ -4,28 +4,32 @@
 class UW_EscapeMenu_Main_C : public UAbioticWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
-    class UImage* BG_image;                                                           // 0x02E8 (size: 0x8)
-    class UCanvasPanel* Esc_Menu;                                                     // 0x02F0 (size: 0x8)
-    class UTextBlock* GamePausedText;                                                 // 0x02F8 (size: 0x8)
-    class UImage* TestTube;                                                           // 0x0300 (size: 0x8)
-    class UTextBlock* VOIPDebug_TextBlock;                                            // 0x0308 (size: 0x8)
-    class UW_AdminMenu_C* W_AdminMenu;                                                // 0x0310 (size: 0x8)
-    class UW_MainMenuButton_C* W_MainMenuButton_Admin;                                // 0x0318 (size: 0x8)
-    class UW_MainMenuButton_C* W_MainMenuButton_Invite;                               // 0x0320 (size: 0x8)
-    class UW_MainMenuButton_C* W_MainMenuButton_LeaveFeedback;                        // 0x0328 (size: 0x8)
-    class UW_MainMenuButton_C* W_MainMenuButton_LeaveGame;                            // 0x0330 (size: 0x8)
-    class UW_MainMenuButton_C* W_MainMenuButton_ReportBug;                            // 0x0338 (size: 0x8)
-    class UW_MainMenuButton_C* W_MainMenuButton_Respawn;                              // 0x0340 (size: 0x8)
-    class UW_MainMenuButton_C* W_MainMenuButton_Resume;                               // 0x0348 (size: 0x8)
-    class UW_MainMenuButton_C* W_MainMenuButton_Settings;                             // 0x0350 (size: 0x8)
-    class UW_PlayerCharacterManagement_C* W_PlayerCharacterManagement;                // 0x0358 (size: 0x8)
-    class UW_MainMenuButton_C* W_ResetVOIP;                                           // 0x0360 (size: 0x8)
-    class UW_SettingsMenu_C* W_SettingsMenu;                                          // 0x0368 (size: 0x8)
-    class UWidgetSwitcher* WidgetSwitcher_Escape;                                     // 0x0370 (size: 0x8)
-    bool SoloGame;                                                                    // 0x0378 (size: 0x1)
-    class UW_MenuPopup_YesNo_C* Popup;                                                // 0x0380 (size: 0x8)
-    FString URL_ReportBug;                                                            // 0x0388 (size: 0x10)
-    bool IsInTutorial;                                                                // 0x0398 (size: 0x1)
+    class UImage* BG_Image;                                                           // 0x02E8 (size: 0x8)
+    class UButton* Button_ShowPassword;                                               // 0x02F0 (size: 0x8)
+    class UCanvasPanel* Esc_Menu;                                                     // 0x02F8 (size: 0x8)
+    class UTextBlock* GameJoinCode;                                                   // 0x0300 (size: 0x8)
+    class UTextBlock* GamePausedText;                                                 // 0x0308 (size: 0x8)
+    class UImage* Image_275;                                                          // 0x0310 (size: 0x8)
+    class UImage* TestTube;                                                           // 0x0318 (size: 0x8)
+    class UEditableTextBox* TextInput_Password;                                       // 0x0320 (size: 0x8)
+    class UTextBlock* VOIPDebug_TextBlock;                                            // 0x0328 (size: 0x8)
+    class UW_AdminMenu_C* W_AdminMenu;                                                // 0x0330 (size: 0x8)
+    class UW_MainMenuButton_C* W_MainMenuButton_Admin;                                // 0x0338 (size: 0x8)
+    class UW_MainMenuButton_C* W_MainMenuButton_Invite;                               // 0x0340 (size: 0x8)
+    class UW_MainMenuButton_C* W_MainMenuButton_LeaveFeedback;                        // 0x0348 (size: 0x8)
+    class UW_MainMenuButton_C* W_MainMenuButton_LeaveGame;                            // 0x0350 (size: 0x8)
+    class UW_MainMenuButton_C* W_MainMenuButton_ReportBug;                            // 0x0358 (size: 0x8)
+    class UW_MainMenuButton_C* W_MainMenuButton_Respawn;                              // 0x0360 (size: 0x8)
+    class UW_MainMenuButton_C* W_MainMenuButton_Resume;                               // 0x0368 (size: 0x8)
+    class UW_MainMenuButton_C* W_MainMenuButton_Settings;                             // 0x0370 (size: 0x8)
+    class UW_PlayerCharacterManagement_C* W_PlayerCharacterManagement;                // 0x0378 (size: 0x8)
+    class UW_MainMenuButton_C* W_ResetVOIP;                                           // 0x0380 (size: 0x8)
+    class UW_SettingsMenu_C* W_SettingsMenu;                                          // 0x0388 (size: 0x8)
+    class UWidgetSwitcher* WidgetSwitcher_Escape;                                     // 0x0390 (size: 0x8)
+    bool SoloGame;                                                                    // 0x0398 (size: 0x1)
+    class UW_MenuPopup_YesNo_C* Popup;                                                // 0x03A0 (size: 0x8)
+    FString URL_ReportBug;                                                            // 0x03A8 (size: 0x10)
+    bool IsInTutorial;                                                                // 0x03B8 (size: 0x1)
 
     void WidgetAction_CycleMenu(bool Next, bool& Handled);
     void WidgetAction_CloseMenu(bool& Handled);
@@ -53,7 +57,8 @@ class UW_EscapeMenu_Main_C : public UAbioticWidget
     void BndEvt__W_EscapeMenu_Main_W_MainMenuButton_LeaveFeedback_K2Node_ComponentBoundEvent_2_ButtonPressed__DelegateSignature();
     void OpenURL_Feedback();
     void CheckGamePauseText();
+    void BndEvt__W_EscapeMenu_Main_Button_ShowPassword_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature();
     void ExecuteUbergraph_W_EscapeMenu_Main(int32 EntryPoint);
-}; // Size: 0x399
+}; // Size: 0x3B9
 
 #endif

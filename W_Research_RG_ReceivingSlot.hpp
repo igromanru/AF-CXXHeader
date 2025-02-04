@@ -7,7 +7,7 @@ class UW_Research_RG_ReceivingSlot_C : public UUserWidget
     class UImage* BG;                                                                 // 0x02E8 (size: 0x8)
     class UImage* CorrectCheckmark;                                                   // 0x02F0 (size: 0x8)
     class UImage* CorrectTrim;                                                        // 0x02F8 (size: 0x8)
-    class UImage* ItemIcon;                                                           // 0x0300 (size: 0x8)
+    class UImage* itemicon;                                                           // 0x0300 (size: 0x8)
     class UImage* Trim;                                                               // 0x0308 (size: 0x8)
     FName MaterialRow;                                                                // 0x0310 (size: 0x8)
     FName ItemNameRow;                                                                // 0x0318 (size: 0x8)

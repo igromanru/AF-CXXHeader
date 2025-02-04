@@ -5,6 +5,6 @@ class ADeployed_CraftedChargingStation_C : public ADeployed_ChargingStation_Pare
 {
 
     void UpdatePercentageChargeFX();
-}; // Size: 0x9A0
+}; // Size: 0x9B0
 
 #endif

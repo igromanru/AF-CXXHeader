@@ -3,13 +3,13 @@
 
 class ADeployed_Bobblehead_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0920 (size: 0x8)
-    class USphereComponent* HeadCollider;                                             // 0x0928 (size: 0x8)
-    class UStaticMeshComponent* BobbleHead;                                           // 0x0930 (size: 0x8)
-    float BobbleheadTimeline_NewTrack_1_47CD43754A87751A7EF7FA9DFACD3D8D;             // 0x0938 (size: 0x4)
-    float BobbleheadTimeline_NewTrack_0_47CD43754A87751A7EF7FA9DFACD3D8D;             // 0x093C (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> BobbleheadTimeline__Direction_47CD43754A87751A7EF7FA9DFACD3D8D; // 0x0940 (size: 0x1)
-    class UTimelineComponent* BobbleheadTimeline;                                     // 0x0948 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0930 (size: 0x8)
+    class USphereComponent* HeadCollider;                                             // 0x0938 (size: 0x8)
+    class UStaticMeshComponent* BobbleHead;                                           // 0x0940 (size: 0x8)
+    float BobbleheadTimeline_NewTrack_1_47CD43754A87751A7EF7FA9DFACD3D8D;             // 0x0948 (size: 0x4)
+    float BobbleheadTimeline_NewTrack_0_47CD43754A87751A7EF7FA9DFACD3D8D;             // 0x094C (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> BobbleheadTimeline__Direction_47CD43754A87751A7EF7FA9DFACD3D8D; // 0x0950 (size: 0x1)
+    class UTimelineComponent* BobbleheadTimeline;                                     // 0x0958 (size: 0x8)
 
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
@@ -19,6 +19,6 @@ class ADeployed_Bobblehead_ParentBP_C : public AAbioticDeployed_Furniture_Parent
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void Broadcast_BobbleMyHead();
     void ExecuteUbergraph_Deployed_Bobblehead_ParentBP(int32 EntryPoint);
-}; // Size: 0x950
+}; // Size: 0x960
 
 #endif

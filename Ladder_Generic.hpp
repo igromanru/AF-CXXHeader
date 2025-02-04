@@ -3,6 +3,6 @@
 
 class ALadder_Generic_C : public ADeployed_Ladder_ParentBP_C
 {
-}; // Size: 0x9D0
+}; // Size: 0x9E0
 
 #endif

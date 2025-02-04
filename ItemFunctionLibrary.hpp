@@ -4,6 +4,8 @@
 class UItemFunctionLibrary_C : public UBlueprintFunctionLibrary
 {
 
+    void GetItemCosmeticDataAsset(FName RowToFind, class UObject* __WorldContext, bool& Success, class UPrimaryDataAsset*& DataAsset);
+    void DoesItemExistInSlot(TArray<FAbiotic_InventoryItemSlotStruct>& ItemSlotArray, FName ItemRowName, FString AssetID, class UObject* __WorldContext, bool& Success, int32& InventoryIndex, FAbiotic_InventoryItemSlotStruct& Element Found);
     void IsItemThrowingKnife?(const FGameplayTagContainer& TagContainer, class UObject* __WorldContext, bool& TKnife);
     void GetLocalGadgetWidgetByID(FString ItemId, class UObject* __WorldContext, class UW_HUD_GadgetBar_C*& WidgetFound);
     void IsUsingNeedle?(const FGameplayTagContainer& ItemTagContainer, class UObject* __WorldContext, bool& NeedleUsed);
@@ -15,7 +17,6 @@ class UItemFunctionLibrary_C : public UBlueprintFunctionLibrary
     void Can Place Item On Stove(const FAbiotic_InventoryItemSlotStruct& FoodSlotData, class UObject* __WorldContext, bool& CanPlaceOnStove, TEnumAsByte<E_ItemStateInHand::Type>& ItemStateResult);
     void Find Owning Cooking Items(class AAbiotic_PlayerCharacter_C* Owning Character, class UObject* __WorldContext, TMap<class FName, class FAbiotic_InventoryItemSlotStruct>& CookingItems);
     void IsReadableBook?(const FGameplayTagContainer& TagContainer, class UObject* __WorldContext, bool& IsReadableBook);
-    void GetProjectileInfoFromItemData(class AAbiotic_PlayerCharacter_C* OwningPlayer, class UObject* __WorldContext, TSoftClassPtr<AAbioticProjectile_ParentBP_C>& OptionalProjectileToFire, TSubclassOf<class UDamageType>& DamageType_Hitscan);
     void IsMedicalItem?(const FGameplayTagContainer& TagContainer, class UObject* __WorldContext, bool& IsMedical);
     void Is Item Reloadable Weapon?(class UObject* __WorldContext, bool& Return);
     void IsItemGrenade?(const FGameplayTagContainer& TagContainer, class UObject* __WorldContext, bool& grenade);
@@ -66,7 +67,7 @@ class UItemFunctionLibrary_C : public UBlueprintFunctionLibrary
     FAbiotic_InventoryChangeableDataStruct RemoveTagFromChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData, FGameplayTag Tag, class UObject* __WorldContext);
     FAbiotic_InventoryChangeableDataStruct AddTagToChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData, FGameplayTag Tag, class UObject* __WorldContext);
     bool ChangeableDataHasTag(FAbiotic_InventoryChangeableDataStruct& ChangeableData, FGameplayTag Tag, class UObject* __WorldContext);
-    void TryScrapItemInSlot(FAbiotic_InventoryItemStruct& InItemData, FAbiotic_InventoryChangeableDataStruct& InChangeableData, class UObject* __WorldContext, bool& Success, TArray<FAbiotic_InventoryItemSlotStruct>& OutItems, FString& DebugNote);
+    void TryScrapItemInSlot(FAbiotic_InventoryItemStruct& InItemData, FAbiotic_InventoryChangeableDataStruct& InChangeableData, double ExtraLootChance, class UObject* __WorldContext, bool& Success, TArray<FAbiotic_InventoryItemSlotStruct>& OutItems, FString& DebugNote);
 }; // Size: 0x28
 
 #endif

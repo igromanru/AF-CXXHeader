@@ -3,24 +3,24 @@
 
 class ADeployed_TeslaCoil_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0920 (size: 0x8)
-    class UNiagaraComponent* ElectricityParticles_Mid;                                // 0x0928 (size: 0x8)
-    class UNiagaraComponent* ElectricityParticles_Low;                                // 0x0930 (size: 0x8)
-    class USceneComponent* LineOfSightEye;                                            // 0x0938 (size: 0x8)
-    class UAudioComponent* CoilAudio;                                                 // 0x0940 (size: 0x8)
-    class USphereComponent* AttackRadius;                                             // 0x0948 (size: 0x8)
-    float WarmUpTimeline_NewTrack_0_5CBE1C304A3CA52B5ED982A26639F3CC;                 // 0x0950 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> WarmUpTimeline__Direction_5CBE1C304A3CA52B5ED982A26639F3CC; // 0x0954 (size: 0x1)
-    class UTimelineComponent* WarmUpTimeline;                                         // 0x0958 (size: 0x8)
-    class UMaterialInstanceDynamic* SphereMaterial;                                   // 0x0960 (size: 0x8)
-    TArray<class AActor*> TargetList;                                                 // 0x0968 (size: 0x10)
-    float AttackRateMultiplier;                                                       // 0x0978 (size: 0x4)
-    class AActor* LastTarget;                                                         // 0x0980 (size: 0x8)
-    float BaseCoilDamage;                                                             // 0x0988 (size: 0x4)
-    bool CoilMode_AoE;                                                                // 0x098C (size: 0x1)
-    class UMaterialInstanceDynamic* MiddleRingMaterial;                               // 0x0990 (size: 0x8)
-    class UMaterialInstanceDynamic* TopRingMaterial;                                  // 0x0998 (size: 0x8)
-    class UMaterialInstanceDynamic* BottomRingMaterial;                               // 0x09A0 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0930 (size: 0x8)
+    class UNiagaraComponent* ElectricityParticles_Mid;                                // 0x0938 (size: 0x8)
+    class UNiagaraComponent* ElectricityParticles_Low;                                // 0x0940 (size: 0x8)
+    class USceneComponent* LineOfSightEye;                                            // 0x0948 (size: 0x8)
+    class UAudioComponent* CoilAudio;                                                 // 0x0950 (size: 0x8)
+    class USphereComponent* AttackRadius;                                             // 0x0958 (size: 0x8)
+    float WarmUpTimeline_NewTrack_0_5CBE1C304A3CA52B5ED982A26639F3CC;                 // 0x0960 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> WarmUpTimeline__Direction_5CBE1C304A3CA52B5ED982A26639F3CC; // 0x0964 (size: 0x1)
+    class UTimelineComponent* WarmUpTimeline;                                         // 0x0968 (size: 0x8)
+    class UMaterialInstanceDynamic* SphereMaterial;                                   // 0x0970 (size: 0x8)
+    TArray<class AActor*> TargetList;                                                 // 0x0978 (size: 0x10)
+    float AttackRateMultiplier;                                                       // 0x0988 (size: 0x4)
+    class AActor* LastTarget;                                                         // 0x0990 (size: 0x8)
+    float BaseCoilDamage;                                                             // 0x0998 (size: 0x4)
+    bool CoilMode_AoE;                                                                // 0x099C (size: 0x1)
+    class UMaterialInstanceDynamic* MiddleRingMaterial;                               // 0x09A0 (size: 0x8)
+    class UMaterialInstanceDynamic* TopRingMaterial;                                  // 0x09A8 (size: 0x8)
+    class UMaterialInstanceDynamic* BottomRingMaterial;                               // 0x09B0 (size: 0x8)
 
     void Target Can be Attacked(class AActor* Target, bool& Yes);
     void GetHighlightComponents(TArray<class UActorComponent*>& Components);
@@ -39,6 +39,6 @@ class ADeployed_TeslaCoil_C : public AAbioticDeployed_Furniture_ParentBP_C
     void TogglePowerFX();
     void Toggle_RingPowerLights();
     void ExecuteUbergraph_Deployed_TeslaCoil(int32 EntryPoint);
-}; // Size: 0x9A8
+}; // Size: 0x9B8
 
 #endif

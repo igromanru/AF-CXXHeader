@@ -5,6 +5,6 @@ class AVehicle_Seat_Driver_C : public AVehicle_Seat_Passenger_C
 {
 
     void UserConstructionScript();
-}; // Size: 0x941
+}; // Size: 0x951
 
 #endif
