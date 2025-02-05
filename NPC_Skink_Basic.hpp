@@ -18,6 +18,9 @@ class ANPC_Skink_Basic_C : public ANPC_Monster_Pest_C
     void ReceiveHit(class UPrimitiveComponent* MyComp, class AActor* Other, class UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit);
     void OnLanded(const FHitResult& Hit);
     void Broadcast_DoRangedAttackFX();
+    void ReceiveBeginPlay();
+    void PoopOccasionally();
+    void Server_PoopOnFloor();
     void ExecuteUbergraph_NPC_Skink_Basic(int32 EntryPoint);
 }; // Size: 0x2040
 

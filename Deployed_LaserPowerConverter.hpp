@@ -8,7 +8,6 @@ class ADeployed_LaserPowerConverter_C : public AAbioticDeployed_Furniture_Parent
     TArray<class APowerSocket_ChildOfActor_C*> PlugStripPowerSockets;                 // 0x0940 (size: 0x10)
 
     void GetPoweringActors(TArray<class AActor*>& PowerSourceParents);
-    void ValidateHitLasers();
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void GetHighlightComponents(TArray<class UActorComponent*>& Components);

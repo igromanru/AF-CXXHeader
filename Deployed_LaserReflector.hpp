@@ -10,6 +10,8 @@ class ADeployed_LaserReflector_C : public AAbioticDeployed_Furniture_ParentBP_C
     TArray<class UPrimitiveComponent*> ReflectiveSurfaces;                            // 0x0950 (size: 0x10)
     TArray<class ULaserComponent_C*> ReflectedLaserComponents;                        // 0x0960 (size: 0x10)
 
+    void ValidateHitLasers();
+    void GetPoweringActors(TArray<class AActor*>& PowerSourceParents);
     void ReceiveLaserHit(class ULaserComponent_C* Laser, int32 CurrentBounce, FHitResult& HitResult, bool& Handled);
     void GetHighlightComponents(TArray<class UActorComponent*>& Components);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
