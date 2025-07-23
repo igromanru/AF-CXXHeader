@@ -7,11 +7,11 @@ class UW_Compendium_HoverIcon_C : public UAbioticWidget
     class UBorder* Border_72;                                                         // 0x02E8 (size: 0x8)
     class UImage* Image_0;                                                            // 0x02F0 (size: 0x8)
     int32 ResistanceType;                                                             // 0x02F8 (size: 0x4)
-    TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageTypeClass;                // 0x0300 (size: 0x8)
+    FDamageDefinitionRowHandle DamageDefinitionRow;                                   // 0x0300 (size: 0x20)
 
     void OnLoaded_758B17404606C753C71D3B9987007067(class UObject* Loaded);
     void Construct();
     void ExecuteUbergraph_W_Compendium_HoverIcon(int32 EntryPoint);
-}; // Size: 0x308
+}; // Size: 0x320
 
 #endif

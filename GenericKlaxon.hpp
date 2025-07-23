@@ -10,6 +10,7 @@ class AGenericKlaxon_C : public AActor
     class UStaticMeshComponent* LightHousing;                                         // 0x02B8 (size: 0x8)
     class USceneComponent* DefaultSceneRoot;                                          // 0x02C0 (size: 0x8)
     bool LightOn;                                                                     // 0x02C8 (size: 0x1)
+    FRotator RotationRate;                                                            // 0x02D0 (size: 0x18)
 
     void GetPluggedInDeviceCount(int32& Count);
     bool HasBatteryInParentChain();
@@ -24,7 +25,8 @@ class AGenericKlaxon_C : public AActor
     void TogglePowerFX();
     void ReceiveTick(float DeltaSeconds);
     void ReceiveBeginPlay();
+    void ReceiveEndPlay(TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
     void ExecuteUbergraph_GenericKlaxon(int32 EntryPoint);
-}; // Size: 0x2C9
+}; // Size: 0x2E8
 
 #endif

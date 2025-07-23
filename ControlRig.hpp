@@ -5057,32 +5057,32 @@ class UControlRigBlueprintGeneratedClass : public URigVMBlueprintGeneratedClass
 
 class UControlRigComponent : public UPrimitiveComponent
 {
-    TSubclassOf<class UControlRig> ControlRigClass;                                   // 0x0518 (size: 0x8)
-    FControlRigComponentOnPreInitializeDelegate OnPreInitializeDelegate;              // 0x0520 (size: 0x10)
+    TSubclassOf<class UControlRig> ControlRigClass;                                   // 0x0520 (size: 0x8)
+    FControlRigComponentOnPreInitializeDelegate OnPreInitializeDelegate;              // 0x0528 (size: 0x10)
     void ControlRigComponentDelegate(class UControlRigComponent* Component);
-    FControlRigComponentOnPostInitializeDelegate OnPostInitializeDelegate;            // 0x0530 (size: 0x10)
+    FControlRigComponentOnPostInitializeDelegate OnPostInitializeDelegate;            // 0x0538 (size: 0x10)
     void ControlRigComponentDelegate(class UControlRigComponent* Component);
-    FControlRigComponentOnPreConstructionDelegate OnPreConstructionDelegate;          // 0x0540 (size: 0x10)
+    FControlRigComponentOnPreConstructionDelegate OnPreConstructionDelegate;          // 0x0548 (size: 0x10)
     void ControlRigComponentDelegate(class UControlRigComponent* Component);
-    FControlRigComponentOnPostConstructionDelegate OnPostConstructionDelegate;        // 0x0550 (size: 0x10)
+    FControlRigComponentOnPostConstructionDelegate OnPostConstructionDelegate;        // 0x0558 (size: 0x10)
     void ControlRigComponentDelegate(class UControlRigComponent* Component);
-    FControlRigComponentOnPreForwardsSolveDelegate OnPreForwardsSolveDelegate;        // 0x0560 (size: 0x10)
+    FControlRigComponentOnPreForwardsSolveDelegate OnPreForwardsSolveDelegate;        // 0x0568 (size: 0x10)
     void ControlRigComponentDelegate(class UControlRigComponent* Component);
-    FControlRigComponentOnPostForwardsSolveDelegate OnPostForwardsSolveDelegate;      // 0x0570 (size: 0x10)
+    FControlRigComponentOnPostForwardsSolveDelegate OnPostForwardsSolveDelegate;      // 0x0578 (size: 0x10)
     void ControlRigComponentDelegate(class UControlRigComponent* Component);
-    TArray<FControlRigComponentMappedElement> UserDefinedElements;                    // 0x0580 (size: 0x10)
-    TArray<FControlRigComponentMappedElement> MappedElements;                         // 0x0590 (size: 0x10)
-    bool bEnableLazyEvaluation;                                                       // 0x05A0 (size: 0x1)
-    float LazyEvaluationPositionThreshold;                                            // 0x05A4 (size: 0x4)
-    float LazyEvaluationRotationThreshold;                                            // 0x05A8 (size: 0x4)
-    float LazyEvaluationScaleThreshold;                                               // 0x05AC (size: 0x4)
-    bool bResetTransformBeforeTick;                                                   // 0x05B0 (size: 0x1)
-    bool bResetInitialsBeforeConstruction;                                            // 0x05B1 (size: 0x1)
-    bool bUpdateRigOnTick;                                                            // 0x05B2 (size: 0x1)
-    bool bUpdateInEditor;                                                             // 0x05B3 (size: 0x1)
-    bool bDrawBones;                                                                  // 0x05B4 (size: 0x1)
-    bool bShowDebugDrawing;                                                           // 0x05B5 (size: 0x1)
-    class UControlRig* ControlRig;                                                    // 0x05B8 (size: 0x8)
+    TArray<FControlRigComponentMappedElement> UserDefinedElements;                    // 0x0588 (size: 0x10)
+    TArray<FControlRigComponentMappedElement> MappedElements;                         // 0x0598 (size: 0x10)
+    bool bEnableLazyEvaluation;                                                       // 0x05A8 (size: 0x1)
+    float LazyEvaluationPositionThreshold;                                            // 0x05AC (size: 0x4)
+    float LazyEvaluationRotationThreshold;                                            // 0x05B0 (size: 0x4)
+    float LazyEvaluationScaleThreshold;                                               // 0x05B4 (size: 0x4)
+    bool bResetTransformBeforeTick;                                                   // 0x05B8 (size: 0x1)
+    bool bResetInitialsBeforeConstruction;                                            // 0x05B9 (size: 0x1)
+    bool bUpdateRigOnTick;                                                            // 0x05BA (size: 0x1)
+    bool bUpdateInEditor;                                                             // 0x05BB (size: 0x1)
+    bool bDrawBones;                                                                  // 0x05BC (size: 0x1)
+    bool bShowDebugDrawing;                                                           // 0x05BD (size: 0x1)
+    class UControlRig* ControlRig;                                                    // 0x05C0 (size: 0x8)
 
     void Update(float DeltaTime);
     void SetObjectBinding(class UObject* InObjectToBind);
@@ -5131,7 +5131,7 @@ class UControlRigComponent : public UPrimitiveComponent
     void AddMappedElements(TArray<FControlRigComponentMappedElement> NewMappedElements);
     void AddMappedComponents(TArray<FControlRigComponentMappedComponent> Components);
     void AddMappedCompleteSkeletalMesh(class USkeletalMeshComponent* SkeletalMeshComponent, const EControlRigComponentMapDirection InDirection);
-}; // Size: 0x680
+}; // Size: 0x690
 
 class UControlRigEditorSettings : public URigVMEditorSettings
 {

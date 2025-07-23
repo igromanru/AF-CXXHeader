@@ -1498,10 +1498,14 @@ class USpinBox : public UWidget
     float MaxValue;                                                                   // 0x0870 (size: 0x4)
     float MinSliderValue;                                                             // 0x0874 (size: 0x4)
     float MaxSliderValue;                                                             // 0x0878 (size: 0x4)
-    bool AllowConsoleKeyboardPopup;                                                   // 0x0890 (size: 0x1)
+    bool AllowTextEditing;                                                            // 0x0890 (size: 0x1)
     bool AllowGamepadMouseWheelSimulation;                                            // 0x0891 (size: 0x1)
+    bool ReleaseCaptureOnMouseDown;                                                   // 0x0892 (size: 0x1)
+    float SliderScalar;                                                               // 0x0894 (size: 0x4)
 
     void SetValue(float NewValue);
+    void SetSliderScalar(float NewValue);
+    void SetReleaseCaptureOnMouseDown(bool NewValue);
     void SetMinValue(float NewValue);
     void SetMinSliderValue(float NewValue);
     void SetMinFractionalDigits(int32 NewValue);
@@ -1511,12 +1515,14 @@ class USpinBox : public UWidget
     void SetForegroundColor(FSlateColor InForegroundColor);
     void SetDelta(float NewValue);
     void SetAlwaysUsesDeltaSnap(bool bNewValue);
+    void SetAllowTextEditing(bool NewValue);
     void SetAllowGamepadMouseWheelSimulation(bool NewValue);
-    void SetAllowConsoleKeyboardPopup(bool NewValue);
     void OnSpinBoxValueCommittedEvent__DelegateSignature(float InValue, TEnumAsByte<ETextCommit::Type> CommitMethod);
     void OnSpinBoxValueChangedEvent__DelegateSignature(float InValue);
     void OnSpinBoxBeginSliderMovement__DelegateSignature();
     float GetValue();
+    float GetSliderScalar();
+    bool GetReleaseCaptureOnMouseDown();
     float GetMinValue();
     float GetMinSliderValue();
     int32 GetMinFractionalDigits();
@@ -1525,8 +1531,9 @@ class USpinBox : public UWidget
     int32 GetMaxFractionalDigits();
     float GetDelta();
     bool GetAlwaysUsesDeltaSnap();
+    bool GetAllowTextEditing();
     bool GetAllowGamepadMouseWheelSimulation();
-    bool GetAllowConsoleKeyboardPopup();
+    void ForceCommit();
     void ClearMinValue();
     void ClearMinSliderValue();
     void ClearMaxValue();
@@ -2120,45 +2127,45 @@ class UWidgetCheckedStateRegistration : public UWidgetEnumStateRegistration
 
 class UWidgetComponent : public UMeshComponent
 {
-    EWidgetSpace Space;                                                               // 0x0550 (size: 0x1)
-    EWidgetTimingPolicy TimingPolicy;                                                 // 0x0551 (size: 0x1)
-    TSubclassOf<class UUserWidget> WidgetClass;                                       // 0x0558 (size: 0x8)
-    FIntPoint DrawSize;                                                               // 0x0560 (size: 0x8)
-    bool bManuallyRedraw;                                                             // 0x0568 (size: 0x1)
-    bool bRedrawRequested;                                                            // 0x0569 (size: 0x1)
-    float RedrawTime;                                                                 // 0x056C (size: 0x4)
-    FIntPoint CurrentDrawSize;                                                        // 0x0578 (size: 0x8)
-    bool bUseInvalidationInWorldSpace;                                                // 0x0580 (size: 0x1)
-    bool bDrawAtDesiredSize;                                                          // 0x0581 (size: 0x1)
-    FVector2D Pivot;                                                                  // 0x0588 (size: 0x10)
-    bool bReceiveHardwareInput;                                                       // 0x0598 (size: 0x1)
-    bool bWindowFocusable;                                                            // 0x0599 (size: 0x1)
-    EWindowVisibility WindowVisibility;                                               // 0x059A (size: 0x1)
-    bool bApplyGammaCorrection;                                                       // 0x059B (size: 0x1)
-    class ULocalPlayer* OwnerPlayer;                                                  // 0x05A0 (size: 0x8)
-    FLinearColor BackgroundColor;                                                     // 0x05A8 (size: 0x10)
-    FLinearColor TintColorAndOpacity;                                                 // 0x05B8 (size: 0x10)
-    float OpacityFromTexture;                                                         // 0x05C8 (size: 0x4)
-    EWidgetBlendMode BlendMode;                                                       // 0x05CC (size: 0x1)
-    bool bIsTwoSided;                                                                 // 0x05CD (size: 0x1)
-    bool TickWhenOffscreen;                                                           // 0x05CE (size: 0x1)
-    class UBodySetup* BodySetup;                                                      // 0x05D0 (size: 0x8)
-    class UMaterialInterface* TranslucentMaterial;                                    // 0x05D8 (size: 0x8)
-    class UMaterialInterface* TranslucentMaterial_OneSided;                           // 0x05E0 (size: 0x8)
-    class UMaterialInterface* OpaqueMaterial;                                         // 0x05E8 (size: 0x8)
-    class UMaterialInterface* OpaqueMaterial_OneSided;                                // 0x05F0 (size: 0x8)
-    class UMaterialInterface* MaskedMaterial;                                         // 0x05F8 (size: 0x8)
-    class UMaterialInterface* MaskedMaterial_OneSided;                                // 0x0600 (size: 0x8)
-    class UTextureRenderTarget2D* RenderTarget;                                       // 0x0608 (size: 0x8)
-    class UMaterialInstanceDynamic* MaterialInstance;                                 // 0x0610 (size: 0x8)
-    bool bAddedToScreen;                                                              // 0x0618 (size: 0x1)
-    bool bEditTimeUsable;                                                             // 0x0619 (size: 0x1)
-    FName SharedLayerName;                                                            // 0x061C (size: 0x8)
-    int32 LayerZOrder;                                                                // 0x0624 (size: 0x4)
-    EWidgetGeometryMode GeometryMode;                                                 // 0x0628 (size: 0x1)
-    float CylinderArcAngle;                                                           // 0x062C (size: 0x4)
-    ETickMode TickMode;                                                               // 0x0630 (size: 0x1)
-    class UUserWidget* Widget;                                                        // 0x0660 (size: 0x8)
+    EWidgetSpace Space;                                                               // 0x0558 (size: 0x1)
+    EWidgetTimingPolicy TimingPolicy;                                                 // 0x0559 (size: 0x1)
+    TSubclassOf<class UUserWidget> WidgetClass;                                       // 0x0560 (size: 0x8)
+    FIntPoint DrawSize;                                                               // 0x0568 (size: 0x8)
+    bool bManuallyRedraw;                                                             // 0x0570 (size: 0x1)
+    bool bRedrawRequested;                                                            // 0x0571 (size: 0x1)
+    float RedrawTime;                                                                 // 0x0574 (size: 0x4)
+    FIntPoint CurrentDrawSize;                                                        // 0x0580 (size: 0x8)
+    bool bUseInvalidationInWorldSpace;                                                // 0x0588 (size: 0x1)
+    bool bDrawAtDesiredSize;                                                          // 0x0589 (size: 0x1)
+    FVector2D Pivot;                                                                  // 0x0590 (size: 0x10)
+    bool bReceiveHardwareInput;                                                       // 0x05A0 (size: 0x1)
+    bool bWindowFocusable;                                                            // 0x05A1 (size: 0x1)
+    EWindowVisibility WindowVisibility;                                               // 0x05A2 (size: 0x1)
+    bool bApplyGammaCorrection;                                                       // 0x05A3 (size: 0x1)
+    class ULocalPlayer* OwnerPlayer;                                                  // 0x05A8 (size: 0x8)
+    FLinearColor BackgroundColor;                                                     // 0x05B0 (size: 0x10)
+    FLinearColor TintColorAndOpacity;                                                 // 0x05C0 (size: 0x10)
+    float OpacityFromTexture;                                                         // 0x05D0 (size: 0x4)
+    EWidgetBlendMode BlendMode;                                                       // 0x05D4 (size: 0x1)
+    bool bIsTwoSided;                                                                 // 0x05D5 (size: 0x1)
+    bool TickWhenOffscreen;                                                           // 0x05D6 (size: 0x1)
+    class UBodySetup* BodySetup;                                                      // 0x05D8 (size: 0x8)
+    class UMaterialInterface* TranslucentMaterial;                                    // 0x05E0 (size: 0x8)
+    class UMaterialInterface* TranslucentMaterial_OneSided;                           // 0x05E8 (size: 0x8)
+    class UMaterialInterface* OpaqueMaterial;                                         // 0x05F0 (size: 0x8)
+    class UMaterialInterface* OpaqueMaterial_OneSided;                                // 0x05F8 (size: 0x8)
+    class UMaterialInterface* MaskedMaterial;                                         // 0x0600 (size: 0x8)
+    class UMaterialInterface* MaskedMaterial_OneSided;                                // 0x0608 (size: 0x8)
+    class UTextureRenderTarget2D* RenderTarget;                                       // 0x0610 (size: 0x8)
+    class UMaterialInstanceDynamic* MaterialInstance;                                 // 0x0618 (size: 0x8)
+    bool bAddedToScreen;                                                              // 0x0620 (size: 0x1)
+    bool bEditTimeUsable;                                                             // 0x0621 (size: 0x1)
+    FName SharedLayerName;                                                            // 0x0624 (size: 0x8)
+    int32 LayerZOrder;                                                                // 0x062C (size: 0x4)
+    EWidgetGeometryMode GeometryMode;                                                 // 0x0630 (size: 0x1)
+    float CylinderArcAngle;                                                           // 0x0634 (size: 0x4)
+    ETickMode TickMode;                                                               // 0x0638 (size: 0x1)
+    class UUserWidget* Widget;                                                        // 0x0668 (size: 0x8)
 
     void SetWindowVisibility(EWindowVisibility InVisibility);
     void SetWindowFocusable(bool bInWindowFocusable);
@@ -2198,7 +2205,7 @@ class UWidgetComponent : public UMeshComponent
     bool GetDrawAtDesiredSize();
     float GetCylinderArcAngle();
     FVector2D GetCurrentDrawSize();
-}; // Size: 0x690
+}; // Size: 0x6A0
 
 class UWidgetDisabledStateRegistration : public UWidgetBinaryStateRegistration
 {
@@ -2218,26 +2225,26 @@ class UWidgetHoveredStateRegistration : public UWidgetBinaryStateRegistration
 
 class UWidgetInteractionComponent : public USceneComponent
 {
-    FWidgetInteractionComponentOnHoveredWidgetChanged OnHoveredWidgetChanged;         // 0x0230 (size: 0x10)
+    FWidgetInteractionComponentOnHoveredWidgetChanged OnHoveredWidgetChanged;         // 0x0238 (size: 0x10)
     void OnHoveredWidgetChanged(class UWidgetComponent* WidgetComponent, class UWidgetComponent* PreviousWidgetComponent);
-    int32 VirtualUserIndex;                                                           // 0x0250 (size: 0x4)
-    int32 PointerIndex;                                                               // 0x0254 (size: 0x4)
-    TEnumAsByte<ECollisionChannel> TraceChannel;                                      // 0x0258 (size: 0x1)
-    float InteractionDistance;                                                        // 0x025C (size: 0x4)
-    EWidgetInteractionSource InteractionSource;                                       // 0x0260 (size: 0x1)
-    bool bEnableHitTesting;                                                           // 0x0261 (size: 0x1)
-    bool bShowDebug;                                                                  // 0x0262 (size: 0x1)
-    float DebugSphereLineThickness;                                                   // 0x0264 (size: 0x4)
-    float DebugLineThickness;                                                         // 0x0268 (size: 0x4)
-    FLinearColor DebugColor;                                                          // 0x026C (size: 0x10)
-    FHitResult CustomHitResult;                                                       // 0x02F8 (size: 0xF8)
-    FVector2D LocalHitLocation;                                                       // 0x03F0 (size: 0x10)
-    FVector2D LastLocalHitLocation;                                                   // 0x0400 (size: 0x10)
-    class UWidgetComponent* HoveredWidgetComponent;                                   // 0x0410 (size: 0x8)
-    FHitResult LastHitResult;                                                         // 0x0418 (size: 0xF8)
-    bool bIsHoveredWidgetInteractable;                                                // 0x0510 (size: 0x1)
-    bool bIsHoveredWidgetFocusable;                                                   // 0x0511 (size: 0x1)
-    bool bIsHoveredWidgetHitTestVisible;                                              // 0x0512 (size: 0x1)
+    int32 VirtualUserIndex;                                                           // 0x0258 (size: 0x4)
+    int32 PointerIndex;                                                               // 0x025C (size: 0x4)
+    TEnumAsByte<ECollisionChannel> TraceChannel;                                      // 0x0260 (size: 0x1)
+    float InteractionDistance;                                                        // 0x0264 (size: 0x4)
+    EWidgetInteractionSource InteractionSource;                                       // 0x0268 (size: 0x1)
+    bool bEnableHitTesting;                                                           // 0x0269 (size: 0x1)
+    bool bShowDebug;                                                                  // 0x026A (size: 0x1)
+    float DebugSphereLineThickness;                                                   // 0x026C (size: 0x4)
+    float DebugLineThickness;                                                         // 0x0270 (size: 0x4)
+    FLinearColor DebugColor;                                                          // 0x0274 (size: 0x10)
+    FHitResult CustomHitResult;                                                       // 0x0300 (size: 0xF8)
+    FVector2D LocalHitLocation;                                                       // 0x03F8 (size: 0x10)
+    FVector2D LastLocalHitLocation;                                                   // 0x0408 (size: 0x10)
+    class UWidgetComponent* HoveredWidgetComponent;                                   // 0x0418 (size: 0x8)
+    FHitResult LastHitResult;                                                         // 0x0420 (size: 0xF8)
+    bool bIsHoveredWidgetInteractable;                                                // 0x0518 (size: 0x1)
+    bool bIsHoveredWidgetFocusable;                                                   // 0x0519 (size: 0x1)
+    bool bIsHoveredWidgetHitTestVisible;                                              // 0x051A (size: 0x1)
 
     void SetFocus(class UWidget* FocusWidget);
     void SetCustomHitResult(const FHitResult& HitResult);

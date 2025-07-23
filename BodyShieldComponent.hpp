@@ -35,7 +35,13 @@ class UBodyShieldComponent_C : public UActorComponent
     FLinearColor Color_FullShield;                                                    // 0x01A8 (size: 0x10)
     double PatternIntensity_ShieldFull;                                               // 0x01B8 (size: 0x8)
     double PatternIntensity_ShieldBreaking;                                           // 0x01C0 (size: 0x8)
+    class UMaterialInterface* MaterialDefault;                                        // 0x01C8 (size: 0x8)
+    class UMaterialInterface* MaterialOverride;                                       // 0x01D0 (size: 0x8)
+    FBodyShieldComponent_CShieldRegenStart ShieldRegenStart;                          // 0x01D8 (size: 0x10)
+    void ShieldRegenStart();
 
+    void SetMaterialOverride(class UMaterialInterface* NewMaterialOverride);
+    void UpdateMaterials();
     void Server_DoDifficultyCheck();
     void OnRep_IsShieldComponentEnabled();
     void ForceBreakShield();
@@ -62,9 +68,11 @@ class UBodyShieldComponent_C : public UActorComponent
     void Local_PlayShieldBreakParticle();
     void Local_ToggleShieldBrokenLoop();
     void KillParticleShieldLoop();
+    void Broadcast_ForceShieldBrokenFX();
     void ExecuteUbergraph_BodyShieldComponent(int32 EntryPoint);
+    void ShieldRegenStart__DelegateSignature();
     void ShieldComponentEnabledChanged__DelegateSignature(bool Enabled);
     void ShieldHitPointsChanged__DelegateSignature();
-}; // Size: 0x1C8
+}; // Size: 0x1E8
 
 #endif

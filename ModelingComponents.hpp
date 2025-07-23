@@ -334,11 +334,11 @@ class ULatticeControlPointsMechanic : public UInteractionMechanic
 
 class ULineSetComponent : public UMeshComponent
 {
-    class UMaterialInterface* LineMaterial;                                           // 0x0550 (size: 0x8)
-    FBoxSphereBounds Bounds;                                                          // 0x0558 (size: 0x38)
-    bool bBoundsDirty;                                                                // 0x0590 (size: 0x1)
+    class UMaterialInterface* LineMaterial;                                           // 0x0558 (size: 0x8)
+    FBoxSphereBounds Bounds;                                                          // 0x0560 (size: 0x38)
+    bool bBoundsDirty;                                                                // 0x0598 (size: 0x1)
 
-}; // Size: 0x5D0
+}; // Size: 0x5E0
 
 class UMeshElementsVisualizer : public UPreviewGeometry
 {
@@ -416,29 +416,29 @@ class UMeshTopologySelectionMechanicProperties : public UInteractiveToolProperty
 
 class UMeshWireframeComponent : public UMeshComponent
 {
-    float LineDepthBias;                                                              // 0x0550 (size: 0x4)
-    float LineDepthBiasSizeScale;                                                     // 0x0554 (size: 0x4)
-    float ThicknessScale;                                                             // 0x0558 (size: 0x4)
-    bool bEnableWireframe;                                                            // 0x055C (size: 0x1)
-    FColor WireframeColor;                                                            // 0x0560 (size: 0x4)
-    float WireframeThickness;                                                         // 0x0564 (size: 0x4)
-    bool bEnableBoundaryEdges;                                                        // 0x0568 (size: 0x1)
-    FColor BoundaryEdgeColor;                                                         // 0x056C (size: 0x4)
-    float BoundaryEdgeThickness;                                                      // 0x0570 (size: 0x4)
-    bool bEnableUVSeams;                                                              // 0x0574 (size: 0x1)
-    FColor UVSeamColor;                                                               // 0x0578 (size: 0x4)
-    float UVSeamThickness;                                                            // 0x057C (size: 0x4)
-    bool bEnableNormalSeams;                                                          // 0x0580 (size: 0x1)
-    FColor NormalSeamColor;                                                           // 0x0584 (size: 0x4)
-    float NormalSeamThickness;                                                        // 0x0588 (size: 0x4)
-    bool bEnableTangentSeams;                                                         // 0x058C (size: 0x1)
-    FColor TangentSeamColor;                                                          // 0x0590 (size: 0x4)
-    float TangentSeamThickness;                                                       // 0x0594 (size: 0x4)
-    bool bEnableColorSeams;                                                           // 0x0598 (size: 0x1)
-    FColor ColorSeamColor;                                                            // 0x059C (size: 0x4)
-    float ColorSeamThickness;                                                         // 0x05A0 (size: 0x4)
-    class UMaterialInterface* LineMaterial;                                           // 0x05A8 (size: 0x8)
-    FBoxSphereBounds LocalBounds;                                                     // 0x05B0 (size: 0x38)
+    float LineDepthBias;                                                              // 0x0558 (size: 0x4)
+    float LineDepthBiasSizeScale;                                                     // 0x055C (size: 0x4)
+    float ThicknessScale;                                                             // 0x0560 (size: 0x4)
+    bool bEnableWireframe;                                                            // 0x0564 (size: 0x1)
+    FColor WireframeColor;                                                            // 0x0568 (size: 0x4)
+    float WireframeThickness;                                                         // 0x056C (size: 0x4)
+    bool bEnableBoundaryEdges;                                                        // 0x0570 (size: 0x1)
+    FColor BoundaryEdgeColor;                                                         // 0x0574 (size: 0x4)
+    float BoundaryEdgeThickness;                                                      // 0x0578 (size: 0x4)
+    bool bEnableUVSeams;                                                              // 0x057C (size: 0x1)
+    FColor UVSeamColor;                                                               // 0x0580 (size: 0x4)
+    float UVSeamThickness;                                                            // 0x0584 (size: 0x4)
+    bool bEnableNormalSeams;                                                          // 0x0588 (size: 0x1)
+    FColor NormalSeamColor;                                                           // 0x058C (size: 0x4)
+    float NormalSeamThickness;                                                        // 0x0590 (size: 0x4)
+    bool bEnableTangentSeams;                                                         // 0x0594 (size: 0x1)
+    FColor TangentSeamColor;                                                          // 0x0598 (size: 0x4)
+    float TangentSeamThickness;                                                       // 0x059C (size: 0x4)
+    bool bEnableColorSeams;                                                           // 0x05A0 (size: 0x1)
+    FColor ColorSeamColor;                                                            // 0x05A4 (size: 0x4)
+    float ColorSeamThickness;                                                         // 0x05A8 (size: 0x4)
+    class UMaterialInterface* LineMaterial;                                           // 0x05B0 (size: 0x8)
+    FBoxSphereBounds LocalBounds;                                                     // 0x05B8 (size: 0x38)
 
 }; // Size: 0x600
 
@@ -498,10 +498,10 @@ class UMultiTransformer : public UObject
 
 class UOctreeDynamicMeshComponent : public UBaseDynamicMeshComponent
 {
-    class UDynamicMesh* MeshObject;                                                   // 0x0610 (size: 0x8)
+    class UDynamicMesh* MeshObject;                                                   // 0x0620 (size: 0x8)
 
     void SetDynamicMesh(class UDynamicMesh* NewMesh);
-}; // Size: 0x6D0
+}; // Size: 0x6E0
 
 class UOnAcceptHandleSourcesProperties : public UOnAcceptHandleSourcesPropertiesBase
 {
@@ -525,11 +525,11 @@ class UPlaneDistanceFromHitMechanic : public UInteractionMechanic
 
 class UPointSetComponent : public UMeshComponent
 {
-    class UMaterialInterface* PointMaterial;                                          // 0x0550 (size: 0x8)
-    FBoxSphereBounds Bounds;                                                          // 0x0558 (size: 0x38)
-    bool bBoundsDirty;                                                                // 0x0590 (size: 0x1)
+    class UMaterialInterface* PointMaterial;                                          // 0x0558 (size: 0x8)
+    FBoxSphereBounds Bounds;                                                          // 0x0560 (size: 0x38)
+    bool bBoundsDirty;                                                                // 0x0598 (size: 0x1)
 
-}; // Size: 0x5D0
+}; // Size: 0x5E0
 
 class UPolyEditPreviewMesh : public UPreviewMesh
 {
@@ -666,10 +666,10 @@ class UTransformInputsToolProperties : public UInteractiveToolPropertySet
 
 class UTriangleSetComponent : public UMeshComponent
 {
-    FBoxSphereBounds Bounds;                                                          // 0x0550 (size: 0x38)
-    bool bBoundsDirty;                                                                // 0x0588 (size: 0x1)
+    FBoxSphereBounds Bounds;                                                          // 0x0558 (size: 0x38)
+    bool bBoundsDirty;                                                                // 0x0590 (size: 0x1)
 
-}; // Size: 0x650
+}; // Size: 0x660
 
 class UUVLayoutPreview : public UObject
 {

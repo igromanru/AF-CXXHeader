@@ -4,13 +4,29 @@
 class UAbioticFunctionLibrary_C : public UBlueprintFunctionLibrary
 {
 
+    void GetCustomizationTableCategoryName(const class UDataTable*& Table, class UObject* __WorldContext, FString& LocalizedText);
+    void IsCompendiumEntryAccessible(FGameplayTag CompendiumFilterTag, FName EntryName, class UObject* __WorldContext, bool& Accessible);
+    void IsReceivingDamageFromRangedWeapon(TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageTypeClass, class AActor* DamageCauser, class UObject* __WorldContext, bool& Received);
+    void GetDefaultCharacterCustomization(class UObject* __WorldContext, TSoftObjectPtr<UPlayerCharacterVoiceDataAsset>& DefaultPlayerVoice, FName& DefaultHead, FName& DefaultHairStyle, FName& DefaultHairColour, FName& DefaultHeadAccessory, FName& DefaultUpperBody, FName& DefaultLowerBody, FName& DefaultShirtColour, FName& DefaultBelt, FName& DefaultShoes, FName& DefaultTie, FName& DefaultBeard, FName& DefaultWatch, FName& DefaultIDCard, double& DefaultSkinTone);
+    void TryScareOffNPCsUsingLoudNoise(double Loudness, double MinLoudness, float MaxDistance, class UCharacterBuffComponent* CharacterBuffComponent, bool BuffTagRequired, FGameplayTag BuffTag, class UObject* __WorldContext);
+    void GetAllJournalEntriesWithCategory(TEnumAsByte<E_JournalEntryCategories::Type> Category, class UObject* __WorldContext, bool& Success, TArray<FDataTableRowHandle>& EntriesFound);
+    void HasJournalEntriesUnlocked(TArray<FDataTableRowHandle>& JournalEntriesToCheck, class AAbioticCharacter* PlayerCharacter, class UObject* __WorldContext, bool& AllUnlocked, TArray<FDataTableRowHandle>& Leftovers);
+    void HasCompendiumUnlocked(TArray<FDataTableRowHandle>& CompendiumToCheck, class AAbioticCharacter* PlayerCharacter, ECompendiumUnlockType UnlockType, class UObject* __WorldContext, bool& AllUnlocked, TArray<FDataTableRowHandle>& Leftovers);
+    bool CheckForAbnormalLiquidTypes(TArray<TEnumAsByte<E_LiquidType::Type>>& LiquidList, class UObject* __WorldContext);
+    bool HasNormalLiquidType(TEnumAsByte<E_LiquidType::Type> LiquidType, class UObject* __WorldContext);
+    bool CanDrinkLiquid(TEnumAsByte<E_LiquidType::Type> LiquidToCheck, int32 LiquidFillLevel, class UObject* __WorldContext);
+    class USoundBase* GetCharacterLandingSurfaceSound(class AAbiotic_Character_ParentBP_C* LandedCharacter, TEnumAsByte<EPhysicalSurface> surface, class UObject* __WorldContext);
+    void Get Possible Quantity Can be Traded(class AAbiotic_PlayerCharacter_C*& InteractingCharacter, const FAbioticItemCount_Struct& TradeableItem, class UObject* __WorldContext, int32& FinalCost);
+    TArray<FAbiotic_PlayerBase_Struct> FindLoadedPlayerBases(class UObject* __WorldContext);
+    TArray<FItemActionRowHandle> GetItemActionsArray(class AAbiotic_Item_ParentBP_C*& Item, class UObject* __WorldContext);
+    void GetAllPossibleActionsArray(TArray<class AAbiotic_Item_ParentBP_C*>& Items, class UObject* __WorldContext, TArray<FItemActionRowHandle>& Return);
     FVector TargetDropCapsuleLocationCheck(class AAbiotic_Character_ParentBP_C* Instigator, class AAbiotic_Character_ParentBP_C* Target, class UObject* __WorldContext, bool& LocationHit);
     void TargetGrabHeightCheck(class AAbiotic_Character_ParentBP_C* Instigator, class AAbiotic_Character_ParentBP_C* Target, class UObject* __WorldContext, bool& CanGrabTarget, FVector& Location);
     void GetAssaultTypeList(bool WorldFlagsRequiredOnly, class UObject* __WorldContext, TArray<FName>& Return);
     void CheckAndRemoveSpecialCharacter(FString SourceString, const TArray<FString>& ABCStrings, bool CheckOnly, class UObject* __WorldContext, bool& FoundBadCharacter, FString& FinalString);
     void FilterString(bool AllowSpecialCharacters, const TArray<FString>& ABCStrings, FString SourceString, int32 CharacterLimit, class UObject* __WorldContext, FString& FilteredString, bool& HasSpecialCharacters);
     void HasCustomizationUnlocked(TArray<FDataTableRowHandle>& CustomizationUnlocksToCheck, class UObject* __WorldContext, bool& AllUnlocked, TArray<FDataTableRowHandle>& Leftovers);
-    void CreateHitscanTracer(FVector StartLocation, const FVector& EndLocation, double Velocity, bool RicochetEnabled, bool TargetIsPlayerCharacter, class UObject* __WorldContext);
+    void CreateHitscanTracer(FVector StartLocation, const FVector& EndLocation, double Velocity, bool RicochetEnabled, bool TargetIsPlayerCharacter, TSubclassOf<class ABP_BulletTracer_C> TracerClass, class UObject* __WorldContext);
     void Modify Item Liquid In Slot(class UAbiotic_InventoryComponent_C* Inventory, int32 Index, int32 BatteryAmount, const TEnumAsByte<E_LiquidType::Type> LiquidType, class UObject* __WorldContext);
     void GetPawnFromDamageInstigator(class AActor* Actor, class UObject* __WorldContext, class APawn*& Pawn);
     void Server_GrantFishingReward(class AAbiotic_PlayerCharacter_C* Player, FFishRowHandle Reward, bool Lucky, class UObject* __WorldContext);
@@ -37,7 +53,7 @@ class UAbioticFunctionLibrary_C : public UBlueprintFunctionLibrary
     void Terminal Velocity Stagger Chance(TEnumAsByte<ENPCCharacterSize::Type> CharacterSize, class UObject* __WorldContext, bool& Success);
     bool PlayerIsInVignette(class AAbiotic_PlayerController_C* PlayerController, class UObject* __WorldContext);
     bool Is Component Is Inside Actor Bounds(const class USceneComponent* ComponentToCheck, class AActor* ContainerActor, class UObject* __WorldContext);
-    void Get Nearby Container Inventories(class AActor* InteractingActor, float Radius, class UObject* __WorldContext, TArray<class UAbiotic_InventoryComponent_C*>& InventoriesFound);
+    void Get Nearby Container Inventories(class AActor* InteractingActor, float Radius, bool RequiresItemTransporterBenchUpgrade, class UObject* __WorldContext, TArray<class UAbiotic_InventoryComponent_C*>& InventoriesFound);
     void GetDamageTypeResistance(TMap<TSubclassOf<UAbiotic_DamageType_ParentBP_C>, double>& DamageMitigationType, const class UDamageType* DamageType, class UObject* __WorldContext, double& DamageBlocked);
     void WakePhysicsOnMovingPlatform(class UPrimitiveComponent* OverlapVolume, class UObject* __WorldContext);
     void CheckNearMiss(FHitResult& HitResult, class AAbiotic_Character_ParentBP_C* Owner, class UObject* __WorldContext);
@@ -47,7 +63,7 @@ class UAbioticFunctionLibrary_C : public UBlueprintFunctionLibrary
     void Does Any Recipe Uses This Item?(FName ItemToLookFor, TArray<FName>& RecipeList, class UObject* __WorldContext, TArray<FName>& Recipes, bool& RecipeUseThisItem);
     void RequiredBenchesAvailable(FAbioticRecipe_Struct& Recipe, bool RequiresBench, const TArray<FDataTableRowHandle>& BenchesAvailable, class UObject* __WorldContext, bool& Available, bool& NoRequirement);
     void Requires Bench?(FAbioticRecipe_Struct Recipe, class UObject* __WorldContext, bool& RequiresBench);
-    void CheckAvailableRecipeItems(class AAbiotic_PlayerCharacter_C*& TargetCharacter, TArray<class UAbiotic_InventoryComponent_C*>& AdditionalInventories, const FAbioticItemCount_Struct& ItemCount, bool RequireBenches, class UW_InventoryItemSlot_C*& ItemSlot, bool PlayerCraftingOnly, bool HiddenFromPlayer, class UObject* __WorldContext, bool& AtLeastOneItemIsMissing);
+    void CheckAvailableRecipeItems(class AAbiotic_PlayerCharacter_C*& TargetCharacter, TArray<class UAbiotic_InventoryComponent_C*>& AdditionalInventories, const FAbioticItemCount_Struct& ItemCount, bool RequireBenches, class UW_InventoryItemSlot_C*& ItemSlot, bool PlayerCraftingOnly, bool HiddenFromPlayer, bool IgnoreCraftingVisual, class UObject* __WorldContext, bool& AtLeastOneItemIsMissing);
     void CableRecursionTest(class AActor* Actor, class AActor* Target, class UObject* __WorldContext, bool& Valid);
     void ResetMeshMaterialsToDefaults(class UMeshComponent* Mesh, class UObject* __WorldContext);
     void Try Set Material by Name(class UMeshComponent* MeshComponent, const FName& MaterialSlotName, class UMaterialInterface* Material, class UObject* __WorldContext, bool& Found);
@@ -55,7 +71,7 @@ class UAbioticFunctionLibrary_C : public UBlueprintFunctionLibrary
     void Is Object Not Aligned with the Ground?(class AActor* TargetActor, class UObject* __WorldContext, bool& Not Aligned);
     bool PlayerTeleportCheck(FVector TeleportLocation, class AActor* OwningActor, double CapsuleRadius, class UObject* __WorldContext);
     void GetPaintColor(EPaintColor PaintColor, class UObject* __WorldContext, FLinearColor& FinalColor);
-    void FindSoupRecipe(class UDataTable* RecipeTable, TArray<FAbioticItemCount_Struct>& Ingredient, class UObject* __WorldContext, bool& FoundRecipe, FAbioticRecipe_Struct& Recipes, FName& RecipeRow);
+    void FindSoupRecipe(class UDataTable* RecipeTable, TArray<FName>& Ingredient, class UObject* __WorldContext, bool& FoundRecipe, FAbioticRecipe_Struct& Recipes, FName& RecipeRow);
     void Get Point Location in Circle from Segment(int32 CurrentSegment, int32 TotalAngle, int32 TotalSegment, FRotator SourceRotation, double DistanceFromTheSource, double ConeAngle, double RotationOffset, class UObject* __WorldContext, FVector& PointLocation);
     void ChangeItemStackSize(FAbiotic_InventoryChangeableDataStruct ChangeableData, int32 NewStackSize, class UObject* __WorldContext, FAbiotic_InventoryChangeableDataStruct& ChangeableOutput);
     void Local_PlayerCameraShake(TSubclassOf<class UCameraShakeBase> ShakeClass, class UObject* __WorldContext);
@@ -73,7 +89,6 @@ class UAbioticFunctionLibrary_C : public UBlueprintFunctionLibrary
     void Revert Focus To Main Widget(class UObject* WorldContextObject, TSubclassOf<class UUserWidget> WidgetClass, class UObject* __WorldContext, bool& Success);
     void Get Angle Between Vectors(FVector Vector A, FVector Vector B, class UObject* __WorldContext, double& Degrees, double& DotProduct);
     void CreateNewButtonGenericTooltip(class UWidget* TargetWidgetToSetTooltip, FText Text, FText Text_Additional, FText Text_Negative, class UObject* __WorldContext);
-    void IsDemoMode?(class UObject* __WorldContext, bool& DemoMode);
     void TryPlaceInHotbar?(const FDataTableRowHandle& Item, class UObject* __WorldContext, bool& TryHotbarFirst);
     void GetTotalValueBasedOnPercentage(double InitialValue, double PercentageToCalculateWith, bool SubtractInstead?, class UObject* __WorldContext, double& Total);
     void DoesLevelContainActor(FString LevelName, class AActor* Actor, class UObject* __WorldContext, bool& ContainsActor);

@@ -3,6 +3,6 @@
 
 class UDamageType_Acid_Burn_C : public UDamageType_Acid_C
 {
-}; // Size: 0x270
+}; // Size: 0x290
 
 #endif

@@ -3,9 +3,9 @@
 
 class AAI_Controller_NPC_Zombie_C : public AAbiotic_AI_Controller_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x08A8 (size: 0x8)
-    FTimerHandle EatTimer;                                                            // 0x08B0 (size: 0x8)
-    float MaxCorpseDistanceCheck;                                                     // 0x08B8 (size: 0x4)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x08B8 (size: 0x8)
+    FTimerHandle EatTimer;                                                            // 0x08C0 (size: 0x8)
+    float MaxCorpseDistanceCheck;                                                     // 0x08C8 (size: 0x4)
 
     void CheckLineOfSightToLocations(TArray<FVector>& LocationsMustSee, class AActor* OwningTarget, int32 RequiredLocationsToCount, bool QueryOnly, bool& Can See);
     void BT_HeardNewSound(class AActor* Actor, FAIStimulus Stimulus);
@@ -13,6 +13,6 @@ class AAI_Controller_NPC_Zombie_C : public AAbiotic_AI_Controller_ParentBP_C
     void CheckForCorpsesToEat();
     void ReceiveBeginPlay();
     void ExecuteUbergraph_AI_Controller_NPC_Zombie(int32 EntryPoint);
-}; // Size: 0x8BC
+}; // Size: 0x8CC
 
 #endif

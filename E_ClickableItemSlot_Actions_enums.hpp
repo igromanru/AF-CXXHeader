@@ -5,7 +5,8 @@ namespace E_ClickableItemSlot_Actions {
         NewEnumerator1 = 2,
         NewEnumerator2 = 3,
         NewEnumerator3 = 4,
-        E_ClickableItemSlot_MAX = 5,
+        NewEnumerator5 = 5,
+        E_ClickableItemSlot_MAX = 6,
     };
 }
 

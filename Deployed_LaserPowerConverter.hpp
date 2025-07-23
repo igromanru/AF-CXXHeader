@@ -3,9 +3,9 @@
 
 class ADeployed_LaserPowerConverter_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0930 (size: 0x8)
-    class UChildActorComponent* ChildActor;                                           // 0x0938 (size: 0x8)
-    TArray<class APowerSocket_ChildOfActor_C*> PlugStripPowerSockets;                 // 0x0940 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0850 (size: 0x8)
+    class UChildActorComponent* ChildActor;                                           // 0x0858 (size: 0x8)
+    TArray<class APowerSocket_ChildOfActor_C*> PlugStripPowerSockets;                 // 0x0860 (size: 0x10)
 
     void GetPoweringActors(TArray<class AActor*>& PowerSourceParents);
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
@@ -15,6 +15,6 @@ class ADeployed_LaserPowerConverter_C : public AAbioticDeployed_Furniture_Parent
     void TogglePowerFX();
     void DestroyDeployable(bool NoLoot, int32 Extra Loot Quantity, bool LootBagLocationOverride, FVector LocationOverride);
     void ExecuteUbergraph_Deployed_LaserPowerConverter(int32 EntryPoint);
-}; // Size: 0x950
+}; // Size: 0x870
 
 #endif

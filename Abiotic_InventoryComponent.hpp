@@ -42,7 +42,22 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     FAbiotic_InventoryComponent_COwnerStateUpdated OwnerStateUpdated;                 // 0x02B0 (size: 0x10)
     void OwnerStateUpdated();
     bool CustomDisplayName;                                                           // 0x02C0 (size: 0x1)
+    TArray<int32> FreezerSlots;                                                       // 0x02C8 (size: 0x10)
+    TArray<int32> RefrigeratedSlots;                                                  // 0x02D8 (size: 0x10)
+    TArray<int32> Shielded Slots;                                                     // 0x02E8 (size: 0x10)
+    bool EnableEmptyTraitSlotTooltip;                                                 // 0x02F8 (size: 0x1)
+    bool HasUpdatedInventory;                                                         // 0x02F9 (size: 0x1)
+    FAbiotic_InventoryComponent_CSlotAppearanceOverridesUpdated SlotAppearanceOverridesUpdated; // 0x0300 (size: 0x10)
+    void SlotAppearanceOverridesUpdated();
+    TArray<int32> WarmingSlots;                                                       // 0x0310 (size: 0x10)
 
+    void Server_TransferItemsToCharacterByRowName(class AAbiotic_Character_ParentBP_C* Character, FName ItemRowName, int32 Amount);
+    void ExcludeItemsInInventoryByTag(FGameplayTag Item Tag, bool& ContainsItem, TMap<int32, FAbiotic_InventoryItemSlotStruct>& ItemsRemaining);
+    void Get Trait Slot DisplayTooltipData(int32 SlotIndex, bool& HasData, FText& DisplayText);
+    void ServerSetInventoryTraitSlots(FDataTableRowHandle ItemRow);
+    void IsItemSlotShielded(int32 SlotIndex, bool& Return);
+    void GetInventoryDataAsset(const FDataTableRowHandle& ItemDataRow, class UInventoryData_Parent_C*& Return);
+    void GetItemSlotTemperature(int32 SlotIndex, TEnumAsByte<E_InternalTemperature::Type>& SlotTemperature);
     void GetSlotAppearanceForSlot(int32 Index, TEnumAsByte<E_InventorySlotAppearance::Type>& Appearance);
     void GetTagRequirementForSlot(int32 Index, FGameplayTagQuery& Requirement);
     void Transfer Multiple Items to Inventory(TArray<FAbiotic_InventoryItemSlotStruct>& Items, bool& At Least One Item Is Transferred, TArray<FAbiotic_InventoryItemSlotStruct>& Leftovers);
@@ -78,9 +93,9 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     void Get Destination Inventory(class AAbioticCharacter* InteractingCharacter, bool& Container, bool& backpack, bool& Hotbar, bool& Gear);
     void PickupMoney(class AAbiotic_PlayerCharacter_C* IntreractingCharacter, int32 MoneyValue, int32 SlotIndex);
     void IsItemMoney(const FAbiotic_InventoryItemSlotStruct& ItemSlot, bool& TRUE);
-    void Server Try Quick Move Item(class AAbiotic_PlayerCharacter_C* InteractingCharacter, int32 SlotIndex, bool EquippingGear, class UAbiotic_InventoryComponent_C* ContainerInventory, bool SingleStackOnly, bool& Successful);
+    void Server Try Quick Move Item(class AAbiotic_PlayerCharacter_C* InteractingCharacter, int32 SlotIndex, bool EquippingGear, class UAbiotic_InventoryComponent_C* ContainerInventory, bool SingleStackOnly, bool EnableNotifyPopus, bool& Successful);
     void Try Place In Inventory By Same Item Type(TArray<class UAbiotic_InventoryComponent_C*>& Source Inventories, FGameplayTagContainer TagsToIgnore, class UAbiotic_InventoryComponent_C*& TargetInventory, bool& Success);
-    void IsInventoryFull(bool& Full);
+    void IsInventoryFull(bool IgnoreStackSize, bool& Full);
     void GetAllInventoryItemsByTag(FGameplayTag Tag, TMap<int32, FAbiotic_InventoryItemSlotStruct>& ItemIndexesAndData);
     void ContainsMeleeWeapon(bool& Contains);
     void CheckForDuplicateItem(FString AssetID, int32 SlotIndexToIgnore, bool& DuplicateFound);
@@ -103,13 +118,16 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     void UpdateInventorySlotCount(int32 NewMaxSlots);
     void ReceiveBeginPlay();
     void DelayedUpdateRadioactive();
+    void Local_UpdateInventorySlotOverrides(const FDataTableRowHandle& ItemDataRow);
+    void DelayedInventoryUpdate();
     void ExecuteUbergraph_Abiotic_InventoryComponent(int32 EntryPoint);
+    void SlotAppearanceOverridesUpdated__DelegateSignature();
     void OwnerStateUpdated__DelegateSignature();
     void FavoritedSlotsUpdated__DelegateSignature(class UAbiotic_InventoryComponent_C* Inventory);
     void RadiationUpdated__DelegateSignature(double RadiationAmount);
     void SlotHighlighted__DelegateSignature(int32 SlotIndex);
     void InventoryUpdated__DelegateSignature(class UAbiotic_InventoryComponent_C* Inventory);
     void AnySlotStateChanged__DelegateSignature(int32 SlotIndex);
-}; // Size: 0x2C1
+}; // Size: 0x320
 
 #endif

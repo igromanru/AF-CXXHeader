@@ -15,12 +15,16 @@ class UW_PlayerList_C : public UUserWidget
     double LastWorldDeltaSeconds;                                                     // 0x0328 (size: 0x8)
     TEnumAsByte<E_PlayerListViewType::Type> List Type;                                // 0x0330 (size: 0x1)
     float RefreshFrequency;                                                           // 0x0334 (size: 0x4)
+    TArray<FString> LastBannedPlayerList;                                             // 0x0338 (size: 0x10)
+    TArray<FAbioticBlockedPlayer> LastBlockedPlayerList;                              // 0x0348 (size: 0x10)
+    bool PlatformBlockListLoaded;                                                     // 0x0358 (size: 0x1)
 
     void Construct();
     void RefreshPlayerList();
     void Tick(FGeometry MyGeometry, float InDeltaTime);
     void PreConstruct(bool IsDesignTime);
+    void OnPlatformBlockListLoaded();
     void ExecuteUbergraph_W_PlayerList(int32 EntryPoint);
-}; // Size: 0x338
+}; // Size: 0x359
 
 #endif

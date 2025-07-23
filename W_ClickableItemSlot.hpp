@@ -10,11 +10,12 @@ class UW_ClickableItemSlot_C : public UUserWidget
     FName ItemRowName;                                                                // 0x0300 (size: 0x8)
     int32 ItemCount;                                                                  // 0x0308 (size: 0x4)
     TEnumAsByte<E_ClickableItemSlot_Actions::Type> SlotAction;                        // 0x030C (size: 0x1)
+    FLinearColor RedBG_Color;                                                         // 0x0310 (size: 0x10)
 
     void OnLoaded_806F847244BDF669F763D09857D75CC0(class UObject* Loaded);
     void UpdateClickableSlotData(FName ItemRowName, int32 ItemCount);
     void BndEvt__W_ClickableItemSlot_ClickButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void ExecuteUbergraph_W_ClickableItemSlot(int32 EntryPoint);
-}; // Size: 0x30D
+}; // Size: 0x320
 
 #endif

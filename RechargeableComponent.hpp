@@ -18,6 +18,8 @@ class URechargeableComponent_C : public UActorComponent
     bool PlayerOwned;                                                                 // 0x00E2 (size: 0x1)
     class USoundBase* OffSound;                                                       // 0x00E8 (size: 0x8)
     class USoundBase* OnSound;                                                        // 0x00F0 (size: 0x8)
+    TEnumAsByte<E_LiquidType::Type> CompatibleLiquidType;                             // 0x00F8 (size: 0x1)
+    FText NoBatteryWarningOverride;                                                   // 0x0100 (size: 0x10)
 
     void GetPluggedInDeviceCount(int32& Count);
     bool HasBatteryInParentChain();
@@ -42,6 +44,6 @@ class URechargeableComponent_C : public UActorComponent
     void TogglePowerFX();
     void Request_ToggleNVGHeadgearPowerState(class AGear_Headlamp_NVG_C* NVGs, bool PowerActive);
     void ExecuteUbergraph_RechargeableComponent(int32 EntryPoint);
-}; // Size: 0xF8
+}; // Size: 0x110
 
 #endif

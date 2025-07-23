@@ -16,6 +16,16 @@ namespace EAbioticCrossplaySetting {
     };
 }
 
+enum EAbioticPlatform {
+    Platform_Unknown = 0,
+    Platform_EOS = 1,
+    Platform_GOG = 2,
+    Platform_Playstation = 3,
+    Platform_Steam = 4,
+    Platform_Xbox = 5,
+    Platform_MAX = 6,
+};
+
 enum EActivityState {
     EAS_Inactive = 0,
     EAS_Active = 1,
@@ -129,6 +139,18 @@ enum class ECompendiumUnlockType {
     ECompendiumUnlockType_MAX = 4,
 };
 
+enum class ECookingState {
+    Raw = 0,
+    Cooked = 1,
+    CarefullyCooked = 2,
+    WellCooked = 3,
+    BeautifullyCooked = 4,
+    ExpertlyCooked = 5,
+    Burned = 6,
+    Flaming = 7,
+    ECookingState_MAX = 8,
+};
+
 enum class EDayOfTheWeek {
     Monday = 0,
     Tuesday = 1,
@@ -170,7 +192,10 @@ enum class EDynamicProperty {
     Generic9 = 15,
     Generic10 = 16,
     AmmoType = 17,
-    EDynamicProperty_MAX = 18,
+    CookingState = 18,
+    Portions = 21,
+    StovewareType = 22,
+    EDynamicProperty_MAX = 23,
 };
 
 enum class EFPAnimState {
@@ -187,6 +212,24 @@ enum class EFilterState {
     Hide = 1,
     OnlyShow = 2,
     EFilterState_MAX = 3,
+};
+
+enum class EGameCommandNetMode {
+    ServerOnly = 0,
+    LocalOnly = 1,
+    ServerAndLocal = 2,
+    EGameCommandNetMode_MAX = 3,
+};
+
+enum class EGameCommandType {
+    Exec = 0,
+    Toggle = 1,
+    Option = 2,
+    Value = 3,
+    OptionValue = 4,
+    TwoOption = 6,
+    OptionToggle = 7,
+    EGameCommandType_MAX = 8,
 };
 
 enum EGameSettingPlatformType {
@@ -221,7 +264,8 @@ enum class EInventoryMode {
     Custom = 10,
     Butchering = 11,
     Trading = 12,
-    EInventoryMode_MAX = 13,
+    UpgradeView = 13,
+    EInventoryMode_MAX = 14,
 };
 
 enum class EItemSortMethod {
@@ -275,7 +319,8 @@ enum class EPaintColor {
     Pink = 10,
     Brown = 11,
     None = 12,
-    EPaintColor_MAX = 13,
+    Glitch = 13,
+    EPaintColor_MAX = 14,
 };
 
 enum class EPlantGrowthStage {
@@ -300,8 +345,11 @@ enum class EReleaseGroup {
     Core = 0,
     DarkEnergy = 1,
     Residence = 2,
-    Future = 3,
-    EReleaseGroup_MAX = 4,
+    CRUX = 3,
+    LUCA = 4,
+    Future = 5,
+    Development = 6,
+    EReleaseGroup_MAX = 7,
 };
 
 enum class ERowValid {
@@ -318,6 +366,12 @@ enum class ESaveIntegrityState {
     Corrupt = 4,
     RequiresCompress = 5,
     ESaveIntegrityState_MAX = 6,
+};
+
+enum ESortDatabaseTerminalList {
+    Name = 0,
+    Amount = 1,
+    ESortDatabaseTerminalList_MAX = 2,
 };
 
 enum class ESortedItemType {

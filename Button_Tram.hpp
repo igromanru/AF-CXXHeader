@@ -3,6 +3,6 @@
 
 class AButton_Tram_C : public AButton_Generic_C
 {
-}; // Size: 0x432
+}; // Size: 0x43B
 
 #endif

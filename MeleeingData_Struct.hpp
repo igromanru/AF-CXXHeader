@@ -15,7 +15,8 @@ struct FMeleeingData_Struct
     TEnumAsByte<ETraceTypeQuery> TraceChannel_33_642FEF054496C3526EF7D6AEC33B1EB7;    // 0x0038 (size: 0x1)
     double StartTimestamp_36_D8B57998411FF7ABCBEF2C8420953379;                        // 0x0040 (size: 0x8)
     int32 TraceCount_39_503C4E7A4C639B2F279255BE0F1EB1DE;                             // 0x0048 (size: 0x4)
+    bool Offhand_45_9C692F9A421F995815BAC5B2ED79F677;                                 // 0x004C (size: 0x1)
 
-}; // Size: 0x4C
+}; // Size: 0x4D
 
 #endif

@@ -22,6 +22,7 @@ class AAbiotic_TriggerVolume_ParentBP_C : public AActor
     bool RunTriggerOnWorldLoad;                                                       // 0x0340 (size: 0x1)
     bool LocalOnlyTrigger;                                                            // 0x0341 (size: 0x1)
 
+    void ResetTriggerState();
     void TriggerLimitReached?(bool& LimitReached);
     void SaveTriggerData();
     void TryTriggerOtherTriggers();

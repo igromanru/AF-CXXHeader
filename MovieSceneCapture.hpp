@@ -112,10 +112,10 @@ class UImageSequenceProtocol_PNG : public UCompressedImageSequenceProtocol
 
 class ULevelCapture : public UMovieSceneCapture
 {
-    bool bAutoStartCapture;                                                           // 0x0238 (size: 0x1)
-    FGuid PrerequisiteActorId;                                                        // 0x0244 (size: 0x10)
+    bool bAutoStartCapture;                                                           // 0x0240 (size: 0x1)
+    FGuid PrerequisiteActorId;                                                        // 0x024C (size: 0x10)
 
-}; // Size: 0x258
+}; // Size: 0x260
 
 class UMasterAudioSubmixCaptureProtocol : public UMovieSceneAudioCaptureProtocolBase
 {
@@ -143,7 +143,7 @@ class UMovieSceneCapture : public UObject
     void SetAudioCaptureProtocolType(TSubclassOf<class UMovieSceneCaptureProtocolBase> ProtocolType);
     class UMovieSceneCaptureProtocolBase* GetImageCaptureProtocol();
     class UMovieSceneCaptureProtocolBase* GetAudioCaptureProtocol();
-}; // Size: 0x238
+}; // Size: 0x240
 
 class UMovieSceneCaptureEnvironment : public UObject
 {

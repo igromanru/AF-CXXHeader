@@ -3,16 +3,16 @@
 
 class ANPC_Coworker_C : public ANPC_Base_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x1F58 (size: 0x8)
-    class USkeletalMeshComponent* Hair;                                               // 0x1F60 (size: 0x8)
-    class USkeletalMeshComponent* Legs;                                               // 0x1F68 (size: 0x8)
-    class USkeletalMeshComponent* Chest;                                              // 0x1F70 (size: 0x8)
-    bool Eating;                                                                      // 0x1F78 (size: 0x1)
-    class UAudioComponent* EatingAudio;                                               // 0x1F80 (size: 0x8)
-    int32 FedCount;                                                                   // 0x1F88 (size: 0x4)
-    TArray<FName> FoodEaten;                                                          // 0x1F90 (size: 0x10)
-    bool DroppedStapler;                                                              // 0x1FA0 (size: 0x1)
-    bool CoworkerDayTime;                                                             // 0x1FA1 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x20A8 (size: 0x8)
+    class USkeletalMeshComponent* Hair;                                               // 0x20B0 (size: 0x8)
+    class USkeletalMeshComponent* Legs;                                               // 0x20B8 (size: 0x8)
+    class USkeletalMeshComponent* Chest;                                              // 0x20C0 (size: 0x8)
+    bool Eating;                                                                      // 0x20C8 (size: 0x1)
+    class UAudioComponent* EatingAudio;                                               // 0x20D0 (size: 0x8)
+    int32 FedCount;                                                                   // 0x20D8 (size: 0x4)
+    TArray<FName> FoodEaten;                                                          // 0x20E0 (size: 0x10)
+    bool DroppedStapler;                                                              // 0x20F0 (size: 0x1)
+    bool CoworkerDayTime;                                                             // 0x20F1 (size: 0x1)
 
     void Does Award Sneaking XP to Player(bool& Return, double& XP Gained);
     bool VisibleToPlayers();
@@ -28,6 +28,6 @@ class ANPC_Coworker_C : public ANPC_Base_ParentBP_C
     void ReceiveBeginPlay();
     void Morning_Event();
     void ExecuteUbergraph_NPC_Coworker(int32 EntryPoint);
-}; // Size: 0x1FA2
+}; // Size: 0x20F2
 
 #endif

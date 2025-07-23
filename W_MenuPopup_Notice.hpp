@@ -22,6 +22,9 @@ class UW_MenuPopup_Notice_C : public UAbioticWidget
     FText Text_Detailed;                                                              // 0x0370 (size: 0x10)
     FString ErrorCode;                                                                // 0x0380 (size: 0x10)
 
+    void WidgetAction_DPadDirection(TEnumAsByte<E_NavigationDirection::Type> Direction, bool& Handled);
+    void WidgetAction_FaceTop(bool& Handled);
+    void WidgetAction_CycleCrafting(bool Next, bool& Handled);
     void WidgetAction_CloseMenu(bool& Handled);
     void WidgetAction_CycleMenu(bool Next, bool& Handled);
     FEventReply OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);

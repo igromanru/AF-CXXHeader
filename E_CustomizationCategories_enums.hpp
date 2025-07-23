@@ -18,7 +18,8 @@ namespace E_CustomizationCategories {
         NewEnumerator17 = 15,
         NewEnumerator18 = 16,
         NewEnumerator19 = 17,
-        E_MAX = 18,
+        NewEnumerator20 = 18,
+        E_MAX = 19,
     };
 }
 

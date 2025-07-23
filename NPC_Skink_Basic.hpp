@@ -3,9 +3,9 @@
 
 class ANPC_Skink_Basic_C : public ANPC_Monster_Pest_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x2018 (size: 0x8)
-    FDataTableRowHandle ProjectileRow;                                                // 0x2020 (size: 0x10)
-    FDataTableRowHandle SkinkItem;                                                    // 0x2030 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x2180 (size: 0x8)
+    FDataTableRowHandle ProjectileRow;                                                // 0x2188 (size: 0x10)
+    FDataTableRowHandle SkinkItem;                                                    // 0x2198 (size: 0x10)
 
     void CanEnterDBNO(bool& Allowed);
     void CreateSkinkItem();
@@ -22,6 +22,6 @@ class ANPC_Skink_Basic_C : public ANPC_Monster_Pest_C
     void PoopOccasionally();
     void Server_PoopOnFloor();
     void ExecuteUbergraph_NPC_Skink_Basic(int32 EntryPoint);
-}; // Size: 0x2040
+}; // Size: 0x21A8
 
 #endif

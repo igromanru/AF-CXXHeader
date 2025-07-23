@@ -486,7 +486,7 @@ class UEnvelopeFollowerListener : public UActorComponent
 
 class UGranularSynth : public USynthComponent
 {
-    class USoundWave* GranulatedSoundWave;                                            // 0x0890 (size: 0x8)
+    class USoundWave* GranulatedSoundWave;                                            // 0x08A0 (size: 0x8)
 
     void SetSustainGain(const float SustainGain);
     void SetSoundWave(class USoundWave* InSoundWave);
@@ -508,11 +508,11 @@ class UGranularSynth : public USynthComponent
     bool IsLoaded();
     float GetSampleDuration();
     float GetCurrentPlayheadTime();
-}; // Size: 0xC80
+}; // Size: 0xC90
 
 class UModularSynthComponent : public USynthComponent
 {
-    int32 VoiceCount;                                                                 // 0x0890 (size: 0x4)
+    int32 VoiceCount;                                                                 // 0x08A0 (size: 0x4)
 
     void SetSynthPreset(const FModularSynthPreset& SynthPreset);
     void SetSustainGain(float SustainGain);
@@ -573,7 +573,7 @@ class UModularSynthComponent : public USynthComponent
     void NoteOn(const float Note, const int32 Velocity, const float Duration);
     void NoteOff(const float Note, const bool bAllNotesOff, const bool bKillAllNotes);
     FPatchId CreatePatch(const ESynth1PatchSource PatchSource, const TArray<FSynth1PatchCable>& PatchCables, const bool bEnableByDefault);
-}; // Size: 0xF80
+}; // Size: 0xF90
 
 class UModularSynthLibrary : public UBlueprintFunctionLibrary
 {
@@ -868,11 +868,11 @@ class USynth2DSlider : public UWidget
 
 class USynthComponentMonoWaveTable : public USynthComponent
 {
-    FSynthComponentMonoWaveTableOnTableAltered OnTableAltered;                        // 0x0890 (size: 0x10)
+    FSynthComponentMonoWaveTableOnTableAltered OnTableAltered;                        // 0x08A0 (size: 0x10)
     void OnTableAltered(int32 TableIndex);
-    FSynthComponentMonoWaveTableOnNumTablesChanged OnNumTablesChanged;                // 0x08A0 (size: 0x10)
+    FSynthComponentMonoWaveTableOnNumTablesChanged OnNumTablesChanged;                // 0x08B0 (size: 0x10)
     void NumTablesChanged();
-    class UMonoWaveTableSynthPreset* CurrentPreset;                                   // 0x08B0 (size: 0x8)
+    class UMonoWaveTableSynthPreset* CurrentPreset;                                   // 0x08C0 (size: 0x8)
 
     void SetWaveTablePosition(float InPosition);
     void SetSustainPedalState(bool InSustainPedalState);
@@ -918,19 +918,19 @@ class USynthComponentMonoWaveTable : public USynthComponent
     int32 GetMaxTableIndex();
     TArray<float> GetKeyFrameValuesForTable(float TableIndex);
     float GetCurveTangent(int32 TableIndex);
-}; // Size: 0xFE0
+}; // Size: 0xFF0
 
 class USynthComponentToneGenerator : public USynthComponent
 {
-    float Frequency;                                                                  // 0x0890 (size: 0x4)
-    float Volume;                                                                     // 0x0894 (size: 0x4)
-    FRuntimeFloatCurve DistanceAttenuationCurve;                                      // 0x0898 (size: 0x88)
-    FVector2D DistanceRange;                                                          // 0x0920 (size: 0x10)
-    float AttenuationDbAtMaxRange;                                                    // 0x0930 (size: 0x4)
+    float Frequency;                                                                  // 0x08A0 (size: 0x4)
+    float Volume;                                                                     // 0x08A4 (size: 0x4)
+    FRuntimeFloatCurve DistanceAttenuationCurve;                                      // 0x08A8 (size: 0x88)
+    FVector2D DistanceRange;                                                          // 0x0930 (size: 0x10)
+    float AttenuationDbAtMaxRange;                                                    // 0x0940 (size: 0x4)
 
     void SetVolume(float InVolume);
     void SetFrequency(float InFrequency);
-}; // Size: 0x980
+}; // Size: 0x990
 
 class USynthKnob : public UWidget
 {
@@ -965,10 +965,10 @@ class USynthKnob : public UWidget
 
 class USynthSamplePlayer : public USynthComponent
 {
-    class USoundWave* SoundWave;                                                      // 0x0890 (size: 0x8)
-    FSynthSamplePlayerOnSampleLoaded OnSampleLoaded;                                  // 0x0898 (size: 0x10)
+    class USoundWave* SoundWave;                                                      // 0x08A0 (size: 0x8)
+    FSynthSamplePlayerOnSampleLoaded OnSampleLoaded;                                  // 0x08A8 (size: 0x10)
     void OnSampleLoaded();
-    FSynthSamplePlayerOnSamplePlaybackProgress OnSamplePlaybackProgress;              // 0x08A8 (size: 0x10)
+    FSynthSamplePlayerOnSamplePlaybackProgress OnSamplePlaybackProgress;              // 0x08B8 (size: 0x10)
     void OnSamplePlaybackProgress(float ProgressPercent, float ProgressTimeSeconds);
 
     void SetSoundWave(class USoundWave* InSoundWave);
@@ -980,7 +980,7 @@ class USynthSamplePlayer : public USynthComponent
     float GetSampleDuration();
     float GetCurrentPlaybackProgressTime();
     float GetCurrentPlaybackProgressPercent();
-}; // Size: 0x9C0
+}; // Size: 0x9D0
 
 class USynthesisUtilitiesBlueprintFunctionLibrary : public UBlueprintFunctionLibrary
 {

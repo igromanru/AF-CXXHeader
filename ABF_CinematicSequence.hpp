@@ -24,10 +24,14 @@ class AABF_CinematicSequence_C : public AActor
     double FadeToBlackDelay;                                                          // 0x0378 (size: 0x8)
     class USoundBase* NewSoundtrackToStart;                                           // 0x0380 (size: 0x8)
     double SoundtrackStartDelay;                                                      // 0x0388 (size: 0x8)
-    bool PermaMuteAllNPCs;                                                            // 0x0390 (size: 0x1)
-    TArray<class ANavModifierVolume*> NavModifiersToDestroy;                          // 0x0398 (size: 0x10)
-    FABF_CinematicSequence_CCinematicBegin CinematicBegin;                            // 0x03A8 (size: 0x10)
+    double ParticleActivateDelay;                                                     // 0x0390 (size: 0x8)
+    TArray<class AReplicatedParticleFX_BP_C*> ParticlesToActivate;                    // 0x0398 (size: 0x10)
+    TArray<class ANavModifierVolume*> NavModifiersToDestroy;                          // 0x03A8 (size: 0x10)
+    FABF_CinematicSequence_CCinematicBegin CinematicBegin;                            // 0x03B8 (size: 0x10)
     void CinematicBegin();
+    class ANarrativeNPC_ParentBP_C* NPCToForceDialog;                                 // 0x03C8 (size: 0x8)
+    TEnumAsByte<E_NarrativeNPCStates::Type> NPCDialogState;                           // 0x03D0 (size: 0x1)
+    double NPCDialogForceDelay;                                                       // 0x03D8 (size: 0x8)
 
     void AlertNPCToNearbyPlayers(class ANPC_Base_ParentBP_C* NPC);
     void BeginCinematic();
@@ -35,6 +39,6 @@ class AABF_CinematicSequence_C : public AActor
     void ExecuteUbergraph_ABF_CinematicSequence(int32 EntryPoint);
     void CinematicBegin__DelegateSignature();
     void CinematicComplete__DelegateSignature();
-}; // Size: 0x3B8
+}; // Size: 0x3E0
 
 #endif

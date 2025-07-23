@@ -235,11 +235,11 @@ class UDefaultRootCameraNode : public URootCameraNode
 
 class UGameplayCameraComponent : public USceneComponent
 {
-    class UCameraAsset* Camera;                                                       // 0x0230 (size: 0x8)
-    class UGameplayCameraComponentEvaluationContext* EvaluationContext;               // 0x0238 (size: 0x8)
+    class UCameraAsset* Camera;                                                       // 0x0238 (size: 0x8)
+    class UGameplayCameraComponentEvaluationContext* EvaluationContext;               // 0x0240 (size: 0x8)
 
     void ActivateCamera(int32 PlayerIndex);
-}; // Size: 0x240
+}; // Size: 0x250
 
 class UGameplayCameraComponentEvaluationContext : public UCameraEvaluationContext
 {
@@ -247,7 +247,7 @@ class UGameplayCameraComponentEvaluationContext : public UCameraEvaluationContex
 
 class UGameplayCameraSystemComponent : public USceneComponent
 {
-    class UCameraSystemEvaluator* Evaluator;                                          // 0x0230 (size: 0x8)
+    class UCameraSystemEvaluator* Evaluator;                                          // 0x0238 (size: 0x8)
 
     class UCameraSystemEvaluator* GetCameraSystemEvaluator();
 }; // Size: 0x240

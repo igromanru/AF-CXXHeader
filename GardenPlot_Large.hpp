@@ -3,15 +3,15 @@
 
 class AGardenPlot_Large_C : public AGardenPlot_ParentBP_C
 {
-    class UChildActorComponent* Plot8;                                                // 0x0A58 (size: 0x8)
-    class UChildActorComponent* Plot7;                                                // 0x0A60 (size: 0x8)
-    class UChildActorComponent* Plot6;                                                // 0x0A68 (size: 0x8)
-    class UChildActorComponent* Plot5;                                                // 0x0A70 (size: 0x8)
-    class UChildActorComponent* Plot4;                                                // 0x0A78 (size: 0x8)
-    class UChildActorComponent* Plot3;                                                // 0x0A80 (size: 0x8)
-    class UChildActorComponent* Plot2;                                                // 0x0A88 (size: 0x8)
-    class UChildActorComponent* Plot1;                                                // 0x0A90 (size: 0x8)
+    class UChildActorComponent* Plot8;                                                // 0x0988 (size: 0x8)
+    class UChildActorComponent* Plot7;                                                // 0x0990 (size: 0x8)
+    class UChildActorComponent* Plot6;                                                // 0x0998 (size: 0x8)
+    class UChildActorComponent* Plot5;                                                // 0x09A0 (size: 0x8)
+    class UChildActorComponent* Plot4;                                                // 0x09A8 (size: 0x8)
+    class UChildActorComponent* Plot3;                                                // 0x09B0 (size: 0x8)
+    class UChildActorComponent* Plot2;                                                // 0x09B8 (size: 0x8)
+    class UChildActorComponent* Plot1;                                                // 0x09C0 (size: 0x8)
 
-}; // Size: 0xA98
+}; // Size: 0x9C8
 
 #endif

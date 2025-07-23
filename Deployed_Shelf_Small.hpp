@@ -3,6 +3,6 @@
 
 class ADeployed_Shelf_Small_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-}; // Size: 0x930
+}; // Size: 0x849
 
 #endif

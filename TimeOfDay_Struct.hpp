@@ -10,7 +10,8 @@ struct FTimeOfDay_Struct
     bool IsAssaultDay_17_7178FE464A28F65893916B867ED07B66;                            // 0x0014 (size: 0x1)
     int32 LastWeatherDay_23_AFD7EE8B4E4F6098141818BC53D39621;                         // 0x0018 (size: 0x4)
     FName ActiveWeatherRow_22_B3E5AEC34C615AB2DB2329B86904803A;                       // 0x001C (size: 0x8)
+    int32 LastPowerLeechDay_27_503FE02E4E4E6310AAA5FEBE064F1C2B;                      // 0x0024 (size: 0x4)
 
-}; // Size: 0x24
+}; // Size: 0x28
 
 #endif

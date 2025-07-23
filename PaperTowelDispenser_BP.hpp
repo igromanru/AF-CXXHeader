@@ -3,10 +3,10 @@
 
 class APaperTowelDispenser_BP_C : public AAbioticActor_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
-    class UAudioComponent* DispenserAudio;                                            // 0x02D0 (size: 0x8)
-    class UStaticMeshComponent* Paper;                                                // 0x02D8 (size: 0x8)
-    class UStaticMeshComponent* Dispenser;                                            // 0x02E0 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D0 (size: 0x8)
+    class UAudioComponent* DispenserAudio;                                            // 0x02D8 (size: 0x8)
+    class UStaticMeshComponent* Paper;                                                // 0x02E0 (size: 0x8)
+    class UStaticMeshComponent* Dispenser;                                            // 0x02E8 (size: 0x8)
 
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
@@ -49,6 +49,6 @@ class APaperTowelDispenser_BP_C : public AAbioticActor_C
     void DeliverDynamicProperty(bool FromSave, FDynamicProperty Property);
     void InteractTeleportUpdate(class AAbiotic_Character_ParentBP_C* InteractingCharacter, bool TryingToTeleport, bool TeleportSuccessful);
     void ExecuteUbergraph_PaperTowelDispenser_BP(int32 EntryPoint);
-}; // Size: 0x2E8
+}; // Size: 0x2F0
 
 #endif

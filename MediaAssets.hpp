@@ -213,11 +213,11 @@ class UMediaPlaylist : public UObject
 
 class UMediaSoundComponent : public USynthComponent
 {
-    EMediaSoundChannels Channels;                                                     // 0x0890 (size: 0x4)
-    bool DynamicRateAdjustment;                                                       // 0x0894 (size: 0x1)
-    float RateAdjustmentFactor;                                                       // 0x0898 (size: 0x4)
-    FFloatRange RateAdjustmentRange;                                                  // 0x089C (size: 0x10)
-    class UMediaPlayer* MediaPlayer;                                                  // 0x08B0 (size: 0x8)
+    EMediaSoundChannels Channels;                                                     // 0x08A0 (size: 0x4)
+    bool DynamicRateAdjustment;                                                       // 0x08A4 (size: 0x1)
+    float RateAdjustmentFactor;                                                       // 0x08A8 (size: 0x4)
+    FFloatRange RateAdjustmentRange;                                                  // 0x08AC (size: 0x10)
+    class UMediaPlayer* MediaPlayer;                                                  // 0x08C0 (size: 0x8)
 
     void SetSpectralAnalysisSettings(TArray<float> InFrequenciesToAnalyze, EMediaSoundComponentFFTSize InFFTSize);
     void SetMediaPlayer(class UMediaPlayer* NewMediaPlayer);
@@ -229,7 +229,7 @@ class UMediaSoundComponent : public USynthComponent
     class UMediaPlayer* GetMediaPlayer();
     float GetEnvelopeValue();
     bool BP_GetAttenuationSettingsToApply(FSoundAttenuationSettings& OutAttenuationSettings);
-}; // Size: 0x970
+}; // Size: 0x980
 
 class UMediaSource : public UObject
 {

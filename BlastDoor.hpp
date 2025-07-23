@@ -3,6 +3,6 @@
 
 class ABlastDoor_C : public ASecurityDoor_C
 {
-}; // Size: 0x382
+}; // Size: 0x383
 
 #endif

@@ -39,7 +39,13 @@ class UW_Wristwatch_C : public UUserWidget
     int32 CurrentTemperature;                                                         // 0x03E0 (size: 0x4)
     bool TempUseCelsius;                                                              // 0x03E4 (size: 0x1)
     bool Use24Hour;                                                                   // 0x03E5 (size: 0x1)
+    bool TimeIsScrambled;                                                             // 0x03E6 (size: 0x1)
+    class UImage* VisibleCompassSegment;                                              // 0x03E8 (size: 0x8)
+    double Offset;                                                                    // 0x03F0 (size: 0x8)
 
+    void SetCompassSegmentVisibleByIndex(int32 newIndex);
+    TArray<class UImage*> GetCompassSegmentWidgets();
+    void GetCurrentWatchTime(int32& Hour12, int32& Hour_24_Format, int32& Minute, bool& Daytime, bool& AM, bool& Scrambled);
     void UpdateDay(int32 DayNumber);
     void SetCurrentMinutesDisplay(int32 Minutes);
     void ChangeDayNightMode(bool Night);
@@ -54,6 +60,6 @@ class UW_Wristwatch_C : public UUserWidget
     void TemperatureCelsiusCallback(bool NewValue);
     void Use24HourCallback(bool NewValue);
     void ExecuteUbergraph_W_Wristwatch(int32 EntryPoint);
-}; // Size: 0x3E6
+}; // Size: 0x3F8
 
 #endif

@@ -9,6 +9,7 @@ class UW_PlayerHUD_RecipeVBox_C : public UUserWidget
     TArray<FHUDNotifyData_Struct> NotifyQueue;                                        // 0x02F8 (size: 0x10)
     class USoundBase* RecipeNotifyUnlockSound;                                        // 0x0308 (size: 0x8)
     class USoundBase* MapPickupSound;                                                 // 0x0310 (size: 0x8)
+    double TimeCreated;                                                               // 0x0318 (size: 0x8)
 
     void CreateFishNotify(FName FishRow);
     void CreateCompendiumNotify(FName CompendiumEntryRow);
@@ -20,7 +21,8 @@ class UW_PlayerHUD_RecipeVBox_C : public UUserWidget
     void OnNotifyRemoved();
     void QueueHUDNotify(FHUDNotifyData_Struct RecipeRow);
     void UpdateNotifyQueue();
+    void Construct();
     void ExecuteUbergraph_W_PlayerHUD_RecipeVBox(int32 EntryPoint);
-}; // Size: 0x318
+}; // Size: 0x320
 
 #endif

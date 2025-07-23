@@ -18,6 +18,8 @@ class UW_HUD_PlayerList_Main_C : public UUserWidget
     double LastFPS;                                                                   // 0x0340 (size: 0x8)
     double LastWorldDeltaSeconds;                                                     // 0x0348 (size: 0x8)
 
+    void OnFailure_B964CE1D40C7F595BA33058D1855E802(bool bSuccess, const TArray<FString>& SanitizedMessages);
+    void OnSuccess_B964CE1D40C7F595BA33058D1855E802(bool bSuccess, const TArray<FString>& SanitizedMessages);
     void Construct();
     void RefreshPlayerList();
     void UpdateValues();

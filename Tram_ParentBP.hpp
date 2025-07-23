@@ -41,11 +41,16 @@ class ATram_ParentBP_C : public AActor
     bool HasPassengers;                                                               // 0x03E9 (size: 0x1)
     double TramSpeedUnattended;                                                       // 0x03F0 (size: 0x8)
     TEnumAsByte<E_TramDoorState::Type> TramDoorState;                                 // 0x03F8 (size: 0x1)
+    double PreviousStopDistance;                                                      // 0x0400 (size: 0x8)
+    double MinSpeedRatio;                                                             // 0x0408 (size: 0x8)
+    double MaxSpeedDist;                                                              // 0x0410 (size: 0x8)
+    class USoundBase* TramStopSound;                                                  // 0x0418 (size: 0x8)
+    bool Stopping;                                                                    // 0x0420 (size: 0x1)
+    class USoundBase* TramBrakesSound;                                                // 0x0428 (size: 0x8)
 
     void OnRep_TramDoorState();
     void GetTramContainers(TArray<class UAbiotic_InventoryComponent_C*>& Array);
     void UpdateStationState();
-    void SaveTram();
     void OnRep_PreviousStation();
     void UpdatePassengerCount();
     void CharacterEnteredTram(class AAbiotic_Character_ParentBP_C* Character);
@@ -68,8 +73,10 @@ class ATram_ParentBP_C : public AActor
     void UpdateExternalStations();
     void OnFurnitureDestroyOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
     void OnInventorySaveLoaded(const TArray<FSaveData_Inventories_Struct>& SaveData);
+    void SaveTram();
+    void DebugMove();
     void ExecuteUbergraph_Tram_ParentBP(int32 EntryPoint);
     void TargetStationUpdated__DelegateSignature(class ATramSystem_Station_C* NewTarget);
-}; // Size: 0x3F9
+}; // Size: 0x430
 
 #endif

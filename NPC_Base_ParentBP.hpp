@@ -3,173 +3,179 @@
 
 class ANPC_Base_ParentBP_C : public AAbiotic_Character_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x1460 (size: 0x8)
-    class UAbioticTargetingComponent_Sockets* AbioticTargetingComponent_Sockets;      // 0x1468 (size: 0x8)
-    class UAudioComponent* BreathingAudio;                                            // 0x1470 (size: 0x8)
-    class UOptimizationProxyComponent* OptimizationProxy;                             // 0x1478 (size: 0x8)
-    class UStaticMeshComponent* NetMesh;                                              // 0x1480 (size: 0x8)
-    class UCameraComponent* Camera;                                                   // 0x1488 (size: 0x8)
-    class USpringArmComponent* SpringArm;                                             // 0x1490 (size: 0x8)
-    class UTextRenderComponent* LocalSpotValueText;                                   // 0x1498 (size: 0x8)
-    class USceneComponent* KneePoint;                                                 // 0x14A0 (size: 0x8)
-    float FadeBodyTimeline_Opacity_A74321CF4140C66DAED2358C151E0B07;                  // 0x14A8 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> FadeBodyTimeline__Direction_A74321CF4140C66DAED2358C151E0B07; // 0x14AC (size: 0x1)
-    class UTimelineComponent* FadeBodyTimeline;                                       // 0x14B0 (size: 0x8)
-    FAbiotic_NPCStruct NPCData;                                                       // 0x14B8 (size: 0x250)
-    FName NPCDataTableRow;                                                            // 0x1708 (size: 0x8)
-    bool CanSenseSmells;                                                              // 0x1710 (size: 0x1)
-    double Smelling Range;                                                            // 0x1718 (size: 0x8)
-    bool PrintDebugStrings;                                                           // 0x1720 (size: 0x1)
-    TEnumAsByte<ENPCAwarenessState::Type> AwarenessState;                             // 0x1721 (size: 0x1)
-    class AAbiotic_AI_Controller_ParentBP_C* NPC_Controller;                          // 0x1728 (size: 0x8)
-    FVector LastRangedAttackLocation;                                                 // 0x1730 (size: 0x18)
-    FVector LastMeleeAttackLocation;                                                  // 0x1748 (size: 0x18)
-    TSoftObjectPtr<UAnimMontage> AggroAnimation;                                      // 0x1760 (size: 0x28)
-    bool CombatState;                                                                 // 0x1788 (size: 0x1)
-    bool RangedAttack_OnCooldown;                                                     // 0x1789 (size: 0x1)
-    bool MeleeAttack_OnCooldown;                                                      // 0x178A (size: 0x1)
-    FName MeleeOriginBone;                                                            // 0x178C (size: 0x8)
-    FVector LastMeleeOrigin;                                                          // 0x1798 (size: 0x18)
-    double MeleeHitApex;                                                              // 0x17B0 (size: 0x8)
-    bool HasDroppedLoot;                                                              // 0x17B8 (size: 0x1)
-    bool CanHurtSelfWithRadialDamage;                                                 // 0x17B9 (size: 0x1)
-    double DamageTakenAfterDeath;                                                     // 0x17C0 (size: 0x8)
-    bool IsGibbed;                                                                    // 0x17C8 (size: 0x1)
-    double DefaultNPCBodyFadeOutTime;                                                 // 0x17D0 (size: 0x8)
-    bool BodyFadingOut;                                                               // 0x17D8 (size: 0x1)
-    TArray<class UMaterialInstanceDynamic*> MeshDynamicMaterials;                     // 0x17E0 (size: 0x10)
-    TEnumAsByte<E_SquadMemberNumber::Type> SquadMemberNumber;                         // 0x17F0 (size: 0x1)
-    float RangedAttack_Cooldown;                                                      // 0x17F4 (size: 0x4)
-    TSoftObjectPtr<UAnimMontage> StartleAnimation;                                    // 0x17F8 (size: 0x28)
-    FTimerHandle SpotVisDebugTimer;                                                   // 0x1820 (size: 0x8)
-    double StaggerCooldown;                                                           // 0x1828 (size: 0x8)
-    TSoftObjectPtr<UAnimMontage> StaggerAnimation;                                    // 0x1830 (size: 0x28)
-    double StaggerAnimDuration;                                                       // 0x1858 (size: 0x8)
-    TMap<TEnumAsByte<E_NPC_MeleeTypes::Type>, TSoftObjectPtr<UAnimMontage>> MeleeAttacks; // 0x1860 (size: 0x50)
-    FName ProjectileFireSocket;                                                       // 0x18B0 (size: 0x8)
-    TEnumAsByte<E_NPC_MeleeTypes::Type> LastMeleeAttackType;                          // 0x18B8 (size: 0x1)
-    TSoftObjectPtr<UAnimMontage> StaggerAnimationLeft;                                // 0x18C0 (size: 0x28)
-    TSoftObjectPtr<UAnimMontage> StaggerAnimationRight;                               // 0x18E8 (size: 0x28)
-    TSoftObjectPtr<UAnimMontage> BackstepAnimation;                                   // 0x1910 (size: 0x28)
-    FName GrenadeHoldSocket;                                                          // 0x1938 (size: 0x8)
-    class UStaticMeshComponent* LastGrenadeInHandMesh;                                // 0x1940 (size: 0x8)
-    FDataTableRowHandle GrenadeData;                                                  // 0x1948 (size: 0x10)
-    double TimeOfLastGrabAttempt;                                                     // 0x1958 (size: 0x8)
-    double TimeOfLastSuccessfulGrab;                                                  // 0x1960 (size: 0x8)
-    double GrabCooldown;                                                              // 0x1968 (size: 0x8)
-    TArray<FName> SmellTags;                                                          // 0x1970 (size: 0x10)
-    FTimerHandle GrabEndTimer;                                                        // 0x1980 (size: 0x8)
-    int32 NPC Level;                                                                  // 0x1988 (size: 0x4)
-    double LastIncomingDamage;                                                        // 0x1990 (size: 0x8)
-    bool PerformingRangedBurst;                                                       // 0x1998 (size: 0x1)
-    double NPCRangedBulletSpread;                                                     // 0x19A0 (size: 0x8)
-    class AAbiotic_Character_ParentBP_C* LastAttackedTarget;                          // 0x19A8 (size: 0x8)
-    class UNiagaraSystem* GibParticles;                                               // 0x19B0 (size: 0x8)
-    bool ParentLevelDeloaded;                                                         // 0x19B8 (size: 0x1)
-    FNPC_Base_ParentBP_CCombatReset CombatReset;                                      // 0x19C0 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x14D8 (size: 0x8)
+    class UAbioticTargetingComponent_Sockets* AbioticTargetingComponent_Sockets;      // 0x14E0 (size: 0x8)
+    class UAudioComponent* BreathingAudio;                                            // 0x14E8 (size: 0x8)
+    class UOptimizationProxyComponent* OptimizationProxy;                             // 0x14F0 (size: 0x8)
+    class UStaticMeshComponent* NetMesh;                                              // 0x14F8 (size: 0x8)
+    class UTextRenderComponent* LocalSpotValueText;                                   // 0x1500 (size: 0x8)
+    class USceneComponent* KneePoint;                                                 // 0x1508 (size: 0x8)
+    float FadeBodyTimeline_Opacity_A74321CF4140C66DAED2358C151E0B07;                  // 0x1510 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> FadeBodyTimeline__Direction_A74321CF4140C66DAED2358C151E0B07; // 0x1514 (size: 0x1)
+    class UTimelineComponent* FadeBodyTimeline;                                       // 0x1518 (size: 0x8)
+    FAbiotic_NPCStruct NPCData;                                                       // 0x1520 (size: 0x2F8)
+    FName NPCDataTableRow;                                                            // 0x1818 (size: 0x8)
+    bool CanSenseSmells;                                                              // 0x1820 (size: 0x1)
+    double Smelling Range;                                                            // 0x1828 (size: 0x8)
+    bool PrintDebugStrings;                                                           // 0x1830 (size: 0x1)
+    TEnumAsByte<ENPCAwarenessState::Type> AwarenessState;                             // 0x1831 (size: 0x1)
+    class AAbiotic_AI_Controller_ParentBP_C* NPC_Controller;                          // 0x1838 (size: 0x8)
+    FVector LastRangedAttackLocation;                                                 // 0x1840 (size: 0x18)
+    FVector LastMeleeAttackLocation;                                                  // 0x1858 (size: 0x18)
+    TSoftObjectPtr<UAnimMontage> AggroAnimation;                                      // 0x1870 (size: 0x28)
+    bool CombatState;                                                                 // 0x1898 (size: 0x1)
+    bool RangedAttack_OnCooldown;                                                     // 0x1899 (size: 0x1)
+    bool MeleeAttack_OnCooldown;                                                      // 0x189A (size: 0x1)
+    FName MeleeOriginBone;                                                            // 0x189C (size: 0x8)
+    FVector LastMeleeOrigin;                                                          // 0x18A8 (size: 0x18)
+    double MeleeHitApex;                                                              // 0x18C0 (size: 0x8)
+    bool HasDroppedLoot;                                                              // 0x18C8 (size: 0x1)
+    bool CanHurtSelfWithRadialDamage;                                                 // 0x18C9 (size: 0x1)
+    double DamageTakenAfterDeath;                                                     // 0x18D0 (size: 0x8)
+    bool IsGibbed;                                                                    // 0x18D8 (size: 0x1)
+    double DefaultNPCBodyFadeOutTime;                                                 // 0x18E0 (size: 0x8)
+    bool BodyFadingOut;                                                               // 0x18E8 (size: 0x1)
+    TArray<class UMaterialInstanceDynamic*> MeshDynamicMaterials;                     // 0x18F0 (size: 0x10)
+    TEnumAsByte<E_SquadMemberNumber::Type> SquadMemberNumber;                         // 0x1900 (size: 0x1)
+    float RangedAttack_Cooldown;                                                      // 0x1904 (size: 0x4)
+    TSoftObjectPtr<UAnimMontage> StartleAnimation;                                    // 0x1908 (size: 0x28)
+    FTimerHandle SpotVisDebugTimer;                                                   // 0x1930 (size: 0x8)
+    double StaggerCooldown;                                                           // 0x1938 (size: 0x8)
+    TSoftObjectPtr<UAnimMontage> StaggerAnimation;                                    // 0x1940 (size: 0x28)
+    double StaggerAnimDuration;                                                       // 0x1968 (size: 0x8)
+    TMap<TEnumAsByte<E_NPC_MeleeTypes::Type>, TSoftObjectPtr<UAnimMontage>> MeleeAttacks; // 0x1970 (size: 0x50)
+    FName ProjectileFireSocket;                                                       // 0x19C0 (size: 0x8)
+    TEnumAsByte<E_NPC_MeleeTypes::Type> LastMeleeAttackType;                          // 0x19C8 (size: 0x1)
+    TSoftObjectPtr<UAnimMontage> StaggerAnimationLeft;                                // 0x19D0 (size: 0x28)
+    TSoftObjectPtr<UAnimMontage> StaggerAnimationRight;                               // 0x19F8 (size: 0x28)
+    TSoftObjectPtr<UAnimMontage> BackstepAnimation;                                   // 0x1A20 (size: 0x28)
+    FName GrenadeHoldSocket;                                                          // 0x1A48 (size: 0x8)
+    class UStaticMeshComponent* LastGrenadeInHandMesh;                                // 0x1A50 (size: 0x8)
+    FDataTableRowHandle GrenadeData;                                                  // 0x1A58 (size: 0x10)
+    double TimeOfLastGrabAttempt;                                                     // 0x1A68 (size: 0x8)
+    double TimeOfLastSuccessfulGrab;                                                  // 0x1A70 (size: 0x8)
+    double GrabCooldown;                                                              // 0x1A78 (size: 0x8)
+    TArray<FName> SmellTags;                                                          // 0x1A80 (size: 0x10)
+    FTimerHandle GrabEndTimer;                                                        // 0x1A90 (size: 0x8)
+    int32 NPC Level;                                                                  // 0x1A98 (size: 0x4)
+    double LastIncomingDamage;                                                        // 0x1AA0 (size: 0x8)
+    bool PerformingRangedBurst;                                                       // 0x1AA8 (size: 0x1)
+    double NPCRangedBulletSpread;                                                     // 0x1AB0 (size: 0x8)
+    class AAbiotic_Character_ParentBP_C* LastAttackedTarget;                          // 0x1AB8 (size: 0x8)
+    class UNiagaraSystem* GibParticles;                                               // 0x1AC0 (size: 0x8)
+    bool ParentLevelDeloaded;                                                         // 0x1AC8 (size: 0x1)
+    FNPC_Base_ParentBP_CCombatReset CombatReset;                                      // 0x1AD0 (size: 0x10)
     void CombatReset(bool Success);
-    double MeleeRangeTraceExtra;                                                      // 0x19D0 (size: 0x8)
-    bool SpinAttack_OnCooldown;                                                       // 0x19D8 (size: 0x1)
-    bool BehindAttack_OnCooldown;                                                     // 0x19D9 (size: 0x1)
-    double SpinMeleeHitApex;                                                          // 0x19E0 (size: 0x8)
-    double BehindMeleeHitApex;                                                        // 0x19E8 (size: 0x8)
-    bool PowerAttack_OnCooldown;                                                      // 0x19F0 (size: 0x1)
-    TArray<class AActor*> LastActorsHit;                                              // 0x19F8 (size: 0x10)
-    double SpinAttackCooldown;                                                        // 0x1A08 (size: 0x8)
-    double BehindAttackCooldown;                                                      // 0x1A10 (size: 0x8)
-    double PowerMeleeHitApex;                                                         // 0x1A18 (size: 0x8)
-    float MeleeTraceRadius;                                                           // 0x1A20 (size: 0x4)
-    bool ForwardMeleeSwing;                                                           // 0x1A24 (size: 0x1)
-    double MinimumMeleeDirectOffset;                                                  // 0x1A28 (size: 0x8)
-    float SpinLaunchPower;                                                            // 0x1A30 (size: 0x4)
-    double PowerAttackCooldown;                                                       // 0x1A38 (size: 0x8)
-    TSoftObjectPtr<AActor> SpawnerOwner;                                              // 0x1A40 (size: 0x28)
-    bool AlwaysDropGibs;                                                              // 0x1A68 (size: 0x1)
-    TEnumAsByte<E_NettedStates::Type> Netted;                                         // 0x1A69 (size: 0x1)
-    FVector LocationOfInterest;                                                       // 0x1A70 (size: 0x18)
-    double BleedoutTime;                                                              // 0x1A88 (size: 0x8)
-    double TimeSinceDBNO;                                                             // 0x1A90 (size: 0x8)
-    double DBNODamageDelay;                                                           // 0x1A98 (size: 0x8)
-    bool FrozenByDirector;                                                            // 0x1AA0 (size: 0x1)
-    bool StationaryUntilPlayerEncounter;                                              // 0x1AA1 (size: 0x1)
-    bool WaitForGrabMontageEnd;                                                       // 0x1AA2 (size: 0x1)
-    double BaseLookUpRate;                                                            // 0x1AA8 (size: 0x8)
-    double BaseTurnRate;                                                              // 0x1AB0 (size: 0x8)
-    bool Possessable;                                                                 // 0x1AB8 (size: 0x1)
-    double WalkSpeed;                                                                 // 0x1AC0 (size: 0x8)
-    bool HandleGrabManually;                                                          // 0x1AC8 (size: 0x1)
-    float Cooldown_IdleAbility;                                                       // 0x1ACC (size: 0x4)
-    float Cooldown_CombatAbility1;                                                    // 0x1AD0 (size: 0x4)
-    float Cooldown_CombatAbility2;                                                    // 0x1AD4 (size: 0x4)
-    float Cooldown_CombatAbility3;                                                    // 0x1AD8 (size: 0x4)
-    float AggroDuration;                                                              // 0x1ADC (size: 0x4)
-    class UStaticMesh* LoadedGrenadeMesh;                                             // 0x1AE0 (size: 0x8)
-    int32 CurrentAmmoCount;                                                           // 0x1AE8 (size: 0x4)
-    int32 MaxAmmoCount;                                                               // 0x1AEC (size: 0x4)
-    TSoftObjectPtr<UAnimMontage> Asset;                                               // 0x1AF0 (size: 0x28)
-    class USoundBase* NettedSound;                                                    // 0x1B18 (size: 0x8)
-    FName NettedSocket;                                                               // 0x1B20 (size: 0x8)
-    class USoundBase* GibbedSound;                                                    // 0x1B28 (size: 0x8)
-    TEnumAsByte<E_ShoveableType::Type> ShoveableType;                                 // 0x1B30 (size: 0x1)
-    bool WasRecentlyStartled;                                                         // 0x1B31 (size: 0x1)
-    float StartleCooldown;                                                            // 0x1B34 (size: 0x4)
-    FGameplayTag GrabTag;                                                             // 0x1B38 (size: 0x8)
-    float SpinAttackRadius;                                                           // 0x1B40 (size: 0x4)
-    float DespawnDistance;                                                            // 0x1B44 (size: 0x4)
-    float DespawnDistanceUnloaded;                                                    // 0x1B48 (size: 0x4)
-    double HighMeleeHitApex;                                                          // 0x1B50 (size: 0x8)
-    TSoftObjectPtr<UAnimMontage> BackstepLeftAnimation;                               // 0x1B58 (size: 0x28)
-    TSoftObjectPtr<UAnimMontage> BackstepRightAnimation;                              // 0x1B80 (size: 0x28)
-    TSoftObjectPtr<UAnimMontage> GrenadeThrowAnimation;                               // 0x1BA8 (size: 0x28)
-    int32 CurrentHealthTextureIndex;                                                  // 0x1BD0 (size: 0x4)
-    TArray<class UTexture2D*> HealthTextures;                                         // 0x1BD8 (size: 0x10)
-    bool IsPerformingDoorEnter;                                                       // 0x1BE8 (size: 0x1)
-    bool CanMeleeMultiHit;                                                            // 0x1BE9 (size: 0x1)
-    TEnumAsByte<E_NPC_MeleeTypes::Type> PreferredHighGroundAttack;                    // 0x1BEA (size: 0x1)
-    double BehindAttackDirection;                                                     // 0x1BF0 (size: 0x8)
-    bool StationaryMode;                                                              // 0x1BF8 (size: 0x1)
-    class AActor* StationaryTarget;                                                   // 0x1C00 (size: 0x8)
-    bool RecentlyWeaknessStaggered;                                                   // 0x1C08 (size: 0x1)
-    bool CanInterruptAggroAnim;                                                       // 0x1C09 (size: 0x1)
-    TArray<FName> Cages ID to Ignore;                                                 // 0x1C10 (size: 0x10)
-    TEnumAsByte<E_SquadDesignations::Type> SquadDesignation;                          // 0x1C20 (size: 0x1)
-    double NetDurationReductionPercentage;                                            // 0x1C28 (size: 0x8)
-    TSoftObjectPtr<UAnimMontage> StaggerAnimationForward;                             // 0x1C30 (size: 0x28)
-    class USoundWave* SFX_Breathing_Idle;                                             // 0x1C58 (size: 0x8)
-    class USoundWave* SFX_Breathing_Combat;                                           // 0x1C60 (size: 0x8)
-    TSoftObjectPtr<ANPCTetherVolume_C> TetherVolume;                                  // 0x1C68 (size: 0x28)
-    TSoftObjectPtr<ABP_SquadManager_C> LinkedSquadManager;                            // 0x1C90 (size: 0x28)
-    double ImmuneDamageMultiplier;                                                    // 0x1CB8 (size: 0x8)
-    FNPCVoiceRowHandle NPCVoiceRow;                                                   // 0x1CC0 (size: 0x20)
-    FNPCVoice NPCVoiceData;                                                           // 0x1CE0 (size: 0x188)
-    bool IsPerformingSpawnFX;                                                         // 0x1E68 (size: 0x1)
-    double SpawnFXDuration;                                                           // 0x1E70 (size: 0x8)
-    bool SkipSpawnFX;                                                                 // 0x1E78 (size: 0x1)
-    bool Stunned;                                                                     // 0x1E79 (size: 0x1)
-    double DistanceForDialogSubtitles;                                                // 0x1E80 (size: 0x8)
-    TSoftObjectPtr<UWorld> OwningLevel;                                               // 0x1E88 (size: 0x28)
-    class UAnimMontage* OverrideIdleMontage;                                          // 0x1EB0 (size: 0x8)
-    bool RecentlyCriticalHit;                                                         // 0x1EB8 (size: 0x1)
-    float CriticalHit_PreventionDuration;                                             // 0x1EBC (size: 0x4)
-    bool ImmuneToBackstabs;                                                           // 0x1EC0 (size: 0x1)
-    bool ClampMeleeDirection;                                                         // 0x1EC1 (size: 0x1)
-    double RangedTarget_VerticalOffset;                                               // 0x1EC8 (size: 0x8)
-    float FootfallTraceDistance;                                                      // 0x1ED0 (size: 0x4)
-    class USoundBase* FootstepSFX;                                                    // 0x1ED8 (size: 0x8)
-    class UNiagaraSystem* FootfallImpactFX;                                           // 0x1EE0 (size: 0x8)
-    FName Left Foot;                                                                  // 0x1EE8 (size: 0x8)
-    FName Right Foot;                                                                 // 0x1EF0 (size: 0x8)
-    FName Left Hand;                                                                  // 0x1EF8 (size: 0x8)
-    FName Right Hand;                                                                 // 0x1F00 (size: 0x8)
-    FNPC_Base_ParentBP_CCombatStateChanged CombatStateChanged;                        // 0x1F08 (size: 0x10)
+    double MeleeRangeTraceExtra;                                                      // 0x1AE0 (size: 0x8)
+    bool SpinAttack_OnCooldown;                                                       // 0x1AE8 (size: 0x1)
+    bool BehindAttack_OnCooldown;                                                     // 0x1AE9 (size: 0x1)
+    double SpinMeleeHitApex;                                                          // 0x1AF0 (size: 0x8)
+    double BehindMeleeHitApex;                                                        // 0x1AF8 (size: 0x8)
+    bool PowerAttack_OnCooldown;                                                      // 0x1B00 (size: 0x1)
+    TArray<class AActor*> LastActorsHit;                                              // 0x1B08 (size: 0x10)
+    double SpinAttackCooldown;                                                        // 0x1B18 (size: 0x8)
+    double BehindAttackCooldown;                                                      // 0x1B20 (size: 0x8)
+    double PowerMeleeHitApex;                                                         // 0x1B28 (size: 0x8)
+    float MeleeTraceRadius;                                                           // 0x1B30 (size: 0x4)
+    bool ForwardMeleeSwing;                                                           // 0x1B34 (size: 0x1)
+    double ClampMeleeDirectionOffset;                                                 // 0x1B38 (size: 0x8)
+    bool ClampMeleeDirection;                                                         // 0x1B40 (size: 0x1)
+    float SpinLaunchPower;                                                            // 0x1B44 (size: 0x4)
+    double PowerAttackCooldown;                                                       // 0x1B48 (size: 0x8)
+    TSoftObjectPtr<AActor> SpawnerOwner;                                              // 0x1B50 (size: 0x28)
+    bool AlwaysDropGibs;                                                              // 0x1B78 (size: 0x1)
+    TEnumAsByte<E_NettedStates::Type> Netted;                                         // 0x1B79 (size: 0x1)
+    FVector LocationOfInterest;                                                       // 0x1B80 (size: 0x18)
+    double BleedoutTime;                                                              // 0x1B98 (size: 0x8)
+    double TimeSinceDBNO;                                                             // 0x1BA0 (size: 0x8)
+    double DBNODamageDelay;                                                           // 0x1BA8 (size: 0x8)
+    bool FrozenByDirector;                                                            // 0x1BB0 (size: 0x1)
+    bool StationaryUntilPlayerEncounter;                                              // 0x1BB1 (size: 0x1)
+    bool WaitForGrabMontageEnd;                                                       // 0x1BB2 (size: 0x1)
+    double BaseLookUpRate;                                                            // 0x1BB8 (size: 0x8)
+    double BaseTurnRate;                                                              // 0x1BC0 (size: 0x8)
+    bool Possessable;                                                                 // 0x1BC8 (size: 0x1)
+    double WalkSpeed;                                                                 // 0x1BD0 (size: 0x8)
+    bool HandleGrabManually;                                                          // 0x1BD8 (size: 0x1)
+    float Cooldown_IdleAbility;                                                       // 0x1BDC (size: 0x4)
+    float Cooldown_CombatAbility1;                                                    // 0x1BE0 (size: 0x4)
+    float Cooldown_CombatAbility2;                                                    // 0x1BE4 (size: 0x4)
+    float Cooldown_CombatAbility3;                                                    // 0x1BE8 (size: 0x4)
+    float AggroDuration;                                                              // 0x1BEC (size: 0x4)
+    class UStaticMesh* LoadedGrenadeMesh;                                             // 0x1BF0 (size: 0x8)
+    int32 CurrentAmmoCount;                                                           // 0x1BF8 (size: 0x4)
+    int32 MaxAmmoCount;                                                               // 0x1BFC (size: 0x4)
+    TSoftObjectPtr<UAnimMontage> Asset;                                               // 0x1C00 (size: 0x28)
+    class USoundBase* NettedSound;                                                    // 0x1C28 (size: 0x8)
+    FName NettedSocket;                                                               // 0x1C30 (size: 0x8)
+    class USoundBase* GibbedSound;                                                    // 0x1C38 (size: 0x8)
+    TEnumAsByte<E_ShoveableType::Type> ShoveableType;                                 // 0x1C40 (size: 0x1)
+    bool WasRecentlyStartled;                                                         // 0x1C41 (size: 0x1)
+    float StartleCooldown;                                                            // 0x1C44 (size: 0x4)
+    FGameplayTag GrabTag;                                                             // 0x1C48 (size: 0x8)
+    float SpinAttackRadius;                                                           // 0x1C50 (size: 0x4)
+    float DespawnDistance;                                                            // 0x1C54 (size: 0x4)
+    float DespawnDistanceUnloaded;                                                    // 0x1C58 (size: 0x4)
+    double HighMeleeHitApex;                                                          // 0x1C60 (size: 0x8)
+    TSoftObjectPtr<UAnimMontage> BackstepLeftAnimation;                               // 0x1C68 (size: 0x28)
+    TSoftObjectPtr<UAnimMontage> BackstepRightAnimation;                              // 0x1C90 (size: 0x28)
+    TSoftObjectPtr<UAnimMontage> GrenadeThrowAnimation;                               // 0x1CB8 (size: 0x28)
+    int32 CurrentHealthTextureIndex;                                                  // 0x1CE0 (size: 0x4)
+    TArray<class UTexture2D*> HealthTextures;                                         // 0x1CE8 (size: 0x10)
+    bool IsPerformingDoorEnter;                                                       // 0x1CF8 (size: 0x1)
+    bool CanMeleeMultiHit;                                                            // 0x1CF9 (size: 0x1)
+    TEnumAsByte<E_NPC_MeleeTypes::Type> PreferredHighGroundAttack;                    // 0x1CFA (size: 0x1)
+    double BehindAttackDirection;                                                     // 0x1D00 (size: 0x8)
+    bool StationaryMode;                                                              // 0x1D08 (size: 0x1)
+    class AActor* StationaryTarget;                                                   // 0x1D10 (size: 0x8)
+    bool RecentlyWeaknessStaggered;                                                   // 0x1D18 (size: 0x1)
+    bool CanInterruptAggroAnim;                                                       // 0x1D19 (size: 0x1)
+    TArray<FName> Cages ID to Ignore;                                                 // 0x1D20 (size: 0x10)
+    TEnumAsByte<E_SquadDesignations::Type> SquadDesignation;                          // 0x1D30 (size: 0x1)
+    double NetDurationReductionPercentage;                                            // 0x1D38 (size: 0x8)
+    TSoftObjectPtr<UAnimMontage> StaggerAnimationForward;                             // 0x1D40 (size: 0x28)
+    class USoundWave* SFX_Breathing_Idle;                                             // 0x1D68 (size: 0x8)
+    class USoundWave* SFX_Breathing_Combat;                                           // 0x1D70 (size: 0x8)
+    TSoftObjectPtr<ANPCTetherVolume_C> TetherVolume;                                  // 0x1D78 (size: 0x28)
+    TSoftObjectPtr<ABP_SquadManager_C> LinkedSquadManager;                            // 0x1DA0 (size: 0x28)
+    double ImmuneDamageMultiplier;                                                    // 0x1DC8 (size: 0x8)
+    FNPCVoiceRowHandle NPCVoiceRow;                                                   // 0x1DD0 (size: 0x20)
+    FNPCVoice NPCVoiceData;                                                           // 0x1DF0 (size: 0x188)
+    bool IsPerformingSpawnFX;                                                         // 0x1F78 (size: 0x1)
+    double SpawnFXDuration;                                                           // 0x1F80 (size: 0x8)
+    bool SkipSpawnFX;                                                                 // 0x1F88 (size: 0x1)
+    bool Stunned;                                                                     // 0x1F89 (size: 0x1)
+    double DistanceForDialogSubtitles;                                                // 0x1F90 (size: 0x8)
+    TSoftObjectPtr<UWorld> OwningLevel;                                               // 0x1F98 (size: 0x28)
+    class UAnimMontage* OverrideIdleMontage;                                          // 0x1FC0 (size: 0x8)
+    bool RecentlyCriticalHit;                                                         // 0x1FC8 (size: 0x1)
+    float CriticalHit_PreventionDuration;                                             // 0x1FCC (size: 0x4)
+    bool ImmuneToBackstabs;                                                           // 0x1FD0 (size: 0x1)
+    double RangedTarget_VerticalOffset;                                               // 0x1FD8 (size: 0x8)
+    float FootfallTraceDistance;                                                      // 0x1FE0 (size: 0x4)
+    class USoundBase* FootstepSFX;                                                    // 0x1FE8 (size: 0x8)
+    class UNiagaraSystem* FootfallImpactFX;                                           // 0x1FF0 (size: 0x8)
+    FName Left Foot;                                                                  // 0x1FF8 (size: 0x8)
+    FName Right Foot;                                                                 // 0x2000 (size: 0x8)
+    FName Left Hand;                                                                  // 0x2008 (size: 0x8)
+    FName Right Hand;                                                                 // 0x2010 (size: 0x8)
+    FNPC_Base_ParentBP_CCombatStateChanged CombatStateChanged;                        // 0x2018 (size: 0x10)
     void CombatStateChanged(class ANPC_Base_ParentBP_C* Target NPC);
-    FName BioscrapItem;                                                               // 0x1F18 (size: 0x8)
-    TArray<FString> DebugActionStack;                                                 // 0x1F20 (size: 0x10)
-    bool HasDisabledStateApplied;                                                     // 0x1F30 (size: 0x1)
-    double BackstepTraceDistance;                                                     // 0x1F38 (size: 0x8)
-    bool NPCEnraged;                                                                  // 0x1F40 (size: 0x1)
-    FNPC_Base_ParentBP_CFiredWeapon FiredWeapon;                                      // 0x1F48 (size: 0x10)
+    FName BioscrapItem;                                                               // 0x2028 (size: 0x8)
+    TArray<FString> DebugActionStack;                                                 // 0x2030 (size: 0x10)
+    bool HasDisabledStateApplied;                                                     // 0x2040 (size: 0x1)
+    double BackstepTraceDistance;                                                     // 0x2048 (size: 0x8)
+    bool NPCEnraged;                                                                  // 0x2050 (size: 0x1)
+    FNPC_Base_ParentBP_CFiredWeapon FiredWeapon;                                      // 0x2058 (size: 0x10)
     void FiredWeapon();
+    class USpringArmComponent* DynamicSpringArm;                                      // 0x2068 (size: 0x8)
+    class UCameraComponent* DynamicCamera;                                            // 0x2070 (size: 0x8)
+    double FallDistanceThreshold;                                                     // 0x2078 (size: 0x8)
+    FName FallBoneSocket;                                                             // 0x2080 (size: 0x8)
+    double LastEvadeTime;                                                             // 0x2088 (size: 0x8)
+    bool EvadesProjectiles;                                                           // 0x2090 (size: 0x1)
+    double ProjectileEvasionCooldown;                                                 // 0x2098 (size: 0x8)
+    bool FreezeAI;                                                                    // 0x20A0 (size: 0x1)
 
     void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
     void CanUseSharedInteraction(bool& Can Use);
@@ -195,6 +201,15 @@ class ANPC_Base_ParentBP_C : public AAbiotic_Character_ParentBP_C
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void RequiresToolToDismantle(bool& Tool Required);
     void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
+    void ApplyParry(FVector HitOrigin, class AAbiotic_Character_ParentBP_C* ParryCause);
+    void Server_OnKilledBy(class AAbioticPlayerController* FoundController);
+    void ServerTryScareOffNPC();
+    void BodyShieldsResetOnDamage();
+    bool CanEvadeProjectile();
+    void BeginDropLoot(FGameplayTagContainer& BuffTags);
+    void TryApplyFallDamage(double Distance, FHitResult Hit, bool ClientSideCalculationOnly, bool& AppliedFallDamage, int32& Severity);
+    class USoundBase* GetLandingSurfaceSound(TEnumAsByte<EPhysicalSurface> surface);
+    void Setup Possessable Components();
     void ShootThroughOneSided(const FHitResult& Hit, double BaseDamage, const TSubclassOf<class UDamageType> DamageType);
     void OnNPCEnraged(bool Enabled);
     void GetOutlineComponent(bool& ComponentEnabled, class UOutlineComponent_C*& Components);
@@ -315,9 +330,9 @@ class ANPC_Base_ParentBP_C : public AAbiotic_Character_ParentBP_C
     void UserConstructionScript();
     void FadeBodyTimeline__FinishedFunc();
     void FadeBodyTimeline__UpdateFunc();
-    void OnLoaded_7AB7746B4BA2E10AB7405BA80AF896AB(class UObject* Loaded);
     void OnLoaded_39233B8749F2696E985E7CA54F3823D0(class UObject* Loaded);
     void OnLoaded_923971EF40341DFE96F99694939FF403(class UObject* Loaded);
+    void OnLoaded_7AB7746B4BA2E10AB7405BA80AF896AB(class UObject* Loaded);
     void OnLoaded_AF38B3B3486B5A56E2A597A871D55692(class UObject* Loaded);
     void OnLoaded_1F0C60A644C3B5C2262B7499FDD54266(class UObject* Loaded);
     void OnNotifyEnd_693F37CE4AF7D2599AF0EF80C2E1538D(FName NotifyName);
@@ -352,45 +367,49 @@ class ANPC_Base_ParentBP_C : public AAbiotic_Character_ParentBP_C
     void OnCompleted_D51CE1614D9A47B37B6A1D86910BB8DC(FName NotifyName);
     void Broadcast_PerformBackstep(TEnumAsByte<EStaggerDirection::Type> Direction);
     void Broadcast_PerformIdleStartle();
-    void Broadcast_PerformStagger(TEnumAsByte<EStaggerDirection::Type> Direction);
     void Server_AttemptStartle();
     void Server_Set_RecentlyCriticalHit();
     void Broadcast_PlayCriticalHitFX(FVector Location, FRotator Rotation, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType);
-    void ResetStagger();
     void PerformAggroAnimation(bool Startled, bool RunDecisionTickImmediately);
-    void InteractTeleportUpdate(class AAbiotic_Character_ParentBP_C* InteractingCharacter, bool TryingToTeleport, bool TeleportSuccessful);
-    void DeliverDynamicProperty(bool FromSave, FDynamicProperty Property);
-    void RadialWheelInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed, FName SelectionWheelContentName);
+    void Broadcast_PerformStagger(TEnumAsByte<EStaggerDirection::Type> Direction);
     void ForceStaggerOnCooldown();
-    void Set New Attached Power Cord(class UCableComponent* New Power Cord);
+    void OnLanded(const FHitResult& Hit);
+    void K2_OnMovementModeChanged(TEnumAsByte<EMovementMode> PrevMovementMode, TEnumAsByte<EMovementMode> NewMovementMode, uint8 PrevCustomMode, uint8 NewCustomMode);
+    void NotifyIncomingDanger(FVector DangerOrigin, class APawn* DangerInstigator);
+    void ResetStagger();
+    void InteractTeleportUpdate(class AAbiotic_Character_ParentBP_C* InteractingCharacter, bool TryingToTeleport, bool TeleportSuccessful);
     void Broadcast_ThrowGrenade();
     void Broadcast_CombatAbility1();
     void Broadcast_CombatAbility2();
     void Broadcast_CombatAbility3();
-    void DeliverInt(bool FromSave, const int32 New Int);
+    void DeliverDynamicProperty(bool FromSave, FDynamicProperty Property);
     void PerformIdleAbility();
+    void PerformEvadeAbility(FVector DangerOrigin, class APawn* DangerInstigator);
+    void RadialWheelInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed, FName SelectionWheelContentName);
     void SetRangedAttackOnCooldown();
     void FireRanged_Projectile(FDataTableRowHandle ProjectileDataRowHandle, double DamageFromWeapon);
     void Broadcast_DoRangedAttackFX();
-    void OnInteractHighlightEnd(class UActorComponent* Component);
+    void Set New Attached Power Cord(class UCableComponent* New Power Cord);
     void Broadcast_NPCHitscanImpact(FVector HitLocation, FRotator HitNormalRotation, class AActor* HitActor, class UActorComponent* Hit Component, const FVector EndTrace, const TSubclassOf<class UDamageType> DamageType, class UPhysicalMaterial* PhysicalMaterial, FName HitBone);
     void Server_DoRangedAttack(class AActor* ShootAtTarget, FVector ShootAtLocation, int32 BurstCount);
+    void DeliverInt(bool FromSave, const int32 New Int);
+    void OnInteractHighlightEnd(class UActorComponent* Component);
     void OnInteractHighlightStart(class UActorComponent* Component);
+    void Try_DealMeleeDamage(FVector AttemptLocation);
     void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbiotic_InventoryItemSlotStruct SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
     void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbiotic_InventoryItemSlotStruct SlotData);
-    void Try_DealMeleeDamage(FVector AttemptLocation);
+    void TryDealSpinOrBehindDamage();
     void DeliverString(FString String, bool FromSave);
     void NPC_InteractWith(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
-    void TryDealSpinOrBehindDamage();
-    void InteractWith_B_LocalFX(bool Hold);
-    void InteractWith_A_LocalFX(bool Hold);
     void SetSpinAttackOnCooldown();
     void SetBehindAttackOnCooldown();
+    void InteractWith_B_LocalFX(bool Hold);
+    void InteractWith_A_LocalFX(bool Hold);
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
-    void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
-    void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void SetPowerAttackOnCooldown();
     void Server_DoMeleeAttack(class AActor* SwingAtActor, FVector SwingAtLocation);
+    void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
+    void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void Server_DoMeleeAttackCustom(TEnumAsByte<E_NPC_MeleeTypes::Type> MeleeAttackType, FVector Location);
     void TargetBlockedAttack(class AActor* Target);
@@ -438,10 +457,12 @@ class ANPC_Base_ParentBP_C : public AAbiotic_Character_ParentBP_C
     void OnCharacterSpeakingStart();
     void NPC_CreateDynamicMaterials();
     void ReceiveHit(class UPrimitiveComponent* MyComp, class AActor* Other, class UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit);
+    void OnBuffTagContainerRefreshed();
+    void ReceiveEndPlay(TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
     void ExecuteUbergraph_NPC_Base_ParentBP(int32 EntryPoint);
     void FiredWeapon__DelegateSignature();
     void CombatStateChanged__DelegateSignature(class ANPC_Base_ParentBP_C* Target NPC);
     void CombatReset__DelegateSignature(bool Success);
-}; // Size: 0x1F58
+}; // Size: 0x20A1
 
 #endif

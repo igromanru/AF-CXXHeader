@@ -81,13 +81,18 @@ class UAnimBP_Hopper_C : public UAbioticCharacterAnimInstance
     FAnimNode_SequencePlayer AnimGraphNode_SequencePlayer;                            // 0x0778 (size: 0x48)
     FAnimNode_BlendListByBool AnimGraphNode_BlendListByBool;                          // 0x07C0 (size: 0x48)
     FAnimNode_PoseSnapshot AnimGraphNode_PoseSnapshot;                                // 0x0808 (size: 0x90)
-    double Speed;                                                                     // 0x0898 (size: 0x8)
-    bool InFlight;                                                                    // 0x08A0 (size: 0x1)
-    bool Netted;                                                                      // 0x08A1 (size: 0x1)
+    bool K2Node_PropertyAccess_2;                                                     // 0x0898 (size: 0x1)
+    TEnumAsByte<E_NettedStates::Type> K2Node_PropertyAccess_1;                        // 0x0899 (size: 0x1)
+    FVector K2Node_PropertyAccess;                                                    // 0x08A0 (size: 0x18)
+    double Speed;                                                                     // 0x08B8 (size: 0x8)
+    bool InFlight;                                                                    // 0x08C0 (size: 0x1)
+    bool Netted;                                                                      // 0x08C1 (size: 0x1)
+    class ANPC_Monster_Pest_C* CachedPest;                                            // 0x08C8 (size: 0x8)
 
     void AnimGraph(FPoseLink& AnimGraph);
-    void BlueprintUpdateAnimation(float DeltaTimeX);
+    void BlueprintThreadSafeUpdateAnimation(float DeltaTime);
+    void BlueprintBeginPlay();
     void ExecuteUbergraph_AnimBP_Hopper(int32 EntryPoint);
-}; // Size: 0x8A2
+}; // Size: 0x8D0
 
 #endif

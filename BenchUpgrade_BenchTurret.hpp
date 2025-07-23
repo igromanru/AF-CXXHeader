@@ -14,6 +14,7 @@ class ABenchUpgrade_BenchTurret_C : public ABenchUpgrade_ParentBP_C
     class USphereComponent* HeatRadiusSphere;                                         // 0x0308 (size: 0x8)
     class URectLightComponent* RectLight;                                             // 0x0310 (size: 0x8)
 
+    void GetFriendlyFireDamageMultiplier(bool& Return, double& DamageMultiplier);
     void TargetableByTurrets(bool& Targetable);
     void GetWandererNPC(class ANPC_Base_ParentBP_C*& Wanderer);
     bool GetTargetPriority(TEnumAsByte<E_TargetPriority::Type>& Priority);

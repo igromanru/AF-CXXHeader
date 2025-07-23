@@ -18,7 +18,6 @@ class UW_Inventory_RepairArea_C : public UUserWidget
     void DoesLocalPlayerHaveItem?(FDataTableRowHandle Item, int32 Count, bool& Found);
     void BndEvt__Button_scrap_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__Button_repair_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
-    void Construct();
     void ExecuteUbergraph_W_Inventory_RepairArea(int32 EntryPoint);
 }; // Size: 0x32A
 

@@ -3,6 +3,6 @@
 
 class UDamageType_Explosive_DefenseBot_C : public UDamageType_Explosive_C
 {
-}; // Size: 0x270
+}; // Size: 0x290
 
 #endif

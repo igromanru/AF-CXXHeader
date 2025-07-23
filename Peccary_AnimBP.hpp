@@ -73,14 +73,20 @@ class UPeccary_AnimBP_C : public UAbioticCharacterAnimInstance
     FAnimNode_PoseSnapshot AnimGraphNode_PoseSnapshot;                                // 0x0750 (size: 0x90)
     FAnimNode_BlendListByBool AnimGraphNode_BlendListByBool;                          // 0x07E0 (size: 0x48)
     FAnimNode_SequencePlayer AnimGraphNode_SequencePlayer;                            // 0x0828 (size: 0x48)
-    double Speed;                                                                     // 0x0870 (size: 0x8)
-    bool IsInCombat;                                                                  // 0x0878 (size: 0x1)
-    int32 BlendspaceState;                                                            // 0x087C (size: 0x4)
-    bool Netted;                                                                      // 0x0880 (size: 0x1)
+    bool K2Node_PropertyAccess_3;                                                     // 0x0870 (size: 0x1)
+    TEnumAsByte<E_NettedStates::Type> K2Node_PropertyAccess_2;                        // 0x0871 (size: 0x1)
+    bool K2Node_PropertyAccess_1;                                                     // 0x0872 (size: 0x1)
+    FVector K2Node_PropertyAccess;                                                    // 0x0878 (size: 0x18)
+    double Speed;                                                                     // 0x0890 (size: 0x8)
+    bool IsInCombat;                                                                  // 0x0898 (size: 0x1)
+    int32 BlendspaceState;                                                            // 0x089C (size: 0x4)
+    bool Netted;                                                                      // 0x08A0 (size: 0x1)
+    class ANPC_Monster_Peccary_C* PeccaryOwner;                                       // 0x08A8 (size: 0x8)
 
     void AnimGraph(FPoseLink& AnimGraph);
-    void BlueprintUpdateAnimation(float DeltaTimeX);
+    void BlueprintThreadSafeUpdateAnimation(float DeltaTime);
+    void BlueprintBeginPlay();
     void ExecuteUbergraph_Peccary_AnimBP(int32 EntryPoint);
-}; // Size: 0x881
+}; // Size: 0x8B0
 
 #endif

@@ -105,7 +105,10 @@ class AAbiotic_AI_Controller_ParentBP_C : public AAbioticAIController
     TMap<TEnumAsByte<E_DialogLines::Type>, TEnumAsByte<E_AudioImportance::Type>> DialogImportanceMap; // 0x0848 (size: 0x50)
     double AggroQuipFrequency;                                                        // 0x0898 (size: 0x8)
     double TimeOfLastAggroQuip;                                                       // 0x08A0 (size: 0x8)
+    double ExitCombatQuipFrequency;                                                   // 0x08A8 (size: 0x8)
+    double TimeOfLastExitCombatQuip;                                                  // 0x08B0 (size: 0x8)
 
+    void GetFriendlyFireDamageMultiplier(bool& Return, double& DamageMultiplier);
     void TargetableByTurrets(bool& Targetable);
     void GetWandererNPC(class ANPC_Base_ParentBP_C*& Wanderer);
     bool GetTargetPriority(TEnumAsByte<E_TargetPriority::Type>& Priority);
@@ -119,6 +122,7 @@ class AAbiotic_AI_Controller_ParentBP_C : public AAbioticAIController
     void TargetableByNPCs(bool Maintain, bool& Targetable);
     void GetSpottablePoints(TArray<FVector>& SpottablePoints);
     void GetFactionTeam(TEnumAsByte<E_Factions::Type>& Faction);
+    bool IsTargetInvisible(class AActor* CombatTarget);
     void OnUniqueIdleAbilityAborted();
     void GetCurrentLightLevelFromTarget(class AActor* InTarget, double& OutLightLevel);
     bool HasTouchedTarget(class AActor* TargetActor);
@@ -221,6 +225,6 @@ class AAbiotic_AI_Controller_ParentBP_C : public AAbioticAIController
     void UniqueIdleReset__DelegateSignature(bool Success);
     void PatrolPath_ReachedEndPoint__DelegateSignature();
     void PatrolPath_ReturnedHome__DelegateSignature();
-}; // Size: 0x8A8
+}; // Size: 0x8B8
 
 #endif

@@ -6,7 +6,7 @@ class UW_HUD_NewRecipeNotify_C : public UUserWidget
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UWidgetAnimation* Pulse;                                                    // 0x02E8 (size: 0x8)
     class UWidgetAnimation* FadeOut;                                                  // 0x02F0 (size: 0x8)
-    class UWidgetAnimation* PopIn;                                                    // 0x02F8 (size: 0x8)
+    class UWidgetAnimation* Popin;                                                    // 0x02F8 (size: 0x8)
     class UImage* Icon;                                                               // 0x0300 (size: 0x8)
     class UW_Keybind_C* Keybind_Recipe;                                               // 0x0308 (size: 0x8)
     class UTextBlock* RecipeText;                                                     // 0x0310 (size: 0x8)

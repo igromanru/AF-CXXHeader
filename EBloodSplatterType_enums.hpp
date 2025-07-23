@@ -10,7 +10,8 @@ namespace EBloodSplatterType {
         NewEnumerator9 = 7,
         NewEnumerator10 = 8,
         NewEnumerator11 = 9,
-        EBloodSplatterType_MAX = 10,
+        NewEnumerator12 = 10,
+        EBloodSplatterType_MAX = 11,
     };
 }
 

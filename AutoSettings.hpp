@@ -211,6 +211,7 @@ class USettingsManager : public UEngineSubsystem
     FString IniFilename;                                                              // 0x0040 (size: 0x10)
 
     void SaveSettingStatic(FAutoSettingData SettingData);
+    void SaveSettings();
     void ResetSettings();
     void AutoDetectSettingsStatic(int32 WorkScale, float CPUMultiplier, float GPUMultiplier);
     void ApplySettingStatic(FAutoSettingData SettingData);

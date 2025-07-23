@@ -404,9 +404,9 @@ class UNavCollision : public UNavCollisionBase
 
 class UNavLinkComponent : public UPrimitiveComponent
 {
-    TArray<FNavigationLink> Links;                                                    // 0x0520 (size: 0x10)
+    TArray<FNavigationLink> Links;                                                    // 0x0528 (size: 0x10)
 
-}; // Size: 0x530
+}; // Size: 0x540
 
 class UNavLinkCustomComponent : public UNavRelevantComponent
 {
@@ -464,9 +464,9 @@ class UNavRelevantComponent : public UActorComponent
 
 class UNavigationGraphNodeComponent : public USceneComponent
 {
-    FNavGraphNode Node;                                                               // 0x0230 (size: 0x18)
-    class UNavigationGraphNodeComponent* NextNodeComponent;                           // 0x0248 (size: 0x8)
-    class UNavigationGraphNodeComponent* PrevNodeComponent;                           // 0x0250 (size: 0x8)
+    FNavGraphNode Node;                                                               // 0x0238 (size: 0x18)
+    class UNavigationGraphNodeComponent* NextNodeComponent;                           // 0x0250 (size: 0x8)
+    class UNavigationGraphNodeComponent* PrevNodeComponent;                           // 0x0258 (size: 0x8)
 
 }; // Size: 0x260
 

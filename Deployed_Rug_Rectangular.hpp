@@ -3,6 +3,6 @@
 
 class ADeployed_Rug_Rectangular_C : public ADeployed_Rug_ParentBP_C
 {
-}; // Size: 0x930
+}; // Size: 0x849
 
 #endif

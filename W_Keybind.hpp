@@ -15,7 +15,11 @@ class UW_Keybind_C : public UUserWidget
     FSlateFontInfo TextFont;                                                          // 0x0348 (size: 0x60)
     bool UseBrackets;                                                                 // 0x03A8 (size: 0x1)
     bool HoldKey;                                                                     // 0x03A9 (size: 0x1)
+    FW_Keybind_CKeybindUpdated KeybindUpdated;                                        // 0x03B0 (size: 0x10)
+    void KeybindUpdated();
+    bool HideIfUnbound;                                                               // 0x03C0 (size: 0x1)
 
+    void IsBound(bool& bIsBound);
     void SetKeybind(const FKeybindSettingRowHandle& KeyBind);
     void ApplyKeybind(const FKeybindSetting& KeybindSetting, bool UsingGamepad);
     void Refresh();
@@ -27,6 +31,7 @@ class UW_Keybind_C : public UUserWidget
     void PlayHoldProgressAnimation(double InteractionDuration, double StartTime);
     void StopHoldProgressAnimation();
     void ExecuteUbergraph_W_Keybind(int32 EntryPoint);
-}; // Size: 0x3AA
+    void KeybindUpdated__DelegateSignature();
+}; // Size: 0x3C1
 
 #endif

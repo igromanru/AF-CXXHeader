@@ -221,7 +221,7 @@ class UGrassInstancedStaticMeshComponent : public UHierarchicalInstancedStaticMe
 
 class UInteractiveFoliageComponent : public UStaticMeshComponent
 {
-}; // Size: 0x5E0
+}; // Size: 0x5F0
 
 class UProceduralFoliageComponent : public UActorComponent
 {

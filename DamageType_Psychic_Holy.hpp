@@ -3,6 +3,6 @@
 
 class UDamageType_Psychic_Holy_C : public UDamageType_Psychic_C
 {
-}; // Size: 0x270
+}; // Size: 0x290
 
 #endif

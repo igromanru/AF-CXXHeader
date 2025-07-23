@@ -3,10 +3,10 @@
 
 class AContainer_TraderStorage_Autosalvager_C : public AContainer_TraderStorage_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0A48 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0970 (size: 0x8)
 
     void ReceiveBeginPlay();
     void ExecuteUbergraph_Container_TraderStorage_Autosalvager(int32 EntryPoint);
-}; // Size: 0xA50
+}; // Size: 0x978
 
 #endif

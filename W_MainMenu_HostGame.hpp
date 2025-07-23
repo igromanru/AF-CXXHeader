@@ -20,6 +20,7 @@ class UW_MainMenu_HostGame_C : public UW_HostMenu_Parent_C
     int32 MaxPlayerCount;                                                             // 0x034C (size: 0x4)
     class UW_MenuPopup_YesNo_C* CurrentPopup;                                         // 0x0350 (size: 0x8)
     class UW_PopupPleaseWait_C* PleaseWaitPopup;                                      // 0x0358 (size: 0x8)
+    class UW_LevelSavingScreen_C* AsyncBlockerPopup;                                  // 0x0360 (size: 0x8)
 
     void SavePreferences();
     void LoadPreferences();
@@ -38,6 +39,6 @@ class UW_MainMenu_HostGame_C : public UW_HostMenu_Parent_C
     void HostGameSelected();
     void BndEvt__W_MainMenu_HostGame_W_HostGameSetup_K2Node_ComponentBoundEvent_1_SandboxSettingsPressed__DelegateSignature();
     void ExecuteUbergraph_W_MainMenu_HostGame(int32 EntryPoint);
-}; // Size: 0x360
+}; // Size: 0x368
 
 #endif

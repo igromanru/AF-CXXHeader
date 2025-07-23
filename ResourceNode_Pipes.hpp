@@ -3,6 +3,6 @@
 
 class AResourceNode_Pipes_C : public AResourceNode_ParentBP_C
 {
-}; // Size: 0x4CC
+}; // Size: 0x4D4
 
 #endif

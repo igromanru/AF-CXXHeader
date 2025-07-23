@@ -3,9 +3,9 @@
 
 class AGATE_ChargingStation_C : public ADeployed_ChargingStation_ParentBP_C
 {
-    class UStaticMeshComponent* ChargingPadPulse;                                     // 0x09B0 (size: 0x8)
+    class UStaticMeshComponent* ChargingPadPulse;                                     // 0x08D8 (size: 0x8)
 
     void UpdatePercentageChargeFX();
-}; // Size: 0x9B8
+}; // Size: 0x8E0
 
 #endif

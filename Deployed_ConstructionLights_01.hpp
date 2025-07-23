@@ -3,6 +3,6 @@
 
 class ADeployed_ConstructionLights_01_C : public AAbioticDeployed_Lamp_ParentBP_C
 {
-}; // Size: 0x9A0
+}; // Size: 0x8C0
 
 #endif

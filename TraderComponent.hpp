@@ -42,9 +42,11 @@ class UTraderComponent_C : public UActorComponent
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void CanUseSharedInteraction(bool& Can Use);
+    void Pickup Purchased Items(class AAbiotic_PlayerCharacter_C* PurchasingPlayer, const FAbioticItemCount_Struct& ItemPurchase, int32 Count);
+    void TrySayRandomPurchaseLine(bool Positive);
     void Local_CheckForUIRefresh();
     void OnRep_TradeStock();
-    bool Server_MakePurchase(int32 TraderItemIndex);
+    bool Server_MakePurchase(int32 TraderItemIndex, int32 PurchaseAmount);
     bool Server_SetTradeStockData(TArray<int32>& NewTradeStock);
     void GetTradeData(FDataTableRowHandle& TradeItemsRow, TArray<int32>& TradeStock);
     void GenerateNewInventory();
@@ -74,7 +76,7 @@ class UTraderComponent_C : public UActorComponent
     void ReceiveBeginPlay();
     void Server_SetTraderStock(TArray<int32>& NewTradeStock);
     void Local_OpenTraderWindow();
-    void Server_PerformItemPurchase(int32 TradeIndex, class AAbiotic_PlayerCharacter_C* CustomerCharacter);
+    void Server_PerformItemPurchase(int32 TradeIndex, class AAbiotic_PlayerCharacter_C* CustomerCharacter, int32 PurchaseAmount);
     void Local_CloseTraderWindow();
     void Server_TrySayPurchaseLine(bool Positive);
     void ExecuteUbergraph_TraderComponent(int32 EntryPoint);

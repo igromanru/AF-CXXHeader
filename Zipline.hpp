@@ -3,19 +3,19 @@
 
 class AZipline_C : public AAbioticActor_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
-    class UDecalComponent* Decal;                                                     // 0x02D0 (size: 0x8)
-    class UPointLightComponent* PointLight;                                           // 0x02D8 (size: 0x8)
-    class UStaticMeshComponent* LED;                                                  // 0x02E0 (size: 0x8)
-    class UCapsuleComponent* InteractionCapsule;                                      // 0x02E8 (size: 0x8)
-    class USceneComponent* CableInteractionRoot;                                      // 0x02F0 (size: 0x8)
-    class UStaticMeshComponent* StaticMesh;                                           // 0x02F8 (size: 0x8)
-    class USceneComponent* EndWorldLocation;                                          // 0x0300 (size: 0x8)
-    class UCableComponent* ZiplineCable;                                              // 0x0308 (size: 0x8)
-    bool NoEarlyExit;                                                                 // 0x0310 (size: 0x1)
-    double SpeedModifier;                                                             // 0x0318 (size: 0x8)
-    FVector NewZiplineStartLocation;                                                  // 0x0320 (size: 0x18)
-    bool BlinkingLight;                                                               // 0x0338 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D0 (size: 0x8)
+    class UDecalComponent* Decal;                                                     // 0x02D8 (size: 0x8)
+    class UPointLightComponent* PointLight;                                           // 0x02E0 (size: 0x8)
+    class UStaticMeshComponent* LED;                                                  // 0x02E8 (size: 0x8)
+    class UCapsuleComponent* InteractionCapsule;                                      // 0x02F0 (size: 0x8)
+    class USceneComponent* CableInteractionRoot;                                      // 0x02F8 (size: 0x8)
+    class UStaticMeshComponent* StaticMesh;                                           // 0x0300 (size: 0x8)
+    class USceneComponent* EndWorldLocation;                                          // 0x0308 (size: 0x8)
+    class UCableComponent* ZiplineCable;                                              // 0x0310 (size: 0x8)
+    bool NoEarlyExit;                                                                 // 0x0318 (size: 0x1)
+    double SpeedModifier;                                                             // 0x0320 (size: 0x8)
+    FVector NewZiplineStartLocation;                                                  // 0x0328 (size: 0x18)
+    bool BlinkingLight;                                                               // 0x0340 (size: 0x1)
 
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
@@ -61,7 +61,8 @@ class AZipline_C : public AAbioticActor_C
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void ReceiveBeginPlay();
     void ReceiveTick(float DeltaSeconds);
+    void ReceiveEndPlay(TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
     void ExecuteUbergraph_Zipline(int32 EntryPoint);
-}; // Size: 0x339
+}; // Size: 0x341
 
 #endif

@@ -18,49 +18,54 @@ class UW_PlayerInventory_Main_C : public UAbioticWidget
     class UWidgetSwitcher* InventoryCustomSwitcher;                                   // 0x0340 (size: 0x8)
     class UW_Inventory_HealthPanel_C* InventoryHealthPanel;                           // 0x0348 (size: 0x8)
     class UCanvasPanel* InventoryMain;                                                // 0x0350 (size: 0x8)
-    class UW_Player_Journal_Main_C* JournalWidget;                                    // 0x0358 (size: 0x8)
-    class UBackgroundBlur* NewItemBlockerBlur;                                        // 0x0360 (size: 0x8)
-    class UCanvasPanel* Panel_Crafting;                                               // 0x0368 (size: 0x8)
-    class UCanvasPanel* Panel_Health;                                                 // 0x0370 (size: 0x8)
-    class UCanvasPanel* Panel_Journal;                                                // 0x0378 (size: 0x8)
-    class UCanvasPanel* Panel_Primary;                                                // 0x0380 (size: 0x8)
-    class UCanvasPanel* Panel_Skills;                                                 // 0x0388 (size: 0x8)
-    class UW_TraderScreen_C* Panel_TraderScreen;                                      // 0x0390 (size: 0x8)
-    class UW_Inventory_RepairArea_C* RepairArea;                                      // 0x0398 (size: 0x8)
-    class UImage* TestTube_BG;                                                        // 0x03A0 (size: 0x8)
-    class UW_Inventory_Transmog_C* transmog;                                          // 0x03A8 (size: 0x8)
-    class UCanvasPanel* UIPopupPanel;                                                 // 0x03B0 (size: 0x8)
-    class UW_CraftingRewardPopup_C* W_CraftingRewardPopup;                            // 0x03B8 (size: 0x8)
-    class UW_Inventory_CraftingArea_C* W_Inventory_CraftingArea;                      // 0x03C0 (size: 0x8)
-    class UW_Inventory_EquipSlots_C* W_Inventory_EquipSlots;                          // 0x03C8 (size: 0x8)
-    class UW_Inventory_NavBar_C* W_Inventory_NavBar;                                  // 0x03D0 (size: 0x8)
-    class UW_Inventory_PlayerBackpack_C* W_Inventory_PlayerBackpack;                  // 0x03D8 (size: 0x8)
-    class UW_InventoryGenericDropArea_C* W_InventoryGenericDropArea;                  // 0x03E0 (size: 0x8)
-    class UW_Player_Skills_C* W_Player_Skills;                                        // 0x03E8 (size: 0x8)
-    class UW_PlayerHUD_Hotbar_C* W_PlayerHUD_Hotbar;                                  // 0x03F0 (size: 0x8)
-    class UW_SplitStackMenu_C* W_SplitStackMenu;                                      // 0x03F8 (size: 0x8)
-    class UWidgetSwitcher* WS_Primary;                                                // 0x0400 (size: 0x8)
-    class UWidgetSwitcher* WS_PrimaryRightPanel;                                      // 0x0408 (size: 0x8)
-    class AAbiotic_PlayerCharacter_C* OwningCharacter;                                // 0x0410 (size: 0x8)
-    TArray<FDataTableRowHandle> CurrentCraftingBenchesInRange;                        // 0x0418 (size: 0x10)
-    EInventoryMode InventoryMode;                                                     // 0x0428 (size: 0x1)
-    class UAbiotic_InventoryComponent_C* ActiveContainer;                             // 0x0430 (size: 0x8)
-    bool LShiftModifierHeld;                                                          // 0x0438 (size: 0x1)
-    FString BackpackName;                                                             // 0x0440 (size: 0x10)
-    class UW_Player_Journal_Main_C* W Player Journal Main;                            // 0x0450 (size: 0x8)
-    FString TakeAllInputAction;                                                       // 0x0458 (size: 0x10)
-    bool TakeAllActionInProgress;                                                     // 0x0468 (size: 0x1)
-    float Time Last Used Pager;                                                       // 0x046C (size: 0x4)
-    class UW_InventoryItemSlot_C* HoveredSlotWidget;                                  // 0x0470 (size: 0x8)
-    FW_PlayerInventory_Main_CJournal_Entry_Update Journal_Entry_Update;               // 0x0478 (size: 0x10)
+    class UW_Inventory_UpgradeBench_C* ItemUpgradeBench;                              // 0x0358 (size: 0x8)
+    class UW_Player_Journal_Main_C* JournalWidget;                                    // 0x0360 (size: 0x8)
+    class UBackgroundBlur* NewItemBlockerBlur;                                        // 0x0368 (size: 0x8)
+    class UCanvasPanel* Panel_Crafting;                                               // 0x0370 (size: 0x8)
+    class UCanvasPanel* Panel_Health;                                                 // 0x0378 (size: 0x8)
+    class UCanvasPanel* Panel_Journal;                                                // 0x0380 (size: 0x8)
+    class UCanvasPanel* Panel_Primary;                                                // 0x0388 (size: 0x8)
+    class UCanvasPanel* Panel_Skills;                                                 // 0x0390 (size: 0x8)
+    class UW_TraderScreen_C* Panel_TraderScreen;                                      // 0x0398 (size: 0x8)
+    class UW_Inventory_RepairArea_C* RepairArea;                                      // 0x03A0 (size: 0x8)
+    class UImage* TestTube_BG;                                                        // 0x03A8 (size: 0x8)
+    class UW_Inventory_Transmog_C* transmog;                                          // 0x03B0 (size: 0x8)
+    class UCanvasPanel* UIPopupPanel;                                                 // 0x03B8 (size: 0x8)
+    class UW_CraftingRewardPopup_C* W_CraftingRewardPopup;                            // 0x03C0 (size: 0x8)
+    class UW_Inventory_CraftingArea_C* W_Inventory_CraftingArea;                      // 0x03C8 (size: 0x8)
+    class UW_Inventory_EquipSlots_C* W_Inventory_EquipSlots;                          // 0x03D0 (size: 0x8)
+    class UW_Inventory_NavBar_C* W_Inventory_NavBar;                                  // 0x03D8 (size: 0x8)
+    class UW_Inventory_PlayerBackpack_C* W_Inventory_PlayerBackpack;                  // 0x03E0 (size: 0x8)
+    class UW_InventoryGenericDropArea_C* W_InventoryGenericDropArea;                  // 0x03E8 (size: 0x8)
+    class UW_Player_Skills_C* W_Player_Skills;                                        // 0x03F0 (size: 0x8)
+    class UW_PlayerHUD_Hotbar_C* W_PlayerHUD_Hotbar;                                  // 0x03F8 (size: 0x8)
+    class UW_SplitStackMenu_C* W_SplitStackMenu;                                      // 0x0400 (size: 0x8)
+    class UWidgetSwitcher* WS_Primary;                                                // 0x0408 (size: 0x8)
+    class UWidgetSwitcher* WS_PrimaryRightPanel;                                      // 0x0410 (size: 0x8)
+    class AAbiotic_PlayerCharacter_C* OwningCharacter;                                // 0x0418 (size: 0x8)
+    TArray<FDataTableRowHandle> CurrentCraftingBenchesInRange;                        // 0x0420 (size: 0x10)
+    EInventoryMode InventoryMode;                                                     // 0x0430 (size: 0x1)
+    class UAbiotic_InventoryComponent_C* ActiveContainer;                             // 0x0438 (size: 0x8)
+    bool LShiftModifierHeld;                                                          // 0x0440 (size: 0x1)
+    FString BackpackName;                                                             // 0x0448 (size: 0x10)
+    class UW_Player_Journal_Main_C* W Player Journal Main;                            // 0x0458 (size: 0x8)
+    FString TakeAllInputAction;                                                       // 0x0460 (size: 0x10)
+    bool TakeAllActionInProgress;                                                     // 0x0470 (size: 0x1)
+    float Time Last Used Pager;                                                       // 0x0474 (size: 0x4)
+    class UW_InventoryItemSlot_C* HoveredSlotWidget;                                  // 0x0478 (size: 0x8)
+    FW_PlayerInventory_Main_CJournal_Entry_Update Journal_Entry_Update;               // 0x0480 (size: 0x10)
     void Journal_Entry_Update();
-    FW_PlayerInventory_Main_CInventoryModeRefreshed InventoryModeRefreshed;           // 0x0488 (size: 0x10)
+    FW_PlayerInventory_Main_CInventoryModeRefreshed InventoryModeRefreshed;           // 0x0490 (size: 0x10)
     void InventoryModeRefreshed(EInventoryMode InventoryMode);
-    FW_PlayerInventory_Main_COnInventoryClosed OnInventoryClosed;                     // 0x0498 (size: 0x10)
+    FW_PlayerInventory_Main_COnInventoryClosed OnInventoryClosed;                     // 0x04A0 (size: 0x10)
     void OnInventoryClosed();
-    bool CtrlModifierHeld;                                                            // 0x04A8 (size: 0x1)
-    class UTraderComponent_C* ActiveTrader;                                           // 0x04B0 (size: 0x8)
+    bool CtrlModifierHeld;                                                            // 0x04B0 (size: 0x1)
+    class UTraderComponent_C* ActiveTrader;                                           // 0x04B8 (size: 0x8)
+    class UW_InventoryItemSlot_C* LastHoveredSlotWidget;                              // 0x04C0 (size: 0x8)
 
+    void WidgetAction_DPadDirection(TEnumAsByte<E_NavigationDirection::Type> Direction, bool& Handled);
+    void WidgetAction_FaceTop(bool& Handled);
+    void WidgetAction_CycleCrafting(bool Next, bool& Handled);
     void WidgetAction_CycleMenu(bool Next, bool& Handled);
     void WidgetAction_CloseMenu(bool& Handled);
     void SetUniqueInventoryTheme();
@@ -84,29 +89,30 @@ class UW_PlayerInventory_Main_C : public UAbioticWidget
     void RefreshInventoryMode();
     FEventReply OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
     void UpdateMoney();
-    void Construct();
     void TryUsePager(class AActor* LinkedActor);
     void Tab_Backpack(bool bIsChecked);
-    void CloseInventory();
     void Tab_Crafting(bool bIsChecked);
     void Tab_Health(bool bIsChecked);
     void Tab_Journal(bool bIsChecked);
     void Tab_Skills(bool bIsChecked);
     void JournalEntriesViewed();
     void Toggle_NewItemBlurOverlay(bool Show, bool UserHidPopup);
+    void Construct();
+    void CloseInventory();
     void UpdateHealthPanelBody();
     void BndEvt__W_PlayerInventory_Main_W_Inventory_NavBar_K2Node_ComponentBoundEvent_1_CycleNavTab__DelegateSignature(bool Next);
     void StatContainerRefreshed();
     void UpdateBodyTemp();
     void InventoryUpdated_Equipment(class UAbiotic_InventoryComponent_C* Inventory);
-    void BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void UpdateInventoryBlur();
     void TryCloseInventory();
     void Delayed_CheckCharacterPaneRotation();
+    void DelayedFocusPlayerInventory();
+    void BndEvt__Button_0_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void ExecuteUbergraph_W_PlayerInventory_Main(int32 EntryPoint);
     void OnInventoryClosed__DelegateSignature();
     void InventoryModeRefreshed__DelegateSignature(EInventoryMode InventoryMode);
     void Journal_Entry_Update__DelegateSignature();
-}; // Size: 0x4B8
+}; // Size: 0x4C8
 
 #endif

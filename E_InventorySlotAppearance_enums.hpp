@@ -5,7 +5,12 @@ namespace E_InventorySlotAppearance {
         NewEnumerator2 = 2,
         NewEnumerator3 = 3,
         NewEnumerator4 = 4,
-        E_MAX = 5,
+        NewEnumerator5 = 5,
+        NewEnumerator6 = 6,
+        NewEnumerator7 = 7,
+        NewEnumerator8 = 8,
+        NewEnumerator9 = 9,
+        E_MAX = 10,
     };
 }
 

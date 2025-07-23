@@ -21,13 +21,13 @@ class UW_CookingPrompt_C : public UUserWidget
     class UImage* Steam1;                                                             // 0x0358 (size: 0x8)
     class UImage* Steam2;                                                             // 0x0360 (size: 0x8)
     class UImage* Steam3;                                                             // 0x0368 (size: 0x8)
-    TArray<FAbioticItemCount_Struct> CachedIngredients;                               // 0x0370 (size: 0x10)
+    TArray<FName> CachedIngredients;                                                  // 0x0370 (size: 0x10)
     class ACookingProxy_BP_C* CookingProxy;                                           // 0x0380 (size: 0x8)
     int32 CachedLiquidLevel;                                                          // 0x0388 (size: 0x4)
 
     void CheckCookingValid();
     void UpdateSoupDetails();
-    void AddIngredient(FAbioticItemCount_Struct Item, class UW_InventoryItemSlot_C* Slot);
+    void AddIngredient(FName Item, class UW_InventoryItemSlot_C* Slot);
     void Construct();
     void OnSoupDisplayUpdated();
     void OnProxyDestroyed(class AActor* DestroyedActor);

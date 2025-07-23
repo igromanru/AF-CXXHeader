@@ -21,6 +21,7 @@ class ASecurityDoor_C : public AActor
     class AAbiotic_TriggerVolume_ParentBP_C* TriggerToActivateUponOpen;               // 0x0378 (size: 0x8)
     bool OpenTriggerActivated;                                                        // 0x0380 (size: 0x1)
     bool ShouldSave;                                                                  // 0x0381 (size: 0x1)
+    bool NoReset;                                                                     // 0x0382 (size: 0x1)
 
     void OnRep_IsDoorOpen();
     void UserConstructionScript();
@@ -31,7 +32,8 @@ class ASecurityDoor_C : public AActor
     void DoorTimeline();
     void ReceiveBeginPlay();
     void ButtonPressed(bool Activated);
+    void ShowButtons();
     void ExecuteUbergraph_SecurityDoor(int32 EntryPoint);
-}; // Size: 0x382
+}; // Size: 0x383
 
 #endif

@@ -58,12 +58,12 @@ class UFieldSystem : public UObject
 
 class UFieldSystemComponent : public UPrimitiveComponent
 {
-    class UFieldSystem* FieldSystem;                                                  // 0x0518 (size: 0x8)
-    bool bIsWorldField;                                                               // 0x0520 (size: 0x1)
-    bool bIsChaosField;                                                               // 0x0521 (size: 0x1)
-    TArray<TSoftObjectPtr<AChaosSolverActor>> SupportedSolvers;                       // 0x0528 (size: 0x10)
-    FFieldObjectCommands ConstructionCommands;                                        // 0x0538 (size: 0x30)
-    FFieldObjectCommands BufferCommands;                                              // 0x0568 (size: 0x30)
+    class UFieldSystem* FieldSystem;                                                  // 0x0520 (size: 0x8)
+    bool bIsWorldField;                                                               // 0x0528 (size: 0x1)
+    bool bIsChaosField;                                                               // 0x0529 (size: 0x1)
+    TArray<TSoftObjectPtr<AChaosSolverActor>> SupportedSolvers;                       // 0x0530 (size: 0x10)
+    FFieldObjectCommands ConstructionCommands;                                        // 0x0540 (size: 0x30)
+    FFieldObjectCommands BufferCommands;                                              // 0x0570 (size: 0x30)
 
     void ResetFieldSystem();
     void RemovePersistentFields();

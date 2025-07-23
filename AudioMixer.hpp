@@ -248,32 +248,32 @@ class USubmixEffectSubmixEQPreset : public USoundEffectSubmixPreset
 
 class USynthComponent : public USceneComponent
 {
-    uint8 bAutoDestroy;                                                               // 0x0230 (size: 0x1)
-    uint8 bStopWhenOwnerDestroyed;                                                    // 0x0230 (size: 0x1)
-    uint8 bAllowSpatialization;                                                       // 0x0230 (size: 0x1)
-    uint8 bOverrideAttenuation;                                                       // 0x0230 (size: 0x1)
-    uint8 bEnableBusSends;                                                            // 0x0234 (size: 0x1)
-    uint8 bEnableBaseSubmix;                                                          // 0x0234 (size: 0x1)
-    uint8 bEnableSubmixSends;                                                         // 0x0234 (size: 0x1)
-    class USoundAttenuation* AttenuationSettings;                                     // 0x0238 (size: 0x8)
-    FSoundAttenuationSettings AttenuationOverrides;                                   // 0x0240 (size: 0x3D0)
-    class USoundConcurrency* ConcurrencySettings;                                     // 0x0610 (size: 0x8)
-    TSet<USoundConcurrency*> ConcurrencySet;                                          // 0x0618 (size: 0x50)
-    FSoundModulationDefaultRoutingSettings ModulationRouting;                         // 0x0668 (size: 0x168)
-    class USoundClass* SoundClass;                                                    // 0x07D0 (size: 0x8)
-    class USoundEffectSourcePresetChain* SourceEffectChain;                           // 0x07D8 (size: 0x8)
-    class USoundSubmixBase* SoundSubmix;                                              // 0x07E0 (size: 0x8)
-    TArray<FSoundSubmixSendInfo> SoundSubmixSends;                                    // 0x07E8 (size: 0x10)
-    TArray<FSoundSourceBusSendInfo> BusSends;                                         // 0x07F8 (size: 0x10)
-    TArray<FSoundSourceBusSendInfo> PreEffectBusSends;                                // 0x0808 (size: 0x10)
-    uint8 bIsUISound;                                                                 // 0x0818 (size: 0x1)
-    uint8 bIsPreviewSound;                                                            // 0x0818 (size: 0x1)
-    int32 EnvelopeFollowerAttackTime;                                                 // 0x081C (size: 0x4)
-    int32 EnvelopeFollowerReleaseTime;                                                // 0x0820 (size: 0x4)
-    FSynthComponentOnAudioEnvelopeValue OnAudioEnvelopeValue;                         // 0x0828 (size: 0x10)
+    uint8 bAutoDestroy;                                                               // 0x0238 (size: 0x1)
+    uint8 bStopWhenOwnerDestroyed;                                                    // 0x0238 (size: 0x1)
+    uint8 bAllowSpatialization;                                                       // 0x0238 (size: 0x1)
+    uint8 bOverrideAttenuation;                                                       // 0x0238 (size: 0x1)
+    uint8 bEnableBusSends;                                                            // 0x023C (size: 0x1)
+    uint8 bEnableBaseSubmix;                                                          // 0x023C (size: 0x1)
+    uint8 bEnableSubmixSends;                                                         // 0x023C (size: 0x1)
+    class USoundAttenuation* AttenuationSettings;                                     // 0x0240 (size: 0x8)
+    FSoundAttenuationSettings AttenuationOverrides;                                   // 0x0248 (size: 0x3D0)
+    class USoundConcurrency* ConcurrencySettings;                                     // 0x0618 (size: 0x8)
+    TSet<USoundConcurrency*> ConcurrencySet;                                          // 0x0620 (size: 0x50)
+    FSoundModulationDefaultRoutingSettings ModulationRouting;                         // 0x0670 (size: 0x168)
+    class USoundClass* SoundClass;                                                    // 0x07D8 (size: 0x8)
+    class USoundEffectSourcePresetChain* SourceEffectChain;                           // 0x07E0 (size: 0x8)
+    class USoundSubmixBase* SoundSubmix;                                              // 0x07E8 (size: 0x8)
+    TArray<FSoundSubmixSendInfo> SoundSubmixSends;                                    // 0x07F0 (size: 0x10)
+    TArray<FSoundSourceBusSendInfo> BusSends;                                         // 0x0800 (size: 0x10)
+    TArray<FSoundSourceBusSendInfo> PreEffectBusSends;                                // 0x0810 (size: 0x10)
+    uint8 bIsUISound;                                                                 // 0x0820 (size: 0x1)
+    uint8 bIsPreviewSound;                                                            // 0x0820 (size: 0x1)
+    int32 EnvelopeFollowerAttackTime;                                                 // 0x0824 (size: 0x4)
+    int32 EnvelopeFollowerReleaseTime;                                                // 0x0828 (size: 0x4)
+    FSynthComponentOnAudioEnvelopeValue OnAudioEnvelopeValue;                         // 0x0830 (size: 0x10)
     void OnSynthEnvelopeValue(const float EnvelopeValue);
-    class USynthSound* Synth;                                                         // 0x0858 (size: 0x8)
-    class UAudioComponent* AudioComponent;                                            // 0x0860 (size: 0x8)
+    class USynthSound* Synth;                                                         // 0x0860 (size: 0x8)
+    class UAudioComponent* AudioComponent;                                            // 0x0868 (size: 0x8)
 
     void Stop();
     void Start();
@@ -292,7 +292,7 @@ class USynthComponent : public USceneComponent
     void FadeOut(float FadeOutDuration, float FadeVolumeLevel, const EAudioFaderCurve FadeCurve);
     void FadeIn(float FadeInDuration, float FadeVolumeLevel, float StartTime, const EAudioFaderCurve FadeCurve);
     void AdjustVolume(float AdjustVolumeDuration, float AdjustVolumeLevel, const EAudioFaderCurve FadeCurve);
-}; // Size: 0x890
+}; // Size: 0x8A0
 
 class USynthSound : public USoundWaveProcedural
 {

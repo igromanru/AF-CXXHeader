@@ -52,7 +52,24 @@ class UAbiotic_CharacterProgressionComponent_C : public UActorComponent
     TArray<FName> PinnedRecipes;                                                      // 0x0458 (size: 0x10)
     class UCurveFloat* ThrowingXPDamage_Curve;                                        // 0x0468 (size: 0x8)
     class UCurveFloat* ThrowingXPDistance_Curve;                                      // 0x0470 (size: 0x8)
+    TArray<FName> PendingRecipesToUnlock;                                             // 0x0478 (size: 0x10)
+    bool HasCachedRecipeItemMap;                                                      // 0x0488 (size: 0x1)
+    TMap<class FName, class FName> CachedRecipeItemMap;                               // 0x0490 (size: 0x50)
+    TArray<FName> PendingItemsToCheck;                                                // 0x04E0 (size: 0x10)
+    TMap<class FName, class FName> StrippedRecipes;                                   // 0x04F0 (size: 0x50)
+    FAbiotic_CharacterProgressionComponent_COnNewEmailRead OnNewEmailRead;            // 0x0540 (size: 0x10)
+    void OnNewEmailRead(class UAbiotic_CharacterProgressionComponent_C* ProgressionComponent, FName NewEmail);
 
+    void ServerSetMinLevelForAllSkills(int32 MinLevel);
+    void SetTraits(TArray<FName>& NewTraits);
+    void Server_AddAllJournalEntriesFromCategory(TEnumAsByte<E_JournalEntryCategories::Type> Category, bool& Success);
+    void Server_OnLoadedFromSave();
+    void AddPendingItemToCheck(FName ItemRowName);
+    void AddPendingRecipesToUnlock(FName RecipeRowName);
+    void Server_CheckForNewSalvageItems(FName ItemPickedUpRow);
+    void Server_CheckForAllRecipeOutput();
+    void Server_CheckForItemRecipeOutput(FName ItemPickedUpRow);
+    void Server_CheckForFoundRecipeItems(bool ForceCheckAllRecipes);
     void Server_TryAwardThrownXP(const class AActor* TargetableActor, double DamageAmount, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType, class AAbioticProjectile_ParentBP_C* Projectile, bool& Success);
     void CalculateLowXPCatchup_KylieTrinket(double XPToGain, ECharacterSkills Skill, double& OutputXP);
     void Server_CheckCompendiumKills();
@@ -74,7 +91,7 @@ class UAbiotic_CharacterProgressionComponent_C : public UActorComponent
     void Server_AddMapToJournal(const FName& MapRow);
     void OnRep_CurrentMaps();
     TArray<FName> GetTraits(bool IncludePhD);
-    void InitializeTraits(FName PhD, bool FirstTime);
+    void InitializeTraits(FName PhD, bool FirstTime, bool AmnesiaThreshold);
     void Server_RemoveAllXPFromSkill(ECharacterSkills Skill);
     void ApplySkillPerksAfterLoad();
     void PlayerHasRecipeForItem(FName ItemName, bool& Found, TArray<FName>& RecipesFound);
@@ -95,7 +112,7 @@ class UAbiotic_CharacterProgressionComponent_C : public UActorComponent
     void Server_CheckForNewInventedRecipes(FName ItemPickedUpRow);
     void OnRep_ItemsPickedUpArray();
     void OnRep_RecipesUnlockedArray();
-    void Get Chef Cooking Skill(int32& CookingSkillLevel, TEnumAsByte<EFoodCookStates::Type>& ChefSkill);
+    void Get Chef Cooking Skill(int32& CookingSkillLevel, ECookingState& ChefSkill);
     void CheckForTrait_FearOfViolence(int32 CurrentLevel, TEnumAsByte<E_CharacterSkills::Type> Skill, bool& TraitBlocked);
     void PrintSkillInfo(TEnumAsByte<E_CharacterSkills::Type> Skill);
     void OnRep_CharacterSkills_Keys();
@@ -114,8 +131,11 @@ class UAbiotic_CharacterProgressionComponent_C : public UActorComponent
     void Request_InitPinnedRecipes();
     void Client_RecipePinUpdate(FName RecipeName, bool UnpinAllRecipes);
     void Client_InitPinnedRecipes(class AAbiotic_PlayerCharacter_C* OwningClient);
+    void ProcessRecipesToUnlock();
+    void ProcessItemsToCheck();
     void ExecuteUbergraph_Abiotic_CharacterProgressionComponent(int32 EntryPoint);
+    void OnNewEmailRead__DelegateSignature(class UAbiotic_CharacterProgressionComponent_C* ProgressionComponent, FName NewEmail);
     void SkillLevelUp__DelegateSignature(TEnumAsByte<E_CharacterSkills::Type> Skill, int32 NewLevel);
-}; // Size: 0x478
+}; // Size: 0x550
 
 #endif

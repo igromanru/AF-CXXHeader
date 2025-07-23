@@ -3,36 +3,46 @@
 
 class AAbiotic_Item_ParentBP_C : public AAbioticActor_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
-    class UThermalReceiverComponent* ThermalReceiver;                                 // 0x02D0 (size: 0x8)
-    class USkeletalMeshComponent* World_SkeletalMesh;                                 // 0x02D8 (size: 0x8)
-    class UStaticMeshComponent* World_StaticMesh;                                     // 0x02E0 (size: 0x8)
-    FDataTableRowHandle ItemDataRow;                                                  // 0x02E8 (size: 0x10)
-    FAbiotic_InventoryItemStruct ItemData;                                            // 0x02F8 (size: 0x650)
-    FAbiotic_InventoryChangeableDataStruct ChangeableData;                            // 0x0948 (size: 0x118)
-    bool HasBeenPickedUp;                                                             // 0x0A60 (size: 0x1)
-    FText To Interact with Text;                                                      // 0x0A68 (size: 0x10)
-    bool NoPhysics;                                                                   // 0x0A78 (size: 0x1)
-    bool NoCollision;                                                                 // 0x0A79 (size: 0x1)
-    bool PopupAfterSpawned;                                                           // 0x0A7A (size: 0x1)
-    FTimerHandle PhysicsSleepHandle;                                                  // 0x0A80 (size: 0x8)
-    bool ShouldSimulate;                                                              // 0x0A88 (size: 0x1)
-    class USceneComponent* InitialAttachToComponent;                                  // 0x0A90 (size: 0x8)
-    FName InitialAttachToBone;                                                        // 0x0A98 (size: 0x8)
-    FTimerHandle ProjectilePrediction_Timer;                                          // 0x0AA0 (size: 0x8)
-    double ProjectilePredict_BaseSpeed;                                               // 0x0AA8 (size: 0x8)
-    double ProjectilePredict_SpeedMultiplier;                                         // 0x0AB0 (size: 0x8)
-    double Bounciness;                                                                // 0x0AB8 (size: 0x8)
-    double Collision Radius;                                                          // 0x0AC0 (size: 0x8)
-    FVector ProjectilePredict_Velocity;                                               // 0x0AC8 (size: 0x18)
-    FTimerHandle ItemDecayTimerHandle;                                                // 0x0AE0 (size: 0x8)
-    float ItemDecayInterval;                                                          // 0x0AE8 (size: 0x4)
-    bool Should Bounce;                                                               // 0x0AEC (size: 0x1)
-    FTimerHandle CookTimer;                                                           // 0x0AF0 (size: 0x8)
-    class UNiagaraComponent* CookingParticleComp;                                     // 0x0AF8 (size: 0x8)
-    bool SpawnedFromProjectileImpact;                                                 // 0x0B00 (size: 0x1)
-    class UCurveFloat* ProjectileCurve;                                               // 0x0B08 (size: 0x8)
-    bool ItemIsOffered;                                                               // 0x0B10 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D0 (size: 0x8)
+    class UThermalReceiverComponent* ThermalReceiver;                                 // 0x02D8 (size: 0x8)
+    class USkeletalMeshComponent* World_SkeletalMesh;                                 // 0x02E0 (size: 0x8)
+    class UStaticMeshComponent* World_StaticMesh;                                     // 0x02E8 (size: 0x8)
+    FDataTableRowHandle ItemDataRow;                                                  // 0x02F0 (size: 0x10)
+    FAbiotic_InventoryItemStruct ItemData;                                            // 0x0300 (size: 0x650)
+    FAbiotic_InventoryChangeableDataStruct ChangeableData;                            // 0x0950 (size: 0x88)
+    bool HasBeenPickedUp;                                                             // 0x09D8 (size: 0x1)
+    FText To Interact with Text;                                                      // 0x09E0 (size: 0x10)
+    bool NoPhysics;                                                                   // 0x09F0 (size: 0x1)
+    bool NoCollision;                                                                 // 0x09F1 (size: 0x1)
+    bool PopupAfterSpawned;                                                           // 0x09F2 (size: 0x1)
+    FTimerHandle PhysicsSleepHandle;                                                  // 0x09F8 (size: 0x8)
+    bool ShouldSimulate;                                                              // 0x0A00 (size: 0x1)
+    class USceneComponent* InitialAttachToComponent;                                  // 0x0A08 (size: 0x8)
+    FName InitialAttachToBone;                                                        // 0x0A10 (size: 0x8)
+    FTimerHandle ProjectilePrediction_Timer;                                          // 0x0A18 (size: 0x8)
+    double ProjectilePredict_BaseSpeed;                                               // 0x0A20 (size: 0x8)
+    double ProjectilePredict_SpeedMultiplier;                                         // 0x0A28 (size: 0x8)
+    double Bounciness;                                                                // 0x0A30 (size: 0x8)
+    double Collision Radius;                                                          // 0x0A38 (size: 0x8)
+    FVector ProjectilePredict_Velocity;                                               // 0x0A40 (size: 0x18)
+    FTimerHandle ItemDecayTimerHandle;                                                // 0x0A58 (size: 0x8)
+    float ItemDecayInterval;                                                          // 0x0A60 (size: 0x4)
+    bool Should Bounce;                                                               // 0x0A64 (size: 0x1)
+    FTimerHandle CookTimer;                                                           // 0x0A68 (size: 0x8)
+    class UNiagaraComponent* CookingParticleComp;                                     // 0x0A70 (size: 0x8)
+    bool SpawnedFromProjectileImpact;                                                 // 0x0A78 (size: 0x1)
+    class UCurveFloat* ProjectileCurve;                                               // 0x0A80 (size: 0x8)
+    bool ItemIsOffered;                                                               // 0x0A88 (size: 0x1)
+    class USplineComponent* PredictionSpline;                                         // 0x0A90 (size: 0x8)
+    TArray<class USplineMeshComponent*> ArcSplineMeshes;                              // 0x0A98 (size: 0x10)
+    TArray<class USplineMeshComponent*> ArcSplineBounceMeshes;                        // 0x0AA8 (size: 0x10)
+    class USplineComponent* PredictionBounceSpline;                                   // 0x0AB8 (size: 0x8)
+    bool ThrowingArcActive;                                                           // 0x0AC0 (size: 0x1)
+    bool ThrowingArcInitialized;                                                      // 0x0AC1 (size: 0x1)
+    bool AllowWristwatch;                                                             // 0x0AC2 (size: 0x1)
+    class UMaterialInterface* DynamicThrowingArcMat;                                  // 0x0AC8 (size: 0x8)
+    class UMaterialInterface* DynamicBounceArcMat;                                    // 0x0AD0 (size: 0x8)
+    FVector ThrowArcStartOffset;                                                      // 0x0AD8 (size: 0x18)
 
     float GetAmbientTemperature();
     void GetThermalOverlapPrimitives(TArray<class UPrimitiveComponent*>& OutPrimitives);
@@ -65,6 +75,12 @@ class AAbiotic_Item_ParentBP_C : public AAbioticActor_C
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void GetHighlightComponents(TArray<class UActorComponent*>& Components);
     void NPC_CanInteractWith(bool& Success);
+    bool ShouldThrowingArcPulse();
+    void AllowWristwatchUsage(bool& Allow);
+    void UpdateArcMeshes(TArray<FVector>& Points, bool Bounce);
+    void ClearThrowingArcMeshes();
+    TArray<FItemActionRowHandle> GetSecondaryItemActionArray();
+    TArray<FItemActionRowHandle> GetPrimaryItemActionArray();
     void IsItemInPinnedRecipes(bool& IsPinnedIngredient);
     void GetItemThrowSound(class USoundBase*& Sound);
     void DurabilityLossOverride(bool& Handled);
@@ -85,7 +101,6 @@ class AAbiotic_Item_ParentBP_C : public AAbioticActor_C
     void StartItemDecayTimer();
     bool GetFPUseMontageOverride(bool Secondary, TSoftObjectPtr<UAnimMontage>& Montage);
     double Get Throwing Speed Based on Skill(double BaseSpeed, double SpeedMultiplier);
-    TArray<FItemActionRowHandle> GetItemActionArray();
     void OnRep_ShouldSimulate();
     void Check Item Tag Query(class AActor* TargetActor, bool& Success, FText& PopupText);
     void CheckForPhysicsFlags();
@@ -100,49 +115,49 @@ class AAbiotic_Item_ParentBP_C : public AAbioticActor_C
     void OnLoaded_AE1796A74769F9E45686FB9613D11A6A(class UObject* Loaded);
     void OnLoaded_4A549FF641D38A691D6561A63936BF89(class UObject* Loaded);
     void OnLoaded_F3B89B67484534E24EB80A9CF8C9D1AB(class UObject* Loaded);
+    void DeliverInt(bool FromSave, const int32 New Int);
+    void Set New Attached Power Cord(class UCableComponent* New Power Cord);
+    void RadialWheelInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed, FName SelectionWheelContentName);
     void DeliverDynamicProperty(bool FromSave, FDynamicProperty Property);
     void InteractTeleportUpdate(class AAbiotic_Character_ParentBP_C* InteractingCharacter, bool TryingToTeleport, bool TeleportSuccessful);
     void ReceiveBeginPlay();
-    void Set New Attached Power Cord(class UCableComponent* New Power Cord);
-    void DeliverInt(bool FromSave, const int32 New Int);
-    void OnInteractHighlightEnd(class UActorComponent* Component);
     void OnInteractHighlightStart(class UActorComponent* Component);
-    void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbiotic_InventoryItemSlotStruct SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
     void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbiotic_InventoryItemSlotStruct SlotData);
-    void SetupItem();
     void DeliverString(FString String, bool FromSave);
+    void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void NPC_InteractWith(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
-    void UseItem_BroadcastFX(class AAbiotic_Character_ParentBP_C* UsingCharacter, bool SecondaryUse);
     void InteractWith_B_LocalFX(bool Hold);
+    void SetupItem();
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
-    void SetupItem_FirstPerson();
     void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
-    void PlayFPItemIdleAnimation(class UAnimSequence* Idle Anim, double Delay Before Playing);
+    void UseItem_BroadcastFX(class AAbiotic_Character_ParentBP_C* UsingCharacter, bool SecondaryUse);
     void Update Current Item Data();
     void UseItem_OnTarget(class AActor* TargetActor);
-    void SetupTextureVariants(const FDataTableRowHandle& TextureVariantRow);
+    void SetupItem_FirstPerson();
     void UseItemSecondary_LocalFX(class AAbiotic_Character_ParentBP_C* UsingCharacter, class AActor* TargetActor);
+    void PlayFPItemIdleAnimation(class UAnimSequence* Idle Anim, double Delay Before Playing);
     void TryPerformBatteryChangeOnUse();
+    void Use Item_Secondary(class AAbiotic_Character_ParentBP_C* UsingCharacter, FTransform Transform, class AActor* TargetActor);
+    void SetupTextureVariants(const FDataTableRowHandle& TextureVariantRow);
+    void UseItem_LocalFX(class AAbiotic_Character_ParentBP_C* UsingCharacter, class AActor* TargetActor);
+    void UseItem(class AAbiotic_Character_ParentBP_C* UsingCharacter, FTransform Transform, class AActor* TargetActor);
     void InteractWith_A_LocalFX(bool Hold);
     void TriggerPhysicsCheck();
     void PhysicsSleepCheck();
-    void Use Item_Secondary(class AAbiotic_Character_ParentBP_C* UsingCharacter, FTransform Transform, class AActor* TargetActor);
-    void UseItem_LocalFX(class AAbiotic_Character_ParentBP_C* UsingCharacter, class AActor* TargetActor);
-    void UseItem(class AAbiotic_Character_ParentBP_C* UsingCharacter, FTransform Transform, class AActor* TargetActor);
-    void Local_PredictProjectilePathUpdate(class AAbiotic_Character_ParentBP_C* UsingCharacter, bool IsWeapon, bool EndPrediction);
-    void StartPredictProjectilePath();
-    void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void DoHitReaction();
     void ThermalEmitterActiveUpdated(bool bActive);
     void ApplyNewTemperature(float NewTemperature);
+    void Local_PredictProjectilePathUpdate(class AAbiotic_Character_ParentBP_C* UsingCharacter, bool IsWeapon, bool EndPrediction);
+    void StartPredictProjectilePath();
+    void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void BndEvt__Item_Consumable_ParentBP_ThermalReceiver_K2Node_ComponentBoundEvent_0_CurrentTemperatureUpdated__DelegateSignature(float NewTemperature);
     void SetupThermal();
     void CookItem();
     void UpdateOwnerLightFunctionMaterial();
     void InitRadioactivity();
     void SetupItemBox(TSoftObjectPtr<UTexture2D> InventoryIcon, TSoftObjectPtr<UStaticMesh> 3DModel);
-    void RadialWheelInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed, FName SelectionWheelContentName);
+    void OnInteractHighlightEnd(class UActorComponent* Component);
     void OwningBuffTagsRefreshed();
     void OnPlayerEndPlay(class AActor* Actor, TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
     void Local_TryHighlightOnProjectileSpawnImpact();
@@ -153,7 +168,9 @@ class AAbiotic_Item_ParentBP_C : public AAbioticActor_C
     void ReceiveAnyDamage(float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, class AActor* DamageCauser);
     void Server_SharedInteraction(class AAbiotic_PlayerCharacter_C* ItemOwner, class AAbiotic_PlayerCharacter_C* Receiver);
     void LocalUpdateSharedInteraction();
+    void ReceiveEndPlay(TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
+    void ReceiveTick(float DeltaSeconds);
     void ExecuteUbergraph_Abiotic_Item_ParentBP(int32 EntryPoint);
-}; // Size: 0xB11
+}; // Size: 0xAF0
 
 #endif

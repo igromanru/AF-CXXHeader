@@ -13,14 +13,19 @@ class UW_Waypoint_ParentBP_C : public UUserWidget
     FVector2D Alignment;                                                              // 0x0318 (size: 0x10)
     bool WaypointExpanded;                                                            // 0x0328 (size: 0x1)
     bool WaypointFaded;                                                               // 0x0329 (size: 0x1)
+    FW_Waypoint_ParentBP_COnPositionUpdated OnPositionUpdated;                        // 0x0330 (size: 0x10)
+    void OnPositionUpdated();
 
+    void AllowedInVignette(bool& AllowInVignette);
     void GetWaypointLocation(FVector& Location);
     bool ShouldBeVisible();
     void UpdatePosition();
-    void Tick(FGeometry MyGeometry, float InDeltaTime);
+    void OnLoaded_3399A0584E409D1ECD92F48589B13B62(class UObject* Loaded);
     void Construct();
     void ComputeVisibility();
+    void UpdateIcon(TSoftObjectPtr<UTexture2D> Texture);
     void ExecuteUbergraph_W_Waypoint_ParentBP(int32 EntryPoint);
-}; // Size: 0x32A
+    void OnPositionUpdated__DelegateSignature();
+}; // Size: 0x340
 
 #endif

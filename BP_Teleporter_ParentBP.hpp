@@ -32,7 +32,9 @@ class ABP_Teleporter_ParentBP_C : public AActor
     class USoundBase* PortalActivateSound;                                            // 0x03E8 (size: 0x8)
     bool NoFlashOnEnter;                                                              // 0x03F0 (size: 0x1)
     TArray<class AActor*> RecentArrivals;                                             // 0x03F8 (size: 0x10)
+    bool NoSoundOnEnter;                                                              // 0x0408 (size: 0x1)
 
+    void AttemptTeleport(class AAbiotic_PlayerCharacter_C* InPlayer);
     void UpdateControlRotation(class AAbiotic_PlayerCharacter_C* Player, class USceneComponent* TeleportLocation);
     void TryApplyBuffsOnUse(class AAbiotic_Character_ParentBP_C* Character);
     void SavePortalState(bool ForceWorldSave);
@@ -49,6 +51,6 @@ class ABP_Teleporter_ParentBP_C : public AActor
     void CheckRecentArrivals();
     void AddRecentArrival(class ABP_Teleporter_ParentBP_C* Teleporter, const class AActor*& NewArrival);
     void ExecuteUbergraph_BP_Teleporter_ParentBP(int32 EntryPoint);
-}; // Size: 0x408
+}; // Size: 0x409
 
 #endif

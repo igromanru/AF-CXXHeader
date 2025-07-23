@@ -13,7 +13,13 @@ class AAbiotic_Survival_GameMode_C : public AAbioticGameMode
     bool DebugSaving;                                                                 // 0x03C0 (size: 0x1)
     TArray<FString> CurrentModerators;                                                // 0x03C8 (size: 0x10)
     bool ServerConfigIsLoaded;                                                        // 0x03D8 (size: 0x1)
+    TArray<FString> OldTeleporterStrings;                                             // 0x03E0 (size: 0x10)
 
+    void RemovePlayerDLCEntitlements(FString PlayerId);
+    void AddPlayerDLCEntitlements(FString PlayerId, FUserEntitlements Entitlements);
+    void InitDLCEntitlements();
+    void ApplyWorldSaveData|CustomInventory(class UAbiotic_WorldSave_C*& Save);
+    void UpdateCustomInventoryToWorldSave(class AActor* Actor, bool RemoveFromSpawn, class UAbiotic_WorldSave_C* Save);
     void IsActorReadyToSave(class AActor* ActorToCheck, bool& Ready);
     void ApplyWorldSaveData|EncounterDirectors(class UAbiotic_WorldSave_C*& SaveGame, class UObject* WorldObject);
     void UpdateEncounterDirectorToWorldSave(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
@@ -80,7 +86,7 @@ class AAbiotic_Survival_GameMode_C : public AAbioticGameMode
     void Update Security Door State to World Save(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
     void ApplyWorldSaveData|Destructibles(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
     void Update Destructible to World Save(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
-    void Load Deployable Settings(FAbiotic_InventoryChangeableDataStruct& ChangeableData, class AAbioticDeployed_ParentBP_C* DeployedItem, TArray<FSaveData_Inventories_Struct>& ContainerInventories, TArray<FSaveData_ItemProxy_Struct>& ItemProxiesData, TArray<bool>& ActiveSeats, FString& CustomTextDisplay, bool FoundByPlayer, TArray<FVector>& Supports);
+    void Load Deployable Settings(FAbiotic_InventoryChangeableDataStruct& ChangeableData, class AAbioticDeployed_ParentBP_C* DeployedItem, TArray<FSaveData_Inventories_Struct>& ContainerInventories, TArray<FSaveData_ItemProxy_Struct>& ItemProxiesData, TArray<bool>& ActiveSeats, FString& CustomTextDisplay, bool FoundByPlayer, TArray<FVector>& Supports, double SpawnedTime);
     void ApplyWorldSaveData|ResourceNode(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
     void ApplyWorldSaveData|Deployables(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
     void Update Resource Node to World Save(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
@@ -89,11 +95,11 @@ class AAbiotic_Survival_GameMode_C : public AAbioticGameMode
     void ApplyAllWorldSaveData(FString Level, int32 Iteration (0-4), bool DoAllIterationsAtOnce, class UAbiotic_WorldSave_C* Save, class UObject* LevelObject, bool Persistent);
     void LevelLoad_ApplySavedWorldData(FString LevelName, int32 Iteration (0-4), bool DoAllIterationsAtOnce, bool Persistent);
     void CalculateItemDrop(const FAbiotic_ItemDropStruct& ItemDropStruct, FGameplayTagContainer Ignore Drop Chance Tags, FGameplayTagContainer& GameplayTags, double ExtraLootChance, bool& DropSuccess, FDataTableRowHandle& ItemStruct, int32& Count);
-    void GenerateLootDrop(const FDataTableRowHandle& SalvageDropRow, FVector Origin, FVector BoxExtent, bool HasLifespan, bool TryPlaceInInventory, class AAbiotic_PlayerCharacter_C* inventoryOwner, bool IsMicroNode, bool IsNotReceivingDamage, FDataTableRowHandle TextureVariant, int32 ExtraStackCount, FGameplayTagContainer Ignore Drop Chance Item Tags, bool RandomRotation, FRotator RotationOverride, bool AlwaysDropOverflow, FGameplayTagContainer& BuffTags, double ExtraLootChance, bool& LootIsGenerated?);
+    void GenerateLootDrop(const FDataTableRowHandle& SalvageDropRow, FVector Origin, FVector BoxExtent, bool HasLifespan, bool TryPlaceInInventory, class AAbiotic_PlayerCharacter_C* inventoryOwner, bool IsMicroNode, bool IsNotReceivingDamage, FDataTableRowHandle TextureVariant, int32 ExtraStackCount, FGameplayTagContainer Ignore Drop Chance Item Tags, bool RandomRotation, FRotator RotationOverride, bool AlwaysDropOverflow, FGameplayTagContainer& BuffTags, double ExtraLootChance, TArray<FDynamicProperty>& DynamicProperties, bool& LootIsGenerated?);
     void FindRespawnPointForPlayer(class AAbiotic_PlayerState_C* PlayerState, bool ForcePlayerStartOnly, FName DestinationID, bool& Valid, FVector& RespawnLocation);
     void OnFailure_B055BD084F90B3B2266C78903EFE91F0();
     void OnSuccess_B055BD084F90B3B2266C78903EFE91F0();
-    void SendTextChatMessageToAllPlayers(bool FactionCheck, TEnumAsByte<E_Factions::Type> FactionOnlySee, FString Prefix, FLinearColor PrefixColor, FString Message, FLinearColor MessageColor, FString ExcludedCallerName);
+    void SendTextChatMessageToAllPlayers(bool FactionCheck, TEnumAsByte<E_Factions::Type> FactionOnlySee, FString Prefix, FLinearColor PrefixColor, FString Message, FLinearColor MessageColor, FString ExcludedCallerName, class APlayerState* PlayerState, bool IsPlayerChatTextMessage);
     void K2_OnLogout(class AController* ExitingController);
     void K2_PostLogin(class APlayerController* NewPlayer);
     void ReceiveBeginPlay();
@@ -105,6 +111,6 @@ class AAbiotic_Survival_GameMode_C : public AAbioticGameMode
     void DemoFinished_SendAnalytics();
     void OnPlayerBanned(class APlayerController* BannedPlayer, const FText& BanReason);
     void ExecuteUbergraph_Abiotic_Survival_GameMode(int32 EntryPoint);
-}; // Size: 0x3D9
+}; // Size: 0x3F0
 
 #endif

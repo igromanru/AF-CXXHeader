@@ -64,13 +64,16 @@ class UMicrophoneSpeakComponent : public UActorComponent
 {
     FMicrophoneSpeakComponentOnDataMicrophoneReceived OnDataMicrophoneReceived;       // 0x00A8 (size: 0x10)
     void DataMicrophoneReceived(const TArray<uint8>& Data);
-    FMicrophoneSpeakComponentOnMicrophoneVolumeReceived OnMicrophoneVolumeReceived;   // 0x00B8 (size: 0x10)
+    FMicrophoneSpeakComponentOnDataTransmitReceived OnDataTransmitReceived;           // 0x00B8 (size: 0x10)
+    void DataMicrophoneReceived(const TArray<uint8>& Data);
+    FMicrophoneSpeakComponentOnMicrophoneVolumeReceived OnMicrophoneVolumeReceived;   // 0x00C8 (size: 0x10)
     void MicrophoneVolumeReceived(float Volume);
-    class USoundAttenuation* soundAttenuationAsset;                                   // 0x00C8 (size: 0x8)
-    class USoundEffectSourcePresetChain* soundEffectChainAsset;                       // 0x00D0 (size: 0x8)
-    float latestVolume;                                                               // 0x00F8 (size: 0x4)
-    class UAudioComponent* VoiceCaptureAudioComponent;                                // 0x0130 (size: 0x8)
-    class USoundWaveProcedural* VoiceCaptureSoundWaveProcedural;                      // 0x0138 (size: 0x8)
+    class USoundAttenuation* soundAttenuationAsset;                                   // 0x00D8 (size: 0x8)
+    class USoundEffectSourcePresetChain* soundEffectChainAsset;                       // 0x00E0 (size: 0x8)
+    float latestVolume;                                                               // 0x0108 (size: 0x4)
+    class UAudioComponent* VoiceCaptureAudioComponent;                                // 0x0140 (size: 0x8)
+    class USoundWaveProcedural* VoiceCaptureSoundWaveProcedural;                      // 0x0148 (size: 0x8)
+    class UAudioCapture* AudioCapture;                                                // 0x0190 (size: 0x8)
 
     bool startSpeaking(bool _shouldHearMyOwnVoice, bool isGlobal, int32 radioChannel, bool useRange, float MaxRange);
     void SetVoiceVolume(float Volume);
@@ -87,7 +90,7 @@ class UMicrophoneSpeakComponent : public UActorComponent
     bool initAudioResources(int32 voiceSampleRate, int32 _voiceNumChannels, int32 opusFramesPerSec);
     void endSpeaking();
     void DataMicrophoneReceived__DelegateSignature(const TArray<uint8>& Data);
-}; // Size: 0x230
+}; // Size: 0x260
 
 class UUniversalVoiceChat : public UBlueprintFunctionLibrary
 {

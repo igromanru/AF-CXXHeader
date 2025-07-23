@@ -41,6 +41,13 @@ struct FAISpawnerData
 
 }; // Size: 0x30
 
+struct FAbioticBlockedPlayer
+{
+    FString playerName;                                                               // 0x0000 (size: 0x10)
+    FString PlayerId;                                                                 // 0x0010 (size: 0x10)
+
+}; // Size: 0x20
+
 struct FAbioticTargetingManagerTickFunction : public FTickFunction
 {
 }; // Size: 0x30
@@ -190,14 +197,16 @@ struct FCachedInputData
     float DeltaTime;                                                                  // 0x0000 (size: 0x4)
     float FrameTime;                                                                  // 0x0004 (size: 0x4)
     float AccelerationTime;                                                           // 0x0008 (size: 0x4)
-    float GamepadLeftX;                                                               // 0x000C (size: 0x4)
-    float GamepadLeftY;                                                               // 0x0010 (size: 0x4)
-    FVector2D RadialRight;                                                            // 0x0018 (size: 0x10)
-    FVector2D RawRight;                                                               // 0x0028 (size: 0x10)
-    float GamepadRightX;                                                              // 0x0038 (size: 0x4)
-    float GamepadRightY;                                                              // 0x003C (size: 0x4)
+    FVector2D RadialLeft;                                                             // 0x0010 (size: 0x10)
+    FVector2D RawLeft;                                                                // 0x0020 (size: 0x10)
+    float GamepadLeftX;                                                               // 0x0030 (size: 0x4)
+    float GamepadLeftY;                                                               // 0x0034 (size: 0x4)
+    FVector2D RadialRight;                                                            // 0x0038 (size: 0x10)
+    FVector2D RawRight;                                                               // 0x0048 (size: 0x10)
+    float GamepadRightX;                                                              // 0x0058 (size: 0x4)
+    float GamepadRightY;                                                              // 0x005C (size: 0x4)
 
-}; // Size: 0x40
+}; // Size: 0x60
 
 struct FCompendiumEntry : public FTableRowBase
 {
@@ -205,12 +214,13 @@ struct FCompendiumEntry : public FTableRowBase
     FText Title;                                                                      // 0x0010 (size: 0x10)
     FText Subtitle;                                                                   // 0x0020 (size: 0x10)
     FGameplayTagContainer Tags;                                                       // 0x0030 (size: 0x20)
-    FDataTableRowHandle NPCRow;                                                       // 0x0050 (size: 0x10)
-    TArray<FCompendiumSection> Sections;                                              // 0x0060 (size: 0x10)
-    bool bHasKillRequirementSection;                                                  // 0x0070 (size: 0x1)
-    FKillCompendiumSection KillRequirementSection;                                    // 0x0078 (size: 0x58)
+    FGameEntitlementRowHandle RequiredDLC;                                            // 0x0050 (size: 0x20)
+    FDataTableRowHandle NPCRow;                                                       // 0x0070 (size: 0x10)
+    TArray<FCompendiumSection> Sections;                                              // 0x0080 (size: 0x10)
+    bool bHasKillRequirementSection;                                                  // 0x0090 (size: 0x1)
+    FKillCompendiumSection KillRequirementSection;                                    // 0x0098 (size: 0x58)
 
-}; // Size: 0xD0
+}; // Size: 0xF0
 
 struct FCompendiumEntryRowHandle : public FRowHandle
 {
@@ -230,6 +240,18 @@ struct FCompendiumSection : public FBaseCompendiumSection
 }; // Size: 0x58
 
 struct FControlSettingRowHandle : public FRowHandle
+{
+}; // Size: 0x20
+
+struct FDamageDefinition : public FTableRowBase
+{
+    FGameplayTag GameplayTag;                                                         // 0x0008 (size: 0x8)
+    FText DisplayName;                                                                // 0x0010 (size: 0x10)
+    TSoftObjectPtr<UTexture2D> Icon;                                                  // 0x0020 (size: 0x28)
+
+}; // Size: 0x48
+
+struct FDamageDefinitionRowHandle : public FRowHandle
 {
 }; // Size: 0x20
 
@@ -265,8 +287,9 @@ struct FFishData : public FTableRowBase
     FTimeOfDayMultiplier TimeOfDayCatchChance;                                        // 0x00D8 (size: 0x10)
     TMap<FGameplayTag, float> TagChanceModifiers;                                     // 0x00E8 (size: 0x50)
     TSoftObjectPtr<UNiagaraSystem> DirectionalParticle;                               // 0x0138 (size: 0x28)
+    FGameEntitlementRowHandle RequiredDLC;                                            // 0x0160 (size: 0x20)
 
-}; // Size: 0x160
+}; // Size: 0x180
 
 struct FFishReward
 {
@@ -285,8 +308,9 @@ struct FFishingZone : public FTableRowBase
     TArray<FFishReward> PossibleFish;                                                 // 0x0018 (size: 0x10)
     FDataTableRowHandle JunkSalvageRow;                                               // 0x0028 (size: 0x10)
     float JunkSalvageChance;                                                          // 0x0038 (size: 0x4)
+    TSoftObjectPtr<UNiagaraSystem> DirectionalParticle;                               // 0x0040 (size: 0x28)
 
-}; // Size: 0x40
+}; // Size: 0x68
 
 struct FFishingZoneRowHandle : public FRowHandle
 {
@@ -304,28 +328,86 @@ struct FGameActivityRowHandle : public FRowHandle
 {
 }; // Size: 0x20
 
+struct FGameCommand : public FTableRowBase
+{
+    EReleaseGroup ReleaseGroup;                                                       // 0x0008 (size: 0x1)
+    FString CommandName;                                                              // 0x0010 (size: 0x10)
+    FText Description;                                                                // 0x0020 (size: 0x10)
+    EGameCommandNetMode NetMode;                                                      // 0x0030 (size: 0x1)
+    EGameCommandType CommandType;                                                     // 0x0031 (size: 0x1)
+    TArray<FGameCommandInput> Inputs;                                                 // 0x0038 (size: 0x10)
+    TSubclassOf<class UGameCommandObject> GameCommandObject;                          // 0x0048 (size: 0x8)
+
+}; // Size: 0x50
+
+struct FGameCommandEntry
+{
+    FGameCommandRowHandle RowHandle;                                                  // 0x0000 (size: 0x20)
+    FString CommandName;                                                              // 0x0020 (size: 0x10)
+    FString HelperText;                                                               // 0x0030 (size: 0x10)
+
+}; // Size: 0x40
+
+struct FGameCommandInput
+{
+    FText Description;                                                                // 0x0000 (size: 0x10)
+
+}; // Size: 0x10
+
+struct FGameCommandRowHandle : public FRowHandle
+{
+}; // Size: 0x20
+
+struct FGameCredit : public FTableRowBase
+{
+    FString Subject;                                                                  // 0x0008 (size: 0x10)
+    FString Title;                                                                    // 0x0018 (size: 0x10)
+    bool bIsCategoryHeader;                                                           // 0x0028 (size: 0x1)
+    TSoftObjectPtr<UTexture2D> OptionalImage;                                         // 0x0030 (size: 0x28)
+
+}; // Size: 0x58
+
+struct FGameCreditRowHandle : public FRowHandle
+{
+}; // Size: 0x20
+
+struct FGameEntitlement : public FTableRowBase
+{
+    FString ID_PS5;                                                                   // 0x0008 (size: 0x10)
+    FString ID_GDK;                                                                   // 0x0018 (size: 0x10)
+    FString ID_STEAM;                                                                 // 0x0028 (size: 0x10)
+    FString ID_EOS;                                                                   // 0x0038 (size: 0x10)
+
+}; // Size: 0x48
+
+struct FGameEntitlementRowHandle : public FRowHandle
+{
+}; // Size: 0x20
+
 struct FGameSetting : public FTableRowBase
 {
     FText DisplayName;                                                                // 0x0008 (size: 0x10)
     FText DisplayDescription;                                                         // 0x0018 (size: 0x10)
-    FText SubCategory;                                                                // 0x0028 (size: 0x10)
-    bool bUnimplemented;                                                              // 0x0038 (size: 0x1)
-    EGameSettingType SettingType;                                                     // 0x0039 (size: 0x1)
-    FName CVarName;                                                                   // 0x003C (size: 0x8)
-    FName CVarVisibilityName;                                                         // 0x0044 (size: 0x8)
-    FName FeatureName;                                                                // 0x004C (size: 0x8)
-    bool bCustomCVar;                                                                 // 0x0054 (size: 0x1)
-    bool bOverrideEngineDefault;                                                      // 0x0055 (size: 0x1)
-    ECVarType CVarType;                                                               // 0x0056 (size: 0x1)
-    FString CVarDefaultValue;                                                         // 0x0058 (size: 0x10)
-    TMap<TEnumAsByte<EGameSettingPlatformType>, FString> CVarPlatformDefaultOverrides; // 0x0068 (size: 0x50)
-    TArray<TEnumAsByte<EGameSettingPlatformType>> RestrictToPlatforms;                // 0x00B8 (size: 0x10)
-    TSubclassOf<class USettingValueMask> ValueMask;                                   // 0x00C8 (size: 0x8)
-    TArray<FSettingOption> Options;                                                   // 0x00D0 (size: 0x10)
-    TSubclassOf<class USettingOptionFactory> OptionFactory;                           // 0x00E0 (size: 0x8)
-    FGameSliderSettings SliderSettings;                                               // 0x00E8 (size: 0x18)
+    TSoftObjectPtr<UTexture2D> DisplayImage;                                          // 0x0028 (size: 0x28)
+    FText SubCategory;                                                                // 0x0050 (size: 0x10)
+    bool bUnimplemented;                                                              // 0x0060 (size: 0x1)
+    EGameSettingType SettingType;                                                     // 0x0061 (size: 0x1)
+    FName CVarName;                                                                   // 0x0064 (size: 0x8)
+    FName CVarVisibilityName;                                                         // 0x006C (size: 0x8)
+    FName FeatureName;                                                                // 0x0074 (size: 0x8)
+    bool bCustomCVar;                                                                 // 0x007C (size: 0x1)
+    bool bOverrideEngineDefault;                                                      // 0x007D (size: 0x1)
+    bool bOverrideNativeDefault;                                                      // 0x007E (size: 0x1)
+    ECVarType CVarType;                                                               // 0x007F (size: 0x1)
+    FString CVarDefaultValue;                                                         // 0x0080 (size: 0x10)
+    TMap<TEnumAsByte<EGameSettingPlatformType>, FString> CVarPlatformDefaultOverrides; // 0x0090 (size: 0x50)
+    TArray<TEnumAsByte<EGameSettingPlatformType>> RestrictToPlatforms;                // 0x00E0 (size: 0x10)
+    TSubclassOf<class USettingValueMask> ValueMask;                                   // 0x00F0 (size: 0x8)
+    TArray<FSettingOption> Options;                                                   // 0x00F8 (size: 0x10)
+    TSubclassOf<class USettingOptionFactory> OptionFactory;                           // 0x0108 (size: 0x8)
+    FGameSliderSettings SliderSettings;                                               // 0x0110 (size: 0x1C)
 
-}; // Size: 0x100
+}; // Size: 0x130
 
 struct FGameSliderSettings
 {
@@ -335,12 +417,20 @@ struct FGameSliderSettings
     float SliderDelta;                                                                // 0x000C (size: 0x4)
     int32 SliderFractionalDigits;                                                     // 0x0010 (size: 0x4)
     float SliderMultiplier;                                                           // 0x0014 (size: 0x4)
+    float SliderSlideScalar;                                                          // 0x0018 (size: 0x4)
 
-}; // Size: 0x18
+}; // Size: 0x1C
 
 struct FGameplaySettingRowHandle : public FRowHandle
 {
 }; // Size: 0x20
+
+struct FGeneratedMeshCacheEntry
+{
+    class USkeletalMesh* Mesh;                                                        // 0x0000 (size: 0x8)
+    TArray<class UMaterialInterface*> Materials;                                      // 0x0008 (size: 0x10)
+
+}; // Size: 0x18
 
 struct FHitData
 {
@@ -367,6 +457,24 @@ struct FItemCount
 
 }; // Size: 0x18
 
+struct FItemUpgrade : public FTableRowBase
+{
+    TArray<FItemUpgradeEntry> Upgrades;                                               // 0x0008 (size: 0x10)
+
+}; // Size: 0x18
+
+struct FItemUpgradeEntry
+{
+    TArray<FItemCount> RequiredItems;                                                 // 0x0000 (size: 0x10)
+    FDataTableRowHandle OutputItem;                                                   // 0x0010 (size: 0x10)
+    TSoftObjectPtr<UObject> SoundEffect;                                              // 0x0020 (size: 0x28)
+
+}; // Size: 0x48
+
+struct FItemUpgradeRowHandle : public FRowHandle
+{
+}; // Size: 0x20
+
 struct FKeybindActionArray
 {
     TArray<FUIKeybindActionRowHandle> KeybindActions;                                 // 0x0000 (size: 0x10)
@@ -384,8 +492,10 @@ struct FKeybindSetting : public FTableRowBase
     FUIKeybindActionRowHandle UIAction;                                               // 0x0048 (size: 0x20)
     FKeybindSettingRowHandle GamepadRedirect;                                         // 0x0068 (size: 0x20)
     bool bHiddenKeybind;                                                              // 0x0088 (size: 0x1)
+    bool bDevelopmentOnly;                                                            // 0x0089 (size: 0x1)
+    TArray<TEnumAsByte<EGameSettingPlatformType>> RestrictToPlatforms;                // 0x0090 (size: 0x10)
 
-}; // Size: 0x90
+}; // Size: 0xA0
 
 struct FKeybindSettingRowHandle : public FRowHandle
 {
@@ -406,6 +516,16 @@ struct FMainMenuBackground : public FTableRowBase
     FName LevelFX;                                                                    // 0x0058 (size: 0x8)
 
 }; // Size: 0x60
+
+struct FManagedTickObject
+{
+    class AActor* Actor;                                                              // 0x0000 (size: 0x8)
+    class UActorComponent* Component;                                                 // 0x0008 (size: 0x8)
+    float TickInterval;                                                               // 0x0010 (size: 0x4)
+    float ElapsedTick;                                                                // 0x0014 (size: 0x4)
+    bool bTickEnabled;                                                                // 0x0018 (size: 0x1)
+
+}; // Size: 0x20
 
 struct FNPCConversation : public FTableRowBase
 {
@@ -500,8 +620,9 @@ struct FPaintedDeployable : public FTableRowBase
     TArray<TSoftObjectPtr<UMaterialInterface>> Materials_Lime;                        // 0x00A8 (size: 0x10)
     TArray<TSoftObjectPtr<UMaterialInterface>> Materials_Pink;                        // 0x00B8 (size: 0x10)
     TArray<TSoftObjectPtr<UMaterialInterface>> Materials_Brown;                       // 0x00C8 (size: 0x10)
+    TArray<TSoftObjectPtr<UMaterialInterface>> Materials_Glitch;                      // 0x00D8 (size: 0x10)
 
-}; // Size: 0xD8
+}; // Size: 0xE8
 
 struct FPaintedDeployableRowHandle : public FRowHandle
 {
@@ -529,6 +650,15 @@ struct FPlantMeshData
 struct FPlantRowHandle : public FRowHandle
 {
 }; // Size: 0x20
+
+struct FPlayerBaseData
+{
+    FGuid ID;                                                                         // 0x0000 (size: 0x10)
+    TArray<class AActor*> SignificantFurniture;                                       // 0x0010 (size: 0x10)
+    TArray<class AActor*> AllFurniture;                                               // 0x0020 (size: 0x10)
+    FVector BaseCenter;                                                               // 0x0030 (size: 0x18)
+
+}; // Size: 0x48
 
 struct FQuestData : public FTableRowBase
 {
@@ -584,9 +714,9 @@ struct FSandboxOption : public FTableRowBase
     FString MaximumValue;                                                             // 0x0060 (size: 0x10)
     TArray<FSettingOption> Options;                                                   // 0x0070 (size: 0x10)
     TSubclassOf<class USettingOptionFactory> OptionFactory;                           // 0x0080 (size: 0x8)
-    FGameSliderSettings SliderSettings;                                               // 0x0088 (size: 0x18)
+    FGameSliderSettings SliderSettings;                                               // 0x0088 (size: 0x1C)
 
-}; // Size: 0xA0
+}; // Size: 0xA8
 
 struct FSandboxOptionRowHandle : public FRowHandle
 {
@@ -708,6 +838,10 @@ struct FTargetingInfo
 
 }; // Size: 0x80
 
+struct FTickManagerTickFunction : public FTickFunction
+{
+}; // Size: 0x30
+
 struct FTimeOfDayMultiplier
 {
     float MidnightMultiplier;                                                         // 0x0000 (size: 0x4)
@@ -756,6 +890,12 @@ struct FUIPopupRowHandle : public FRowHandle
 {
 }; // Size: 0x20
 
+struct FUserEntitlements
+{
+    TArray<FString> Entitlements;                                                     // 0x0000 (size: 0x10)
+
+}; // Size: 0x10
+
 struct FVideoSettingRowHandle : public FRowHandle
 {
 }; // Size: 0x20
@@ -769,12 +909,19 @@ struct FWeatherEvent : public FTableRowBase
     TSoftClassPtr<AWeatherDirector> WeatherDirector;                                  // 0x0040 (size: 0x28)
     FWorldFlagRowHandle RequiredWorldFlag;                                            // 0x0068 (size: 0x20)
     FDataTableRowHandle LevelFXRow;                                                   // 0x0088 (size: 0x10)
+    FWorldFlagRowHandle TriggeredBeforeWorldFlag;                                     // 0x0098 (size: 0x20)
 
-}; // Size: 0x98
+}; // Size: 0xB8
 
 struct FWeatherEventRowHandle : public FRowHandle
 {
 }; // Size: 0x20
+
+struct FWorldCache
+{
+    TMap<class FString, class UAbioticSave*> FileToSaveMap;                           // 0x0010 (size: 0x50)
+
+}; // Size: 0xB0
 
 struct FWorldFlag : public FTableRowBase
 {
@@ -806,48 +953,50 @@ class AAbioticAIController : public AAIController
 
 class AAbioticCharacter : public ACharacter
 {
-    bool bHasBeenRagdolling;                                                          // 0x0684 (size: 0x1)
-    class AActor* TetheredBy;                                                         // 0x0688 (size: 0x8)
-    FGameplayTagContainer GameplayTags;                                               // 0x0690 (size: 0x20)
-    TArray<class AAbioticCharacter*> NearbyCharacters;                                // 0x06B0 (size: 0x10)
-    FAbioticCharacterOnNearbyCharacterTagsUpdated OnNearbyCharacterTagsUpdated;       // 0x06C0 (size: 0x10)
+    bool bHasBeenRagdolling;                                                          // 0x0688 (size: 0x1)
+    class AActor* TetheredBy;                                                         // 0x0690 (size: 0x8)
+    FGameplayTagContainer GameplayTags;                                               // 0x0698 (size: 0x20)
+    TArray<class AAbioticCharacter*> NearbyCharacters;                                // 0x06B8 (size: 0x10)
+    FAbioticCharacterOnNearbyCharacterTagsUpdated OnNearbyCharacterTagsUpdated;       // 0x06C8 (size: 0x10)
     void NearbyCharacterTagsRefreshed();
-    class UCharacterBuffComponent* BuffComponent;                                     // 0x06D0 (size: 0x8)
-    TArray<FStatModifierEntry> StatModifiers;                                         // 0x06D8 (size: 0x10)
-    TMap<FStatModifierRowHandle, float> StatModifierMap;                              // 0x06E8 (size: 0x50)
-    TMap<FStatModifierRowHandle, int32> CheatStatModifierMap;                         // 0x0738 (size: 0x50)
-    TMap<FSkillRowHandle, int32> SkillLevelMap;                                       // 0x0788 (size: 0x50)
-    FAbioticCharacterOnStatModifiersRefreshed OnStatModifiersRefreshed;               // 0x07D8 (size: 0x10)
+    class UCharacterBuffComponent* BuffComponent;                                     // 0x06D8 (size: 0x8)
+    TArray<FStatModifierEntry> StatModifiers;                                         // 0x06E0 (size: 0x10)
+    TMap<FStatModifierRowHandle, float> StatModifierMap;                              // 0x06F0 (size: 0x50)
+    TMap<FStatModifierRowHandle, int32> CheatStatModifierMap;                         // 0x0740 (size: 0x50)
+    TMap<FSkillRowHandle, int32> SkillLevelMap;                                       // 0x0790 (size: 0x50)
+    FAbioticCharacterOnStatModifiersRefreshed OnStatModifiersRefreshed;               // 0x07E0 (size: 0x10)
     void OnStatModifiersRefreshed();
-    bool bStatsLocked;                                                                // 0x07E8 (size: 0x1)
-    FStatModifierRowHandle MaxHealthModifier;                                         // 0x07F0 (size: 0x20)
-    FStatModifierRowHandle MaxHeadHealthModifier;                                     // 0x0810 (size: 0x20)
-    TMap<EBodyLimbs, float> DefaultMax_LimbHealthMap;                                 // 0x0830 (size: 0x50)
-    float CurrentHealth_Head;                                                         // 0x0880 (size: 0x4)
-    float CurrentHealth_Torso;                                                        // 0x0884 (size: 0x4)
-    float CurrentHealth_LeftArm;                                                      // 0x0888 (size: 0x4)
-    float CurrentHealth_RightArm;                                                     // 0x088C (size: 0x4)
-    float CurrentHealth_LeftLeg;                                                      // 0x0890 (size: 0x4)
-    float CurrentHealth_RightLeg;                                                     // 0x0894 (size: 0x4)
-    FAbioticCharacterOnHealthChanged OnHealthChanged;                                 // 0x0898 (size: 0x10)
+    bool bStatsLocked;                                                                // 0x07F0 (size: 0x1)
+    FStatModifierRowHandle MaxHealthModifier;                                         // 0x07F8 (size: 0x20)
+    FStatModifierRowHandle MaxHeadHealthModifier;                                     // 0x0818 (size: 0x20)
+    FStatModifierRowHandle MaxTorsoHealthModifier;                                    // 0x0838 (size: 0x20)
+    TMap<EBodyLimbs, float> DefaultMax_LimbHealthMap;                                 // 0x0858 (size: 0x50)
+    float CurrentHealth_Head;                                                         // 0x08A8 (size: 0x4)
+    float CurrentHealth_Torso;                                                        // 0x08AC (size: 0x4)
+    float CurrentHealth_LeftArm;                                                      // 0x08B0 (size: 0x4)
+    float CurrentHealth_RightArm;                                                     // 0x08B4 (size: 0x4)
+    float CurrentHealth_LeftLeg;                                                      // 0x08B8 (size: 0x4)
+    float CurrentHealth_RightLeg;                                                     // 0x08BC (size: 0x4)
+    FAbioticCharacterOnHealthChanged OnHealthChanged;                                 // 0x08C0 (size: 0x10)
     void HealthChangedDelegate();
-    float CurrentStamina;                                                             // 0x08A8 (size: 0x4)
-    float MaxStamina;                                                                 // 0x08AC (size: 0x4)
-    float StaminaRequiredToSprint;                                                    // 0x08B0 (size: 0x4)
-    FAbioticCharacterOnStaminaChanged OnStaminaChanged;                               // 0x08B8 (size: 0x10)
+    float CurrentStamina;                                                             // 0x08D0 (size: 0x4)
+    float MaxStamina;                                                                 // 0x08D4 (size: 0x4)
+    float StaminaRequiredToSprint;                                                    // 0x08D8 (size: 0x4)
+    FAbioticCharacterOnStaminaChanged OnStaminaChanged;                               // 0x08E0 (size: 0x10)
     void StaminaChangedDelegate();
-    float BaseWalkSpeed;                                                              // 0x08C8 (size: 0x4)
-    float BaseSprintSpeed;                                                            // 0x08CC (size: 0x4)
-    float MinimumMovementSpeed;                                                       // 0x08D0 (size: 0x4)
-    float GlobalSpeedModifier;                                                        // 0x08D4 (size: 0x4)
-    float GlobalSprintSpeedModifier;                                                  // 0x08D8 (size: 0x4)
-    float GlobalSwimSpeedModifier;                                                    // 0x08DC (size: 0x4)
-    float GlobalCrouchSpeedModifier;                                                  // 0x08E0 (size: 0x4)
-    uint8 bIsSprinting;                                                               // 0x08E4 (size: 0x1)
-    uint8 bIsAiming;                                                                  // 0x08E4 (size: 0x1)
-    float JetpackTimestamp;                                                           // 0x08E8 (size: 0x4)
-    bool bHasStaminaToSprint;                                                         // 0x08EC (size: 0x1)
-    float ToggleSprintEnabledTimestamp;                                               // 0x08F0 (size: 0x4)
+    float BaseWalkSpeed;                                                              // 0x08F0 (size: 0x4)
+    float BaseSprintSpeed;                                                            // 0x08F4 (size: 0x4)
+    float MinimumMovementSpeed;                                                       // 0x08F8 (size: 0x4)
+    float GlobalSpeedModifier;                                                        // 0x08FC (size: 0x4)
+    float GlobalSprintSpeedModifier;                                                  // 0x0900 (size: 0x4)
+    float GlobalSwimSpeedModifier;                                                    // 0x0904 (size: 0x4)
+    float GlobalCrouchSpeedModifier;                                                  // 0x0908 (size: 0x4)
+    uint8 bIsSprinting;                                                               // 0x090C (size: 0x1)
+    uint8 bIsAiming;                                                                  // 0x090C (size: 0x1)
+    float JetpackTimestamp;                                                           // 0x0910 (size: 0x4)
+    bool bHasStaminaToSprint;                                                         // 0x0914 (size: 0x1)
+    float ToggleSprintEnabledTimestamp;                                               // 0x0918 (size: 0x4)
+    bool GhostMode;                                                                   // 0x091C (size: 0x1)
 
     void UpdateSkillStatLevel(FSkillRowHandle Skill, int32 Level);
     void ToggleSprint();
@@ -863,16 +1012,19 @@ class AAbioticCharacter : public ACharacter
     void SetCurrentStamina(float NewCurrentStamina);
     void ScaledLaunchCharacter(FVector LaunchVelocity, bool bXYOverride, bool bZOverride);
     void RemoveNearbyCharacter(class AAbioticCharacter* Character, class UPrimitiveComponent* OverlapPrimitive);
+    void RejectDLCTeleport();
     void OnStatModifiersUpdated();
     void OnSprintUpdated();
     void OnRep_StatModifiers();
     void OnRep_MaxStamina();
     void OnRep_IsSprinting();
     void OnRep_IsAiming();
+    void OnRep_GhostMode();
     void OnRep_CurrentStamina();
     void OnRep_CurrentHealth();
     void OnLevelVolumeExit(class AAbioticLevelStreamingVolume* Volume);
     void OnLevelVolumeEnter(class AAbioticLevelStreamingVolume* Volume);
+    void OnBaseChange(const class UPrimitiveComponent* NewBase);
     void OnAimUpdated();
     void NearbyCharacterTagsUpdated();
     bool IsSprinting();
@@ -882,6 +1034,7 @@ class AAbioticCharacter : public ACharacter
     bool HasMatchingGameplayTag(FGameplayTag TagToCheck);
     bool HasAnyMatchingGameplayTags(const FGameplayTagContainer& TagContainer);
     bool HasAllMatchingGameplayTags(const FGameplayTagContainer& TagContainer);
+    void GhostModeChanged(bool IsGhost);
     float GetTotalHealth();
     float GetStatModifierValue(float BaseValue, FStatModifierRowHandle Modifier);
     void GetOwnedGameplayTags(FGameplayTagContainer& TagContainer);
@@ -898,10 +1051,11 @@ class AAbioticCharacter : public ACharacter
     bool DoesNearbyCharacterHaveTag(FGameplayTag Tag);
     void ClearCheatStatModifiers();
     void CheckForStaminaEvents();
+    bool CanLaunchOutOfWater();
     void Aim(bool bClientSimulation);
     void AddNearbyCharacter(class AAbioticCharacter* Character, class UPrimitiveComponent* OverlapPrimitive);
     void AddCheatStatModifier(FStatModifierRowHandle Modifier, int32 Value);
-}; // Size: 0x900
+}; // Size: 0x920
 
 class AAbioticGameMode : public AGameMode
 {
@@ -915,35 +1069,46 @@ class AAbioticGameMode : public AGameMode
 
 class AAbioticGameSession : public AGameSession
 {
-}; // Size: 0x2C0
+}; // Size: 0x2C8
 
 class AAbioticGameState : public AGameState
 {
-    int32 SavedElapsedMinutes;                                                        // 0x0310 (size: 0x4)
-    TMap<class AActor*, class FString> TeleporterLocationMap;                         // 0x0318 (size: 0x50)
-    FAbioticGameStateOnTeleporterLocationUpdated OnTeleporterLocationUpdated;         // 0x0368 (size: 0x10)
-    void TeleporterLocationUpdated();
-    class ULevelManagerComponent* LevelManager;                                       // 0x0378 (size: 0x8)
-    TArray<FWorldFlagRowHandle> WorldFlags;                                           // 0x0380 (size: 0x10)
-    FString SessionShortCode;                                                         // 0x0390 (size: 0x10)
+    int32 SavedElapsedMinutes;                                                        // 0x0340 (size: 0x4)
+    TMap<class AActor*, class FString> TeleporterLocationMap;                         // 0x0348 (size: 0x50)
+    TMap<class AActor*, class bool> TeleporterPoweredMap;                             // 0x0398 (size: 0x50)
+    TMap<class FString, class bool> TeleporterLocationActiveMap;                      // 0x03E8 (size: 0x50)
+    class ULevelManagerComponent* LevelManager;                                       // 0x0438 (size: 0x8)
+    TArray<FWorldFlagRowHandle> WorldFlags;                                           // 0x0440 (size: 0x10)
+    FString SessionShortCode;                                                         // 0x0450 (size: 0x10)
+    FUniqueNetIdRepl SessionId;                                                       // 0x0460 (size: 0x30)
+    TArray<FString> ServerEntitlements;                                               // 0x0490 (size: 0x10)
+    bool bHomeWorldsEnabled;                                                          // 0x04A0 (size: 0x1)
+    FAbioticGameStateOnServerEntitlementsUpdated OnServerEntitlementsUpdated;         // 0x04A8 (size: 0x10)
+    void ServerEntitlementsUpdated();
 
-    void SetTeleporterLocation(class AActor* Teleporter, FString LocationName, bool bSkipBroadcast);
+    void SetTeleporterPowered(class AActor* Teleporter, bool bIsPowered);
+    void SetTeleporterLocation(class AActor* Teleporter, FString LocationName);
+    void SetServerEntitlements(const TMap<class FString, class FUserEntitlements>& InServerEntitlements);
     void RemoveTeleporterLocation(class AActor* Teleporter);
     void OnRep_WorldFlags();
+    void OnRep_SessionId();
+    void OnRep_ServerEntitlements();
+    bool HasServerGameEntitlement(FGameEntitlementRowHandle Entitlement);
     int32 GetElapsedMinutes();
     bool DoesLocationHaveMatchingTeleporter(FString LocationName, class AActor* Teleporter);
-}; // Size: 0x3A0
+}; // Size: 0x4B8
 
 class AAbioticLevelStreamingVolume : public AVolume
 {
     TSoftObjectPtr<UWorld> LevelToLoad;                                               // 0x02D0 (size: 0x28)
     TSoftObjectPtr<UWorld> RequiredParentLevel;                                       // 0x02F8 (size: 0x28)
-    bool bDisabledForDemo;                                                            // 0x0320 (size: 0x1)
-    float X;                                                                          // 0x0324 (size: 0x4)
-    float Y;                                                                          // 0x0328 (size: 0x4)
-    float Z;                                                                          // 0x032C (size: 0x4)
+    FGameEntitlementRowHandle RequiredEntitlement;                                    // 0x0320 (size: 0x20)
+    bool bDisabledForDemo;                                                            // 0x0340 (size: 0x1)
+    float X;                                                                          // 0x0344 (size: 0x4)
+    float Y;                                                                          // 0x0348 (size: 0x4)
+    float Z;                                                                          // 0x034C (size: 0x4)
 
-}; // Size: 0x330
+}; // Size: 0x350
 
 class AAbioticPlayerController : public APlayerController
 {
@@ -956,8 +1121,21 @@ class AAbioticPlayerController : public APlayerController
 
     void ToggleLoadingScreen(bool bShow);
     void SetUseSoftwareCursor(bool bEnabled);
+    void ServerPlayerVoiceIsBlocked(class AAbioticPlayerState* OtherPlayer);
+    void Request_ExecuteGameCommand(FGameCommandRowHandle RowHandle, FString FirstParam, FString SecondParam);
     void OnDetectAnyInput(const FKey& InKey);
+    void BumpCursor();
 }; // Size: 0x880
+
+class AAbioticPlayerState : public APlayerState
+{
+    bool bIsPlayerMuted;                                                              // 0x0350 (size: 0x1)
+    TEnumAsByte<EAbioticPlatform> PlayerPlatform;                                     // 0x0352 (size: 0x1)
+    TArray<class APlayerState*> VoiceBlockedPlayers;                                  // 0x0358 (size: 0x10)
+
+    void OnRep_PlayerPlatform();
+    void OnBlockedPlayerConnected();
+}; // Size: 0x368
 
 class AAbioticSpectatorPawn : public ASpectatorPawn
 {
@@ -1009,6 +1187,12 @@ class AWeatherDirector : public AActor
 {
 }; // Size: 0x298
 
+class ICraftedTeleporter : public IInterface
+{
+
+    void UpdateTeleporterActiveState(bool NewActiveState);
+}; // Size: 0x28
+
 class IThermal : public IInterface
 {
 
@@ -1017,6 +1201,19 @@ class IThermal : public IInterface
     float GetAmbientTemperature();
     void ApplyNewTemperature(float NewTemperature);
 }; // Size: 0x28
+
+class UABFCombinedSaveSubsystem : public UEngineSubsystem
+{
+    TMap<class FString, class FWorldCache> WorldNameToCacheMap;                       // 0x0030 (size: 0x50)
+
+}; // Size: 0xA8
+
+class UABFMeshMergeManager : public UEngineSubsystem
+{
+    TMap<class FName, class FGeneratedMeshCacheEntry> GeneratedMeshes;                // 0x0030 (size: 0x50)
+
+    class USkeletalMesh* GenerateCombinedMesh(class AActor* ParentActor, class USkeletalMeshComponent* ParentComponent, TArray<class USkeletalMeshComponent*> ComponentsToMerge, FName OverrideCacheName);
+}; // Size: 0xD0
 
 class UAIDirectorSubsystem : public UWorldSubsystem
 {
@@ -1069,6 +1266,20 @@ class UAIFunctionLibrary : public UBlueprintFunctionLibrary
     bool GetValueAsBool(const class UBlackboardComponent* Blackboard, FBlackboardName Key);
 }; // Size: 0x28
 
+class UAbioticAutomationLibrary : public UBlueprintFunctionLibrary
+{
+
+    void SimulateUIMouseClick();
+    void SetMousePositionRelative(float OffsetX, float OffsetY);
+    void SetMousePosition(float X, float Y);
+    void SetAxisByRow(const FKeybindSettingRowHandle KeybindRow, float Value, int32 MappingIndex);
+    void SetAxisByName(const FName AxisName, float Value, int32 MappingIndex);
+    void ReleaseActionByRow(const FKeybindSettingRowHandle KeybindRow, int32 MappingIndex);
+    void ReleaseActionByName(const FName ActionName, int32 MappingIndex);
+    void PressActionByRow(const FKeybindSettingRowHandle KeybindRow, int32 MappingIndex);
+    void PressActionByName(const FName ActionName, int32 MappingIndex);
+}; // Size: 0x28
+
 class UAbioticBaseObject : public UObject
 {
 }; // Size: 0x28
@@ -1084,19 +1295,19 @@ class UAbioticCharacterAnimInstance : public UAnimInstance
 
 class UAbioticCharacterMovementComponent : public UCharacterMovementComponent
 {
-    uint8 bWantsToSprint;                                                             // 0x0F88 (size: 0x1)
-    uint8 bWantsToAim;                                                                // 0x0F88 (size: 0x1)
-    bool bIsFrozen;                                                                   // 0x0F89 (size: 0x1)
-    float MaxTetherDistance;                                                          // 0x0F8C (size: 0x4)
-    float TetherDistanceToAdjustMovement;                                             // 0x0F90 (size: 0x4)
-    float JetpackAirControlMultiplier;                                                // 0x0F94 (size: 0x4)
-    float ExternalForceMulitplier;                                                    // 0x0F98 (size: 0x4)
-    float BrakingDecelerationFrozen;                                                  // 0x0F9C (size: 0x4)
-    float BrakingFrictionFactorFrozen;                                                // 0x0FA0 (size: 0x4)
-    float GroundFrictionFrozen;                                                       // 0x0FA4 (size: 0x4)
-    bool bCanEverSprint;                                                              // 0x0FB0 (size: 0x1)
-    bool bCanEverAim;                                                                 // 0x0FB1 (size: 0x1)
-    bool bAllowMovementDuringRootMotion;                                              // 0x0FB2 (size: 0x1)
+    uint8 bWantsToSprint;                                                             // 0x0F8C (size: 0x1)
+    uint8 bWantsToAim;                                                                // 0x0F8C (size: 0x1)
+    bool bIsFrozen;                                                                   // 0x0F8D (size: 0x1)
+    float MaxTetherDistance;                                                          // 0x0F90 (size: 0x4)
+    float TetherDistanceToAdjustMovement;                                             // 0x0F94 (size: 0x4)
+    float JetpackAirControlMultiplier;                                                // 0x0F98 (size: 0x4)
+    float ExternalForceMulitplier;                                                    // 0x0F9C (size: 0x4)
+    float BrakingDecelerationFrozen;                                                  // 0x0FA0 (size: 0x4)
+    float BrakingFrictionFactorFrozen;                                                // 0x0FA4 (size: 0x4)
+    float GroundFrictionFrozen;                                                       // 0x0FA8 (size: 0x4)
+    bool bCanEverSprint;                                                              // 0x0FB4 (size: 0x1)
+    bool bCanEverAim;                                                                 // 0x0FB5 (size: 0x1)
+    bool bAllowMovementDuringRootMotion;                                              // 0x0FB6 (size: 0x1)
 
     void UpdateGravityScaleModifier(float NewScale);
     void UpdateFrictionScaleModifier(float NewScale);
@@ -1109,11 +1320,21 @@ class UAbioticCharacterMovementComponent : public UCharacterMovementComponent
     float GetImmersionDepth();
 }; // Size: 0xFC0
 
+class UAbioticCheatManager : public UCheatManager
+{
+
+    void InvalidateCombinedWorldCache(FString& WorldName);
+}; // Size: 0x88
+
 class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
     void ValidateDamageResults(class UObject* WorldContextObject, TArray<FHitResult>& HitResults, TArray<FHitData>& HitData, TArray<class AActor*>& HitPawns, TEnumAsByte<ETraceTypeQuery> TraceChannel, TMap<class AActor*, class FHitResult>& OutHitActors);
+    void UpdateWidgetInteractionKeyboardFocus(class UWidgetInteractionComponent* WidgetInteractionComponent);
     void SortSavesByDate(TMap<class UObject*, class FDateTime>& SaveMap, bool bSortByNewest);
+    void SortLocationsByDistanceToLocation(TArray<FVector>& Locations, const FVector& Target);
+    void SortLocationsByDistanceToClosestLocation(TArray<FVector>& Locations, const TArray<FVector>& Targets);
+    void SortLocationsByDistanceToClosestActor(TArray<FVector>& Locations, const TArray<class AActor*>& Actors);
     TArray<FSortedItemResult> SortInventoryArray(TArray<FSortedItem> InventoryArray, TArray<int32>& OutIndexesToClear);
     bool ShouldUseRCON();
     void SetPrimitiveCanEverAffectNavigation(class UPrimitiveComponent* Primitive, bool bCanEverAffectNavigation);
@@ -1125,30 +1346,41 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     void ModifyPhysicsLocks(class UPrimitiveComponent* Primitive, bool bLockXRotation, bool bLockYRotation, bool bLockZRotation);
     void MarkObjectDirty(class UObject* Object);
     FSoftObjectPath MakeSavedObjectPath(const class AActor* Actor);
+    bool LessThan_String(FString LHS, FString RHS);
+    bool KeyIsSpaceBar(const FKey& Key);
+    bool KeyIsLeftMouse(const FKey& Key);
+    bool KeyIsFaceButtonTop(const FKey& Key);
+    bool KeyIsEnter(const FKey& Key);
     bool IsWorldTearingDown(const class UObject* WorldContextObject);
+    void IsWindowsTimezoneAutomatic(bool& bTimezoneAutomatic, bool& bTimeAutomatic);
     bool IsUsingAnimBlueprint(const class USkeletalMeshComponent* SkeletalMeshComponent);
+    bool IsTRMode();
     bool IsSubscribedApp(int32 AppID);
     bool IsSteamSocketsInitialized();
     bool IsSteamdeck();
     bool IsReleaseMode();
     bool IsReleaseGroupActive(EReleaseGroup ReleaseGroup);
+    bool IsPIERunning();
     bool IsFilmMode();
     bool IsFeatureEnabled(FName FeatureName);
     bool IsEditor();
     bool IsDemoMode();
     bool IsConsoleBuild();
     bool IsBuildType(TEnumAsByte<EGameSettingPlatformType> BuildType);
-    void InitSteamdeck();
+    void InitSteamDeck();
     bool HasValidOnlineSubsystem();
     bool HasActorRecentlyLoaded(class UObject* WorldContextObject, class AActor* Actor, float Tolerance);
+    bool GreaterThan_String(FString LHS, FString RHS);
     TArray<FString> GetWorldSaveFileList(FString WorldFolder);
     FString GetWorldSandboxSettingsFilePath(FString WorldSaveName);
+    int32 GetWorldCountLimit();
     TSoftObjectPtr<UWorld> GetWorldAssetFromLevelStreaming(class ULevelStreaming* LevelStreaming);
     class UDialogueVoice* GetVoiceFromDialogue(const class UDialogueWave* DialogueWave);
     FString GetVideoSetting_String(FVideoSettingRowHandle VideoSetting);
     int32 GetVideoSetting_Int(FVideoSettingRowHandle VideoSetting);
     float GetVideoSetting_Float(FVideoSettingRowHandle VideoSetting);
     bool GetVideoSetting_Bool(FVideoSettingRowHandle VideoSetting);
+    FString GetSystemLanguage();
     bool GetSubtitlesFromDialogue(const class UDialogueWave* DialogueWave, bool bUseSourceText, TArray<FString>& OutSubtitleLines, TArray<float>& OutSubtitleTimes);
     FString GetSteamIDFromPlayerState(const class APlayerState* PlayerState);
     FString GetSourceTextFromDialogueWave(const class UDialogueWave* DialogueWave);
@@ -1157,12 +1389,16 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     FString GetSaveSubfolderName();
     void GetSavedObjectPath(const FSoftObjectPath& InSavePath, FSoftObjectPath& OutSavePath);
     int32 GetRCONPort();
+    FString GetPlayerSaveID(const class APlayerState* PlayerState);
     TSoftObjectPtr<UWorld> GetPersistentWorld(const class UObject* WorldContextObject, bool bRemovePIEPrefix);
     class UObject* GetPersistentLevel(const class UObject* WorldContextObject);
     bool GetPaintedMaterials(FPaintedDeployableRowHandle PaintedRow, EPaintColor PaintColor, TArray<TSoftObjectPtr<UMaterialInterface>>& OutMaterials);
+    int32 GetNumShaderCompilesRemaining();
     FText GetLocalizedTextFromDialogueWave(const class UDialogueWave* DialogueWave);
     FString GetLevelNameFromWorldAsset(const TSoftObjectPtr<UWorld>& WorldAsset);
     class UObject* GetLevelFromStreamingLevel(class ULevelStreaming* LevelStreaming);
+    float GetHitPenetration(const FHitResult& Hit);
+    void GetGameplayTagsFromQuery(const FGameplayTagQuery& Query, TArray<FGameplayTag>& OutTags);
     FString GetGameplaySetting_String(FGameplaySettingRowHandle VideoSetting);
     int32 GetGameplaySetting_Int(FGameplaySettingRowHandle GameplaySetting);
     float GetGameplaySetting_Float(FGameplaySettingRowHandle GameplaySetting);
@@ -1170,6 +1406,8 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     TEnumAsByte<EABFGamepadType> GetGamepadIdentifierEnum();
     FString GetGamepadIdentifier();
     TEnumAsByte<EABFGamepadType> GetGamepadEnumID(class UObject* WorldContextObject);
+    class UWidget* GetFocusedWidget();
+    TArray<FDamageDefinitionRowHandle> GetDamageDefinitionsFromQuery(const FGameplayTagQuery& TagQuery);
     void GetCurrectFacilityDate(const int32 DaysPassed, EDayOfTheWeek& CurrentWeekday, int32& CurrentDay, EMonthOfTheYear& CurrentMonth, int32& CurrentYear);
     FString GetControlSetting_String(FControlSettingRowHandle VideoSetting);
     int32 GetControlSetting_Int(FControlSettingRowHandle ControlSetting);
@@ -1189,11 +1427,16 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     float GetAccessibilitySetting_Float(FAccessibilitySettingRowHandle AccessibilitySetting);
     bool GetAccessibilitySetting_Bool(FAccessibilitySettingRowHandle AccessibilitySetting);
     class AAbioticCharacter* GetAbioticPlayerCharacter(const class UObject* WorldContextObject, int32 PlayerIndex);
+    TArray<FString> FuzzySearchV2(const TArray<FString>& NameArray, FString SearchInput);
     TArray<FName> FuzzySearch(const TArray<FName>& NameArray, FString SearchInput);
     void ForceDestroyComponent(class UActorComponent* Component);
+    void FilterMatchingTags(const FGameplayTagContainer& InTags, const FGameplayTagContainer& FilterTags, FGameplayTagContainer& OutTags);
     void EnableLumenOptimizations(const class UObject* WorldContextObject);
     TArray<int32> DistributeValueRandomlyToArray(int32 ValueToBeDistributed, int32 ArraySize);
+    void DeleteDirectory(FString WorldName);
     int32 DayOfTheWeekToFlag(const EDayOfTheWeek DayOfWeek);
+    void CopyToClipboard(FString Text);
+    FString ConvertStringToSearchable(FString InString);
     FString ConvertStringToSave(FString String);
     FSoftObjectPath ConvertSoftObjectToSave(const TSoftObjectPtr<UObject> SoftObject);
     float CharacterItemWeightModifiers(class AAbioticCharacter* Character, float InItemWeight, float ItemRadioactivity, const FGameplayTagContainer& ItemTags);
@@ -1230,35 +1473,49 @@ class UAbioticGameEngine : public UGameEngine
 
 class UAbioticGameInstance : public UAdvancedFriendsGameInstance
 {
-    FString LastErrorMessage;                                                         // 0x0240 (size: 0x10)
-    FString CurrentSessionPassword;                                                   // 0x0250 (size: 0x10)
-    FString PendingJoinPassword;                                                      // 0x0260 (size: 0x10)
-    TArray<FString> CurrentBannedPlayers;                                             // 0x0270 (size: 0x10)
-    uint8 bCanPlayOnline;                                                             // 0x0288 (size: 0x1)
-    uint8 bCanCrossplay;                                                              // 0x0288 (size: 0x1)
-    uint8 bCanCommunicate;                                                            // 0x0288 (size: 0x1)
-    uint8 bIsSoloOrLanPlayOnly;                                                       // 0x0288 (size: 0x1)
-    FString ActiveWorldSaveName;                                                      // 0x0290 (size: 0x10)
-    TArray<class UAbioticSave*> PendingWorldSaves;                                    // 0x02A0 (size: 0x10)
-    TArray<class UAbioticSave*> PendingPlayerSaves;                                   // 0x02B0 (size: 0x10)
-    bool bIsSaving;                                                                   // 0x02C0 (size: 0x1)
-    TMap<class FString, class UAbioticSave*> PlayerSaveMap;                           // 0x02C8 (size: 0x50)
-    TMap<class FString, class UAbioticSave*> WorldSaveMap;                            // 0x0318 (size: 0x50)
-    TSubclassOf<class UAbioticSave> WorldSaveClass;                                   // 0x0368 (size: 0x8)
-    TSubclassOf<class UAbioticSave> MetaDataSaveClass;                                // 0x0370 (size: 0x8)
-    TSubclassOf<class UAbioticSave> PlayerSaveClass;                                  // 0x0378 (size: 0x8)
+    FString PlayerVersionString;                                                      // 0x0240 (size: 0x10)
+    FString LastErrorMessage;                                                         // 0x0250 (size: 0x10)
+    FString CurrentSessionPassword;                                                   // 0x0260 (size: 0x10)
+    FString CurrentAdminPassword;                                                     // 0x0270 (size: 0x10)
+    FString PendingJoinPassword;                                                      // 0x0280 (size: 0x10)
+    TArray<FString> CurrentBannedPlayers;                                             // 0x0290 (size: 0x10)
+    uint8 bShowedPrivilegeLimitations;                                                // 0x02A8 (size: 0x1)
+    uint8 bCanPlayOnline;                                                             // 0x02A8 (size: 0x1)
+    uint8 bCanCrossplay;                                                              // 0x02A8 (size: 0x1)
+    uint8 bCanCommunicate;                                                            // 0x02A8 (size: 0x1)
+    uint8 bIsSoloOrLanPlayOnly;                                                       // 0x02A8 (size: 0x1)
+    uint8 bNeedsPrivilgesCheck;                                                       // 0x02A8 (size: 0x1)
+    FString ActiveWorldSaveName;                                                      // 0x02B0 (size: 0x10)
+    TArray<class UAbioticSave*> PendingWorldSaves;                                    // 0x02C0 (size: 0x10)
+    TArray<class UAbioticSave*> PendingPlayerSaves;                                   // 0x02D0 (size: 0x10)
+    bool bIsSaving;                                                                   // 0x02E0 (size: 0x1)
+    TMap<class FString, class UAbioticSave*> PlayerSaveMap;                           // 0x02E8 (size: 0x50)
+    TMap<class FString, class UAbioticSave*> WorldSaveMap;                            // 0x0338 (size: 0x50)
+    TSubclassOf<class UAbioticSave> WorldSaveClass;                                   // 0x0388 (size: 0x8)
+    TSubclassOf<class UAbioticSave> MetaDataSaveClass;                                // 0x0390 (size: 0x8)
+    TSubclassOf<class UAbioticSave> PlayerSaveClass;                                  // 0x0398 (size: 0x8)
 
     void ToggleStatUnit(bool bEnabled);
     void ToggleStatFPS(bool bEnabled);
+    void ShowStorePurchaseUI(FString AbioticId);
     void SetUnfocusedVolumeMultiplier(float NewVolumeMultiplier);
+    void OnSessionInviteAcceptedWhileOffline();
     bool OnRemoteConsoleCommand(FString Command, const TArray<FString>& Arguments);
+    void OnOnlineStatusChanged(bool bIsOnline);
     void OnOnlinePrivilegesUpdated();
+    void OnOnlinePrivilegesLimited();
     void OnOnlineLoginComplete(bool bWasSuccessful, FString ErrorMessage);
     void OnlineLogin();
+    void OfflineLoginComplete();
     void MappingsChanged(class APlayerController* Player);
+    bool IsLoggedIn();
+    bool HasPendingSessionInvites();
     bool HasPendingSaves();
+    bool HasGameEntitlement(FGameEntitlementRowHandle Entitlement);
     class UAbioticSave* GetWorldSave(FString LevelSuffix, bool& bNewSave);
+    TArray<FString> GetUnlockedEntitlements();
     FString GetSessionShortCode();
+    int32 GetSessionMaxPlayers();
     class UAbioticSave* GetPlayerSave(FString PlayerId, bool bCreateIfNotFound);
     class UAbioticSave* GetMetaDataSave(bool& bNewSave);
     TArray<FSessionPropertyKeyPair> GetBaseSessionSettings();
@@ -1271,20 +1528,29 @@ class UAbioticGameInstance : public UAdvancedFriendsGameInstance
     bool DoesActiveWorldExist();
     class UAbioticSave* CreatePlayerResetSave(FString PlayerId);
     void ClientWasKicked(const FText& KickReason);
+    void ClearPendingSessionInvites();
+    void CheckForPendingSessionInvites();
     void AddWorldSaveToQueue(class UAbioticSave* SaveGame);
     void AddPlayerSaveToQueue(class UAbioticSave* SaveGame);
-}; // Size: 0x390
+}; // Size: 0x410
 
 class UAbioticGameUserSettings : public UGameUserSettings
 {
-    TEnumAsByte<EAbioticCrossplaySetting::Type> CrossplaySetting;                     // 0x0148 (size: 0x1)
-    bool bUseVRR;                                                                     // 0x0149 (size: 0x1)
-    uint8 CustomVersion;                                                              // 0x014A (size: 0x1)
+    TEnumAsByte<EAbioticCrossplaySetting::Type> CrossplaySetting;                     // 0x0150 (size: 0x1)
+    bool bUseVRR;                                                                     // 0x0151 (size: 0x1)
+    uint8 CustomVersion;                                                              // 0x0152 (size: 0x1)
+    TArray<FAbioticBlockedPlayer> BlockedPlayers;                                     // 0x0158 (size: 0x10)
+    TArray<FAbioticBlockedPlayer> PlatformBlockedPlayers;                             // 0x0168 (size: 0x10)
+    TArray<FAbioticBlockedPlayer> MutedPlayers;                                       // 0x0178 (size: 0x10)
 
     void SetVRRSetting(bool NewUseVRR, bool bFromCvar);
     void SetCrossplaySetting(TEnumAsByte<EAbioticCrossplaySetting::Type> InCrossplay, bool bFromCvar);
+    void RemoveMutedPlayer(const FAbioticBlockedPlayer& InMutedPlayer);
+    void RemoveBlockedPlayer(const FAbioticBlockedPlayer& InBlockedPlayer);
     TEnumAsByte<EAbioticCrossplaySetting::Type> GetCrossplaySetting();
-}; // Size: 0x150
+    void AddMutedPlayer(const FAbioticBlockedPlayer& InMutedPlayer);
+    void AddBlockedPlayer(const FAbioticBlockedPlayer& InBlockedPlayer);
+}; // Size: 0x188
 
 class UAbioticGameViewportClient : public UGameViewportClient
 {
@@ -1299,6 +1565,24 @@ class UAbioticLocalPlayer : public ULocalPlayer
 {
 }; // Size: 0x2B0
 
+class UAbioticMultiLineEditableTextBox : public UMultiLineEditableTextBox
+{
+    FAbioticMultiLineEditableTextBoxOnCursorMoved OnCursorMoved;                      // 0x1088 (size: 0x10)
+    void OnCaretMoved(int32 InLineIndex, int32 InOffset);
+
+    void SetCursorPosition(const int32 LineIndex, const int32 LineOffset);
+    void InsertTextAtCursor(FString InText);
+    bool GetCursorPosition(int32& LineIndex, int32& LineOffset);
+}; // Size: 0x10A0
+
+class UAbioticPhysicalMaterial : public UPhysicalMaterial
+{
+    float DamageAmount;                                                               // 0x0098 (size: 0x4)
+    TSubclassOf<class UDamageType> DamageType;                                        // 0x00A0 (size: 0x8)
+    float DamageTickRate;                                                             // 0x00A8 (size: 0x4)
+
+}; // Size: 0xB0
+
 class UAbioticPlayerInputComponent : public UInputComponent
 {
     FAbioticPlayerInputComponentOnMoveForwardGamepad OnMoveForwardGamepad;            // 0x0130 (size: 0x10)
@@ -1309,18 +1593,18 @@ class UAbioticPlayerInputComponent : public UInputComponent
     void OnYawGamepad(float Val);
     FAbioticPlayerInputComponentOnPitchGamepad OnPitchGamepad;                        // 0x0160 (size: 0x10)
     void OnPitchGamepad(float Val);
-    FCachedInputData CachedPreviousFrame;                                             // 0x01B0 (size: 0x40)
-    bool bGamepadActive;                                                              // 0x01F0 (size: 0x1)
-    float BaseYawRate;                                                                // 0x01F4 (size: 0x4)
-    float BasePitchRate;                                                              // 0x01F8 (size: 0x4)
-    float AccelerationThreshold;                                                      // 0x021C (size: 0x4)
-    class UCurveFloat* AccelerationCurve;                                             // 0x0220 (size: 0x8)
-    float FrictionLeaveAdjustment;                                                    // 0x0228 (size: 0x4)
-    class UCurveFloat* FrictionAngleCurve;                                            // 0x0230 (size: 0x8)
-    class UCurveFloat* FrictionInputCurve;                                            // 0x0238 (size: 0x8)
-    class UCurveFloat* AdhesionPowerCurve;                                            // 0x0240 (size: 0x8)
-    class UCurveFloat* AdhesionMaxAngleCurve;                                         // 0x0248 (size: 0x8)
-    float UserRadialCloseInputCancelDelay;                                            // 0x0250 (size: 0x4)
+    FCachedInputData CachedPreviousFrame;                                             // 0x01D0 (size: 0x60)
+    bool bGamepadActive;                                                              // 0x0230 (size: 0x1)
+    float BaseYawRate;                                                                // 0x0234 (size: 0x4)
+    float BasePitchRate;                                                              // 0x0238 (size: 0x4)
+    float AccelerationThreshold;                                                      // 0x0268 (size: 0x4)
+    class UCurveFloat* AccelerationCurve;                                             // 0x0270 (size: 0x8)
+    float FrictionLeaveAdjustment;                                                    // 0x0278 (size: 0x4)
+    class UCurveFloat* FrictionAngleCurve;                                            // 0x0280 (size: 0x8)
+    class UCurveFloat* FrictionInputCurve;                                            // 0x0288 (size: 0x8)
+    class UCurveFloat* AdhesionPowerCurve;                                            // 0x0290 (size: 0x8)
+    class UCurveFloat* AdhesionMaxAngleCurve;                                         // 0x0298 (size: 0x8)
+    float UserRadialCloseInputCancelDelay;                                            // 0x02A0 (size: 0x4)
 
     void SetGamepadActive(bool bActive);
     void ResumePostRadialInput();
@@ -1328,6 +1612,9 @@ class UAbioticPlayerInputComponent : public UInputComponent
     void OnRadialDeadzoneChanged(float NewValue);
     void OnMotionSensitivityYChanged(float NewValue);
     void OnMotionSensitivityXChanged(float NewValue);
+    void OnLeftRadialDeadzoneChanged(float NewValue);
+    void OnLeftAxialDeadzoneYChanged(float NewValue);
+    void OnLeftAxialDeadzoneXChanged(float NewValue);
     void OnInvertYAxisChanged(bool NewValue);
     void OnGamepadYSensitivityChanged(float NewValue);
     void OnGamepadXSensitivityChanged(float NewValue);
@@ -1337,7 +1624,13 @@ class UAbioticPlayerInputComponent : public UInputComponent
     void OnAimAssistMotionChanged(bool NewValue);
     void OnAimAssistFrictionChanged(bool NewValue);
     void OnAimAssistAdhesionChanged(bool NewValue);
-}; // Size: 0x258
+}; // Size: 0x2A8
+
+class UAbioticPlayerReportWidget : public UAbioticWidget
+{
+
+    void SubmitPlayerReport(FString Report, FUniqueNetIdRepl PlayerId);
+}; // Size: 0x2E0
 
 class UAbioticProjectileComponent : public UProjectileMovementComponent
 {
@@ -1403,30 +1696,30 @@ class UAbioticSaveStatics : public UObject
 
 class UAbioticTargetingComponent : public UCapsuleComponent
 {
-    bool bDefaultEnabled;                                                             // 0x0548 (size: 0x1)
-    bool bEnabled;                                                                    // 0x0549 (size: 0x1)
-    bool bValidForAimAssist;                                                          // 0x054A (size: 0x1)
-    bool bValidForCrosshairAccuracy;                                                  // 0x054B (size: 0x1)
-    bool bIsInteractableType;                                                         // 0x054C (size: 0x1)
+    bool bDefaultEnabled;                                                             // 0x0550 (size: 0x1)
+    bool bEnabled;                                                                    // 0x0551 (size: 0x1)
+    bool bValidForAimAssist;                                                          // 0x0552 (size: 0x1)
+    bool bValidForCrosshairAccuracy;                                                  // 0x0553 (size: 0x1)
+    bool bIsInteractableType;                                                         // 0x0554 (size: 0x1)
 
     void SetEnabled(bool bNewState);
     bool IsValidForCrosshairAccuracy();
     bool IsEnabled();
     TArray<FVector> GetTargetingHotspots();
     int32 GetTargetingHotspotCount();
-}; // Size: 0x550
+}; // Size: 0x560
 
 class UAbioticTargetingComponent_Offsets : public UAbioticTargetingComponent
 {
-    TArray<FVector> Offsets;                                                          // 0x0550 (size: 0x10)
+    TArray<FVector> Offsets;                                                          // 0x0558 (size: 0x10)
 
-}; // Size: 0x560
+}; // Size: 0x570
 
 class UAbioticTargetingComponent_Sockets : public UAbioticTargetingComponent
 {
-    TArray<FName> Sockets;                                                            // 0x0550 (size: 0x10)
+    TArray<FName> Sockets;                                                            // 0x0558 (size: 0x10)
 
-}; // Size: 0x560
+}; // Size: 0x570
 
 class UAbioticTargetingManager : public UObject
 {
@@ -1436,6 +1729,7 @@ class UAbioticTargetingManager : public UObject
     TEnumAsByte<ECollisionChannel> LineOfSightCheckChannel;                           // 0x00D0 (size: 0x1)
     TEnumAsByte<ECollisionChannel> VisibilityChannel;                                 // 0x00F8 (size: 0x1)
     TMap<TEnumAsByte<ETargetingCategory>, FTargetingInfo> BestTargetByCategory;       // 0x01B8 (size: 0x50)
+    int32 PreviousFrameInteractableIndex;                                             // 0x02A8 (size: 0x4)
 
     void OnAimAssistCorrectionChanged(bool NewValue);
     FTargetingInfo GetBestTarget(TEnumAsByte<ETargetingCategory> TargetingCategory);
@@ -1444,8 +1738,9 @@ class UAbioticTargetingManager : public UObject
 class UAbioticTargetingSubsystem : public UWorldSubsystem
 {
     TArray<TWeakObjectPtr<UAbioticTargetingComponent>> Targetables;                   // 0x0030 (size: 0x10)
+    TArray<TWeakObjectPtr<UAbioticTargetingComponent>> OnlyInteractables;             // 0x0040 (size: 0x10)
 
-}; // Size: 0x40
+}; // Size: 0x50
 
 class UAbioticUIActionRouter : public ULocalPlayerSubsystem
 {
@@ -1455,6 +1750,7 @@ class UAbioticUIActionRouter : public ULocalPlayerSubsystem
     void ViewportOnInputTypeChanged(bool bUsingGamepad);
     void TriggerBindCaptureActive(bool bActive);
     bool IsUsingGamepad();
+    FVector2D GetAnalogCursorPosition();
 }; // Size: 0x60
 
 class UAbioticVehicleMovementComponent : public UChaosWheeledVehicleMovementComponent
@@ -1552,6 +1848,7 @@ class UAchievementsSubsystem : public UGameInstanceSubsystem
     FAchievementsSubsystemOnAchievementUnlocked OnAchievementUnlocked;                // 0x0078 (size: 0x10)
     void AchievementUnlocked(FAchievementRowHandle Achievement);
 
+    void UserOfflineLogin();
     bool UploadAchievementData();
     void TriggerAchievement(FAchievementRowHandle Achievement, bool bSkipStore);
     void IncrementAchievementStat_Int(FAchievementStatRowHandle Stat, int32 Value);
@@ -1578,6 +1875,24 @@ class UAnalyticsSubsystem : public UGameInstanceSubsystem
     void SendAnalyticsDataToProvider();
     bool InitializeAnalytics();
 }; // Size: 0x318
+
+class UAsyncFindPlayerBases : public UBlueprintAsyncActionBase
+{
+    FAsyncFindPlayerBasesComplete Complete;                                           // 0x0030 (size: 0x10)
+    void AsyncFindPlayerBasesOutputPin(bool bSuccess, const TArray<FPlayerBaseData>& Bases);
+    class UWorld* World;                                                              // 0x0040 (size: 0x8)
+    TArray<FPlayerBaseData> Results;                                                  // 0x0048 (size: 0x10)
+    float Distance;                                                                   // 0x0058 (size: 0x4)
+    FName PlayerBaseTag;                                                              // 0x005C (size: 0x8)
+    bool bRemoveUnloaded;                                                             // 0x0064 (size: 0x1)
+    TSubclassOf<class AActor> SearchStartClass;                                       // 0x0068 (size: 0x8)
+    bool bDebugDraw;                                                                  // 0x0070 (size: 0x1)
+    FLinearColor DebugColor;                                                          // 0x0074 (size: 0x10)
+    float DebugTime;                                                                  // 0x0084 (size: 0x4)
+    bool bDebugBranch;                                                                // 0x0088 (size: 0x1)
+
+    class UAsyncFindPlayerBases* AsyncFindPlayerBases(const class UObject* WorldContextObject, const float Distance, const FName PlayerBaseTag, bool bRemoveUnloaded, TSubclassOf<class AActor> SearchStartClass, bool bDebugDraw, const FLinearColor DebugColor, const float DebugTime, bool bDebugBranch);
+}; // Size: 0x90
 
 class UAudioDeviceOptionFactory : public USettingOptionFactory
 {
@@ -1658,10 +1973,10 @@ class UBackgroundEntryItem : public UObject
 
 class UBenchUpgradeActorComponent : public UChildActorComponent
 {
-    FBenchUpgradeRowHandle BenchUpgrade;                                              // 0x0280 (size: 0x20)
+    FBenchUpgradeRowHandle BenchUpgrade;                                              // 0x0288 (size: 0x20)
 
     void RefreshUpgradeState(const FGameplayTagContainer& TagContainer);
-}; // Size: 0x2A0
+}; // Size: 0x2B0
 
 class UBenchUpgradeHandleFunctionLibrary : public UBlueprintFunctionLibrary
 {
@@ -1707,6 +2022,15 @@ class UBuffDebuffObject : public UObject
     void Server_BeginBuffRemoval();
 }; // Size: 0x60
 
+class UBulkQueryAndUpdateUserNamesPlayerManagement : public UOnlineBlueprintCallProxyBase
+{
+    FBulkQueryAndUpdateUserNamesPlayerManagementOnCompleted OnCompleted;              // 0x0038 (size: 0x10)
+    void UserInformationQueriedAndUpdated();
+    class UObject* WorldContextObject;                                                // 0x0048 (size: 0x8)
+
+    class UBulkQueryAndUpdateUserNamesPlayerManagement* QueryAndUpdateUserNamesForPlayerManagement(class UObject* WorldContextObject);
+}; // Size: 0xA8
+
 class UCharacterBuffComponent : public UActorComponent
 {
     TArray<FBuffDebuffRowHandle> ImmuneToBuffs;                                       // 0x00A8 (size: 0x10)
@@ -1722,8 +2046,10 @@ class UCharacterBuffComponent : public UActorComponent
     void OnBuffTagContainerRefreshed();
     FCharacterBuffComponentOnCurrentBuffsUpdated OnCurrentBuffsUpdated;               // 0x01D8 (size: 0x10)
     void OnCurrentBuffsUpdated(class UCharacterBuffComponent* BuffComponent);
-    TMap<class FBuffDebuffRowHandle, class UActorComponent*> BuffParticleMap;         // 0x01E8 (size: 0x50)
-    TMap<class FBuffDebuffRowHandle, class TSoftObjectPtr<UMaterialInterface>> BuffMaterialMap; // 0x0238 (size: 0x50)
+    FCharacterBuffComponentOnBuffBlocked OnBuffBlocked;                               // 0x01E8 (size: 0x10)
+    void OnBuffUpdated(FBuffDebuffRowHandle BuffRow);
+    TMap<class FBuffDebuffRowHandle, class UActorComponent*> BuffParticleMap;         // 0x01F8 (size: 0x50)
+    TMap<class FBuffDebuffRowHandle, class TSoftObjectPtr<UMaterialInterface>> BuffMaterialMap; // 0x0248 (size: 0x50)
 
     class UActorComponent* SpawnBuffParticle(FBuffDebuffRowHandle BuffRow);
     void Server_RemoveTraitBuff(FBuffDebuffRowHandle BuffRow);
@@ -1733,6 +2059,7 @@ class UCharacterBuffComponent : public UActorComponent
     bool Server_RemoveBuff(FBuffDebuffRowHandle BuffRow, bool bRemoveEntireStack, EBodyLimbs Limb, bool bExpiredByTime);
     bool Server_ApplyBuff(FBuffDebuffRowHandle BuffRow, bool bOverrideDefaultDuration, float NewDuration, EBodyLimbs Limb, class AActor* LinkedActor, bool bSkipDialog);
     void Server_AddTraitBuff(FBuffDebuffRowHandle BuffRow);
+    void ResetBuffExpireTime(const FBuffDebuffRowHandle BuffRow, const bool bOnlyFirst);
     void RemoveBuffMaterial(FBuffDebuffRowHandle BuffRow);
     void PlayDialogLine(FBuffDebuffRowHandle BuffRow);
     void OnRep_CurrentBuffs();
@@ -1748,7 +2075,7 @@ class UCharacterBuffComponent : public UActorComponent
     void BuffRemoved(FBuffDebuffRowHandle BuffRow);
     void BuffReceived(FBuffDebuffRowHandle BuffRow);
     void ApplyBuffMaterial(FBuffDebuffRowHandle BuffRow);
-}; // Size: 0x288
+}; // Size: 0x298
 
 class UCompendiumEntryHandleFunctionLibrary : public UBlueprintFunctionLibrary
 {
@@ -1810,11 +2137,29 @@ class UCraftingEntryItem : public UObject
     void FilterCraftingEntries(const TArray<class UCraftingEntryItem*>& CraftingEntries, bool bOnlyUnlocked, bool bOnlyFavorites, bool bFilterBench, bool bUseCategory, uint8 FilterCategory, FGameplayTag FilterTag, FString SearchString, TArray<class UCraftingEntryItem*>& OutFilteredEntries, TArray<class UCraftingEntryItem*>& OutFilteredBenchEntries);
 }; // Size: 0xC0
 
+class UDamageDefinitionHandleFunctionLibrary : public UBlueprintFunctionLibrary
+{
+
+    FDamageDefinitionRowHandle MakeLiteralDamageDefinitionRowHandle(FDamageDefinitionRowHandle RowHandle);
+    FDamageDefinitionRowHandle MakeDamageDefinitionRowHandle(const FName RowName);
+    void GetDamageDefinitionRow(FDamageDefinitionRowHandle RowHandle, FDamageDefinition& Data, ERowValid& ReturnPath);
+    void GetAllDamageDefinitionRowNames(TArray<FName>& OutRowNames);
+    void GetAllDamageDefinitionRowHandles(TArray<FDamageDefinitionRowHandle>& OutRowHandles);
+    bool Equal_DamageDefinitionRowHandle(FDamageDefinitionRowHandle A, FDamageDefinitionRowHandle B);
+    bool DoesDamageDefinitionRowExist(FName RowName);
+    FName BreakDamageDefinitionRowHandle(const FDamageDefinitionRowHandle RowHandle);
+}; // Size: 0x28
+
 class UDynamicPropertyFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
     TArray<FDynamicProperty> SetDynamicProperty(TArray<FDynamicProperty>& DynamicProperties, EDynamicProperty Property, int32 Value);
+    int32 GetStovewareType(const TArray<FDynamicProperty>& DynamicProperties);
+    int32 GetPortions(const TArray<FDynamicProperty>& DynamicProperties);
     bool GetDynamicProperty(const TArray<FDynamicProperty>& DynamicProperties, EDynamicProperty Property, int32& Value);
+    ECookingState GetCookingState(const TArray<FDynamicProperty>& DynamicProperties);
+    TArray<FDynamicProperty> CopyCookingDynamicProperties(const TArray<FDynamicProperty>& SourceDynamicProperties, TArray<FDynamicProperty>& DestinationDynamicProperties);
+    TArray<FDynamicProperty> ClearCookingDynamicProperties(TArray<FDynamicProperty>& DynamicProperties);
 }; // Size: 0x28
 
 class UEQGenerator_CoverPoints : public UEnvQueryGenerator_ProjectedPoints
@@ -1855,6 +2200,17 @@ class UFPArmsAnimInstance : public UAnimInstance
     EFPAnimState CurrentAnimState;                                                    // 0x0368 (size: 0x1)
 
 }; // Size: 0x370
+
+class UFilterSessionResultEntries : public UOnlineBlueprintCallProxyBase
+{
+    FFilterSessionResultEntriesOnSuccess OnSuccess;                                   // 0x0030 (size: 0x10)
+    void ProfanityFilterResult(bool bSuccess, const TArray<FBlueprintSessionResult>& OutSessionResults);
+    FFilterSessionResultEntriesOnFailure OnFailure;                                   // 0x0040 (size: 0x10)
+    void ProfanityFilterResult(bool bSuccess, const TArray<FBlueprintSessionResult>& OutSessionResults);
+    class UObject* WorldContextObject;                                                // 0x0050 (size: 0x8)
+
+    class UFilterSessionResultEntries* GetFilterSessionResultEntries(class UObject* WorldContextObject, const TArray<FBlueprintSessionResult>& InSessionResults);
+}; // Size: 0x68
 
 class UFindEnemyQueryContext : public UEnvQueryContext
 {
@@ -1919,10 +2275,85 @@ class UGameActivitySubsystem : public UWorldSubsystem
     void ResetActivities();
 }; // Size: 0x80
 
+class UGameCommandEntryWidget : public UUserWidget
+{
+    FGameCommandRowHandle RowHandle;                                                  // 0x02E0 (size: 0x20)
+
+}; // Size: 0x300
+
+class UGameCommandHandleFunctionLibrary : public UBlueprintFunctionLibrary
+{
+
+    FGameCommandRowHandle MakeLiteralGameCommandRowHandle(FGameCommandRowHandle RowHandle);
+    FGameCommandRowHandle MakeGameCommandRowHandle(const FName RowName);
+    void GetGameCommandRow(FGameCommandRowHandle RowHandle, FGameCommand& Data, ERowValid& ReturnPath);
+    void GetAllGameCommandRowNames(TArray<FName>& OutRowNames);
+    void GetAllGameCommandRowHandles(TArray<FGameCommandRowHandle>& OutRowHandles);
+    bool Equal_GameCommandRowHandle(FGameCommandRowHandle A, FGameCommandRowHandle B);
+    bool DoesGameCommandRowExist(FName RowName);
+    FName BreakGameCommandRowHandle(const FGameCommandRowHandle RowHandle);
+}; // Size: 0x28
+
+class UGameCommandObject : public UObject
+{
+    FGameCommandRowHandle RowHandle;                                                  // 0x0028 (size: 0x20)
+
+    void OnCommandExecuted(class AAbioticPlayerController* Player, FString FirstParam, FString SecondParam);
+    FGameSliderSettings GetSliderSettings(bool& bDynamicSettings);
+    TArray<FName> GetSecondParamOptions(bool& bDynamicOptions);
+    TArray<FName> GetFirstParamOptions(bool& bDynamicOptions);
+    bool GetCurrentValue(float& OutValue);
+    bool GetCurrentState(FString& OutState);
+    FString ConvertParamToOriginal(FString InParam, bool bIsSecondParam);
+}; // Size: 0x48
+
+class UGameCommandSubsystem : public UGameInstanceSubsystem
+{
+    TMap<class FGameCommandRowHandle, class UGameCommandObject*> GameCommandInstances; // 0x0030 (size: 0x50)
+    TArray<FGameCommandEntry> GameCommands;                                           // 0x0080 (size: 0x10)
+
+    class UGameCommandObject* GetGameCommand(FGameCommandRowHandle RowHandle);
+    TArray<FGameCommandRowHandle> GameCommandFuzzySearch(FString SearchInput);
+    bool ExecuteGameCommand(class UObject* WorldContextObject, FGameCommandRowHandle RowHandle, FString FirstParam, FString SecondParam);
+}; // Size: 0x90
+
+class UGameCommandWidget : public UUserWidget
+{
+    FGameCommandRowHandle RowHandle;                                                  // 0x02E0 (size: 0x20)
+
+    void FilterGameCommandWidgets(class UPanelWidget* PanelWidget, TArray<class UGameCommandWidget*> GameCommandWidgets, const TArray<FGameCommandRowHandle>& FilteredRowHandles);
+}; // Size: 0x300
+
+class UGameCreditHandleFunctionLibrary : public UBlueprintFunctionLibrary
+{
+
+    FGameCreditRowHandle MakeLiteralGameCreditRowHandle(FGameCreditRowHandle RowHandle);
+    FGameCreditRowHandle MakeGameCreditRowHandle(const FName RowName);
+    void GetGameCreditRow(FGameCreditRowHandle RowHandle, FGameCredit& Data, ERowValid& ReturnPath);
+    void GetAllGameCreditRowNames(TArray<FName>& OutRowNames);
+    void GetAllGameCreditRowHandles(TArray<FGameCreditRowHandle>& OutRowHandles);
+    bool Equal_GameCreditRowHandle(FGameCreditRowHandle A, FGameCreditRowHandle B);
+    bool DoesGameCreditRowExist(FName RowName);
+    FName BreakGameCreditRowHandle(const FGameCreditRowHandle RowHandle);
+}; // Size: 0x28
+
+class UGameEntitlementHandleFunctionLibrary : public UBlueprintFunctionLibrary
+{
+
+    FGameEntitlementRowHandle MakeLiteralGameEntitlementRowHandle(FGameEntitlementRowHandle RowHandle);
+    FGameEntitlementRowHandle MakeGameEntitlementRowHandle(const FName RowName);
+    void GetGameEntitlementRow(FGameEntitlementRowHandle RowHandle, FGameEntitlement& Data, ERowValid& ReturnPath);
+    void GetAllGameEntitlementRowNames(TArray<FName>& OutRowNames);
+    void GetAllGameEntitlementRowHandles(TArray<FGameEntitlementRowHandle>& OutRowHandles);
+    bool Equal_GameEntitlementRowHandle(FGameEntitlementRowHandle A, FGameEntitlementRowHandle B);
+    bool DoesGameEntitlementRowExist(FName RowName);
+    FName BreakGameEntitlementRowHandle(const FGameEntitlementRowHandle RowHandle);
+}; // Size: 0x28
+
 class UGameSettingFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
-    bool ShouldShowSetting(const FGameSetting& Setting);
+    bool ShouldShowSetting(const FGameSetting& Setting, bool bCheckDynamicState);
     FString GetDefaultValueForSetting(const FGameSetting& Setting);
 }; // Size: 0x28
 
@@ -2026,11 +2457,43 @@ class UItemActionHandleFunctionLibrary : public UBlueprintFunctionLibrary
     FName BreakItemActionRowHandle(const FItemActionRowHandle RowHandle);
 }; // Size: 0x28
 
+class UItemManagerListEntry : public UObject
+{
+    FName RowName;                                                                    // 0x0028 (size: 0x8)
+    FText DisplayName;                                                                // 0x0030 (size: 0x10)
+    int32 Amount;                                                                     // 0x0040 (size: 0x4)
+    TSoftObjectPtr<UTexture2D> Icon;                                                  // 0x0048 (size: 0x28)
+    FGameplayTagContainer Tags;                                                       // 0x0070 (size: 0x20)
+    TArray<class UItemManagerListEntry*> ChildListEntries;                            // 0x0090 (size: 0x10)
+
+    void SortListEntries(TArray<class UItemManagerListEntry*>& ListEntries, const TEnumAsByte<ESortDatabaseTerminalList> SortBy, const bool bReverse);
+    void FilterListEntries(TArray<class UItemManagerListEntry*>& ListEntries, FString FilterText, const FGameplayTagContainer& FilterTags);
+}; // Size: 0xA0
+
+class UItemUpgradeHandleFunctionLibrary : public UBlueprintFunctionLibrary
+{
+
+    FItemUpgradeRowHandle MakeLiteralItemUpgradeRowHandle(FItemUpgradeRowHandle RowHandle);
+    FItemUpgradeRowHandle MakeItemUpgradeRowHandle(const FName RowName);
+    void GetItemUpgradeRow(FItemUpgradeRowHandle RowHandle, FItemUpgrade& Data, ERowValid& ReturnPath);
+    void GetAllItemUpgradeRowNames(TArray<FName>& OutRowNames);
+    void GetAllItemUpgradeRowHandles(TArray<FItemUpgradeRowHandle>& OutRowHandles);
+    bool Equal_ItemUpgradeRowHandle(FItemUpgradeRowHandle A, FItemUpgradeRowHandle B);
+    bool DoesItemUpgradeRowExist(FName RowName);
+    FName BreakItemUpgradeRowHandle(const FItemUpgradeRowHandle RowHandle);
+}; // Size: 0x28
+
 class UKeybindAction : public UObject
 {
 
     bool OnKeyUp(class UAbioticWidget* Widget);
     bool OnKeyDown(class UAbioticWidget* Widget);
+}; // Size: 0x28
+
+class UKeybindSettingFunctionLibrary : public UBlueprintFunctionLibrary
+{
+
+    bool ShouldShowKeybind(const FKeybindSetting& Setting);
 }; // Size: 0x28
 
 class UKeybindSettingHandleFunctionLibrary : public UBlueprintFunctionLibrary
@@ -2075,12 +2538,13 @@ class ULevelManagerInstance : public UObject
     class ULevelStreaming* LevelStreaming;                                            // 0x0028 (size: 0x8)
     TArray<class AAbioticLevelStreamingVolume*> LevelStreamingVolumes;                // 0x0030 (size: 0x10)
     TSoftObjectPtr<UWorld> ParentWorldAsset;                                          // 0x0040 (size: 0x28)
+    FGameEntitlementRowHandle RequiredEntitlement;                                    // 0x0068 (size: 0x20)
 
     void OnPlayerLeaveLevel(class AActor* OverlappedActor, class AActor* OtherActor);
     void OnPlayerEnterLevel(class AActor* OverlappedActor, class AActor* OtherActor);
     void OnLevelUnloaded();
     void OnLevelLoaded();
-}; // Size: 0x78
+}; // Size: 0x98
 
 class ULevelManagerSubsystem : public UWorldSubsystem
 {
@@ -2092,20 +2556,40 @@ class ULevelManagerSubsystem : public UWorldSubsystem
     void LevelStreamingVisibleStatus(class ULevelStreaming* Level, bool bVisible);
     FLevelManagerSubsystemOnLevelLoadingUpdated OnLevelLoadingUpdated;                // 0x0060 (size: 0x10)
     void LevelStreamingLoadingIndicator(bool bIsLoading);
+    bool bDebugForceLevelLoad;                                                        // 0x0070 (size: 0x1)
+    TMap<class FString, class TSoftObjectPtr<AActor>> DeployableIDMap;                // 0x0078 (size: 0x50)
+    TMap<class AActor*, class bool> ActiveLightMap;                                   // 0x00C8 (size: 0x50)
+    TArray<class AActor*> ActiveCharacters;                                           // 0x0118 (size: 0x10)
+    TArray<class AActor*> PlayerDeployables;                                          // 0x0128 (size: 0x10)
 
+    void UpdateCachedLight(class AActor* Light, bool bIsPowered);
+    void SetDebugForceLevelLoad(bool bForceLoad);
+    void RemovePlayerDeployable(class AActor* Deployable);
+    void RemoveDeployableID(FString AssetID);
+    void RemoveCachedLight(class AActor* Light);
+    void RemoveCachedCharacter(class AActor* Character);
     void MarkLevelAsLoadedFromSave(const TSoftObjectPtr<UWorld>& Level);
     bool IsLocationLoaded(const FVector& Location);
+    bool IsLevelVisible(const TSoftObjectPtr<UWorld>& Level);
     bool IsLevelLoaded(const TSoftObjectPtr<UWorld>& Level);
     bool IsAnyLevelLoading();
     bool HasOwningLevelFinishedLoadedFromSave(const class AActor*& ActorToCheck);
+    TArray<class AActor*> GetPowerLeechPlayerFurnitureTargets(TArray<class TSubclassOf<AActor>> AllowedClasses, TArray<class TSubclassOf<AActor>> IgnoredClasses);
     TSoftObjectPtr<UWorld> GetOwningWorldFromActor(const class AActor* Actor);
+    TArray<class AActor*> GetNearbyPlayerFurniture(FVector Location, float Distance, bool bIgnoreZ, const TArray<class AActor*>& ActorsToIgnore, TSubclassOf<class AActor> ClassFilter);
+    TArray<class AActor*> GetNearbyLights(FVector Location, float Distance, bool bIgnoreZ, bool bOnlyPowered, const TArray<class AActor*>& ActorsToIgnore, TSubclassOf<class AActor> ClassFilter);
+    TArray<class AActor*> GetNearbyCharacters(FVector Location, float Distance, bool bIgnoreZ, const TArray<class AActor*>& ActorsToIgnore, TSubclassOf<class AActor> ClassFilter);
     bool GetLoadedLevelState(const TSoftObjectPtr<UWorld>& Level, bool& bPendingUnload, FString& VisibleState, TArray<class AAbioticCharacter*>& PlayersInLevel, bool& bLocalPlayerInLevel);
     TSoftObjectPtr<UWorld> GetLevelAtLocation(const FVector& Location);
     void GetAllSublevels(TArray<TSoftObjectPtr<UWorld>>& Sublevels);
     float GetActorTimeSinceCreation(const class AActor* Actor);
     bool FindLatestLevelPlayerIsIn(class AAbioticCharacter* Player, TSoftObjectPtr<UWorld>& Level);
+    bool FindDeployableID(FString AssetID, TSoftObjectPtr<AActor>& Deployable);
     bool AreLevelsLoaded(const TArray<class AAbioticLevelStreamingVolume*>& LevelVolumes, const TSoftObjectPtr<UWorld>& OwningLevel);
-}; // Size: 0x70
+    void AddPlayerDeployable(class AActor* Deployable);
+    void AddDeployableID(FString AssetID, TSoftObjectPtr<AActor> Deployable);
+    void AddCachedCharacter(class AActor* Character);
+}; // Size: 0x138
 
 class ULevelStreamingCustom : public UBlueprintFunctionLibrary
 {
@@ -2256,6 +2740,13 @@ class UQuestHandleFunctionLibrary : public UBlueprintFunctionLibrary
     FName BreakQuestRowHandle(const FQuestRowHandle RowHandle);
 }; // Size: 0x28
 
+class URealtimeMultiplaySubsystem : public UGameInstanceSubsystem
+{
+
+    void SetPlayerAcivelyPlaying(bool bIsActive);
+    void EvaluateMultiplayFeature();
+}; // Size: 0x40
+
 class URemoteConsoleSubsystem : public UGameInstanceSubsystem
 {
 }; // Size: 0x30
@@ -2286,6 +2777,7 @@ class USandboxOptionSubsystem : public UWorldSubsystem
     bool WriteSandboxSettingsToFile(FString FilePath, const TMap<class FName, class FString>& Settings);
     bool ReadSandboxSettingsFromFile(FString FilePath, TMap<class FName, class FString>& OutSettings);
     TMap<class FName, class FString> MergeLoadedSandboxSettingsWithDefault(const TMap<class FName, class FString>& InSettings, EModifiedRuleset& OutModifiedRuleset);
+    bool HasSandboxOptionsInitialized(const class UObject* WorldContextObject);
     FString GetSandboxStringValue(FString InValue, const FSandboxOption& SandboxData);
     FString GetSandboxOption_String(const class UObject* WorldContextObject, FSandboxOptionRowHandle Option);
     int32 GetSandboxOption_Int(const class UObject* WorldContextObject, FSandboxOptionRowHandle Option);
@@ -2303,6 +2795,14 @@ class USaveCurrentWorld : public UBlueprintAsyncActionBase
 
     class USaveCurrentWorld* SaveCurrentWorld(const class UObject* WorldContextObject);
 }; // Size: 0x88
+
+class USaveWorldBackup : public UBlueprintAsyncActionBase
+{
+    FSaveWorldBackupSaveWorld SaveWorld;                                              // 0x0030 (size: 0x10)
+    void SaveWorldBackupOutputPin(bool bSuccess);
+
+    class USaveWorldBackup* SaveWorldBackup(const class UObject* WorldContextObject, FString WorldSaveName);
+}; // Size: 0x78
 
 class USessionResultItem : public UObject
 {
@@ -2389,10 +2889,10 @@ class UStatModifierHandleFunctionLibrary : public UBlueprintFunctionLibrary
 
 class UThermalEmitterComponent : public USceneComponent
 {
-    int32 ThermalTemperature;                                                         // 0x0230 (size: 0x4)
-    bool bStartActive;                                                                // 0x0234 (size: 0x1)
-    bool bEmitterActive;                                                              // 0x0235 (size: 0x1)
-    TArray<class UPrimitiveComponent*> OverlapPrimitives;                             // 0x0238 (size: 0x10)
+    int32 ThermalTemperature;                                                         // 0x0238 (size: 0x4)
+    bool bStartActive;                                                                // 0x023C (size: 0x1)
+    bool bEmitterActive;                                                              // 0x023D (size: 0x1)
+    TArray<class UPrimitiveComponent*> OverlapPrimitives;                             // 0x0240 (size: 0x10)
 
     void SetEmitterActive(bool bNewActive);
     void OnRep_EmitterActive();
@@ -2421,6 +2921,19 @@ class UThermalReceiverComponent : public UActorComponent
     void SanitizeOverlappingEmitters();
     void OnRep_CurrentTemperature();
 }; // Size: 0xF8
+
+class UTickManagerSubsystem : public UWorldSubsystem
+{
+    TArray<FManagedTickObject> TrackedActors;                                         // 0x0060 (size: 0x10)
+    TArray<FManagedTickObject> TrackedComponents;                                     // 0x0070 (size: 0x10)
+
+    void UpdateManagedComponentTickState(class UActorComponent* TrackedComponent, bool bTickEnabled);
+    void UpdateManagedActorTickState(class AActor* TrackedActor, bool bTickEnabled);
+    void RemoveManagedComponent(class UActorComponent* TrackedComponent);
+    void RemoveManagedActor(class AActor* TrackedActor);
+    void AddManagedComponent(class UActorComponent* TrackedComponent);
+    void AddManagedActor(class AActor* TrackedActor);
+}; // Size: 0x80
 
 class UTramMovementComponent : public UMovementComponent
 {
@@ -2504,6 +3017,7 @@ class UWorldEntryItem : public UObject
     TArray<class UWorldEntryItem*> SortWorldEntries(const TArray<class UWorldEntryItem*> InWorldEntries);
     bool PerformVersionUpgrade();
     bool PerformCompressionUpgrade();
+    int32 GetWorldEntriesCount(FString WorldFolder, FString LevelFolder, bool bSearchBackups);
     TArray<class UWorldEntryItem*> GetWorldEntries(FString WorldFolder, FString LevelFolder, bool bSearchBackups);
     ESaveIntegrityState GetSaveIntegrityState();
     class UAbioticSave* GetMetaDataSave();
@@ -2561,7 +3075,6 @@ class UWorldSaveFunctionLibrary : public UBlueprintFunctionLibrary
     bool GetMetaDataTimestampForSave(FString WorldName, class UAbioticSave*& OutSave, FDateTime& OutTimestamp);
     bool DoesSaveBackupIndexExist(FString WorldSaveName, int32 Index);
     bool DoesAnySaveBackupExist(FString WorldSaveName);
-    void CreateSaveBackup(FString WorldSaveName);
 }; // Size: 0x28
 
 #endif

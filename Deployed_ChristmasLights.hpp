@@ -3,6 +3,6 @@
 
 class ADeployed_ChristmasLights_C : public ADeployed_Figurine_ParentBP_C
 {
-}; // Size: 0x920
+}; // Size: 0x849
 
 #endif

@@ -3,6 +3,6 @@
 
 class AGear_Backpack_ParentBP_C : public AItem_Gear_ParentBP_C
 {
-}; // Size: 0xB39
+}; // Size: 0xB11
 
 #endif

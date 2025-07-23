@@ -398,23 +398,23 @@ class ILandscapeSplineInterface : public IInterface
 
 class UControlPointMeshComponent : public UStaticMeshComponent
 {
-    float VirtualTextureMainPassMaxDrawDistance;                                      // 0x05D8 (size: 0x4)
+    float VirtualTextureMainPassMaxDrawDistance;                                      // 0x05E0 (size: 0x4)
 
-}; // Size: 0x5E0
+}; // Size: 0x5F0
 
 class ULandscapeComponent : public UPrimitiveComponent
 {
-    int32 SectionBaseX;                                                               // 0x0518 (size: 0x4)
-    int32 SectionBaseY;                                                               // 0x051C (size: 0x4)
-    int32 ComponentSizeQuads;                                                         // 0x0520 (size: 0x4)
-    int32 SubsectionSizeQuads;                                                        // 0x0524 (size: 0x4)
-    int32 NumSubsections;                                                             // 0x0528 (size: 0x4)
-    class UMaterialInterface* OverrideMaterial;                                       // 0x0530 (size: 0x8)
-    class UMaterialInterface* OverrideHoleMaterial;                                   // 0x0538 (size: 0x8)
-    TArray<class UMaterialInstanceConstant*> MaterialInstances;                       // 0x0540 (size: 0x10)
-    TArray<class UMaterialInstanceDynamic*> MaterialInstancesDynamic;                 // 0x0550 (size: 0x10)
-    TArray<int8> LODIndexToMaterialIndex;                                             // 0x0560 (size: 0x10)
-    class UTexture2D* XYOffsetmapTexture;                                             // 0x0570 (size: 0x8)
+    int32 SectionBaseX;                                                               // 0x0520 (size: 0x4)
+    int32 SectionBaseY;                                                               // 0x0524 (size: 0x4)
+    int32 ComponentSizeQuads;                                                         // 0x0528 (size: 0x4)
+    int32 SubsectionSizeQuads;                                                        // 0x052C (size: 0x4)
+    int32 NumSubsections;                                                             // 0x0530 (size: 0x4)
+    class UMaterialInterface* OverrideMaterial;                                       // 0x0538 (size: 0x8)
+    class UMaterialInterface* OverrideHoleMaterial;                                   // 0x0540 (size: 0x8)
+    TArray<class UMaterialInstanceConstant*> MaterialInstances;                       // 0x0548 (size: 0x10)
+    TArray<class UMaterialInstanceDynamic*> MaterialInstancesDynamic;                 // 0x0558 (size: 0x10)
+    TArray<int8> LODIndexToMaterialIndex;                                             // 0x0568 (size: 0x10)
+    class UTexture2D* XYOffsetmapTexture;                                             // 0x0578 (size: 0x8)
     FVector4 WeightmapScaleBias;                                                      // 0x0580 (size: 0x20)
     float WeightmapSubsectionOffset;                                                  // 0x05A0 (size: 0x4)
     FVector4 HeightmapScaleBias;                                                      // 0x05B0 (size: 0x20)
@@ -475,17 +475,17 @@ class ULandscapeHLODBuilder : public UHLODBuilder
 
 class ULandscapeHeightfieldCollisionComponent : public UPrimitiveComponent
 {
-    TArray<class ULandscapeLayerInfoObject*> ComponentLayerInfos;                     // 0x0518 (size: 0x10)
-    int32 SectionBaseX;                                                               // 0x0528 (size: 0x4)
-    int32 SectionBaseY;                                                               // 0x052C (size: 0x4)
-    int32 CollisionSizeQuads;                                                         // 0x0530 (size: 0x4)
-    float CollisionScale;                                                             // 0x0534 (size: 0x4)
-    int32 SimpleCollisionSizeQuads;                                                   // 0x0538 (size: 0x4)
-    TArray<uint8> CollisionQuadFlags;                                                 // 0x0540 (size: 0x10)
-    FGuid HeightfieldGuid;                                                            // 0x0550 (size: 0x10)
-    FBox CachedLocalBox;                                                              // 0x0560 (size: 0x38)
-    class ULandscapeComponent* RenderComponentRef;                                    // 0x0598 (size: 0x8)
-    TArray<class UPhysicalMaterial*> CookedPhysicalMaterials;                         // 0x05B8 (size: 0x10)
+    TArray<class ULandscapeLayerInfoObject*> ComponentLayerInfos;                     // 0x0520 (size: 0x10)
+    int32 SectionBaseX;                                                               // 0x0530 (size: 0x4)
+    int32 SectionBaseY;                                                               // 0x0534 (size: 0x4)
+    int32 CollisionSizeQuads;                                                         // 0x0538 (size: 0x4)
+    float CollisionScale;                                                             // 0x053C (size: 0x4)
+    int32 SimpleCollisionSizeQuads;                                                   // 0x0540 (size: 0x4)
+    TArray<uint8> CollisionQuadFlags;                                                 // 0x0548 (size: 0x10)
+    FGuid HeightfieldGuid;                                                            // 0x0558 (size: 0x10)
+    FBox CachedLocalBox;                                                              // 0x0568 (size: 0x38)
+    class ULandscapeComponent* RenderComponentRef;                                    // 0x05A0 (size: 0x8)
+    TArray<class UPhysicalMaterial*> CookedPhysicalMaterials;                         // 0x05C0 (size: 0x10)
 
     class ULandscapeComponent* GetRenderComponent();
 }; // Size: 0x620
@@ -531,30 +531,30 @@ class ULandscapeMaterialInstanceConstant : public UMaterialInstanceConstant
 
 class ULandscapeMeshCollisionComponent : public ULandscapeHeightfieldCollisionComponent
 {
-    FGuid MeshGuid;                                                                   // 0x0618 (size: 0x10)
+    FGuid MeshGuid;                                                                   // 0x0620 (size: 0x10)
 
-}; // Size: 0x630
+}; // Size: 0x640
 
 class ULandscapeMeshProxyComponent : public UStaticMeshComponent
 {
-    FGuid LandscapeGuid;                                                              // 0x05D8 (size: 0x10)
-    TArray<FIntPoint> ProxyComponentBases;                                            // 0x05E8 (size: 0x10)
-    TArray<FVector> ProxyComponentCentersObjectSpace;                                 // 0x05F8 (size: 0x10)
-    FVector ComponentXVectorObjectSpace;                                              // 0x0608 (size: 0x18)
-    FVector ComponentYVectorObjectSpace;                                              // 0x0620 (size: 0x18)
-    int32 ComponentResolution;                                                        // 0x0638 (size: 0x4)
-    int8 ProxyLOD;                                                                    // 0x063C (size: 0x1)
-    uint32 LODGroupKey;                                                               // 0x0640 (size: 0x4)
+    FGuid LandscapeGuid;                                                              // 0x05E0 (size: 0x10)
+    TArray<FIntPoint> ProxyComponentBases;                                            // 0x05F0 (size: 0x10)
+    TArray<FVector> ProxyComponentCentersObjectSpace;                                 // 0x0600 (size: 0x10)
+    FVector ComponentXVectorObjectSpace;                                              // 0x0610 (size: 0x18)
+    FVector ComponentYVectorObjectSpace;                                              // 0x0628 (size: 0x18)
+    int32 ComponentResolution;                                                        // 0x0640 (size: 0x4)
+    int8 ProxyLOD;                                                                    // 0x0644 (size: 0x1)
+    uint32 LODGroupKey;                                                               // 0x0648 (size: 0x4)
 
 }; // Size: 0x650
 
 class ULandscapeNaniteComponent : public UStaticMeshComponent
 {
-    FGuid ProxyContentId;                                                             // 0x05D8 (size: 0x10)
-    bool bEnabled;                                                                    // 0x05E8 (size: 0x1)
-    TArray<class ULandscapeComponent*> SourceLandscapeComponents;                     // 0x05F0 (size: 0x10)
+    FGuid ProxyContentId;                                                             // 0x05E0 (size: 0x10)
+    bool bEnabled;                                                                    // 0x05F0 (size: 0x1)
+    TArray<class ULandscapeComponent*> SourceLandscapeComponents;                     // 0x05F8 (size: 0x10)
 
-}; // Size: 0x600
+}; // Size: 0x610
 
 class ULandscapeSettings : public UDeveloperSettings
 {
@@ -605,9 +605,9 @@ class ULandscapeSplineSegment : public UObject
 
 class ULandscapeSplinesComponent : public UPrimitiveComponent
 {
-    TArray<class ULandscapeSplineControlPoint*> ControlPoints;                        // 0x0518 (size: 0x10)
-    TArray<class ULandscapeSplineSegment*> Segments;                                  // 0x0528 (size: 0x10)
-    TArray<class UMeshComponent*> CookedForeignMeshComponents;                        // 0x0538 (size: 0x10)
+    TArray<class ULandscapeSplineControlPoint*> ControlPoints;                        // 0x0520 (size: 0x10)
+    TArray<class ULandscapeSplineSegment*> Segments;                                  // 0x0530 (size: 0x10)
+    TArray<class UMeshComponent*> CookedForeignMeshComponents;                        // 0x0540 (size: 0x10)
 
     TArray<class USplineMeshComponent*> GetSplineMeshComponents();
 }; // Size: 0x550

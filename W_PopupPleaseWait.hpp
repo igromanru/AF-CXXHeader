@@ -16,6 +16,9 @@ class UW_PopupPleaseWait_C : public UAbioticWidget
     FText Text_Title;                                                                 // 0x0330 (size: 0x10)
     int32 Frame;                                                                      // 0x0340 (size: 0x4)
 
+    void WidgetAction_DPadDirection(TEnumAsByte<E_NavigationDirection::Type> Direction, bool& Handled);
+    void WidgetAction_FaceTop(bool& Handled);
+    void WidgetAction_CycleCrafting(bool Next, bool& Handled);
     void WidgetAction_CloseMenu(bool& Handled);
     void WidgetAction_CycleMenu(bool Next, bool& Handled);
     FEventReply OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);

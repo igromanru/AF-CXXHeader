@@ -31,6 +31,7 @@ class AMoveableCart_ParentBP_C : public ACharacter
     bool MovementAudioAllowed;                                                        // 0x0758 (size: 0x1)
     float MoveForwardRate;                                                            // 0x075C (size: 0x4)
     float MoveRightRate;                                                              // 0x0760 (size: 0x4)
+    class UAbioticPhysicalMaterial* FloorMaterial;                                    // 0x0768 (size: 0x8)
 
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
@@ -62,6 +63,8 @@ class AMoveableCart_ParentBP_C : public ACharacter
     FString GetVehicleID();
     void GetDriver(bool& Success, class AAbiotic_Character_ParentBP_C*& Character);
     bool CheckVehicleFreezeState();
+    void UpdateFloorType();
+    void ApplyFloorDamage();
     void StorageActorSetup(class ADeployed_Container_ParentBP_C* Storage);
     void AutoMoveCheck(double AxisValue, double& OutValue);
     void CalculateCurrentAudio();
@@ -116,7 +119,8 @@ class AMoveableCart_ParentBP_C : public ACharacter
     void InpAxisEvt_LookUpRate_K2Node_InputAxisEvent_62(float AxisValue);
     void InpAxisEvt_MoveForwardRate_K2Node_InputAxisEvent_2(float AxisValue);
     void InpAxisEvt_MoveRightRate_K2Node_InputAxisEvent_3(float AxisValue);
+    void K2_OnMovementModeChanged(TEnumAsByte<EMovementMode> PrevMovementMode, TEnumAsByte<EMovementMode> NewMovementMode, uint8 PrevCustomMode, uint8 NewCustomMode);
     void ExecuteUbergraph_MoveableCart_ParentBP(int32 EntryPoint);
-}; // Size: 0x764
+}; // Size: 0x770
 
 #endif

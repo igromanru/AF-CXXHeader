@@ -89,19 +89,19 @@ class UGeometryCacheCodecV1 : public UGeometryCacheCodecBase
 
 class UGeometryCacheComponent : public UMeshComponent
 {
-    class UGeometryCache* GeometryCache;                                              // 0x0550 (size: 0x8)
-    bool bRunning;                                                                    // 0x0558 (size: 0x1)
-    bool bLooping;                                                                    // 0x0559 (size: 0x1)
-    bool bExtrapolateFrames;                                                          // 0x055A (size: 0x1)
-    float StartTimeOffset;                                                            // 0x055C (size: 0x4)
-    float PlaybackSpeed;                                                              // 0x0560 (size: 0x4)
-    float MotionVectorScale;                                                          // 0x0564 (size: 0x4)
-    int32 NumTracks;                                                                  // 0x0568 (size: 0x4)
-    float ElapsedTime;                                                                // 0x056C (size: 0x4)
-    float Duration;                                                                   // 0x05BC (size: 0x4)
-    bool bManualTick;                                                                 // 0x05C0 (size: 0x1)
-    bool bOverrideWireframeColor;                                                     // 0x05C1 (size: 0x1)
-    FLinearColor WireframeOverrideColor;                                              // 0x05C4 (size: 0x10)
+    class UGeometryCache* GeometryCache;                                              // 0x0558 (size: 0x8)
+    bool bRunning;                                                                    // 0x0560 (size: 0x1)
+    bool bLooping;                                                                    // 0x0561 (size: 0x1)
+    bool bExtrapolateFrames;                                                          // 0x0562 (size: 0x1)
+    float StartTimeOffset;                                                            // 0x0564 (size: 0x4)
+    float PlaybackSpeed;                                                              // 0x0568 (size: 0x4)
+    float MotionVectorScale;                                                          // 0x056C (size: 0x4)
+    int32 NumTracks;                                                                  // 0x0570 (size: 0x4)
+    float ElapsedTime;                                                                // 0x0574 (size: 0x4)
+    float Duration;                                                                   // 0x05C4 (size: 0x4)
+    bool bManualTick;                                                                 // 0x05C8 (size: 0x1)
+    bool bOverrideWireframeColor;                                                     // 0x05C9 (size: 0x1)
+    FLinearColor WireframeOverrideColor;                                              // 0x05CC (size: 0x10)
 
     void TickAtThisTime(const float Time, bool bInIsRunning, bool bInBackwards, bool bInIsLooping);
     void Stop();

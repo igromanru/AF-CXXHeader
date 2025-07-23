@@ -3,57 +3,59 @@
 
 class AAbioticDeployed_ParentBP_C : public AAbioticActor_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
-    class UBillboardComponent* Billboard;                                             // 0x02D0 (size: 0x8)
-    class USceneComponent* PlugCordAttachPoint;                                       // 0x02D8 (size: 0x8)
-    class UTextRenderComponent* DebugText;                                            // 0x02E0 (size: 0x8)
-    float JiggleDeployableTimeline_NewTrack_0_7928E14D489C1875D42917A64D1EA085;       // 0x02E8 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> JiggleDeployableTimeline__Direction_7928E14D489C1875D42917A64D1EA085; // 0x02EC (size: 0x1)
-    class UTimelineComponent* JiggleDeployableTimeline;                               // 0x02F0 (size: 0x8)
-    FDataTableRowHandle TextureVariantsDataRow;                                       // 0x02F8 (size: 0x10)
-    FDataTableRowHandle DeconstructedItemData;                                        // 0x0308 (size: 0x10)
-    FAbiotic_InventoryChangeableDataStruct ChangeableData;                            // 0x0318 (size: 0x118)
-    double CurrentDurability;                                                         // 0x0430 (size: 0x8)
-    double MaxDurability;                                                             // 0x0438 (size: 0x8)
-    bool DeployableDestroyed;                                                         // 0x0440 (size: 0x1)
-    double LastDamageMultiplier;                                                      // 0x0448 (size: 0x8)
-    bool JigglesWhenDamaged;                                                          // 0x0450 (size: 0x1)
-    FVector JiggleRoot_RestingLocation;                                               // 0x0458 (size: 0x18)
-    bool DeployedByPlayer;                                                            // 0x0470 (size: 0x1)
-    bool RequiresConstruction;                                                        // 0x0471 (size: 0x1)
-    bool ConstructionModeActive;                                                      // 0x0472 (size: 0x1)
-    double ConstructionLevel_Current;                                                 // 0x0478 (size: 0x8)
-    double ConstructionLevel_Max;                                                     // 0x0480 (size: 0x8)
-    TSoftObjectPtr<AActor> Parent Power Source;                                       // 0x0488 (size: 0x28)
-    FText AlternativeObjectName;                                                      // 0x04B0 (size: 0x10)
-    bool RestoresSanityWhenPowered;                                                   // 0x04C0 (size: 0x1)
-    bool LastDamagedByPlayer;                                                         // 0x04C1 (size: 0x1)
-    bool RequiresPower;                                                               // 0x04C2 (size: 0x1)
-    FString SpawnedAssetID;                                                           // 0x04C8 (size: 0x10)
-    bool RequireToolToPackage;                                                        // 0x04D8 (size: 0x1)
-    bool CulledByWorldLoad;                                                           // 0x04D9 (size: 0x1)
-    bool RemainsWhenBroken;                                                           // 0x04DA (size: 0x1)
-    bool IsBrokenState;                                                               // 0x04DB (size: 0x1)
-    TArray<class UMeshComponent*> MeshComponents;                                     // 0x04E0 (size: 0x10)
-    bool FoundByPlayer;                                                               // 0x04F0 (size: 0x1)
-    TArray<class UMaterialInterface*> MaterialsBeforeHologram;                        // 0x04F8 (size: 0x10)
-    TArray<FVector> Supports;                                                         // 0x0508 (size: 0x10)
-    TMap<class UMeshComponent*, class FName> CollisionProfileMap;                     // 0x0518 (size: 0x50)
-    FAbioticDeployed_ParentBP_CDeployableRequestedSave DeployableRequestedSave;       // 0x0568 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D0 (size: 0x8)
+    class UBillboardComponent* Billboard;                                             // 0x02D8 (size: 0x8)
+    class USceneComponent* PlugCordAttachPoint;                                       // 0x02E0 (size: 0x8)
+    class UTextRenderComponent* DebugText;                                            // 0x02E8 (size: 0x8)
+    float JiggleDeployableTimeline_NewTrack_0_7928E14D489C1875D42917A64D1EA085;       // 0x02F0 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> JiggleDeployableTimeline__Direction_7928E14D489C1875D42917A64D1EA085; // 0x02F4 (size: 0x1)
+    class UTimelineComponent* JiggleDeployableTimeline;                               // 0x02F8 (size: 0x8)
+    FDataTableRowHandle TextureVariantsDataRow;                                       // 0x0300 (size: 0x10)
+    FDataTableRowHandle DeconstructedItemData;                                        // 0x0310 (size: 0x10)
+    FAbiotic_InventoryChangeableDataStruct ChangeableData;                            // 0x0320 (size: 0x88)
+    double CurrentDurability;                                                         // 0x03A8 (size: 0x8)
+    double MaxDurability;                                                             // 0x03B0 (size: 0x8)
+    bool DeployableDestroyed;                                                         // 0x03B8 (size: 0x1)
+    double LastDamageMultiplier;                                                      // 0x03C0 (size: 0x8)
+    bool JigglesWhenDamaged;                                                          // 0x03C8 (size: 0x1)
+    FVector JiggleRoot_RestingLocation;                                               // 0x03D0 (size: 0x18)
+    bool DeployedByPlayer;                                                            // 0x03E8 (size: 0x1)
+    bool RequiresConstruction;                                                        // 0x03E9 (size: 0x1)
+    bool ConstructionModeActive;                                                      // 0x03EA (size: 0x1)
+    double ConstructionLevel_Current;                                                 // 0x03F0 (size: 0x8)
+    double ConstructionLevel_Max;                                                     // 0x03F8 (size: 0x8)
+    TSoftObjectPtr<AActor> Parent Power Source;                                       // 0x0400 (size: 0x28)
+    FText AlternativeObjectName;                                                      // 0x0428 (size: 0x10)
+    bool RestoresSanityWhenPowered;                                                   // 0x0438 (size: 0x1)
+    bool LastDamagedByPlayer;                                                         // 0x0439 (size: 0x1)
+    bool RequiresPower;                                                               // 0x043A (size: 0x1)
+    FString SpawnedAssetID;                                                           // 0x0440 (size: 0x10)
+    bool RequireToolToPackage;                                                        // 0x0450 (size: 0x1)
+    bool CulledByWorldLoad;                                                           // 0x0451 (size: 0x1)
+    bool RemainsWhenBroken;                                                           // 0x0452 (size: 0x1)
+    bool IsBrokenState;                                                               // 0x0453 (size: 0x1)
+    TArray<class UMeshComponent*> MeshComponents;                                     // 0x0458 (size: 0x10)
+    bool FoundByPlayer;                                                               // 0x0468 (size: 0x1)
+    TArray<class UMaterialInterface*> MaterialsBeforeHologram;                        // 0x0470 (size: 0x10)
+    TArray<FVector> Supports;                                                         // 0x0480 (size: 0x10)
+    TMap<class UMeshComponent*, class FName> CollisionProfileMap;                     // 0x0490 (size: 0x50)
+    FAbioticDeployed_ParentBP_CDeployableRequestedSave DeployableRequestedSave;       // 0x04E0 (size: 0x10)
     void DeployableRequestedSave();
-    bool DeployedInVignette;                                                          // 0x0578 (size: 0x1)
-    bool NoResetVignette;                                                             // 0x0579 (size: 0x1)
-    bool DropOverflowBag;                                                             // 0x057A (size: 0x1)
-    bool IsCurrentlyLoadingFromSave;                                                  // 0x057B (size: 0x1)
-    FPaintedDeployableRowHandle PaintedDeployableRow;                                 // 0x0580 (size: 0x20)
-    EPaintColor PaintedColor;                                                         // 0x05A0 (size: 0x1)
-    int32 MaterialOverrideCount;                                                      // 0x05A4 (size: 0x4)
-    TArray<class UCableComponent*> PowerCordAttached;                                 // 0x05A8 (size: 0x10)
-    bool nosave;                                                                      // 0x05B8 (size: 0x1)
-    bool CanBeLaserPowered;                                                           // 0x05B9 (size: 0x1)
-    bool HasLaserPower;                                                               // 0x05BA (size: 0x1)
-    TArray<class ULaserComponent_C*> HitLasers;                                       // 0x05C0 (size: 0x10)
-    bool ResizeInventoriesAfterLoad;                                                  // 0x05D0 (size: 0x1)
+    bool DeployedInVignette;                                                          // 0x04F0 (size: 0x1)
+    bool NoResetVignette;                                                             // 0x04F1 (size: 0x1)
+    bool DropOverflowBag;                                                             // 0x04F2 (size: 0x1)
+    bool IsCurrentlyLoadingFromSave;                                                  // 0x04F3 (size: 0x1)
+    FPaintedDeployableRowHandle PaintedDeployableRow;                                 // 0x04F8 (size: 0x20)
+    EPaintColor PaintedColor;                                                         // 0x0518 (size: 0x1)
+    int32 MaterialOverrideCount;                                                      // 0x051C (size: 0x4)
+    TArray<class UCableComponent*> PowerCordAttached;                                 // 0x0520 (size: 0x10)
+    bool nosave;                                                                      // 0x0530 (size: 0x1)
+    bool CanBeLaserPowered;                                                           // 0x0531 (size: 0x1)
+    bool HasLaserPower;                                                               // 0x0532 (size: 0x1)
+    TArray<class ULaserComponent_C*> HitLasers;                                       // 0x0538 (size: 0x10)
+    bool ResizeInventoriesAfterLoad;                                                  // 0x0548 (size: 0x1)
+    bool AlwaysPackageOnDestroy;                                                      // 0x0549 (size: 0x1)
+    double ReducedDamageMultiplier;                                                   // 0x0550 (size: 0x8)
 
     void ReceiveLaserHit(class ULaserComponent_C* Laser, int32 CurrentBounce, FHitResult& HitResult, bool& Handled);
     void GetPluggedInDeviceCount(int32& Count);
@@ -88,8 +90,13 @@ class AAbioticDeployed_ParentBP_C : public AAbioticActor_C
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void GetHighlightComponents(TArray<class UActorComponent*>& Components);
     void NPC_CanInteractWith(bool& Success);
+    void GetDeployableLifespan(double& LifeSpan);
     bool GetDeployedStackCount(TArray<class AActor*>& inArray, int32& Count, TArray<class AActor*>& OutArray);
     void GetDeployHologramMesh(class UStaticMesh*& Mesh);
+    void ShouldReduceDamageToDeployable(class AController*& Instigator, class UObject* DamageType, bool& Return);
+    void OnRep_DeployedByPlayer();
+    void OnRep_FoundByPlayer();
+    void UpdateNoResetVignette();
     void GetPoweringActors(TArray<class AActor*>& PowerSourceParents);
     void IsItemInPinnedRecipes(bool& IsPinnedIngredient);
     void GetDeployedActorBounds(FVector& Origin, FVector& BoxExtent);
@@ -103,7 +110,7 @@ class AAbioticDeployed_ParentBP_C : public AAbioticActor_C
     void SetPaintColor(EPaintColor Color, bool SkipSave);
     bool GetMeshComponents(TArray<class UMeshComponent*>& Components);
     void OnRep_PaintedColor();
-    void Can Harm Deployable?(class UObject* DamageCauser, class AController* Instigator, double& DamageMultiplier, bool& CanHarmDeployable);
+    void Can Harm Deployable?(class UObject* DamageCauser, class AController* Instigator, const class UDamageType* DamageType, double& DamageMultiplier, bool& CanHarmDeployable);
     FTransform GetExitFailsafeLocation();
     bool IsCharacterOverlappingHologram();
     class UStaticMeshComponent* GetDeployableMesh();
@@ -113,7 +120,7 @@ class AAbioticDeployed_ParentBP_C : public AAbioticActor_C
     void SetupPaintAndTexture();
     void GetDamageReduction(double BaseDamage, double DamageTypeMultiplier, double& FinalDamageToApply);
     void Process Damage(float Damage, class UObject* DamageType, FVector HitLocation, FVector HitNormal, class UPrimitiveComponent* HitComponent, FName BoneName, FVector ShotFromDirection, class AController* InstigatedBy, class UObject* DamageCauser, FHitResult HitInfo);
-    void OnLoadedFromSave();
+    void OnLoadedFromSave(double NewLifespan);
     void GetTextureOverrides(TArray<TSoftObjectPtr<UMaterialInterface>>& TextureOverride, bool& PaintApplied);
     FAbiotic_InventoryItemStruct GetDeployableItemData();
     bool CanLoseDurability();
@@ -164,8 +171,9 @@ class AAbioticDeployed_ParentBP_C : public AAbioticActor_C
     void DurabilityDelayedSave();
     void Set New Attached Power Cord(class UCableComponent* New Power Cord);
     void StopLaserHitUpdate(class ULaserComponent_C* Laser);
+    void ReceiveEndPlay(TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
     void ExecuteUbergraph_AbioticDeployed_ParentBP(int32 EntryPoint);
     void DeployableRequestedSave__DelegateSignature();
-}; // Size: 0x5D1
+}; // Size: 0x558
 
 #endif

@@ -14,6 +14,8 @@ class UW_Research_RG_DraggableItem_C : public UUserWidget
     void ResearchItemPressed(FName RowName);
     class UW_Research_RG_DraggableItem_C* OriginWidget;                               // 0x0330 (size: 0x8)
 
+    void SetupDraggedWidget(class UDragDrop_ResearchItem_C*& OutItem);
+    FEventReply OnMouseButtonUp(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
     void SetDraggableShadow();
     void ResetDraggable(bool ErrorSound);
     void OnDragDetected(FGeometry MyGeometry, const FPointerEvent& PointerEvent, class UDragDropOperation*& Operation);

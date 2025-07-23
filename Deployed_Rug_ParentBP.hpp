@@ -5,6 +5,6 @@ class ADeployed_Rug_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
 
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
-}; // Size: 0x930
+}; // Size: 0x849
 
 #endif

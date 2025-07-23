@@ -139,9 +139,11 @@ class UOptimizationProxyComponent : public UActorComponent
     void OptimizationChangeWave(EOptimizationWave NewWave);
     bool bIsNPCDisabled;                                                              // 0x01A8 (size: 0x1)
 
+    void RemoveManualOptimizedComponent(class UActorComponent* Component);
     void EnableOptimizations();
     void EnableForceOptimizationWave(EOptimizationWave Wave, bool Enable);
     void DisableAllOptimizations();
-}; // Size: 0x208
+    void AddManualOptimizedComponent(class UActorComponent* Component);
+}; // Size: 0x218
 
 #endif

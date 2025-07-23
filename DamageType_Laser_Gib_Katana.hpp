@@ -3,6 +3,6 @@
 
 class UDamageType_Laser_Gib_Katana_C : public UDamageType_Laser_Gib_C
 {
-}; // Size: 0x270
+}; // Size: 0x290
 
 #endif

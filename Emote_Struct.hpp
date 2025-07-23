@@ -17,7 +17,9 @@ struct FEmote_Struct
     bool ForceEndCrouch_44_9F23E2F042E363BAA19FFCB75DBAED12;                          // 0x00B8 (size: 0x1)
     bool HideItemInHandDuringEmote_48_0F885A1840DF4C8713084DBF5AE8E74E;               // 0x00B9 (size: 0x1)
     bool ForceThirdPerson_50_572A109E45771F39B4F4848BCF0CA779;                        // 0x00BA (size: 0x1)
+    FGameplayTagContainer OverrideTag_58_DD75DE31408E650C24212497E7EDE8E6;            // 0x00C0 (size: 0x20)
+    FDataTableRowHandle OverrideRow_61_94432F9C43E188682ED51481571D4541;              // 0x00E0 (size: 0x10)
 
-}; // Size: 0xBB
+}; // Size: 0xF0
 
 #endif

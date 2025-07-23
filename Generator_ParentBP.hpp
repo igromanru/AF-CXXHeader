@@ -3,10 +3,10 @@
 
 class AGenerator_ParentBP_C : public AAbioticActor_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
-    int32 GeneratorIndex;                                                             // 0x02D0 (size: 0x4)
-    bool GeneratorPoweredOn;                                                          // 0x02D4 (size: 0x1)
-    FGenerator_ParentBP_CGeneratorStateChanged GeneratorStateChanged;                 // 0x02D8 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D0 (size: 0x8)
+    int32 GeneratorIndex;                                                             // 0x02D8 (size: 0x4)
+    bool GeneratorPoweredOn;                                                          // 0x02DC (size: 0x1)
+    FGenerator_ParentBP_CGeneratorStateChanged GeneratorStateChanged;                 // 0x02E0 (size: 0x10)
     void GeneratorStateChanged();
 
     void GetPluggedInDeviceCount(int32& Count);
@@ -21,6 +21,6 @@ class AGenerator_ParentBP_C : public AAbioticActor_C
     void TogglePowerFX();
     void ExecuteUbergraph_Generator_ParentBP(int32 EntryPoint);
     void GeneratorStateChanged__DelegateSignature();
-}; // Size: 0x2E8
+}; // Size: 0x2F0
 
 #endif

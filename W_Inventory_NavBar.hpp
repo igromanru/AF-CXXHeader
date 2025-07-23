@@ -29,13 +29,13 @@ class UW_Inventory_NavBar_C : public UUserWidget
     FW_Inventory_NavBar_CCycleNavTab CycleNavTab;                                     // 0x03A0 (size: 0x10)
     void CycleNavTab(bool Next);
 
-    void Construct();
-    void BndEvt__W_Inventory_NavBar_Button_RightArrow_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
-    void BndEvt__W_Inventory_NavBar_Button_LeftArrow_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature();
     void BndEvt__W_Inventory_NavBar_Button_LeftArrow_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature();
     void BndEvt__W_Inventory_NavBar_Button_LeftArrow_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__W_Inventory_NavBar_Button_RightArrow_K2Node_ComponentBoundEvent_4_OnButtonHoverEvent__DelegateSignature();
     void BndEvt__W_Inventory_NavBar_Button_RightArrow_K2Node_ComponentBoundEvent_5_OnButtonHoverEvent__DelegateSignature();
+    void BndEvt__W_Inventory_NavBar_Button_LeftArrow_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature();
+    void BndEvt__W_Inventory_NavBar_Button_RightArrow_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
+    void Construct();
     void ExecuteUbergraph_W_Inventory_NavBar(int32 EntryPoint);
     void CycleNavTab__DelegateSignature(bool Next);
     void Journal_EntryBloom__DelegateSignature();

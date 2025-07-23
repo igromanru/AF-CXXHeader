@@ -16,13 +16,22 @@ class USettingRow_C : public UUserWidget
     bool ShowResetButton;                                                             // 0x0331 (size: 0x1)
     class UAutoSettingWidget* ContentWidget;                                          // 0x0338 (size: 0x8)
     FName CVarVisibility;                                                             // 0x0340 (size: 0x8)
+    FGameSetting Setting Display;                                                     // 0x0348 (size: 0x130)
+    FSettingRow_CUpdateSettingDisplay UpdateSettingDisplay;                           // 0x0478 (size: 0x10)
+    void UpdateSettingDisplay(FGameSetting NewSetting, bool Close);
+    FSettingRow_CSettingHovered SettingHovered;                                       // 0x0488 (size: 0x10)
+    void SettingHovered(class USettingRow_C* Setting);
 
-    void PreConstruct(bool IsDesignTime);
     void Construct();
     void BndEvt__SettingRow_Button_Reset_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void OnContentSet(class UAutoSettingWidget* Widget);
     void OnCurrentValueUpdated(FString Value);
+    void PreConstruct(bool IsDesignTime);
+    void OnMouseEnter(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
+    void OnMouseLeave(const FPointerEvent& MouseEvent);
     void ExecuteUbergraph_SettingRow(int32 EntryPoint);
-}; // Size: 0x348
+    void SettingHovered__DelegateSignature(class USettingRow_C* Setting);
+    void UpdateSettingDisplay__DelegateSignature(FGameSetting NewSetting, bool Close);
+}; // Size: 0x498
 
 #endif

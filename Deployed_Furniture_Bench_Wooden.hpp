@@ -3,6 +3,6 @@
 
 class ADeployed_Furniture_Bench_Wooden_C : public ADeployed_Furniture_Bench_LockerRoom_C
 {
-}; // Size: 0x948
+}; // Size: 0x868
 
 #endif

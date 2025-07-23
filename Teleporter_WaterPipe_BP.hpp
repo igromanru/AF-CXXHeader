@@ -3,6 +3,6 @@
 
 class ATeleporter_WaterPipe_BP_C : public ABP_Teleporter_ParentBP_C
 {
-}; // Size: 0x408
+}; // Size: 0x409
 
 #endif

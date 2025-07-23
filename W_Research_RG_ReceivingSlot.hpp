@@ -15,6 +15,8 @@ class UW_Research_RG_ReceivingSlot_C : public UUserWidget
     FW_Research_RG_ReceivingSlot_CSlotReset SlotReset;                                // 0x0328 (size: 0x10)
     void SlotReset();
 
+    void SetIncomingItem(class UW_Research_RG_DraggableItem_C* Item, bool& bSuccess);
+    FEventReply OnMouseButtonUp(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
     bool OnDrop(FGeometry MyGeometry, FPointerEvent PointerEvent, class UDragDropOperation* Operation);
     void OnLoaded_540338A64415101FF6943E94DEDFA008(class UObject* Loaded);
     void Async_LoadMaterialFrame(TSoftObjectPtr<UObject> Asset);

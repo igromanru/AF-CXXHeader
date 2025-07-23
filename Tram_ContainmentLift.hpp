@@ -3,8 +3,8 @@
 
 class ATram_ContainmentLift_C : public ATram_ParentBP_C
 {
-    class UDecalComponent* Decal;                                                     // 0x0400 (size: 0x8)
+    class UDecalComponent* Decal;                                                     // 0x0430 (size: 0x8)
 
-}; // Size: 0x408
+}; // Size: 0x438
 
 #endif

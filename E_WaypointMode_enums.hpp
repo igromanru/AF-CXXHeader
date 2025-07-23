@@ -4,7 +4,8 @@ namespace E_WaypointMode {
         NewEnumerator1 = 1,
         NewEnumerator2 = 2,
         NewEnumerator3 = 3,
-        E_MAX = 4,
+        NewEnumerator4 = 4,
+        E_MAX = 5,
     };
 }
 

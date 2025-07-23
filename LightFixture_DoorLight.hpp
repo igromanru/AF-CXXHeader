@@ -3,6 +3,6 @@
 
 class ALightFixture_DoorLight_C : public ALightFixture_Generic_C
 {
-}; // Size: 0x431
+}; // Size: 0x439
 
 #endif

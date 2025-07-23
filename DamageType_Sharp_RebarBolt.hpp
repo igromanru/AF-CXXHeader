@@ -3,6 +3,6 @@
 
 class UDamageType_Sharp_RebarBolt_C : public UDamageType_Sharp_Crossbow_C
 {
-}; // Size: 0x270
+}; // Size: 0x290
 
 #endif

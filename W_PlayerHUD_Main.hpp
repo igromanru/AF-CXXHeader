@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_PlayerHUD_Main_HPP
 #define UE4SS_SDK_W_PlayerHUD_Main_HPP
 
-class UW_PlayerHUD_Main_C : public UUserWidget
+class UW_PlayerHUD_Main_C : public UAbioticWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UWidgetAnimation* OverlayRedDamagePulse;                                    // 0x02E8 (size: 0x8)
@@ -102,45 +102,49 @@ class UW_PlayerHUD_Main_C : public UUserWidget
     class UW_SubtitleManager_C* W_SubtitleManager;                                    // 0x05E0 (size: 0x8)
     class UW_TextChatBox_C* W_TextChatBox;                                            // 0x05E8 (size: 0x8)
     class UW_UIPopupOverlay_C* W_UIPopupOverlay;                                      // 0x05F0 (size: 0x8)
-    class UW_VOIPIndicator_C* W_VOIPIndicator;                                        // 0x05F8 (size: 0x8)
-    class UW_WaypointOverlay_C* W_WaypointOverlay;                                    // 0x0600 (size: 0x8)
-    class UVerticalBox* Warning_VBox;                                                 // 0x0608 (size: 0x8)
-    class AAbiotic_PlayerCharacter_C* OwningCharacter;                                // 0x0610 (size: 0x8)
-    FLinearColor DefaultHUDColor;                                                     // 0x0618 (size: 0x10)
-    FTimerHandle HUD_BleedoutTimer;                                                   // 0x0628 (size: 0x8)
-    FTimerHandle HoldTimer;                                                           // 0x0630 (size: 0x8)
-    FText DBNO_Notice_Long;                                                           // 0x0638 (size: 0x10)
-    FText Dead_Notice_Long;                                                           // 0x0648 (size: 0x10)
-    FText DBNO_ItemAction_GiveUp;                                                     // 0x0658 (size: 0x10)
-    FText Dead_ItemAction_Respawn;                                                    // 0x0668 (size: 0x10)
-    double RespawnPenaltyDuration;                                                    // 0x0678 (size: 0x8)
-    FLinearColor ErrorHUDColor;                                                       // 0x0680 (size: 0x10)
-    TArray<class UW_Waypoint_Generic_C*> Waypoints;                                   // 0x0690 (size: 0x10)
-    double LastHealthPercentage;                                                      // 0x06A0 (size: 0x8)
-    class UW_PlayerHUD_InteractionPrompt_C* InteractButtonPrompt;                     // 0x06A8 (size: 0x8)
-    TArray<class UW_HUD_ItemPickupNotify_C*> CurrentItemPickupNotifies;               // 0x06B0 (size: 0x10)
-    FW_PlayerHUD_Main_CSetup Sleep Score Widget Setup Sleep Score Widget;             // 0x06C0 (size: 0x10)
+    class UW_VoiceChat_PlayerList_C* W_VoiceChat_PlayerList;                          // 0x05F8 (size: 0x8)
+    class UW_VOIPIndicator_C* W_VOIPIndicator;                                        // 0x0600 (size: 0x8)
+    class UW_WaypointOverlay_C* W_WaypointOverlay;                                    // 0x0608 (size: 0x8)
+    class UVerticalBox* Warning_VBox;                                                 // 0x0610 (size: 0x8)
+    class AAbiotic_PlayerCharacter_C* OwningCharacter;                                // 0x0618 (size: 0x8)
+    FLinearColor DefaultHUDColor;                                                     // 0x0620 (size: 0x10)
+    FTimerHandle HUD_BleedoutTimer;                                                   // 0x0630 (size: 0x8)
+    FTimerHandle HoldTimer;                                                           // 0x0638 (size: 0x8)
+    FText DBNO_Notice_Long;                                                           // 0x0640 (size: 0x10)
+    FText Dead_Notice_Long;                                                           // 0x0650 (size: 0x10)
+    FText DBNO_ItemAction_GiveUp;                                                     // 0x0660 (size: 0x10)
+    FText Dead_ItemAction_Respawn;                                                    // 0x0670 (size: 0x10)
+    double RespawnPenaltyDuration;                                                    // 0x0680 (size: 0x8)
+    FLinearColor ErrorHUDColor;                                                       // 0x0688 (size: 0x10)
+    TArray<class UW_Waypoint_Generic_C*> Waypoints;                                   // 0x0698 (size: 0x10)
+    double LastHealthPercentage;                                                      // 0x06A8 (size: 0x8)
+    class UW_PlayerHUD_InteractionPrompt_C* InteractButtonPrompt;                     // 0x06B0 (size: 0x8)
+    TArray<class UW_HUD_ItemPickupNotify_C*> CurrentItemPickupNotifies;               // 0x06B8 (size: 0x10)
+    FW_PlayerHUD_Main_CSetup Sleep Score Widget Setup Sleep Score Widget;             // 0x06C8 (size: 0x10)
     void Setup Sleep Score Widget(ESlateVisibility Set Visibility);
-    FW_PlayerHUD_Main_CUpdate Sleep Minigame Scores Update Sleep Minigame Scores;     // 0x06D0 (size: 0x10)
+    FW_PlayerHUD_Main_CUpdate Sleep Minigame Scores Update Sleep Minigame Scores;     // 0x06D8 (size: 0x10)
     void Update Sleep Minigame Scores(int32 Score);
-    FW_PlayerHUD_Main_CJournal Icon Update Journal Icon Update;                       // 0x06E0 (size: 0x10)
+    FW_PlayerHUD_Main_CJournal Icon Update Journal Icon Update;                       // 0x06E8 (size: 0x10)
     void Journal Icon Update();
-    TArray<FName> PendingTutorialTips;                                                // 0x06F0 (size: 0x10)
-    TEnumAsByte<E_WaypointMode::Type> Current Waypoint Mode;                          // 0x0700 (size: 0x1)
-    FW_PlayerHUD_Main_CPinnedRecipeUpdate PinnedRecipeUpdate;                         // 0x0708 (size: 0x10)
+    TArray<FName> PendingTutorialTips;                                                // 0x06F8 (size: 0x10)
+    TEnumAsByte<E_WaypointMode::Type> Current Waypoint Mode;                          // 0x0708 (size: 0x1)
+    FW_PlayerHUD_Main_CPinnedRecipeUpdate PinnedRecipeUpdate;                         // 0x0710 (size: 0x10)
     void PinnedRecipeUpdate(FName RecipesToPin, bool UnpinAllRecipes);
-    FW_PlayerHUD_Main_CUnpinnedButtonVisibilityUpdate UnpinnedButtonVisibilityUpdate; // 0x0718 (size: 0x10)
+    FW_PlayerHUD_Main_CUnpinnedButtonVisibilityUpdate UnpinnedButtonVisibilityUpdate; // 0x0720 (size: 0x10)
     void UnpinnedButtonVisibilityUpdate(bool Show);
-    TSet<FName> PinnedRecipeList;                                                     // 0x0728 (size: 0x50)
-    TMap<class FUIPopupRowHandle, class UW_UIPopup_ParentBP_C*> ActiveUIPopups;       // 0x0778 (size: 0x50)
-    TMap<class FUIPopupRowHandle, class EInventoryMode> PendingUIPopups;              // 0x07C8 (size: 0x50)
-    bool DebugUIPopups;                                                               // 0x0818 (size: 0x1)
-    TArray<FName> UIPopupsSeen;                                                       // 0x0820 (size: 0x10)
-    class USoundBase* RecipeNotifyUnlockSound;                                        // 0x0830 (size: 0x8)
-    class USoundBase* MapPickupSound;                                                 // 0x0838 (size: 0x8)
-    FTimerHandle Timer_OxygenTick;                                                    // 0x0840 (size: 0x8)
-    double OxygenTickStartedTime;                                                     // 0x0848 (size: 0x8)
+    TSet<FName> PinnedRecipeList;                                                     // 0x0730 (size: 0x50)
+    TMap<class FUIPopupRowHandle, class UW_UIPopup_ParentBP_C*> ActiveUIPopups;       // 0x0780 (size: 0x50)
+    TMap<class FUIPopupRowHandle, class EInventoryMode> PendingUIPopups;              // 0x07D0 (size: 0x50)
+    bool DebugUIPopups;                                                               // 0x0820 (size: 0x1)
+    TArray<FName> UIPopupsSeen;                                                       // 0x0828 (size: 0x10)
+    class USoundBase* RecipeNotifyUnlockSound;                                        // 0x0838 (size: 0x8)
+    class USoundBase* MapPickupSound;                                                 // 0x0840 (size: 0x8)
+    FTimerHandle Timer_OxygenTick;                                                    // 0x0848 (size: 0x8)
+    double OxygenTickStartedTime;                                                     // 0x0850 (size: 0x8)
+    FW_PlayerHUD_Main_CBeaconWaypointUpdate BeaconWaypointUpdate;                     // 0x0858 (size: 0x10)
+    void BeaconWaypointUpdate(FString WaypointStringData);
 
+    FEventReply OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
     void GetDBNOGiveUpText(class AAbiotic_Character_ParentBP_C* Character, FText& DBNOText);
     void Timer_Tick_OxygenBar();
     void Get New Widget Screen Position(FVector2D ScreenPosition, double Multiplier From Center, FVector2D& New Position);
@@ -177,14 +181,12 @@ class UW_PlayerHUD_Main_C : public UUserWidget
     void ShowItemPickupNotification(FName ItemRow, int32 Count, const FAbiotic_InventoryChangeableDataStruct& ChangeableData);
     void Tick(FGeometry MyGeometry, float InDeltaTime);
     void DisplayNewRecipeUnlock(FName RecipeRow);
-    void UpdateDBNOState(class AAbiotic_Character_ParentBP_C* Character);
     void FlashStaminaBar();
     void ChangeFatigueIndicators();
+    void UpdateStamina();
     void UpdateBodyTemp();
     void DisplayNewLocation(FText LocationText);
-    void Construct();
     void InventoryWeightChanged();
-    void UpdateHealth();
     void DisplayNewJournalUnlock(FName JournalRow);
     void ZiplineStateChanged();
     void ShowTutorialHint(FName HintRowName);
@@ -194,12 +196,14 @@ class UW_PlayerHUD_Main_C : public UUserWidget
     void ToggleSleepMinigame(bool Active);
     void ShowMapPickupNotify();
     void Update_Respawning();
+    void UpdateDBNOState(class AAbiotic_Character_ParentBP_C* Character);
     void UpdatePinnedRecipes(FName RecipesToPin, bool UnpinAllRecipes);
     void UpdateUnpinButtonVisibility(ESlateVisibility InVisibility);
     void StatContainerRefreshed();
-    void UpdateStamina();
     void UpdateRadioName(FName NarrativeRow);
+    void Construct();
     void ToggleRadioVisuals(bool Show);
+    void UpdateHealth();
     void BndEvt__W_PlayerHUD_Main_W_PlayerInventory_Main_K2Node_ComponentBoundEvent_0_InventoryModeRefreshed__DelegateSignature(EInventoryMode InventoryMode);
     void OnLevelLoadingUpdated(bool bIsLoading);
     void UpdateNavigationIndicator();
@@ -221,11 +225,12 @@ class UW_PlayerHUD_Main_C : public UUserWidget
     void HUD_DisplayFishUnlock(FName FishRow);
     void UpdateGadgetBatteryLevel(double CurrentLevel, double MaxLevel, FString GadgetID);
     void ExecuteUbergraph_W_PlayerHUD_Main(int32 EntryPoint);
+    void BeaconWaypointUpdate__DelegateSignature(FString WaypointStringData);
     void UnpinnedButtonVisibilityUpdate__DelegateSignature(bool Show);
     void PinnedRecipeUpdate__DelegateSignature(FName RecipesToPin, bool UnpinAllRecipes);
     void Journal Icon Update__DelegateSignature();
     void Update Sleep Minigame Scores__DelegateSignature(int32 Score);
     void Setup Sleep Score Widget__DelegateSignature(ESlateVisibility Set Visibility);
-}; // Size: 0x850
+}; // Size: 0x868
 
 #endif

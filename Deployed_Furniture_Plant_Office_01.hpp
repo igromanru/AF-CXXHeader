@@ -3,6 +3,6 @@
 
 class ADeployed_Furniture_Plant_Office_01_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-}; // Size: 0x930
+}; // Size: 0x849
 
 #endif

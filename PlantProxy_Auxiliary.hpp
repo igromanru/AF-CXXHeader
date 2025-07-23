@@ -3,6 +3,6 @@
 
 class APlantProxy_Auxiliary_C : public APlantProxy_ParentBP_C
 {
-}; // Size: 0x3F2
+}; // Size: 0x362
 
 #endif

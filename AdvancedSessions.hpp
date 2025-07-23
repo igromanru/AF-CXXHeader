@@ -52,6 +52,13 @@ struct FSessionPropertyKeyPair
 {
 }; // Size: 0x28
 
+struct FSessionSearchSettingMulti
+{
+    FSessionsSearchSetting AndSetting;                                                // 0x0000 (size: 0x30)
+    TArray<FSessionsSearchSetting> OrSettings;                                        // 0x0030 (size: 0x10)
+
+}; // Size: 0x40
+
 struct FSessionsSearchSetting
 {
 }; // Size: 0x30
@@ -92,6 +99,7 @@ class UAdvancedFriendsGameInstance : public UGameInstance
     bool bEnableTalkingStatusDelegate;                                                // 0x01C3 (size: 0x1)
 
     void OnSessionInviteReceived(int32 LocalPlayerNum, FBPUniqueNetId PersonInviting, FString AppID, const FBlueprintSessionResult& SessionToJoin);
+    void OnSessionInviteAcceptedFailed();
     void OnSessionInviteAccepted(int32 LocalPlayerNum, FBPUniqueNetId PersonInvited, const FBlueprintSessionResult& SessionToJoin);
     void OnPlayerTalkingStateChanged(FBPUniqueNetId PlayerId, bool bIsTalking);
     void OnPlayerLoginStatusChanged(int32 PlayerNum, EBPLoginStatus PreviousStatus, EBPLoginStatus NewStatus, FBPUniqueNetId NewPlayerUniqueNetID);
@@ -166,7 +174,7 @@ class UAdvancedSessionsLibrary : public UBlueprintFunctionLibrary
     void FindSessionPropertyByName(const TArray<FSessionPropertyKeyPair>& ExtraSettings, FName SettingsName, EBlueprintResultSwitch& Result, FSessionPropertyKeyPair& OutProperty);
     bool EqualEqual_UNetIDUnetID(const FBPUniqueNetId& A, const FBPUniqueNetId& B);
     FUniqueNetIdRepl Conv_BPUniqueIDToUniqueNetIDRepl(const FBPUniqueNetId& InUniqueID);
-    TArray<FSessionsSearchSetting> BuildSessionSearchForServerName(class UObject* WorldContextObject, FString InServerName);
+    FSessionSearchSettingMulti BuildSessionSearchForServerName(class UObject* WorldContextObject, FString InServerName);
     bool BanPlayer(class UObject* WorldContextObject, class APlayerController* PlayerToBan, FText BanReason);
     void AddOrModifyExtraSettings(TArray<FSessionPropertyKeyPair>& SettingsArray, TArray<FSessionPropertyKeyPair>& NewOrChangedSettings, TArray<FSessionPropertyKeyPair>& ModifiedSettingsArray);
 }; // Size: 0x28
@@ -249,9 +257,9 @@ class UFindSessionsCallbackProxyAdvanced : public UOnlineBlueprintCallProxyBase
     FFindSessionsCallbackProxyAdvancedOnFailure OnFailure;                            // 0x0040 (size: 0x10)
     void BlueprintFindSessionsResultDelegate(const TArray<FBlueprintSessionResult>& Results);
 
-    class UFindSessionsCallbackProxyAdvanced* FindSessionsAdvanced(class UObject* WorldContextObject, class APlayerController* PlayerController, int32 MaxResults, bool bUseLAN, EBPServerPresenceSearchType ServerTypeToSearch, const TArray<FSessionsSearchSetting>& Filters, bool bEmptyServersOnly, bool bNonEmptyServersOnly, bool bSecureServersOnly, bool bSearchLobbies, int32 MinSlotsAvailable);
+    class UFindSessionsCallbackProxyAdvanced* FindSessionsAdvanced(class UObject* WorldContextObject, class APlayerController* PlayerController, int32 MaxResults, bool bUseLAN, EBPServerPresenceSearchType ServerTypeToSearch, const TArray<FSessionsSearchSetting>& Filters, const TArray<FSessionsSearchSetting>& ORFilters, bool bEmptyServersOnly, bool bNonEmptyServersOnly, bool bSecureServersOnly, bool bSearchLobbies, int32 MinSlotsAvailable);
     void FilterSessionResults(const TArray<FBlueprintSessionResult>& SessionResults, const TArray<FSessionsSearchSetting>& Filters, TArray<FBlueprintSessionResult>& FilteredResults);
-}; // Size: 0xD0
+}; // Size: 0x130
 
 class UGetFriendsCallbackProxy : public UOnlineBlueprintCallProxyBase
 {
@@ -302,6 +310,17 @@ class ULogoutUserCallbackProxy : public UOnlineBlueprintCallProxyBase
 
     class ULogoutUserCallbackProxy* LogoutUser(class UObject* WorldContextObject, class APlayerController* PlayerController);
 }; // Size: 0x78
+
+class UProfanityFilterCallbackProxy : public UOnlineBlueprintCallProxyBase
+{
+    FProfanityFilterCallbackProxyOnSuccess OnSuccess;                                 // 0x0030 (size: 0x10)
+    void ProfanityFilterResult(bool bSuccess, const TArray<FString>& SanitizedMessages);
+    FProfanityFilterCallbackProxyOnFailure OnFailure;                                 // 0x0040 (size: 0x10)
+    void ProfanityFilterResult(bool bSuccess, const TArray<FString>& SanitizedMessages);
+    class UObject* WorldContextObject;                                                // 0x0050 (size: 0x8)
+
+    class UProfanityFilterCallbackProxy* ProfanityFilterDisplayNames(class UObject* WorldContextObject, const TArray<FString>& ThingsToSanitize);
+}; // Size: 0x68
 
 class USendFriendInviteCallbackProxy : public UOnlineBlueprintCallProxyBase
 {

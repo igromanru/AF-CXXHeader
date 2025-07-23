@@ -40,7 +40,8 @@ class UAbiotic_DamageType_ParentBP_C : public UDamageType
     bool ShouldStaggerTarget;                                                         // 0x01F8 (size: 0x1)
     TMap<TEnumAsByte<EPhysicalSurface>, TSoftObjectPtr<USoundBase>> SurfaceTypeSounds; // 0x0200 (size: 0x50)
     FStatModifierRowHandle DamageReductionStat;                                       // 0x0250 (size: 0x20)
+    FGameplayTagContainer GameplayTags;                                               // 0x0270 (size: 0x20)
 
-}; // Size: 0x270
+}; // Size: 0x290
 
 #endif

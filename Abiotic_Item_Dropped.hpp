@@ -10,21 +10,22 @@ class AAbiotic_Item_Dropped_C : public AActor
     class UStaticMeshComponent* WorldMesh;                                            // 0x02B8 (size: 0x8)
     FDataTableRowHandle ItemDataRow;                                                  // 0x02C0 (size: 0x10)
     FAbiotic_InventoryItemStruct ItemData;                                            // 0x02D0 (size: 0x650)
-    FAbiotic_InventoryChangeableDataStruct ChangeableData;                            // 0x0920 (size: 0x118)
-    bool HasBeenPickedUp;                                                             // 0x0A38 (size: 0x1)
-    FText To Interact with Text;                                                      // 0x0A40 (size: 0x10)
-    bool NoPhysics;                                                                   // 0x0A50 (size: 0x1)
-    bool PopupAfterSpawned;                                                           // 0x0A51 (size: 0x1)
-    FTimerHandle PhysicsSleepHandle;                                                  // 0x0A58 (size: 0x8)
-    bool ShouldSimulate;                                                              // 0x0A60 (size: 0x1)
-    FTimerHandle ItemDecayTimerHandle;                                                // 0x0A68 (size: 0x8)
-    float ItemDecayInterval;                                                          // 0x0A70 (size: 0x4)
-    FTimerHandle CookTimer;                                                           // 0x0A78 (size: 0x8)
-    class UNiagaraComponent* CookingParticleComp;                                     // 0x0A80 (size: 0x8)
-    bool SpawnedFromProjectileImpact;                                                 // 0x0A88 (size: 0x1)
-    float TimeToDespawn;                                                              // 0x0A8C (size: 0x4)
-    class USceneComponent* InitialAttachToComponent;                                  // 0x0A90 (size: 0x8)
-    FName InitialAttachToBone;                                                        // 0x0A98 (size: 0x8)
+    FAbiotic_InventoryChangeableDataStruct ChangeableData;                            // 0x0920 (size: 0x88)
+    bool HasBeenPickedUp;                                                             // 0x09A8 (size: 0x1)
+    FText To Interact with Text;                                                      // 0x09B0 (size: 0x10)
+    bool NoPhysics;                                                                   // 0x09C0 (size: 0x1)
+    bool PopupAfterSpawned;                                                           // 0x09C1 (size: 0x1)
+    FTimerHandle PhysicsSleepHandle;                                                  // 0x09C8 (size: 0x8)
+    bool ShouldSimulate;                                                              // 0x09D0 (size: 0x1)
+    FTimerHandle ItemDecayTimerHandle;                                                // 0x09D8 (size: 0x8)
+    float ItemDecayInterval;                                                          // 0x09E0 (size: 0x4)
+    FTimerHandle CookTimer;                                                           // 0x09E8 (size: 0x8)
+    class UNiagaraComponent* CookingParticleComp;                                     // 0x09F0 (size: 0x8)
+    bool SpawnedFromProjectileImpact;                                                 // 0x09F8 (size: 0x1)
+    float TimeToDespawn;                                                              // 0x09FC (size: 0x4)
+    class USceneComponent* InitialAttachToComponent;                                  // 0x0A00 (size: 0x8)
+    FName InitialAttachToBone;                                                        // 0x0A08 (size: 0x8)
+    bool NoDespawn;                                                                   // 0x0A10 (size: 0x1)
 
     void GetOutlineComponent(bool& ComponentEnabled, class UOutlineComponent_C*& Components);
     void IsItemInPinnedRecipes(bool& IsPinnedIngredient);
@@ -119,7 +120,8 @@ class AAbiotic_Item_Dropped_C : public AActor
     void ApplyNewTemperature(float NewTemperature);
     void InteractWith_A_LocalFX(bool Hold);
     void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
+    void ForceItemPickup();
     void ExecuteUbergraph_Abiotic_Item_Dropped(int32 EntryPoint);
-}; // Size: 0xAA0
+}; // Size: 0xA11
 
 #endif

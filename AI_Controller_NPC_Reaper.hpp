@@ -3,12 +3,12 @@
 
 class AAI_Controller_NPC_Reaper_C : public AAbiotic_AI_Controller_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x08A8 (size: 0x8)
-    double TimestampToDespawn;                                                        // 0x08B0 (size: 0x8)
-    double PatrolDespawnTime;                                                         // 0x08B8 (size: 0x8)
-    double TimestampToCantSee;                                                        // 0x08C0 (size: 0x8)
-    double HuntLength;                                                                // 0x08C8 (size: 0x8)
-    bool Despawning;                                                                  // 0x08D0 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x08B8 (size: 0x8)
+    double TimestampToDespawn;                                                        // 0x08C0 (size: 0x8)
+    double PatrolDespawnTime;                                                         // 0x08C8 (size: 0x8)
+    double TimestampToCantSee;                                                        // 0x08D0 (size: 0x8)
+    double HuntLength;                                                                // 0x08D8 (size: 0x8)
+    bool Despawning;                                                                  // 0x08E0 (size: 0x1)
 
     void Despawn();
     bool CanSeeThroughWalls();
@@ -21,6 +21,6 @@ class AAI_Controller_NPC_Reaper_C : public AAbiotic_AI_Controller_ParentBP_C
     void DespawnTimer();
     void DespawnReaperFromHunt();
     void ExecuteUbergraph_AI_Controller_NPC_Reaper(int32 EntryPoint);
-}; // Size: 0x8D1
+}; // Size: 0x8E1
 
 #endif

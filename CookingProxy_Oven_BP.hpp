@@ -3,6 +3,6 @@
 
 class ACookingProxy_Oven_BP_C : public ACookingProxy_BP_C
 {
-}; // Size: 0x55C
+}; // Size: 0x4A8
 
 #endif

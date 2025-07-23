@@ -3,30 +3,35 @@
 
 class APowerSocket_ParentBP_C : public AAbioticActor_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
-    class UAbioticTargetingComponent* AbioticTargeting;                               // 0x02D0 (size: 0x8)
-    class UStaticMeshComponent* RadiusHologram;                                       // 0x02D8 (size: 0x8)
-    class UCableComponent* PowerCable;                                                // 0x02E0 (size: 0x8)
-    class UStaticMeshComponent* PlugMesh;                                             // 0x02E8 (size: 0x8)
-    class UStaticMeshComponent* PlugSocketMesh;                                       // 0x02F0 (size: 0x8)
-    class ASectorGenerator_BP_C* ParentSectorGenerator;                               // 0x02F8 (size: 0x8)
-    class AActor* PluggedInDevice;                                                    // 0x0300 (size: 0x8)
-    FVector LastPlugWorldLocation;                                                    // 0x0308 (size: 0x18)
-    bool NeverShowPowerRadius;                                                        // 0x0320 (size: 0x1)
-    class ADayNightManager_C* DayNightManager;                                        // 0x0328 (size: 0x8)
-    FText Item Name;                                                                  // 0x0330 (size: 0x10)
-    FSaveData_PowerSockets LatestSaveData;                                            // 0x0340 (size: 0x38)
-    bool SocketAlwaysPowered;                                                         // 0x0378 (size: 0x1)
-    FPowerSocket_ParentBP_CPluggedInStateUpdate PluggedInStateUpdate;                 // 0x0380 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D0 (size: 0x8)
+    class UAbioticTargetingComponent* AbioticTargeting;                               // 0x02D8 (size: 0x8)
+    class UStaticMeshComponent* RadiusHologram;                                       // 0x02E0 (size: 0x8)
+    class UCableComponent* PowerCable;                                                // 0x02E8 (size: 0x8)
+    class UStaticMeshComponent* PlugMesh;                                             // 0x02F0 (size: 0x8)
+    class UStaticMeshComponent* PlugSocketMesh;                                       // 0x02F8 (size: 0x8)
+    class ASectorGenerator_BP_C* ParentSectorGenerator;                               // 0x0300 (size: 0x8)
+    class AActor* PluggedInDevice;                                                    // 0x0308 (size: 0x8)
+    FVector LastPlugWorldLocation;                                                    // 0x0310 (size: 0x18)
+    bool NeverShowPowerRadius;                                                        // 0x0328 (size: 0x1)
+    class ADayNightManager_C* DayNightManager;                                        // 0x0330 (size: 0x8)
+    FText Item Name;                                                                  // 0x0338 (size: 0x10)
+    FSaveData_PowerSockets LatestSaveData;                                            // 0x0348 (size: 0x38)
+    bool SocketAlwaysPowered;                                                         // 0x0380 (size: 0x1)
+    FPowerSocket_ParentBP_CPluggedInStateUpdate PluggedInStateUpdate;                 // 0x0388 (size: 0x10)
     void PluggedInStateUpdate();
-    class UMaterialInterface* Material_Off;                                           // 0x0390 (size: 0x8)
-    class UMaterialInterface* Material_On;                                            // 0x0398 (size: 0x8)
-    TArray<class UCableComponent*> RerouteCables;                                     // 0x03A0 (size: 0x10)
-    FPowerSocket_ParentBP_CLocalUsingPlayersUpdate LocalUsingPlayersUpdate;           // 0x03B0 (size: 0x10)
+    class UMaterialInterface* Material_Off;                                           // 0x0398 (size: 0x8)
+    class UMaterialInterface* Material_On;                                            // 0x03A0 (size: 0x8)
+    TArray<class UCableComponent*> RerouteCables;                                     // 0x03A8 (size: 0x10)
+    FPowerSocket_ParentBP_CLocalUsingPlayersUpdate LocalUsingPlayersUpdate;           // 0x03B8 (size: 0x10)
     void LocalUsingPlayersUpdate(bool PlugModeActive);
-    class USoundBase* SocketDisconnect_SFX;                                           // 0x03C0 (size: 0x8)
-    class USoundBase* SocketConnect_SFX;                                              // 0x03C8 (size: 0x8)
+    class USoundBase* SocketDisconnect_SFX;                                           // 0x03C8 (size: 0x8)
+    class USoundBase* SocketConnect_SFX;                                              // 0x03D0 (size: 0x8)
+    bool BindDayNightChanges;                                                         // 0x03D8 (size: 0x1)
+    bool PowerInterrupted;                                                            // 0x03D9 (size: 0x1)
+    bool CachedPowerState;                                                            // 0x03DA (size: 0x1)
+    bool HasCachedPowerOnce;                                                          // 0x03DB (size: 0x1)
 
+    void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
@@ -59,6 +64,8 @@ class APowerSocket_ParentBP_C : public AAbioticActor_C
     void IsPowerSocket(bool& CanBePluggedInto);
     void IsPowered(bool& PowerOn);
     void GetPowerParentIndex(int32& Index);
+    void UpdateCachedPowerState(bool& HasChanged);
+    void OnRep_PowerInterrupted();
     void UpdateCableColor(double CurrentDistance);
     void OnPoweredDeviceDestroyed(class AActor* DestroyedActor);
     FString GetPowerSocketID();
@@ -66,6 +73,7 @@ class APowerSocket_ParentBP_C : public AAbioticActor_C
     void SavePowerSocketToWorldSave(bool Attach);
     void Update_SaveData(bool Attach);
     void OnRep_PluggedInDevice();
+    void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void InteractWith_B_LocalFX(bool Hold);
@@ -84,12 +92,14 @@ class APowerSocket_ParentBP_C : public AAbioticActor_C
     void TogglePowerFX();
     void InteractWith_A_LocalFX(bool Hold);
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
-    void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void ReceivePointDamage(float Damage, const class UDamageType* DamageType, FVector HitLocation, FVector HitNormal, class UPrimitiveComponent* HitComponent, FName BoneName, FVector ShotFromDirection, class AController* InstigatedBy, class AActor* DamageCauser, const FHitResult& HitInfo);
     void ReceiveDestroyed();
+    void DelayedPlugedInDeviceFromSave(class AAbioticDeployed_ParentBP_C* DeployedObject);
+    void InterruptPower();
+    void Broadcast_PowerInterruptContinued();
     void ExecuteUbergraph_PowerSocket_ParentBP(int32 EntryPoint);
     void LocalUsingPlayersUpdate__DelegateSignature(bool PlugModeActive);
     void PluggedInStateUpdate__DelegateSignature();
-}; // Size: 0x3D0
+}; // Size: 0x3DC
 
 #endif

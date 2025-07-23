@@ -3,10 +3,10 @@
 
 class APlantProxy_ParentBP_C : public AItemProxyParent_BP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x03E0 (size: 0x8)
-    class USceneComponent* Scene;                                                     // 0x03E8 (size: 0x8)
-    EPlantGrowthStage GrowthStage;                                                    // 0x03F0 (size: 0x1)
-    bool DestroyPlantAfterHarvest;                                                    // 0x03F1 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0350 (size: 0x8)
+    class USceneComponent* Scene;                                                     // 0x0358 (size: 0x8)
+    EPlantGrowthStage GrowthStage;                                                    // 0x0360 (size: 0x1)
+    bool DestroyPlantAfterHarvest;                                                    // 0x0361 (size: 0x1)
 
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
@@ -62,6 +62,6 @@ class APlantProxy_ParentBP_C : public AItemProxyParent_BP_C
     void ProxyMeshLoaded();
     void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void ExecuteUbergraph_PlantProxy_ParentBP(int32 EntryPoint);
-}; // Size: 0x3F2
+}; // Size: 0x362
 
 #endif

@@ -10,12 +10,15 @@ class UNarrativeNPCDirectorComponent_C : public UActorComponent
     bool HasLoaded;                                                                   // 0x010C (size: 0x1)
     int32 LastDay;                                                                    // 0x0110 (size: 0x4)
 
+    void UnregisterNarrativeSpawnLocation(class ANPCSpawn_Narrative_C* SpawnPoint);
+    bool ForceSpawnClosestInArray(const FNarrativeNPCSpawns_Struct& NarrativeNPCSpawnData, const FVector& Origin, const TArray<class AActor*>& Actors);
+    bool ForceSpawnClosestByRowName(FName TraderRowName, const FVector& Origin);
     void OnHourChanged(int32 NewHour, int32 PreviousHour);
     bool HasAnyRequiredWorldFlag(TArray<FWorldFlagRowHandle>& FlagsArray);
     void ApplyNarrativeNPCData(class UAbiotic_WorldSave_C* Save);
     void SaveNarrativeNPCData(class UAbiotic_WorldSave_C* Save);
     double GetChanceToSpawn(const FNPCTrader& NPCTrader);
-    void RegisterTraderLure(class ADeployed_TraderLure_Parent_C* NewTraderLure);
+    void RegisterTraderLure(class UNarrativeNPCLureComponent_C* NewTraderLure);
     void RefreshNarrativeSpawns();
     void RegisterNarrativeSpawnLocation(class ANPCSpawn_Narrative_C* SpawnPoint);
     void ReceiveBeginPlay();

@@ -14,9 +14,12 @@ class UW_TextChatBox_C : public UUserWidget
     void ChatBoxToggled(bool Opened);
 
     void CheckForTooManyTextLines(int32 MaxLines, bool& RemovedLine);
+    void OnFailure_D45ABECA493003D81C88129368383068(bool bSuccess, const TArray<FString>& SanitizedMessages);
+    void OnSuccess_D45ABECA493003D81C88129368383068(bool bSuccess, const TArray<FString>& SanitizedMessages);
     void ChangeTextChatVisibility(TEnumAsByte<E_AbioticWidgetVisbility::Type> Visibility);
     void BndEvt__TextInputBox_K2Node_ComponentBoundEvent_0_OnEditableTextBoxCommittedEvent__DelegateSignature(const FText& Text, TEnumAsByte<ETextCommit::Type> CommitMethod);
-    void DisplayTextChatMessage(FString Prefix, FLinearColor PrefixColor, FString MessageContent, FLinearColor MessageColor);
+    void DisplayTextChatMessage(FString Prefix, FLinearColor PrefixColor, FString MessageContent, FLinearColor MessageColor, bool IsPlayerChatMessage);
+    void ChatMessageReady(FString Text1, FString text2);
     void ExecuteUbergraph_W_TextChatBox(int32 EntryPoint);
     void ChatBoxToggled__DelegateSignature(bool Opened);
 }; // Size: 0x328

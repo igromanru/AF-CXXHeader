@@ -12,8 +12,9 @@ class ASign_ModularFacility_C : public AActor
     class UMaterialInterface* Icon;                                                   // 0x02D0 (size: 0x8)
     bool ShowFrame;                                                                   // 0x02D8 (size: 0x1)
     class UMaterialInterface* FrameMaterial;                                          // 0x02E0 (size: 0x8)
+    double HorizontalOffset;                                                          // 0x02E8 (size: 0x8)
 
     void UserConstructionScript();
-}; // Size: 0x2E8
+}; // Size: 0x2F0
 
 #endif

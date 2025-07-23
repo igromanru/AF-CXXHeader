@@ -4,6 +4,7 @@
 class II_Targetable_C : public IInterface
 {
 
+    void GetFriendlyFireDamageMultiplier(bool& Return, double& DamageMultiplier);
     void TargetableByTurrets(bool& Targetable);
     void SetNewWandererNPC(class ANPC_Base_ParentBP_C* PotentialWanderer);
     void GetWandererNPC(class ANPC_Base_ParentBP_C*& Wanderer);

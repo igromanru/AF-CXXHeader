@@ -3,6 +3,6 @@
 
 class UDamageType_RobotPunchStun_C : public UDamageType_Blunt_Stun_C
 {
-}; // Size: 0x270
+}; // Size: 0x290
 
 #endif

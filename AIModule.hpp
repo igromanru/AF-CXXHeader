@@ -1495,7 +1495,7 @@ class UDEPRECATED_PawnActionsComponent : public UActorComponent
 
 class UEQSRenderingComponent : public UDebugDrawComponent
 {
-}; // Size: 0x5A0
+}; // Size: 0x5B0
 
 class UEnvQuery : public UDataAsset
 {

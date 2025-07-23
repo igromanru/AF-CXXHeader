@@ -3,6 +3,6 @@
 
 class ADeployable_ArcadeMachine_BP_C : public ATV_ParentBP_C
 {
-}; // Size: 0x990
+}; // Size: 0x8B0
 
 #endif

@@ -3,57 +3,60 @@
 
 class AVendingMachine_BP_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0930 (size: 0x8)
-    class UVendingButton_BP_C* Button_2;                                              // 0x0938 (size: 0x8)
-    class UVendingButton_BP_C* Button_4;                                              // 0x0940 (size: 0x8)
-    class UVendingButton_BP_C* Button_3;                                              // 0x0948 (size: 0x8)
-    class UStaticMeshComponent* DollarMesh;                                           // 0x0950 (size: 0x8)
-    class USceneComponent* SodaSpawn;                                                 // 0x0958 (size: 0x8)
-    class UVendingButton_BP_C* Button_0;                                              // 0x0960 (size: 0x8)
-    class UVendingButton_BP_C* Button_1;                                              // 0x0968 (size: 0x8)
-    class UAudioComponent* Hum;                                                       // 0x0970 (size: 0x8)
-    class URectLightComponent* ItemMouthLight;                                        // 0x0978 (size: 0x8)
-    float BillRejectedTimeline_NewTrack_0_F71CA1854F3B6E7AC69AB69FD604092B;           // 0x0980 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> BillRejectedTimeline__Direction_F71CA1854F3B6E7AC69AB69FD604092B; // 0x0984 (size: 0x1)
-    class UTimelineComponent* BillRejectedTimeline;                                   // 0x0988 (size: 0x8)
-    float ShakeVendingMachineTimeline_NewTrack_0_87E26631494654469D1726A8756DF017;    // 0x0990 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> ShakeVendingMachineTimeline__Direction_87E26631494654469D1726A8756DF017; // 0x0994 (size: 0x1)
-    class UTimelineComponent* ShakeVendingMachineTimeline;                            // 0x0998 (size: 0x8)
-    float BillAcceptedTimeline_NewTrack_0_562EBB7846B62B99331FD1A2778814B6;           // 0x09A0 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> BillAcceptedTimeline__Direction_562EBB7846B62B99331FD1A2778814B6; // 0x09A4 (size: 0x1)
-    class UTimelineComponent* BillAcceptedTimeline;                                   // 0x09A8 (size: 0x8)
-    float ButtonPressTimeline_NewTrack_0_428D6DCA4922D632272A598403529F9F;            // 0x09B0 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> ButtonPressTimeline__Direction_428D6DCA4922D632272A598403529F9F; // 0x09B4 (size: 0x1)
-    class UTimelineComponent* ButtonpressTimeline;                                    // 0x09B8 (size: 0x8)
-    FVector DollarBill_In;                                                            // 0x09C0 (size: 0x18)
-    FVector DollarBill_Out;                                                           // 0x09D8 (size: 0x18)
-    bool IsBusyWithAction;                                                            // 0x09F0 (size: 0x1)
-    double ButtonOutDepth;                                                            // 0x09F8 (size: 0x8)
-    double ButtonInDepth;                                                             // 0x0A00 (size: 0x8)
-    int32 ItemCost;                                                                   // 0x0A08 (size: 0x4)
-    class UDataTable* ItemStockTable;                                                 // 0x0A10 (size: 0x8)
-    TMap<FName, int32> ItemsInStock;                                                  // 0x0A18 (size: 0x50)
-    TArray<bool> ButtonStates;                                                        // 0x0A68 (size: 0x10)
-    TArray<class UMaterialInstanceDynamic*> DynamicButtonMaterials;                   // 0x0A78 (size: 0x10)
-    double RefillCooldownTime;                                                        // 0x0A88 (size: 0x8)
-    int32 MaxSodas;                                                                   // 0x0A90 (size: 0x4)
-    FTimerHandle RefillCooldownTimer;                                                 // 0x0A98 (size: 0x8)
-    FText Item Name;                                                                  // 0x0AA0 (size: 0x10)
-    FText BuyFormatText;                                                              // 0x0AB0 (size: 0x10)
-    bool Infinite;                                                                    // 0x0AC0 (size: 0x1)
-    bool NeverFail;                                                                   // 0x0AC1 (size: 0x1)
-    bool NoCost;                                                                      // 0x0AC2 (size: 0x1)
-    bool CanShake;                                                                    // 0x0AC3 (size: 0x1)
-    bool HasDispensedThisSession;                                                     // 0x0AC4 (size: 0x1)
-    FVector PromptDefaultLocation;                                                    // 0x0AC8 (size: 0x18)
-    bool WholeMachineInteraction;                                                     // 0x0AE0 (size: 0x1)
-    class UActorComponent* LastHitComponent;                                          // 0x0AE8 (size: 0x8)
-    TArray<class UVendingButton_BP_C*> ButtonList;                                    // 0x0AF0 (size: 0x10)
-    double StartingDurability;                                                        // 0x0B00 (size: 0x8)
-    int32 CurrentButtonIndex;                                                         // 0x0B08 (size: 0x4)
-    bool HasSpillOutItems;                                                            // 0x0B0C (size: 0x1)
-    bool KIZZ;                                                                        // 0x0B0D (size: 0x1)
-    bool NextSodaBadSoda;                                                             // 0x0B0E (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0850 (size: 0x8)
+    class UVendingButton_BP_C* Button_2;                                              // 0x0858 (size: 0x8)
+    class UVendingButton_BP_C* Button_4;                                              // 0x0860 (size: 0x8)
+    class UVendingButton_BP_C* Button_3;                                              // 0x0868 (size: 0x8)
+    class UStaticMeshComponent* DollarMesh;                                           // 0x0870 (size: 0x8)
+    class USceneComponent* SodaSpawn;                                                 // 0x0878 (size: 0x8)
+    class UVendingButton_BP_C* Button_0;                                              // 0x0880 (size: 0x8)
+    class UVendingButton_BP_C* Button_1;                                              // 0x0888 (size: 0x8)
+    class UAudioComponent* Hum;                                                       // 0x0890 (size: 0x8)
+    class URectLightComponent* ItemMouthLight;                                        // 0x0898 (size: 0x8)
+    float BillRejectedTimeline_NewTrack_0_F71CA1854F3B6E7AC69AB69FD604092B;           // 0x08A0 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> BillRejectedTimeline__Direction_F71CA1854F3B6E7AC69AB69FD604092B; // 0x08A4 (size: 0x1)
+    class UTimelineComponent* BillRejectedTimeline;                                   // 0x08A8 (size: 0x8)
+    float ShakeVendingMachineTimeline_NewTrack_0_87E26631494654469D1726A8756DF017;    // 0x08B0 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> ShakeVendingMachineTimeline__Direction_87E26631494654469D1726A8756DF017; // 0x08B4 (size: 0x1)
+    class UTimelineComponent* ShakeVendingMachineTimeline;                            // 0x08B8 (size: 0x8)
+    float BillAcceptedTimeline_NewTrack_0_562EBB7846B62B99331FD1A2778814B6;           // 0x08C0 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> BillAcceptedTimeline__Direction_562EBB7846B62B99331FD1A2778814B6; // 0x08C4 (size: 0x1)
+    class UTimelineComponent* BillAcceptedTimeline;                                   // 0x08C8 (size: 0x8)
+    float ButtonPressTimeline_NewTrack_0_428D6DCA4922D632272A598403529F9F;            // 0x08D0 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> ButtonPressTimeline__Direction_428D6DCA4922D632272A598403529F9F; // 0x08D4 (size: 0x1)
+    class UTimelineComponent* ButtonPressTimeline;                                    // 0x08D8 (size: 0x8)
+    FVector DollarBill_In;                                                            // 0x08E0 (size: 0x18)
+    FVector DollarBill_Out;                                                           // 0x08F8 (size: 0x18)
+    bool IsBusyWithAction;                                                            // 0x0910 (size: 0x1)
+    double ButtonOutDepth;                                                            // 0x0918 (size: 0x8)
+    double ButtonInDepth;                                                             // 0x0920 (size: 0x8)
+    int32 ItemCost;                                                                   // 0x0928 (size: 0x4)
+    class UDataTable* ItemStockTable;                                                 // 0x0930 (size: 0x8)
+    TMap<FName, int32> ItemsInStock;                                                  // 0x0938 (size: 0x50)
+    TArray<bool> ButtonStates;                                                        // 0x0988 (size: 0x10)
+    TArray<class UMaterialInstanceDynamic*> DynamicButtonMaterials;                   // 0x0998 (size: 0x10)
+    double RefillCooldownTime;                                                        // 0x09A8 (size: 0x8)
+    int32 MaxSodas;                                                                   // 0x09B0 (size: 0x4)
+    FTimerHandle RefillCooldownTimer;                                                 // 0x09B8 (size: 0x8)
+    FText Item Name;                                                                  // 0x09C0 (size: 0x10)
+    FText BuyFormatText;                                                              // 0x09D0 (size: 0x10)
+    bool Infinite;                                                                    // 0x09E0 (size: 0x1)
+    bool NeverFail;                                                                   // 0x09E1 (size: 0x1)
+    bool NoCost;                                                                      // 0x09E2 (size: 0x1)
+    bool CanShake;                                                                    // 0x09E3 (size: 0x1)
+    bool HasDispensedThisSession;                                                     // 0x09E4 (size: 0x1)
+    FVector PromptDefaultLocation;                                                    // 0x09E8 (size: 0x18)
+    bool WholeMachineInteraction;                                                     // 0x0A00 (size: 0x1)
+    class UActorComponent* LastHitComponent;                                          // 0x0A08 (size: 0x8)
+    TArray<class UVendingButton_BP_C*> ButtonList;                                    // 0x0A10 (size: 0x10)
+    double StartingDurability;                                                        // 0x0A20 (size: 0x8)
+    int32 CurrentButtonIndex;                                                         // 0x0A28 (size: 0x4)
+    bool HasSpillOutItems;                                                            // 0x0A2C (size: 0x1)
+    bool KIZZ;                                                                        // 0x0A2D (size: 0x1)
+    bool NextSodaBadSoda;                                                             // 0x0A2E (size: 0x1)
+    class USoundBase* SFX_Dispense;                                                   // 0x0A30 (size: 0x8)
+    float PreShakeDelay;                                                              // 0x0A38 (size: 0x4)
+    double RecentExplosiveDamage;                                                     // 0x0A40 (size: 0x8)
 
     void Try Apply New Durability Value After Hit(double TotalDurabilityToBeApplied, const class UAbiotic_DamageType_ParentBP_C* DamageType, bool& Applied);
     void UpdateDurabilityVisualFX();
@@ -81,8 +84,8 @@ class AVendingMachine_BP_C : public AAbioticDeployed_Furniture_ParentBP_C
     void ProduceItem(int32 ButtonIndex);
     void FindButtonPressed(class UActorComponent* PressedComponent, bool& WasButton, class UActorComponent*& Button, int32& ButtonIndex);
     void ResetAllButtonPositions();
-    void ButtonpressTimeline__FinishedFunc();
-    void ButtonpressTimeline__UpdateFunc();
+    void ButtonPressTimeline__FinishedFunc();
+    void ButtonPressTimeline__UpdateFunc();
     void BillAcceptedTimeline__FinishedFunc();
     void BillAcceptedTimeline__UpdateFunc();
     void BillRejectedTimeline__FinishedFunc();
@@ -98,14 +101,15 @@ class AVendingMachine_BP_C : public AAbioticDeployed_Furniture_ParentBP_C
     void TryRefillVendingMachine();
     void StartRefillCooldown();
     void Process Damage(float Damage, class UObject* DamageType, FVector HitLocation, FVector HitNormal, class UPrimitiveComponent* HitComponent, FName BoneName, FVector ShotFromDirection, class AController* InstigatedBy, class UObject* DamageCauser, FHitResult HitInfo);
-    void OnLoadedFromSave();
+    void OnLoadedFromSave(double NewLifespan);
     void Local_TookDamage(bool PlayDamageSound);
     void SetVendingMachineNewMesh(class UStaticMesh* NewMesh);
     void RefreshIsBrokenState();
     void SpillAllVendingMachineContents();
     void Broadcast_SpillingItemSound();
     void ReceiveRadialDamage(float DamageReceived, const class UDamageType* DamageType, FVector Origin, const FHitResult& HitInfo, class AController* InstigatedBy, class AActor* DamageCauser);
+    void Broadcast_ProduceItemSound();
     void ExecuteUbergraph_VendingMachine_BP(int32 EntryPoint);
-}; // Size: 0xB0F
+}; // Size: 0xA48
 
 #endif

@@ -3,10 +3,10 @@
 
 class ADeployable_FishingTrap_T1_C : public AContainer_Aquarium_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0A20 (size: 0x8)
-    class UBP_FishTankMesh_C* TrappedFish;                                            // 0x0A28 (size: 0x8)
-    FFishingZoneRowHandle PossibleFishingZone;                                        // 0x0A30 (size: 0x20)
-    class ADayNightManager_C* DayNightManager;                                        // 0x0A50 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0958 (size: 0x8)
+    class UBP_FishTankMesh_C* TrappedFish;                                            // 0x0960 (size: 0x8)
+    FFishingZoneRowHandle PossibleFishingZone;                                        // 0x0968 (size: 0x20)
+    class ADayNightManager_C* DayNightManager;                                        // 0x0988 (size: 0x8)
 
     void TargetableByTurrets(bool& Targetable);
     void TargetableByNPCs(bool Maintain, bool& Targetable);
@@ -25,6 +25,6 @@ class ADeployable_FishingTrap_T1_C : public AContainer_Aquarium_ParentBP_C
     void DamagingLiquid_SelfDestruct();
     void Broadcast_DestroyedByLiquid();
     void ExecuteUbergraph_Deployable_FishingTrap_T1(int32 EntryPoint);
-}; // Size: 0xA58
+}; // Size: 0x990
 
 #endif

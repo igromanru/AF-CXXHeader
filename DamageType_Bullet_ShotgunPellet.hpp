@@ -3,6 +3,6 @@
 
 class UDamageType_Bullet_ShotgunPellet_C : public UDamageType_BulletGeneric_C
 {
-}; // Size: 0x270
+}; // Size: 0x290
 
 #endif

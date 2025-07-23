@@ -3,6 +3,6 @@
 
 class UDamageType_Bullet_Sniper_C : public UDamageType_Bullet_Large_C
 {
-}; // Size: 0x270
+}; // Size: 0x290
 
 #endif

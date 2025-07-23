@@ -457,12 +457,12 @@ class UContextObjectStore : public UObject
 
 class UGizmoArrowComponent : public UGizmoBaseComponent
 {
-    FVector Direction;                                                                // 0x0548 (size: 0x18)
-    float Gap;                                                                        // 0x0560 (size: 0x4)
-    float Length;                                                                     // 0x0564 (size: 0x4)
-    float Thickness;                                                                  // 0x0568 (size: 0x4)
+    FVector Direction;                                                                // 0x0550 (size: 0x18)
+    float Gap;                                                                        // 0x0568 (size: 0x4)
+    float Length;                                                                     // 0x056C (size: 0x4)
+    float Thickness;                                                                  // 0x0570 (size: 0x4)
 
-}; // Size: 0x570
+}; // Size: 0x580
 
 class UGizmoAxisIntervalParameterSource : public UGizmoBaseFloatParameterSource
 {
@@ -512,10 +512,10 @@ class UGizmoAxisTranslationParameterSource : public UGizmoBaseFloatParameterSour
 
 class UGizmoBaseComponent : public UPrimitiveComponent
 {
-    FLinearColor Color;                                                               // 0x0518 (size: 0x10)
-    float HoverSizeMultiplier;                                                        // 0x0528 (size: 0x4)
-    float PixelHitDistanceThreshold;                                                  // 0x052C (size: 0x4)
-    class UGizmoViewContext* GizmoViewContext;                                        // 0x0538 (size: 0x8)
+    FLinearColor Color;                                                               // 0x0520 (size: 0x10)
+    float HoverSizeMultiplier;                                                        // 0x0530 (size: 0x4)
+    float PixelHitDistanceThreshold;                                                  // 0x0534 (size: 0x4)
+    class UGizmoViewContext* GizmoViewContext;                                        // 0x0540 (size: 0x8)
 
     void UpdateWorldLocalState(bool bWorldIn);
     void UpdateHoverState(bool bHoveringIn);
@@ -535,26 +535,26 @@ class UGizmoBaseVec2ParameterSource : public UObject
 
 class UGizmoBoxComponent : public UGizmoBaseComponent
 {
-    FVector Origin;                                                                   // 0x0548 (size: 0x18)
-    FQuat Rotation;                                                                   // 0x0560 (size: 0x20)
-    FVector Dimensions;                                                               // 0x0580 (size: 0x18)
-    float LineThickness;                                                              // 0x0598 (size: 0x4)
-    bool bRemoveHiddenLines;                                                          // 0x059C (size: 0x1)
-    bool bEnableAxisFlip;                                                             // 0x059D (size: 0x1)
+    FVector Origin;                                                                   // 0x0550 (size: 0x18)
+    FQuat Rotation;                                                                   // 0x0570 (size: 0x20)
+    FVector Dimensions;                                                               // 0x0590 (size: 0x18)
+    float LineThickness;                                                              // 0x05A8 (size: 0x4)
+    bool bRemoveHiddenLines;                                                          // 0x05AC (size: 0x1)
+    bool bEnableAxisFlip;                                                             // 0x05AD (size: 0x1)
 
-}; // Size: 0x5A0
+}; // Size: 0x5B0
 
 class UGizmoCircleComponent : public UGizmoBaseComponent
 {
-    FVector Normal;                                                                   // 0x0548 (size: 0x18)
-    float Radius;                                                                     // 0x0560 (size: 0x4)
-    float Thickness;                                                                  // 0x0564 (size: 0x4)
-    int32 NumSides;                                                                   // 0x0568 (size: 0x4)
-    bool bViewAligned;                                                                // 0x056C (size: 0x1)
-    bool bDrawFullCircle;                                                             // 0x056D (size: 0x1)
-    bool bOnlyAllowFrontFacingHits;                                                   // 0x056E (size: 0x1)
+    FVector Normal;                                                                   // 0x0550 (size: 0x18)
+    float Radius;                                                                     // 0x0568 (size: 0x4)
+    float Thickness;                                                                  // 0x056C (size: 0x4)
+    int32 NumSides;                                                                   // 0x0570 (size: 0x4)
+    bool bViewAligned;                                                                // 0x0574 (size: 0x1)
+    bool bDrawFullCircle;                                                             // 0x0575 (size: 0x1)
+    bool bOnlyAllowFrontFacingHits;                                                   // 0x0576 (size: 0x1)
 
-}; // Size: 0x570
+}; // Size: 0x580
 
 class UGizmoComponentAxisSource : public UObject
 {
@@ -787,12 +787,12 @@ class UGizmoLambdaStateTarget : public UObject
 
 class UGizmoLineHandleComponent : public UGizmoBaseComponent
 {
-    FVector Normal;                                                                   // 0x0548 (size: 0x18)
-    float HandleSize;                                                                 // 0x0560 (size: 0x4)
-    float Thickness;                                                                  // 0x0564 (size: 0x4)
-    FVector Direction;                                                                // 0x0568 (size: 0x18)
-    float Length;                                                                     // 0x0580 (size: 0x4)
-    bool bImageScale;                                                                 // 0x0584 (size: 0x1)
+    FVector Normal;                                                                   // 0x0550 (size: 0x18)
+    float HandleSize;                                                                 // 0x0568 (size: 0x4)
+    float Thickness;                                                                  // 0x056C (size: 0x4)
+    FVector Direction;                                                                // 0x0570 (size: 0x18)
+    float Length;                                                                     // 0x0588 (size: 0x4)
+    bool bImageScale;                                                                 // 0x058C (size: 0x1)
 
 }; // Size: 0x590
 
@@ -853,15 +853,15 @@ class UGizmoPlaneTranslationParameterSource : public UGizmoBaseVec2ParameterSour
 
 class UGizmoRectangleComponent : public UGizmoBaseComponent
 {
-    FVector DirectionX;                                                               // 0x0548 (size: 0x18)
-    FVector DirectionY;                                                               // 0x0560 (size: 0x18)
-    bool bOrientYAccordingToCamera;                                                   // 0x0578 (size: 0x1)
-    float OffsetX;                                                                    // 0x057C (size: 0x4)
-    float OffsetY;                                                                    // 0x0580 (size: 0x4)
-    float LengthX;                                                                    // 0x0584 (size: 0x4)
-    float LengthY;                                                                    // 0x0588 (size: 0x4)
-    float Thickness;                                                                  // 0x058C (size: 0x4)
-    uint8 SegmentFlags;                                                               // 0x0590 (size: 0x1)
+    FVector DirectionX;                                                               // 0x0550 (size: 0x18)
+    FVector DirectionY;                                                               // 0x0568 (size: 0x18)
+    bool bOrientYAccordingToCamera;                                                   // 0x0580 (size: 0x1)
+    float OffsetX;                                                                    // 0x0584 (size: 0x4)
+    float OffsetY;                                                                    // 0x0588 (size: 0x4)
+    float LengthX;                                                                    // 0x058C (size: 0x4)
+    float LengthY;                                                                    // 0x0590 (size: 0x4)
+    float Thickness;                                                                  // 0x0594 (size: 0x4)
+    uint8 SegmentFlags;                                                               // 0x0598 (size: 0x1)
 
 }; // Size: 0x5A0
 

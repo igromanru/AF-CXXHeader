@@ -9,6 +9,7 @@ class ATrigger_TinyTutorialHint_C : public AAbiotic_TriggerVolume_ParentBP_C
     FDataTableRowHandle TutorialHintRow;                                              // 0x0358 (size: 0x10)
     TArray<class AActor*> ObjectToOutlines;                                           // 0x0368 (size: 0x10)
 
+    void ResetTriggerState();
     void OnTrigger();
     void ExecuteUbergraph_Trigger_TinyTutorialHint(int32 EntryPoint);
 }; // Size: 0x378

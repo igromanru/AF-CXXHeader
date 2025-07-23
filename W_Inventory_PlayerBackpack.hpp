@@ -14,13 +14,14 @@ class UW_Inventory_PlayerBackpack_C : public UUserWidget
     class UW_InventoryGrid_C* W_BackpackGrid;                                         // 0x0320 (size: 0x8)
     class UW_ButtonPromptHelperBar_C* W_ButtonPromptHelperBar;                        // 0x0328 (size: 0x8)
     class UW_InventoryWeight_C* W_InventoryWeight;                                    // 0x0330 (size: 0x8)
-    class UTextBlock* WeightNumberText;                                               // 0x0338 (size: 0x8)
-    class UW_PlayerInventory_Main_C* ParentInventoryWidget;                           // 0x0340 (size: 0x8)
-    double CurrentWeight;                                                             // 0x0348 (size: 0x8)
-    class UWidget* Temp Slot;                                                         // 0x0350 (size: 0x8)
-    TArray<class UWidget*> SortedGridSlots;                                           // 0x0358 (size: 0x10)
-    int32 Index;                                                                      // 0x0368 (size: 0x4)
-    float LiquidWeightMultiplier;                                                     // 0x036C (size: 0x4)
+    class UW_TransmogToggleButton_C* W_TransmogToggleButton_Backpack;                 // 0x0338 (size: 0x8)
+    class UTextBlock* WeightNumberText;                                               // 0x0340 (size: 0x8)
+    class UW_PlayerInventory_Main_C* ParentInventoryWidget;                           // 0x0348 (size: 0x8)
+    double CurrentWeight;                                                             // 0x0350 (size: 0x8)
+    class UWidget* Temp Slot;                                                         // 0x0358 (size: 0x8)
+    TArray<class UWidget*> SortedGridSlots;                                           // 0x0360 (size: 0x10)
+    int32 Index;                                                                      // 0x0370 (size: 0x4)
+    float LiquidWeightMultiplier;                                                     // 0x0374 (size: 0x4)
 
     void FavoritedSlotsUpdated(class UAbiotic_InventoryComponent_C* Inventory);
     void UpdateMoneyCount(int32 money);
@@ -31,6 +32,6 @@ class UW_Inventory_PlayerBackpack_C : public UUserWidget
     void Construct();
     void BndEvt__W_Inventory_PlayerBackpack_Button_SortWeight_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature();
     void ExecuteUbergraph_W_Inventory_PlayerBackpack(int32 EntryPoint);
-}; // Size: 0x370
+}; // Size: 0x378
 
 #endif

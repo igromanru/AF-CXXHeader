@@ -25,10 +25,10 @@ class UW_Character_Job_Selection_C : public UUserWidget
     FName LastSelectedJob;                                                            // 0x0378 (size: 0x8)
 
     void UpdateSelectedJobInfo(FTrait_Struct JobData, FString AttributeInfo);
-    void OnFailure_F294E4EE4E039DC6363DA8B2C6FAFCC3();
-    void OnSuccess_F294E4EE4E039DC6363DA8B2C6FAFCC3();
     void SaveWorld_BB5507364C3F00F0785F918A0BF20768(bool bSuccess);
     void OnLoaded_9C92B12048D674D15D2C58B8197D9478(class UObject* Loaded);
+    void OnFailure_7DF898154AE5F18278CA8BA82AAF0D8B();
+    void OnSuccess_7DF898154AE5F18278CA8BA82AAF0D8B();
     void Construct();
     void BndEvt__W_Character_Job_Selection_W_MainMenuButton_K2Node_ComponentBoundEvent_0_ButtonPressed__DelegateSignature();
     void BndEvt__W_Character_Job_Selection_Button_Finish_K2Node_ComponentBoundEvent_1_ButtonPressed__DelegateSignature();

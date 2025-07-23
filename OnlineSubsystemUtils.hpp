@@ -399,9 +399,13 @@ class UJoinSessionCallbackProxy : public UOnlineBlueprintCallProxyBase
     void EmptyOnlineDelegate();
     FJoinSessionCallbackProxyOnFailure OnFailure;                                     // 0x0040 (size: 0x10)
     void EmptyOnlineDelegate();
+    FJoinSessionCallbackProxyOnBlockedPlayer OnBlockedPlayer;                         // 0x0050 (size: 0x10)
+    void EmptyOnlineDelegate();
+    FJoinSessionCallbackProxyOnCrossplayIncompatibility OnCrossplayIncompatibility;   // 0x0060 (size: 0x10)
+    void EmptyOnlineDelegate();
 
-    class UJoinSessionCallbackProxy* JoinSession(class UObject* WorldContextObject, class APlayerController* PlayerController, const FBlueprintSessionResult& SearchResult);
-}; // Size: 0x198
+    class UJoinSessionCallbackProxy* JoinSession(class UObject* WorldContextObject, class APlayerController* PlayerController, const FBlueprintSessionResult& SearchResult, bool bIgnoreBlockedPlayers);
+}; // Size: 0x1C0
 
 class ULeaderboardBlueprintLibrary : public UBlueprintFunctionLibrary
 {
@@ -527,6 +531,6 @@ class UVoipListenerSynthComponent : public USynthComponent
 {
 
     bool IsIdling();
-}; // Size: 0x8F0
+}; // Size: 0x900
 
 #endif

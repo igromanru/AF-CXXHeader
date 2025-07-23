@@ -15,11 +15,16 @@ class UW_Player_JournalSectorTab_C : public UUserWidget
     FWorldFlagRowHandle WorldFlagToRevealIcon;                                        // 0x0340 (size: 0x20)
     FW_Player_JournalSectorTab_CClickJournalTab ClickJournalTab;                      // 0x0360 (size: 0x10)
     void ClickJournalTab(bool IsChecked, class UW_Player_JournalSectorTab_C* Tab);
-    bool AvailableInBuild;                                                            // 0x0370 (size: 0x1)
-    FText SectorDisplayName;                                                          // 0x0378 (size: 0x10)
-    bool ShowLocationName;                                                            // 0x0388 (size: 0x1)
-    int32 CurrentNumberOfEntries;                                                     // 0x038C (size: 0x4)
+    FWorldFlagRowHandle WorldFlagToRevealResources;                                   // 0x0370 (size: 0x20)
+    bool AvailableInBuild;                                                            // 0x0390 (size: 0x1)
+    FText DisplayName;                                                                // 0x0398 (size: 0x10)
+    bool NotPressableButton;                                                          // 0x03A8 (size: 0x1)
+    bool ShowLocationName;                                                            // 0x03A9 (size: 0x1)
+    int32 CurrentNumberOfEntries;                                                     // 0x03AC (size: 0x4)
+    FDataTableRowHandle ResourceDataTable;                                            // 0x03B0 (size: 0x10)
+    bool CanShowResources;                                                            // 0x03C0 (size: 0x1)
 
+    void CreateJournalNoteTooltip(FText Text, FText Text_Additional, FText Text_Negative, bool ShowResources);
     void AreWorldFlagsReady(bool& Ready);
     void Check Current Viewed Page(TEnumAsByte<E_JournalEntryCategories::Type> CurrentViewedPage, bool& Same Page);
     void StartHighlightUnreadIconPage();
@@ -30,6 +35,6 @@ class UW_Player_JournalSectorTab_C : public UUserWidget
     void Tick(FGeometry MyGeometry, float InDeltaTime);
     void ExecuteUbergraph_W_Player_JournalSectorTab(int32 EntryPoint);
     void ClickJournalTab__DelegateSignature(bool IsChecked, class UW_Player_JournalSectorTab_C* Tab);
-}; // Size: 0x390
+}; // Size: 0x3C1
 
 #endif

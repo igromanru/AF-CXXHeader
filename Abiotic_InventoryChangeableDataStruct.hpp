@@ -11,13 +11,11 @@ struct FAbiotic_InventoryChangeableDataStruct
     int32 LiquidLevel_46_D6414A6E49082BC020AADC89CC29E35A;                            // 0x0028 (size: 0x4)
     TEnumAsByte<E_LiquidType::Type> CurrentLiquid_19_3E1652F448223AAE5F405FB510838109; // 0x002C (size: 0x1)
     FDataTableRowHandle TextureVariantRow_28_1C7CF7A0441335E8AC4EA7B5CA91F636;        // 0x0030 (size: 0x10)
-    FCagedCreature_Struct CagedCreature_33_6F66BC4947E914446880748146100A7B;          // 0x0040 (size: 0x60)
-    FAbiotic_Cooking_Struct CookingData_37_E5F8C01943C24A15AF940F91A7E6662B;          // 0x00A0 (size: 0x30)
-    bool DynamicState_39_7597AC6549E292B931C61BB13C9E42EB;                            // 0x00D0 (size: 0x1)
-    FString PlayerMadeString_42_CC0B72B24DBEAB2CC04454AAFFD4BBE9;                     // 0x00D8 (size: 0x10)
-    FGameplayTagContainer GameplayTags_45_1A018E824E25CC7BA608A6B2835209A1;           // 0x00E8 (size: 0x20)
-    TArray<FDynamicProperty> DynamicProperties_50_5C138DB145048726E8C0FEAC7C9600F7;   // 0x0108 (size: 0x10)
+    bool DynamicState_39_7597AC6549E292B931C61BB13C9E42EB;                            // 0x0040 (size: 0x1)
+    FString PlayerMadeString_42_CC0B72B24DBEAB2CC04454AAFFD4BBE9;                     // 0x0048 (size: 0x10)
+    FGameplayTagContainer GameplayTags_45_1A018E824E25CC7BA608A6B2835209A1;           // 0x0058 (size: 0x20)
+    TArray<FDynamicProperty> DynamicProperties_50_5C138DB145048726E8C0FEAC7C9600F7;   // 0x0078 (size: 0x10)
 
-}; // Size: 0x118
+}; // Size: 0x88
 
 #endif

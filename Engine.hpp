@@ -9372,13 +9372,13 @@ class AGameSession : public AInfo
 
 class AGameState : public AGameStateBase
 {
-    FName MatchState;                                                                 // 0x02F0 (size: 0x8)
-    FName PreviousMatchState;                                                         // 0x02F8 (size: 0x8)
-    int32 ElapsedTime;                                                                // 0x0300 (size: 0x4)
+    FName MatchState;                                                                 // 0x0320 (size: 0x8)
+    FName PreviousMatchState;                                                         // 0x0328 (size: 0x8)
+    int32 ElapsedTime;                                                                // 0x0330 (size: 0x4)
 
     void OnRep_MatchState();
     void OnRep_ElapsedTime();
-}; // Size: 0x310
+}; // Size: 0x340
 
 class AGameStateBase : public AInfo
 {
@@ -9386,11 +9386,17 @@ class AGameStateBase : public AInfo
     class AGameModeBase* AuthorityGameMode;                                           // 0x02A0 (size: 0x8)
     TSubclassOf<class ASpectatorPawn> SpectatorClass;                                 // 0x02A8 (size: 0x8)
     TArray<class APlayerState*> PlayerArray;                                          // 0x02B0 (size: 0x10)
-    bool bReplicatedHasBegunPlay;                                                     // 0x02C0 (size: 0x1)
-    float ReplicatedWorldTimeSeconds;                                                 // 0x02C4 (size: 0x4)
-    double ReplicatedWorldTimeSecondsDouble;                                          // 0x02C8 (size: 0x8)
-    float ServerWorldTimeSecondsDelta;                                                // 0x02D0 (size: 0x4)
-    float ServerWorldTimeSecondsUpdateFrequency;                                      // 0x02D4 (size: 0x4)
+    FGameStateBaseOnPlayerArrayChanged OnPlayerArrayChanged;                          // 0x02C0 (size: 0x10)
+    void OnPlayerArrayChanged();
+    FGameStateBaseOnPlayerAdded OnPlayerAdded;                                        // 0x02D0 (size: 0x10)
+    void OnPlayerAdded(class APlayerState* State);
+    FGameStateBaseOnPlayerRemoved OnPlayerRemoved;                                    // 0x02E0 (size: 0x10)
+    void OnPlayerRemoved(class APlayerState* State);
+    bool bReplicatedHasBegunPlay;                                                     // 0x02F0 (size: 0x1)
+    float ReplicatedWorldTimeSeconds;                                                 // 0x02F4 (size: 0x4)
+    double ReplicatedWorldTimeSecondsDouble;                                          // 0x02F8 (size: 0x8)
+    float ServerWorldTimeSecondsDelta;                                                // 0x0300 (size: 0x4)
+    float ServerWorldTimeSecondsUpdateFrequency;                                      // 0x0304 (size: 0x4)
 
     void OnRep_SpectatorClass();
     void OnRep_ReplicatedWorldTimeSecondsDouble();
@@ -9403,7 +9409,7 @@ class AGameStateBase : public AInfo
     double GetServerWorldTimeSeconds();
     float GetPlayerStartTime(class AController* Controller);
     float GetPlayerRespawnDelay(class AController* Controller);
-}; // Size: 0x2F0
+}; // Size: 0x320
 
 class AGeneratedMeshAreaLight : public ASpotLight
 {
@@ -10102,6 +10108,7 @@ class APlayerState : public AInfo
     float GetPingInMilliseconds();
     class APawn* GetPawn();
     uint8 GetCompressedPing();
+    FString BP_GetUniqueIdStr();
     FUniqueNetIdRepl BP_GetUniqueId();
 }; // Size: 0x350
 
@@ -11628,12 +11635,12 @@ class UApplicationLifecycleComponent : public UActorComponent
 
 class UArrowComponent : public UPrimitiveComponent
 {
-    FColor ArrowColor;                                                                // 0x0518 (size: 0x4)
-    float ArrowSize;                                                                  // 0x051C (size: 0x4)
-    float ArrowLength;                                                                // 0x0520 (size: 0x4)
-    float ScreenSize;                                                                 // 0x0524 (size: 0x4)
-    uint8 bIsScreenSizeScaled;                                                        // 0x0528 (size: 0x1)
-    uint8 bTreatAsASprite;                                                            // 0x0528 (size: 0x1)
+    FColor ArrowColor;                                                                // 0x0520 (size: 0x4)
+    float ArrowSize;                                                                  // 0x0524 (size: 0x4)
+    float ArrowLength;                                                                // 0x0528 (size: 0x4)
+    float ScreenSize;                                                                 // 0x052C (size: 0x4)
+    uint8 bIsScreenSizeScaled;                                                        // 0x0530 (size: 0x1)
+    uint8 bTreatAsASprite;                                                            // 0x0530 (size: 0x1)
 
     void SetUseInEditorScaling(bool bNewValue);
     void SetTreatAsASprite(bool bNewValue);
@@ -11643,7 +11650,7 @@ class UArrowComponent : public UPrimitiveComponent
     void SetArrowLength(float NewLength);
     void SetArrowFColor(FColor NewColor);
     void SetArrowColor(FLinearColor NewColor);
-}; // Size: 0x530
+}; // Size: 0x540
 
 class UAssetExportTask : public UObject
 {
@@ -11822,7 +11829,7 @@ class UAtmosphericFogComponent : public USkyAtmosphereComponent
     void SetAltitudeScale(float NewAltitudeScale);
     void DisableSunDisk(bool NewSunDisk);
     void DisableGroundScattering(bool NewGroundScattering);
-}; // Size: 0x330
+}; // Size: 0x340
 
 class UAudioBus : public UObject
 {
@@ -11832,60 +11839,60 @@ class UAudioBus : public UObject
 
 class UAudioComponent : public USceneComponent
 {
-    class USoundBase* Sound;                                                          // 0x03D0 (size: 0x8)
-    TArray<FAudioParameter> DefaultParameters;                                        // 0x03D8 (size: 0x10)
-    TArray<FAudioParameter> InstanceParameters;                                       // 0x03E8 (size: 0x10)
-    class USoundClass* SoundClassOverride;                                            // 0x03F8 (size: 0x8)
-    uint8 bAutoDestroy;                                                               // 0x0400 (size: 0x1)
-    uint8 bStopWhenOwnerDestroyed;                                                    // 0x0400 (size: 0x1)
-    uint8 bShouldRemainActiveIfDropped;                                               // 0x0400 (size: 0x1)
-    uint8 bAllowSpatialization;                                                       // 0x0400 (size: 0x1)
-    uint8 bOverrideAttenuation;                                                       // 0x0400 (size: 0x1)
-    uint8 bOverrideSubtitlePriority;                                                  // 0x0400 (size: 0x1)
-    uint8 bIsUISound;                                                                 // 0x0400 (size: 0x1)
-    uint8 bEnableLowPassFilter;                                                       // 0x0400 (size: 0x1)
-    uint8 bOverridePriority;                                                          // 0x0401 (size: 0x1)
-    uint8 bSuppressSubtitles;                                                         // 0x0401 (size: 0x1)
-    uint8 bCanPlayMultipleInstances;                                                  // 0x0401 (size: 0x1)
-    uint8 bDisableParameterUpdatesWhilePlaying;                                       // 0x0401 (size: 0x1)
-    uint8 bAutoManageAttachment;                                                      // 0x0402 (size: 0x1)
-    FName AudioComponentUserID;                                                       // 0x0408 (size: 0x8)
-    float PitchModulationMin;                                                         // 0x0410 (size: 0x4)
-    float PitchModulationMax;                                                         // 0x0414 (size: 0x4)
-    float VolumeModulationMin;                                                        // 0x0418 (size: 0x4)
-    float VolumeModulationMax;                                                        // 0x041C (size: 0x4)
-    float VolumeMultiplier;                                                           // 0x0420 (size: 0x4)
-    int32 EnvelopeFollowerAttackTime;                                                 // 0x0424 (size: 0x4)
-    int32 EnvelopeFollowerReleaseTime;                                                // 0x0428 (size: 0x4)
-    float Priority;                                                                   // 0x042C (size: 0x4)
-    float SubtitlePriority;                                                           // 0x0430 (size: 0x4)
-    class USoundEffectSourcePresetChain* SourceEffectChain;                           // 0x0438 (size: 0x8)
-    float PitchMultiplier;                                                            // 0x0440 (size: 0x4)
-    float LowPassFilterFrequency;                                                     // 0x0444 (size: 0x4)
-    class USoundAttenuation* AttenuationSettings;                                     // 0x0450 (size: 0x8)
-    FSoundAttenuationSettings AttenuationOverrides;                                   // 0x0458 (size: 0x3D0)
-    class USoundConcurrency* ConcurrencySettings;                                     // 0x0828 (size: 0x8)
-    TSet<USoundConcurrency*> ConcurrencySet;                                          // 0x0830 (size: 0x50)
-    EAttachmentRule AutoAttachLocationRule;                                           // 0x088C (size: 0x1)
-    EAttachmentRule AutoAttachRotationRule;                                           // 0x088D (size: 0x1)
-    EAttachmentRule AutoAttachScaleRule;                                              // 0x088E (size: 0x1)
-    FSoundModulationDefaultRoutingSettings ModulationRouting;                         // 0x0890 (size: 0x168)
-    FAudioComponentOnAudioPlayStateChanged OnAudioPlayStateChanged;                   // 0x09F8 (size: 0x10)
+    class USoundBase* Sound;                                                          // 0x03D8 (size: 0x8)
+    TArray<FAudioParameter> DefaultParameters;                                        // 0x03E0 (size: 0x10)
+    TArray<FAudioParameter> InstanceParameters;                                       // 0x03F0 (size: 0x10)
+    class USoundClass* SoundClassOverride;                                            // 0x0400 (size: 0x8)
+    uint8 bAutoDestroy;                                                               // 0x0408 (size: 0x1)
+    uint8 bStopWhenOwnerDestroyed;                                                    // 0x0408 (size: 0x1)
+    uint8 bShouldRemainActiveIfDropped;                                               // 0x0408 (size: 0x1)
+    uint8 bAllowSpatialization;                                                       // 0x0408 (size: 0x1)
+    uint8 bOverrideAttenuation;                                                       // 0x0408 (size: 0x1)
+    uint8 bOverrideSubtitlePriority;                                                  // 0x0408 (size: 0x1)
+    uint8 bIsUISound;                                                                 // 0x0408 (size: 0x1)
+    uint8 bEnableLowPassFilter;                                                       // 0x0408 (size: 0x1)
+    uint8 bOverridePriority;                                                          // 0x0409 (size: 0x1)
+    uint8 bSuppressSubtitles;                                                         // 0x0409 (size: 0x1)
+    uint8 bCanPlayMultipleInstances;                                                  // 0x0409 (size: 0x1)
+    uint8 bDisableParameterUpdatesWhilePlaying;                                       // 0x0409 (size: 0x1)
+    uint8 bAutoManageAttachment;                                                      // 0x040A (size: 0x1)
+    FName AudioComponentUserID;                                                       // 0x0410 (size: 0x8)
+    float PitchModulationMin;                                                         // 0x0418 (size: 0x4)
+    float PitchModulationMax;                                                         // 0x041C (size: 0x4)
+    float VolumeModulationMin;                                                        // 0x0420 (size: 0x4)
+    float VolumeModulationMax;                                                        // 0x0424 (size: 0x4)
+    float VolumeMultiplier;                                                           // 0x0428 (size: 0x4)
+    int32 EnvelopeFollowerAttackTime;                                                 // 0x042C (size: 0x4)
+    int32 EnvelopeFollowerReleaseTime;                                                // 0x0430 (size: 0x4)
+    float Priority;                                                                   // 0x0434 (size: 0x4)
+    float SubtitlePriority;                                                           // 0x0438 (size: 0x4)
+    class USoundEffectSourcePresetChain* SourceEffectChain;                           // 0x0440 (size: 0x8)
+    float PitchMultiplier;                                                            // 0x0448 (size: 0x4)
+    float LowPassFilterFrequency;                                                     // 0x044C (size: 0x4)
+    class USoundAttenuation* AttenuationSettings;                                     // 0x0458 (size: 0x8)
+    FSoundAttenuationSettings AttenuationOverrides;                                   // 0x0460 (size: 0x3D0)
+    class USoundConcurrency* ConcurrencySettings;                                     // 0x0830 (size: 0x8)
+    TSet<USoundConcurrency*> ConcurrencySet;                                          // 0x0838 (size: 0x50)
+    EAttachmentRule AutoAttachLocationRule;                                           // 0x0894 (size: 0x1)
+    EAttachmentRule AutoAttachRotationRule;                                           // 0x0895 (size: 0x1)
+    EAttachmentRule AutoAttachScaleRule;                                              // 0x0896 (size: 0x1)
+    FSoundModulationDefaultRoutingSettings ModulationRouting;                         // 0x0898 (size: 0x168)
+    FAudioComponentOnAudioPlayStateChanged OnAudioPlayStateChanged;                   // 0x0A00 (size: 0x10)
     void OnAudioPlayStateChanged(EAudioComponentPlayState PlayState);
-    FAudioComponentOnAudioVirtualizationChanged OnAudioVirtualizationChanged;         // 0x0A20 (size: 0x10)
+    FAudioComponentOnAudioVirtualizationChanged OnAudioVirtualizationChanged;         // 0x0A28 (size: 0x10)
     void OnAudioVirtualizationChanged(bool bIsVirtualized);
-    FAudioComponentOnAudioFinished OnAudioFinished;                                   // 0x0A48 (size: 0x10)
+    FAudioComponentOnAudioFinished OnAudioFinished;                                   // 0x0A50 (size: 0x10)
     void OnAudioFinished();
-    FAudioComponentOnAudioPlaybackPercent OnAudioPlaybackPercent;                     // 0x0A70 (size: 0x10)
+    FAudioComponentOnAudioPlaybackPercent OnAudioPlaybackPercent;                     // 0x0A78 (size: 0x10)
     void OnAudioPlaybackPercent(const class USoundWave* PlayingSoundWave, const float PlaybackPercent);
-    FAudioComponentOnAudioSingleEnvelopeValue OnAudioSingleEnvelopeValue;             // 0x0A98 (size: 0x10)
+    FAudioComponentOnAudioSingleEnvelopeValue OnAudioSingleEnvelopeValue;             // 0x0AA0 (size: 0x10)
     void OnAudioSingleEnvelopeValue(const class USoundWave* PlayingSoundWave, const float EnvelopeValue);
-    FAudioComponentOnAudioMultiEnvelopeValue OnAudioMultiEnvelopeValue;               // 0x0AC0 (size: 0x10)
+    FAudioComponentOnAudioMultiEnvelopeValue OnAudioMultiEnvelopeValue;               // 0x0AC8 (size: 0x10)
     void OnAudioMultiEnvelopeValue(const float AverageEnvelopeValue, const float MaxEnvelope, const int32 NumWaveInstances);
-    FAudioComponentOnQueueSubtitles OnQueueSubtitles;                                 // 0x0AE8 (size: 0x10)
+    FAudioComponentOnQueueSubtitles OnQueueSubtitles;                                 // 0x0AF0 (size: 0x10)
     void OnQueueSubtitles(const TArray<FSubtitleCue>& Subtitles, float CueDuration);
-    TWeakObjectPtr<class USceneComponent> AutoAttachParent;                           // 0x0B08 (size: 0x8)
-    FName AutoAttachSocketName;                                                       // 0x0B10 (size: 0x8)
+    TWeakObjectPtr<class USceneComponent> AutoAttachParent;                           // 0x0B10 (size: 0x8)
+    FName AutoAttachSocketName;                                                       // 0x0B18 (size: 0x8)
 
     void StopDelayed(float DelayTime);
     void Stop();
@@ -12040,20 +12047,20 @@ class UAvoidanceManager : public UObject
 
 class UBillboardComponent : public UPrimitiveComponent
 {
-    class UTexture2D* Sprite;                                                         // 0x0518 (size: 0x8)
-    uint8 bIsScreenSizeScaled;                                                        // 0x0520 (size: 0x1)
-    float ScreenSize;                                                                 // 0x0524 (size: 0x4)
-    float U;                                                                          // 0x0528 (size: 0x4)
-    float UL;                                                                         // 0x052C (size: 0x4)
-    float V;                                                                          // 0x0530 (size: 0x4)
-    float VL;                                                                         // 0x0534 (size: 0x4)
-    float OpacityMaskRefVal;                                                          // 0x0538 (size: 0x4)
+    class UTexture2D* Sprite;                                                         // 0x0520 (size: 0x8)
+    uint8 bIsScreenSizeScaled;                                                        // 0x0528 (size: 0x1)
+    float ScreenSize;                                                                 // 0x052C (size: 0x4)
+    float U;                                                                          // 0x0530 (size: 0x4)
+    float UL;                                                                         // 0x0534 (size: 0x4)
+    float V;                                                                          // 0x0538 (size: 0x4)
+    float VL;                                                                         // 0x053C (size: 0x4)
+    float OpacityMaskRefVal;                                                          // 0x0540 (size: 0x4)
 
     void SetUV(int32 NewU, int32 NewUL, int32 NewV, int32 NewVL);
     void SetSpriteAndUV(class UTexture2D* NewSprite, int32 NewU, int32 NewUL, int32 NewV, int32 NewVL);
     void SetSprite(class UTexture2D* NewSprite);
     void SetOpacityMaskRefVal(float RefVal);
-}; // Size: 0x540
+}; // Size: 0x550
 
 class UBlendProfile : public UObject
 {
@@ -12373,7 +12380,7 @@ class UBoundsCopyComponent : public UActorComponent
 
 class UBoxComponent : public UShapeComponent
 {
-    FVector BoxExtent;                                                                // 0x0540 (size: 0x18)
+    FVector BoxExtent;                                                                // 0x0548 (size: 0x18)
 
     void SetBoxExtent(FVector InBoxExtent, bool bUpdateOverlaps);
     FVector GetUnscaledBoxExtent();
@@ -12382,11 +12389,11 @@ class UBoxComponent : public UShapeComponent
 
 class UBoxReflectionCaptureComponent : public UReflectionCaptureComponent
 {
-    float BoxTransitionDistance;                                                      // 0x0298 (size: 0x4)
-    class UBoxComponent* PreviewInfluenceBox;                                         // 0x02A0 (size: 0x8)
-    class UBoxComponent* PreviewCaptureBox;                                           // 0x02A8 (size: 0x8)
+    float BoxTransitionDistance;                                                      // 0x02A0 (size: 0x4)
+    class UBoxComponent* PreviewInfluenceBox;                                         // 0x02A8 (size: 0x8)
+    class UBoxComponent* PreviewCaptureBox;                                           // 0x02B0 (size: 0x8)
 
-}; // Size: 0x2B0
+}; // Size: 0x2C0
 
 class UBrushBuilder : public UObject
 {
@@ -12402,8 +12409,8 @@ class UBrushBuilder : public UObject
 
 class UBrushComponent : public UPrimitiveComponent
 {
-    class UModel* Brush;                                                              // 0x0518 (size: 0x8)
-    class UBodySetup* BrushBodySetup;                                                 // 0x0520 (size: 0x8)
+    class UModel* Brush;                                                              // 0x0520 (size: 0x8)
+    class UBodySetup* BrushBodySetup;                                                 // 0x0528 (size: 0x8)
 
 }; // Size: 0x530
 
@@ -12427,22 +12434,22 @@ class UCachedAnimDataLibrary : public UBlueprintFunctionLibrary
 
 class UCameraComponent : public USceneComponent
 {
-    float FieldOfView;                                                                // 0x0230 (size: 0x4)
-    float OrthoWidth;                                                                 // 0x0234 (size: 0x4)
-    bool bAutoCalculateOrthoPlanes;                                                   // 0x0238 (size: 0x1)
-    float AutoPlaneShift;                                                             // 0x023C (size: 0x4)
-    float OrthoNearClipPlane;                                                         // 0x0240 (size: 0x4)
-    float OrthoFarClipPlane;                                                          // 0x0244 (size: 0x4)
-    bool bUpdateOrthoPlanes;                                                          // 0x0248 (size: 0x1)
-    bool bUseCameraHeightAsViewTarget;                                                // 0x0249 (size: 0x1)
-    float AspectRatio;                                                                // 0x024C (size: 0x4)
-    TEnumAsByte<EAspectRatioAxisConstraint> AspectRatioAxisConstraint;                // 0x0250 (size: 0x1)
-    uint8 bConstrainAspectRatio;                                                      // 0x0251 (size: 0x1)
-    uint8 bOverrideAspectRatioAxisConstraint;                                         // 0x0251 (size: 0x1)
-    uint8 bUseFieldOfViewForLOD;                                                      // 0x0251 (size: 0x1)
-    uint8 bLockToHmd;                                                                 // 0x0251 (size: 0x1)
-    uint8 bUsePawnControlRotation;                                                    // 0x0251 (size: 0x1)
-    TEnumAsByte<ECameraProjectionMode::Type> ProjectionMode;                          // 0x0252 (size: 0x1)
+    float FieldOfView;                                                                // 0x0238 (size: 0x4)
+    float OrthoWidth;                                                                 // 0x023C (size: 0x4)
+    bool bAutoCalculateOrthoPlanes;                                                   // 0x0240 (size: 0x1)
+    float AutoPlaneShift;                                                             // 0x0244 (size: 0x4)
+    float OrthoNearClipPlane;                                                         // 0x0248 (size: 0x4)
+    float OrthoFarClipPlane;                                                          // 0x024C (size: 0x4)
+    bool bUpdateOrthoPlanes;                                                          // 0x0250 (size: 0x1)
+    bool bUseCameraHeightAsViewTarget;                                                // 0x0251 (size: 0x1)
+    float AspectRatio;                                                                // 0x0254 (size: 0x4)
+    TEnumAsByte<EAspectRatioAxisConstraint> AspectRatioAxisConstraint;                // 0x0258 (size: 0x1)
+    uint8 bConstrainAspectRatio;                                                      // 0x0259 (size: 0x1)
+    uint8 bOverrideAspectRatioAxisConstraint;                                         // 0x0259 (size: 0x1)
+    uint8 bUseFieldOfViewForLOD;                                                      // 0x0259 (size: 0x1)
+    uint8 bLockToHmd;                                                                 // 0x0259 (size: 0x1)
+    uint8 bUsePawnControlRotation;                                                    // 0x0259 (size: 0x1)
+    TEnumAsByte<ECameraProjectionMode::Type> ProjectionMode;                          // 0x025A (size: 0x1)
     float PostProcessBlendWeight;                                                     // 0x02C0 (size: 0x4)
     FPostProcessSettings PostProcessSettings;                                         // 0x02F0 (size: 0x6F0)
 
@@ -12520,18 +12527,18 @@ class UCameraShakePattern : public UObject
 
 class UCameraShakeSourceComponent : public USceneComponent
 {
-    ECameraShakeAttenuation Attenuation;                                              // 0x0230 (size: 0x1)
-    float InnerAttenuationRadius;                                                     // 0x0234 (size: 0x4)
-    float OuterAttenuationRadius;                                                     // 0x0238 (size: 0x4)
-    TSubclassOf<class UCameraShakeBase> CameraShake;                                  // 0x0240 (size: 0x8)
-    bool bAutoStart;                                                                  // 0x0248 (size: 0x1)
+    ECameraShakeAttenuation Attenuation;                                              // 0x0238 (size: 0x1)
+    float InnerAttenuationRadius;                                                     // 0x023C (size: 0x4)
+    float OuterAttenuationRadius;                                                     // 0x0240 (size: 0x4)
+    TSubclassOf<class UCameraShakeBase> CameraShake;                                  // 0x0248 (size: 0x8)
+    bool bAutoStart;                                                                  // 0x0250 (size: 0x1)
 
     void StopAllCameraShakesOfType(TSubclassOf<class UCameraShakeBase> InCameraShake, bool bImmediately);
     void StopAllCameraShakes(bool bImmediately);
     void StartCameraShake(TSubclassOf<class UCameraShakeBase> InCameraShake, float Scale, ECameraShakePlaySpace PlaySpace, FRotator UserPlaySpaceRot);
     void Start();
     float GetAttenuationFactor(const FVector& Location);
-}; // Size: 0x250
+}; // Size: 0x260
 
 class UCancellableAsyncAction : public UBlueprintAsyncActionBase
 {
@@ -12590,8 +12597,8 @@ class UCanvasRenderTarget2D : public UTextureRenderTarget2D
 
 class UCapsuleComponent : public UShapeComponent
 {
-    float CapsuleHalfHeight;                                                          // 0x0540 (size: 0x4)
-    float CapsuleRadius;                                                              // 0x0544 (size: 0x4)
+    float CapsuleHalfHeight;                                                          // 0x0548 (size: 0x4)
+    float CapsuleRadius;                                                              // 0x054C (size: 0x4)
 
     void SetCapsuleSize(float InRadius, float InHalfHeight, bool bUpdateOverlaps);
     void SetCapsuleRadius(float Radius, bool bUpdateOverlaps);
@@ -12924,15 +12931,15 @@ class UCheckBoxStyleAsset : public UObject
 
 class UChildActorComponent : public USceneComponent
 {
-    TSubclassOf<class AActor> ChildActorClass;                                        // 0x0230 (size: 0x8)
-    class AActor* ChildActor;                                                         // 0x0238 (size: 0x8)
-    class AActor* ChildActorTemplate;                                                 // 0x0240 (size: 0x8)
-    uint8 bChildActorIsTransient;                                                     // 0x0260 (size: 0x1)
+    TSubclassOf<class AActor> ChildActorClass;                                        // 0x0238 (size: 0x8)
+    class AActor* ChildActor;                                                         // 0x0240 (size: 0x8)
+    class AActor* ChildActorTemplate;                                                 // 0x0248 (size: 0x8)
+    uint8 bChildActorIsTransient;                                                     // 0x0268 (size: 0x1)
 
     void SetChildActorClass(TSubclassOf<class AActor> InClass);
     void OnRep_ChildActor();
     void OnChildActorDestroyed(class AActor* Actor);
-}; // Size: 0x280
+}; // Size: 0x290
 
 class UChildConnection : public UNetConnection
 {
@@ -12949,16 +12956,16 @@ class UCloudStorageBase : public UPlatformInterfaceBase
 
 class UClusterUnionComponent : public UPrimitiveComponent
 {
-    bool bEnableDamageFromCollision;                                                  // 0x0518 (size: 0x1)
-    FClusterUnionComponentOnComponentAddedEvent OnComponentAddedEvent;                // 0x0520 (size: 0x10)
+    bool bEnableDamageFromCollision;                                                  // 0x0520 (size: 0x1)
+    FClusterUnionComponentOnComponentAddedEvent OnComponentAddedEvent;                // 0x0528 (size: 0x10)
     void OnClusterUnionAddedComponent(class UPrimitiveComponent* Component, const TSet<int32>& BoneIds, bool bIsNew);
-    FClusterUnionComponentOnComponentRemovedEvent OnComponentRemovedEvent;            // 0x0530 (size: 0x10)
+    FClusterUnionComponentOnComponentRemovedEvent OnComponentRemovedEvent;            // 0x0538 (size: 0x10)
     void OnClusterUnionRemovedComponent(class UPrimitiveComponent* Component);
-    FClusterUnionComponentOnComponentBoundsChangedEvent OnComponentBoundsChangedEvent; // 0x0540 (size: 0x10)
+    FClusterUnionComponentOnComponentBoundsChangedEvent OnComponentBoundsChangedEvent; // 0x0548 (size: 0x10)
     void OnClusterUnionBoundsChanged(class UClusterUnionComponent* Component, const FBoxSphereBounds& Bounds);
-    TArray<FComponentReference> ClusteredComponentsReferences;                        // 0x05E8 (size: 0x10)
-    int32 GravityGroupIndexOverride;                                                  // 0x05F8 (size: 0x4)
-    FClusterUnionReplicatedData ReplicatedRigidState;                                 // 0x0700 (size: 0x2)
+    TArray<FComponentReference> ClusteredComponentsReferences;                        // 0x05F0 (size: 0x10)
+    int32 GravityGroupIndexOverride;                                                  // 0x0600 (size: 0x4)
+    FClusterUnionReplicatedData ReplicatedRigidState;                                 // 0x0708 (size: 0x2)
 
     void SetIsAnchored(bool bIsAnchored);
     void SetEnableDamageFromCollision(bool bValue);
@@ -12973,7 +12980,7 @@ class UClusterUnionComponent : public UPrimitiveComponent
     TArray<class AActor*> GetActors();
     void ForceSetChildToParent(class UPrimitiveComponent* InComponent, const TArray<int32>& BoneIds, const TArray<FTransform>& ChildToParent);
     void AddComponentToCluster(class UPrimitiveComponent* InComponent, const TArray<int32>& BoneIds, bool bRebuildGeometry);
-}; // Size: 0x760
+}; // Size: 0x770
 
 class UClusterUnionReplicatedProxyComponent : public UActorComponent
 {
@@ -13449,16 +13456,16 @@ class UDebugGarbageCollectionGraph : public UObject
 
 class UDecalComponent : public USceneComponent
 {
-    class UMaterialInterface* DecalMaterial;                                          // 0x0230 (size: 0x8)
-    int32 SortOrder;                                                                  // 0x0238 (size: 0x4)
-    float FadeScreenSize;                                                             // 0x023C (size: 0x4)
-    float FadeStartDelay;                                                             // 0x0240 (size: 0x4)
-    float FadeDuration;                                                               // 0x0244 (size: 0x4)
-    float FadeInDuration;                                                             // 0x0248 (size: 0x4)
-    float FadeInStartDelay;                                                           // 0x024C (size: 0x4)
-    uint8 bDestroyOwnerAfterFade;                                                     // 0x0250 (size: 0x1)
-    FVector DecalSize;                                                                // 0x0258 (size: 0x18)
-    FLinearColor DecalColor;                                                          // 0x0270 (size: 0x10)
+    class UMaterialInterface* DecalMaterial;                                          // 0x0238 (size: 0x8)
+    int32 SortOrder;                                                                  // 0x0240 (size: 0x4)
+    float FadeScreenSize;                                                             // 0x0244 (size: 0x4)
+    float FadeStartDelay;                                                             // 0x0248 (size: 0x4)
+    float FadeDuration;                                                               // 0x024C (size: 0x4)
+    float FadeInDuration;                                                             // 0x0250 (size: 0x4)
+    float FadeInStartDelay;                                                           // 0x0254 (size: 0x4)
+    uint8 bDestroyOwnerAfterFade;                                                     // 0x0258 (size: 0x1)
+    FVector DecalSize;                                                                // 0x0260 (size: 0x18)
+    FLinearColor DecalColor;                                                          // 0x0278 (size: 0x10)
 
     void SetSortOrder(int32 Value);
     void SetFadeScreenSize(float NewFadeScreenSize);
@@ -13557,47 +13564,47 @@ class UDialogueWave : public UObject
 
 class UDirectionalLightComponent : public ULightComponent
 {
-    float ShadowCascadeBiasDistribution;                                              // 0x0370 (size: 0x4)
-    uint8 bEnableLightShaftOcclusion;                                                 // 0x0374 (size: 0x1)
-    float OcclusionMaskDarkness;                                                      // 0x0378 (size: 0x4)
-    float OcclusionDepthRange;                                                        // 0x037C (size: 0x4)
-    FVector LightShaftOverrideDirection;                                              // 0x0380 (size: 0x18)
-    float WholeSceneDynamicShadowRadius;                                              // 0x0398 (size: 0x4)
-    float DynamicShadowDistanceMovableLight;                                          // 0x039C (size: 0x4)
-    float DynamicShadowDistanceStationaryLight;                                       // 0x03A0 (size: 0x4)
-    int32 DynamicShadowCascades;                                                      // 0x03A4 (size: 0x4)
-    float CascadeDistributionExponent;                                                // 0x03A8 (size: 0x4)
-    float CascadeTransitionFraction;                                                  // 0x03AC (size: 0x4)
-    float ShadowDistanceFadeoutFraction;                                              // 0x03B0 (size: 0x4)
-    uint8 bUseInsetShadowsForMovableObjects;                                          // 0x03B4 (size: 0x1)
-    int32 FarShadowCascadeCount;                                                      // 0x03B8 (size: 0x4)
-    float FarShadowDistance;                                                          // 0x03BC (size: 0x4)
-    float DistanceFieldShadowDistance;                                                // 0x03C0 (size: 0x4)
-    int32 ForwardShadingPriority;                                                     // 0x03C4 (size: 0x4)
-    float LightSourceAngle;                                                           // 0x03C8 (size: 0x4)
-    float LightSourceSoftAngle;                                                       // 0x03CC (size: 0x4)
-    float ShadowSourceAngleFactor;                                                    // 0x03D0 (size: 0x4)
-    float TraceDistance;                                                              // 0x03D4 (size: 0x4)
-    uint8 bUsedAsAtmosphereSunLight;                                                  // 0x03D8 (size: 0x1)
-    uint8 bAtmosphereSunLight;                                                        // 0x03D8 (size: 0x1)
-    int32 AtmosphereSunLightIndex;                                                    // 0x03DC (size: 0x4)
-    FLinearColor AtmosphereSunDiskColorScale;                                         // 0x03E0 (size: 0x10)
-    uint8 bPerPixelAtmosphereTransmittance;                                           // 0x03F0 (size: 0x1)
-    uint8 bCastShadowsOnClouds;                                                       // 0x03F0 (size: 0x1)
-    uint8 bCastShadowsOnAtmosphere;                                                   // 0x03F0 (size: 0x1)
-    uint8 bCastCloudShadows;                                                          // 0x03F0 (size: 0x1)
-    float CloudShadowStrength;                                                        // 0x03F4 (size: 0x4)
-    float CloudShadowOnAtmosphereStrength;                                            // 0x03F8 (size: 0x4)
-    float CloudShadowOnSurfaceStrength;                                               // 0x03FC (size: 0x4)
-    float CloudShadowDepthBias;                                                       // 0x0400 (size: 0x4)
-    float CloudShadowExtent;                                                          // 0x0404 (size: 0x4)
-    float CloudShadowMapResolutionScale;                                              // 0x0408 (size: 0x4)
-    float CloudShadowRaySampleCountScale;                                             // 0x040C (size: 0x4)
-    FLinearColor CloudScatteredLuminanceScale;                                        // 0x0410 (size: 0x10)
-    FLightmassDirectionalLightSettings LightmassSettings;                             // 0x0420 (size: 0x10)
-    uint8 bCastModulatedShadows;                                                      // 0x0430 (size: 0x1)
-    FColor ModulatedShadowColor;                                                      // 0x0434 (size: 0x4)
-    float ShadowAmount;                                                               // 0x0438 (size: 0x4)
+    float ShadowCascadeBiasDistribution;                                              // 0x0378 (size: 0x4)
+    uint8 bEnableLightShaftOcclusion;                                                 // 0x037C (size: 0x1)
+    float OcclusionMaskDarkness;                                                      // 0x0380 (size: 0x4)
+    float OcclusionDepthRange;                                                        // 0x0384 (size: 0x4)
+    FVector LightShaftOverrideDirection;                                              // 0x0388 (size: 0x18)
+    float WholeSceneDynamicShadowRadius;                                              // 0x03A0 (size: 0x4)
+    float DynamicShadowDistanceMovableLight;                                          // 0x03A4 (size: 0x4)
+    float DynamicShadowDistanceStationaryLight;                                       // 0x03A8 (size: 0x4)
+    int32 DynamicShadowCascades;                                                      // 0x03AC (size: 0x4)
+    float CascadeDistributionExponent;                                                // 0x03B0 (size: 0x4)
+    float CascadeTransitionFraction;                                                  // 0x03B4 (size: 0x4)
+    float ShadowDistanceFadeoutFraction;                                              // 0x03B8 (size: 0x4)
+    uint8 bUseInsetShadowsForMovableObjects;                                          // 0x03BC (size: 0x1)
+    int32 FarShadowCascadeCount;                                                      // 0x03C0 (size: 0x4)
+    float FarShadowDistance;                                                          // 0x03C4 (size: 0x4)
+    float DistanceFieldShadowDistance;                                                // 0x03C8 (size: 0x4)
+    int32 ForwardShadingPriority;                                                     // 0x03CC (size: 0x4)
+    float LightSourceAngle;                                                           // 0x03D0 (size: 0x4)
+    float LightSourceSoftAngle;                                                       // 0x03D4 (size: 0x4)
+    float ShadowSourceAngleFactor;                                                    // 0x03D8 (size: 0x4)
+    float TraceDistance;                                                              // 0x03DC (size: 0x4)
+    uint8 bUsedAsAtmosphereSunLight;                                                  // 0x03E0 (size: 0x1)
+    uint8 bAtmosphereSunLight;                                                        // 0x03E0 (size: 0x1)
+    int32 AtmosphereSunLightIndex;                                                    // 0x03E4 (size: 0x4)
+    FLinearColor AtmosphereSunDiskColorScale;                                         // 0x03E8 (size: 0x10)
+    uint8 bPerPixelAtmosphereTransmittance;                                           // 0x03F8 (size: 0x1)
+    uint8 bCastShadowsOnClouds;                                                       // 0x03F8 (size: 0x1)
+    uint8 bCastShadowsOnAtmosphere;                                                   // 0x03F8 (size: 0x1)
+    uint8 bCastCloudShadows;                                                          // 0x03F8 (size: 0x1)
+    float CloudShadowStrength;                                                        // 0x03FC (size: 0x4)
+    float CloudShadowOnAtmosphereStrength;                                            // 0x0400 (size: 0x4)
+    float CloudShadowOnSurfaceStrength;                                               // 0x0404 (size: 0x4)
+    float CloudShadowDepthBias;                                                       // 0x0408 (size: 0x4)
+    float CloudShadowExtent;                                                          // 0x040C (size: 0x4)
+    float CloudShadowMapResolutionScale;                                              // 0x0410 (size: 0x4)
+    float CloudShadowRaySampleCountScale;                                             // 0x0414 (size: 0x4)
+    FLinearColor CloudScatteredLuminanceScale;                                        // 0x0418 (size: 0x10)
+    FLightmassDirectionalLightSettings LightmassSettings;                             // 0x0428 (size: 0x10)
+    uint8 bCastModulatedShadows;                                                      // 0x0438 (size: 0x1)
+    FColor ModulatedShadowColor;                                                      // 0x043C (size: 0x4)
+    float ShadowAmount;                                                               // 0x0440 (size: 0x4)
 
     void SetShadowSourceAngleFactor(float NewValue);
     void SetShadowDistanceFadeoutFraction(float NewValue);
@@ -13617,7 +13624,7 @@ class UDirectionalLightComponent : public ULightComponent
     void SetCascadeDistributionExponent(float NewValue);
     void SetAtmosphereSunLightIndex(int32 NewValue);
     void SetAtmosphereSunLight(bool bNewValue);
-}; // Size: 0x440
+}; // Size: 0x450
 
 class UDistribution : public UObject
 {
@@ -13733,13 +13740,13 @@ class UDistributionVectorUniformCurve : public UDistributionVector
 
 class UDrawFrustumComponent : public UPrimitiveComponent
 {
-    bool bFrustumEnabled;                                                             // 0x0518 (size: 0x1)
-    FColor FrustumColor;                                                              // 0x051C (size: 0x4)
-    float FrustumAngle;                                                               // 0x0520 (size: 0x4)
-    float FrustumAspectRatio;                                                         // 0x0524 (size: 0x4)
-    float FrustumStartDist;                                                           // 0x0528 (size: 0x4)
-    float FrustumEndDist;                                                             // 0x052C (size: 0x4)
-    class UTexture* Texture;                                                          // 0x0530 (size: 0x8)
+    bool bFrustumEnabled;                                                             // 0x0520 (size: 0x1)
+    FColor FrustumColor;                                                              // 0x0524 (size: 0x4)
+    float FrustumAngle;                                                               // 0x0528 (size: 0x4)
+    float FrustumAspectRatio;                                                         // 0x052C (size: 0x4)
+    float FrustumStartDist;                                                           // 0x0530 (size: 0x4)
+    float FrustumEndDist;                                                             // 0x0534 (size: 0x4)
+    class UTexture* Texture;                                                          // 0x0538 (size: 0x8)
 
 }; // Size: 0x540
 
@@ -14111,36 +14118,36 @@ class UEngineTypes : public UObject
 
 class UExponentialHeightFogComponent : public USceneComponent
 {
-    float FogDensity;                                                                 // 0x0230 (size: 0x4)
-    float FogHeightFalloff;                                                           // 0x0234 (size: 0x4)
-    FExponentialHeightFogData SecondFogData;                                          // 0x0238 (size: 0xC)
-    FLinearColor FogInscatteringColor;                                                // 0x0244 (size: 0x10)
-    FLinearColor FogInscatteringLuminance;                                            // 0x0254 (size: 0x10)
-    FLinearColor SkyAtmosphereAmbientContributionColorScale;                          // 0x0264 (size: 0x10)
-    class UTextureCube* InscatteringColorCubemap;                                     // 0x0278 (size: 0x8)
-    float InscatteringColorCubemapAngle;                                              // 0x0280 (size: 0x4)
-    FLinearColor InscatteringTextureTint;                                             // 0x0284 (size: 0x10)
-    float FullyDirectionalInscatteringColorDistance;                                  // 0x0294 (size: 0x4)
-    float NonDirectionalInscatteringColorDistance;                                    // 0x0298 (size: 0x4)
-    float DirectionalInscatteringExponent;                                            // 0x029C (size: 0x4)
-    float DirectionalInscatteringStartDistance;                                       // 0x02A0 (size: 0x4)
-    FLinearColor DirectionalInscatteringColor;                                        // 0x02A4 (size: 0x10)
-    FLinearColor DirectionalInscatteringLuminance;                                    // 0x02B4 (size: 0x10)
-    float FogMaxOpacity;                                                              // 0x02C4 (size: 0x4)
-    float StartDistance;                                                              // 0x02C8 (size: 0x4)
-    float FogCutoffDistance;                                                          // 0x02CC (size: 0x4)
-    bool bEnableVolumetricFog;                                                        // 0x02D0 (size: 0x1)
-    float VolumetricFogScatteringDistribution;                                        // 0x02D4 (size: 0x4)
-    FColor VolumetricFogAlbedo;                                                       // 0x02D8 (size: 0x4)
-    FLinearColor VolumetricFogEmissive;                                               // 0x02DC (size: 0x10)
-    float VolumetricFogExtinctionScale;                                               // 0x02EC (size: 0x4)
-    float VolumetricFogDistance;                                                      // 0x02F0 (size: 0x4)
-    float VolumetricFogStartDistance;                                                 // 0x02F4 (size: 0x4)
-    float VolumetricFogNearFadeInDistance;                                            // 0x02F8 (size: 0x4)
-    float VolumetricFogStaticLightingScatteringIntensity;                             // 0x02FC (size: 0x4)
-    bool bOverrideLightColorsWithFogInscatteringColors;                               // 0x0300 (size: 0x1)
-    uint8 bHoldout;                                                                   // 0x0301 (size: 0x1)
-    uint8 bRenderInMainPass;                                                          // 0x0301 (size: 0x1)
+    float FogDensity;                                                                 // 0x0238 (size: 0x4)
+    float FogHeightFalloff;                                                           // 0x023C (size: 0x4)
+    FExponentialHeightFogData SecondFogData;                                          // 0x0240 (size: 0xC)
+    FLinearColor FogInscatteringColor;                                                // 0x024C (size: 0x10)
+    FLinearColor FogInscatteringLuminance;                                            // 0x025C (size: 0x10)
+    FLinearColor SkyAtmosphereAmbientContributionColorScale;                          // 0x026C (size: 0x10)
+    class UTextureCube* InscatteringColorCubemap;                                     // 0x0280 (size: 0x8)
+    float InscatteringColorCubemapAngle;                                              // 0x0288 (size: 0x4)
+    FLinearColor InscatteringTextureTint;                                             // 0x028C (size: 0x10)
+    float FullyDirectionalInscatteringColorDistance;                                  // 0x029C (size: 0x4)
+    float NonDirectionalInscatteringColorDistance;                                    // 0x02A0 (size: 0x4)
+    float DirectionalInscatteringExponent;                                            // 0x02A4 (size: 0x4)
+    float DirectionalInscatteringStartDistance;                                       // 0x02A8 (size: 0x4)
+    FLinearColor DirectionalInscatteringColor;                                        // 0x02AC (size: 0x10)
+    FLinearColor DirectionalInscatteringLuminance;                                    // 0x02BC (size: 0x10)
+    float FogMaxOpacity;                                                              // 0x02CC (size: 0x4)
+    float StartDistance;                                                              // 0x02D0 (size: 0x4)
+    float FogCutoffDistance;                                                          // 0x02D4 (size: 0x4)
+    bool bEnableVolumetricFog;                                                        // 0x02D8 (size: 0x1)
+    float VolumetricFogScatteringDistribution;                                        // 0x02DC (size: 0x4)
+    FColor VolumetricFogAlbedo;                                                       // 0x02E0 (size: 0x4)
+    FLinearColor VolumetricFogEmissive;                                               // 0x02E4 (size: 0x10)
+    float VolumetricFogExtinctionScale;                                               // 0x02F4 (size: 0x4)
+    float VolumetricFogDistance;                                                      // 0x02F8 (size: 0x4)
+    float VolumetricFogStartDistance;                                                 // 0x02FC (size: 0x4)
+    float VolumetricFogNearFadeInDistance;                                            // 0x0300 (size: 0x4)
+    float VolumetricFogStaticLightingScatteringIntensity;                             // 0x0304 (size: 0x4)
+    bool bOverrideLightColorsWithFogInscatteringColors;                               // 0x0308 (size: 0x1)
+    uint8 bHoldout;                                                                   // 0x0309 (size: 0x1)
+    uint8 bRenderInMainPass;                                                          // 0x0309 (size: 0x1)
 
     void SetVolumetricFogScatteringDistribution(float NewValue);
     void SetVolumetricFogExtinctionScale(float NewValue);
@@ -14304,16 +14311,16 @@ class UForceFeedbackAttenuation : public UObject
 
 class UForceFeedbackComponent : public USceneComponent
 {
-    class UForceFeedbackEffect* ForceFeedbackEffect;                                  // 0x0230 (size: 0x8)
-    uint8 bAutoDestroy;                                                               // 0x0238 (size: 0x1)
-    uint8 bStopWhenOwnerDestroyed;                                                    // 0x0238 (size: 0x1)
-    uint8 bLooping;                                                                   // 0x0238 (size: 0x1)
-    uint8 bIgnoreTimeDilation;                                                        // 0x0238 (size: 0x1)
-    uint8 bOverrideAttenuation;                                                       // 0x0238 (size: 0x1)
-    float IntensityMultiplier;                                                        // 0x023C (size: 0x4)
-    class UForceFeedbackAttenuation* AttenuationSettings;                             // 0x0240 (size: 0x8)
-    FForceFeedbackAttenuationSettings AttenuationOverrides;                           // 0x0248 (size: 0xC0)
-    FForceFeedbackComponentOnForceFeedbackFinished OnForceFeedbackFinished;           // 0x0308 (size: 0x10)
+    class UForceFeedbackEffect* ForceFeedbackEffect;                                  // 0x0238 (size: 0x8)
+    uint8 bAutoDestroy;                                                               // 0x0240 (size: 0x1)
+    uint8 bStopWhenOwnerDestroyed;                                                    // 0x0240 (size: 0x1)
+    uint8 bLooping;                                                                   // 0x0240 (size: 0x1)
+    uint8 bIgnoreTimeDilation;                                                        // 0x0240 (size: 0x1)
+    uint8 bOverrideAttenuation;                                                       // 0x0240 (size: 0x1)
+    float IntensityMultiplier;                                                        // 0x0244 (size: 0x4)
+    class UForceFeedbackAttenuation* AttenuationSettings;                             // 0x0248 (size: 0x8)
+    FForceFeedbackAttenuationSettings AttenuationOverrides;                           // 0x0250 (size: 0xC0)
+    FForceFeedbackComponentOnForceFeedbackFinished OnForceFeedbackFinished;           // 0x0310 (size: 0x10)
     void OnForceFeedbackFinished(class UForceFeedbackComponent* ForceFeedbackComponent);
 
     void Stop();
@@ -14322,7 +14329,7 @@ class UForceFeedbackComponent : public USceneComponent
     void Play(float StartTime);
     bool BP_GetAttenuationSettingsToApply(FForceFeedbackAttenuationSettings& OutAttenuationSettings);
     void AdjustAttenuation(const FForceFeedbackAttenuationSettings& InAttenuationSettings);
-}; // Size: 0x320
+}; // Size: 0x330
 
 class UForceFeedbackEffect : public UObject
 {
@@ -14369,34 +14376,34 @@ class UGameUserSettings : public UObject
 {
     bool bUseVSync;                                                                   // 0x0028 (size: 0x1)
     bool bUseDynamicResolution;                                                       // 0x0029 (size: 0x1)
-    uint32 ResolutionSizeX;                                                           // 0x0088 (size: 0x4)
-    uint32 ResolutionSizeY;                                                           // 0x008C (size: 0x4)
-    uint32 LastUserConfirmedResolutionSizeX;                                          // 0x0090 (size: 0x4)
-    uint32 LastUserConfirmedResolutionSizeY;                                          // 0x0094 (size: 0x4)
-    int32 WindowPosX;                                                                 // 0x0098 (size: 0x4)
-    int32 WindowPosY;                                                                 // 0x009C (size: 0x4)
-    int32 FullscreenMode;                                                             // 0x00A0 (size: 0x4)
-    int32 LastConfirmedFullscreenMode;                                                // 0x00A4 (size: 0x4)
-    int32 PreferredFullscreenMode;                                                    // 0x00A8 (size: 0x4)
-    uint32 Version;                                                                   // 0x00AC (size: 0x4)
-    int32 AudioQualityLevel;                                                          // 0x00B0 (size: 0x4)
-    int32 LastConfirmedAudioQualityLevel;                                             // 0x00B4 (size: 0x4)
-    float FrameRateLimit;                                                             // 0x00B8 (size: 0x4)
-    int32 DesiredScreenWidth;                                                         // 0x00C0 (size: 0x4)
-    bool bUseDesiredScreenHeight;                                                     // 0x00C4 (size: 0x1)
-    int32 DesiredScreenHeight;                                                        // 0x00C8 (size: 0x4)
-    int32 LastUserConfirmedDesiredScreenWidth;                                        // 0x00CC (size: 0x4)
-    int32 LastUserConfirmedDesiredScreenHeight;                                       // 0x00D0 (size: 0x4)
-    float LastRecommendedScreenWidth;                                                 // 0x00D4 (size: 0x4)
-    float LastRecommendedScreenHeight;                                                // 0x00D8 (size: 0x4)
-    float LastCPUBenchmarkResult;                                                     // 0x00DC (size: 0x4)
-    float LastGPUBenchmarkResult;                                                     // 0x00E0 (size: 0x4)
-    TArray<float> LastCPUBenchmarkSteps;                                              // 0x00E8 (size: 0x10)
-    TArray<float> LastGPUBenchmarkSteps;                                              // 0x00F8 (size: 0x10)
-    float LastGPUBenchmarkMultiplier;                                                 // 0x0108 (size: 0x4)
-    bool bUseHDRDisplayOutput;                                                        // 0x010C (size: 0x1)
-    int32 HDRDisplayOutputNits;                                                       // 0x0110 (size: 0x4)
-    FGameUserSettingsOnGameUserSettingsUINeedsUpdate OnGameUserSettingsUINeedsUpdate; // 0x0138 (size: 0x10)
+    uint32 ResolutionSizeX;                                                           // 0x0090 (size: 0x4)
+    uint32 ResolutionSizeY;                                                           // 0x0094 (size: 0x4)
+    uint32 LastUserConfirmedResolutionSizeX;                                          // 0x0098 (size: 0x4)
+    uint32 LastUserConfirmedResolutionSizeY;                                          // 0x009C (size: 0x4)
+    int32 WindowPosX;                                                                 // 0x00A0 (size: 0x4)
+    int32 WindowPosY;                                                                 // 0x00A4 (size: 0x4)
+    int32 FullscreenMode;                                                             // 0x00A8 (size: 0x4)
+    int32 LastConfirmedFullscreenMode;                                                // 0x00AC (size: 0x4)
+    int32 PreferredFullscreenMode;                                                    // 0x00B0 (size: 0x4)
+    uint32 Version;                                                                   // 0x00B4 (size: 0x4)
+    int32 AudioQualityLevel;                                                          // 0x00B8 (size: 0x4)
+    int32 LastConfirmedAudioQualityLevel;                                             // 0x00BC (size: 0x4)
+    float FrameRateLimit;                                                             // 0x00C0 (size: 0x4)
+    int32 DesiredScreenWidth;                                                         // 0x00C8 (size: 0x4)
+    bool bUseDesiredScreenHeight;                                                     // 0x00CC (size: 0x1)
+    int32 DesiredScreenHeight;                                                        // 0x00D0 (size: 0x4)
+    int32 LastUserConfirmedDesiredScreenWidth;                                        // 0x00D4 (size: 0x4)
+    int32 LastUserConfirmedDesiredScreenHeight;                                       // 0x00D8 (size: 0x4)
+    float LastRecommendedScreenWidth;                                                 // 0x00DC (size: 0x4)
+    float LastRecommendedScreenHeight;                                                // 0x00E0 (size: 0x4)
+    float LastCPUBenchmarkResult;                                                     // 0x00E4 (size: 0x4)
+    float LastGPUBenchmarkResult;                                                     // 0x00E8 (size: 0x4)
+    TArray<float> LastCPUBenchmarkSteps;                                              // 0x00F0 (size: 0x10)
+    TArray<float> LastGPUBenchmarkSteps;                                              // 0x0100 (size: 0x10)
+    float LastGPUBenchmarkMultiplier;                                                 // 0x0110 (size: 0x4)
+    bool bUseHDRDisplayOutput;                                                        // 0x0114 (size: 0x1)
+    int32 HDRDisplayOutputNits;                                                       // 0x0118 (size: 0x4)
+    FGameUserSettingsOnGameUserSettingsUINeedsUpdate OnGameUserSettingsUINeedsUpdate; // 0x0140 (size: 0x10)
     void OnGameUserSettingsUINeedsUpdate();
 
     void ValidateSettings();
@@ -14430,6 +14437,8 @@ class UGameUserSettings : public UObject
     bool IsVSyncEnabled();
     bool IsVSyncDirty();
     bool IsScreenResolutionDirty();
+    bool IsPlayerMuted(FString UserId);
+    bool IsPlayerBlocked(FString UserId);
     bool IsHDREnabled();
     bool IsFullscreenModeDirty();
     bool IsDynamicResolutionEnabled();
@@ -14471,7 +14480,7 @@ class UGameUserSettings : public UObject
     void ApplyResolutionSettings(bool bCheckForCommandLineOverrides);
     void ApplyNonResolutionSettings();
     void ApplyHardwareBenchmarkResults();
-}; // Size: 0x148
+}; // Size: 0x150
 
 class UGameViewportClient : public UScriptViewportClient
 {
@@ -14737,22 +14746,22 @@ class UHealthSnapshotBlueprintLibrary : public UBlueprintFunctionLibrary
 
 class UHeterogeneousVolumeComponent : public UMeshComponent
 {
-    FIntVector VolumeResolution;                                                      // 0x0550 (size: 0xC)
-    FTransform FrameTransform;                                                        // 0x0560 (size: 0x60)
-    float Frame;                                                                      // 0x05C0 (size: 0x4)
-    float FrameRate;                                                                  // 0x05C4 (size: 0x4)
-    float StartFrame;                                                                 // 0x05C8 (size: 0x4)
-    float EndFrame;                                                                   // 0x05CC (size: 0x4)
-    uint8 bPlaying;                                                                   // 0x05D0 (size: 0x1)
-    uint8 bLooping;                                                                   // 0x05D0 (size: 0x1)
-    float StreamingMipBias;                                                           // 0x05D4 (size: 0x4)
-    uint8 bIssueBlockingRequests;                                                     // 0x05D8 (size: 0x1)
-    uint8 bPivotAtCentroid;                                                           // 0x05D8 (size: 0x1)
-    float StepFactor;                                                                 // 0x05DC (size: 0x4)
-    float ShadowStepFactor;                                                           // 0x05E0 (size: 0x4)
-    float ShadowBiasFactor;                                                           // 0x05E4 (size: 0x4)
-    float LightingDownsampleFactor;                                                   // 0x05E8 (size: 0x4)
-    class UMaterialInstanceDynamic* MaterialInstanceDynamic;                          // 0x05F0 (size: 0x8)
+    FIntVector VolumeResolution;                                                      // 0x0558 (size: 0xC)
+    FTransform FrameTransform;                                                        // 0x0570 (size: 0x60)
+    float Frame;                                                                      // 0x05D0 (size: 0x4)
+    float FrameRate;                                                                  // 0x05D4 (size: 0x4)
+    float StartFrame;                                                                 // 0x05D8 (size: 0x4)
+    float EndFrame;                                                                   // 0x05DC (size: 0x4)
+    uint8 bPlaying;                                                                   // 0x05E0 (size: 0x1)
+    uint8 bLooping;                                                                   // 0x05E0 (size: 0x1)
+    float StreamingMipBias;                                                           // 0x05E4 (size: 0x4)
+    uint8 bIssueBlockingRequests;                                                     // 0x05E8 (size: 0x1)
+    uint8 bPivotAtCentroid;                                                           // 0x05E8 (size: 0x1)
+    float StepFactor;                                                                 // 0x05EC (size: 0x4)
+    float ShadowStepFactor;                                                           // 0x05F0 (size: 0x4)
+    float ShadowBiasFactor;                                                           // 0x05F4 (size: 0x4)
+    float LightingDownsampleFactor;                                                   // 0x05F8 (size: 0x4)
+    class UMaterialInstanceDynamic* MaterialInstanceDynamic;                          // 0x0600 (size: 0x8)
 
     void SetVolumeResolution(FIntVector NewValue);
     void SetStreamingMipBias(int32 NewValue);
@@ -14763,7 +14772,7 @@ class UHeterogeneousVolumeComponent : public UMeshComponent
     void SetFrame(float NewValue);
     void SetEndFrame(float NewValue);
     void Play();
-}; // Size: 0x600
+}; // Size: 0x610
 
 class UHierarchicalInstancedStaticMeshComponent : public UInstancedStaticMeshComponent
 {
@@ -15030,9 +15039,9 @@ class UInstancedPlacemenClientSettings : public UObject
 
 class UInstancedStaticMeshComponent : public UStaticMeshComponent
 {
-    TArray<FInstancedStaticMeshInstanceData> PerInstanceSMData;                       // 0x05E0 (size: 0x10)
-    TArray<FMatrix> PerInstancePrevTransform;                                         // 0x05F0 (size: 0x10)
-    FBox NavigationBounds;                                                            // 0x0600 (size: 0x38)
+    TArray<FInstancedStaticMeshInstanceData> PerInstanceSMData;                       // 0x05E8 (size: 0x10)
+    TArray<FMatrix> PerInstancePrevTransform;                                         // 0x05F8 (size: 0x10)
+    FBox NavigationBounds;                                                            // 0x0608 (size: 0x38)
     FTransform PreviousComponentTransform;                                            // 0x0640 (size: 0x60)
     int32 NumCustomDataFloats;                                                        // 0x06A0 (size: 0x4)
     TArray<float> PerInstanceSMCustomData;                                            // 0x06A8 (size: 0x10)
@@ -16552,7 +16561,7 @@ class ULevelActorContainer : public UObject
 
 class ULevelInstanceComponent : public USceneComponent
 {
-}; // Size: 0x230
+}; // Size: 0x240
 
 class ULevelInstanceEditorObject : public UObject
 {
@@ -16644,40 +16653,40 @@ class ULevelStreamingProfilingSubsystem : public UWorldSubsystem
 
 class ULightComponent : public ULightComponentBase
 {
-    float Temperature;                                                                // 0x0268 (size: 0x4)
-    float MaxDrawDistance;                                                            // 0x026C (size: 0x4)
-    float MaxDistanceFadeRange;                                                       // 0x0270 (size: 0x4)
-    uint8 bUseTemperature;                                                            // 0x0274 (size: 0x1)
-    int32 ShadowMapChannel;                                                           // 0x0278 (size: 0x4)
-    float MinRoughness;                                                               // 0x0280 (size: 0x4)
-    float SpecularScale;                                                              // 0x0284 (size: 0x4)
-    float ShadowResolutionScale;                                                      // 0x0288 (size: 0x4)
-    float ShadowBias;                                                                 // 0x028C (size: 0x4)
-    float ShadowSlopeBias;                                                            // 0x0290 (size: 0x4)
-    float ShadowSharpen;                                                              // 0x0294 (size: 0x4)
-    float ContactShadowLength;                                                        // 0x0298 (size: 0x4)
-    uint8 ContactShadowLengthInWS;                                                    // 0x029C (size: 0x1)
-    float ContactShadowCastingIntensity;                                              // 0x02A0 (size: 0x4)
-    float ContactShadowNonCastingIntensity;                                           // 0x02A4 (size: 0x4)
-    uint8 InverseSquaredFalloff;                                                      // 0x02A8 (size: 0x1)
-    uint8 CastTranslucentShadows;                                                     // 0x02A8 (size: 0x1)
-    uint8 bCastShadowsFromCinematicObjectsOnly;                                       // 0x02A8 (size: 0x1)
-    uint8 bForceCachedShadowsForMovablePrimitives;                                    // 0x02A8 (size: 0x1)
-    FLightingChannels LightingChannels;                                               // 0x02AC (size: 0x1)
-    class UMaterialInterface* LightFunctionMaterial;                                  // 0x02B0 (size: 0x8)
-    FVector LightFunctionScale;                                                       // 0x02B8 (size: 0x18)
-    class UTextureLightProfile* IESTexture;                                           // 0x02D0 (size: 0x8)
-    uint8 bUseIESBrightness;                                                          // 0x02D8 (size: 0x1)
-    float IESBrightnessScale;                                                         // 0x02DC (size: 0x4)
-    float LightFunctionFadeDistance;                                                  // 0x02E0 (size: 0x4)
-    float DisabledBrightness;                                                         // 0x02E4 (size: 0x4)
-    uint8 bEnableLightShaftBloom;                                                     // 0x02E8 (size: 0x1)
-    float BloomScale;                                                                 // 0x02EC (size: 0x4)
-    float BloomThreshold;                                                             // 0x02F0 (size: 0x4)
-    float BloomMaxBrightness;                                                         // 0x02F4 (size: 0x4)
-    FColor BloomTint;                                                                 // 0x02F8 (size: 0x4)
-    bool bUseRayTracedDistanceFieldShadows;                                           // 0x02FC (size: 0x1)
-    float RayStartOffsetDepthScale;                                                   // 0x0300 (size: 0x4)
+    float Temperature;                                                                // 0x0270 (size: 0x4)
+    float MaxDrawDistance;                                                            // 0x0274 (size: 0x4)
+    float MaxDistanceFadeRange;                                                       // 0x0278 (size: 0x4)
+    uint8 bUseTemperature;                                                            // 0x027C (size: 0x1)
+    int32 ShadowMapChannel;                                                           // 0x0280 (size: 0x4)
+    float MinRoughness;                                                               // 0x0288 (size: 0x4)
+    float SpecularScale;                                                              // 0x028C (size: 0x4)
+    float ShadowResolutionScale;                                                      // 0x0290 (size: 0x4)
+    float ShadowBias;                                                                 // 0x0294 (size: 0x4)
+    float ShadowSlopeBias;                                                            // 0x0298 (size: 0x4)
+    float ShadowSharpen;                                                              // 0x029C (size: 0x4)
+    float ContactShadowLength;                                                        // 0x02A0 (size: 0x4)
+    uint8 ContactShadowLengthInWS;                                                    // 0x02A4 (size: 0x1)
+    float ContactShadowCastingIntensity;                                              // 0x02A8 (size: 0x4)
+    float ContactShadowNonCastingIntensity;                                           // 0x02AC (size: 0x4)
+    uint8 InverseSquaredFalloff;                                                      // 0x02B0 (size: 0x1)
+    uint8 CastTranslucentShadows;                                                     // 0x02B0 (size: 0x1)
+    uint8 bCastShadowsFromCinematicObjectsOnly;                                       // 0x02B0 (size: 0x1)
+    uint8 bForceCachedShadowsForMovablePrimitives;                                    // 0x02B0 (size: 0x1)
+    FLightingChannels LightingChannels;                                               // 0x02B4 (size: 0x1)
+    class UMaterialInterface* LightFunctionMaterial;                                  // 0x02B8 (size: 0x8)
+    FVector LightFunctionScale;                                                       // 0x02C0 (size: 0x18)
+    class UTextureLightProfile* IESTexture;                                           // 0x02D8 (size: 0x8)
+    uint8 bUseIESBrightness;                                                          // 0x02E0 (size: 0x1)
+    float IESBrightnessScale;                                                         // 0x02E4 (size: 0x4)
+    float LightFunctionFadeDistance;                                                  // 0x02E8 (size: 0x4)
+    float DisabledBrightness;                                                         // 0x02EC (size: 0x4)
+    uint8 bEnableLightShaftBloom;                                                     // 0x02F0 (size: 0x1)
+    float BloomScale;                                                                 // 0x02F4 (size: 0x4)
+    float BloomThreshold;                                                             // 0x02F8 (size: 0x4)
+    float BloomMaxBrightness;                                                         // 0x02FC (size: 0x4)
+    FColor BloomTint;                                                                 // 0x0300 (size: 0x4)
+    bool bUseRayTracedDistanceFieldShadows;                                           // 0x0304 (size: 0x1)
+    float RayStartOffsetDepthScale;                                                   // 0x0308 (size: 0x4)
 
     void SetVolumetricScatteringIntensity(float NewIntensity);
     void SetUseTemperature(bool bNewValue);
@@ -16705,30 +16714,30 @@ class ULightComponent : public ULightComponentBase
     void SetBloomScale(float NewValue);
     void SetBloomMaxBrightness(float NewValue);
     void SetAffectTranslucentLighting(bool bNewValue);
-}; // Size: 0x370
+}; // Size: 0x380
 
 class ULightComponentBase : public USceneComponent
 {
-    FGuid LightGuid;                                                                  // 0x0230 (size: 0x10)
-    float Brightness;                                                                 // 0x0240 (size: 0x4)
-    float Intensity;                                                                  // 0x0244 (size: 0x4)
-    FColor LightColor;                                                                // 0x0248 (size: 0x4)
-    uint8 bAffectsWorld;                                                              // 0x024C (size: 0x1)
-    uint8 CastShadows;                                                                // 0x024C (size: 0x1)
-    uint8 CastStaticShadows;                                                          // 0x024C (size: 0x1)
-    uint8 CastDynamicShadows;                                                         // 0x024C (size: 0x1)
-    uint8 bAffectTranslucentLighting;                                                 // 0x024C (size: 0x1)
-    uint8 bTransmission;                                                              // 0x024C (size: 0x1)
-    uint8 bCastVolumetricShadow;                                                      // 0x024C (size: 0x1)
-    uint8 bCastDeepShadow;                                                            // 0x024C (size: 0x1)
-    uint8 bCastRaytracedShadow;                                                       // 0x024D (size: 0x1)
-    TEnumAsByte<ECastRayTracedShadow::Type> CastRaytracedShadow;                      // 0x0250 (size: 0x1)
-    uint8 bAffectReflection;                                                          // 0x0254 (size: 0x1)
-    uint8 bAffectGlobalIllumination;                                                  // 0x0254 (size: 0x1)
-    float DeepShadowLayerDistribution;                                                // 0x0258 (size: 0x4)
-    float IndirectLightingIntensity;                                                  // 0x025C (size: 0x4)
-    float VolumetricScatteringIntensity;                                              // 0x0260 (size: 0x4)
-    int32 SamplesPerPixel;                                                            // 0x0264 (size: 0x4)
+    FGuid LightGuid;                                                                  // 0x0238 (size: 0x10)
+    float Brightness;                                                                 // 0x0248 (size: 0x4)
+    float Intensity;                                                                  // 0x024C (size: 0x4)
+    FColor LightColor;                                                                // 0x0250 (size: 0x4)
+    uint8 bAffectsWorld;                                                              // 0x0254 (size: 0x1)
+    uint8 CastShadows;                                                                // 0x0254 (size: 0x1)
+    uint8 CastStaticShadows;                                                          // 0x0254 (size: 0x1)
+    uint8 CastDynamicShadows;                                                         // 0x0254 (size: 0x1)
+    uint8 bAffectTranslucentLighting;                                                 // 0x0254 (size: 0x1)
+    uint8 bTransmission;                                                              // 0x0254 (size: 0x1)
+    uint8 bCastVolumetricShadow;                                                      // 0x0254 (size: 0x1)
+    uint8 bCastDeepShadow;                                                            // 0x0254 (size: 0x1)
+    uint8 bCastRaytracedShadow;                                                       // 0x0255 (size: 0x1)
+    TEnumAsByte<ECastRayTracedShadow::Type> CastRaytracedShadow;                      // 0x0258 (size: 0x1)
+    uint8 bAffectReflection;                                                          // 0x025C (size: 0x1)
+    uint8 bAffectGlobalIllumination;                                                  // 0x025C (size: 0x1)
+    float DeepShadowLayerDistribution;                                                // 0x0260 (size: 0x4)
+    float IndirectLightingIntensity;                                                  // 0x0264 (size: 0x4)
+    float VolumetricScatteringIntensity;                                              // 0x0268 (size: 0x4)
+    int32 SamplesPerPixel;                                                            // 0x026C (size: 0x4)
 
     void SetSamplesPerPixel(int32 NewValue);
     void SetCastVolumetricShadow(bool bNewValue);
@@ -16771,7 +16780,7 @@ class ULightmappedSurfaceCollection : public UObject
 
 class ULightmassPortalComponent : public USceneComponent
 {
-    class UBoxComponent* PreviewBox;                                                  // 0x0230 (size: 0x8)
+    class UBoxComponent* PreviewBox;                                                  // 0x0238 (size: 0x8)
 
 }; // Size: 0x240
 
@@ -16787,14 +16796,14 @@ class ULineBatchComponent : public UPrimitiveComponent
 
 class ULocalFogVolumeComponent : public USceneComponent
 {
-    float RadialFogExtinction;                                                        // 0x0230 (size: 0x4)
-    float HeightFogExtinction;                                                        // 0x0234 (size: 0x4)
-    float HeightFogFalloff;                                                           // 0x0238 (size: 0x4)
-    float HeightFogOffset;                                                            // 0x023C (size: 0x4)
-    float FogPhaseG;                                                                  // 0x0240 (size: 0x4)
-    FLinearColor FogAlbedo;                                                           // 0x0244 (size: 0x10)
-    FLinearColor FogEmissive;                                                         // 0x0254 (size: 0x10)
-    int32 FogSortPriority;                                                            // 0x0264 (size: 0x4)
+    float RadialFogExtinction;                                                        // 0x0238 (size: 0x4)
+    float HeightFogExtinction;                                                        // 0x023C (size: 0x4)
+    float HeightFogFalloff;                                                           // 0x0240 (size: 0x4)
+    float HeightFogOffset;                                                            // 0x0244 (size: 0x4)
+    float FogPhaseG;                                                                  // 0x0248 (size: 0x4)
+    FLinearColor FogAlbedo;                                                           // 0x024C (size: 0x10)
+    FLinearColor FogEmissive;                                                         // 0x025C (size: 0x10)
+    int32 FogSortPriority;                                                            // 0x026C (size: 0x4)
 
     void SetRadialFogExtinction(float NewValue);
     void SetHeightFogOffset(float NewValue);
@@ -16803,20 +16812,20 @@ class ULocalFogVolumeComponent : public USceneComponent
     void SetFogPhaseG(float NewValue);
     void SetFogEmissive(FLinearColor NewValue);
     void SetFogAlbedo(FLinearColor NewValue);
-}; // Size: 0x270
+}; // Size: 0x280
 
 class ULocalLightComponent : public ULightComponent
 {
-    ELightUnits IntensityUnits;                                                       // 0x0370 (size: 0x1)
-    float InverseExposureBlend;                                                       // 0x0374 (size: 0x4)
-    float Radius;                                                                     // 0x0378 (size: 0x4)
-    float AttenuationRadius;                                                          // 0x037C (size: 0x4)
-    FLightmassPointLightSettings LightmassSettings;                                   // 0x0380 (size: 0xC)
+    ELightUnits IntensityUnits;                                                       // 0x0378 (size: 0x1)
+    float InverseExposureBlend;                                                       // 0x037C (size: 0x4)
+    float Radius;                                                                     // 0x0380 (size: 0x4)
+    float AttenuationRadius;                                                          // 0x0384 (size: 0x4)
+    FLightmassPointLightSettings LightmassSettings;                                   // 0x0388 (size: 0xC)
 
     void SetIntensityUnits(ELightUnits NewIntensityUnits);
     void SetAttenuationRadius(float NewRadius);
     float GetUnitsConversionFactor(ELightUnits SrcUnits, ELightUnits TargetUnits, float CosHalfConeAngle);
-}; // Size: 0x390
+}; // Size: 0x3A0
 
 class ULocalMessage : public UObject
 {
@@ -16999,7 +17008,7 @@ class UMaterial : public UMaterialInterface
 
 class UMaterialBillboardComponent : public UPrimitiveComponent
 {
-    TArray<FMaterialSpriteElement> Elements;                                          // 0x0518 (size: 0x10)
+    TArray<FMaterialSpriteElement> Elements;                                          // 0x0520 (size: 0x10)
 
     void SetElements(const TArray<FMaterialSpriteElement>& NewElements);
     void AddElement(class UMaterialInterface* Material, class UCurveFloat* DistanceToOpacityCurve, bool bSizeIsInScreenSpace, float BaseSizeX, float BaseSizeY, class UCurveFloat* DistanceToSizeCurve);
@@ -19312,10 +19321,10 @@ class UMeshBudgetProjectSettings : public UDeveloperSettings
 
 class UMeshComponent : public UPrimitiveComponent
 {
-    TArray<class UMaterialInterface*> OverrideMaterials;                              // 0x0518 (size: 0x10)
-    class UMaterialInterface* OverlayMaterial;                                        // 0x0528 (size: 0x8)
-    float OverlayMaterialMaxDrawDistance;                                             // 0x0530 (size: 0x4)
-    uint8 bEnableMaterialParameterCaching;                                            // 0x0548 (size: 0x1)
+    TArray<class UMaterialInterface*> OverrideMaterials;                              // 0x0520 (size: 0x10)
+    class UMaterialInterface* OverlayMaterial;                                        // 0x0530 (size: 0x8)
+    float OverlayMaterialMaxDrawDistance;                                             // 0x0538 (size: 0x4)
+    uint8 bEnableMaterialParameterCaching;                                            // 0x0550 (size: 0x1)
 
     void SetVectorParameterValueOnMaterials(const FName ParameterName, const FVector ParameterValue);
     void SetScalarParameterValueOnMaterials(const FName ParameterName, const float ParameterValue);
@@ -19326,7 +19335,7 @@ class UMeshComponent : public UPrimitiveComponent
     float GetOverlayMaterialMaxDrawDistance();
     class UMaterialInterface* GetOverlayMaterial();
     TArray<class UMaterialInterface*> GetMaterials();
-}; // Size: 0x550
+}; // Size: 0x560
 
 class UMeshDeformer : public UObject
 {
@@ -19386,7 +19395,7 @@ class UModel : public UObject
 
 class UModelComponent : public UPrimitiveComponent
 {
-    class UBodySetup* ModelBodySetup;                                                 // 0x0530 (size: 0x8)
+    class UBodySetup* ModelBodySetup;                                                 // 0x0538 (size: 0x8)
 
 }; // Size: 0x560
 
@@ -20813,43 +20822,43 @@ class UParticleSystem : public UFXSystemAsset
 
 class UParticleSystemComponent : public UFXSystemComponent
 {
-    class UParticleSystem* Template;                                                  // 0x0518 (size: 0x8)
-    TArray<class UMaterialInterface*> EmitterMaterials;                               // 0x0520 (size: 0x10)
-    TArray<class USkeletalMeshComponent*> SkelMeshComponents;                         // 0x0530 (size: 0x10)
-    uint8 bResetOnDetach;                                                             // 0x0541 (size: 0x1)
-    uint8 bUpdateOnDedicatedServer;                                                   // 0x0541 (size: 0x1)
-    uint8 bAllowRecycling;                                                            // 0x0541 (size: 0x1)
-    uint8 bAutoManageAttachment;                                                      // 0x0541 (size: 0x1)
-    uint8 bAutoAttachWeldSimulatedBodies;                                             // 0x0541 (size: 0x1)
-    uint8 bWarmingUp;                                                                 // 0x0542 (size: 0x1)
-    uint8 bOverrideLODMethod;                                                         // 0x0542 (size: 0x1)
-    uint8 bSkipUpdateDynamicDataDuringTick;                                           // 0x0542 (size: 0x1)
-    TEnumAsByte<ParticleSystemLODMethod> LODMethod;                                   // 0x054D (size: 0x1)
-    EParticleSignificanceLevel RequiredSignificance;                                  // 0x054E (size: 0x1)
-    TArray<FParticleSysParam> InstanceParameters;                                     // 0x0550 (size: 0x10)
-    FParticleSystemComponentOnParticleSpawn OnParticleSpawn;                          // 0x0560 (size: 0x10)
+    class UParticleSystem* Template;                                                  // 0x0520 (size: 0x8)
+    TArray<class UMaterialInterface*> EmitterMaterials;                               // 0x0528 (size: 0x10)
+    TArray<class USkeletalMeshComponent*> SkelMeshComponents;                         // 0x0538 (size: 0x10)
+    uint8 bResetOnDetach;                                                             // 0x0549 (size: 0x1)
+    uint8 bUpdateOnDedicatedServer;                                                   // 0x0549 (size: 0x1)
+    uint8 bAllowRecycling;                                                            // 0x0549 (size: 0x1)
+    uint8 bAutoManageAttachment;                                                      // 0x0549 (size: 0x1)
+    uint8 bAutoAttachWeldSimulatedBodies;                                             // 0x0549 (size: 0x1)
+    uint8 bWarmingUp;                                                                 // 0x054A (size: 0x1)
+    uint8 bOverrideLODMethod;                                                         // 0x054A (size: 0x1)
+    uint8 bSkipUpdateDynamicDataDuringTick;                                           // 0x054A (size: 0x1)
+    TEnumAsByte<ParticleSystemLODMethod> LODMethod;                                   // 0x0555 (size: 0x1)
+    EParticleSignificanceLevel RequiredSignificance;                                  // 0x0556 (size: 0x1)
+    TArray<FParticleSysParam> InstanceParameters;                                     // 0x0558 (size: 0x10)
+    FParticleSystemComponentOnParticleSpawn OnParticleSpawn;                          // 0x0568 (size: 0x10)
     void ParticleSpawnSignature(FName EventName, float EmitterTime, FVector Location, FVector Velocity);
-    FParticleSystemComponentOnParticleBurst OnParticleBurst;                          // 0x0570 (size: 0x10)
+    FParticleSystemComponentOnParticleBurst OnParticleBurst;                          // 0x0578 (size: 0x10)
     void ParticleBurstSignature(FName EventName, float EmitterTime, int32 ParticleCount);
-    FParticleSystemComponentOnParticleDeath OnParticleDeath;                          // 0x0580 (size: 0x10)
+    FParticleSystemComponentOnParticleDeath OnParticleDeath;                          // 0x0588 (size: 0x10)
     void ParticleDeathSignature(FName EventName, float EmitterTime, int32 ParticleTime, FVector Location, FVector Velocity, FVector Direction);
-    FParticleSystemComponentOnParticleCollide OnParticleCollide;                      // 0x0590 (size: 0x10)
+    FParticleSystemComponentOnParticleCollide OnParticleCollide;                      // 0x0598 (size: 0x10)
     void ParticleCollisionSignature(FName EventName, float EmitterTime, int32 ParticleTime, FVector Location, FVector Velocity, FVector Direction, FVector Normal, FName BoneName, class UPhysicalMaterial* PhysMat);
-    bool bOldPositionValid;                                                           // 0x05A0 (size: 0x1)
-    FVector OldPosition;                                                              // 0x05A8 (size: 0x18)
-    FVector PartSysVelocity;                                                          // 0x05C0 (size: 0x18)
-    float WarmupTime;                                                                 // 0x05D8 (size: 0x4)
-    float WarmupTickRate;                                                             // 0x05DC (size: 0x4)
-    float SecondsBeforeInactive;                                                      // 0x05E4 (size: 0x4)
-    float MaxTimeBeforeForceUpdateTransform;                                          // 0x05EC (size: 0x4)
-    TArray<class UParticleSystemReplay*> ReplayClips;                                 // 0x0610 (size: 0x10)
-    float CustomTimeDilation;                                                         // 0x0628 (size: 0x4)
-    TWeakObjectPtr<class USceneComponent> AutoAttachParent;                           // 0x0680 (size: 0x8)
-    FName AutoAttachSocketName;                                                       // 0x0688 (size: 0x8)
-    EAttachmentRule AutoAttachLocationRule;                                           // 0x0690 (size: 0x1)
-    EAttachmentRule AutoAttachRotationRule;                                           // 0x0691 (size: 0x1)
-    EAttachmentRule AutoAttachScaleRule;                                              // 0x0692 (size: 0x1)
-    FParticleSystemComponentOnSystemFinished OnSystemFinished;                        // 0x06E8 (size: 0x10)
+    bool bOldPositionValid;                                                           // 0x05A8 (size: 0x1)
+    FVector OldPosition;                                                              // 0x05B0 (size: 0x18)
+    FVector PartSysVelocity;                                                          // 0x05C8 (size: 0x18)
+    float WarmupTime;                                                                 // 0x05E0 (size: 0x4)
+    float WarmupTickRate;                                                             // 0x05E4 (size: 0x4)
+    float SecondsBeforeInactive;                                                      // 0x05EC (size: 0x4)
+    float MaxTimeBeforeForceUpdateTransform;                                          // 0x05F4 (size: 0x4)
+    TArray<class UParticleSystemReplay*> ReplayClips;                                 // 0x0618 (size: 0x10)
+    float CustomTimeDilation;                                                         // 0x0630 (size: 0x4)
+    TWeakObjectPtr<class USceneComponent> AutoAttachParent;                           // 0x0688 (size: 0x8)
+    FName AutoAttachSocketName;                                                       // 0x0690 (size: 0x8)
+    EAttachmentRule AutoAttachLocationRule;                                           // 0x0698 (size: 0x1)
+    EAttachmentRule AutoAttachRotationRule;                                           // 0x0699 (size: 0x1)
+    EAttachmentRule AutoAttachScaleRule;                                              // 0x069A (size: 0x1)
+    FParticleSystemComponentOnSystemFinished OnSystemFinished;                        // 0x06F0 (size: 0x10)
     void OnSystemFinished(class UParticleSystemComponent* PSystem);
 
     void SetTrailSourceData(FName InFirstSocketName, FName InSecondSocketName, TEnumAsByte<ETrailWidthMode> InWidthMode, float InWidth);
@@ -20964,16 +20973,16 @@ class UPhysicsCollisionHandler : public UObject
 
 class UPhysicsConstraintComponent : public USceneComponent
 {
-    class AActor* ConstraintActor1;                                                   // 0x0230 (size: 0x8)
-    FConstrainComponentPropName ComponentName1;                                       // 0x0238 (size: 0x8)
-    class AActor* ConstraintActor2;                                                   // 0x0240 (size: 0x8)
-    FConstrainComponentPropName ComponentName2;                                       // 0x0248 (size: 0x8)
-    class UPhysicsConstraintTemplate* ConstraintSetup;                                // 0x0260 (size: 0x8)
-    FPhysicsConstraintComponentOnConstraintBroken OnConstraintBroken;                 // 0x0268 (size: 0x10)
+    class AActor* ConstraintActor1;                                                   // 0x0238 (size: 0x8)
+    FConstrainComponentPropName ComponentName1;                                       // 0x0240 (size: 0x8)
+    class AActor* ConstraintActor2;                                                   // 0x0248 (size: 0x8)
+    FConstrainComponentPropName ComponentName2;                                       // 0x0250 (size: 0x8)
+    class UPhysicsConstraintTemplate* ConstraintSetup;                                // 0x0268 (size: 0x8)
+    FPhysicsConstraintComponentOnConstraintBroken OnConstraintBroken;                 // 0x0270 (size: 0x10)
     void ConstraintBrokenSignature(int32 ConstraintIndex);
-    FPhysicsConstraintComponentOnPlasticDeformation OnPlasticDeformation;             // 0x0278 (size: 0x10)
+    FPhysicsConstraintComponentOnPlasticDeformation OnPlasticDeformation;             // 0x0280 (size: 0x10)
     void PlasticDeformationEventSignature(int32 ConstraintIndex);
-    FConstraintInstance ConstraintInstance;                                           // 0x0288 (size: 0x270)
+    FConstraintInstance ConstraintInstance;                                           // 0x0290 (size: 0x270)
 
     void SetProjectionParams(float ProjectionLinearAlpha, float ProjectionAngularAlpha, float ProjectionLinearTolerance, float ProjectionAngularTolerance);
     void SetProjectionEnabled(bool bProjectionEnabled);
@@ -21111,19 +21120,19 @@ class UPhysicsSettings : public UPhysicsSettingsCore
 
 class UPhysicsSpringComponent : public USceneComponent
 {
-    float SpringStiffness;                                                            // 0x0230 (size: 0x4)
-    float SpringDamping;                                                              // 0x0234 (size: 0x4)
-    float SpringLengthAtRest;                                                         // 0x0238 (size: 0x4)
-    float SpringRadius;                                                               // 0x023C (size: 0x4)
-    TEnumAsByte<ECollisionChannel> SpringChannel;                                     // 0x0240 (size: 0x1)
-    bool bIgnoreSelf;                                                                 // 0x0241 (size: 0x1)
-    float SpringCompression;                                                          // 0x0244 (size: 0x4)
+    float SpringStiffness;                                                            // 0x0238 (size: 0x4)
+    float SpringDamping;                                                              // 0x023C (size: 0x4)
+    float SpringLengthAtRest;                                                         // 0x0240 (size: 0x4)
+    float SpringRadius;                                                               // 0x0244 (size: 0x4)
+    TEnumAsByte<ECollisionChannel> SpringChannel;                                     // 0x0248 (size: 0x1)
+    bool bIgnoreSelf;                                                                 // 0x0249 (size: 0x1)
+    float SpringCompression;                                                          // 0x024C (size: 0x4)
 
     FVector GetSpringRestingPoint();
     FVector GetSpringDirection();
     FVector GetSpringCurrentEndPoint();
     float GetNormalizedCompressionScalar();
-}; // Size: 0x260
+}; // Size: 0x270
 
 class UPhysicsThreadLibrary : public UBlueprintFunctionLibrary
 {
@@ -21133,7 +21142,7 @@ class UPhysicsThreadLibrary : public UBlueprintFunctionLibrary
 
 class UPhysicsThrusterComponent : public USceneComponent
 {
-    float ThrustStrength;                                                             // 0x0230 (size: 0x4)
+    float ThrustStrength;                                                             // 0x0238 (size: 0x4)
 
 }; // Size: 0x240
 
@@ -21148,30 +21157,30 @@ class UPieFixupTestObject : public UObject
 
 class UPlanarReflectionComponent : public USceneCaptureComponent
 {
-    class UBoxComponent* PreviewBox;                                                  // 0x02E8 (size: 0x8)
-    float NormalDistortionStrength;                                                   // 0x02F0 (size: 0x4)
-    float PrefilterRoughness;                                                         // 0x02F4 (size: 0x4)
-    float PrefilterRoughnessDistance;                                                 // 0x02F8 (size: 0x4)
-    int32 ScreenPercentage;                                                           // 0x02FC (size: 0x4)
-    float ExtraFOV;                                                                   // 0x0300 (size: 0x4)
-    float DistanceFromPlaneFadeStart;                                                 // 0x0304 (size: 0x4)
-    float DistanceFromPlaneFadeEnd;                                                   // 0x0308 (size: 0x4)
-    float DistanceFromPlaneFadeoutStart;                                              // 0x030C (size: 0x4)
-    float DistanceFromPlaneFadeoutEnd;                                                // 0x0310 (size: 0x4)
-    float AngleFromPlaneFadeStart;                                                    // 0x0314 (size: 0x4)
-    float AngleFromPlaneFadeEnd;                                                      // 0x0318 (size: 0x4)
-    bool bShowPreviewPlane;                                                           // 0x031C (size: 0x1)
-    bool bRenderSceneTwoSided;                                                        // 0x031D (size: 0x1)
+    class UBoxComponent* PreviewBox;                                                  // 0x02F0 (size: 0x8)
+    float NormalDistortionStrength;                                                   // 0x02F8 (size: 0x4)
+    float PrefilterRoughness;                                                         // 0x02FC (size: 0x4)
+    float PrefilterRoughnessDistance;                                                 // 0x0300 (size: 0x4)
+    int32 ScreenPercentage;                                                           // 0x0304 (size: 0x4)
+    float ExtraFOV;                                                                   // 0x0308 (size: 0x4)
+    float DistanceFromPlaneFadeStart;                                                 // 0x030C (size: 0x4)
+    float DistanceFromPlaneFadeEnd;                                                   // 0x0310 (size: 0x4)
+    float DistanceFromPlaneFadeoutStart;                                              // 0x0314 (size: 0x4)
+    float DistanceFromPlaneFadeoutEnd;                                                // 0x0318 (size: 0x4)
+    float AngleFromPlaneFadeStart;                                                    // 0x031C (size: 0x4)
+    float AngleFromPlaneFadeEnd;                                                      // 0x0320 (size: 0x4)
+    bool bShowPreviewPlane;                                                           // 0x0324 (size: 0x1)
+    bool bRenderSceneTwoSided;                                                        // 0x0325 (size: 0x1)
 
 }; // Size: 0x450
 
 class UPlaneReflectionCaptureComponent : public UReflectionCaptureComponent
 {
-    float InfluenceRadiusScale;                                                       // 0x0298 (size: 0x4)
-    class UDrawSphereComponent* PreviewInfluenceRadius;                               // 0x02A0 (size: 0x8)
-    class UBoxComponent* PreviewCaptureBox;                                           // 0x02A8 (size: 0x8)
+    float InfluenceRadiusScale;                                                       // 0x02A0 (size: 0x4)
+    class UDrawSphereComponent* PreviewInfluenceRadius;                               // 0x02A8 (size: 0x8)
+    class UBoxComponent* PreviewCaptureBox;                                           // 0x02B0 (size: 0x8)
 
-}; // Size: 0x2B0
+}; // Size: 0x2C0
 
 class UPlatformEventsComponent : public UActorComponent
 {
@@ -21294,11 +21303,11 @@ class UPluginCommandlet : public UCommandlet
 
 class UPointLightComponent : public ULocalLightComponent
 {
-    uint8 bUseInverseSquaredFalloff;                                                  // 0x0390 (size: 0x1)
-    float LightFalloffExponent;                                                       // 0x0394 (size: 0x4)
-    float SourceRadius;                                                               // 0x0398 (size: 0x4)
-    float SoftSourceRadius;                                                           // 0x039C (size: 0x4)
-    float SourceLength;                                                               // 0x03A0 (size: 0x4)
+    uint8 bUseInverseSquaredFalloff;                                                  // 0x0398 (size: 0x1)
+    float LightFalloffExponent;                                                       // 0x039C (size: 0x4)
+    float SourceRadius;                                                               // 0x03A0 (size: 0x4)
+    float SoftSourceRadius;                                                           // 0x03A4 (size: 0x4)
+    float SourceLength;                                                               // 0x03A8 (size: 0x4)
 
     void SetUseInverseSquaredFalloff(bool bNewValue);
     void SetSourceRadius(float bNewValue);
@@ -21390,126 +21399,126 @@ class UPrimaryDataAsset : public UDataAsset
 
 class UPrimitiveComponent : public USceneComponent
 {
-    float MinDrawDistance;                                                            // 0x0248 (size: 0x4)
-    float LDMaxDrawDistance;                                                          // 0x024C (size: 0x4)
-    float CachedMaxDrawDistance;                                                      // 0x0250 (size: 0x4)
-    TEnumAsByte<ESceneDepthPriorityGroup> DepthPriorityGroup;                         // 0x0254 (size: 0x1)
-    TEnumAsByte<ESceneDepthPriorityGroup> ViewOwnerDepthPriorityGroup;                // 0x0255 (size: 0x1)
-    TEnumAsByte<EIndirectLightingCacheQuality> IndirectLightingCacheQuality;          // 0x0256 (size: 0x1)
-    ELightmapType LightmapType;                                                       // 0x0257 (size: 0x1)
-    EHLODBatchingPolicy HLODBatchingPolicy;                                           // 0x0258 (size: 0x1)
-    uint8 bEnableAutoLODGeneration;                                                   // 0x0259 (size: 0x1)
-    uint8 bIsActorTextureStreamingBuiltData;                                          // 0x0259 (size: 0x1)
-    uint8 bIsValidTextureStreamingBuiltData;                                          // 0x0259 (size: 0x1)
-    uint8 bNeverDistanceCull;                                                         // 0x0259 (size: 0x1)
-    uint8 bAlwaysCreatePhysicsState;                                                  // 0x025A (size: 0x1)
-    uint8 bGenerateOverlapEvents;                                                     // 0x025A (size: 0x1)
-    uint8 bMultiBodyOverlap;                                                          // 0x025A (size: 0x1)
-    uint8 bTraceComplexOnMove;                                                        // 0x025A (size: 0x1)
-    uint8 bReturnMaterialOnMove;                                                      // 0x025A (size: 0x1)
-    uint8 bUseViewOwnerDepthPriorityGroup;                                            // 0x025A (size: 0x1)
-    uint8 bAllowCullDistanceVolume;                                                   // 0x025B (size: 0x1)
-    uint8 bVisibleInReflectionCaptures;                                               // 0x025B (size: 0x1)
-    uint8 bVisibleInRealTimeSkyCaptures;                                              // 0x025B (size: 0x1)
-    uint8 bVisibleInRayTracing;                                                       // 0x025B (size: 0x1)
-    uint8 bRenderInMainPass;                                                          // 0x025B (size: 0x1)
-    uint8 bRenderInDepthPass;                                                         // 0x025B (size: 0x1)
-    uint8 bReceivesDecals;                                                            // 0x025B (size: 0x1)
-    uint8 bHoldout;                                                                   // 0x025B (size: 0x1)
-    uint8 bOwnerNoSee;                                                                // 0x025C (size: 0x1)
-    uint8 bOnlyOwnerSee;                                                              // 0x025C (size: 0x1)
-    uint8 bTreatAsBackgroundForOcclusion;                                             // 0x025C (size: 0x1)
-    uint8 bUseAsOccluder;                                                             // 0x025C (size: 0x1)
-    uint8 bSelectable;                                                                // 0x025C (size: 0x1)
-    uint8 bForceMipStreaming;                                                         // 0x025C (size: 0x1)
-    uint8 bHasPerInstanceHitProxies;                                                  // 0x025C (size: 0x1)
-    uint8 CastShadow;                                                                 // 0x025C (size: 0x1)
-    uint8 bEmissiveLightSource;                                                       // 0x025D (size: 0x1)
-    uint8 bAffectDynamicIndirectLighting;                                             // 0x025D (size: 0x1)
-    uint8 bAffectIndirectLightingWhileHidden;                                         // 0x025D (size: 0x1)
-    uint8 bAffectDistanceFieldLighting;                                               // 0x025D (size: 0x1)
-    uint8 bCastDynamicShadow;                                                         // 0x025D (size: 0x1)
-    uint8 bCastStaticShadow;                                                          // 0x025D (size: 0x1)
-    EShadowCacheInvalidationBehavior ShadowCacheInvalidationBehavior;                 // 0x025E (size: 0x1)
-    uint8 bCastVolumetricTranslucentShadow;                                           // 0x025F (size: 0x1)
-    uint8 bCastContactShadow;                                                         // 0x025F (size: 0x1)
-    uint8 bSelfShadowOnly;                                                            // 0x025F (size: 0x1)
-    uint8 bCastFarShadow;                                                             // 0x025F (size: 0x1)
-    uint8 bCastInsetShadow;                                                           // 0x025F (size: 0x1)
-    uint8 bCastCinematicShadow;                                                       // 0x025F (size: 0x1)
-    uint8 bCastHiddenShadow;                                                          // 0x025F (size: 0x1)
-    uint8 bCastShadowAsTwoSided;                                                      // 0x025F (size: 0x1)
-    uint8 bLightAsIfStatic;                                                           // 0x0260 (size: 0x1)
-    uint8 bLightAttachmentsAsGroup;                                                   // 0x0260 (size: 0x1)
-    uint8 bExcludeFromLightAttachmentGroup;                                           // 0x0260 (size: 0x1)
-    uint8 bReceiveMobileCSMShadows;                                                   // 0x0260 (size: 0x1)
-    uint8 bSingleSampleShadowFromStationaryLights;                                    // 0x0260 (size: 0x1)
-    uint8 bIgnoreRadialImpulse;                                                       // 0x0260 (size: 0x1)
-    uint8 bIgnoreRadialForce;                                                         // 0x0260 (size: 0x1)
-    uint8 bApplyImpulseOnDamage;                                                      // 0x0260 (size: 0x1)
-    uint8 bReplicatePhysicsToAutonomousProxy;                                         // 0x0261 (size: 0x1)
-    uint8 bFillCollisionUnderneathForNavmesh;                                         // 0x0261 (size: 0x1)
-    uint8 AlwaysLoadOnClient;                                                         // 0x0261 (size: 0x1)
-    uint8 AlwaysLoadOnServer;                                                         // 0x0261 (size: 0x1)
-    uint8 bUseEditorCompositing;                                                      // 0x0261 (size: 0x1)
-    uint8 bIsBeingMovedByEditor;                                                      // 0x0261 (size: 0x1)
-    uint8 bRenderCustomDepth;                                                         // 0x0261 (size: 0x1)
-    uint8 bVisibleInSceneCaptureOnly;                                                 // 0x0261 (size: 0x1)
-    uint8 bHiddenInSceneCapture;                                                      // 0x0262 (size: 0x1)
-    uint8 bRayTracingFarField;                                                        // 0x0262 (size: 0x1)
-    uint8 bHasNoStreamableTextures;                                                   // 0x0262 (size: 0x1)
-    uint8 bStaticWhenNotMoveable;                                                     // 0x0262 (size: 0x1)
-    TEnumAsByte<EHasCustomNavigableGeometry::Type> bHasCustomNavigableGeometry;       // 0x0281 (size: 0x1)
-    TEnumAsByte<ECanBeCharacterBase> CanCharacterStepUpOn;                            // 0x0283 (size: 0x1)
-    FLightingChannels LightingChannels;                                               // 0x0284 (size: 0x1)
-    int32 RayTracingGroupId;                                                          // 0x0288 (size: 0x4)
-    int32 VisibilityId;                                                               // 0x028C (size: 0x4)
-    int32 CustomDepthStencilValue;                                                    // 0x0290 (size: 0x4)
-    FCustomPrimitiveData CustomPrimitiveData;                                         // 0x0298 (size: 0x10)
-    FCustomPrimitiveData CustomPrimitiveDataInternal;                                 // 0x02A8 (size: 0x10)
-    int32 TranslucencySortPriority;                                                   // 0x02C0 (size: 0x4)
-    float TranslucencySortDistanceOffset;                                             // 0x02C4 (size: 0x4)
-    TArray<class URuntimeVirtualTexture*> RuntimeVirtualTextures;                     // 0x02C8 (size: 0x10)
-    int8 VirtualTextureLodBias;                                                       // 0x02D8 (size: 0x1)
-    int8 VirtualTextureCullMips;                                                      // 0x02D9 (size: 0x1)
-    int8 VirtualTextureMinCoverage;                                                   // 0x02DA (size: 0x1)
-    ERuntimeVirtualTextureMainPassType VirtualTextureRenderPassType;                  // 0x02DB (size: 0x1)
-    float BoundsScale;                                                                // 0x02E4 (size: 0x4)
-    TArray<class AActor*> MoveIgnoreActors;                                           // 0x0318 (size: 0x10)
-    TArray<class UPrimitiveComponent*> MoveIgnoreComponents;                          // 0x0328 (size: 0x10)
-    FBodyInstance BodyInstance;                                                       // 0x0348 (size: 0x198)
-    FPrimitiveComponentOnComponentHit OnComponentHit;                                 // 0x04E0 (size: 0x1)
+    float MinDrawDistance;                                                            // 0x0250 (size: 0x4)
+    float LDMaxDrawDistance;                                                          // 0x0254 (size: 0x4)
+    float CachedMaxDrawDistance;                                                      // 0x0258 (size: 0x4)
+    TEnumAsByte<ESceneDepthPriorityGroup> DepthPriorityGroup;                         // 0x025C (size: 0x1)
+    TEnumAsByte<ESceneDepthPriorityGroup> ViewOwnerDepthPriorityGroup;                // 0x025D (size: 0x1)
+    TEnumAsByte<EIndirectLightingCacheQuality> IndirectLightingCacheQuality;          // 0x025E (size: 0x1)
+    ELightmapType LightmapType;                                                       // 0x025F (size: 0x1)
+    EHLODBatchingPolicy HLODBatchingPolicy;                                           // 0x0260 (size: 0x1)
+    uint8 bEnableAutoLODGeneration;                                                   // 0x0261 (size: 0x1)
+    uint8 bIsActorTextureStreamingBuiltData;                                          // 0x0261 (size: 0x1)
+    uint8 bIsValidTextureStreamingBuiltData;                                          // 0x0261 (size: 0x1)
+    uint8 bNeverDistanceCull;                                                         // 0x0261 (size: 0x1)
+    uint8 bAlwaysCreatePhysicsState;                                                  // 0x0262 (size: 0x1)
+    uint8 bGenerateOverlapEvents;                                                     // 0x0262 (size: 0x1)
+    uint8 bMultiBodyOverlap;                                                          // 0x0262 (size: 0x1)
+    uint8 bTraceComplexOnMove;                                                        // 0x0262 (size: 0x1)
+    uint8 bReturnMaterialOnMove;                                                      // 0x0262 (size: 0x1)
+    uint8 bUseViewOwnerDepthPriorityGroup;                                            // 0x0262 (size: 0x1)
+    uint8 bAllowCullDistanceVolume;                                                   // 0x0263 (size: 0x1)
+    uint8 bVisibleInReflectionCaptures;                                               // 0x0263 (size: 0x1)
+    uint8 bVisibleInRealTimeSkyCaptures;                                              // 0x0263 (size: 0x1)
+    uint8 bVisibleInRayTracing;                                                       // 0x0263 (size: 0x1)
+    uint8 bRenderInMainPass;                                                          // 0x0263 (size: 0x1)
+    uint8 bRenderInDepthPass;                                                         // 0x0263 (size: 0x1)
+    uint8 bReceivesDecals;                                                            // 0x0263 (size: 0x1)
+    uint8 bHoldout;                                                                   // 0x0263 (size: 0x1)
+    uint8 bOwnerNoSee;                                                                // 0x0264 (size: 0x1)
+    uint8 bOnlyOwnerSee;                                                              // 0x0264 (size: 0x1)
+    uint8 bTreatAsBackgroundForOcclusion;                                             // 0x0264 (size: 0x1)
+    uint8 bUseAsOccluder;                                                             // 0x0264 (size: 0x1)
+    uint8 bSelectable;                                                                // 0x0264 (size: 0x1)
+    uint8 bForceMipStreaming;                                                         // 0x0264 (size: 0x1)
+    uint8 bHasPerInstanceHitProxies;                                                  // 0x0264 (size: 0x1)
+    uint8 CastShadow;                                                                 // 0x0264 (size: 0x1)
+    uint8 bEmissiveLightSource;                                                       // 0x0265 (size: 0x1)
+    uint8 bAffectDynamicIndirectLighting;                                             // 0x0265 (size: 0x1)
+    uint8 bAffectIndirectLightingWhileHidden;                                         // 0x0265 (size: 0x1)
+    uint8 bAffectDistanceFieldLighting;                                               // 0x0265 (size: 0x1)
+    uint8 bCastDynamicShadow;                                                         // 0x0265 (size: 0x1)
+    uint8 bCastStaticShadow;                                                          // 0x0265 (size: 0x1)
+    EShadowCacheInvalidationBehavior ShadowCacheInvalidationBehavior;                 // 0x0266 (size: 0x1)
+    uint8 bCastVolumetricTranslucentShadow;                                           // 0x0267 (size: 0x1)
+    uint8 bCastContactShadow;                                                         // 0x0267 (size: 0x1)
+    uint8 bSelfShadowOnly;                                                            // 0x0267 (size: 0x1)
+    uint8 bCastFarShadow;                                                             // 0x0267 (size: 0x1)
+    uint8 bCastInsetShadow;                                                           // 0x0267 (size: 0x1)
+    uint8 bCastCinematicShadow;                                                       // 0x0267 (size: 0x1)
+    uint8 bCastHiddenShadow;                                                          // 0x0267 (size: 0x1)
+    uint8 bCastShadowAsTwoSided;                                                      // 0x0267 (size: 0x1)
+    uint8 bLightAsIfStatic;                                                           // 0x0268 (size: 0x1)
+    uint8 bLightAttachmentsAsGroup;                                                   // 0x0268 (size: 0x1)
+    uint8 bExcludeFromLightAttachmentGroup;                                           // 0x0268 (size: 0x1)
+    uint8 bReceiveMobileCSMShadows;                                                   // 0x0268 (size: 0x1)
+    uint8 bSingleSampleShadowFromStationaryLights;                                    // 0x0268 (size: 0x1)
+    uint8 bIgnoreRadialImpulse;                                                       // 0x0268 (size: 0x1)
+    uint8 bIgnoreRadialForce;                                                         // 0x0268 (size: 0x1)
+    uint8 bApplyImpulseOnDamage;                                                      // 0x0268 (size: 0x1)
+    uint8 bReplicatePhysicsToAutonomousProxy;                                         // 0x0269 (size: 0x1)
+    uint8 bFillCollisionUnderneathForNavmesh;                                         // 0x0269 (size: 0x1)
+    uint8 AlwaysLoadOnClient;                                                         // 0x0269 (size: 0x1)
+    uint8 AlwaysLoadOnServer;                                                         // 0x0269 (size: 0x1)
+    uint8 bUseEditorCompositing;                                                      // 0x0269 (size: 0x1)
+    uint8 bIsBeingMovedByEditor;                                                      // 0x0269 (size: 0x1)
+    uint8 bRenderCustomDepth;                                                         // 0x0269 (size: 0x1)
+    uint8 bVisibleInSceneCaptureOnly;                                                 // 0x0269 (size: 0x1)
+    uint8 bHiddenInSceneCapture;                                                      // 0x026A (size: 0x1)
+    uint8 bRayTracingFarField;                                                        // 0x026A (size: 0x1)
+    uint8 bHasNoStreamableTextures;                                                   // 0x026A (size: 0x1)
+    uint8 bStaticWhenNotMoveable;                                                     // 0x026A (size: 0x1)
+    TEnumAsByte<EHasCustomNavigableGeometry::Type> bHasCustomNavigableGeometry;       // 0x0289 (size: 0x1)
+    TEnumAsByte<ECanBeCharacterBase> CanCharacterStepUpOn;                            // 0x028B (size: 0x1)
+    FLightingChannels LightingChannels;                                               // 0x028C (size: 0x1)
+    int32 RayTracingGroupId;                                                          // 0x0290 (size: 0x4)
+    int32 VisibilityId;                                                               // 0x0294 (size: 0x4)
+    int32 CustomDepthStencilValue;                                                    // 0x0298 (size: 0x4)
+    FCustomPrimitiveData CustomPrimitiveData;                                         // 0x02A0 (size: 0x10)
+    FCustomPrimitiveData CustomPrimitiveDataInternal;                                 // 0x02B0 (size: 0x10)
+    int32 TranslucencySortPriority;                                                   // 0x02C8 (size: 0x4)
+    float TranslucencySortDistanceOffset;                                             // 0x02CC (size: 0x4)
+    TArray<class URuntimeVirtualTexture*> RuntimeVirtualTextures;                     // 0x02D0 (size: 0x10)
+    int8 VirtualTextureLodBias;                                                       // 0x02E0 (size: 0x1)
+    int8 VirtualTextureCullMips;                                                      // 0x02E1 (size: 0x1)
+    int8 VirtualTextureMinCoverage;                                                   // 0x02E2 (size: 0x1)
+    ERuntimeVirtualTextureMainPassType VirtualTextureRenderPassType;                  // 0x02E3 (size: 0x1)
+    float BoundsScale;                                                                // 0x02EC (size: 0x4)
+    TArray<class AActor*> MoveIgnoreActors;                                           // 0x0320 (size: 0x10)
+    TArray<class UPrimitiveComponent*> MoveIgnoreComponents;                          // 0x0330 (size: 0x10)
+    FBodyInstance BodyInstance;                                                       // 0x0350 (size: 0x198)
+    FPrimitiveComponentOnComponentHit OnComponentHit;                                 // 0x04E8 (size: 0x1)
     void ComponentHitSignature(class UPrimitiveComponent* HitComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
-    FPrimitiveComponentOnComponentBeginOverlap OnComponentBeginOverlap;               // 0x04E1 (size: 0x1)
+    FPrimitiveComponentOnComponentBeginOverlap OnComponentBeginOverlap;               // 0x04E9 (size: 0x1)
     void ComponentBeginOverlapSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-    FPrimitiveComponentOnComponentEndOverlap OnComponentEndOverlap;                   // 0x04E2 (size: 0x1)
+    FPrimitiveComponentOnComponentEndOverlap OnComponentEndOverlap;                   // 0x04EA (size: 0x1)
     void ComponentEndOverlapSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-    FPrimitiveComponentOnComponentWake OnComponentWake;                               // 0x04E3 (size: 0x1)
+    FPrimitiveComponentOnComponentWake OnComponentWake;                               // 0x04EB (size: 0x1)
     void ComponentWakeSignature(class UPrimitiveComponent* WakingComponent, FName BoneName);
-    FPrimitiveComponentOnComponentSleep OnComponentSleep;                             // 0x04E4 (size: 0x1)
+    FPrimitiveComponentOnComponentSleep OnComponentSleep;                             // 0x04EC (size: 0x1)
     void ComponentSleepSignature(class UPrimitiveComponent* SleepingComponent, FName BoneName);
-    FPrimitiveComponentOnComponentPhysicsStateChanged OnComponentPhysicsStateChanged; // 0x04E6 (size: 0x1)
+    FPrimitiveComponentOnComponentPhysicsStateChanged OnComponentPhysicsStateChanged; // 0x04EE (size: 0x1)
     void ComponentPhysicsStateChanged(class UPrimitiveComponent* ChangedComponent, EComponentPhysicsStateChange StateChange);
-    FPrimitiveComponentOnBeginCursorOver OnBeginCursorOver;                           // 0x04E7 (size: 0x1)
+    FPrimitiveComponentOnBeginCursorOver OnBeginCursorOver;                           // 0x04EF (size: 0x1)
     void ComponentBeginCursorOverSignature(class UPrimitiveComponent* TouchedComponent);
-    FPrimitiveComponentOnEndCursorOver OnEndCursorOver;                               // 0x04E8 (size: 0x1)
+    FPrimitiveComponentOnEndCursorOver OnEndCursorOver;                               // 0x04F0 (size: 0x1)
     void ComponentEndCursorOverSignature(class UPrimitiveComponent* TouchedComponent);
-    FPrimitiveComponentOnClicked OnClicked;                                           // 0x04E9 (size: 0x1)
+    FPrimitiveComponentOnClicked OnClicked;                                           // 0x04F1 (size: 0x1)
     void ComponentOnClickedSignature(class UPrimitiveComponent* TouchedComponent, FKey ButtonPressed);
-    FPrimitiveComponentOnReleased OnReleased;                                         // 0x04EA (size: 0x1)
+    FPrimitiveComponentOnReleased OnReleased;                                         // 0x04F2 (size: 0x1)
     void ComponentOnReleasedSignature(class UPrimitiveComponent* TouchedComponent, FKey ButtonReleased);
-    FPrimitiveComponentOnInputTouchBegin OnInputTouchBegin;                           // 0x04EB (size: 0x1)
+    FPrimitiveComponentOnInputTouchBegin OnInputTouchBegin;                           // 0x04F3 (size: 0x1)
     void ComponentOnInputTouchBeginSignature(TEnumAsByte<ETouchIndex::Type> FingerIndex, class UPrimitiveComponent* TouchedComponent);
-    FPrimitiveComponentOnInputTouchEnd OnInputTouchEnd;                               // 0x04EC (size: 0x1)
+    FPrimitiveComponentOnInputTouchEnd OnInputTouchEnd;                               // 0x04F4 (size: 0x1)
     void ComponentOnInputTouchEndSignature(TEnumAsByte<ETouchIndex::Type> FingerIndex, class UPrimitiveComponent* TouchedComponent);
-    FPrimitiveComponentOnInputTouchEnter OnInputTouchEnter;                           // 0x04ED (size: 0x1)
+    FPrimitiveComponentOnInputTouchEnter OnInputTouchEnter;                           // 0x04F5 (size: 0x1)
     void ComponentBeginTouchOverSignature(TEnumAsByte<ETouchIndex::Type> FingerIndex, class UPrimitiveComponent* TouchedComponent);
-    FPrimitiveComponentOnInputTouchLeave OnInputTouchLeave;                           // 0x04EE (size: 0x1)
+    FPrimitiveComponentOnInputTouchLeave OnInputTouchLeave;                           // 0x04F6 (size: 0x1)
     void ComponentEndTouchOverSignature(TEnumAsByte<ETouchIndex::Type> FingerIndex, class UPrimitiveComponent* TouchedComponent);
-    ERayTracingGroupCullingPriority RayTracingGroupCullingPriority;                   // 0x04EF (size: 0x1)
-    ERendererStencilMask CustomDepthStencilWriteMask;                                 // 0x04F0 (size: 0x1)
-    uint8 ExcludeFromHLODLevels;                                                      // 0x0508 (size: 0x1)
-    class UPrimitiveComponent* LODParentPrimitive;                                    // 0x0510 (size: 0x8)
+    ERayTracingGroupCullingPriority RayTracingGroupCullingPriority;                   // 0x04F7 (size: 0x1)
+    ERendererStencilMask CustomDepthStencilWriteMask;                                 // 0x04F8 (size: 0x1)
+    uint8 ExcludeFromHLODLevels;                                                      // 0x0510 (size: 0x1)
+    class UPrimitiveComponent* LODParentPrimitive;                                    // 0x0518 (size: 0x8)
 
     bool WasRecentlyRendered(float Tolerance);
     void WakeRigidBody(FName BoneName);
@@ -21743,19 +21752,20 @@ class URPCDoSDetectionConfig : public UObject
 
 class URadialForceComponent : public USceneComponent
 {
-    float Radius;                                                                     // 0x0230 (size: 0x4)
-    TEnumAsByte<ERadialImpulseFalloff> Falloff;                                       // 0x0234 (size: 0x1)
-    float ImpulseStrength;                                                            // 0x0238 (size: 0x4)
-    uint8 bImpulseVelChange;                                                          // 0x023C (size: 0x1)
-    uint8 bIgnoreOwningActor;                                                         // 0x023C (size: 0x1)
-    float ForceStrength;                                                              // 0x0240 (size: 0x4)
-    float DestructibleDamage;                                                         // 0x0244 (size: 0x4)
-    TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypesToAffect;                        // 0x0248 (size: 0x10)
+    float Radius;                                                                     // 0x0238 (size: 0x4)
+    TEnumAsByte<ERadialImpulseFalloff> Falloff;                                       // 0x023C (size: 0x1)
+    float ImpulseStrength;                                                            // 0x0240 (size: 0x4)
+    uint8 bImpulseVelChange;                                                          // 0x0244 (size: 0x1)
+    uint8 bIgnoreOwningActor;                                                         // 0x0244 (size: 0x1)
+    uint8 bAllowTickImpulses;                                                         // 0x0244 (size: 0x1)
+    float ForceStrength;                                                              // 0x0248 (size: 0x4)
+    float DestructibleDamage;                                                         // 0x024C (size: 0x4)
+    TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypesToAffect;                        // 0x0250 (size: 0x10)
 
     void RemoveObjectTypeToAffect(TEnumAsByte<EObjectTypeQuery> ObjectType);
     void FireImpulse();
     void AddObjectTypeToAffect(TEnumAsByte<EObjectTypeQuery> ObjectType);
-}; // Size: 0x260
+}; // Size: 0x270
 
 class URawAnimSequenceTrackExtensions : public UBlueprintFunctionLibrary
 {
@@ -21767,28 +21777,28 @@ class URawAnimSequenceTrackExtensions : public UBlueprintFunctionLibrary
 
 class URectLightComponent : public ULocalLightComponent
 {
-    float SourceWidth;                                                                // 0x0390 (size: 0x4)
-    float SourceHeight;                                                               // 0x0394 (size: 0x4)
-    float BarnDoorAngle;                                                              // 0x0398 (size: 0x4)
-    float BarnDoorLength;                                                             // 0x039C (size: 0x4)
-    class UTexture* SourceTexture;                                                    // 0x03A0 (size: 0x8)
+    float SourceWidth;                                                                // 0x0398 (size: 0x4)
+    float SourceHeight;                                                               // 0x039C (size: 0x4)
+    float BarnDoorAngle;                                                              // 0x03A0 (size: 0x4)
+    float BarnDoorLength;                                                             // 0x03A4 (size: 0x4)
+    class UTexture* SourceTexture;                                                    // 0x03A8 (size: 0x8)
 
     void SetSourceWidth(float NewValue);
     void SetSourceTexture(class UTexture* NewValue);
     void SetSourceHeight(float NewValue);
     void SetBarnDoorLength(float NewValue);
     void SetBarnDoorAngle(float NewValue);
-}; // Size: 0x3B0
+}; // Size: 0x3C0
 
 class UReflectionCaptureComponent : public USceneComponent
 {
-    class UBillboardComponent* CaptureOffsetComponent;                                // 0x0230 (size: 0x8)
-    EReflectionSourceType ReflectionSourceType;                                       // 0x0238 (size: 0x1)
-    class UTextureCube* Cubemap;                                                      // 0x0240 (size: 0x8)
-    float SourceCubemapAngle;                                                         // 0x0248 (size: 0x4)
-    float Brightness;                                                                 // 0x024C (size: 0x4)
-    FVector CaptureOffset;                                                            // 0x0250 (size: 0x18)
-    FGuid MapBuildDataId;                                                             // 0x0268 (size: 0x10)
+    class UBillboardComponent* CaptureOffsetComponent;                                // 0x0238 (size: 0x8)
+    EReflectionSourceType ReflectionSourceType;                                       // 0x0240 (size: 0x1)
+    class UTextureCube* Cubemap;                                                      // 0x0248 (size: 0x8)
+    float SourceCubemapAngle;                                                         // 0x0250 (size: 0x4)
+    float Brightness;                                                                 // 0x0254 (size: 0x4)
+    FVector CaptureOffset;                                                            // 0x0258 (size: 0x18)
+    FGuid MapBuildDataId;                                                             // 0x0270 (size: 0x10)
 
 }; // Size: 0x2A0
 
@@ -22094,23 +22104,23 @@ class URuntimeVirtualTexture : public UObject
 
 class URuntimeVirtualTextureComponent : public USceneComponent
 {
-    TSoftObjectPtr<AActor> BoundsAlignActor;                                          // 0x0230 (size: 0x28)
-    bool bSetBoundsButton;                                                            // 0x0258 (size: 0x1)
-    bool bSnapBoundsToLandscape;                                                      // 0x0259 (size: 0x1)
-    float ExpandBounds;                                                               // 0x025C (size: 0x4)
-    class URuntimeVirtualTexture* VirtualTexture;                                     // 0x0260 (size: 0x8)
-    FPerPlatformBool EnableInGamePerPlatform;                                         // 0x0268 (size: 0x1)
-    bool bEnableForNaniteOnly;                                                        // 0x0269 (size: 0x1)
-    bool bEnableScalability;                                                          // 0x026A (size: 0x1)
-    uint32 ScalabilityGroup;                                                          // 0x026C (size: 0x4)
-    bool bHidePrimitives;                                                             // 0x0270 (size: 0x1)
-    class UVirtualTextureBuilder* StreamingTexture;                                   // 0x0278 (size: 0x8)
-    int32 StreamLowMips;                                                              // 0x0280 (size: 0x4)
-    bool bBuildStreamingMipsButton;                                                   // 0x0284 (size: 0x1)
-    TEnumAsByte<ETextureLossyCompressionAmount> LossyCompressionAmount;               // 0x0285 (size: 0x1)
-    bool bUseStreamingMipsFixedColor;                                                 // 0x0286 (size: 0x1)
-    FLinearColor StreamingMipsFixedColor;                                             // 0x0288 (size: 0x10)
-    bool bUseStreamingLowMipsInEditor;                                                // 0x0298 (size: 0x1)
+    TSoftObjectPtr<AActor> BoundsAlignActor;                                          // 0x0238 (size: 0x28)
+    bool bSetBoundsButton;                                                            // 0x0260 (size: 0x1)
+    bool bSnapBoundsToLandscape;                                                      // 0x0261 (size: 0x1)
+    float ExpandBounds;                                                               // 0x0264 (size: 0x4)
+    class URuntimeVirtualTexture* VirtualTexture;                                     // 0x0268 (size: 0x8)
+    FPerPlatformBool EnableInGamePerPlatform;                                         // 0x0270 (size: 0x1)
+    bool bEnableForNaniteOnly;                                                        // 0x0271 (size: 0x1)
+    bool bEnableScalability;                                                          // 0x0272 (size: 0x1)
+    uint32 ScalabilityGroup;                                                          // 0x0274 (size: 0x4)
+    bool bHidePrimitives;                                                             // 0x0278 (size: 0x1)
+    class UVirtualTextureBuilder* StreamingTexture;                                   // 0x0280 (size: 0x8)
+    int32 StreamLowMips;                                                              // 0x0288 (size: 0x4)
+    bool bBuildStreamingMipsButton;                                                   // 0x028C (size: 0x1)
+    TEnumAsByte<ETextureLossyCompressionAmount> LossyCompressionAmount;               // 0x028D (size: 0x1)
+    bool bUseStreamingMipsFixedColor;                                                 // 0x028E (size: 0x1)
+    FLinearColor StreamingMipsFixedColor;                                             // 0x0290 (size: 0x10)
+    bool bUseStreamingLowMipsInEditor;                                                // 0x02A0 (size: 0x1)
 
     void Invalidate(const FBoxSphereBounds& WorldBounds);
 }; // Size: 0x2D0
@@ -22169,21 +22179,21 @@ class UScene : public UObject
 
 class USceneCaptureComponent : public USceneComponent
 {
-    ESceneCapturePrimitiveRenderMode PrimitiveRenderMode;                             // 0x0230 (size: 0x1)
-    TEnumAsByte<ESceneCaptureSource> CaptureSource;                                   // 0x0231 (size: 0x1)
-    uint8 bCaptureEveryFrame;                                                         // 0x0232 (size: 0x1)
-    uint8 bCaptureOnMovement;                                                         // 0x0232 (size: 0x1)
-    bool bAlwaysPersistRenderingState;                                                // 0x0233 (size: 0x1)
-    TArray<TWeakObjectPtr<UPrimitiveComponent>> HiddenComponents;                     // 0x0238 (size: 0x10)
-    TArray<class AActor*> HiddenActors;                                               // 0x0248 (size: 0x10)
-    TArray<TWeakObjectPtr<UPrimitiveComponent>> ShowOnlyComponents;                   // 0x0258 (size: 0x10)
-    TArray<class AActor*> ShowOnlyActors;                                             // 0x0268 (size: 0x10)
-    float LODDistanceFactor;                                                          // 0x0278 (size: 0x4)
-    float MaxViewDistanceOverride;                                                    // 0x027C (size: 0x4)
-    int32 CaptureSortPriority;                                                        // 0x0280 (size: 0x4)
-    bool bUseRayTracingIfEnabled;                                                     // 0x0284 (size: 0x1)
-    TArray<FEngineShowFlagsSetting> ShowFlagSettings;                                 // 0x0288 (size: 0x10)
-    FString ProfilingEventName;                                                       // 0x02C8 (size: 0x10)
+    ESceneCapturePrimitiveRenderMode PrimitiveRenderMode;                             // 0x0238 (size: 0x1)
+    TEnumAsByte<ESceneCaptureSource> CaptureSource;                                   // 0x0239 (size: 0x1)
+    uint8 bCaptureEveryFrame;                                                         // 0x023A (size: 0x1)
+    uint8 bCaptureOnMovement;                                                         // 0x023A (size: 0x1)
+    bool bAlwaysPersistRenderingState;                                                // 0x023B (size: 0x1)
+    TArray<TWeakObjectPtr<UPrimitiveComponent>> HiddenComponents;                     // 0x0240 (size: 0x10)
+    TArray<class AActor*> HiddenActors;                                               // 0x0250 (size: 0x10)
+    TArray<TWeakObjectPtr<UPrimitiveComponent>> ShowOnlyComponents;                   // 0x0260 (size: 0x10)
+    TArray<class AActor*> ShowOnlyActors;                                             // 0x0270 (size: 0x10)
+    float LODDistanceFactor;                                                          // 0x0280 (size: 0x4)
+    float MaxViewDistanceOverride;                                                    // 0x0284 (size: 0x4)
+    int32 CaptureSortPriority;                                                        // 0x0288 (size: 0x4)
+    bool bUseRayTracingIfEnabled;                                                     // 0x028C (size: 0x1)
+    TArray<FEngineShowFlagsSetting> ShowFlagSettings;                                 // 0x0290 (size: 0x10)
+    FString ProfilingEventName;                                                       // 0x02D0 (size: 0x10)
 
     void ShowOnlyComponent(class UPrimitiveComponent* InComponent);
     void ShowOnlyActorComponents(class AActor* InActor, const bool bIncludeFromChildActors);
@@ -22198,41 +22208,41 @@ class USceneCaptureComponent : public USceneComponent
 
 class USceneCaptureComponent2D : public USceneCaptureComponent
 {
-    TEnumAsByte<ECameraProjectionMode::Type> ProjectionType;                          // 0x02E8 (size: 0x1)
-    float FOVAngle;                                                                   // 0x02EC (size: 0x4)
-    float OrthoWidth;                                                                 // 0x02F0 (size: 0x4)
-    bool bAutoCalculateOrthoPlanes;                                                   // 0x02F4 (size: 0x1)
-    float AutoPlaneShift;                                                             // 0x02F8 (size: 0x4)
-    bool bUpdateOrthoPlanes;                                                          // 0x02FC (size: 0x1)
-    bool bUseCameraHeightAsViewTarget;                                                // 0x02FD (size: 0x1)
-    class UTextureRenderTarget2D* TextureTarget;                                      // 0x0300 (size: 0x8)
-    TEnumAsByte<ESceneCaptureCompositeMode> CompositeMode;                            // 0x0308 (size: 0x1)
-    FPostProcessSettings PostProcessSettings;                                         // 0x0310 (size: 0x6F0)
-    float PostProcessBlendWeight;                                                     // 0x0A00 (size: 0x4)
-    uint8 bOverride_CustomNearClippingPlane;                                          // 0x0A04 (size: 0x1)
-    float CustomNearClippingPlane;                                                    // 0x0A08 (size: 0x4)
-    bool bUseCustomProjectionMatrix;                                                  // 0x0A0C (size: 0x1)
-    FMatrix CustomProjectionMatrix;                                                   // 0x0A10 (size: 0x80)
-    bool bUseFauxOrthoViewPos;                                                        // 0x0A90 (size: 0x1)
-    bool bEnableOrthographicTiling;                                                   // 0x0A91 (size: 0x1)
-    int32 NumXTiles;                                                                  // 0x0A94 (size: 0x4)
-    int32 NumYTiles;                                                                  // 0x0A98 (size: 0x4)
-    bool bEnableClipPlane;                                                            // 0x0A9C (size: 0x1)
-    FVector ClipPlaneBase;                                                            // 0x0AA0 (size: 0x18)
-    FVector ClipPlaneNormal;                                                          // 0x0AB8 (size: 0x18)
-    bool bRenderInMainRenderer;                                                       // 0x0AD0 (size: 0x1)
-    uint8 bCameraCutThisFrame;                                                        // 0x0AD4 (size: 0x1)
-    uint8 bConsiderUnrenderedOpaquePixelAsFullyTranslucent;                           // 0x0AD4 (size: 0x1)
+    TEnumAsByte<ECameraProjectionMode::Type> ProjectionType;                          // 0x02F0 (size: 0x1)
+    float FOVAngle;                                                                   // 0x02F4 (size: 0x4)
+    float OrthoWidth;                                                                 // 0x02F8 (size: 0x4)
+    bool bAutoCalculateOrthoPlanes;                                                   // 0x02FC (size: 0x1)
+    float AutoPlaneShift;                                                             // 0x0300 (size: 0x4)
+    bool bUpdateOrthoPlanes;                                                          // 0x0304 (size: 0x1)
+    bool bUseCameraHeightAsViewTarget;                                                // 0x0305 (size: 0x1)
+    class UTextureRenderTarget2D* TextureTarget;                                      // 0x0308 (size: 0x8)
+    TEnumAsByte<ESceneCaptureCompositeMode> CompositeMode;                            // 0x0310 (size: 0x1)
+    FPostProcessSettings PostProcessSettings;                                         // 0x0320 (size: 0x6F0)
+    float PostProcessBlendWeight;                                                     // 0x0A10 (size: 0x4)
+    uint8 bOverride_CustomNearClippingPlane;                                          // 0x0A14 (size: 0x1)
+    float CustomNearClippingPlane;                                                    // 0x0A18 (size: 0x4)
+    bool bUseCustomProjectionMatrix;                                                  // 0x0A1C (size: 0x1)
+    FMatrix CustomProjectionMatrix;                                                   // 0x0A20 (size: 0x80)
+    bool bUseFauxOrthoViewPos;                                                        // 0x0AA0 (size: 0x1)
+    bool bEnableOrthographicTiling;                                                   // 0x0AA1 (size: 0x1)
+    int32 NumXTiles;                                                                  // 0x0AA4 (size: 0x4)
+    int32 NumYTiles;                                                                  // 0x0AA8 (size: 0x4)
+    bool bEnableClipPlane;                                                            // 0x0AAC (size: 0x1)
+    FVector ClipPlaneBase;                                                            // 0x0AB0 (size: 0x18)
+    FVector ClipPlaneNormal;                                                          // 0x0AC8 (size: 0x18)
+    bool bRenderInMainRenderer;                                                       // 0x0AE0 (size: 0x1)
+    uint8 bCameraCutThisFrame;                                                        // 0x0AE4 (size: 0x1)
+    uint8 bConsiderUnrenderedOpaquePixelAsFullyTranslucent;                           // 0x0AE4 (size: 0x1)
 
     void RemoveBlendable(TScriptInterface<class IBlendableInterface> InBlendableObject);
     void CaptureScene();
     void AddOrUpdateBlendable(TScriptInterface<class IBlendableInterface> InBlendableObject, float InWeight);
-}; // Size: 0xAF0
+}; // Size: 0xB00
 
 class USceneCaptureComponentCube : public USceneCaptureComponent
 {
-    class UTextureRenderTargetCube* TextureTarget;                                    // 0x02E8 (size: 0x8)
-    bool bCaptureRotation;                                                            // 0x02F0 (size: 0x1)
+    class UTextureRenderTargetCube* TextureTarget;                                    // 0x02F0 (size: 0x8)
+    bool bCaptureRotation;                                                            // 0x02F8 (size: 0x1)
 
     void CaptureScene();
 }; // Size: 0x300
@@ -22269,6 +22279,7 @@ class USceneComponent : public UActorComponent
     TEnumAsByte<EDetailMode> DetailMode;                                              // 0x0194 (size: 0x1)
     FSceneComponentPhysicsVolumeChangedDelegate PhysicsVolumeChangedDelegate;         // 0x0195 (size: 0x1)
     void PhysicsVolumeChanged(class APhysicsVolume* NewVolume);
+    bool bShouldPropogateScopedMovementUpdates;                                       // 0x0230 (size: 0x1)
 
     void ToggleVisibility(bool bPropagateToChildren);
     void SetWorldScale3D(FVector NewScale);
@@ -22331,7 +22342,7 @@ class USceneComponent : public UActorComponent
     TArray<FName> GetAllSocketNames();
     bool DoesSocketExist(FName InSocketName);
     void DetachFromParent(bool bMaintainWorldPosition, bool bCallModify);
-}; // Size: 0x230
+}; // Size: 0x240
 
 class UScriptViewportClient : public UObject
 {
@@ -22345,17 +22356,17 @@ class UShadowMapTexture2D : public UTexture2D
 
 class UShapeComponent : public UPrimitiveComponent
 {
-    class UBodySetup* ShapeBodySetup;                                                 // 0x0518 (size: 0x8)
-    FColor ShapeColor;                                                                // 0x0520 (size: 0x4)
-    uint8 bDrawOnlyIfSelected;                                                        // 0x0524 (size: 0x1)
-    uint8 bShouldCollideWhenPlacing;                                                  // 0x0524 (size: 0x1)
-    uint8 bDynamicObstacle;                                                           // 0x0524 (size: 0x1)
-    TSubclassOf<class UNavAreaBase> AreaClassOverride;                                // 0x0528 (size: 0x8)
-    uint8 bUseSystemDefaultObstacleAreaClass;                                         // 0x0530 (size: 0x1)
-    float LineThickness;                                                              // 0x0534 (size: 0x4)
+    class UBodySetup* ShapeBodySetup;                                                 // 0x0520 (size: 0x8)
+    FColor ShapeColor;                                                                // 0x0528 (size: 0x4)
+    uint8 bDrawOnlyIfSelected;                                                        // 0x052C (size: 0x1)
+    uint8 bShouldCollideWhenPlacing;                                                  // 0x052C (size: 0x1)
+    uint8 bDynamicObstacle;                                                           // 0x052C (size: 0x1)
+    TSubclassOf<class UNavAreaBase> AreaClassOverride;                                // 0x0530 (size: 0x8)
+    uint8 bUseSystemDefaultObstacleAreaClass;                                         // 0x0538 (size: 0x1)
+    float LineThickness;                                                              // 0x053C (size: 0x4)
 
     void SetLineThickness(float Thickness);
-}; // Size: 0x540
+}; // Size: 0x550
 
 class USimpleConstructionScript : public UObject
 {
@@ -22687,45 +22698,45 @@ class USkinnedAsset : public UStreamableRenderAsset
 
 class USkinnedMeshComponent : public UMeshComponent
 {
-    class USkeletalMesh* SkeletalMesh;                                                // 0x0558 (size: 0x8)
-    class USkinnedAsset* SkinnedAsset;                                                // 0x0560 (size: 0x8)
-    TWeakObjectPtr<class USkinnedMeshComponent> LeaderPoseComponent;                  // 0x0568 (size: 0x8)
-    TArray<ESkinCacheUsage> SkinCacheUsage;                                           // 0x0570 (size: 0x10)
-    bool bSetMeshDeformer;                                                            // 0x0580 (size: 0x1)
-    class UMeshDeformer* MeshDeformer;                                                // 0x0588 (size: 0x8)
-    class UMeshDeformerInstanceSettings* MeshDeformerInstanceSettings;                // 0x0590 (size: 0x8)
-    FMeshDeformerInstanceSet MeshDeformerInstances;                                   // 0x0598 (size: 0x20)
-    class UPhysicsAsset* PhysicsAssetOverride;                                        // 0x0738 (size: 0x8)
-    int32 ForcedLodModel;                                                             // 0x0740 (size: 0x4)
-    int32 MinLodModel;                                                                // 0x0748 (size: 0x4)
-    float StreamingDistanceMultiplier;                                                // 0x0754 (size: 0x4)
-    TArray<FSkelMeshComponentLODInfo> LODInfo;                                        // 0x0760 (size: 0x10)
-    EVisibilityBasedAnimTickOption VisibilityBasedAnimTickOption;                     // 0x0794 (size: 0x1)
-    uint8 bOverrideMinLOD;                                                            // 0x0796 (size: 0x1)
-    uint8 bUseBoundsFromLeaderPoseComponent;                                          // 0x0796 (size: 0x1)
-    uint8 bForceWireframe;                                                            // 0x0796 (size: 0x1)
-    uint8 bDisableMorphTarget;                                                        // 0x0796 (size: 0x1)
-    uint8 bHideSkin;                                                                  // 0x0796 (size: 0x1)
-    uint8 bPerBoneMotionBlur;                                                         // 0x0797 (size: 0x1)
-    uint8 bComponentUseFixedSkelBounds;                                               // 0x0797 (size: 0x1)
-    uint8 bConsiderAllBodiesForBounds;                                                // 0x0797 (size: 0x1)
-    uint8 bSyncAttachParentLOD;                                                       // 0x0797 (size: 0x1)
-    uint8 bCanHighlightSelectedSections;                                              // 0x0797 (size: 0x1)
-    uint8 bRecentlyRendered;                                                          // 0x0797 (size: 0x1)
-    uint8 bCastCapsuleDirectShadow;                                                   // 0x0797 (size: 0x1)
-    uint8 bCastCapsuleIndirectShadow;                                                 // 0x0797 (size: 0x1)
-    uint8 bCPUSkinning;                                                               // 0x0798 (size: 0x1)
-    uint8 bEnableUpdateRateOptimizations;                                             // 0x0798 (size: 0x1)
-    uint8 bDisplayDebugUpdateRateOptimizations;                                       // 0x0798 (size: 0x1)
-    uint8 bRenderStatic;                                                              // 0x0798 (size: 0x1)
-    uint8 bIgnoreLeaderPoseComponentLOD;                                              // 0x0798 (size: 0x1)
-    uint8 bCachedLocalBoundsUpToDate;                                                 // 0x0798 (size: 0x1)
-    uint8 bCachedWorldSpaceBoundsUpToDate;                                            // 0x0799 (size: 0x1)
-    uint8 bForceMeshObjectUpdate;                                                     // 0x0799 (size: 0x1)
-    uint8 bForceUpdateDynamicDataImmediately;                                         // 0x0799 (size: 0x1)
-    uint8 bFollowerShouldTickPose;                                                    // 0x079A (size: 0x1)
-    float CapsuleIndirectShadowMinVisibility;                                         // 0x079C (size: 0x4)
-    FBoxSphereBounds CachedWorldOrLocalSpaceBounds;                                   // 0x07E0 (size: 0x38)
+    class USkeletalMesh* SkeletalMesh;                                                // 0x0560 (size: 0x8)
+    class USkinnedAsset* SkinnedAsset;                                                // 0x0568 (size: 0x8)
+    TWeakObjectPtr<class USkinnedMeshComponent> LeaderPoseComponent;                  // 0x0570 (size: 0x8)
+    TArray<ESkinCacheUsage> SkinCacheUsage;                                           // 0x0578 (size: 0x10)
+    bool bSetMeshDeformer;                                                            // 0x0588 (size: 0x1)
+    class UMeshDeformer* MeshDeformer;                                                // 0x0590 (size: 0x8)
+    class UMeshDeformerInstanceSettings* MeshDeformerInstanceSettings;                // 0x0598 (size: 0x8)
+    FMeshDeformerInstanceSet MeshDeformerInstances;                                   // 0x05A0 (size: 0x20)
+    class UPhysicsAsset* PhysicsAssetOverride;                                        // 0x0740 (size: 0x8)
+    int32 ForcedLodModel;                                                             // 0x0748 (size: 0x4)
+    int32 MinLodModel;                                                                // 0x0750 (size: 0x4)
+    float StreamingDistanceMultiplier;                                                // 0x075C (size: 0x4)
+    TArray<FSkelMeshComponentLODInfo> LODInfo;                                        // 0x0768 (size: 0x10)
+    EVisibilityBasedAnimTickOption VisibilityBasedAnimTickOption;                     // 0x079C (size: 0x1)
+    uint8 bOverrideMinLOD;                                                            // 0x079E (size: 0x1)
+    uint8 bUseBoundsFromLeaderPoseComponent;                                          // 0x079E (size: 0x1)
+    uint8 bForceWireframe;                                                            // 0x079E (size: 0x1)
+    uint8 bDisableMorphTarget;                                                        // 0x079E (size: 0x1)
+    uint8 bHideSkin;                                                                  // 0x079E (size: 0x1)
+    uint8 bPerBoneMotionBlur;                                                         // 0x079F (size: 0x1)
+    uint8 bComponentUseFixedSkelBounds;                                               // 0x079F (size: 0x1)
+    uint8 bConsiderAllBodiesForBounds;                                                // 0x079F (size: 0x1)
+    uint8 bSyncAttachParentLOD;                                                       // 0x079F (size: 0x1)
+    uint8 bCanHighlightSelectedSections;                                              // 0x079F (size: 0x1)
+    uint8 bRecentlyRendered;                                                          // 0x079F (size: 0x1)
+    uint8 bCastCapsuleDirectShadow;                                                   // 0x079F (size: 0x1)
+    uint8 bCastCapsuleIndirectShadow;                                                 // 0x079F (size: 0x1)
+    uint8 bCPUSkinning;                                                               // 0x07A0 (size: 0x1)
+    uint8 bEnableUpdateRateOptimizations;                                             // 0x07A0 (size: 0x1)
+    uint8 bDisplayDebugUpdateRateOptimizations;                                       // 0x07A0 (size: 0x1)
+    uint8 bRenderStatic;                                                              // 0x07A0 (size: 0x1)
+    uint8 bIgnoreLeaderPoseComponentLOD;                                              // 0x07A0 (size: 0x1)
+    uint8 bCachedLocalBoundsUpToDate;                                                 // 0x07A0 (size: 0x1)
+    uint8 bCachedWorldSpaceBoundsUpToDate;                                            // 0x07A1 (size: 0x1)
+    uint8 bForceMeshObjectUpdate;                                                     // 0x07A1 (size: 0x1)
+    uint8 bForceUpdateDynamicDataImmediately;                                         // 0x07A1 (size: 0x1)
+    uint8 bFollowerShouldTickPose;                                                    // 0x07A2 (size: 0x1)
+    float CapsuleIndirectShadowMinVisibility;                                         // 0x07A4 (size: 0x4)
+    FBoxSphereBounds CachedWorldOrLocalSpaceBounds;                                   // 0x07E8 (size: 0x38)
     FMatrix CachedWorldToLocalTransform;                                              // 0x0820 (size: 0x80)
 
     void UnsetMeshDeformer();
@@ -22783,32 +22794,32 @@ class USkinnedMeshComponent : public UMeshComponent
 
 class USkyAtmosphereComponent : public USceneComponent
 {
-    ESkyAtmosphereTransformMode TransformMode;                                        // 0x0230 (size: 0x1)
-    float BottomRadius;                                                               // 0x0234 (size: 0x4)
-    FColor GroundAlbedo;                                                              // 0x0238 (size: 0x4)
-    float AtmosphereHeight;                                                           // 0x023C (size: 0x4)
-    float MultiScatteringFactor;                                                      // 0x0240 (size: 0x4)
-    float TraceSampleCountScale;                                                      // 0x0244 (size: 0x4)
-    float RayleighScatteringScale;                                                    // 0x0248 (size: 0x4)
-    FLinearColor RayleighScattering;                                                  // 0x024C (size: 0x10)
-    float RayleighExponentialDistribution;                                            // 0x025C (size: 0x4)
-    float MieScatteringScale;                                                         // 0x0260 (size: 0x4)
-    FLinearColor MieScattering;                                                       // 0x0264 (size: 0x10)
-    float MieAbsorptionScale;                                                         // 0x0274 (size: 0x4)
-    FLinearColor MieAbsorption;                                                       // 0x0278 (size: 0x10)
-    float MieAnisotropy;                                                              // 0x0288 (size: 0x4)
-    float MieExponentialDistribution;                                                 // 0x028C (size: 0x4)
-    float OtherAbsorptionScale;                                                       // 0x0290 (size: 0x4)
-    FLinearColor OtherAbsorption;                                                     // 0x0294 (size: 0x10)
-    FTentDistribution OtherTentDistribution;                                          // 0x02A4 (size: 0xC)
-    FLinearColor SkyLuminanceFactor;                                                  // 0x02B0 (size: 0x10)
-    float AerialPespectiveViewDistanceScale;                                          // 0x02C0 (size: 0x4)
-    float HeightFogContribution;                                                      // 0x02C4 (size: 0x4)
-    float TransmittanceMinLightElevationAngle;                                        // 0x02C8 (size: 0x4)
-    float AerialPerspectiveStartDepth;                                                // 0x02CC (size: 0x4)
-    uint8 bHoldout;                                                                   // 0x02D0 (size: 0x1)
-    uint8 bRenderInMainPass;                                                          // 0x02D0 (size: 0x1)
-    FGuid bStaticLightingBuiltGUID;                                                   // 0x0318 (size: 0x10)
+    ESkyAtmosphereTransformMode TransformMode;                                        // 0x0238 (size: 0x1)
+    float BottomRadius;                                                               // 0x023C (size: 0x4)
+    FColor GroundAlbedo;                                                              // 0x0240 (size: 0x4)
+    float AtmosphereHeight;                                                           // 0x0244 (size: 0x4)
+    float MultiScatteringFactor;                                                      // 0x0248 (size: 0x4)
+    float TraceSampleCountScale;                                                      // 0x024C (size: 0x4)
+    float RayleighScatteringScale;                                                    // 0x0250 (size: 0x4)
+    FLinearColor RayleighScattering;                                                  // 0x0254 (size: 0x10)
+    float RayleighExponentialDistribution;                                            // 0x0264 (size: 0x4)
+    float MieScatteringScale;                                                         // 0x0268 (size: 0x4)
+    FLinearColor MieScattering;                                                       // 0x026C (size: 0x10)
+    float MieAbsorptionScale;                                                         // 0x027C (size: 0x4)
+    FLinearColor MieAbsorption;                                                       // 0x0280 (size: 0x10)
+    float MieAnisotropy;                                                              // 0x0290 (size: 0x4)
+    float MieExponentialDistribution;                                                 // 0x0294 (size: 0x4)
+    float OtherAbsorptionScale;                                                       // 0x0298 (size: 0x4)
+    FLinearColor OtherAbsorption;                                                     // 0x029C (size: 0x10)
+    FTentDistribution OtherTentDistribution;                                          // 0x02AC (size: 0xC)
+    FLinearColor SkyLuminanceFactor;                                                  // 0x02B8 (size: 0x10)
+    float AerialPespectiveViewDistanceScale;                                          // 0x02C8 (size: 0x4)
+    float HeightFogContribution;                                                      // 0x02CC (size: 0x4)
+    float TransmittanceMinLightElevationAngle;                                        // 0x02D0 (size: 0x4)
+    float AerialPerspectiveStartDepth;                                                // 0x02D4 (size: 0x4)
+    uint8 bHoldout;                                                                   // 0x02D8 (size: 0x1)
+    uint8 bRenderInMainPass;                                                          // 0x02D8 (size: 0x1)
+    FGuid bStaticLightingBuiltGUID;                                                   // 0x0320 (size: 0x10)
 
     void SetSkyLuminanceFactor(FLinearColor NewValue);
     void SetRenderInMainPass(bool bValue);
@@ -22835,31 +22846,31 @@ class USkyAtmosphereComponent : public USceneComponent
     bool IsAtmosphereLightDirectionOverriden(int32 AtmosphereLightIndex);
     FVector GetOverridenAtmosphereLightDirection(int32 AtmosphereLightIndex);
     FLinearColor GetAtmosphereTransmitanceOnGroundAtPlanetTop(class UDirectionalLightComponent* DirectionalLight);
-}; // Size: 0x330
+}; // Size: 0x340
 
 class USkyLightComponent : public ULightComponentBase
 {
-    bool bRealTimeCapture;                                                            // 0x0268 (size: 0x1)
-    TEnumAsByte<ESkyLightSourceType> SourceType;                                      // 0x0269 (size: 0x1)
-    class UTextureCube* Cubemap;                                                      // 0x0270 (size: 0x8)
-    float SourceCubemapAngle;                                                         // 0x0278 (size: 0x4)
-    int32 CubemapResolution;                                                          // 0x027C (size: 0x4)
-    float SkyDistanceThreshold;                                                       // 0x0280 (size: 0x4)
-    bool bCaptureEmissiveOnly;                                                        // 0x0284 (size: 0x1)
-    bool bLowerHemisphereIsBlack;                                                     // 0x0285 (size: 0x1)
-    FLinearColor LowerHemisphereColor;                                                // 0x0288 (size: 0x10)
-    float OcclusionMaxDistance;                                                       // 0x0298 (size: 0x4)
-    float Contrast;                                                                   // 0x029C (size: 0x4)
-    float OcclusionExponent;                                                          // 0x02A0 (size: 0x4)
-    float MinOcclusion;                                                               // 0x02A4 (size: 0x4)
-    FColor OcclusionTint;                                                             // 0x02A8 (size: 0x4)
-    uint8 bCloudAmbientOcclusion;                                                     // 0x02AC (size: 0x1)
-    float CloudAmbientOcclusionStrength;                                              // 0x02B0 (size: 0x4)
-    float CloudAmbientOcclusionExtent;                                                // 0x02B4 (size: 0x4)
-    float CloudAmbientOcclusionMapResolutionScale;                                    // 0x02B8 (size: 0x4)
-    float CloudAmbientOcclusionApertureScale;                                         // 0x02BC (size: 0x4)
-    TEnumAsByte<EOcclusionCombineMode> OcclusionCombineMode;                          // 0x02C0 (size: 0x1)
-    class UTextureCube* BlendDestinationCubemap;                                      // 0x0368 (size: 0x8)
+    bool bRealTimeCapture;                                                            // 0x0270 (size: 0x1)
+    TEnumAsByte<ESkyLightSourceType> SourceType;                                      // 0x0271 (size: 0x1)
+    class UTextureCube* Cubemap;                                                      // 0x0278 (size: 0x8)
+    float SourceCubemapAngle;                                                         // 0x0280 (size: 0x4)
+    int32 CubemapResolution;                                                          // 0x0284 (size: 0x4)
+    float SkyDistanceThreshold;                                                       // 0x0288 (size: 0x4)
+    bool bCaptureEmissiveOnly;                                                        // 0x028C (size: 0x1)
+    bool bLowerHemisphereIsBlack;                                                     // 0x028D (size: 0x1)
+    FLinearColor LowerHemisphereColor;                                                // 0x0290 (size: 0x10)
+    float OcclusionMaxDistance;                                                       // 0x02A0 (size: 0x4)
+    float Contrast;                                                                   // 0x02A4 (size: 0x4)
+    float OcclusionExponent;                                                          // 0x02A8 (size: 0x4)
+    float MinOcclusion;                                                               // 0x02AC (size: 0x4)
+    FColor OcclusionTint;                                                             // 0x02B0 (size: 0x4)
+    uint8 bCloudAmbientOcclusion;                                                     // 0x02B4 (size: 0x1)
+    float CloudAmbientOcclusionStrength;                                              // 0x02B8 (size: 0x4)
+    float CloudAmbientOcclusionExtent;                                                // 0x02BC (size: 0x4)
+    float CloudAmbientOcclusionMapResolutionScale;                                    // 0x02C0 (size: 0x4)
+    float CloudAmbientOcclusionApertureScale;                                         // 0x02C4 (size: 0x4)
+    TEnumAsByte<EOcclusionCombineMode> OcclusionCombineMode;                          // 0x02C8 (size: 0x1)
+    class UTextureCube* BlendDestinationCubemap;                                      // 0x0378 (size: 0x8)
 
     void SetVolumetricScatteringIntensity(float NewIntensity);
     void SetSourceCubemapAngle(float NewValue);
@@ -22874,7 +22885,7 @@ class USkyLightComponent : public ULightComponentBase
     void SetCubemapBlend(class UTextureCube* SourceCubemap, class UTextureCube* DestinationCubemap, float InBlendFraction);
     void SetCubemap(class UTextureCube* NewCubemap);
     void RecaptureSky();
-}; // Size: 0x440
+}; // Size: 0x450
 
 class USlateBrushAsset : public UObject
 {
@@ -23333,7 +23344,7 @@ class USpecularProfile : public UObject
 
 class USphereComponent : public UShapeComponent
 {
-    float SphereRadius;                                                               // 0x0540 (size: 0x4)
+    float SphereRadius;                                                               // 0x0548 (size: 0x4)
 
     void SetSphereRadius(float InSphereRadius, bool bUpdateOverlaps);
     float GetUnscaledSphereRadius();
@@ -23343,31 +23354,31 @@ class USphereComponent : public UShapeComponent
 
 class USphereReflectionCaptureComponent : public UReflectionCaptureComponent
 {
-    float InfluenceRadius;                                                            // 0x0298 (size: 0x4)
-    float CaptureDistanceScale;                                                       // 0x029C (size: 0x4)
-    class UDrawSphereComponent* PreviewInfluenceRadius;                               // 0x02A0 (size: 0x8)
+    float InfluenceRadius;                                                            // 0x02A0 (size: 0x4)
+    float CaptureDistanceScale;                                                       // 0x02A4 (size: 0x4)
+    class UDrawSphereComponent* PreviewInfluenceRadius;                               // 0x02A8 (size: 0x8)
 
 }; // Size: 0x2B0
 
 class USplineComponent : public UPrimitiveComponent
 {
-    FSplineCurves SplineCurves;                                                       // 0x0518 (size: 0x70)
-    FInterpCurveVector SplineInfo;                                                    // 0x0588 (size: 0x18)
-    FInterpCurveQuat SplineRotInfo;                                                   // 0x05A0 (size: 0x18)
-    FInterpCurveVector SplineScaleInfo;                                               // 0x05B8 (size: 0x18)
-    FInterpCurveFloat SplineReparamTable;                                             // 0x05D0 (size: 0x18)
-    bool bAllowSplineEditingPerInstance;                                              // 0x05E8 (size: 0x1)
-    int32 ReparamStepsPerSegment;                                                     // 0x05EC (size: 0x4)
-    float Duration;                                                                   // 0x05F0 (size: 0x4)
-    bool bStationaryEndpoints;                                                        // 0x05F4 (size: 0x1)
-    bool bSplineHasBeenEdited;                                                        // 0x05F5 (size: 0x1)
-    bool bModifiedByConstructionScript;                                               // 0x05F6 (size: 0x1)
-    bool bInputSplinePointsToConstructionScript;                                      // 0x05F7 (size: 0x1)
-    bool bDrawDebug;                                                                  // 0x05F8 (size: 0x1)
-    bool bClosedLoop;                                                                 // 0x05F9 (size: 0x1)
-    bool bLoopPositionOverride;                                                       // 0x05FA (size: 0x1)
-    float LoopPosition;                                                               // 0x05FC (size: 0x4)
-    FVector DefaultUpVector;                                                          // 0x0600 (size: 0x18)
+    FSplineCurves SplineCurves;                                                       // 0x0520 (size: 0x70)
+    FInterpCurveVector SplineInfo;                                                    // 0x0590 (size: 0x18)
+    FInterpCurveQuat SplineRotInfo;                                                   // 0x05A8 (size: 0x18)
+    FInterpCurveVector SplineScaleInfo;                                               // 0x05C0 (size: 0x18)
+    FInterpCurveFloat SplineReparamTable;                                             // 0x05D8 (size: 0x18)
+    bool bAllowSplineEditingPerInstance;                                              // 0x05F0 (size: 0x1)
+    int32 ReparamStepsPerSegment;                                                     // 0x05F4 (size: 0x4)
+    float Duration;                                                                   // 0x05F8 (size: 0x4)
+    bool bStationaryEndpoints;                                                        // 0x05FC (size: 0x1)
+    bool bSplineHasBeenEdited;                                                        // 0x05FD (size: 0x1)
+    bool bModifiedByConstructionScript;                                               // 0x05FE (size: 0x1)
+    bool bInputSplinePointsToConstructionScript;                                      // 0x05FF (size: 0x1)
+    bool bDrawDebug;                                                                  // 0x0600 (size: 0x1)
+    bool bClosedLoop;                                                                 // 0x0601 (size: 0x1)
+    bool bLoopPositionOverride;                                                       // 0x0602 (size: 0x1)
+    float LoopPosition;                                                               // 0x0604 (size: 0x4)
+    FVector DefaultUpVector;                                                          // 0x0608 (size: 0x18)
 
     void UpdateSpline();
     void SetWorldLocationAtSplinePoint(int32 PointIndex, const FVector& InLocation);
@@ -23483,18 +23494,18 @@ class USplineComponent : public UPrimitiveComponent
 
 class USplineMeshComponent : public UStaticMeshComponent
 {
-    FSplineMeshParams SplineParams;                                                   // 0x05E0 (size: 0xB8)
-    FVector SplineUpDir;                                                              // 0x0698 (size: 0x18)
-    float SplineBoundaryMin;                                                          // 0x06B0 (size: 0x4)
-    FGuid CachedMeshBodySetupGuid;                                                    // 0x06B4 (size: 0x10)
-    class UBodySetup* BodySetup;                                                      // 0x0700 (size: 0x8)
-    float SplineBoundaryMax;                                                          // 0x0708 (size: 0x4)
-    uint8 bAllowSplineEditingPerInstance;                                             // 0x070C (size: 0x1)
-    uint8 bSmoothInterpRollScale;                                                     // 0x070C (size: 0x1)
-    uint8 bMeshDirty;                                                                 // 0x070C (size: 0x1)
-    TEnumAsByte<ESplineMeshAxis::Type> ForwardAxis;                                   // 0x070D (size: 0x1)
-    float VirtualTextureMainPassMaxDrawDistance;                                      // 0x0710 (size: 0x4)
-    uint8 bNeverNeedsCookedCollisionData;                                             // 0x0714 (size: 0x1)
+    FSplineMeshParams SplineParams;                                                   // 0x05E8 (size: 0xB8)
+    FVector SplineUpDir;                                                              // 0x06A0 (size: 0x18)
+    float SplineBoundaryMin;                                                          // 0x06B8 (size: 0x4)
+    FGuid CachedMeshBodySetupGuid;                                                    // 0x06BC (size: 0x10)
+    class UBodySetup* BodySetup;                                                      // 0x0708 (size: 0x8)
+    float SplineBoundaryMax;                                                          // 0x0710 (size: 0x4)
+    uint8 bAllowSplineEditingPerInstance;                                             // 0x0714 (size: 0x1)
+    uint8 bSmoothInterpRollScale;                                                     // 0x0714 (size: 0x1)
+    uint8 bMeshDirty;                                                                 // 0x0714 (size: 0x1)
+    TEnumAsByte<ESplineMeshAxis::Type> ForwardAxis;                                   // 0x0715 (size: 0x1)
+    float VirtualTextureMainPassMaxDrawDistance;                                      // 0x0718 (size: 0x4)
+    uint8 bNeverNeedsCookedCollisionData;                                             // 0x071C (size: 0x1)
 
     void UpdateMesh();
     void SetStartTangent(FVector StartTangent, bool bUpdateMesh);
@@ -23536,34 +23547,34 @@ class USplineMetadata : public UObject
 
 class USpotLightComponent : public UPointLightComponent
 {
-    float InnerConeAngle;                                                             // 0x03A8 (size: 0x4)
-    float OuterConeAngle;                                                             // 0x03AC (size: 0x4)
+    float InnerConeAngle;                                                             // 0x03B0 (size: 0x4)
+    float OuterConeAngle;                                                             // 0x03B4 (size: 0x4)
 
     void SetOuterConeAngle(float NewOuterConeAngle);
     void SetInnerConeAngle(float NewInnerConeAngle);
-}; // Size: 0x3B0
+}; // Size: 0x3C0
 
 class USpringArmComponent : public USceneComponent
 {
-    float TargetArmLength;                                                            // 0x0230 (size: 0x4)
-    FVector SocketOffset;                                                             // 0x0238 (size: 0x18)
-    FVector TargetOffset;                                                             // 0x0250 (size: 0x18)
-    float ProbeSize;                                                                  // 0x0268 (size: 0x4)
-    TEnumAsByte<ECollisionChannel> ProbeChannel;                                      // 0x026C (size: 0x1)
-    uint8 bDoCollisionTest;                                                           // 0x0270 (size: 0x1)
-    uint8 bUsePawnControlRotation;                                                    // 0x0270 (size: 0x1)
-    uint8 bInheritPitch;                                                              // 0x0270 (size: 0x1)
-    uint8 bInheritYaw;                                                                // 0x0270 (size: 0x1)
-    uint8 bInheritRoll;                                                               // 0x0270 (size: 0x1)
-    uint8 bEnableCameraLag;                                                           // 0x0270 (size: 0x1)
-    uint8 bEnableCameraRotationLag;                                                   // 0x0270 (size: 0x1)
-    uint8 bUseCameraLagSubstepping;                                                   // 0x0270 (size: 0x1)
-    uint8 bDrawDebugLagMarkers;                                                       // 0x0271 (size: 0x1)
-    float CameraLagSpeed;                                                             // 0x0274 (size: 0x4)
-    float CameraRotationLagSpeed;                                                     // 0x0278 (size: 0x4)
-    float CameraLagMaxTimeStep;                                                       // 0x027C (size: 0x4)
-    float CameraLagMaxDistance;                                                       // 0x0280 (size: 0x4)
-    uint8 bClampToMaxPhysicsDeltaTime;                                                // 0x0284 (size: 0x1)
+    float TargetArmLength;                                                            // 0x0238 (size: 0x4)
+    FVector SocketOffset;                                                             // 0x0240 (size: 0x18)
+    FVector TargetOffset;                                                             // 0x0258 (size: 0x18)
+    float ProbeSize;                                                                  // 0x0270 (size: 0x4)
+    TEnumAsByte<ECollisionChannel> ProbeChannel;                                      // 0x0274 (size: 0x1)
+    uint8 bDoCollisionTest;                                                           // 0x0278 (size: 0x1)
+    uint8 bUsePawnControlRotation;                                                    // 0x0278 (size: 0x1)
+    uint8 bInheritPitch;                                                              // 0x0278 (size: 0x1)
+    uint8 bInheritYaw;                                                                // 0x0278 (size: 0x1)
+    uint8 bInheritRoll;                                                               // 0x0278 (size: 0x1)
+    uint8 bEnableCameraLag;                                                           // 0x0278 (size: 0x1)
+    uint8 bEnableCameraRotationLag;                                                   // 0x0278 (size: 0x1)
+    uint8 bUseCameraLagSubstepping;                                                   // 0x0278 (size: 0x1)
+    uint8 bDrawDebugLagMarkers;                                                       // 0x0279 (size: 0x1)
+    float CameraLagSpeed;                                                             // 0x027C (size: 0x4)
+    float CameraRotationLagSpeed;                                                     // 0x0280 (size: 0x4)
+    float CameraLagMaxTimeStep;                                                       // 0x0284 (size: 0x4)
+    float CameraLagMaxDistance;                                                       // 0x0288 (size: 0x4)
+    uint8 bClampToMaxPhysicsDeltaTime;                                                // 0x028C (size: 0x1)
 
     bool IsCollisionFixApplied();
     FVector GetUnfixedCameraPosition();
@@ -23628,39 +23639,39 @@ class UStaticMesh : public UStreamableRenderAsset
 
 class UStaticMeshComponent : public UMeshComponent
 {
-    int32 ForcedLodModel;                                                             // 0x0550 (size: 0x4)
-    int32 PreviousLODLevel;                                                           // 0x0554 (size: 0x4)
-    int32 MinLOD;                                                                     // 0x0558 (size: 0x4)
-    int32 SubDivisionStepSize;                                                        // 0x055C (size: 0x4)
-    class UStaticMesh* StaticMesh;                                                    // 0x0560 (size: 0x8)
-    FColor WireframeColorOverride;                                                    // 0x0568 (size: 0x4)
-    uint8 bForceNaniteForMasked;                                                      // 0x056C (size: 0x1)
-    uint8 bDisallowNanite;                                                            // 0x056C (size: 0x1)
-    uint8 bForceDisableNanite;                                                        // 0x056C (size: 0x1)
-    uint8 bEvaluateWorldPositionOffset;                                               // 0x056C (size: 0x1)
-    uint8 bWorldPositionOffsetWritesVelocity;                                         // 0x056C (size: 0x1)
-    uint8 bEvaluateWorldPositionOffsetInRayTracing;                                   // 0x056C (size: 0x1)
-    int32 WorldPositionOffsetDisableDistance;                                         // 0x0570 (size: 0x4)
-    uint8 bOverrideWireframeColor;                                                    // 0x0574 (size: 0x1)
-    uint8 bOverrideMinLOD;                                                            // 0x0574 (size: 0x1)
-    uint8 bOverrideNavigationExport;                                                  // 0x0574 (size: 0x1)
-    uint8 bForceNavigationObstacle;                                                   // 0x0574 (size: 0x1)
-    uint8 bDisallowMeshPaintPerInstance;                                              // 0x0574 (size: 0x1)
-    uint8 bIgnoreInstanceForTextureStreaming;                                         // 0x0574 (size: 0x1)
-    uint8 bOverrideLightMapRes;                                                       // 0x0575 (size: 0x1)
-    uint8 bCastDistanceFieldIndirectShadow;                                           // 0x0575 (size: 0x1)
-    uint8 bOverrideDistanceFieldSelfShadowBias;                                       // 0x0575 (size: 0x1)
-    uint8 bUseSubDivisions;                                                           // 0x0575 (size: 0x1)
-    uint8 bUseDefaultCollision;                                                       // 0x0575 (size: 0x1)
-    uint8 bSortTriangles;                                                             // 0x0575 (size: 0x1)
-    uint8 bReverseCulling;                                                            // 0x0575 (size: 0x1)
-    int32 OverriddenLightMapRes;                                                      // 0x0578 (size: 0x4)
-    float DistanceFieldIndirectShadowMinVisibility;                                   // 0x057C (size: 0x4)
-    float DistanceFieldSelfShadowBias;                                                // 0x0580 (size: 0x4)
-    float StreamingDistanceMultiplier;                                                // 0x0584 (size: 0x4)
-    TArray<FStaticMeshComponentLODInfo> LODData;                                      // 0x0588 (size: 0x10)
-    TArray<FStreamingTextureBuildInfo> StreamingTextureData;                          // 0x0598 (size: 0x10)
-    FLightmassPrimitiveSettings LightmassSettings;                                    // 0x05A8 (size: 0x18)
+    int32 ForcedLodModel;                                                             // 0x0558 (size: 0x4)
+    int32 PreviousLODLevel;                                                           // 0x055C (size: 0x4)
+    int32 MinLOD;                                                                     // 0x0560 (size: 0x4)
+    int32 SubDivisionStepSize;                                                        // 0x0564 (size: 0x4)
+    class UStaticMesh* StaticMesh;                                                    // 0x0568 (size: 0x8)
+    FColor WireframeColorOverride;                                                    // 0x0570 (size: 0x4)
+    uint8 bForceNaniteForMasked;                                                      // 0x0574 (size: 0x1)
+    uint8 bDisallowNanite;                                                            // 0x0574 (size: 0x1)
+    uint8 bForceDisableNanite;                                                        // 0x0574 (size: 0x1)
+    uint8 bEvaluateWorldPositionOffset;                                               // 0x0574 (size: 0x1)
+    uint8 bWorldPositionOffsetWritesVelocity;                                         // 0x0574 (size: 0x1)
+    uint8 bEvaluateWorldPositionOffsetInRayTracing;                                   // 0x0574 (size: 0x1)
+    int32 WorldPositionOffsetDisableDistance;                                         // 0x0578 (size: 0x4)
+    uint8 bOverrideWireframeColor;                                                    // 0x057C (size: 0x1)
+    uint8 bOverrideMinLOD;                                                            // 0x057C (size: 0x1)
+    uint8 bOverrideNavigationExport;                                                  // 0x057C (size: 0x1)
+    uint8 bForceNavigationObstacle;                                                   // 0x057C (size: 0x1)
+    uint8 bDisallowMeshPaintPerInstance;                                              // 0x057C (size: 0x1)
+    uint8 bIgnoreInstanceForTextureStreaming;                                         // 0x057C (size: 0x1)
+    uint8 bOverrideLightMapRes;                                                       // 0x057D (size: 0x1)
+    uint8 bCastDistanceFieldIndirectShadow;                                           // 0x057D (size: 0x1)
+    uint8 bOverrideDistanceFieldSelfShadowBias;                                       // 0x057D (size: 0x1)
+    uint8 bUseSubDivisions;                                                           // 0x057D (size: 0x1)
+    uint8 bUseDefaultCollision;                                                       // 0x057D (size: 0x1)
+    uint8 bSortTriangles;                                                             // 0x057D (size: 0x1)
+    uint8 bReverseCulling;                                                            // 0x057D (size: 0x1)
+    int32 OverriddenLightMapRes;                                                      // 0x0580 (size: 0x4)
+    float DistanceFieldIndirectShadowMinVisibility;                                   // 0x0584 (size: 0x4)
+    float DistanceFieldSelfShadowBias;                                                // 0x0588 (size: 0x4)
+    float StreamingDistanceMultiplier;                                                // 0x058C (size: 0x4)
+    TArray<FStaticMeshComponentLODInfo> LODData;                                      // 0x0590 (size: 0x10)
+    TArray<FStreamingTextureBuildInfo> StreamingTextureData;                          // 0x05A0 (size: 0x10)
+    FLightmassPrimitiveSettings LightmassSettings;                                    // 0x05B0 (size: 0x18)
 
     void UpdateInitialEvaluateWorldPositionOffset();
     void SetWorldPositionOffsetDisableDistance(int32 NewValue);
@@ -23696,23 +23707,23 @@ class UStaticSparseVolumeTexture : public UStreamableSparseVolumeTexture
 
 class UStereoLayerComponent : public USceneComponent
 {
-    uint8 bLiveTexture;                                                               // 0x0230 (size: 0x1)
-    uint8 bSupportsDepth;                                                             // 0x0230 (size: 0x1)
-    uint8 bNoAlphaChannel;                                                            // 0x0230 (size: 0x1)
-    class UTexture* Texture;                                                          // 0x0238 (size: 0x8)
-    class UTexture* LeftTexture;                                                      // 0x0240 (size: 0x8)
-    uint8 bQuadPreserveTextureRatio;                                                  // 0x0248 (size: 0x1)
-    TArray<FName> AdditionalFlags;                                                    // 0x0250 (size: 0x10)
-    FVector2D QuadSize;                                                               // 0x0260 (size: 0x10)
-    FBox2D UVRect;                                                                    // 0x0270 (size: 0x28)
-    float CylinderRadius;                                                             // 0x0298 (size: 0x4)
-    float CylinderOverlayArc;                                                         // 0x029C (size: 0x4)
-    int32 CylinderHeight;                                                             // 0x02A0 (size: 0x4)
-    FEquirectProps EquirectProps;                                                     // 0x02A8 (size: 0x98)
-    TEnumAsByte<EStereoLayerType> StereoLayerType;                                    // 0x0340 (size: 0x1)
-    TEnumAsByte<EStereoLayerShape> StereoLayerShape;                                  // 0x0341 (size: 0x1)
-    class UStereoLayerShape* Shape;                                                   // 0x0348 (size: 0x8)
-    int32 Priority;                                                                   // 0x0350 (size: 0x4)
+    uint8 bLiveTexture;                                                               // 0x0238 (size: 0x1)
+    uint8 bSupportsDepth;                                                             // 0x0238 (size: 0x1)
+    uint8 bNoAlphaChannel;                                                            // 0x0238 (size: 0x1)
+    class UTexture* Texture;                                                          // 0x0240 (size: 0x8)
+    class UTexture* LeftTexture;                                                      // 0x0248 (size: 0x8)
+    uint8 bQuadPreserveTextureRatio;                                                  // 0x0250 (size: 0x1)
+    TArray<FName> AdditionalFlags;                                                    // 0x0258 (size: 0x10)
+    FVector2D QuadSize;                                                               // 0x0268 (size: 0x10)
+    FBox2D UVRect;                                                                    // 0x0278 (size: 0x28)
+    float CylinderRadius;                                                             // 0x02A0 (size: 0x4)
+    float CylinderOverlayArc;                                                         // 0x02A4 (size: 0x4)
+    int32 CylinderHeight;                                                             // 0x02A8 (size: 0x4)
+    FEquirectProps EquirectProps;                                                     // 0x02B0 (size: 0x98)
+    TEnumAsByte<EStereoLayerType> StereoLayerType;                                    // 0x0348 (size: 0x1)
+    TEnumAsByte<EStereoLayerShape> StereoLayerShape;                                  // 0x0349 (size: 0x1)
+    class UStereoLayerShape* Shape;                                                   // 0x0350 (size: 0x8)
+    int32 Priority;                                                                   // 0x0358 (size: 0x4)
 
     void SetUVRect(FBox2D InUVRect);
     void SetTexture(class UTexture* InTexture);
@@ -23726,7 +23737,7 @@ class UStereoLayerComponent : public USceneComponent
     FVector2D GetQuadSize();
     int32 GetPriority();
     class UTexture* GetLeftTexture();
-}; // Size: 0x3D0
+}; // Size: 0x3E0
 
 class UStereoLayerFunctionLibrary : public UBlueprintFunctionLibrary
 {
@@ -23887,19 +23898,19 @@ class UTextPropertyTestObject : public UObject
 
 class UTextRenderComponent : public UPrimitiveComponent
 {
-    FText Text;                                                                       // 0x0518 (size: 0x10)
-    class UMaterialInterface* TextMaterial;                                           // 0x0528 (size: 0x8)
-    class UFont* Font;                                                                // 0x0530 (size: 0x8)
-    TEnumAsByte<EHorizTextAligment> HorizontalAlignment;                              // 0x0538 (size: 0x1)
-    TEnumAsByte<EVerticalTextAligment> VerticalAlignment;                             // 0x0539 (size: 0x1)
-    FColor TextRenderColor;                                                           // 0x053C (size: 0x4)
-    float XScale;                                                                     // 0x0540 (size: 0x4)
-    float YScale;                                                                     // 0x0544 (size: 0x4)
-    float WorldSize;                                                                  // 0x0548 (size: 0x4)
-    float InvDefaultSize;                                                             // 0x054C (size: 0x4)
-    float HorizSpacingAdjust;                                                         // 0x0550 (size: 0x4)
-    float VertSpacingAdjust;                                                          // 0x0554 (size: 0x4)
-    uint8 bAlwaysRenderAsText;                                                        // 0x0558 (size: 0x1)
+    FText Text;                                                                       // 0x0520 (size: 0x10)
+    class UMaterialInterface* TextMaterial;                                           // 0x0530 (size: 0x8)
+    class UFont* Font;                                                                // 0x0538 (size: 0x8)
+    TEnumAsByte<EHorizTextAligment> HorizontalAlignment;                              // 0x0540 (size: 0x1)
+    TEnumAsByte<EVerticalTextAligment> VerticalAlignment;                             // 0x0541 (size: 0x1)
+    FColor TextRenderColor;                                                           // 0x0544 (size: 0x4)
+    float XScale;                                                                     // 0x0548 (size: 0x4)
+    float YScale;                                                                     // 0x054C (size: 0x4)
+    float WorldSize;                                                                  // 0x0550 (size: 0x4)
+    float InvDefaultSize;                                                             // 0x0554 (size: 0x4)
+    float HorizSpacingAdjust;                                                         // 0x0558 (size: 0x4)
+    float VertSpacingAdjust;                                                          // 0x055C (size: 0x4)
+    uint8 bAlwaysRenderAsText;                                                        // 0x0560 (size: 0x1)
 
     void SetYScale(float Value);
     void SetXScale(float Value);
@@ -23915,7 +23926,7 @@ class UTextRenderComponent : public UPrimitiveComponent
     void K2_SetText(const FText& Value);
     FVector GetTextWorldSize();
     FVector GetTextLocalSize();
-}; // Size: 0x560
+}; // Size: 0x570
 
 class UTexture : public UStreamableRenderAsset
 {
@@ -24325,13 +24336,13 @@ class UVectorFieldAnimated : public UVectorField
 
 class UVectorFieldComponent : public UPrimitiveComponent
 {
-    class UVectorField* VectorField;                                                  // 0x0518 (size: 0x8)
-    float Intensity;                                                                  // 0x0520 (size: 0x4)
-    float Tightness;                                                                  // 0x0524 (size: 0x4)
-    uint8 bPreviewVectorField;                                                        // 0x0528 (size: 0x1)
+    class UVectorField* VectorField;                                                  // 0x0520 (size: 0x8)
+    float Intensity;                                                                  // 0x0528 (size: 0x4)
+    float Tightness;                                                                  // 0x052C (size: 0x4)
+    uint8 bPreviewVectorField;                                                        // 0x0530 (size: 0x1)
 
     void SetIntensity(float NewIntensity);
-}; // Size: 0x540
+}; // Size: 0x550
 
 class UVectorFieldStatic : public UVectorField
 {
@@ -24419,33 +24430,33 @@ class UVolumeTexture : public UTexture
 
 class UVolumetricCloudComponent : public USceneComponent
 {
-    float LayerBottomAltitude;                                                        // 0x0230 (size: 0x4)
-    float LayerHeight;                                                                // 0x0234 (size: 0x4)
-    float TracingStartMaxDistance;                                                    // 0x0238 (size: 0x4)
-    float TracingStartDistanceFromCamera;                                             // 0x023C (size: 0x4)
-    EVolumetricCloudTracingMaxDistanceMode TracingMaxDistanceMode;                    // 0x0240 (size: 0x1)
-    float TracingMaxDistance;                                                         // 0x0244 (size: 0x4)
-    float PlanetRadius;                                                               // 0x0248 (size: 0x4)
-    FColor GroundAlbedo;                                                              // 0x024C (size: 0x4)
-    class UMaterialInterface* Material;                                               // 0x0250 (size: 0x8)
-    uint8 bUsePerSampleAtmosphericLightTransmittance;                                 // 0x0258 (size: 0x1)
-    float SkyLightCloudBottomOcclusion;                                               // 0x025C (size: 0x4)
-    float ViewSampleCountScale;                                                       // 0x0260 (size: 0x4)
-    float ReflectionViewSampleCountScaleValue;                                        // 0x0264 (size: 0x4)
-    float ReflectionViewSampleCountScale;                                             // 0x0268 (size: 0x4)
-    float ReflectionSampleCountScale;                                                 // 0x026C (size: 0x4)
-    float ShadowViewSampleCountScale;                                                 // 0x0270 (size: 0x4)
-    float ShadowReflectionViewSampleCountScaleValue;                                  // 0x0274 (size: 0x4)
-    float ShadowReflectionViewSampleCountScale;                                       // 0x0278 (size: 0x4)
-    float ShadowReflectionSampleCountScale;                                           // 0x027C (size: 0x4)
-    float ShadowTracingDistance;                                                      // 0x0280 (size: 0x4)
-    float StopTracingTransmittanceThreshold;                                          // 0x0284 (size: 0x4)
-    float AerialPespectiveRayleighScatteringStartDistance;                            // 0x0288 (size: 0x4)
-    float AerialPespectiveRayleighScatteringFadeDistance;                             // 0x028C (size: 0x4)
-    float AerialPespectiveMieScatteringStartDistance;                                 // 0x0290 (size: 0x4)
-    float AerialPespectiveMieScatteringFadeDistance;                                  // 0x0294 (size: 0x4)
-    uint8 bHoldout;                                                                   // 0x0298 (size: 0x1)
-    uint8 bRenderInMainPass;                                                          // 0x0298 (size: 0x1)
+    float LayerBottomAltitude;                                                        // 0x0238 (size: 0x4)
+    float LayerHeight;                                                                // 0x023C (size: 0x4)
+    float TracingStartMaxDistance;                                                    // 0x0240 (size: 0x4)
+    float TracingStartDistanceFromCamera;                                             // 0x0244 (size: 0x4)
+    EVolumetricCloudTracingMaxDistanceMode TracingMaxDistanceMode;                    // 0x0248 (size: 0x1)
+    float TracingMaxDistance;                                                         // 0x024C (size: 0x4)
+    float PlanetRadius;                                                               // 0x0250 (size: 0x4)
+    FColor GroundAlbedo;                                                              // 0x0254 (size: 0x4)
+    class UMaterialInterface* Material;                                               // 0x0258 (size: 0x8)
+    uint8 bUsePerSampleAtmosphericLightTransmittance;                                 // 0x0260 (size: 0x1)
+    float SkyLightCloudBottomOcclusion;                                               // 0x0264 (size: 0x4)
+    float ViewSampleCountScale;                                                       // 0x0268 (size: 0x4)
+    float ReflectionViewSampleCountScaleValue;                                        // 0x026C (size: 0x4)
+    float ReflectionViewSampleCountScale;                                             // 0x0270 (size: 0x4)
+    float ReflectionSampleCountScale;                                                 // 0x0274 (size: 0x4)
+    float ShadowViewSampleCountScale;                                                 // 0x0278 (size: 0x4)
+    float ShadowReflectionViewSampleCountScaleValue;                                  // 0x027C (size: 0x4)
+    float ShadowReflectionViewSampleCountScale;                                       // 0x0280 (size: 0x4)
+    float ShadowReflectionSampleCountScale;                                           // 0x0284 (size: 0x4)
+    float ShadowTracingDistance;                                                      // 0x0288 (size: 0x4)
+    float StopTracingTransmittanceThreshold;                                          // 0x028C (size: 0x4)
+    float AerialPespectiveRayleighScatteringStartDistance;                            // 0x0290 (size: 0x4)
+    float AerialPespectiveRayleighScatteringFadeDistance;                             // 0x0294 (size: 0x4)
+    float AerialPespectiveMieScatteringStartDistance;                                 // 0x0298 (size: 0x4)
+    float AerialPespectiveMieScatteringFadeDistance;                                  // 0x029C (size: 0x4)
+    uint8 bHoldout;                                                                   // 0x02A0 (size: 0x1)
+    uint8 bRenderInMainPass;                                                          // 0x02A0 (size: 0x1)
 
     void SetViewSampleCountScale(float NewValue);
     void SetTracingStartMaxDistance(float NewValue);
@@ -24471,12 +24482,12 @@ class UVolumetricCloudComponent : public USceneComponent
 
 class UWindDirectionalSourceComponent : public USceneComponent
 {
-    float Strength;                                                                   // 0x0230 (size: 0x4)
-    float Speed;                                                                      // 0x0234 (size: 0x4)
-    float MinGustAmount;                                                              // 0x0238 (size: 0x4)
-    float MaxGustAmount;                                                              // 0x023C (size: 0x4)
-    float Radius;                                                                     // 0x0240 (size: 0x4)
-    uint8 bPointWind;                                                                 // 0x0244 (size: 0x1)
+    float Strength;                                                                   // 0x0238 (size: 0x4)
+    float Speed;                                                                      // 0x023C (size: 0x4)
+    float MinGustAmount;                                                              // 0x0240 (size: 0x4)
+    float MaxGustAmount;                                                              // 0x0244 (size: 0x4)
+    float Radius;                                                                     // 0x0248 (size: 0x4)
+    uint8 bPointWind;                                                                 // 0x024C (size: 0x1)
 
     void SetWindType(EWindSourceType InNewType);
     void SetStrength(float InNewStrength);
@@ -24484,7 +24495,7 @@ class UWindDirectionalSourceComponent : public USceneComponent
     void SetRadius(float InNewRadius);
     void SetMinimumGustAmount(float InNewMinGust);
     void SetMaximumGustAmount(float InNewMaxGust);
-}; // Size: 0x250
+}; // Size: 0x260
 
 class UWorld : public UObject
 {
@@ -24571,16 +24582,16 @@ class UWorldPartitionBlueprintLibrary : public UBlueprintFunctionLibrary
 
 class UWorldPartitionDestructibleHLODComponent : public USceneComponent
 {
-    TArray<FName> DestructibleActors;                                                 // 0x0230 (size: 0x10)
+    TArray<FName> DestructibleActors;                                                 // 0x0238 (size: 0x10)
 
-}; // Size: 0x240
+}; // Size: 0x250
 
 class UWorldPartitionDestructibleHLODMeshComponent : public UWorldPartitionDestructibleHLODComponent
 {
-    class UMaterialInterface* DestructibleHLODMaterial;                               // 0x0240 (size: 0x8)
-    FWorldPartitionDestructibleHLODState DestructibleHLODState;                       // 0x0248 (size: 0x150)
-    class UMaterialInstanceDynamic* VisibilityMaterial;                               // 0x0398 (size: 0x8)
-    class UTexture2DDynamic* VisibilityTexture;                                       // 0x03A0 (size: 0x8)
+    class UMaterialInterface* DestructibleHLODMaterial;                               // 0x0248 (size: 0x8)
+    FWorldPartitionDestructibleHLODState DestructibleHLODState;                       // 0x0250 (size: 0x150)
+    class UMaterialInstanceDynamic* VisibilityMaterial;                               // 0x03A0 (size: 0x8)
+    class UTexture2DDynamic* VisibilityTexture;                                       // 0x03A8 (size: 0x8)
 
 }; // Size: 0x3B0
 

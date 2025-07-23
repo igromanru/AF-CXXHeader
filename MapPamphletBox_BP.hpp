@@ -3,13 +3,13 @@
 
 class AMapPamphletBox_BP_C : public AAbioticActor_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
-    class UStaticMeshComponent* Glass;                                                // 0x02D0 (size: 0x8)
-    class USpotLightComponent* SpotLight;                                             // 0x02D8 (size: 0x8)
-    class UStaticMeshComponent* Cube;                                                 // 0x02E0 (size: 0x8)
-    class UTextRenderComponent* TextRender;                                           // 0x02E8 (size: 0x8)
-    class UStaticMeshComponent* StaticMesh;                                           // 0x02F0 (size: 0x8)
-    FDataTableRowHandle MapRow;                                                       // 0x02F8 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D0 (size: 0x8)
+    class UStaticMeshComponent* Glass;                                                // 0x02D8 (size: 0x8)
+    class USpotLightComponent* SpotLight;                                             // 0x02E0 (size: 0x8)
+    class UStaticMeshComponent* Cube;                                                 // 0x02E8 (size: 0x8)
+    class UTextRenderComponent* TextRender;                                           // 0x02F0 (size: 0x8)
+    class UStaticMeshComponent* StaticMesh;                                           // 0x02F8 (size: 0x8)
+    FDataTableRowHandle MapRow;                                                       // 0x0300 (size: 0x10)
 
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
@@ -52,6 +52,6 @@ class AMapPamphletBox_BP_C : public AAbioticActor_C
     void InteractTeleportUpdate(class AAbiotic_Character_ParentBP_C* InteractingCharacter, bool TryingToTeleport, bool TeleportSuccessful);
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void ExecuteUbergraph_MapPamphletBox_BP(int32 EntryPoint);
-}; // Size: 0x308
+}; // Size: 0x310
 
 #endif

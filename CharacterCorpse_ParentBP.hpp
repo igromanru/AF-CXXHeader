@@ -3,30 +3,33 @@
 
 class ACharacterCorpse_ParentBP_C : public AAbioticActor_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
-    class UTextRenderComponent* TextRender;                                           // 0x02D0 (size: 0x8)
-    class UBillboardComponent* Billboard;                                             // 0x02D8 (size: 0x8)
-    class USkeletalMeshComponent* Mesh;                                               // 0x02E0 (size: 0x8)
-    FWorldFlagRowHandle WorldFlagToAppear;                                            // 0x02E8 (size: 0x20)
-    class UAnimSequence* DeathPose;                                                   // 0x0308 (size: 0x8)
-    bool CanBeGibbed;                                                                 // 0x0310 (size: 0x1)
-    FDataTableRowHandle GibSalvageRow;                                                // 0x0318 (size: 0x10)
-    bool IsInteractable;                                                              // 0x0328 (size: 0x1)
-    FDataTableRowHandle InteractionLoot;                                              // 0x0330 (size: 0x10)
-    TArray<FDataTableRowHandle> CustomizationUnlocks;                                 // 0x0340 (size: 0x10)
-    FAchievementRowHandle AchievementOnInteract;                                      // 0x0350 (size: 0x20)
-    FString CorpseDebugName;                                                          // 0x0370 (size: 0x10)
-    bool IsGibbed;                                                                    // 0x0380 (size: 0x1)
-    class USoundBase* GibbedSound;                                                    // 0x0388 (size: 0x8)
-    class UNiagaraSystem* GibParticles;                                               // 0x0390 (size: 0x8)
-    bool HasBeenLooted;                                                               // 0x0398 (size: 0x1)
-    FName ButtonPromptBone;                                                           // 0x039C (size: 0x8)
-    int32 CurrentGibCuts;                                                             // 0x03A4 (size: 0x4)
-    int32 MaxGibCuts;                                                                 // 0x03A8 (size: 0x4)
-    FCharacterCorpse_ParentBP_COnGibbed OnGibbed;                                     // 0x03B0 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D0 (size: 0x8)
+    class UTextRenderComponent* TextRender;                                           // 0x02D8 (size: 0x8)
+    class UBillboardComponent* Billboard;                                             // 0x02E0 (size: 0x8)
+    class USkeletalMeshComponent* Mesh;                                               // 0x02E8 (size: 0x8)
+    FWorldFlagRowHandle WorldFlagToAppear;                                            // 0x02F0 (size: 0x20)
+    class UAnimSequence* DeathPose;                                                   // 0x0310 (size: 0x8)
+    bool CanBeGibbed;                                                                 // 0x0318 (size: 0x1)
+    FDataTableRowHandle GibSalvageRow;                                                // 0x0320 (size: 0x10)
+    bool IsInteractable;                                                              // 0x0330 (size: 0x1)
+    FDataTableRowHandle InteractionLoot;                                              // 0x0338 (size: 0x10)
+    TArray<FDataTableRowHandle> CustomizationUnlocks;                                 // 0x0348 (size: 0x10)
+    FAchievementRowHandle AchievementOnInteract;                                      // 0x0358 (size: 0x20)
+    FString CorpseDebugName;                                                          // 0x0378 (size: 0x10)
+    bool IsGibbed;                                                                    // 0x0388 (size: 0x1)
+    class USoundBase* GibbedSound;                                                    // 0x0390 (size: 0x8)
+    class UNiagaraSystem* GibParticles;                                               // 0x0398 (size: 0x8)
+    bool HasBeenLooted;                                                               // 0x03A0 (size: 0x1)
+    FName ButtonPromptBone;                                                           // 0x03A4 (size: 0x8)
+    int32 CurrentGibCuts;                                                             // 0x03AC (size: 0x4)
+    int32 MaxGibCuts;                                                                 // 0x03B0 (size: 0x4)
+    FCharacterCorpse_ParentBP_COnGibbed OnGibbed;                                     // 0x03B8 (size: 0x10)
     void OnGibbed();
-    bool PlayAnimation;                                                               // 0x03C0 (size: 0x1)
+    bool PlayAnimation;                                                               // 0x03C8 (size: 0x1)
+    TArray<FDataTableRowHandle> CompendiumUnlocks;                                    // 0x03D0 (size: 0x10)
+    TArray<FDataTableRowHandle> JournalUnlocks;                                       // 0x03E0 (size: 0x10)
 
+    void GetFriendlyFireDamageMultiplier(bool& Return, double& DamageMultiplier);
     void TargetableByTurrets(bool& Targetable);
     void GetWandererNPC(class ANPC_Base_ParentBP_C*& Wanderer);
     bool GetTargetPriority(TEnumAsByte<E_TargetPriority::Type>& Priority);
@@ -63,10 +66,11 @@ class ACharacterCorpse_ParentBP_C : public AAbioticActor_C
     void Landing Damage Multiplier(double Damage, double& DamageMultiplier);
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
     bool IsRadioactive();
+    void MergeAndClearSkeletals(class USkeletalMeshComponent* Parent, TArray<class USkeletalMeshComponent*>& Children, FName OverrideCacheName);
     float GetAttackerLootChance(class AController* Instigator);
     void SaveCorpse();
     void LocalUnlockCustomization();
-    void GetTypeOfInteractableCorpse(bool& LootItem, bool& CustomizationUnlock, bool& AchievementUnlock);
+    void GetTypeOfInteractableCorpse(bool& LootItem, bool& CustomizationUnlock, bool& AchievementUnlock, bool& JournalUnlock, bool& CompendiumUnlock);
     void OnRep_CurrentGibCuts();
     void UpdateGibCutFX();
     void RefreshGibbedState();
@@ -97,6 +101,6 @@ class ACharacterCorpse_ParentBP_C : public AAbioticActor_C
     void DropLoot(bool TryToPlaceInInventory, class AAbiotic_PlayerCharacter_C* inventoryOwner);
     void ExecuteUbergraph_CharacterCorpse_ParentBP(int32 EntryPoint);
     void OnGibbed__DelegateSignature();
-}; // Size: 0x3C1
+}; // Size: 0x3F0
 
 #endif

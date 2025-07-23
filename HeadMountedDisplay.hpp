@@ -50,10 +50,10 @@ class UHandKeypointConversion : public UBlueprintFunctionLibrary
 
 class UMotionControllerComponent : public UPrimitiveComponent
 {
-    int32 PlayerIndex;                                                                // 0x0518 (size: 0x4)
-    FName MotionSource;                                                               // 0x051C (size: 0x8)
-    uint8 bDisableLowLatencyUpdate;                                                   // 0x0524 (size: 0x1)
-    ETrackingStatus CurrentTrackingStatus;                                            // 0x0528 (size: 0x1)
+    int32 PlayerIndex;                                                                // 0x0520 (size: 0x4)
+    FName MotionSource;                                                               // 0x0524 (size: 0x8)
+    uint8 bDisableLowLatencyUpdate;                                                   // 0x052C (size: 0x1)
+    ETrackingStatus CurrentTrackingStatus;                                            // 0x0530 (size: 0x1)
 
     void SetTrackingSource(const EControllerHand NewSource);
     void SetTrackingMotionSource(const FName NewSource);

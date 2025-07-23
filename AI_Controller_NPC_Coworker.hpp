@@ -3,11 +3,11 @@
 
 class AAI_Controller_NPC_Coworker_C : public AAbiotic_AI_Controller_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x08A8 (size: 0x8)
-    FTimerHandle EatTimer;                                                            // 0x08B0 (size: 0x8)
-    float MaxCorpseDistanceCheck;                                                     // 0x08B8 (size: 0x4)
-    int32 Mode;                                                                       // 0x08BC (size: 0x4)
-    FTimerHandle CoworkerAnnoyTimer;                                                  // 0x08C0 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x08B8 (size: 0x8)
+    FTimerHandle EatTimer;                                                            // 0x08C0 (size: 0x8)
+    float MaxCorpseDistanceCheck;                                                     // 0x08C8 (size: 0x4)
+    int32 Mode;                                                                       // 0x08CC (size: 0x4)
+    FTimerHandle CoworkerAnnoyTimer;                                                  // 0x08D0 (size: 0x8)
 
     void NearbyLarvaCheck(bool& DidLarvaLine);
     void BT_CheckObstruction();
@@ -18,6 +18,6 @@ class AAI_Controller_NPC_Coworker_C : public AAbiotic_AI_Controller_ParentBP_C
     void ReceiveBeginPlay();
     void BeAnnoying();
     void ExecuteUbergraph_AI_Controller_NPC_Coworker(int32 EntryPoint);
-}; // Size: 0x8C8
+}; // Size: 0x8D8
 
 #endif

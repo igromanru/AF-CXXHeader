@@ -3,14 +3,14 @@
 
 class ADeployed_Turret_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0930 (size: 0x8)
-    class UStaticMeshComponent* TurretTop;                                            // 0x0938 (size: 0x8)
-    class UStaticMeshComponent* TurretRotator;                                        // 0x0940 (size: 0x8)
-    class USkeletalMeshComponent* TurretSkeleton;                                     // 0x0948 (size: 0x8)
-    class UTurret_Component_C* Turret_Component;                                      // 0x0950 (size: 0x8)
-    class USceneComponent* ProjectileSpawnLocation;                                   // 0x0958 (size: 0x8)
-    FVector TurretTopOffset;                                                          // 0x0960 (size: 0x18)
-    bool TurretIsPowered;                                                             // 0x0978 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0850 (size: 0x8)
+    class UStaticMeshComponent* TurretTop;                                            // 0x0858 (size: 0x8)
+    class UStaticMeshComponent* TurretRotator;                                        // 0x0860 (size: 0x8)
+    class USkeletalMeshComponent* TurretSkeleton;                                     // 0x0868 (size: 0x8)
+    class UTurret_Component_C* Turret_Component;                                      // 0x0870 (size: 0x8)
+    class USceneComponent* ProjectileSpawnLocation;                                   // 0x0878 (size: 0x8)
+    FVector TurretTopOffset;                                                          // 0x0880 (size: 0x18)
+    bool TurretIsPowered;                                                             // 0x0898 (size: 0x1)
 
     void Target Is Enemy To Turret(class AActor* TargetToCheck, bool& Enemy);
     bool CheckForHidingTarget(class AActor* TargetToCheck, FHitResult& OutHit);
@@ -21,6 +21,6 @@ class ADeployed_Turret_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
     void Broadcast_FireFX();
     void StartFiringProjectile();
     void ExecuteUbergraph_Deployed_Turret_ParentBP(int32 EntryPoint);
-}; // Size: 0x979
+}; // Size: 0x899
 
 #endif

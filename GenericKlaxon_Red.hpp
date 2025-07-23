@@ -3,6 +3,6 @@
 
 class AGenericKlaxon_Red_C : public AGenericKlaxon_C
 {
-}; // Size: 0x2C9
+}; // Size: 0x2E8
 
 #endif

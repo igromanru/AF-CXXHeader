@@ -3,6 +3,6 @@
 
 class AGear_Headlamp_NVG_C : public AGear_Headlamp_ParentBP_C
 {
-}; // Size: 0x1280
+}; // Size: 0x1250
 
 #endif

@@ -35,6 +35,7 @@ class UW_Research_RecipeGuesser_C : public UUserWidget
     FButtonStyle BrainStyle_1;                                                        // 0x1050 (size: 0x3F0)
     FLinearColor DefaultTitleColor;                                                   // 0x1440 (size: 0x10)
 
+    void Update Receiving Slot(class UW_Research_RG_DraggableItem_C* Item, bool& bSlotFound);
     void ResetBrainButton();
     void Reset Receiving Slot(class UW_Research_RG_ReceivingSlot_C* ReceivingSlot);
     void CorrectRecipe?(bool& Correct);

@@ -3,16 +3,16 @@
 
 class AComputerTerminal_ParentBP_C : public AAbioticActor_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
-    class URectLightComponent* RectLight;                                             // 0x02D0 (size: 0x8)
-    class USceneComponent* TeleportSpot;                                              // 0x02D8 (size: 0x8)
-    class UCameraComponent* Camera;                                                   // 0x02E0 (size: 0x8)
-    class UStaticMeshComponent* base;                                                 // 0x02E8 (size: 0x8)
-    class UStaticMeshComponent* Monitor;                                              // 0x02F0 (size: 0x8)
-    bool TerminalInUse;                                                               // 0x02F8 (size: 0x1)
-    class AAbiotic_PlayerCharacter_C* CurrentUser;                                    // 0x0300 (size: 0x8)
-    FText TerminalName;                                                               // 0x0308 (size: 0x10)
-    FWorldFlagRowHandle WorldFlagToUse;                                               // 0x0318 (size: 0x20)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D0 (size: 0x8)
+    class URectLightComponent* RectLight;                                             // 0x02D8 (size: 0x8)
+    class USceneComponent* TeleportSpot;                                              // 0x02E0 (size: 0x8)
+    class UCameraComponent* Camera;                                                   // 0x02E8 (size: 0x8)
+    class UStaticMeshComponent* base;                                                 // 0x02F0 (size: 0x8)
+    class UStaticMeshComponent* Monitor;                                              // 0x02F8 (size: 0x8)
+    bool TerminalInUse;                                                               // 0x0300 (size: 0x1)
+    class AAbiotic_PlayerCharacter_C* CurrentUser;                                    // 0x0308 (size: 0x8)
+    FText TerminalName;                                                               // 0x0310 (size: 0x10)
+    FWorldFlagRowHandle WorldFlagToUse;                                               // 0x0320 (size: 0x20)
 
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
@@ -60,6 +60,6 @@ class AComputerTerminal_ParentBP_C : public AAbioticActor_C
     void UserTerminalStateChanged(bool UsingTerminal);
     void UseTerminal_Primary();
     void ExecuteUbergraph_ComputerTerminal_ParentBP(int32 EntryPoint);
-}; // Size: 0x338
+}; // Size: 0x340
 
 #endif

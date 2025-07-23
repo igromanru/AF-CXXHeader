@@ -47,6 +47,7 @@ class UDovracBPLibrary : public UBlueprintFunctionLibrary
     bool MergeNameArrays(const TArray<FName>& Array1, const TArray<FName>& Array2, TArray<FName>& OutArray);
     bool HasSubstring(FString SearchIn, FString Substring, TEnumAsByte<ESearchCase::Type> SearchCase, TEnumAsByte<ESearchDir::Type> SearchDir);
     float GetSoundVolume(class USoundClass* SoundClassObject);
+    bool GetMaterialDomain(class UMaterialInterface* Material, TEnumAsByte<EMaterialDomain>& OutDomain);
     class UUserWidget* GetFirstWidgetOfClass(class UObject* WorldContextObject, TSubclassOf<class UUserWidget> WidgetClass, bool TopLevelOnly);
     bool GetFilesInRootAndAllSubFolders(TArray<FString>& Files, FString RootFolderFullPath, FString Ext);
     FString GetCustomConfigVar_String(FString SectionName, FString VariableName, bool& IsValid);
@@ -54,7 +55,13 @@ class UDovracBPLibrary : public UBlueprintFunctionLibrary
     void GetAllFoldersFromDirectory(FString FolderPath, int32& Count, TArray<FString>& Folders);
     void GetAllAxisKeyBindings(TArray<FDovracInputAxis>& Bindings);
     void GetAllAxisAndActionMappingsForKey(FKey Key, TArray<FDovracInput>& ActionBindings, TArray<FDovracInputAxis>& AxisBindings);
+    void GetAllAssetsOfClass(UClass* AssetClass, TArray<class UObject*>& OutAssets, bool bIncludeDerived);
     void GetAllActionKeyBindings(TArray<FDovracInput>& Bindings);
+    void GetActorSubclasses(TSubclassOf<class AActor> BaseClass, TArray<class TSubclassOf<AActor>>& OutClasses, bool bIncludeAbstract);
+    bool DoesMaterialSupportSpline(class UMaterialInterface* Material);
+    bool DoesMaterialSupportSkeletal(class UMaterialInterface* Material);
+    bool DoesMaterialSupportInstancedMesh(class UMaterialInterface* Material);
+    bool DoesMaterialSupportCloth(class UMaterialInterface* Material);
     bool DeleteFolder(FString FolderPath);
     TArray<int32> CreateRandomIndexArray(int32 ArraySize);
     bool ConvertWorldLocationToScreenSpace(const class APlayerController* Controller, const FVector& WorldLocation, FVector2D& ScreenSpaceLocation, FVector2D& ScreenDirection, bool& bNotOnScreen, bool& bBehindView);

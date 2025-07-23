@@ -46,6 +46,8 @@ class UW_WorldSelectMenu_C : public UUserWidget
     void SandboxSettingsPressed(FString FolderName);
     int32 Character_Limit;                                                            // 0x0420 (size: 0x4)
     TArray<FString> ABC_Strings;                                                      // 0x0428 (size: 0x10)
+    FW_WorldSelectMenu_CWorldEntriesUpdated WorldEntriesUpdated;                      // 0x0438 (size: 0x10)
+    void WorldEntriesUpdated();
 
     void SetupSoloOrLanOnly();
     void ApplyDateTimeToWorldEntries(TArray<class UWorldEntryItem*>& WorldEntries);
@@ -55,6 +57,7 @@ class UW_WorldSelectMenu_C : public UUserWidget
     void SelectNewWorldEntry(class UWorldEntryItem* World);
     void ToggleLoadingIndicator(bool Loading);
     void Add or Refresh World Save Entries(bool Refresh?);
+    void OnLoaded_BE38D0374A9DC742EAA44E8808A48FCC(class UObject* Loaded);
     void Construct();
     void DeleteSave();
     void CancelDelete();
@@ -75,8 +78,10 @@ class UW_WorldSelectMenu_C : public UUserWidget
     void SaveRestore_ReportBug();
     void BndEvt__W_WorldSelectMenu_W_MainMenuButton_WorldSettingsNew_K2Node_ComponentBoundEvent_4_ButtonPressed__DelegateSignature();
     void BndEvt__W_WorldSelectMenu_TextInput_Password_K2Node_ComponentBoundEvent_7_OnEditableTextBoxChangedEvent__DelegateSignature(const FText& Text);
+    void LoadStoryProgressImage(FName StoryProgressionRow);
     void ExecuteUbergraph_W_WorldSelectMenu(int32 EntryPoint);
+    void WorldEntriesUpdated__DelegateSignature();
     void SandboxSettingsPressed__DelegateSignature(FString FolderName);
-}; // Size: 0x438
+}; // Size: 0x448
 
 #endif

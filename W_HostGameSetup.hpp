@@ -31,6 +31,7 @@ class UW_HostGameSetup_C : public UAbioticWidget
     FW_HostGameSetup_CSandboxSettingsPressed SandboxSettingsPressed;                  // 0x03A0 (size: 0x10)
     void SandboxSettingsPressed();
     TArray<FString> ABC_Strings;                                                      // 0x03B0 (size: 0x10)
+    TArray<FString> ABC_Strings_NoSpace;                                              // 0x03C0 (size: 0x10)
 
     void SetupSoloOrLanOnly();
     void SetupDifficultyButtons();
@@ -49,6 +50,6 @@ class UW_HostGameSetup_C : public UAbioticWidget
     void BndEvt__W_HostGameSetup_TextInput_Password_K2Node_ComponentBoundEvent_4_OnEditableTextBoxChangedEvent__DelegateSignature(const FText& Text);
     void ExecuteUbergraph_W_HostGameSetup(int32 EntryPoint);
     void SandboxSettingsPressed__DelegateSignature();
-}; // Size: 0x3C0
+}; // Size: 0x3D0
 
 #endif

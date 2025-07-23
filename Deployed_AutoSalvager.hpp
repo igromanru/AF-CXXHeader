@@ -3,19 +3,19 @@
 
 class ADeployed_AutoSalvager_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0930 (size: 0x8)
-    class UChildActorComponent* StorageContainer;                                     // 0x0938 (size: 0x8)
-    class UStaticMeshComponent* SM_AutoSalvager_Blades;                               // 0x0940 (size: 0x8)
-    class UStaticMeshComponent* Grinder2;                                             // 0x0948 (size: 0x8)
-    class UStaticMeshComponent* Grinder1;                                             // 0x0950 (size: 0x8)
-    class USceneComponent* RejectedOutput;                                            // 0x0958 (size: 0x8)
-    class UBoxComponent* InputBox;                                                    // 0x0960 (size: 0x8)
-    class UPointLightComponent* PointLight;                                           // 0x0968 (size: 0x8)
-    TEnumAsByte<EAutoSalvagerState::Type> SalvagerState;                              // 0x0970 (size: 0x1)
-    TArray<FSaveData_Inventories_Struct> PendingInventoryData;                        // 0x0978 (size: 0x10)
-    bool BeingDestroyed;                                                              // 0x0988 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0850 (size: 0x8)
+    class UChildActorComponent* StorageContainer;                                     // 0x0858 (size: 0x8)
+    class UStaticMeshComponent* SM_AutoSalvager_Blades;                               // 0x0860 (size: 0x8)
+    class UStaticMeshComponent* Grinder2;                                             // 0x0868 (size: 0x8)
+    class UStaticMeshComponent* Grinder1;                                             // 0x0870 (size: 0x8)
+    class USceneComponent* RejectedOutput;                                            // 0x0878 (size: 0x8)
+    class UBoxComponent* InputBox;                                                    // 0x0880 (size: 0x8)
+    class UPointLightComponent* PointLight;                                           // 0x0888 (size: 0x8)
+    TEnumAsByte<EAutoSalvagerState::Type> SalvagerState;                              // 0x0890 (size: 0x1)
+    TArray<FSaveData_Inventories_Struct> PendingInventoryData;                        // 0x0898 (size: 0x10)
+    bool BeingDestroyed;                                                              // 0x08A8 (size: 0x1)
 
-    void DropPackagedItem(bool HasDoubleDropChance);
+    void DropPackagedItem(bool HasDoubleDropChance, bool FromDestruction);
     void DestroyDeployable(bool NoLoot, int32 Extra Loot Quantity, bool LootBagLocationOverride, FVector LocationOverride);
     void OnInventoriesLoadedFromSave(TArray<FSaveData_Inventories_Struct>& Data);
     void GetTradeContainer(class UAbiotic_InventoryComponent_C*& ContainerInventory);
@@ -33,6 +33,6 @@ class ADeployed_AutoSalvager_C : public AAbioticDeployed_Furniture_ParentBP_C
     void ReceiveBeginPlay();
     void DelayedInventoryLoad();
     void ExecuteUbergraph_Deployed_AutoSalvager(int32 EntryPoint);
-}; // Size: 0x989
+}; // Size: 0x8A9
 
 #endif

@@ -8,6 +8,7 @@ class AChairPawn_ParentBP_C : public ACharacter
     bool FreezeVehicle;                                                               // 0x0690 (size: 0x1)
     class AAbioticDeployed_Furniture_ParentBP_C* LinkedFurniture;                     // 0x0698 (size: 0x8)
     double LastMovementTimestamp;                                                     // 0x06A0 (size: 0x8)
+    class UAbioticPhysicalMaterial* FloorMaterial;                                    // 0x06A8 (size: 0x8)
 
     void HasOccupants?(TArray<class AActor*>& Occupants);
     bool SupportsRecall?();
@@ -16,6 +17,8 @@ class AChairPawn_ParentBP_C : public ACharacter
     FString GetVehicleID();
     void GetDriver(bool& Success, class AAbiotic_Character_ParentBP_C*& Character);
     bool CheckVehicleFreezeState();
+    void ApplyFloorDamage();
+    void UpdateFloorType();
     void AttachFurniture();
     void OnRep_LinkedFurniture();
     void DamageAllOccupants(double Damage, class AController* EventInstigator, class AActor* DamageCauser, TSubclassOf<class UDamageType> DamageTypeClass, const FHitResult& HitInfo, const FVector& HitFromDirection, bool& Success);
@@ -26,6 +29,6 @@ class AChairPawn_ParentBP_C : public ACharacter
     void DamageVehicleOccupants(double Damage, class AController* EventInstigator, class AActor* DamageCauser, TSubclassOf<class UDamageType> DamageTypeClass, const FHitResult& HitInfo, const FVector& HitFromDirection);
     void OnInventoriesLoadedFromSave(const TArray<FSaveData_Inventories_Struct>& SaveData);
     void ExecuteUbergraph_ChairPawn_ParentBP(int32 EntryPoint);
-}; // Size: 0x6A8
+}; // Size: 0x6B0
 
 #endif

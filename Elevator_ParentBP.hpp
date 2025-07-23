@@ -42,6 +42,7 @@ class AElevator_ParentBP_C : public AActor
     bool TeleportFallProtection;                                                      // 0x03E0 (size: 0x1)
     FVector TeleportVolumeSize;                                                       // 0x03E8 (size: 0x18)
     bool SilentElevator;                                                              // 0x0400 (size: 0x1)
+    FVector LoadIgnoreVolumeSize;                                                     // 0x0408 (size: 0x18)
 
     void GetPluggedInDeviceCount(int32& Count);
     bool HasBatteryInParentChain();
@@ -52,6 +53,7 @@ class AElevator_ParentBP_C : public AActor
     void IsPowerSocket(bool& CanBePluggedInto);
     void PlugCordAttachLocation(FVector& RelativeLocation);
     void PowerParent(class AActor*& ParentPowerSource);
+    void OnElevatorServerRelativePositionUpdated();
     void OnRep_ElevatorServerRelativePosition();
     void IsLocationWithinHorizontalBounds(FVector Location, bool& WithinBounds);
     bool IsElevatorMoving();
@@ -72,6 +74,6 @@ class AElevator_ParentBP_C : public AActor
     void StartedMoving__DelegateSignature();
     void ReachedBottom__DelegateSignature();
     void ReachedTop__DelegateSignature();
-}; // Size: 0x401
+}; // Size: 0x420
 
 #endif

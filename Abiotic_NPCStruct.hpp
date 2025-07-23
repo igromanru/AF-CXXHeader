@@ -34,12 +34,12 @@ struct FAbiotic_NPCStruct
     TArray<FDataTableRowHandle> PotentialLootWhenKilled_100_B9754AE04FDF9860B1EC8F93900698C7; // 0x01B0 (size: 0x10)
     FAbiotic_Gib_Struct GibInfo_93_85C59FF64049C8D27AA681B7FAE7780D;                  // 0x01C0 (size: 0x18)
     double NPC_Hit_XP_Multiplier_108_D2C5D29B412F4D63256DB3B968495DEA;                // 0x01D8 (size: 0x8)
-    TArray<class TSubclassOf<UAbiotic_DamageType_ParentBP_C>> DamageType_Weaknesses_124_9DEAD9684BCC3CC4F455998D952268DE; // 0x01E0 (size: 0x10)
-    TArray<class TSubclassOf<UAbiotic_DamageType_ParentBP_C>> DamageType_Resistances_125_477176FE4AA235093E0CE7BEEA861BE4; // 0x01F0 (size: 0x10)
-    TArray<class TSubclassOf<UAbiotic_DamageType_ParentBP_C>> DamageType_Immune_129_F125CE8D4FA3F4D9ACE1D39C2C3AAFD5; // 0x0200 (size: 0x10)
-    FAchievementStatRowHandle AchievementStat_136_246B5AD74BC67B9850CA0CA33E4755AC;   // 0x0210 (size: 0x20)
-    FCompendiumEntryRowHandle CompendiumKill_142_C1A9B2AB45F0A33DE67D23BF710B930D;    // 0x0230 (size: 0x20)
+    FGameplayTagQuery DamageWeaknesses_148_D03B6F984E7F782882E79C89C5566D63;          // 0x01E0 (size: 0x48)
+    FGameplayTagQuery DamageResistances_150_DD50967E4EF507B8AA5C9FA9069518F6;         // 0x0228 (size: 0x48)
+    FGameplayTagQuery DamageImmunities_153_E344382C467CD54860AFF19A920FAC95;          // 0x0270 (size: 0x48)
+    FAchievementStatRowHandle AchievementStat_136_246B5AD74BC67B9850CA0CA33E4755AC;   // 0x02B8 (size: 0x20)
+    FCompendiumEntryRowHandle CompendiumKill_142_C1A9B2AB45F0A33DE67D23BF710B930D;    // 0x02D8 (size: 0x20)
 
-}; // Size: 0x250
+}; // Size: 0x2F8
 
 #endif

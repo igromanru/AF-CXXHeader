@@ -26,6 +26,7 @@ class UW_WorldSelect_Entry_C : public UUserWidget
     FString TimePlayedString;                                                         // 0x03A0 (size: 0x10)
     FString LastPlayedString;                                                         // 0x03B0 (size: 0x10)
 
+    void OnLoaded_3E96AF5242DA3A6BE69A439C9771749E(class UObject* Loaded);
     void LoadMetaData();
     void OnListItemObjectSet(class UObject* ListItemObject);
     void BP_OnItemSelectionChanged(bool bIsSelected);

@@ -3,6 +3,6 @@
 
 class ADeployed_Figurine_Composer_C : public ADeployed_Figurine_ParentBP_C
 {
-}; // Size: 0x930
+}; // Size: 0x849
 
 #endif

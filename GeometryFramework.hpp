@@ -39,17 +39,17 @@ class IMeshVertexCommandChangeTarget : public IInterface
 
 class UBaseDynamicMeshComponent : public UMeshComponent
 {
-    bool bExplicitShowWireframe;                                                      // 0x0570 (size: 0x1)
-    FLinearColor WireframeColor;                                                      // 0x0574 (size: 0x10)
-    EDynamicMeshComponentColorOverrideMode ColorMode;                                 // 0x0584 (size: 0x1)
-    FColor ConstantColor;                                                             // 0x0588 (size: 0x4)
-    EDynamicMeshVertexColorTransformMode ColorSpaceMode;                              // 0x058C (size: 0x1)
-    bool bEnableFlatShading;                                                          // 0x058D (size: 0x1)
-    bool bEnableViewModeOverrides;                                                    // 0x058E (size: 0x1)
-    class UMaterialInterface* OverrideRenderMaterial;                                 // 0x0590 (size: 0x8)
-    class UMaterialInterface* SecondaryRenderMaterial;                                // 0x0598 (size: 0x8)
-    bool bEnableRayTracing;                                                           // 0x05A1 (size: 0x1)
-    TArray<class UMaterialInterface*> BaseMaterials;                                  // 0x05A8 (size: 0x10)
+    bool bExplicitShowWireframe;                                                      // 0x0578 (size: 0x1)
+    FLinearColor WireframeColor;                                                      // 0x057C (size: 0x10)
+    EDynamicMeshComponentColorOverrideMode ColorMode;                                 // 0x058C (size: 0x1)
+    FColor ConstantColor;                                                             // 0x0590 (size: 0x4)
+    EDynamicMeshVertexColorTransformMode ColorSpaceMode;                              // 0x0594 (size: 0x1)
+    bool bEnableFlatShading;                                                          // 0x0595 (size: 0x1)
+    bool bEnableViewModeOverrides;                                                    // 0x0596 (size: 0x1)
+    class UMaterialInterface* OverrideRenderMaterial;                                 // 0x0598 (size: 0x8)
+    class UMaterialInterface* SecondaryRenderMaterial;                                // 0x05A0 (size: 0x8)
+    bool bEnableRayTracing;                                                           // 0x05A9 (size: 0x1)
+    TArray<class UMaterialInterface*> BaseMaterials;                                  // 0x05B0 (size: 0x10)
 
     void SetViewModeOverridesEnabled(bool bEnabled);
     void SetVertexColorSpaceTransformMode(EDynamicMeshVertexColorTransformMode NewMode);
@@ -94,15 +94,15 @@ class UDynamicMesh : public UObject
 
 class UDynamicMeshComponent : public UBaseDynamicMeshComponent
 {
-    class UDynamicMesh* MeshObject;                                                   // 0x05C0 (size: 0x8)
-    EDynamicMeshComponentTangentsMode TangentsType;                                   // 0x0700 (size: 0x1)
-    TEnumAsByte<ECollisionTraceFlag> CollisionType;                                   // 0x0740 (size: 0x1)
-    bool bUseAsyncCooking;                                                            // 0x0741 (size: 0x1)
-    bool bEnableComplexCollision;                                                     // 0x0742 (size: 0x1)
-    bool bDeferCollisionUpdates;                                                      // 0x0743 (size: 0x1)
-    class UBodySetup* MeshBodySetup;                                                  // 0x0748 (size: 0x8)
-    FKAggregateGeom AggGeom;                                                          // 0x0788 (size: 0x80)
-    TArray<class UBodySetup*> AsyncBodySetupQueue;                                    // 0x0808 (size: 0x10)
+    class UDynamicMesh* MeshObject;                                                   // 0x05C8 (size: 0x8)
+    EDynamicMeshComponentTangentsMode TangentsType;                                   // 0x0710 (size: 0x1)
+    TEnumAsByte<ECollisionTraceFlag> CollisionType;                                   // 0x0750 (size: 0x1)
+    bool bUseAsyncCooking;                                                            // 0x0751 (size: 0x1)
+    bool bEnableComplexCollision;                                                     // 0x0752 (size: 0x1)
+    bool bDeferCollisionUpdates;                                                      // 0x0753 (size: 0x1)
+    class UBodySetup* MeshBodySetup;                                                  // 0x0758 (size: 0x8)
+    FKAggregateGeom AggGeom;                                                          // 0x0798 (size: 0x80)
+    TArray<class UBodySetup*> AsyncBodySetupQueue;                                    // 0x0818 (size: 0x10)
 
     bool ValidateMaterialSlots(bool bCreateIfMissing, bool bDeleteExtraSlots);
     void UpdateCollision(bool bOnlyIfPending);
@@ -116,7 +116,7 @@ class UDynamicMeshComponent : public UBaseDynamicMeshComponent
     EDynamicMeshComponentTangentsMode GetTangentsType();
     void EnableComplexAsSimpleCollision();
     void ConfigureMaterialSet(const TArray<class UMaterialInterface*>& NewMaterialSet);
-}; // Size: 0x820
+}; // Size: 0x830
 
 class UDynamicMeshGenerator : public UObject
 {

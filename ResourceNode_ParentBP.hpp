@@ -3,52 +3,53 @@
 
 class AResourceNode_ParentBP_C : public AAbioticActor_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
-    class UAbioticTargetingComponent* AbioticTargeting;                               // 0x02D0 (size: 0x8)
-    class UTextRenderComponent* EditorText;                                           // 0x02D8 (size: 0x8)
-    class UBillboardComponent* Billboard;                                             // 0x02E0 (size: 0x8)
-    class USceneComponent* ResourceDropOrigin;                                        // 0x02E8 (size: 0x8)
-    class UStaticMeshComponent* SM_ResourceNode;                                      // 0x02F0 (size: 0x8)
-    float DamageJiggleTimeline_NewTrack_0_A597C0FB48D3309E6CF3B895BFA5C2AA;           // 0x02F8 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> DamageJiggleTimeline__Direction_A597C0FB48D3309E6CF3B895BFA5C2AA; // 0x02FC (size: 0x1)
-    class UTimelineComponent* DamageJiggleTimeline;                                   // 0x0300 (size: 0x8)
-    bool IsDepleted;                                                                  // 0x0308 (size: 0x1)
-    double CurrentHitPoints;                                                          // 0x0310 (size: 0x8)
-    double MaxHitPoints;                                                              // 0x0318 (size: 0x8)
-    FDataTableRowHandle SalvageDropRow;                                               // 0x0320 (size: 0x10)
-    bool IgnoreRadialDamage;                                                          // 0x0330 (size: 0x1)
-    bool IgnorePointDamage;                                                           // 0x0331 (size: 0x1)
-    TEnumAsByte<E_ResourceNodeMethod::Type> ObtainmentMethod;                         // 0x0332 (size: 0x1)
-    FVector SM_RelativeLocation;                                                      // 0x0338 (size: 0x18)
-    FVector SK_RelativeLocation;                                                      // 0x0350 (size: 0x18)
-    FWorldFlagRowHandle ContinualRespawnFlag;                                         // 0x0368 (size: 0x20)
-    bool JiggleWhenDamaged;                                                           // 0x0388 (size: 0x1)
-    double JiggleIntensity;                                                           // 0x0390 (size: 0x8)
-    bool IgnorePunchDamage;                                                           // 0x0398 (size: 0x1)
-    double NodeSpawnChance;                                                           // 0x03A0 (size: 0x8)
-    FText To Interact with Text;                                                      // 0x03A8 (size: 0x10)
-    bool IgnoreSupports;                                                              // 0x03B8 (size: 0x1)
-    FResourceNode_ParentBP_COnMoved OnMoved;                                          // 0x03C0 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D0 (size: 0x8)
+    class UAbioticTargetingComponent* AbioticTargeting;                               // 0x02D8 (size: 0x8)
+    class UTextRenderComponent* EditorText;                                           // 0x02E0 (size: 0x8)
+    class UBillboardComponent* Billboard;                                             // 0x02E8 (size: 0x8)
+    class USceneComponent* ResourceDropOrigin;                                        // 0x02F0 (size: 0x8)
+    class UStaticMeshComponent* SM_ResourceNode;                                      // 0x02F8 (size: 0x8)
+    float DamageJiggleTimeline_NewTrack_0_A597C0FB48D3309E6CF3B895BFA5C2AA;           // 0x0300 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> DamageJiggleTimeline__Direction_A597C0FB48D3309E6CF3B895BFA5C2AA; // 0x0304 (size: 0x1)
+    class UTimelineComponent* DamageJiggleTimeline;                                   // 0x0308 (size: 0x8)
+    bool IsDepleted;                                                                  // 0x0310 (size: 0x1)
+    double CurrentHitPoints;                                                          // 0x0318 (size: 0x8)
+    double MaxHitPoints;                                                              // 0x0320 (size: 0x8)
+    FDataTableRowHandle SalvageDropRow;                                               // 0x0328 (size: 0x10)
+    bool IgnoreRadialDamage;                                                          // 0x0338 (size: 0x1)
+    bool IgnorePointDamage;                                                           // 0x0339 (size: 0x1)
+    TEnumAsByte<E_ResourceNodeMethod::Type> ObtainmentMethod;                         // 0x033A (size: 0x1)
+    FVector SM_RelativeLocation;                                                      // 0x0340 (size: 0x18)
+    FVector SK_RelativeLocation;                                                      // 0x0358 (size: 0x18)
+    FWorldFlagRowHandle ContinualRespawnFlag;                                         // 0x0370 (size: 0x20)
+    bool JiggleWhenDamaged;                                                           // 0x0390 (size: 0x1)
+    double JiggleIntensity;                                                           // 0x0398 (size: 0x8)
+    bool IgnorePunchDamage;                                                           // 0x03A0 (size: 0x1)
+    double NodeSpawnChance;                                                           // 0x03A8 (size: 0x8)
+    FText To Interact with Text;                                                      // 0x03B0 (size: 0x10)
+    bool IgnoreSupports;                                                              // 0x03C0 (size: 0x1)
+    FResourceNode_ParentBP_COnMoved OnMoved;                                          // 0x03C8 (size: 0x10)
     void OnMoved(class AActor* MovedActor);
-    FVector Rep_GroundPosition;                                                       // 0x03D0 (size: 0x18)
-    TArray<class UMaterialInstanceDynamic*> DynamicMaterials;                         // 0x03E8 (size: 0x10)
-    bool Loot Is Generated?;                                                          // 0x03F8 (size: 0x1)
-    class USoundCue* SoundOnDestroy;                                                  // 0x0400 (size: 0x8)
-    FDataTableRowHandle TextureVariant;                                               // 0x0408 (size: 0x10)
-    FDataTableRowHandle TutorialOnCollection;                                         // 0x0418 (size: 0x10)
-    FResourceNode_ParentBP_COnDepleted OnDepleted;                                    // 0x0428 (size: 0x10)
+    FVector Rep_GroundPosition;                                                       // 0x03D8 (size: 0x18)
+    TArray<class UMaterialInstanceDynamic*> DynamicMaterials;                         // 0x03F0 (size: 0x10)
+    bool Loot Is Generated?;                                                          // 0x0400 (size: 0x1)
+    class USoundCue* SoundOnDestroy;                                                  // 0x0408 (size: 0x8)
+    FDataTableRowHandle TextureVariant;                                               // 0x0410 (size: 0x10)
+    FDataTableRowHandle TutorialOnCollection;                                         // 0x0420 (size: 0x10)
+    FResourceNode_ParentBP_COnDepleted OnDepleted;                                    // 0x0430 (size: 0x10)
     void OnDepleted();
-    FDataTableRowHandle DebrisRow;                                                    // 0x0438 (size: 0x10)
-    bool DisableInDemoMode;                                                           // 0x0448 (size: 0x1)
-    FText CachedNodeName;                                                             // 0x0450 (size: 0x10)
-    TMap<ECharacterSkills, double> XPForPickup;                                       // 0x0460 (size: 0x50)
-    bool DisallowSandboxRespawning;                                                   // 0x04B0 (size: 0x1)
-    FTimerHandle MyRespawnTimer;                                                      // 0x04B8 (size: 0x8)
-    int32 DayWasDepleted;                                                             // 0x04C0 (size: 0x4)
-    bool AllowRespawnAfterDays;                                                       // 0x04C4 (size: 0x1)
-    int32 RequiredDaysToRespawn;                                                      // 0x04C8 (size: 0x4)
+    FDataTableRowHandle DebrisRow;                                                    // 0x0440 (size: 0x10)
+    bool DisableInDemoMode;                                                           // 0x0450 (size: 0x1)
+    FText CachedNodeName;                                                             // 0x0458 (size: 0x10)
+    TMap<ECharacterSkills, double> XPForPickup;                                       // 0x0468 (size: 0x50)
+    bool DisallowSandboxRespawning;                                                   // 0x04B8 (size: 0x1)
+    FTimerHandle MyRespawnTimer;                                                      // 0x04C0 (size: 0x8)
+    int32 DayWasDepleted;                                                             // 0x04C8 (size: 0x4)
+    bool AllowRespawnAfterDays;                                                       // 0x04CC (size: 0x1)
+    int32 RequiredDaysToRespawn;                                                      // 0x04D0 (size: 0x4)
 
     void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
+    void GetFriendlyFireDamageMultiplier(bool& Return, double& DamageMultiplier);
     void TargetableByTurrets(bool& Targetable);
     void GetWandererNPC(class ANPC_Base_ParentBP_C*& Wanderer);
     bool GetTargetPriority(TEnumAsByte<E_TargetPriority::Type>& Priority);
@@ -140,6 +141,6 @@ class AResourceNode_ParentBP_C : public AAbioticActor_C
     void ExecuteUbergraph_ResourceNode_ParentBP(int32 EntryPoint);
     void OnDepleted__DelegateSignature();
     void OnMoved__DelegateSignature(class AActor* MovedActor);
-}; // Size: 0x4CC
+}; // Size: 0x4D4
 
 #endif

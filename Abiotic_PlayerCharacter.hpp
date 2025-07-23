@@ -3,216 +3,213 @@
 
 class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x1460 (size: 0x8)
-    class UBodyShieldComponent_Player_C* BodyShieldComponent_Player;                  // 0x1468 (size: 0x8)
-    class USkeletalMeshComponent* BodyShieldMesh;                                     // 0x1470 (size: 0x8)
-    class UNiagaraComponent* UnderwaterParticle;                                      // 0x1478 (size: 0x8)
-    class USceneComponent* FP_MouthLocation;                                          // 0x1480 (size: 0x8)
-    class USkeletalMeshComponent* FPLeg_Suit;                                         // 0x1488 (size: 0x8)
-    class UCameraComponent* ThirdPersonCamera;                                        // 0x1490 (size: 0x8)
-    class USpringArmComponent* EmoteSpringArm;                                        // 0x1498 (size: 0x8)
-    class UNiagaraComponent* ActiveWeatherParticle;                                   // 0x14A0 (size: 0x8)
-    class UAudioComponent* FP_HazmatBreathAudio;                                      // 0x14A8 (size: 0x8)
-    class UStaticMeshComponent* FPSuitWindow;                                         // 0x14B0 (size: 0x8)
-    class UAbiotic_TransmogInventoryComp_C* TmogInventory;                            // 0x14B8 (size: 0x8)
-    class UChildActorComponent* NearbyOverlapActor;                                   // 0x14C0 (size: 0x8)
-    class USkeletalMeshComponent* FPLeg_Armor;                                        // 0x14C8 (size: 0x8)
-    class UChildActorComponent* RadioactiveActor;                                     // 0x14D0 (size: 0x8)
-    class USpotLightComponent* HeadlampSpotlight;                                     // 0x14D8 (size: 0x8)
-    class UPostProcessComponent* HeadlampPostProcessing;                              // 0x14E0 (size: 0x8)
-    class UPostProcessComponent* PlayerPostProcess;                                   // 0x14E8 (size: 0x8)
-    class UChildActorComponent* DeployableOverlapActor;                               // 0x14F0 (size: 0x8)
-    class UStaticMeshComponent* ScopePlane_R;                                         // 0x14F8 (size: 0x8)
-    class UStaticMeshComponent* ScopePlane_L;                                         // 0x1500 (size: 0x8)
-    class UStaticMeshComponent* ScopePlane_Bot;                                       // 0x1508 (size: 0x8)
-    class UStaticMeshComponent* ScopePlane_Top;                                       // 0x1510 (size: 0x8)
-    class UStaticMeshComponent* ScopePlane;                                           // 0x1518 (size: 0x8)
-    class UPhysicsConstraintComponent* TrinketSwingConstraint;                        // 0x1520 (size: 0x8)
-    class UHumanCustomizationComponent_C* HumanCustomizationComponent;                // 0x1528 (size: 0x8)
-    class USceneComponent* WaypointLocation;                                          // 0x1530 (size: 0x8)
-    class UCameraComponent* FirstPersonCamera;                                        // 0x1538 (size: 0x8)
-    class USceneComponent* CameraHeadJoint;                                           // 0x1540 (size: 0x8)
-    class USkeletalMeshComponent* FPLegs;                                             // 0x1548 (size: 0x8)
-    class UPointLightComponent* LanternLight;                                         // 0x1550 (size: 0x8)
-    class UPointLightComponent* WristwatchLight;                                      // 0x1558 (size: 0x8)
-    class USphereComponent* OverlapTrigger;                                           // 0x1560 (size: 0x8)
-    class UAbiotic_CharacterProgressionComponent_C* CharacterProgressionComponent;    // 0x1568 (size: 0x8)
-    class USkeletalMeshComponent* Armor_Suit;                                         // 0x1570 (size: 0x8)
-    class USkeletalMeshComponent* Armor_Helmet;                                       // 0x1578 (size: 0x8)
-    class UStaticMeshComponent* FannyPackMesh;                                        // 0x1580 (size: 0x8)
-    class USkeletalMeshComponent* BeardMesh;                                          // 0x1588 (size: 0x8)
-    class USkeletalMeshComponent* HeadAccessoryMesh;                                  // 0x1590 (size: 0x8)
-    class USkeletalMeshComponent* HairMesh;                                           // 0x1598 (size: 0x8)
-    class USkeletalMeshComponent* Armor_Legs;                                         // 0x15A0 (size: 0x8)
-    class USkeletalMeshComponent* Armor_Arms;                                         // 0x15A8 (size: 0x8)
-    class USkeletalMeshComponent* Armor_Torso;                                        // 0x15B0 (size: 0x8)
-    class UWidgetInteractionComponent* WidgetInteraction;                             // 0x15B8 (size: 0x8)
-    class USceneComponent* ProjectileSpawnLocation;                                   // 0x15C0 (size: 0x8)
-    class UNavigationInvokerComponent* NavigationInvoker;                             // 0x15C8 (size: 0x8)
-    class UAbiotic_InventoryComponent_C* CharacterEquipSlotInventory;                 // 0x15D0 (size: 0x8)
-    class UAbiotic_InventoryComponent_C* CharacterHotbarInventory;                    // 0x15D8 (size: 0x8)
-    class USpotLightComponent* FlashlightSpotlight;                                   // 0x15E0 (size: 0x8)
-    class USceneComponent* FPArmHinge;                                                // 0x15E8 (size: 0x8)
-    class UWidgetComponent* Wristwatch;                                               // 0x15F0 (size: 0x8)
-    class UStaticMeshComponent* TP_ItemInHand;                                        // 0x15F8 (size: 0x8)
-    class UStaticMeshComponent* BackpackMesh;                                         // 0x1600 (size: 0x8)
-    class USkeletalMeshComponent* FPArms;                                             // 0x1608 (size: 0x8)
-    class USceneComponent* AimSwayNode;                                               // 0x1610 (size: 0x8)
-    class USkeletalMeshComponent* PantsMesh;                                          // 0x1618 (size: 0x8)
-    class USkeletalMeshComponent* TorsoMesh;                                          // 0x1620 (size: 0x8)
-    class USpotLightComponent* CharacterPane_SpotLight;                               // 0x1628 (size: 0x8)
-    class USceneCaptureComponent2D* CharacterPane_RenderTarget;                       // 0x1630 (size: 0x8)
-    class USpringArmComponent* SpringArm;                                             // 0x1638 (size: 0x8)
-    class USceneComponent* ItemDropPoint;                                             // 0x1640 (size: 0x8)
-    float FlashlightFlickerTimeline_NewTrack_0_5BF063A64DDA7C4244506CB7798A8C23;      // 0x1648 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> FlashlightFlickerTimeline__Direction_5BF063A64DDA7C4244506CB7798A8C23; // 0x164C (size: 0x1)
-    class UTimelineComponent* FlashlightFlickerTimeline;                              // 0x1650 (size: 0x8)
-    float ControllerRecoilTimeline_NewTrack_0_AFC3F42148DFC42265088DA509116D45;       // 0x1658 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> ControllerRecoilTimeline__Direction_AFC3F42148DFC42265088DA509116D45; // 0x165C (size: 0x1)
-    class UTimelineComponent* ControllerRecoilTimeline;                               // 0x1660 (size: 0x8)
-    float ADS_Zoom_Timeline_Alpha_DFE102FD4B24663C0400BEBF14D78F01;                   // 0x1668 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> ADS_Zoom_Timeline__Direction_DFE102FD4B24663C0400BEBF14D78F01; // 0x166C (size: 0x1)
-    class UTimelineComponent* ADS_Zoom_Timeline;                                      // 0x1670 (size: 0x8)
-    float Timeline_1_DamageMultiplyValue_8328351944D630437C0EF497C55C7BAE;            // 0x1678 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> Timeline_1__Direction_8328351944D630437C0EF497C55C7BAE; // 0x167C (size: 0x1)
-    class UTimelineComponent* Timeline_1;                                             // 0x1680 (size: 0x8)
-    float ScreenColorFlashTimeline_NewTrack_0_057EEB42441DFE6AC2A9AA9CD71EB08C;       // 0x1688 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> ScreenColorFlashTimeline__Direction_057EEB42441DFE6AC2A9AA9CD71EB08C; // 0x168C (size: 0x1)
-    class UTimelineComponent* ScreenColorFlashTimeline;                               // 0x1690 (size: 0x8)
-    float WindUpDamageTimeline_DamageMultiplyValue_B321CE824694AB824DB932BA7CDEBA2B;  // 0x1698 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> WindUpDamageTimeline__Direction_B321CE824694AB824DB932BA7CDEBA2B; // 0x169C (size: 0x1)
-    class UTimelineComponent* WindUpDamageTimeline;                                   // 0x16A0 (size: 0x8)
-    float RecoilTimeline_NewTrack_0_7619EC7841CCE2A53A63A7841FB4C01D;                 // 0x16A8 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> RecoilTimeline__Direction_7619EC7841CCE2A53A63A7841FB4C01D; // 0x16AC (size: 0x1)
-    class UTimelineComponent* RecoilTimeline;                                         // 0x16B0 (size: 0x8)
-    FVector SwayTimelineLoop_NewTrack_1_1E19F0E74CE5FFB6096EBC86C262A1F2;             // 0x16B8 (size: 0x18)
-    TEnumAsByte<ETimelineDirection::Type> SwayTimelineLoop__Direction_1E19F0E74CE5FFB6096EBC86C262A1F2; // 0x16D0 (size: 0x1)
-    class UTimelineComponent* SwayTimelineLoop;                                       // 0x16D8 (size: 0x8)
-    double BaseTurnRate;                                                              // 0x16E0 (size: 0x8)
-    double BaseLookUpRate;                                                            // 0x16E8 (size: 0x8)
-    double CurrentWalkSpeed;                                                          // 0x16F0 (size: 0x8)
-    class UW_PlayerInventory_Main_C* InventoryReference;                              // 0x16F8 (size: 0x8)
-    bool IsInventoryOpen;                                                             // 0x1700 (size: 0x1)
-    bool HUD_HiddenByUser;                                                            // 0x1701 (size: 0x1)
-    FTimerHandle CharacterPane3DRotateTimer;                                          // 0x1708 (size: 0x8)
-    FInventorySlotSelected_Struct CurrentHotbarSlotSelected;                          // 0x1710 (size: 0x10)
-    int32 MaxHotbarSlotSelected;                                                      // 0x1720 (size: 0x4)
-    bool IsDeployMode;                                                                // 0x1724 (size: 0x1)
-    bool CanPlaceDeployableNow;                                                       // 0x1725 (size: 0x1)
-    class AActor* BestInteractable_InteractA;                                         // 0x1728 (size: 0x8)
-    FTimerHandle InteractionFinderTimer;                                              // 0x1730 (size: 0x8)
-    class AAbiotic_PlayerState_C* MyPlayerState;                                      // 0x1738 (size: 0x8)
-    double LastTimeFiredWeapon;                                                       // 0x1740 (size: 0x8)
-    double TimeBetweenPunches;                                                        // 0x1748 (size: 0x8)
-    bool Local_KeyHeld_Fire;                                                          // 0x1750 (size: 0x1)
-    double PunchDamage;                                                               // 0x1758 (size: 0x8)
-    bool TriggeredDeathMessageThisLife;                                               // 0x1760 (size: 0x1)
-    class AAbiotic_PlayerController_C* MyPlayerController;                            // 0x1768 (size: 0x8)
-    FHitResult CrosshairHit;                                                          // 0x1770 (size: 0xF8)
-    double BulletSpread_Base;                                                         // 0x1868 (size: 0x8)
-    FVector2D CrosshairOffset;                                                        // 0x1870 (size: 0x10)
-    double BaseGunSway_Multiplier;                                                    // 0x1880 (size: 0x8)
-    double CurrentGunSway_Speed;                                                      // 0x1888 (size: 0x8)
-    FRotator AimSwayRotationCenter;                                                   // 0x1890 (size: 0x18)
-    double AimRecoilAdditive;                                                         // 0x18A8 (size: 0x8)
-    bool Local_KeyHeld_Interact;                                                      // 0x18B0 (size: 0x1)
-    FTimerHandle InteractionHeldTimer;                                                // 0x18B8 (size: 0x8)
-    double CurrentHoldToInteractTime;                                                 // 0x18C0 (size: 0x8)
-    class AActor* BestInteractable_InteractB;                                         // 0x18C8 (size: 0x8)
-    bool IsViewingWristwatch;                                                         // 0x18D0 (size: 0x1)
-    bool Local_KeyHeld_Wristwatch;                                                    // 0x18D1 (size: 0x1)
-    class UActorComponent* BestInteractableComponent;                                 // 0x18D8 (size: 0x8)
-    int32 CurrentMoney;                                                               // 0x18E0 (size: 0x4)
-    FAbiotic_PlayerCharacter_CMoney_Changed Money_Changed;                            // 0x18E8 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x14D8 (size: 0x8)
+    class UBodyShieldComponent_Player_C* BodyShieldComponent_Player;                  // 0x14E0 (size: 0x8)
+    class USkeletalMeshComponent* BodyShieldMesh;                                     // 0x14E8 (size: 0x8)
+    class UNiagaraComponent* UnderwaterParticle;                                      // 0x14F0 (size: 0x8)
+    class USceneComponent* FP_MouthLocation;                                          // 0x14F8 (size: 0x8)
+    class USkeletalMeshComponent* FPLeg_Suit;                                         // 0x1500 (size: 0x8)
+    class UCameraComponent* ThirdPersonCamera;                                        // 0x1508 (size: 0x8)
+    class USpringArmComponent* EmoteSpringArm;                                        // 0x1510 (size: 0x8)
+    class UNiagaraComponent* ActiveWeatherParticle;                                   // 0x1518 (size: 0x8)
+    class UAudioComponent* FP_HazmatBreathAudio;                                      // 0x1520 (size: 0x8)
+    class UStaticMeshComponent* FPSuitWindow;                                         // 0x1528 (size: 0x8)
+    class UAbiotic_TransmogInventoryComp_C* TmogInventory;                            // 0x1530 (size: 0x8)
+    class UChildActorComponent* NearbyOverlapActor;                                   // 0x1538 (size: 0x8)
+    class USkeletalMeshComponent* FPLeg_Armor;                                        // 0x1540 (size: 0x8)
+    class UChildActorComponent* RadioactiveActor;                                     // 0x1548 (size: 0x8)
+    class USpotLightComponent* HeadlampSpotlight;                                     // 0x1550 (size: 0x8)
+    class UPostProcessComponent* HeadlampPostProcessing;                              // 0x1558 (size: 0x8)
+    class UPostProcessComponent* PlayerPostProcess;                                   // 0x1560 (size: 0x8)
+    class UChildActorComponent* DeployableOverlapActor;                               // 0x1568 (size: 0x8)
+    class UStaticMeshComponent* ScopePlane_R;                                         // 0x1570 (size: 0x8)
+    class UStaticMeshComponent* ScopePlane_L;                                         // 0x1578 (size: 0x8)
+    class UStaticMeshComponent* ScopePlane_Bot;                                       // 0x1580 (size: 0x8)
+    class UStaticMeshComponent* ScopePlane_Top;                                       // 0x1588 (size: 0x8)
+    class UStaticMeshComponent* ScopePlane;                                           // 0x1590 (size: 0x8)
+    class UPhysicsConstraintComponent* TrinketSwingConstraint;                        // 0x1598 (size: 0x8)
+    class UHumanCustomizationComponent_C* HumanCustomizationComponent;                // 0x15A0 (size: 0x8)
+    class USceneComponent* WaypointLocation;                                          // 0x15A8 (size: 0x8)
+    class UCameraComponent* FirstPersonCamera;                                        // 0x15B0 (size: 0x8)
+    class USceneComponent* CameraHeadJoint;                                           // 0x15B8 (size: 0x8)
+    class USkeletalMeshComponent* FPLegs;                                             // 0x15C0 (size: 0x8)
+    class UPointLightComponent* LanternLight;                                         // 0x15C8 (size: 0x8)
+    class UPointLightComponent* WristwatchLight;                                      // 0x15D0 (size: 0x8)
+    class USphereComponent* OverlapTrigger;                                           // 0x15D8 (size: 0x8)
+    class UAbiotic_CharacterProgressionComponent_C* CharacterProgressionComponent;    // 0x15E0 (size: 0x8)
+    class USkeletalMeshComponent* Armor_Suit;                                         // 0x15E8 (size: 0x8)
+    class USkeletalMeshComponent* Armor_Helmet;                                       // 0x15F0 (size: 0x8)
+    class UStaticMeshComponent* FannyPackMesh;                                        // 0x15F8 (size: 0x8)
+    class USkeletalMeshComponent* BeardMesh;                                          // 0x1600 (size: 0x8)
+    class USkeletalMeshComponent* HeadAccessoryMesh;                                  // 0x1608 (size: 0x8)
+    class USkeletalMeshComponent* HairMesh;                                           // 0x1610 (size: 0x8)
+    class USkeletalMeshComponent* Armor_Legs;                                         // 0x1618 (size: 0x8)
+    class USkeletalMeshComponent* Armor_Arms;                                         // 0x1620 (size: 0x8)
+    class USkeletalMeshComponent* Armor_Torso;                                        // 0x1628 (size: 0x8)
+    class UWidgetInteractionComponent* WidgetInteraction;                             // 0x1630 (size: 0x8)
+    class USceneComponent* ProjectileSpawnLocation;                                   // 0x1638 (size: 0x8)
+    class UNavigationInvokerComponent* NavigationInvoker;                             // 0x1640 (size: 0x8)
+    class UAbiotic_InventoryComponent_C* CharacterEquipSlotInventory;                 // 0x1648 (size: 0x8)
+    class UAbiotic_InventoryComponent_C* CharacterHotbarInventory;                    // 0x1650 (size: 0x8)
+    class USpotLightComponent* FlashlightSpotlight;                                   // 0x1658 (size: 0x8)
+    class USceneComponent* FPArmHinge;                                                // 0x1660 (size: 0x8)
+    class UWidgetComponent* Wristwatch;                                               // 0x1668 (size: 0x8)
+    class UStaticMeshComponent* TP_ItemInHand;                                        // 0x1670 (size: 0x8)
+    class UStaticMeshComponent* BackpackMesh;                                         // 0x1678 (size: 0x8)
+    class USkeletalMeshComponent* FPArms;                                             // 0x1680 (size: 0x8)
+    class USceneComponent* AimSwayNode;                                               // 0x1688 (size: 0x8)
+    class USkeletalMeshComponent* PantsMesh;                                          // 0x1690 (size: 0x8)
+    class USkeletalMeshComponent* TorsoMesh;                                          // 0x1698 (size: 0x8)
+    class USpotLightComponent* CharacterPane_SpotLight;                               // 0x16A0 (size: 0x8)
+    class USceneCaptureComponent2D* CharacterPane_RenderTarget;                       // 0x16A8 (size: 0x8)
+    class USpringArmComponent* SpringArm;                                             // 0x16B0 (size: 0x8)
+    class USceneComponent* ItemDropPoint;                                             // 0x16B8 (size: 0x8)
+    float FlashlightFlickerTimeline_NewTrack_0_5BF063A64DDA7C4244506CB7798A8C23;      // 0x16C0 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> FlashlightFlickerTimeline__Direction_5BF063A64DDA7C4244506CB7798A8C23; // 0x16C4 (size: 0x1)
+    class UTimelineComponent* FlashlightFlickerTimeline;                              // 0x16C8 (size: 0x8)
+    float ControllerRecoilTimeline_NewTrack_0_AFC3F42148DFC42265088DA509116D45;       // 0x16D0 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> ControllerRecoilTimeline__Direction_AFC3F42148DFC42265088DA509116D45; // 0x16D4 (size: 0x1)
+    class UTimelineComponent* ControllerRecoilTimeline;                               // 0x16D8 (size: 0x8)
+    float ADS_Zoom_Timeline_Alpha_DFE102FD4B24663C0400BEBF14D78F01;                   // 0x16E0 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> ADS_Zoom_Timeline__Direction_DFE102FD4B24663C0400BEBF14D78F01; // 0x16E4 (size: 0x1)
+    class UTimelineComponent* ADS_Zoom_Timeline;                                      // 0x16E8 (size: 0x8)
+    float Timeline_1_DamageMultiplyValue_8328351944D630437C0EF497C55C7BAE;            // 0x16F0 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> Timeline_1__Direction_8328351944D630437C0EF497C55C7BAE; // 0x16F4 (size: 0x1)
+    class UTimelineComponent* Timeline_1;                                             // 0x16F8 (size: 0x8)
+    float ScreenColorFlashTimeline_NewTrack_0_057EEB42441DFE6AC2A9AA9CD71EB08C;       // 0x1700 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> ScreenColorFlashTimeline__Direction_057EEB42441DFE6AC2A9AA9CD71EB08C; // 0x1704 (size: 0x1)
+    class UTimelineComponent* ScreenColorFlashTimeline;                               // 0x1708 (size: 0x8)
+    float WindUpDamageTimeline_DamageMultiplyValue_B321CE824694AB824DB932BA7CDEBA2B;  // 0x1710 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> WindUpDamageTimeline__Direction_B321CE824694AB824DB932BA7CDEBA2B; // 0x1714 (size: 0x1)
+    class UTimelineComponent* WindUpDamageTimeline;                                   // 0x1718 (size: 0x8)
+    float RecoilTimeline_NewTrack_0_7619EC7841CCE2A53A63A7841FB4C01D;                 // 0x1720 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> RecoilTimeline__Direction_7619EC7841CCE2A53A63A7841FB4C01D; // 0x1724 (size: 0x1)
+    class UTimelineComponent* RecoilTimeline;                                         // 0x1728 (size: 0x8)
+    FVector SwayTimelineLoop_NewTrack_1_1E19F0E74CE5FFB6096EBC86C262A1F2;             // 0x1730 (size: 0x18)
+    TEnumAsByte<ETimelineDirection::Type> SwayTimelineLoop__Direction_1E19F0E74CE5FFB6096EBC86C262A1F2; // 0x1748 (size: 0x1)
+    class UTimelineComponent* SwayTimelineLoop;                                       // 0x1750 (size: 0x8)
+    double BaseTurnRate;                                                              // 0x1758 (size: 0x8)
+    double BaseLookUpRate;                                                            // 0x1760 (size: 0x8)
+    double CurrentWalkSpeed;                                                          // 0x1768 (size: 0x8)
+    class UW_PlayerInventory_Main_C* InventoryReference;                              // 0x1770 (size: 0x8)
+    bool IsInventoryOpen;                                                             // 0x1778 (size: 0x1)
+    bool HUD_HiddenByUser;                                                            // 0x1779 (size: 0x1)
+    FTimerHandle CharacterPane3DRotateTimer;                                          // 0x1780 (size: 0x8)
+    FInventorySlotSelected_Struct CurrentHotbarSlotSelected;                          // 0x1788 (size: 0x10)
+    int32 MaxHotbarSlotSelected;                                                      // 0x1798 (size: 0x4)
+    bool IsDeployMode;                                                                // 0x179C (size: 0x1)
+    bool CanPlaceDeployableNow;                                                       // 0x179D (size: 0x1)
+    class AActor* BestInteractable_InteractA;                                         // 0x17A0 (size: 0x8)
+    FTimerHandle InteractionFinderTimer;                                              // 0x17A8 (size: 0x8)
+    class AAbiotic_PlayerState_C* MyPlayerState;                                      // 0x17B0 (size: 0x8)
+    double LastTimeFiredWeapon;                                                       // 0x17B8 (size: 0x8)
+    double TimeBetweenPunches;                                                        // 0x17C0 (size: 0x8)
+    bool Local_KeyHeld_Fire;                                                          // 0x17C8 (size: 0x1)
+    double PunchDamage;                                                               // 0x17D0 (size: 0x8)
+    bool TriggeredDeathMessageThisLife;                                               // 0x17D8 (size: 0x1)
+    class AAbiotic_PlayerController_C* MyPlayerController;                            // 0x17E0 (size: 0x8)
+    FHitResult CrosshairHit;                                                          // 0x17E8 (size: 0xF8)
+    double BulletSpread_Base;                                                         // 0x18E0 (size: 0x8)
+    FVector2D CrosshairOffset;                                                        // 0x18E8 (size: 0x10)
+    double BaseGunSway_Multiplier;                                                    // 0x18F8 (size: 0x8)
+    double CurrentGunSway_Speed;                                                      // 0x1900 (size: 0x8)
+    FRotator AimSwayRotationCenter;                                                   // 0x1908 (size: 0x18)
+    double AimRecoilAdditive;                                                         // 0x1920 (size: 0x8)
+    bool Local_KeyHeld_Interact;                                                      // 0x1928 (size: 0x1)
+    FTimerHandle InteractionHeldTimer;                                                // 0x1930 (size: 0x8)
+    double CurrentHoldToInteractTime;                                                 // 0x1938 (size: 0x8)
+    class AActor* BestInteractable_InteractB;                                         // 0x1940 (size: 0x8)
+    bool IsViewingWristwatch;                                                         // 0x1948 (size: 0x1)
+    bool Local_KeyHeld_Wristwatch;                                                    // 0x1949 (size: 0x1)
+    class UActorComponent* BestInteractableComponent;                                 // 0x1950 (size: 0x8)
+    int32 CurrentMoney;                                                               // 0x1958 (size: 0x4)
+    FAbiotic_PlayerCharacter_CMoney_Changed Money_Changed;                            // 0x1960 (size: 0x10)
     void Money_Changed();
-    class AAbiotic_Item_ParentBP_C* ItemInHand_BP;                                    // 0x18F8 (size: 0x8)
-    FTimerHandle Stamina_Timer;                                                       // 0x1900 (size: 0x8)
-    double Stamina_CheckRate;                                                         // 0x1908 (size: 0x8)
-    double Stamina_DrainRate;                                                         // 0x1910 (size: 0x8)
-    double Stamina_RegainRate;                                                        // 0x1918 (size: 0x8)
-    double Stamina_ExertionDelay;                                                     // 0x1920 (size: 0x8)
-    double LastHoldInteractionStartTime;                                              // 0x1928 (size: 0x8)
-    double CurrentSanity;                                                             // 0x1930 (size: 0x8)
-    double MaxSanity;                                                                 // 0x1938 (size: 0x8)
-    class AAbioticActor_C* LastItemInHand_BP;                                         // 0x1940 (size: 0x8)
-    FAbiotic_PlayerCharacter_CSanity_Changed Sanity_Changed;                          // 0x1948 (size: 0x10)
+    class AAbiotic_Item_ParentBP_C* ItemInHand_BP;                                    // 0x1970 (size: 0x8)
+    FTimerHandle Stamina_Timer;                                                       // 0x1978 (size: 0x8)
+    double Stamina_CheckRate;                                                         // 0x1980 (size: 0x8)
+    double Stamina_DrainRate;                                                         // 0x1988 (size: 0x8)
+    double Stamina_RegainRate;                                                        // 0x1990 (size: 0x8)
+    double Stamina_ExertionDelay;                                                     // 0x1998 (size: 0x8)
+    double LastHoldInteractionStartTime;                                              // 0x19A0 (size: 0x8)
+    double CurrentSanity;                                                             // 0x19A8 (size: 0x8)
+    double MaxSanity;                                                                 // 0x19B0 (size: 0x8)
+    class AAbioticActor_C* LastItemInHand_BP;                                         // 0x19B8 (size: 0x8)
+    FAbiotic_PlayerCharacter_CSanity_Changed Sanity_Changed;                          // 0x19C0 (size: 0x10)
     void Sanity_Changed();
-    bool PerformingInteraction;                                                       // 0x1958 (size: 0x1)
-    bool LastInteractionWasTypeA;                                                     // 0x1959 (size: 0x1)
-    class AActor* LastHoldInteractableAttempted;                                      // 0x1960 (size: 0x8)
-    bool JustExecutedInteraction;                                                     // 0x1968 (size: 0x1)
-    bool Debug_FreeCrafting;                                                          // 0x1969 (size: 0x1)
-    bool Local_KeyHeld_AltFire;                                                       // 0x196A (size: 0x1)
-    bool IsMeleeWindingUp;                                                            // 0x196B (size: 0x1)
-    bool IsMeleeWindUpHeld;                                                           // 0x196C (size: 0x1)
-    double CurrentMeleeDamageMultiplier;                                              // 0x1970 (size: 0x8)
-    bool Flashlight_On;                                                               // 0x1978 (size: 0x1)
-    double TimeLastWarnedFatigue;                                                     // 0x1980 (size: 0x8)
-    double TimeLastWarnedThirst;                                                      // 0x1988 (size: 0x8)
-    double TimeLastWarnedHunger;                                                      // 0x1990 (size: 0x8)
-    FString OverheadName;                                                             // 0x1998 (size: 0x10)
-    bool JustDeployed;                                                                // 0x19A8 (size: 0x1)
-    bool TakeFallDamage;                                                              // 0x19A9 (size: 0x1)
-    FVector StartOfLastFall;                                                          // 0x19B0 (size: 0x18)
-    FInventorySlotSelected_Struct Server_LastSelectedHotbarItem;                      // 0x19C8 (size: 0x10)
-    class UObject* LastMeshInFPHands;                                                 // 0x19D8 (size: 0x8)
-    bool IsUsingTerminal;                                                             // 0x19E0 (size: 0x1)
-    class AComputerTerminal_ParentBP_C* CurrentTerminal;                              // 0x19E8 (size: 0x8)
-    FAbiotic_PlayerCharacter_CTerminalUseState_Changed TerminalUseState_Changed;      // 0x19F0 (size: 0x10)
+    bool PerformingInteraction;                                                       // 0x19D0 (size: 0x1)
+    bool LastInteractionWasTypeA;                                                     // 0x19D1 (size: 0x1)
+    class AActor* LastHoldInteractableAttempted;                                      // 0x19D8 (size: 0x8)
+    bool JustExecutedInteraction;                                                     // 0x19E0 (size: 0x1)
+    bool Debug_FreeCrafting;                                                          // 0x19E1 (size: 0x1)
+    bool Local_KeyHeld_AltFire;                                                       // 0x19E2 (size: 0x1)
+    bool IsMeleeWindingUp;                                                            // 0x19E3 (size: 0x1)
+    bool IsMeleeWindUpHeld;                                                           // 0x19E4 (size: 0x1)
+    double CurrentMeleeDamageMultiplier;                                              // 0x19E8 (size: 0x8)
+    bool Flashlight_On;                                                               // 0x19F0 (size: 0x1)
+    double TimeLastWarnedFatigue;                                                     // 0x19F8 (size: 0x8)
+    double TimeLastWarnedThirst;                                                      // 0x1A00 (size: 0x8)
+    double TimeLastWarnedHunger;                                                      // 0x1A08 (size: 0x8)
+    FString OverheadName;                                                             // 0x1A10 (size: 0x10)
+    bool JustDeployed;                                                                // 0x1A20 (size: 0x1)
+    FInventorySlotSelected_Struct Server_LastSelectedHotbarItem;                      // 0x1A28 (size: 0x10)
+    class UObject* LastMeshInFPHands;                                                 // 0x1A38 (size: 0x8)
+    bool IsUsingTerminal;                                                             // 0x1A40 (size: 0x1)
+    class AComputerTerminal_ParentBP_C* CurrentTerminal;                              // 0x1A48 (size: 0x8)
+    FAbiotic_PlayerCharacter_CTerminalUseState_Changed TerminalUseState_Changed;      // 0x1A50 (size: 0x10)
     void TerminalUseState_Changed(bool UsingTerminal);
-    double TimeOfLastDeath;                                                           // 0x1A00 (size: 0x8)
-    double SittingEyeHeight;                                                          // 0x1A08 (size: 0x8)
-    double Skill_AccuracyMultiplier_StartValue;                                       // 0x1A10 (size: 0x8)
-    class AItem_Gear_ParentBP_C* Gear_BackpackBP;                                     // 0x1A18 (size: 0x8)
-    class AItem_Gear_ParentBP_C* Gear_HelmetBP;                                       // 0x1A20 (size: 0x8)
-    class AItem_Gear_ParentBP_C* Gear_ArmsBP;                                         // 0x1A28 (size: 0x8)
-    class AItem_Gear_ParentBP_C* Gear_LegsBP;                                         // 0x1A30 (size: 0x8)
-    class AItem_Gear_ParentBP_C* Gear_SuitBP;                                         // 0x1A38 (size: 0x8)
-    class AItem_Gear_ParentBP_C* Gear_TorsoBP;                                        // 0x1A40 (size: 0x8)
-    class UMeshComponent* CurrentFPItemMesh;                                          // 0x1A48 (size: 0x8)
-    bool LocalJumpCooldownActive;                                                     // 0x1A50 (size: 0x1)
-    bool Trait_FannyPack;                                                             // 0x1A51 (size: 0x1)
-    double ArmorSlowMultiplier;                                                       // 0x1A58 (size: 0x8)
-    bool Local_KeyHeld_Crouch;                                                        // 0x1A60 (size: 0x1)
-    FInventorySlotSelected_Struct CurrentFPItemIndex;                                 // 0x1A68 (size: 0x10)
-    FAbiotic_InventoryItemStruct CurrentHeldItemData;                                 // 0x1A78 (size: 0x650)
-    bool CurrentHeldItemExists;                                                       // 0x20C8 (size: 0x1)
-    TArray<class UActorComponent*> LastHighlightedInteractComponents;                 // 0x20D0 (size: 0x10)
-    FText InteractWithText;                                                           // 0x20E0 (size: 0x10)
-    bool IsPlugPlacementMode;                                                         // 0x20F0 (size: 0x1)
-    class APowerSocket_ParentBP_C* CurrentPlugCableSocket;                            // 0x20F8 (size: 0x8)
-    FTimerHandle SanityTimer;                                                         // 0x2100 (size: 0x8)
-    double Sanity_CheckRate;                                                          // 0x2108 (size: 0x8)
-    FTimerHandle LightValueTimer;                                                     // 0x2110 (size: 0x8)
-    float LightValueCheckTime;                                                        // 0x2118 (size: 0x4)
-    double LastAuditoryHallucination;                                                 // 0x2120 (size: 0x8)
-    TArray<TSoftObjectPtr<USoundCue>> HallucinationSounds_Innocent;                   // 0x2128 (size: 0x10)
-    TArray<TSoftObjectPtr<USoundCue>> HallucinationSounds_Hostile;                    // 0x2138 (size: 0x10)
-    double PreviousRadiation;                                                         // 0x2148 (size: 0x8)
-    FName CurrentPerformingEmote;                                                     // 0x2150 (size: 0x8)
-    class UAnimMontage* LastKnownLoadedEmote;                                         // 0x2158 (size: 0x8)
-    FEmote_Struct LastEmoteData;                                                      // 0x2160 (size: 0xC0)
-    class UStaticMeshComponent* FPPlugMesh;                                           // 0x2220 (size: 0x8)
-    double FallDamageResistance;                                                      // 0x2228 (size: 0x8)
-    double MaxInventoryWeight;                                                        // 0x2230 (size: 0x8)
-    FAbiotic_PlayerCharacter_CInventoryWeight_Changed InventoryWeight_Changed;        // 0x2238 (size: 0x10)
+    double TimeOfLastDeath;                                                           // 0x1A60 (size: 0x8)
+    double SittingEyeHeight;                                                          // 0x1A68 (size: 0x8)
+    double Skill_AccuracyMultiplier_StartValue;                                       // 0x1A70 (size: 0x8)
+    class AItem_Gear_ParentBP_C* Gear_BackpackBP;                                     // 0x1A78 (size: 0x8)
+    class AItem_Gear_ParentBP_C* Gear_HelmetBP;                                       // 0x1A80 (size: 0x8)
+    class AItem_Gear_ParentBP_C* Gear_ArmsBP;                                         // 0x1A88 (size: 0x8)
+    class AItem_Gear_ParentBP_C* Gear_LegsBP;                                         // 0x1A90 (size: 0x8)
+    class AItem_Gear_ParentBP_C* Gear_SuitBP;                                         // 0x1A98 (size: 0x8)
+    class AItem_Gear_ParentBP_C* Gear_TorsoBP;                                        // 0x1AA0 (size: 0x8)
+    class UMeshComponent* CurrentFPItemMesh;                                          // 0x1AA8 (size: 0x8)
+    bool LocalJumpCooldownActive;                                                     // 0x1AB0 (size: 0x1)
+    bool Trait_FannyPack;                                                             // 0x1AB1 (size: 0x1)
+    double ArmorSlowMultiplier;                                                       // 0x1AB8 (size: 0x8)
+    bool Local_KeyHeld_Crouch;                                                        // 0x1AC0 (size: 0x1)
+    FInventorySlotSelected_Struct CurrentFPItemIndex;                                 // 0x1AC8 (size: 0x10)
+    FAbiotic_InventoryItemStruct CurrentHeldItemData;                                 // 0x1AD8 (size: 0x650)
+    bool CurrentHeldItemExists;                                                       // 0x2128 (size: 0x1)
+    TArray<class UActorComponent*> LastHighlightedInteractComponents;                 // 0x2130 (size: 0x10)
+    FText InteractWithText;                                                           // 0x2140 (size: 0x10)
+    bool IsPlugPlacementMode;                                                         // 0x2150 (size: 0x1)
+    class APowerSocket_ParentBP_C* CurrentPlugCableSocket;                            // 0x2158 (size: 0x8)
+    FTimerHandle SanityTimer;                                                         // 0x2160 (size: 0x8)
+    double Sanity_CheckRate;                                                          // 0x2168 (size: 0x8)
+    FTimerHandle LightValueTimer;                                                     // 0x2170 (size: 0x8)
+    float LightValueCheckTime;                                                        // 0x2178 (size: 0x4)
+    double LastAuditoryHallucination;                                                 // 0x2180 (size: 0x8)
+    TArray<TSoftObjectPtr<USoundCue>> HallucinationSounds_Innocent;                   // 0x2188 (size: 0x10)
+    TArray<TSoftObjectPtr<USoundCue>> HallucinationSounds_Hostile;                    // 0x2198 (size: 0x10)
+    double PreviousRadiation;                                                         // 0x21A8 (size: 0x8)
+    FName CurrentPerformingEmote;                                                     // 0x21B0 (size: 0x8)
+    class UAnimMontage* LastKnownLoadedEmote;                                         // 0x21B8 (size: 0x8)
+    FEmote_Struct LastEmoteData;                                                      // 0x21C0 (size: 0xF0)
+    class UStaticMeshComponent* FPPlugMesh;                                           // 0x22B0 (size: 0x8)
+    double FallDamageResistance;                                                      // 0x22B8 (size: 0x8)
+    double MaxInventoryWeight;                                                        // 0x22C0 (size: 0x8)
+    FAbiotic_PlayerCharacter_CInventoryWeight_Changed InventoryWeight_Changed;        // 0x22C8 (size: 0x10)
     void InventoryWeight_Changed();
-    double DefaultMaxStamina;                                                         // 0x2248 (size: 0x8)
-    double DefaultMaxInventoryWeight;                                                 // 0x2250 (size: 0x8)
-    bool LanternLight_On;                                                             // 0x2258 (size: 0x1)
-    FString Asset ID;                                                                 // 0x2260 (size: 0x10)
-    FTimerHandle PlayerLocHandle;                                                     // 0x2270 (size: 0x8)
-    FVector LastZiplineVelocity;                                                      // 0x2278 (size: 0x18)
-    bool Noclip_On;                                                                   // 0x2290 (size: 0x1)
-    int32 MeleeSwingIndex;                                                            // 0x2294 (size: 0x4)
-    FMeleeSwingStyle_Struct ClientLastMeleeSwingStyleData;                            // 0x2298 (size: 0x80)
-    class UDecalComponent* CrosshairDecal;                                            // 0x2318 (size: 0x8)
-    class AItem_Gear_ParentBP_C* Gear_HeadlampBP;                                     // 0x2320 (size: 0x8)
-    bool HeadlampOn;                                                                  // 0x2328 (size: 0x1)
-    class UW_RadialWheel_ParentBP_C* RadialWheel;                                     // 0x2330 (size: 0x8)
-    FName ChosenEmote;                                                                // 0x2338 (size: 0x8)
-    double CurrentJumpHeight;                                                         // 0x2340 (size: 0x8)
-    FAbiotic_InventoryChangeableDataStruct Carryover Changeable Data;                 // 0x2348 (size: 0x118)
+    double DefaultMaxStamina;                                                         // 0x22D8 (size: 0x8)
+    double DefaultMaxInventoryWeight;                                                 // 0x22E0 (size: 0x8)
+    bool LanternLight_On;                                                             // 0x22E8 (size: 0x1)
+    FString Asset ID;                                                                 // 0x22F0 (size: 0x10)
+    FTimerHandle PlayerLocHandle;                                                     // 0x2300 (size: 0x8)
+    FVector LastZiplineVelocity;                                                      // 0x2308 (size: 0x18)
+    int32 MeleeSwingIndex;                                                            // 0x2320 (size: 0x4)
+    FMeleeSwingStyle_Struct ClientLastMeleeSwingStyleData;                            // 0x2328 (size: 0x80)
+    class UDecalComponent* CrosshairDecal;                                            // 0x23A8 (size: 0x8)
+    class AItem_Gear_ParentBP_C* Gear_HeadlampBP;                                     // 0x23B0 (size: 0x8)
+    bool HeadlampOn;                                                                  // 0x23B8 (size: 0x1)
+    class UW_RadialWheel_ParentBP_C* RadialWheel;                                     // 0x23C0 (size: 0x8)
+    FName ChosenEmote;                                                                // 0x23C8 (size: 0x8)
+    double CurrentJumpHeight;                                                         // 0x23D0 (size: 0x8)
+    FAbiotic_InventoryChangeableDataStruct Carryover Changeable Data;                 // 0x23D8 (size: 0x88)
     class UW_PlayerHUD_RecipeVBox_C* RecipeUnlockVBox;                                // 0x2460 (size: 0x8)
     FTimerHandle SneakingXPTimer;                                                     // 0x2468 (size: 0x8)
     double DeadEyeHeight;                                                             // 0x2470 (size: 0x8)
@@ -339,6 +336,24 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     FAbiotic_PlayerCharacter_CAimDownSights_Changed AimDownSights_Changed;            // 0x2830 (size: 0x10)
     void AimDownSights_Changed(bool UsingSniperScope, bool IsSquinting);
     bool ShouldBlockCrouchInput;                                                      // 0x2840 (size: 0x1)
+    class ADayNightManager_C* Local_DayNightManager;                                  // 0x2848 (size: 0x8)
+    bool InfiniteAmmo;                                                                // 0x2850 (size: 0x1)
+    class UAbioticPhysicalMaterial* FloorMaterial;                                    // 0x2858 (size: 0x8)
+    FBuffDebuffRowHandle LastShield;                                                  // 0x2860 (size: 0x20)
+    FTimerHandle OutOfMyWayTimer;                                                     // 0x2880 (size: 0x8)
+    FGameplayTagContainer IgnoredDamageResistanceTags;                                // 0x2888 (size: 0x20)
+    FString LocalOverheadName;                                                        // 0x28A8 (size: 0x10)
+    bool JustSetCableConnection;                                                      // 0x28B8 (size: 0x1)
+    double LastTimeSprintingStarted;                                                  // 0x28C0 (size: 0x8)
+    TArray<class AAbioticDeployed_ParentBP_C*> LastFurnitureLookedAtQueue;            // 0x28C8 (size: 0x10)
+    bool GridSnapping;                                                                // 0x28D8 (size: 0x1)
+    int32 ThrownProjectileLastIndex;                                                  // 0x28DC (size: 0x4)
+    TEnumAsByte<E_AttackMissed::Type> LastAttackMissed;                               // 0x28E0 (size: 0x1)
+    bool BattleChargeActive;                                                          // 0x28E1 (size: 0x1)
+    bool KillLookAtTarget;                                                            // 0x28E2 (size: 0x1)
+    bool CurrentlyViewingWristwatch;                                                  // 0x28E3 (size: 0x1)
+    bool Local_ReadyToControlPlayer;                                                  // 0x28E4 (size: 0x1)
+    class AAbioticDeployed_ParentBP_C* LastDeployedActor;                             // 0x28E8 (size: 0x8)
 
     void ReceiveLaserHit(class ULaserComponent_C* Laser, int32 CurrentBounce, FHitResult& HitResult, bool& Handled);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
@@ -364,6 +379,28 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void GetHighlightComponents(TArray<class UActorComponent*>& Components);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
+    void OnRep_LastDeployedActor();
+    void ShieldBlockUpdated();
+    bool IsBattleChargeReady();
+    bool TryIgnoreDamage();
+    void ResetLastMiss();
+    void PassthroughProjectile(class AAbioticProjectile_ParentBP_C* Projectile);
+    void AddFurnitureToLastLookedAtQueue(const class AAbioticDeployed_ParentBP_C*& NewItem);
+    bool GetLastFurnitureLookedAtQueue(class AAbioticDeployed_ParentBP_C*& Furniture);
+    void OnRep_OverheadName();
+    void RejectDLCTeleport();
+    void UpdateShieldGenValues(bool& Changed);
+    double GetProjectileSpeedMultiplier();
+    void PlayUseAnimationMainOrOffhand(bool Secondary Use Anim, double InTimeToStartMontageAt, bool Offhand);
+    void GetOffhandDamageType(TSubclassOf<class UDamageType>& DamageType);
+    void GetCurrentHeldOrOffhandItem(bool Offhand, bool& Success, FAbiotic_InventoryItemSlotStruct& ItemSlotInfo, FAbiotic_InventoryItemStruct& ItemData, class AAbiotic_Item_ParentBP_C*& Blueprint);
+    void UpdateFloorType();
+    void ApplyFloorDamage();
+    void ModifyStaminaOnBlock(double DamageReceived);
+    void ReportPlayerSound toNPCs(double Loudness, double MaxRange);
+    void TryApplyFallDamage(double Distance, FHitResult Hit, bool ClientSideCalculationOnly, bool& AppliedFallDamage, int32& Severity);
+    void CheckHeldWeaponAltFireReleased(bool& ConsumedByWeapon);
+    bool CanLaunchOutOfWater();
     void ShootThroughOneSided(TArray<FHitResult>& Array, double BaseDamage, class AAbiotic_Weapon_ParentBP_C* Weapon, const TSubclassOf<class UDamageType> DamageType);
     bool CheckProjectileBlockOverridden(class AAbioticProjectile_ParentBP_C* Projectile, FHitResult& Hit);
     double ApplyGiantSlayerDamageMultiplier(double BaseDamage, class AActor* HitTarget);
@@ -434,15 +471,15 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void GetBulletFireAngle(FVector MuzzleLocation, double MaximumHitscanRange, double MinSpread, double MaxSpread, bool Shotgun, FVector ForwardVector, double MaxCorrection, FVector& HitscanEnd, FVector& AimVector);
     void ToggleShieldVisibility(bool Hidden);
     void OnRep_ShieldHeld();
-    bool HasShieldActive();
+    bool HasShieldActive(bool CheckReloading);
     void OnRep_Gear_ShieldBP();
     void CheckForThirstDebuffs(double ThirstChange, EBuffSeverity& SeverityLevel);
     void CheckForHungerDebuffs(double HungerChange, EBuffSeverity& SeverityLevel);
     void TryCloseRadialWheel(bool CommitAction, TSubclassOf<class UW_RadialWheel_ParentBP_C> Class, bool& WasClosed);
     void CheckNearbyCharactersForSimilarVoiceLine(EVoiceLineType LineType, bool& AllowedToSpeak);
-    bool TeleportPlayer(FVector DestLocation, FRotator DestRotation, bool Force);
+    bool TeleportPlayer(FVector DestLocation, FRotator DestRotation, bool Force, bool SkipAdjustment);
     void Targetable By Triggers(bool& Targetable);
-    bool CanCurrentlyShieldBlock();
+    bool CanCurrentlyShieldBlock(class AActor* DamageCauser, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageTypeClass, double& DamagePassthroughPercent);
     void Server_TryScrapItem(FAbiotic_InventoryItemSlotStruct SlotData, class UAbiotic_InventoryComponent_C* Inventory, int32 Index, bool& Success, FString& DebugNote);
     void OnDrivingVehicleChanged();
     void OnCurrentSeatUpdated();
@@ -478,7 +515,6 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void Get MouthFX New Attach Location(FName AttachPointToLookFor, class USceneComponent*& AttachToComponent, FName& AttachPointName, FVector& Location, FRotator& Rotation);
     void OnRep_InteractAnimationState();
     void CreateInventoryWidget();
-    TSoftObjectPtr<UStaticMesh> GetCorrectItemMesh(FAbiotic_InventoryItemSlotStruct& SlotData, TSoftObjectPtr<UStaticMesh> ItemMesh, bool DeployMode, FGameplayTagContainer& ItemTags);
     void UpdateTPItemMesh(bool Force);
     void UpdateFiredWeaponTimeFromEquip(double EquipDuration);
     void IsTutorialPanelActive(bool& Active);
@@ -493,7 +529,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void ClearCurrentMeshMaterials(class UMeshComponent* Mesh);
     void Get Equipped Gear Mesh Component(TEnumAsByte<E_InventorySlotType::Type> GearSlot, class UMeshComponent*& GearMeshComponent);
     void Local Toggle Ingestion Warning(bool Show, bool Lethal, bool InteractA, TEnumAsByte<E_DangerousActPrompt::Type> DangerousActType);
-    void IsItemHarmfulToUse?(TArray<FName>& Debuffs, TEnumAsByte<E_LiquidType::Type> LiquidType, TArray<FAbioticItemCount_Struct>& Ingredients, bool& Dangerous, bool& Lethal);
+    void IsItemHarmfulToUse?(TArray<FName>& Debuffs, TEnumAsByte<E_LiquidType::Type> LiquidType, TArray<FName>& Ingredients, bool& Dangerous, bool& Lethal);
     void Local_RespawnResetSequence();
     void ResetCameraHeightToDefault();
     void Update Head Joint Location Rotation();
@@ -514,8 +550,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void Locate Items In Player Inventory(FDataTableRowHandle Item To Look For, bool In Hotbar, bool In Backpack, bool In Container, bool In EquipmentSlots, bool Check Only, bool FindTagOnly, FGameplayTag ItemTagToLookFor, bool& Success, class UAbiotic_InventoryComponent_C*& Inventory, int32& InventoryIndex, FAbiotic_InventoryItemSlotStruct& Item Found, TArray<class UAbiotic_InventoryComponent_C*>& Inventory List);
     void OnRep_Gear_HeadlampBP();
     void CheckItemRequirements(const TArray<FDataTableRowHandle>& RequiredItemUseFlags, bool PrimaryUse, bool& RequirementsMet, FText& PopupText, bool& HeavyWeapon);
-    void Calculate Next Melee Data(FDataTableRowHandle WeaponMeleeSwingDataRow, bool IsUnarmedAttack, bool IsWindupEnd, double DefaultWeaponRange, FGameplayTagContainer GameplayTags, FMeleeingData_Struct& MeleeingData);
-    void OnRep_Noclip_On();
+    void Calculate Next Melee Data(FDataTableRowHandle WeaponMeleeSwingDataRow, bool IsUnarmedAttack, bool IsWindupEnd, bool IsOffhand, double DefaultWeaponRange, FGameplayTagContainer GameplayTags, FMeleeingData_Struct& MeleeingData);
     void Refresh Current Max Carry Weight();
     double Calculate Total Inventory Carry Weight();
     void Local Try Inventory Shortcut(EInventoryMode InventoryMode);
@@ -531,7 +566,6 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     bool IsPerformingEmote();
     void OnRep_CurrentPerformingEmote();
     void ToggleGrabStatePhysics(bool Grabbed);
-    void ReportPlayerSoundToNPCs(float Loudness, double MaxRange);
     void Server_TryChangeValueInLiquidContainer(class UAbiotic_InventoryComponent_C* Inventory, int32 SlotIndex, int32 NewLiquidValue, TEnumAsByte<E_LiquidType::Type> LiquidType, FName OptionalItemRow, bool& Success);
     void IsUsingVehicle(bool& TRUE, class AActor*& Vehicle, class AVehicle_Seat_Passenger_C*& VehicleSeat, bool& IsDriver);
     void Tick_ProcessMeleeSwingArc();
@@ -540,7 +574,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void AddToContinencePool(double Amount);
     void CheckForSanityDebuffs();
     void Timer_ComputeSanity();
-    void Toggle_PlugPlacementMode(class APowerSocket_ParentBP_C* PowerPlugSocket, bool PlugModeActive, bool AttemptReroute, bool SkipHotbarReset, bool FromOnRep);
+    void Toggle_PlugPlacementMode(class APowerSocket_ParentBP_C* PowerPlugSocket, bool PlugModeActive, bool AttemptPlugOrReroute, bool SkipHotbarReset, bool FromOnRep);
     void Tick_PlayerLookAtCheck(class AAbiotic_Character_ParentBP_C*& LookingAtCharacter, float& MaxDistance);
     void CanBeCarbuncled(bool& Success);
     void GetSpottablePoints(TArray<FVector>& SpottablePoints);
@@ -555,7 +589,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void Get Jump Cooldown(double& JumpCooldownDuration);
     void PlayReloadAnimation();
     void PlayItemUseAnimation(bool Secondary Use Anim, double InTimeToStartMontageAt);
-    void PlayLinkedFPMontage(TSoftObjectPtr<UAnimMontage> ItemMontage, TSoftObjectPtr<UAnimMontage> FPArmMontage, float InTimeToStartMontageAt, float InPlayRate, double& Duration);
+    void PlayLinkedFPMontage(TSoftObjectPtr<UAnimMontage> ItemMontage, TSoftObjectPtr<UAnimMontage> FPArmMontage, float InTimeToStartMontageAt, float InPlayRate, bool Offhand, double& Duration);
     void Server_CheckForGearRemoval();
     void Server_SpawnLogicItemForGear(FAbiotic_InventoryItemSlotStruct SlotData, FAbiotic_InventoryItemStruct ItemToSpawn, TEnumAsByte<E_InventorySlotType::Type> Gear Slot Type, bool& Success);
     void OnRep_Gear_TorsoBP();
@@ -575,10 +609,9 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     bool Server_TryReduceItemDurability(class UAbiotic_InventoryComponent_C*& Inventory, int32 SlotIndex, double DurabilityLossAmount, bool ForceDurabilityLoss);
     void GetCurrentWeaponAmmoCount(int32& AmmoInGunMagazine, bool& IsWeaponThatUsesAmmo);
     void ConsumeItemOfSpecificCount(FName ItemToConsume, int32 Count);
-    void TryReloadGunMagazine(bool SkipAmmoConsumption, bool& Success);
+    void TryReloadGunMagazine(bool SkipAmmoConsumption, bool InfiniteAmmo, bool& Success);
     void ConsumeAmmunitionInWeapon(class UObject* WeaponBlueprint, int32 Amount, bool Force, bool& AmmoConsumed);
     void GetLocalPlayerHUD(bool& Success, class UW_PlayerHUD_Main_C*& PlayerHUDRef);
-    void TryApplyFallDamage(double Distance, FHitResult Hit, bool ClientSideCalculationOnly, bool& AppliedFallDamage, int32& Severity);
     void Local Owner Safe Turn Off Light(bool ForceFlashlightOrLanternOff, bool ForceHeadlampOff);
     void OnRep_Flashlight_On();
     void ConsumeCraftingRecipe(TArray<FAbioticItemCount_Struct>& ItemsToConsume, TArray<class UAbiotic_InventoryComponent_C*>& AdditionalInventories, bool& Consumed, FAbiotic_InventoryChangeableDataStruct& CarryoverChangeableData, double& LiquidPercentageRemains, double& DurabilityPercentage, bool& HasCarryoverData);
@@ -704,6 +737,8 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void InpActEvt_Wristwatch_K2Node_InputActionEvent_29(FKey Key);
     void InpActEvt_Flashlight_K2Node_InputActionEvent_28(FKey Key);
     void InpActEvt_Flashlight_K2Node_InputActionEvent_27(FKey Key);
+    void OnFailure_74AFA935484C05DD3ADDE18A17B7D6A3(bool bSuccess, const TArray<FString>& SanitizedMessages);
+    void OnSuccess_74AFA935484C05DD3ADDE18A17B7D6A3(bool bSuccess, const TArray<FString>& SanitizedMessages);
     void InpActEvt_ReloadWeapon_K2Node_InputActionEvent_26(FKey Key);
     void InpActEvt_ReloadWeapon_K2Node_InputActionEvent_25(FKey Key);
     void OnNotifyEnd_6D4E08B24AB9F4CA8DE16A9ABC70E719(FName NotifyName);
@@ -772,7 +807,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void Client_Play2DSoundEffect(class USoundBase* Sound);
     void Client_AllowDeployAgain();
     void Request_Play3DSoundEffect(class USoundBase* Sound, bool Attached, FVector UnattachedLocation, bool PlayForLocalPlayer);
-    void Client_TeleportFX(FLinearColor Color, double Duration, bool BetaEndNotice, bool NoSound);
+    void Client_TeleportFX(FLinearColor Color, double Duration, bool BetaEndNotice, bool NoSound, bool NoFlash);
     void ReceiveDestroyed();
     void ReceiveBeginPlay();
     void CheckForGearStateChange(int32 SlotIndex);
@@ -812,6 +847,14 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void Request_UpdateInputTimestamp();
     void Local_TriggerAFKInput();
     void Radiation_Changed_Event();
+    void BndEvt__Abiotic_PlayerCharacter_BuffDebuffComponent_K2Node_ComponentBoundEvent_0_RemovedBuff__DelegateSignature(FBuffDebuffRowHandle BuffDebuffRowHandle);
+    void Request_ServerLaunchOverride(class ACharacter* Character, FVector LaunchVelocity);
+    void EndMeleeSwingArc();
+    void Local_AltFireRelease();
+    void ForceBeginWindupAttack();
+    void TryBattleCharge_Internal();
+    void Tick_FieldOfViewReset();
+    void Local_ResetFieldOfView(double InterpSpeed);
     void Broadcast_ForcedRangedAttack(const TArray<FHitResult>& Hits, const TSubclassOf<class UDamageType> DamageType);
     void NotifyHitByHitscanRangedWeapon(const FHitResult& Hit, class AController* Instigator, class AActor* DamageCauser, double BaseDamage, TSubclassOf<class UDamageType> DamageType);
     void OverrideProjectileBlock(class AAbioticProjectile_ParentBP_C* Projectile, const FHitResult& Hit);
@@ -833,7 +876,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void Request_CookingThrowable(bool EnablePause, double MontageStartTime, double PauseAtTime, bool CanPlayForLocalPlayer);
     void Broadcast_CookingThrowableFX(bool EnablePause, double MontageStartTime, double PauseAtTime, bool CanPlayForLocalPlayer);
     void Local_PrepareToCookThrowable(bool SecondaryUse);
-    void Request_MeleeAttackFX(TEnumAsByte<E_MeleeAction::Type> Type, int32 MontageIndex, double ThrowDistance);
+    void Request_MeleeAttackFX(TEnumAsByte<E_MeleeAction::Type> Type, int32 MontageIndex, double ThrowDistance, bool Offhand);
     void TryLoad_ItemInHand_ScopeTexture(FName ItemRowName);
     void Local_Safe_EndWeaponZoom();
     void Broadcast_TryDeployItemFX(FVector FX Location, bool PlaySound);
@@ -848,7 +891,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void RangedAttack_DelayEnd();
     void StartFireDelay(bool Melee, double Duration);
     void Request_UseItemOnTargetActor(class AAbiotic_Item_ParentBP_C* Item, class AActor* TargetActor);
-    void BlockDamage_Event(double TotalDamageReceived, FVector DamageDirection, FHitResult Hit Result, class AActor* Instigator);
+    void BlockDamage_Event(double TotalDamageReceived, double DamagePassthroughPercent, FVector DamageDirection, FHitResult Hit Result, class AActor* Instigator, const class UAbiotic_DamageType_ParentBP_C* DamageType);
     void Request_ToggleShieldBlock(bool IsShieldBlocking);
     void Local Use Item(class AAbiotic_Item_ParentBP_C* Item To Use, bool Secondary Action, bool SkipCooldown, double ItemUseMontageStartTime);
     void TryUsingItem();
@@ -861,10 +904,11 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void Request_UseItem(class AAbiotic_Item_ParentBP_C* Item, FTransform Transform, bool Secondary Action, class AActor* TargetActor);
     void TryDeployItem(FTransform AtTransform, FInventorySlotSelected_Struct SlotSelected, const TArray<FVector>& Supports, class AActor* HitActor);
     void Broadcast_RangedAttack(const TArray<FHitResult>& Hits, class USoundBase* FireSound, const TSubclassOf<class UDamageType> DamageType, bool RequiresAmmo);
-    void Request_RangedAttack(const TArray<FHitResult>& HitArray);
+    void Request_RangedAttack(const TArray<FHitResult>& HitArray, double ChargeAmount);
     void Try_AutoAttack();
     void Broadcast_MeleeSwingFX(bool Unarmed, int32 WeaponSwingMontage);
-    void Request_MeleeAttackDamage(FHitResult Hit, bool Unarmed, double DamageMultiplier, bool ForceDurabilityLoss);
+    void Request_MeleeAttackDamage(FHitResult Hit, bool Unarmed, double DamageMultiplier, bool ForceDurabilityLoss, bool Offhand);
+    void OnBaseChange(const class UPrimitiveComponent* NewBase);
     void Request_DoubleJumpFX();
     void Broadcast_DoubleJumpFX();
     void OnJumped();
@@ -883,6 +927,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void Request_RespawnPlayerCharacter(bool RevivedOnSpot, bool UsePlayerStartOnly, FName DestinationID);
     void Revive_From_DBNO(bool RespawnedFromDeath);
     void ProcessDamage(double Damage, const class UDamageType* DamageType, FVector HitLocation, FVector HitNormal, class UPrimitiveComponent* HitComponent, FName BoneHitName, FVector DirectionOfSource, class AActor* Instigator, class AActor* DamageCauser, FHitResult HitInfo);
+    void Client_AllowNewCableConnection();
     void PlugModeChanged(bool PlugModeActive);
     void Request_StopOfferItemState();
     void Server_TryTakeOfferableConsumable(class AAbiotic_PlayerCharacter_C* ReceivingCharacter);
@@ -909,6 +954,8 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void StartSneakingXPTimer();
     void Timer_CheckForSneakingXP();
     void ForceEndCrouch();
+    void StartOutOfMyWayBuffTimer();
+    void StartOutOfMyWayCharge();
     void StartCrouchRoll();
     void CheckForStaminaEvents();
     void OnSprintUpdated();
@@ -923,6 +970,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void Request_ToggleLanternLight(bool On, class URechargeableComponent_C* RechargableComponent);
     void Client_ForceFlashlightOff(bool ForceFlashlightOrLanternOff, bool ForceHeadlampOff);
     void Request_ToggleFlashlight(bool On, class URechargeableComponent_C* RechargeableComponent);
+    void LocalOverheadNameSetup();
     void TryStartSleepMinigame();
     void Toggle_WristwatchBrightness();
     void Client_ToggleSleepState();
@@ -933,6 +981,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void ReloadWeapon();
     void FinishWeaponReload();
     void Local_InterruptReload();
+    void Request_TryCraftUpgrade(FItemUpgradeRowHandle UpgradeRow, int32 UpgradeIndex, class ADeployed_CraftingBench_Upgrade_C* UpgradeBench, double UpgradeDuration);
     void Request_StartRechargeItemWithTool(FName ItemRow, class UAbiotic_InventoryComponent_C* ChargeToolLocation, int32 SlotIndex, class UAbiotic_InventoryComponent_C* Inventory, int32 ChargeAmount);
     void Client_ItemCrafted();
     void Server_Award XP Based On Recipe Category(TEnumAsByte<E_RecipeCategory::Type> Category);
@@ -958,6 +1007,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void Server_ForceEndEmote();
     void Local_BeginPlayEmote();
     void Request_StartEmote(FName Emote);
+    void Request_DeleteItemsInInventory(const class UAbiotic_InventoryComponent_C*& Inventory);
     void BndEvt__Abiotic_PlayerCharacter_TmogInventory_K2Node_ComponentBoundEvent_6_InventoryUpdated__DelegateSignature(class UAbiotic_InventoryComponent_C* Inventory);
     void BndEvt__Abiotic_PlayerCharacter_CharacterHotbarInventory_K2Node_ComponentBoundEvent_5_InventoryUpdated__DelegateSignature(class UAbiotic_InventoryComponent_C* Inventory);
     void BndEvt__Abiotic_PlayerCharacter_CharacterEquipSlotInventory_K2Node_ComponentBoundEvent_4_InventoryUpdated__DelegateSignature(class UAbiotic_InventoryComponent_C* Inventory);
@@ -979,7 +1029,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void Request_TrySwapItems(class UAbiotic_InventoryComponent_C* Inventory1, int32 SlotIndex1, class UAbiotic_InventoryComponent_C* Inventory2, int32 SlotIndex2);
     void Client_UpdateUISound(TEnumAsByte<E_ResultState::Type> State, class USoundBase* Sound);
     void Request_TryTakeAllItemFromContainer(class UAbiotic_InventoryComponent_C* SourceInventoryComponent, class AAbioticCharacter* InteractingCharacter, class UAbiotic_InventoryComponent_C* ContainerInventoryComponent);
-    void Request_TryQuickMoveItem(class UAbiotic_InventoryComponent_C* SourceInventoryComponent, class AAbioticCharacter* InteractingCharacter, int32 SlotIndex, bool EquippingGear, class UAbiotic_InventoryComponent_C* ContainerInventoryComponent, bool SingleOnly);
+    void Request_TryQuickMoveItem(class UAbiotic_InventoryComponent_C* SourceInventoryComponent, class AAbioticCharacter* InteractingCharacter, int32 SlotIndex, bool EquippingGear, class UAbiotic_InventoryComponent_C* ContainerInventoryComponent, bool SingleOnly, bool EnableNotifyPopus);
     void UseNonHotbarItemAfterSwap();
     void Request_TryPlaceInInventoryBySameItemType(const class UAbiotic_InventoryComponent_C*& TargetInventory, TArray<class UAbiotic_InventoryComponent_C*>& Source Inventories);
     void TryUseNonHotbarSlot(class UAbiotic_InventoryComponent_C* SlotInventory, int32 SlotIndex);
@@ -994,9 +1044,9 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void TryShowFannyPack();
     void Request_UpdateCurrentHotbarItem(FInventorySlotSelected_Struct CurrentHotbarSlotSelected);
     void Request_TryPlaceItemInInventory(class UAbiotic_InventoryComponent_C* InventoryComponent, FDataTableRowHandle DataTableRowHandle, FAbiotic_InventoryChangeableDataStruct ChangeableData, bool CheckOnly, bool IsEquippingGear?, bool Place Leftover in the Same Inventory?);
-    void Request_ApplyCustomizationChange(const FDataTableRowHandle& CustomizationDataRow, TEnumAsByte<E_CustomizationCategories::Type> CustomizationType, TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Customization_Voice);
+    void Request_ApplyCustomizationChange(const FDataTableRowHandle& CustomizationDataRow, TEnumAsByte<E_CustomizationCategories::Type> CustomizationType, TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Customization_Voice, FVector Customization_Vector);
     void Set_PlayerVoice(class UPlayerCharacterVoiceDataAsset* LoadedVoiceAsset);
-    void Server_ApplyAllCustomizationData(TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Customization_Voice, FName Customization_Head, FName Customization_HairStyle, FName Customization_HairColor, FName Customization_HeadAccessory, FName Customization_UpperBody, FName Customization_LowerBody, FName Customization_ShirtColor, FName Customization_Belt, FName Customization_Shoes, FName Customization_Tie, FName Customization_Beard, FName Customization_Watch, FName Customization_IDCard);
+    void Server_ApplyAllCustomizationData(TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Customization_Voice, FName Customization_Head, FName Customization_HairStyle, FName Customization_HairColor, FName Customization_HeadAccessory, FName Customization_UpperBody, FName Customization_LowerBody, FName Customization_ShirtColor, FName Customization_Belt, FName Customization_Shoes, FName Customization_Tie, FName Customization_Beard, FName Customization_Watch, FName Customization_IDCard, double Customization_SkinTone);
     void Server_PoopOnFloor();
     void Request_ForceStaggerTarget(class AActor* Target);
     void PlayFirstPersonMontage(class UAnimMontage* MontageToPlay, bool HideHeldItemDuringAnim);
@@ -1038,6 +1088,6 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void TerminalUseState_Changed__DelegateSignature(bool UsingTerminal);
     void Sanity_Changed__DelegateSignature();
     void Money_Changed__DelegateSignature();
-}; // Size: 0x2841
+}; // Size: 0x28F0
 
 #endif

@@ -21,13 +21,17 @@ class UW_InventoryGrid_C : public UUserWidget
     TEnumAsByte<E_InventorySlotAppearance::Type> SlotAppearance;                      // 0x0349 (size: 0x1)
     bool CanBeFavorited;                                                              // 0x034A (size: 0x1)
     TArray<TEnumAsByte<E_InventorySlotAppearance::Type>> SlotAppearanceOverrides;     // 0x0350 (size: 0x10)
+    int32 Array Index;                                                                // 0x0360 (size: 0x4)
+    TMap<int32, TSoftObjectPtr<UW_InventoryItemSlot_C>> ItemSlotMap;                  // 0x0368 (size: 0x50)
 
+    void FocusCursorAtSlotLocation(int32 Row, int32 Column, double Time);
+    void DragDropDPadNavigation(class UW_InventoryItemSlot_C* HoveredSlot, TEnumAsByte<E_NavigationDirection::Type> Direction, bool& HandledNavigation, TEnumAsByte<E_NavigationDirection::Type>& EscapeDirection);
     void ClearHighlightedSlots();
     void CheckPendingSlotHighlights();
     void HighlightSlot(int32 SlotIndex, bool Visible);
     void Construct();
     void RefreshGrid();
     void ExecuteUbergraph_W_InventoryGrid(int32 EntryPoint);
-}; // Size: 0x360
+}; // Size: 0x3B8
 
 #endif

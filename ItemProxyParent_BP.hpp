@@ -6,9 +6,9 @@ class AItemProxyParent_BP_C : public AActor
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0298 (size: 0x8)
     class UStaticMeshComponent* ItemProxyMesh;                                        // 0x02A0 (size: 0x8)
     class USceneComponent* DefaultSceneRoot;                                          // 0x02A8 (size: 0x8)
-    FAbiotic_InventoryChangeableDataStruct ChangeableData;                            // 0x02B0 (size: 0x118)
-    FDataTableRowHandle ItemRow;                                                      // 0x03C8 (size: 0x10)
-    int32 SpotIndex;                                                                  // 0x03D8 (size: 0x4)
+    FAbiotic_InventoryChangeableDataStruct ChangeableData;                            // 0x02B0 (size: 0x88)
+    FDataTableRowHandle ItemRow;                                                      // 0x0338 (size: 0x10)
+    int32 SpotIndex;                                                                  // 0x0348 (size: 0x4)
 
     void GetOutlineComponent(bool& ComponentEnabled, class UOutlineComponent_C*& Components);
     void IsItemInPinnedRecipes(bool& IsPinnedIngredient);
@@ -20,6 +20,6 @@ class AItemProxyParent_BP_C : public AActor
     void RefreshContainerAppearance();
     void ProxyMeshLoaded();
     void ExecuteUbergraph_ItemProxyParent_BP(int32 EntryPoint);
-}; // Size: 0x3DC
+}; // Size: 0x34C
 
 #endif

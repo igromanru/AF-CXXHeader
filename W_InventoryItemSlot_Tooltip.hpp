@@ -8,21 +8,21 @@ class UW_InventoryItemSlot_Tooltip_C : public UUserWidget
     class UTextBlock* Armor_Text;                                                     // 0x02F0 (size: 0x8)
     class UTextBlock* AssetID_Text;                                                   // 0x02F8 (size: 0x8)
     class UVerticalBox* BuffApply_VBox;                                               // 0x0300 (size: 0x8)
-    class UImage* BuffDivider;                                                        // 0x0308 (size: 0x8)
-    class UTextBlock* CanBePlanted_text;                                              // 0x0310 (size: 0x8)
-    class UTextBlock* CanChopUpRemains_text;                                          // 0x0318 (size: 0x8)
-    class UCanvasPanel* CanvasPanel_0;                                                // 0x0320 (size: 0x8)
-    class UTextBlock* CapacityText;                                                   // 0x0328 (size: 0x8)
-    class UTextBlock* CarryWeightText;                                                // 0x0330 (size: 0x8)
-    class UVerticalBox* CenterInfoVBox;                                               // 0x0338 (size: 0x8)
-    class UHorizontalBox* Cold_HBox;                                                  // 0x0340 (size: 0x8)
-    class UTextBlock* CookingTimeLeft;                                                // 0x0348 (size: 0x8)
-    class UImage* CraftableIcon;                                                      // 0x0350 (size: 0x8)
-    class UTextBlock* CraftableText;                                                  // 0x0358 (size: 0x8)
-    class UImage* DamagedIcon;                                                        // 0x0360 (size: 0x8)
-    class UTextBlock* DamagedTExt;                                                    // 0x0368 (size: 0x8)
-    class UTextBlock* DamageText;                                                     // 0x0370 (size: 0x8)
-    class UImage* Divider1;                                                           // 0x0378 (size: 0x8)
+    class UTextBlock* CanBePlanted_text;                                              // 0x0308 (size: 0x8)
+    class UTextBlock* CanChopUpRemains_text;                                          // 0x0310 (size: 0x8)
+    class UCanvasPanel* CanvasPanel_0;                                                // 0x0318 (size: 0x8)
+    class UTextBlock* CapacityText;                                                   // 0x0320 (size: 0x8)
+    class UTextBlock* CarryWeightText;                                                // 0x0328 (size: 0x8)
+    class UVerticalBox* CenterInfoVBox;                                               // 0x0330 (size: 0x8)
+    class UHorizontalBox* Cold_HBox;                                                  // 0x0338 (size: 0x8)
+    class UTextBlock* CookingTimeLeft;                                                // 0x0340 (size: 0x8)
+    class UImage* CraftableIcon;                                                      // 0x0348 (size: 0x8)
+    class UTextBlock* CraftableText;                                                  // 0x0350 (size: 0x8)
+    class UImage* DamagedIcon;                                                        // 0x0358 (size: 0x8)
+    class UTextBlock* DamagedTExt;                                                    // 0x0360 (size: 0x8)
+    class UTextBlock* DamageText;                                                     // 0x0368 (size: 0x8)
+    class UImage* Divider_AboveBuffs;                                                 // 0x0370 (size: 0x8)
+    class UImage* Divider_AboveCenterContent;                                         // 0x0378 (size: 0x8)
     class UTextBlock* DurabilityText;                                                 // 0x0380 (size: 0x8)
     class UTextBlock* EquipSlotText;                                                  // 0x0388 (size: 0x8)
     class UTextBlock* FatigueText;                                                    // 0x0390 (size: 0x8)
@@ -56,28 +56,41 @@ class UW_InventoryItemSlot_Tooltip_C : public UUserWidget
     class UTextBlock* TemperatureHot_Text;                                            // 0x0470 (size: 0x8)
     class UTextBlock* ThirstText;                                                     // 0x0478 (size: 0x8)
     class UBorder* Tooltip_Border;                                                    // 0x0480 (size: 0x8)
-    class UVerticalBox* VerticalBox_106;                                              // 0x0488 (size: 0x8)
-    class UTextBlock* Weight_Text;                                                    // 0x0490 (size: 0x8)
-    FAbiotic_InventoryItemStruct ItemData;                                            // 0x0498 (size: 0x650)
-    FAbiotic_InventoryChangeableDataStruct ChangeableItemData;                        // 0x0AE8 (size: 0x118)
-    bool JustTitle;                                                                   // 0x0C00 (size: 0x1)
-    bool BuiltBuffList;                                                               // 0x0C01 (size: 0x1)
-    TEnumAsByte<E_ItemTooltipState::Type> TooltipState;                               // 0x0C02 (size: 0x1)
-    bool BriefTooltip;                                                                // 0x0C03 (size: 0x1)
-    FLinearColor DefaultTextColor;                                                    // 0x0C04 (size: 0x10)
-    FRecipeSubstitutes_Struct SubstituteItemData;                                     // 0x0C18 (size: 0x58)
-    double LocationX;                                                                 // 0x0C70 (size: 0x8)
-    double LocationY;                                                                 // 0x0C78 (size: 0x8)
-    TEnumAsByte<E_InventorySlotType::Type> InvSlotType;                               // 0x0C80 (size: 0x1)
-    bool IsRepresentationSlot;                                                        // 0x0C81 (size: 0x1)
-    bool CraftableNotice;                                                             // 0x0C82 (size: 0x1)
-    FName ItemRowName;                                                                // 0x0C84 (size: 0x8)
-    bool BrokenItem;                                                                  // 0x0C8C (size: 0x1)
-    double LiquidWeightMultiplier;                                                    // 0x0C90 (size: 0x8)
-    bool HiddenItem;                                                                  // 0x0C98 (size: 0x1)
-    bool FoundActiveSetBonus;                                                         // 0x0C99 (size: 0x1)
-    TArray<class UW_Tooltip_TextLine_C*> FoundSetBonusText;                           // 0x0CA0 (size: 0x10)
+    class UTextBlock* UpgradeAvailable_Text;                                          // 0x0488 (size: 0x8)
+    class UHorizontalBox* UpgradeHbox;                                                // 0x0490 (size: 0x8)
+    class UImage* UpgradeIcon;                                                        // 0x0498 (size: 0x8)
+    class UVerticalBox* VerticalBox_106;                                              // 0x04A0 (size: 0x8)
+    class UTextBlock* Weight_Text;                                                    // 0x04A8 (size: 0x8)
+    FAbiotic_InventoryItemStruct ItemData;                                            // 0x04B0 (size: 0x650)
+    FAbiotic_InventoryChangeableDataStruct ChangeableItemData;                        // 0x0B00 (size: 0x88)
+    bool JustTitle;                                                                   // 0x0B88 (size: 0x1)
+    bool BuiltBuffList;                                                               // 0x0B89 (size: 0x1)
+    TEnumAsByte<E_ItemTooltipState::Type> TooltipState;                               // 0x0B8A (size: 0x1)
+    bool BriefTooltip;                                                                // 0x0B8B (size: 0x1)
+    FLinearColor DefaultTextColor;                                                    // 0x0B8C (size: 0x10)
+    FRecipeSubstitutes_Struct SubstituteItemData;                                     // 0x0BA0 (size: 0x58)
+    double LocationX;                                                                 // 0x0BF8 (size: 0x8)
+    double LocationY;                                                                 // 0x0C00 (size: 0x8)
+    TEnumAsByte<E_InventorySlotType::Type> InvSlotType;                               // 0x0C08 (size: 0x1)
+    bool IsRepresentationSlot;                                                        // 0x0C09 (size: 0x1)
+    bool CraftableNotice;                                                             // 0x0C0A (size: 0x1)
+    FName ItemRowName;                                                                // 0x0C0C (size: 0x8)
+    bool BrokenItem;                                                                  // 0x0C14 (size: 0x1)
+    double LiquidWeightMultiplier;                                                    // 0x0C18 (size: 0x8)
+    bool HiddenItem;                                                                  // 0x0C20 (size: 0x1)
+    bool FoundActiveSetBonus;                                                         // 0x0C21 (size: 0x1)
+    TArray<class UW_Tooltip_TextLine_C*> FoundSetBonusText;                           // 0x0C28 (size: 0x10)
+    TEnumAsByte<E_ItemUpgradeState::Type> ItemUpgradeAvailable;                       // 0x0C38 (size: 0x1)
+    TArray<FText> SetBonusTexts;                                                      // 0x0C40 (size: 0x10)
+    float CalculatedItemWeight;                                                       // 0x0C50 (size: 0x4)
+    TArray<FLinearColor> SetBonusColors;                                              // 0x0C58 (size: 0x10)
+    FText LastItemName;                                                               // 0x0C68 (size: 0x10)
 
+    void RefreshUpgradeStateText(TEnumAsByte<E_ItemUpgradeState::Type> State);
+    void UpdateExternalValues();
+    void HasTooltipChanged(TEnumAsByte<E_ItemTooltipState::Type> InTooltipState, FName InItemRowName, const FAbiotic_InventoryChangeableDataStruct& InChangeableData, bool& RequiresNewTooltip);
+    void SetConsumableBuffs(const FAbiotic_Consumable_Struct& Abiotic_Consumable_Struct);
+    void HasChangeableDataChanged(FAbiotic_InventoryChangeableDataStruct& InChangeableData, bool& HasChanged);
     void SetWeaponDamageText();
     void CheckIfItemStripped(bool IsStripped);
     void CheckIfRecipeStripped();
@@ -88,10 +101,10 @@ class UW_InventoryItemSlot_Tooltip_C : public UUserWidget
     void Set Tooltip Location(FVector2D Mouse Position, FVector2D& Tooltip Desired Location);
     void RefreshTooltipInformation();
     void Construct();
-    void Tick(FGeometry MyGeometry, float InDeltaTime);
     void Adjust Tooltip Position On Viewport();
-    void Setup Tooltip Info();
+    void Tick(FGeometry MyGeometry, float InDeltaTime);
+    void OnLargerTextChanged(bool NewValue);
     void ExecuteUbergraph_W_InventoryItemSlot_Tooltip(int32 EntryPoint);
-}; // Size: 0xCB0
+}; // Size: 0xC78
 
 #endif

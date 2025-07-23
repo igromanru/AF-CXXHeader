@@ -2185,31 +2185,31 @@ class UNiagaraBaselineController_Basic : public UNiagaraBaselineController
 
 class UNiagaraComponent : public UFXSystemComponent
 {
-    class UNiagaraSystem* Asset;                                                      // 0x0518 (size: 0x8)
-    ENiagaraTickBehavior TickBehavior;                                                // 0x0520 (size: 0x1)
-    int32 RandomSeedOffset;                                                           // 0x0524 (size: 0x4)
-    FNiagaraUserRedirectionParameterStore OverrideParameters;                         // 0x0528 (size: 0xD8)
-    uint8 bForceSolo;                                                                 // 0x0600 (size: 0x1)
-    uint8 bEnableGpuComputeDebug;                                                     // 0x0600 (size: 0x1)
-    uint8 bOverrideWarmupSettings;                                                    // 0x0600 (size: 0x1)
-    int32 WarmupTickCount;                                                            // 0x0604 (size: 0x4)
-    float WarmupTickDelta;                                                            // 0x0608 (size: 0x4)
-    uint8 bAutoDestroy;                                                               // 0x0640 (size: 0x1)
-    uint8 bRenderingEnabled;                                                          // 0x0640 (size: 0x1)
-    uint8 bAutoManageAttachment;                                                      // 0x0640 (size: 0x1)
-    uint8 bAutoAttachWeldSimulatedBodies;                                             // 0x0640 (size: 0x1)
-    float MaxTimeBeforeForceUpdateTransform;                                          // 0x0644 (size: 0x4)
-    ENiagaraOcclusionQueryMode OcclusionQueryMode;                                    // 0x0649 (size: 0x1)
-    FNiagaraComponentOnSystemFinished OnSystemFinished;                               // 0x0650 (size: 0x10)
+    class UNiagaraSystem* Asset;                                                      // 0x0520 (size: 0x8)
+    ENiagaraTickBehavior TickBehavior;                                                // 0x0528 (size: 0x1)
+    int32 RandomSeedOffset;                                                           // 0x052C (size: 0x4)
+    FNiagaraUserRedirectionParameterStore OverrideParameters;                         // 0x0530 (size: 0xD8)
+    uint8 bForceSolo;                                                                 // 0x0608 (size: 0x1)
+    uint8 bEnableGpuComputeDebug;                                                     // 0x0608 (size: 0x1)
+    uint8 bOverrideWarmupSettings;                                                    // 0x0608 (size: 0x1)
+    int32 WarmupTickCount;                                                            // 0x060C (size: 0x4)
+    float WarmupTickDelta;                                                            // 0x0610 (size: 0x4)
+    uint8 bAutoDestroy;                                                               // 0x0648 (size: 0x1)
+    uint8 bRenderingEnabled;                                                          // 0x0648 (size: 0x1)
+    uint8 bAutoManageAttachment;                                                      // 0x0648 (size: 0x1)
+    uint8 bAutoAttachWeldSimulatedBodies;                                             // 0x0648 (size: 0x1)
+    float MaxTimeBeforeForceUpdateTransform;                                          // 0x064C (size: 0x4)
+    ENiagaraOcclusionQueryMode OcclusionQueryMode;                                    // 0x0651 (size: 0x1)
+    FNiagaraComponentOnSystemFinished OnSystemFinished;                               // 0x0658 (size: 0x10)
     void OnNiagaraSystemFinished(class UNiagaraComponent* PSystem);
-    TWeakObjectPtr<class USceneComponent> AutoAttachParent;                           // 0x0660 (size: 0x8)
-    FName AutoAttachSocketName;                                                       // 0x0668 (size: 0x8)
-    EAttachmentRule AutoAttachLocationRule;                                           // 0x0670 (size: 0x1)
-    EAttachmentRule AutoAttachRotationRule;                                           // 0x0671 (size: 0x1)
-    EAttachmentRule AutoAttachScaleRule;                                              // 0x0672 (size: 0x1)
-    uint8 bAllowScalability;                                                          // 0x067C (size: 0x1)
-    class UNiagaraSimCache* SimCache;                                                 // 0x0768 (size: 0x8)
-    class UNiagaraCullProxyComponent* CullProxy;                                      // 0x0770 (size: 0x8)
+    TWeakObjectPtr<class USceneComponent> AutoAttachParent;                           // 0x0668 (size: 0x8)
+    FName AutoAttachSocketName;                                                       // 0x0670 (size: 0x8)
+    EAttachmentRule AutoAttachLocationRule;                                           // 0x0678 (size: 0x1)
+    EAttachmentRule AutoAttachRotationRule;                                           // 0x0679 (size: 0x1)
+    EAttachmentRule AutoAttachScaleRule;                                              // 0x067A (size: 0x1)
+    uint8 bAllowScalability;                                                          // 0x0684 (size: 0x1)
+    class UNiagaraSimCache* SimCache;                                                 // 0x0770 (size: 0x8)
+    class UNiagaraCullProxyComponent* CullProxy;                                      // 0x0778 (size: 0x8)
 
     void SetVariableVec4(FName InVariableName, const FVector4& InValue);
     void SetVariableVec3(FName InVariableName, FVector InValue);
@@ -2319,7 +2319,7 @@ class UNiagaraConvertInPlaceUtilityBase : public UObject
 
 class UNiagaraCullProxyComponent : public UNiagaraComponent
 {
-    TArray<FNiagaraCulledComponentInfo> Instances;                                    // 0x0778 (size: 0x10)
+    TArray<FNiagaraCulledComponentInfo> Instances;                                    // 0x0780 (size: 0x10)
 
 }; // Size: 0x790
 
