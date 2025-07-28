@@ -20,7 +20,7 @@ class UAbiotic_CustomizationSave_C : public UAbiotic_SaveGame_C
     FName Customization_IDCard;                                                       // 0x00B8 (size: 0x8)
     double Customization_SkinTone;                                                    // 0x00C0 (size: 0x8)
 
-    void FillNewSaveData(FName Head, FName HeadAccessory, FName Wristwatch, FName Tie, FName UpperBody, FName LowerBody, FName Hair, FName HairColor, FName ShirtColor, FName Shoes, FName Belt, FName Beard, TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Voice, FName IDCard, double SkinTone);
+    void FillNewSaveData(FName Head, FName HeadAccessory, FName Wristwatch, FName Tie, FName UpperBody, FName LowerBody, FName Hair, FName HairColor, FName ShirtColor, FName shoes, FName belt, FName Beard, TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Voice, FName idcard, double SkinTone);
 }; // Size: 0xC8
 
 #endif

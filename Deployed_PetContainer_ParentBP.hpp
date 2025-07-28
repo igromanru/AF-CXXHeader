@@ -25,7 +25,7 @@ class ADeployed_PetContainer_ParentBP_C : public AAbioticDeployed_Furniture_Pare
     bool IsPestCurrentlyEating;                                                       // 0x08D4 (size: 0x1)
     class ANPC_Monster_Pest_C* LocalOldPest;                                          // 0x08D8 (size: 0x8)
     UClass* LocalClass;                                                               // 0x08E0 (size: 0x8)
-    TMap<TSoftClassPtr<ANPC_Base_ParentBP_C>, int32> ClassToIndex;                    // 0x08E8 (size: 0x50)
+    TArray<TSoftClassPtr<ANPC_Base_ParentBP_C>> ClassToIndex;                         // 0x08E8 (size: 0x10)
 
     void CanLongInteractWith_A(bool& Success);
     void PetClassToIndex(TSoftClassPtr<ANPC_Base_ParentBP_C> Class, int32& Index);
@@ -67,6 +67,6 @@ class ADeployed_PetContainer_ParentBP_C : public AAbioticDeployed_Furniture_Pare
     void PlayPestAnimInside(class UAnimMontage* MontageToPlay);
     void NewPlayerMadeString();
     void ExecuteUbergraph_Deployed_PetContainer_ParentBP(int32 EntryPoint);
-}; // Size: 0x938
+}; // Size: 0x8F8
 
 #endif

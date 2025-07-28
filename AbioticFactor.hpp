@@ -1505,6 +1505,7 @@ class UAbioticGameInstance : public UAdvancedFriendsGameInstance
     void OnOnlinePrivilegesUpdated();
     void OnOnlinePrivilegesLimited();
     void OnOnlineLoginComplete(bool bWasSuccessful, FString ErrorMessage);
+    void OnlineLogout();
     void OnlineLogin();
     void OfflineLoginComplete();
     void MappingsChanged(class APlayerController* Player);

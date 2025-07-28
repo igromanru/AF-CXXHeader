@@ -14,8 +14,8 @@ class UAbiotic_MegalightComponent_C : public UActorComponent
     int32 MegalightTier;                                                              // 0x00F4 (size: 0x4)
     TArray<TEnumAsByte<EObjectTypeQuery>> LightTraceChannels;                         // 0x00F8 (size: 0x10)
     bool Debug;                                                                       // 0x0108 (size: 0x1)
-    class UMaterialInterface* Material_On;                                            // 0x0110 (size: 0x8)
-    class UMaterialInterface* Material_Off;                                           // 0x0118 (size: 0x8)
+    class UMaterialInterface* Material_ON;                                            // 0x0110 (size: 0x8)
+    class UMaterialInterface* Material_OFF;                                           // 0x0118 (size: 0x8)
 
     bool CanEnableTraces();
     void IncrementTraceLayer();

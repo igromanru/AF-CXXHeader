@@ -3,7 +3,7 @@
 
 class ADeployed_PestTrap_C : public ADeployed_PetContainer_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0938 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x08F8 (size: 0x8)
 
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void CanLongInteractWith_A(bool& Success);
@@ -14,6 +14,6 @@ class ADeployed_PestTrap_C : public ADeployed_PetContainer_ParentBP_C
     void YesClicked_Event();
     void NoClicked_Event();
     void ExecuteUbergraph_Deployed_PestTrap(int32 EntryPoint);
-}; // Size: 0x940
+}; // Size: 0x900
 
 #endif
