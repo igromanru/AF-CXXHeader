@@ -19,7 +19,7 @@ class UW_HostGameSetup_C : public UAbioticWidget
     class UImage* Image_275;                                                          // 0x0348 (size: 0x8)
     class UHorizontalBox* MP_HBox_1;                                                  // 0x0350 (size: 0x8)
     class UHorizontalBox* MP_HBox_2;                                                  // 0x0358 (size: 0x8)
-    class UHorizontalBox* MP_HBox_3;                                                  // 0x0360 (size: 0x8)
+    class UHorizontalBox* MP_HBox_LAN;                                                // 0x0360 (size: 0x8)
     class USettingRow_C* SettingRow_Difficulty;                                       // 0x0368 (size: 0x8)
     class UW_Settings_SliderBar_C* Slider_MaxPlayers;                                 // 0x0370 (size: 0x8)
     class UEditableTextBox* TextInput_Password;                                       // 0x0378 (size: 0x8)
@@ -37,7 +37,6 @@ class UW_HostGameSetup_C : public UAbioticWidget
     void SetupDifficultyButtons();
     void CheckForSpecialCharacters(FString SourceString, bool& FoundBadCharacter);
     void GetParentHostScreen(class UW_MainMenu_HostGame_C*& W_MainMenu_HostGame);
-    void Construct();
     void LAN_Toggled(bool bIsChecked);
     void Singleplayer_Toggled(bool bIsChecked);
     void MaxPlayersChanged(float InValue, TEnumAsByte<ETextCommit::Type> CommitMethod);
@@ -47,6 +46,7 @@ class UW_HostGameSetup_C : public UAbioticWidget
     void BndEvt__W_HostGameSetup_W_MainMenuButton_K2Node_ComponentBoundEvent_3_ButtonPressed__DelegateSignature();
     void HostWarning_Sandbox_Cancel();
     void HostWarning_Sandbox_Continue();
+    void Construct();
     void BndEvt__W_HostGameSetup_TextInput_Password_K2Node_ComponentBoundEvent_4_OnEditableTextBoxChangedEvent__DelegateSignature(const FText& Text);
     void ExecuteUbergraph_W_HostGameSetup(int32 EntryPoint);
     void SandboxSettingsPressed__DelegateSignature();

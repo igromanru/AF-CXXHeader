@@ -368,6 +368,15 @@ enum class ESaveIntegrityState {
     ESaveIntegrityState_MAX = 6,
 };
 
+enum ESaveType {
+    EST_World = 0,
+    EST_WorldBackup = 1,
+    EST_Keybinds = 2,
+    EST_Settings = 3,
+    EST_UserSettings = 4,
+    EST_MAX = 5,
+};
+
 enum ESortDatabaseTerminalList {
     Name = 0,
     Amount = 1,

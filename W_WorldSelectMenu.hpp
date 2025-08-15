@@ -58,7 +58,6 @@ class UW_WorldSelectMenu_C : public UUserWidget
     void ToggleLoadingIndicator(bool Loading);
     void Add or Refresh World Save Entries(bool Refresh?);
     void OnLoaded_BE38D0374A9DC742EAA44E8808A48FCC(class UObject* Loaded);
-    void Construct();
     void DeleteSave();
     void CancelDelete();
     void ToggleHostButtons(bool Enabled);
@@ -79,6 +78,7 @@ class UW_WorldSelectMenu_C : public UUserWidget
     void BndEvt__W_WorldSelectMenu_W_MainMenuButton_WorldSettingsNew_K2Node_ComponentBoundEvent_4_ButtonPressed__DelegateSignature();
     void BndEvt__W_WorldSelectMenu_TextInput_Password_K2Node_ComponentBoundEvent_7_OnEditableTextBoxChangedEvent__DelegateSignature(const FText& Text);
     void LoadStoryProgressImage(FName StoryProgressionRow);
+    void Construct();
     void ExecuteUbergraph_W_WorldSelectMenu(int32 EntryPoint);
     void WorldEntriesUpdated__DelegateSignature();
     void SandboxSettingsPressed__DelegateSignature(FString FolderName);

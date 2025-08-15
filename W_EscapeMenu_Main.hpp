@@ -33,6 +33,8 @@ class UW_EscapeMenu_Main_C : public UAbioticWidget
     class UW_MenuPopup_YesNo_C* Popup;                                                // 0x03B8 (size: 0x8)
     FString URL_ReportBug;                                                            // 0x03C0 (size: 0x10)
     bool IsInTutorial;                                                                // 0x03D0 (size: 0x1)
+    FButtonStyle Style_MicrophoneButton_ON;                                           // 0x03E0 (size: 0x3F0)
+    FButtonStyle Style_MicrophoneButton_OFF;                                          // 0x07D0 (size: 0x3F0)
 
     void WidgetAction_DPadDirection(TEnumAsByte<E_NavigationDirection::Type> Direction, bool& Handled);
     void WidgetAction_FaceTop(bool& Handled);
@@ -68,6 +70,6 @@ class UW_EscapeMenu_Main_C : public UAbioticWidget
     void BndEvt__W_EscapeMenu_Main_Button_ShowPassword_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__W_EscapeMenu_Main_Button_CopyText_K2Node_ComponentBoundEvent_9_OnButtonClickedEvent__DelegateSignature();
     void ExecuteUbergraph_W_EscapeMenu_Main(int32 EntryPoint);
-}; // Size: 0x3D1
+}; // Size: 0xBC0
 
 #endif

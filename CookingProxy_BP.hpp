@@ -64,6 +64,7 @@ class ACookingProxy_BP_C : public AItemProxyParent_BP_C
     void RequiresToolToDismantle(bool& Tool Required);
     void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void GetStoredString(FString& String);
+    void DisplayWarning(FText Text, TEnumAsByte<ECriticalityLevels::Type> Color);
     void ApplyChunkMaterialsToSoup(const TArray<TSoftObjectPtr<UMaterialInterface>>& ChunkMaterials);
     int32 DoesCookwareExist(const FDataTableRowHandle& DataTableRowHandle, bool& Exist);
     void GetCorrectItemProxyMesh(class UStaticMesh* Mesh, bool IsPot, class UStaticMesh*& OutMesh);

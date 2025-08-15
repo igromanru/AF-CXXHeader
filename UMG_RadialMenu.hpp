@@ -46,6 +46,7 @@ class UUMG_RadialMenu_C : public UUserWidget
     FVector2D LastMouseDelta;                                                         // 0x0448 (size: 0x10)
     double MouseTetherThreshhold;                                                     // 0x0458 (size: 0x8)
     FVector2D RawInput;                                                               // 0x0460 (size: 0x10)
+    bool InvertY;                                                                     // 0x0470 (size: 0x1)
 
     void UpdateMaterialVisuals();
     void GetCustomInput(FVector2D& Input, bool& Valid);
@@ -80,6 +81,6 @@ class UUMG_RadialMenu_C : public UUserWidget
     void ExitedDeadzone__DelegateSignature();
     void EnteredDeadzone__DelegateSignature();
     void SelectionChanged__DelegateSignature(int32 NewSelection, int32 OldSelection);
-}; // Size: 0x470
+}; // Size: 0x471
 
 #endif

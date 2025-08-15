@@ -45,8 +45,8 @@ class UW_HUD_PlayerListRow_C : public UUserWidget
     void BndEvt__W_HUD_PlayerListRow_Button_Ban_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature();
     void UpdateButtonStates();
     void RefreshRow();
-    void BndEvt__W_HUD_PlayerListRow_Button_Kick_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void UpdatePing();
+    void BndEvt__W_HUD_PlayerListRow_Button_Kick_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void Tick(FGeometry MyGeometry, float InDeltaTime);
     void ExecuteUbergraph_W_HUD_PlayerListRow(int32 EntryPoint);
     void RefreshRequested__DelegateSignature();

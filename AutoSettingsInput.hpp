@@ -284,6 +284,8 @@ class UInputMappingManager : public UEngineSubsystem
     void OnMappingsChanged(class APlayerController* Player);
     TArray<FPlayerInputMappings> PlayerInputOverrides;                                // 0x0040 (size: 0x10)
     TArray<class APlayerController*> RegisteredPlayerControllers;                     // 0x0050 (size: 0x10)
+    FInputMappingManagerMappingsWriteRequested MappingsWriteRequested;                // 0x0060 (size: 0x10)
+    void OnMappingsWriteRequested();
 
     void SetPlayerKeyGroupStatic(class APlayerController* Player, FGameplayTag KeyGroup);
     void SetPlayerInputPresetStatic(class APlayerController* Player, FInputMappingPreset Preset);
@@ -303,7 +305,7 @@ class UInputMappingManager : public UEngineSubsystem
     void AddPlayerAxisOverride(class APlayerController* Player, const FInputAxisKeyMapping& NewMapping, int32 MappingGroup, bool bAnyKeyGroup, bool bClear);
     void AddPlayerActionOverrideStatic(class APlayerController* Player, const FInputActionKeyMapping& NewMapping, int32 MappingGroup, bool bAnyKeyGroup);
     void AddPlayerActionOverride(class APlayerController* Player, const FInputActionKeyMapping& NewMapping, int32 MappingGroup, bool bAnyKeyGroup, bool bClear);
-}; // Size: 0x60
+}; // Size: 0x70
 
 class UKeyLabel : public UUserWidget
 {

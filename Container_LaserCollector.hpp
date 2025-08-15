@@ -20,14 +20,15 @@ class AContainer_LaserCollector_C : public AAbioticDeployed_Furniture_ParentBP_C
     int32 LaserGainRate;                                                              // 0x08B4 (size: 0x4)
     FTimerHandle LaserCollectionTimer;                                                // 0x08B8 (size: 0x8)
 
+    void GetCorrectPlayerInventory(class AAbiotic_PlayerCharacter_C* PlayerCharacter, TEnumAsByte<E_InventorySlotType::Type> SlotType, class UAbiotic_InventoryComponent_C*& Inventory, int32& Slot);
     void GetOffhandItem(class AAbiotic_PlayerCharacter_C* PlayerCharacter, bool& Success, FAbiotic_InventoryItemSlotStruct& SlotData, FAbiotic_InventoryItemStruct& ItemData, class AItem_Gear_ParentBP_C*& GearBP);
     bool CanTakeLaserRefill(const FAbiotic_InventoryItemSlotStruct& Abiotic_InventoryItemSlotStruct, const FAbiotic_InventoryItemStruct& Abiotic_InventoryItemStruct);
-    void TryRefillLaser(const FAbiotic_InventoryItemSlotStruct& ItemSlot, const FAbiotic_InventoryItemStruct& InventoryItem, class AAbiotic_Item_ParentBP_C* ItemActor);
+    void TryRefillLaser(const FAbiotic_InventoryItemSlotStruct& ItemSlot, const FAbiotic_InventoryItemStruct& InventoryItem, class AAbiotic_Item_ParentBP_C* ItemActor, bool Hotbar);
     class UPrimitiveComponent* GetLaserReceiverPort();
     void ValidateHitLasers();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
-    void UpdateHeldWeaponChangeableData(class AAbiotic_Item_ParentBP_C* Weapon, FAbiotic_InventoryChangeableDataStruct ChangeableData);
-    void Server Fill Laser Into Weapon(class AAbiotic_Item_ParentBP_C* Weapon, TEnumAsByte<E_LiquidType::Type> CurrentLiquidType);
+    void UpdateHeldWeaponChangeableData(class AAbiotic_Item_ParentBP_C* Weapon, FAbiotic_InventoryChangeableDataStruct ChangeableData, TEnumAsByte<E_InventorySlotType::Type> SlotType);
+    void Server Fill Laser Into Weapon(class AAbiotic_Item_ParentBP_C* Weapon, TEnumAsByte<E_LiquidType::Type> CurrentLiquidType, TEnumAsByte<E_InventorySlotType::Type> SlotType);
     void OnRep_CurrentLaserInContainer();
     void LaserCollectorTimer();
     void UpdateLaserLevelFX();

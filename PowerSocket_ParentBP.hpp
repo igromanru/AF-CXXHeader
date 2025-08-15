@@ -19,8 +19,8 @@ class APowerSocket_ParentBP_C : public AAbioticActor_C
     bool SocketAlwaysPowered;                                                         // 0x0380 (size: 0x1)
     FPowerSocket_ParentBP_CPluggedInStateUpdate PluggedInStateUpdate;                 // 0x0388 (size: 0x10)
     void PluggedInStateUpdate();
-    class UMaterialInterface* Material_OFF;                                           // 0x0398 (size: 0x8)
-    class UMaterialInterface* Material_ON;                                            // 0x03A0 (size: 0x8)
+    class UMaterialInterface* Material_Off;                                           // 0x0398 (size: 0x8)
+    class UMaterialInterface* Material_On;                                            // 0x03A0 (size: 0x8)
     TArray<class UCableComponent*> RerouteCables;                                     // 0x03A8 (size: 0x10)
     FPowerSocket_ParentBP_CLocalUsingPlayersUpdate LocalUsingPlayersUpdate;           // 0x03B8 (size: 0x10)
     void LocalUsingPlayersUpdate(bool PlugModeActive);

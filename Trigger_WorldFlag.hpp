@@ -7,6 +7,7 @@ class ATrigger_WorldFlag_C : public AAbiotic_TriggerVolume_ParentBP_C
     FWorldFlagRowHandle WorldFlagToActivate;                                          // 0x0350 (size: 0x20)
 
     void OnTrigger();
+    void OnLoadedFromSave();
     void ExecuteUbergraph_Trigger_WorldFlag(int32 EntryPoint);
 }; // Size: 0x370
 

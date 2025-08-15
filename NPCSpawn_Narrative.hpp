@@ -16,6 +16,7 @@ class ANPCSpawn_Narrative_C : public AActor
     class ANarrativeNPC_ParentBP_C* SpawnedNPC;                                       // 0x0328 (size: 0x8)
     FTimerHandle DespawnTimer;                                                        // 0x0330 (size: 0x8)
 
+    void CheckAndRemoveExistingNPCs(TSubclassOf<class ANarrativeNPC_ParentBP_C> NarrativeClass, bool& ShouldSpawn);
     bool IsSpawnValid();
     bool GetNPCData(FNPCTrader& NPCData);
     TSubclassOf<class ANarrativeNPC_ParentBP_C> GetNPCToSpawn();

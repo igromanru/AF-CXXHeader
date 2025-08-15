@@ -1113,11 +1113,12 @@ class AAbioticLevelStreamingVolume : public AVolume
 class AAbioticPlayerController : public APlayerController
 {
     class AAbioticCharacter* PlayerCharacter;                                         // 0x0860 (size: 0x8)
-    TSubclassOf<class UAbioticTargetingManager> TargetingManagerClass;                // 0x0868 (size: 0x8)
-    class UAbioticTargetingManager* TargetingManager;                                 // 0x0870 (size: 0x8)
-    bool bAllowKeyUINavigation;                                                       // 0x0878 (size: 0x1)
-    bool bAllowTabUINavigation;                                                       // 0x0879 (size: 0x1)
-    bool bAllowAnalogUINavigation;                                                    // 0x087A (size: 0x1)
+    FCachedInputData CachedFrameInput;                                                // 0x0868 (size: 0x60)
+    TSubclassOf<class UAbioticTargetingManager> TargetingManagerClass;                // 0x08C8 (size: 0x8)
+    class UAbioticTargetingManager* TargetingManager;                                 // 0x08D0 (size: 0x8)
+    bool bAllowKeyUINavigation;                                                       // 0x08D8 (size: 0x1)
+    bool bAllowTabUINavigation;                                                       // 0x08D9 (size: 0x1)
+    bool bAllowAnalogUINavigation;                                                    // 0x08DA (size: 0x1)
 
     void ToggleLoadingScreen(bool bShow);
     void SetUseSoftwareCursor(bool bEnabled);
@@ -1125,7 +1126,7 @@ class AAbioticPlayerController : public APlayerController
     void Request_ExecuteGameCommand(FGameCommandRowHandle RowHandle, FString FirstParam, FString SecondParam);
     void OnDetectAnyInput(const FKey& InKey);
     void BumpCursor();
-}; // Size: 0x880
+}; // Size: 0x8E0
 
 class AAbioticPlayerState : public APlayerState
 {
@@ -1134,6 +1135,7 @@ class AAbioticPlayerState : public APlayerState
     TArray<class APlayerState*> VoiceBlockedPlayers;                                  // 0x0358 (size: 0x10)
 
     void OnRep_PlayerPlatform();
+    void OnPlayerNameUpdated();
     void OnBlockedPlayerConnected();
 }; // Size: 0x368
 
@@ -1341,6 +1343,7 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     void SetMouseSmoothing(bool bEnabled);
     void SetActorCanEverAffectNavigation(class AActor* Actor, bool bCanEverAffectNavigation);
     FString SanitizeSaveFolderName(FString FolderName);
+    FSoftObjectPath RemovePIEPrefix(const FSoftObjectPath& InPath);
     void ProcessDamageResults(TArray<FHitResult>& HitResults, TEnumAsByte<ECollisionChannel> TraceChannel, TArray<FHitData>& OutHitData, TArray<class AActor*>& OutHitPawns);
     void OpenFolderDirectory(FString FolderPath);
     void ModifyPhysicsLocks(class UPrimitiveComponent* Primitive, bool bLockXRotation, bool bLockYRotation, bool bLockZRotation);
@@ -1501,6 +1504,7 @@ class UAbioticGameInstance : public UAdvancedFriendsGameInstance
     void SetUnfocusedVolumeMultiplier(float NewVolumeMultiplier);
     void OnSessionInviteAcceptedWhileOffline();
     bool OnRemoteConsoleCommand(FString Command, const TArray<FString>& Arguments);
+    void OnPlayerHasActiveSanction(bool bIsPermenantSanction, FDateTime ExpirationTime);
     void OnOnlineStatusChanged(bool bIsOnline);
     void OnOnlinePrivilegesUpdated();
     void OnOnlinePrivilegesLimited();
@@ -1539,12 +1543,14 @@ class UAbioticGameUserSettings : public UGameUserSettings
 {
     TEnumAsByte<EAbioticCrossplaySetting::Type> CrossplaySetting;                     // 0x0150 (size: 0x1)
     bool bUseVRR;                                                                     // 0x0151 (size: 0x1)
-    uint8 CustomVersion;                                                              // 0x0152 (size: 0x1)
+    bool bUseLowEnergy;                                                               // 0x0152 (size: 0x1)
+    uint8 CustomVersion;                                                              // 0x0153 (size: 0x1)
     TArray<FAbioticBlockedPlayer> BlockedPlayers;                                     // 0x0158 (size: 0x10)
     TArray<FAbioticBlockedPlayer> PlatformBlockedPlayers;                             // 0x0168 (size: 0x10)
     TArray<FAbioticBlockedPlayer> MutedPlayers;                                       // 0x0178 (size: 0x10)
 
     void SetVRRSetting(bool NewUseVRR, bool bFromCvar);
+    void SetLowEnergySetting(bool NewUseLowEnergy, bool bFromCvar);
     void SetCrossplaySetting(TEnumAsByte<EAbioticCrossplaySetting::Type> InCrossplay, bool bFromCvar);
     void RemoveMutedPlayer(const FAbioticBlockedPlayer& InMutedPlayer);
     void RemoveBlockedPlayer(const FAbioticBlockedPlayer& InBlockedPlayer);
@@ -2170,6 +2176,10 @@ class UEQGenerator_CoverPoints : public UEnvQueryGenerator_ProjectedPoints
 
 }; // Size: 0xD0
 
+class UEnvQueryTest_LevelLoaded : public UEnvQueryTest
+{
+}; // Size: 0x1F8
+
 class UEnvQueryTest_Tether : public UEnvQueryTest
 {
     TSubclassOf<class UEnvQueryContext> TetherContext;                                // 0x01F8 (size: 0x8)
@@ -2789,21 +2799,32 @@ class USandboxOptionSubsystem : public UWorldSubsystem
 
 class USaveCurrentWorld : public UBlueprintAsyncActionBase
 {
-    FSaveCurrentWorldSaveWorld SaveWorld;                                             // 0x0030 (size: 0x10)
+    FSaveCurrentWorldSaveWorld SaveWorld;                                             // 0x0040 (size: 0x10)
     void SaveCurrentWorldOutputPin(bool bSuccess);
-    TArray<class UAbioticSave*> WorldSaveDuplicates;                                  // 0x0068 (size: 0x10)
-    TArray<class UAbioticSave*> PlayerSaveDuplicates;                                 // 0x0078 (size: 0x10)
+    TArray<class UAbioticSave*> WorldSaveDuplicates;                                  // 0x0078 (size: 0x10)
+    TArray<class UAbioticSave*> PlayerSaveDuplicates;                                 // 0x0088 (size: 0x10)
 
     class USaveCurrentWorld* SaveCurrentWorld(const class UObject* WorldContextObject);
-}; // Size: 0x88
+}; // Size: 0x98
+
+class USaveQueueSubsystem : public UTickableWorldSubsystem
+{
+    TArray<TEnumAsByte<ESaveType>> SaveQueue;                                         // 0x0040 (size: 0x10)
+
+    void WorldSaveComplete();
+    void WorldBackupComplete();
+    void SettingsSaveRequested();
+    void KeybindSaveRequested();
+    void FlushSaveQueue();
+}; // Size: 0x68
 
 class USaveWorldBackup : public UBlueprintAsyncActionBase
 {
-    FSaveWorldBackupSaveWorld SaveWorld;                                              // 0x0030 (size: 0x10)
+    FSaveWorldBackupSaveWorld SaveWorld;                                              // 0x0040 (size: 0x10)
     void SaveWorldBackupOutputPin(bool bSuccess);
 
     class USaveWorldBackup* SaveWorldBackup(const class UObject* WorldContextObject, FString WorldSaveName);
-}; // Size: 0x78
+}; // Size: 0x88
 
 class USessionResultItem : public UObject
 {
@@ -3075,6 +3096,7 @@ class UWorldSaveFunctionLibrary : public UBlueprintFunctionLibrary
     bool GetMetaDataTimestampForSaveBackup(FString WorldName, int32 BackupIndex, class UAbioticSave*& OutSave, FDateTime& OutTimestamp);
     bool GetMetaDataTimestampForSave(FString WorldName, class UAbioticSave*& OutSave, FDateTime& OutTimestamp);
     bool DoesSaveBackupIndexExist(FString WorldSaveName, int32 Index);
+    bool DoesCurrentSaveHaveEmptyFileCorruption(FString WorldSaveName);
     bool DoesAnySaveBackupExist(FString WorldSaveName);
 }; // Size: 0x28
 

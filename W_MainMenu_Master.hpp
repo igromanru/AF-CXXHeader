@@ -60,6 +60,9 @@ class UW_MainMenu_Master_C : public UAbioticWidget
     void CleanupPS5();
     void InputTypeChanged(bool bUsingGamepad);
     void SplashMouseDownPS5(FPointerEvent MouseKey);
+    void OfflineCheckPS5();
+    void ConfirmOfflinePS5_Yes();
+    void ConfirmOfflinePS5_No();
     void Construct();
     void FadeOutSplash();
     void SessionInviteAccepted(FBlueprintSessionResult Session);

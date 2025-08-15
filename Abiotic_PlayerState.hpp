@@ -14,6 +14,7 @@ class AAbiotic_PlayerState_C : public AAbioticPlayerState
     bool HasLoadedSave;                                                               // 0x0621 (size: 0x1)
     bool PendingPlayerDeletion;                                                       // 0x0622 (size: 0x1)
     FString PlayerSaveID;                                                             // 0x0628 (size: 0x10)
+    FString FilteredPlayerName;                                                       // 0x0638 (size: 0x10)
 
     void ValidateTransmogArraySize(TArray<bool>& TransmogDisabledArray, TArray<bool>& OutputArray);
     void PutCharacterItemsInSpillBag(bool& Success);
@@ -31,8 +32,11 @@ class AAbiotic_PlayerState_C : public AAbioticPlayerState
     void LoadPlayerSaveData(bool& Success, FSaveData_CharacterSave_Struct& SavedData);
     void GetSteamID_(String)(FString& ID);
     void OnRep_CurrentRespawnPoint();
+    void OnFailure_BF78271947A55DF4DA39B3A5770FA5D9(bool bSuccess, const TArray<FString>& SanitizedMessages);
+    void OnSuccess_BF78271947A55DF4DA39B3A5770FA5D9(bool bSuccess, const TArray<FString>& SanitizedMessages);
     void OnBlockedPlayerConnected();
+    void OnPlayerNameUpdated();
     void ExecuteUbergraph_Abiotic_PlayerState(int32 EntryPoint);
-}; // Size: 0x638
+}; // Size: 0x648
 
 #endif

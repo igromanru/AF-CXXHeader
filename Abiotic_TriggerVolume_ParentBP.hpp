@@ -33,6 +33,7 @@ class AAbiotic_TriggerVolume_ParentBP_C : public AActor
     void UpdateTrigger_SetTriggered();
     void ReceiveBeginPlay();
     void OnTriggeredByButton(bool Activated);
+    void OnLoadedFromSave();
     void ExecuteUbergraph_Abiotic_TriggerVolume_ParentBP(int32 EntryPoint);
     void WasTriggered__DelegateSignature();
 }; // Size: 0x342

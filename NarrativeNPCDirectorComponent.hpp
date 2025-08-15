@@ -10,6 +10,7 @@ class UNarrativeNPCDirectorComponent_C : public UActorComponent
     bool HasLoaded;                                                                   // 0x010C (size: 0x1)
     int32 LastDay;                                                                    // 0x0110 (size: 0x4)
 
+    bool DoesTraderHavePreferredSpawn(FNarrativeNPCSpawns_Struct TraderData);
     void UnregisterNarrativeSpawnLocation(class ANPCSpawn_Narrative_C* SpawnPoint);
     bool ForceSpawnClosestInArray(const FNarrativeNPCSpawns_Struct& NarrativeNPCSpawnData, const FVector& Origin, const TArray<class AActor*>& Actors);
     bool ForceSpawnClosestByRowName(FName TraderRowName, const FVector& Origin);

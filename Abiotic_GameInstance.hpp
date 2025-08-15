@@ -147,9 +147,15 @@ class UAbiotic_GameInstance_C : public UAbioticGameInstance
     void CheckProfanityQueue();
     void OnOnlineStatusChanged(bool bIsOnline);
     void OnSessionInviteAcceptedWhileOffline();
-    void SessionInviteFailedOffline_Ok();
+    void SessionInviteOffline_NoOnline();
     void OnSessionInviteAcceptedFailed();
     void SessionInviteFailed_Ok();
+    void SessionInviteOnline_GoOnline();
+    void CheckCorruptionAfterSave();
+    void SaveCorruption_Confirm();
+    void NATTypeCallback(int32 NewValue);
+    void OnPlayerHasActiveSanction(bool bIsPermenantSanction, FDateTime ExpirationTime);
+    void BannedNotice_Closed();
     void ExecuteUbergraph_Abiotic_GameInstance(int32 EntryPoint);
     void OnlineLoginComplete__DelegateSignature(bool bWasSuccessful);
     void SessionInviteAccepted__DelegateSignature(FBlueprintSessionResult Session);

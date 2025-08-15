@@ -90,7 +90,7 @@ class UMicrophoneSpeakComponent : public UActorComponent
     bool initAudioResources(int32 voiceSampleRate, int32 _voiceNumChannels, int32 opusFramesPerSec);
     void endSpeaking();
     void DataMicrophoneReceived__DelegateSignature(const TArray<uint8>& Data);
-}; // Size: 0x260
+}; // Size: 0x268
 
 class UUniversalVoiceChat : public UBlueprintFunctionLibrary
 {

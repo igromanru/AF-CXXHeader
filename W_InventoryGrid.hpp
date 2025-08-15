@@ -24,6 +24,7 @@ class UW_InventoryGrid_C : public UUserWidget
     int32 Array Index;                                                                // 0x0360 (size: 0x4)
     TMap<int32, TSoftObjectPtr<UW_InventoryItemSlot_C>> ItemSlotMap;                  // 0x0368 (size: 0x50)
 
+    EPaintColor GetThemeColorFromSlotAppearance(TEnumAsByte<E_InventorySlotAppearance::Type> Index);
     void FocusCursorAtSlotLocation(int32 Row, int32 Column, double Time);
     void DragDropDPadNavigation(class UW_InventoryItemSlot_C* HoveredSlot, TEnumAsByte<E_NavigationDirection::Type> Direction, bool& HandledNavigation, TEnumAsByte<E_NavigationDirection::Type>& EscapeDirection);
     void ClearHighlightedSlots();

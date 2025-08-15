@@ -38,6 +38,7 @@ class UW_MainMenu_HostGame_C : public UW_HostMenu_Parent_C
     void NoPasswordHostPublic();
     void HostGameSelected();
     void BndEvt__W_MainMenu_HostGame_W_HostGameSetup_K2Node_ComponentBoundEvent_1_SandboxSettingsPressed__DelegateSignature();
+    void LANConfirm();
     void ExecuteUbergraph_W_MainMenu_HostGame(int32 EntryPoint);
 }; // Size: 0x368
 

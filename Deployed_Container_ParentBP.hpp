@@ -22,6 +22,7 @@ class ADeployed_Container_ParentBP_C : public AAbioticDeployed_Furniture_ParentB
     bool RemainOpenAfterEmpty;                                                        // 0x0919 (size: 0x1)
 
     void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
+    void SaveDeployable(bool RemoveFromSave);
     void ValidateContainerUsage();
     void OnContainerBeingUsed();
     void GetContainerInventory(class UAbiotic_InventoryComponent_C*& Inventory);
@@ -45,13 +46,13 @@ class ADeployed_Container_ParentBP_C : public AAbioticDeployed_Furniture_ParentB
     void PlayOpenCloseSound(TSoftObjectPtr<UObject> Asset);
     void DeliverString(FString String, bool FromSave);
     void UpdateRadioactiveActor(bool SetActive);
-    void BndEvt__Deployed_Container_ParentBP_ContainerInventory_K2Node_ComponentBoundEvent_1_RadiationUpdated__DelegateSignature(double RadiationAmount);
     void OnLoadedFromSave(double NewLifespan);
     void OnContainerInventoryUpdated(class UAbiotic_InventoryComponent_C* Inventory);
     void ReceiveDestroyed();
     void TryRegenerateContainerLoot();
     void Server_CheckContainerUsage();
     void NewPlayerMadeString();
+    void OnRadiationUpdated(double NewRadiation);
     void ExecuteUbergraph_Deployed_Container_ParentBP(int32 EntryPoint);
     void ContainerDestroyed__DelegateSignature();
     void ContainerIsSaving__DelegateSignature();

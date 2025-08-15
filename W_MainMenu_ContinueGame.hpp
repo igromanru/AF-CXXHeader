@@ -37,6 +37,7 @@ class UW_MainMenu_ContinueGame_C : public UW_HostMenu_Parent_C
     void CloseSandboxOptions();
     void Construct();
     void WorldEntriesUpdated();
+    void LANConfirm();
     void ExecuteUbergraph_W_MainMenu_ContinueGame(int32 EntryPoint);
 }; // Size: 0x368
 

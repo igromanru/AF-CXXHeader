@@ -641,7 +641,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void FindBestInteractableTarget();
     void GetCurrentHeldItem(bool& Success, FAbiotic_InventoryItemSlotStruct& ItemSlotInfo, FAbiotic_InventoryItemStruct& ItemData, class AAbiotic_Item_ParentBP_C*& Blueprint);
     void PrintScreenDebugText(FString Prefix, FString Message, double Duration, TEnumAsByte<ECriticalityLevels::Type> Severity);
-    void UpdateInventorySlot(class UAbiotic_InventoryComponent_C* Inventory, const FAbiotic_InventoryItemSlotStruct& NewItemSlotInfo, int32 Index, class UAbiotic_InventoryComponent_C* OriginInventory, int32 OriginSlot);
+    void Server_UpdateInventorySlot(class UAbiotic_InventoryComponent_C* Inventory, const FAbiotic_InventoryItemSlotStruct& NewItemSlotInfo, int32 Index, class UAbiotic_InventoryComponent_C* OriginInventory, int32 OriginSlot);
     void GetItemInSlot(class UAbiotic_InventoryComponent_C* Inventory, int32 Index, bool& Success, FAbiotic_InventoryItemSlotStruct& SlotData, FAbiotic_InventoryItemStruct& ItemData, TEnumAsByte<E_InventorySlotType::Type>& AlternateSlotType);
     void RefreshSelectedHotbarSlot(class UAbiotic_InventoryComponent_C* Inventory, int32 Index, bool JustRefreshCurrent, bool Sound, bool SkipEquip, bool Holster);
     void ToggleInventory(bool ForceClose, EInventoryMode InventoryMode, TArray<FDataTableRowHandle>& CraftingBenchesAvailable, class UAbiotic_InventoryComponent_C* ContainerInventoryComponent, bool CustomUIKeyboardFocus);
@@ -667,8 +667,9 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void ScreenColorFlashTimeline__UpdateFunc();
     void FlashlightFlickerTimeline__FinishedFunc();
     void FlashlightFlickerTimeline__UpdateFunc();
-    void InpActEvt_ToggleHUD_K2Node_InputActionEvent_49(FKey Key);
-    void InpActEvt_AutoMove_K2Node_InputActionEvent_48(FKey Key);
+    void InpActEvt_ToggleHUD_K2Node_InputActionEvent_50(FKey Key);
+    void InpActEvt_AutoMove_K2Node_InputActionEvent_49(FKey Key);
+    void InpActEvt_ToggleGridSnap_K2Node_InputActionEvent_48(FKey Key);
     void OnNotifyEnd_2B9D8A6D42F9A71A0D19028CCB72563A(FName NotifyName);
     void OnNotifyBegin_2B9D8A6D42F9A71A0D19028CCB72563A(FName NotifyName);
     void OnInterrupted_2B9D8A6D42F9A71A0D19028CCB72563A(FName NotifyName);

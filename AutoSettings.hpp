@@ -209,13 +209,15 @@ class USettingsManager : public UEngineSubsystem
     FSettingsManagerOnSettingSaved OnSettingSaved;                                    // 0x0030 (size: 0x10)
     void OnSettingSaved(FAutoSettingData SettingData);
     FString IniFilename;                                                              // 0x0040 (size: 0x10)
+    FSettingsManagerSettingsWriteRequested SettingsWriteRequested;                    // 0x0050 (size: 0x10)
+    void OnSettingsWriteRequested();
 
     void SaveSettingStatic(FAutoSettingData SettingData);
-    void SaveSettings();
+    void SaveSettings(bool bImmediate);
     void ResetSettings();
     void AutoDetectSettingsStatic(int32 WorkScale, float CPUMultiplier, float GPUMultiplier);
     void ApplySettingStatic(FAutoSettingData SettingData);
-}; // Size: 0x50
+}; // Size: 0x60
 
 class USliderSetting : public UAutoSettingWidget
 {

@@ -11,6 +11,7 @@ class UW_VoiceChat_PlayerList_C : public UUserWidget
     void RemovePlayer(class APlayerState* PlayerState);
     void AddPlayer(class APlayerState* PlayerState);
     void Construct();
+    void ShowHideList(bool NewValue);
     void ExecuteUbergraph_W_VoiceChat_PlayerList(int32 EntryPoint);
 }; // Size: 0x340
 
