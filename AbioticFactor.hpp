@@ -2814,9 +2814,13 @@ class USaveQueueSubsystem : public UTickableWorldSubsystem
     void WorldSaveComplete();
     void WorldBackupComplete();
     void SettingsSaveRequested();
+    bool QueueUserSettingsBPSave(class USaveGame* SaveGame);
+    bool QueueUnlocksSave(class USaveGame* SaveGame);
+    bool QueuePlayerStatsSave(class USaveGame* SaveGame);
+    bool QueueCustomizationSave(class USaveGame* SaveGame);
     void KeybindSaveRequested();
     void FlushSaveQueue();
-}; // Size: 0x68
+}; // Size: 0x88
 
 class USaveWorldBackup : public UBlueprintAsyncActionBase
 {

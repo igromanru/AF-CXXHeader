@@ -374,7 +374,11 @@ enum ESaveType {
     EST_Keybinds = 2,
     EST_Settings = 3,
     EST_UserSettings = 4,
-    EST_MAX = 5,
+    EST_Customization = 5,
+    EST_Unlocks = 6,
+    EST_UserSettingsBP = 7,
+    EST_PlayerStats = 8,
+    EST_MAX = 9,
 };
 
 enum ESortDatabaseTerminalList {
