@@ -5,7 +5,7 @@ class ANPC_Zombie_C : public ANPC_Base_ParentBP_C
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x20A8 (size: 0x8)
     class UStaticMeshComponent* backpack;                                             // 0x20B0 (size: 0x8)
-    class USkeletalMeshComponent* Hair;                                               // 0x20B8 (size: 0x8)
+    class USkeletalMeshComponent* hair;                                               // 0x20B8 (size: 0x8)
     class USkeletalMeshComponent* Hat;                                                // 0x20C0 (size: 0x8)
     class UHumanCustomizationComponent_C* HumanCustomizationComponent;                // 0x20C8 (size: 0x8)
     class USkeletalMeshComponent* Legs;                                               // 0x20D0 (size: 0x8)
