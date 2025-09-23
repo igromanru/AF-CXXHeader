@@ -18,7 +18,7 @@ class UAbiotic_WorldSave_C : public UAbioticSave
     FTimeOfDay_Struct TimeOfDay;                                                      // 0x03D0 (size: 0x28)
     TMap<class FString, class FSaveData_Trigger_Struct> TriggerMap;                   // 0x03F8 (size: 0x50)
     TMap<class FString, class FSaveData_NPCSpawn> NPCSpawnMap;                        // 0x0448 (size: 0x50)
-    TMap<class FString, class FSaveData_PortalStruct> portalmap;                      // 0x0498 (size: 0x50)
+    TMap<class FString, class FSaveData_PortalStruct> PortalMap;                      // 0x0498 (size: 0x50)
     FString LevelGUID;                                                                // 0x04E8 (size: 0x10)
     FDateTime DateTime;                                                               // 0x04F8 (size: 0x8)
     int32 DayDiscovered;                                                              // 0x0500 (size: 0x4)
