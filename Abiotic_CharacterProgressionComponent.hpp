@@ -25,41 +25,51 @@ class UAbiotic_CharacterProgressionComponent_C : public UActorComponent
     TArray<FName> NewestRecipes;                                                      // 0x0260 (size: 0x10)
     TArray<FName> FavouriteRecipes;                                                   // 0x0270 (size: 0x10)
     class UDataTable* RecipeTable;                                                    // 0x0280 (size: 0x8)
-    TArray<FName> Local_JournalEntries;                                               // 0x0288 (size: 0x10)
-    TArray<FName> RecipesRequiringResearch_Array;                                     // 0x0298 (size: 0x10)
-    bool InitializedTraits;                                                           // 0x02A8 (size: 0x1)
-    FName Ph D;                                                                       // 0x02AC (size: 0x8)
-    bool FirstTimeTraitsRunning;                                                      // 0x02B4 (size: 0x1)
-    TArray<FName> CurrentMaps;                                                        // 0x02B8 (size: 0x10)
-    TArray<FName> CraftedItems;                                                       // 0x02C8 (size: 0x10)
-    TMap<TEnumAsByte<E_CharacterSkills::Type>, FAbiotic_CharacterSkill_Struct> Local_Character Skills; // 0x02D8 (size: 0x50)
-    bool RecentlyLoadedFromSave;                                                      // 0x0328 (size: 0x1)
-    TArray<FName> StartingWeaponList;                                                 // 0x0330 (size: 0x10)
-    bool DebugCompendium;                                                             // 0x0340 (size: 0x1)
-    TArray<FName> Compendium_ExplorationSections;                                     // 0x0348 (size: 0x10)
-    TArray<FName> Compendium_EmailSections;                                           // 0x0358 (size: 0x10)
-    TArray<FName> Compendium_NarrativeNPCSections;                                    // 0x0368 (size: 0x10)
-    TArray<FName> Compendium_KillSections;                                            // 0x0378 (size: 0x10)
-    TArray<FCompendiumKillCount> Compendium_KillCount;                                // 0x0388 (size: 0x10)
-    TArray<FName> Local_AllCompendiumEntries;                                         // 0x0398 (size: 0x10)
-    TArray<FName> Local_UnreadCompendiumEntries;                                      // 0x03A8 (size: 0x10)
-    TArray<FName> PreviouslyLoadedRecipes;                                            // 0x03B8 (size: 0x10)
-    TSet<FName> FishCaught;                                                           // 0x03C8 (size: 0x50)
-    TArray<FName> FishCaughtArray;                                                    // 0x0418 (size: 0x10)
-    TArray<FName> LocalFishCaughtArray;                                               // 0x0428 (size: 0x10)
-    TArray<FName> Local Newest Fish;                                                  // 0x0438 (size: 0x10)
-    TArray<FName> AllowedCompendiumKills;                                             // 0x0448 (size: 0x10)
-    TArray<FName> PinnedRecipes;                                                      // 0x0458 (size: 0x10)
-    class UCurveFloat* ThrowingXPDamage_Curve;                                        // 0x0468 (size: 0x8)
-    class UCurveFloat* ThrowingXPDistance_Curve;                                      // 0x0470 (size: 0x8)
-    TArray<FName> PendingRecipesToUnlock;                                             // 0x0478 (size: 0x10)
-    bool HasCachedRecipeItemMap;                                                      // 0x0488 (size: 0x1)
-    TMap<class FName, class FName> CachedRecipeItemMap;                               // 0x0490 (size: 0x50)
-    TArray<FName> PendingItemsToCheck;                                                // 0x04E0 (size: 0x10)
-    TMap<class FName, class FName> StrippedRecipes;                                   // 0x04F0 (size: 0x50)
-    FAbiotic_CharacterProgressionComponent_COnNewEmailRead OnNewEmailRead;            // 0x0540 (size: 0x10)
+    TSet<FName> Local_JournalEntries;                                                 // 0x0288 (size: 0x50)
+    TArray<FName> RecipesRequiringResearch_Array;                                     // 0x02D8 (size: 0x10)
+    bool InitializedTraits;                                                           // 0x02E8 (size: 0x1)
+    FName Ph D;                                                                       // 0x02EC (size: 0x8)
+    bool FirstTimeTraitsRunning;                                                      // 0x02F4 (size: 0x1)
+    TArray<FName> CurrentMaps;                                                        // 0x02F8 (size: 0x10)
+    TArray<FName> CraftedItems;                                                       // 0x0308 (size: 0x10)
+    TMap<TEnumAsByte<E_CharacterSkills::Type>, FAbiotic_CharacterSkill_Struct> Local_Character Skills; // 0x0318 (size: 0x50)
+    bool RecentlyLoadedFromSave;                                                      // 0x0368 (size: 0x1)
+    TArray<FName> StartingWeaponList;                                                 // 0x0370 (size: 0x10)
+    bool DebugCompendium;                                                             // 0x0380 (size: 0x1)
+    TArray<FName> Compendium_ExplorationSections;                                     // 0x0388 (size: 0x10)
+    TArray<FName> Compendium_EmailSections;                                           // 0x0398 (size: 0x10)
+    TArray<FName> Compendium_NarrativeNPCSections;                                    // 0x03A8 (size: 0x10)
+    TArray<FName> Compendium_KillSections;                                            // 0x03B8 (size: 0x10)
+    TArray<FCompendiumKillCount> Compendium_KillCount;                                // 0x03C8 (size: 0x10)
+    TSet<FName> Local_AllCompendiumEntries;                                           // 0x03D8 (size: 0x50)
+    TArray<FName> UnreadJournalEntries;                                               // 0x0428 (size: 0x10)
+    TArray<FName> UnreadCompendiumEntries;                                            // 0x0438 (size: 0x10)
+    TSet<FName> Local_UnreadCompendiumEntries;                                        // 0x0448 (size: 0x50)
+    TArray<FName> PreviouslyLoadedRecipes;                                            // 0x0498 (size: 0x10)
+    TSet<FName> FishCaught;                                                           // 0x04A8 (size: 0x50)
+    TArray<FName> FishCaughtArray;                                                    // 0x04F8 (size: 0x10)
+    TArray<FName> LocalFishCaughtArray;                                               // 0x0508 (size: 0x10)
+    TArray<FName> Local Newest Fish;                                                  // 0x0518 (size: 0x10)
+    TArray<FName> AllowedCompendiumKills;                                             // 0x0528 (size: 0x10)
+    TArray<FName> PinnedRecipes;                                                      // 0x0538 (size: 0x10)
+    class UCurveFloat* ThrowingXPDamage_Curve;                                        // 0x0548 (size: 0x8)
+    class UCurveFloat* ThrowingXPDistance_Curve;                                      // 0x0550 (size: 0x8)
+    TArray<FName> PendingRecipesToUnlock;                                             // 0x0558 (size: 0x10)
+    bool HasCachedRecipeItemMap;                                                      // 0x0568 (size: 0x1)
+    TMap<class FName, class FName> CachedRecipeItemMap;                               // 0x0570 (size: 0x50)
+    TArray<FName> PendingItemsToCheck;                                                // 0x05C0 (size: 0x10)
+    TMap<class FName, class FName> StrippedRecipes;                                   // 0x05D0 (size: 0x50)
+    FAbiotic_CharacterProgressionComponent_COnNewEmailRead OnNewEmailRead;            // 0x0620 (size: 0x10)
     void OnNewEmailRead(class UAbiotic_CharacterProgressionComponent_C* ProgressionComponent, FName NewEmail);
+    bool InitialisedCompendiumUnread;                                                 // 0x0630 (size: 0x1)
+    TArray<FName> UnreadFishEntries;                                                  // 0x0638 (size: 0x10)
 
+    bool MarkJournalEntriesRead(TEnumAsByte<E_JournalEntryCategories::Type> JournalPage);
+    void OnRep_UnreadFishEntries();
+    void OnRep_UnreadJournalEntries();
+    void OnRep_UnreadCompendiumEntries();
+    void MarkCompendiumInitialized(bool Initialised);
+    void ReadCompendiumEntry(const FName& CompendiumRow);
     void ServerSetMinLevelForAllSkills(int32 MinLevel);
     void SetTraits(TArray<FName>& NewTraits);
     void Server_AddAllJournalEntriesFromCategory(TEnumAsByte<E_JournalEntryCategories::Type> Category, bool& Success);
@@ -133,9 +143,14 @@ class UAbiotic_CharacterProgressionComponent_C : public UActorComponent
     void Client_InitPinnedRecipes(class AAbiotic_PlayerCharacter_C* OwningClient);
     void ProcessRecipesToUnlock();
     void ProcessItemsToCheck();
+    void Request_ReadCompendiumEntry(const FName& CompendiumRow);
+    void Client_MarkCompendiumInitialized(bool Initialised);
+    void Request_ReadFishEntry(const FName Fish);
+    void Request_ReadJournalEntries(TEnumAsByte<E_JournalEntryCategories::Type> JournalPage);
+    void JournalUpdateNotifyIconStatus();
     void ExecuteUbergraph_Abiotic_CharacterProgressionComponent(int32 EntryPoint);
     void OnNewEmailRead__DelegateSignature(class UAbiotic_CharacterProgressionComponent_C* ProgressionComponent, FName NewEmail);
     void SkillLevelUp__DelegateSignature(TEnumAsByte<E_CharacterSkills::Type> Skill, int32 NewLevel);
-}; // Size: 0x550
+}; // Size: 0x648
 
 #endif

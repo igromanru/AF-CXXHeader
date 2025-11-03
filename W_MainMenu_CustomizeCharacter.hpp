@@ -44,14 +44,14 @@ class UW_MainMenu_CustomizeCharacter_C : public UUserWidget
     FName Head;                                                                       // 0x0404 (size: 0x8)
     FName HeadAccessory;                                                              // 0x040C (size: 0x8)
     FName Wristwatch;                                                                 // 0x0414 (size: 0x8)
-    FName Fabric;                                                                     // 0x041C (size: 0x8)
+    FName fabric;                                                                     // 0x041C (size: 0x8)
     FName UpperBody;                                                                  // 0x0424 (size: 0x8)
     FName LowerBody;                                                                  // 0x042C (size: 0x8)
-    FName Hair;                                                                       // 0x0434 (size: 0x8)
+    FName hair;                                                                       // 0x0434 (size: 0x8)
     FName HairColor;                                                                  // 0x043C (size: 0x8)
     FName ShirtColor;                                                                 // 0x0444 (size: 0x8)
-    FName Shoes;                                                                      // 0x044C (size: 0x8)
-    FName Belt;                                                                       // 0x0454 (size: 0x8)
+    FName shoes;                                                                      // 0x044C (size: 0x8)
+    FName belt;                                                                       // 0x0454 (size: 0x8)
     FName Beard;                                                                      // 0x045C (size: 0x8)
     TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Voice;                             // 0x0468 (size: 0x28)
     FName IDCard;                                                                     // 0x0490 (size: 0x8)
@@ -78,6 +78,11 @@ class UW_MainMenu_CustomizeCharacter_C : public UUserWidget
     void GetCategoryDataTable(TEnumAsByte<E_CustomizationCategories::Type> Index, class UDataTable*& Table);
     void RefreshAllCustomizationButtons();
     void Populate Customization Button Grid(TEnumAsByte<E_CustomizationCategories::Type> Category, FString CategoryString);
+    void OnNotifyEnd_A94CAD9141B793A937156598BC267AA8(FName NotifyName);
+    void OnNotifyBegin_A94CAD9141B793A937156598BC267AA8(FName NotifyName);
+    void OnInterrupted_A94CAD9141B793A937156598BC267AA8(FName NotifyName);
+    void OnBlendOut_A94CAD9141B793A937156598BC267AA8(FName NotifyName);
+    void OnCompleted_A94CAD9141B793A937156598BC267AA8(FName NotifyName);
     void BndEvt__W_MainMenuButton_BackAndSave_K2Node_ComponentBoundEvent_0_ButtonPressed__DelegateSignature();
     void Construct();
     void BndEvt__W_MainMenu_CustomizeCharacter_W_MainMenuButton_K2Node_ComponentBoundEvent_0_ButtonPressed__DelegateSignature();

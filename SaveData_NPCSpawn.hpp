@@ -9,7 +9,8 @@ struct FSaveData_NPCSpawn
     int32 SpawnCount_17_4617365A4F5E3082B09DE8B2C5C433D0;                             // 0x002C (size: 0x4)
     bool HasSpawnedOnce_14_46E5CFD746B7EF4C60EE5490F647695D;                          // 0x0030 (size: 0x1)
     int32 MinutesPassedCooldownStarted_24_8E0DC672460891BCD8830CBAB51AD583;           // 0x0034 (size: 0x4)
+    bool HasBeenEncounteredOnce_30_3CB5D548463CE37436E7708866429B99;                  // 0x0038 (size: 0x1)
 
-}; // Size: 0x38
+}; // Size: 0x39
 
 #endif

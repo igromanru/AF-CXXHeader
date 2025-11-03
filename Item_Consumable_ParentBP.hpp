@@ -18,7 +18,7 @@ class AItem_Consumable_ParentBP_C : public AAbiotic_Item_ParentBP_C
     TArray<FItemActionRowHandle> GetPrimaryItemActionArray();
     bool GetFPArmsUseMontageOverride(bool SecondaryUse, TSoftObjectPtr<UAnimMontage>& Montage);
     bool GetBroadcastedTPMontageOverride(bool Secondary, class UAnimMontage*& Montage);
-    void GetUseSFXOverride(bool Use Override In TP, class APawn* Instigator, bool& Override, class USoundCue*& Sound Cue);
+    void GetUseSFXOverride(bool Use Override In TP, class APawn* Instigator, bool SecondaryAction, bool& Override, class USoundCue*& Sound Cue);
     bool GetFPUseMontageOverride(bool Secondary, TSoftObjectPtr<UAnimMontage>& Montage);
     void GetItemUseSpeed(bool SecondaryUse, class AAbiotic_Character_ParentBP_C* UsingCharacter, class AAbiotic_Character_ParentBP_C* TargetCharacter, double BaseSpeed, double& Speed);
     void Get Buff Debuff to be Removed(class AAbiotic_Character_ParentBP_C* AffectedCharacter, TArray<FName>& BuffsToCheck, bool& Exist, EBodyLimbs& Limb, FBuffDebuffRowHandle& BuffDebuffToBeRemoved);

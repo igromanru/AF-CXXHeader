@@ -66,9 +66,10 @@ class UW_EscapeMenu_Main_C : public UAbioticWidget
     void Unstick_Yes();
     void BndEvt__W_EscapeMenu_Main_W_MainMenuButton_LeaveFeedback_K2Node_ComponentBoundEvent_2_ButtonPressed__DelegateSignature();
     void OpenURL_Feedback();
-    void CheckGamePauseText();
+    void RefreshEscapeMenu();
     void BndEvt__W_EscapeMenu_Main_Button_ShowPassword_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__W_EscapeMenu_Main_Button_CopyText_K2Node_ComponentBoundEvent_9_OnButtonClickedEvent__DelegateSignature();
+    void TriggerLeaveGame();
     void ExecuteUbergraph_W_EscapeMenu_Main(int32 EntryPoint);
 }; // Size: 0xBC0
 

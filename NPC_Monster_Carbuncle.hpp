@@ -3,32 +3,32 @@
 
 class ANPC_Monster_Carbuncle_C : public ANPC_Base_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x20A8 (size: 0x8)
-    class UCapsuleComponent* CarbuncleOverlap;                                        // 0x20B0 (size: 0x8)
-    class UStaticMeshComponent* StaticDeadVersion;                                    // 0x20B8 (size: 0x8)
-    class UCableComponent* Tongue;                                                    // 0x20C0 (size: 0x8)
-    double CableOffset;                                                               // 0x20C8 (size: 0x8)
-    class USceneComponent* GrabbedPhysicsObject;                                      // 0x20D0 (size: 0x8)
-    bool CarbuncleHarvested;                                                          // 0x20D8 (size: 0x1)
-    FText To Long Interact with Text;                                                 // 0x20E0 (size: 0x10)
-    FText NPCName;                                                                    // 0x20F0 (size: 0x10)
-    bool FloorPlanted;                                                                // 0x2100 (size: 0x1)
-    double CarbuncleOverlapRadius;                                                    // 0x2108 (size: 0x8)
-    class AAbioticCharacter* TetherTarget;                                            // 0x2110 (size: 0x8)
-    double Last TetherTimeStamp;                                                      // 0x2118 (size: 0x8)
-    double MaxTetherTime;                                                             // 0x2120 (size: 0x8)
-    double TetherCooldownTime;                                                        // 0x2128 (size: 0x8)
-    double MaxTetherDistance;                                                         // 0x2130 (size: 0x8)
-    bool IsOnCooldown;                                                                // 0x2138 (size: 0x1)
-    FTimerHandle CooldownTimerHandle;                                                 // 0x2140 (size: 0x8)
-    bool Tethered;                                                                    // 0x2148 (size: 0x1)
-    FName CarbuncleHarvestRow;                                                        // 0x214C (size: 0x8)
-    double StompStartTime;                                                            // 0x2158 (size: 0x8)
-    float StompDuration;                                                              // 0x2160 (size: 0x4)
-    float StompDamage;                                                                // 0x2164 (size: 0x4)
-    bool RunTetherCheckOnTick;                                                        // 0x2168 (size: 0x1)
-    class UStaticMesh* HarvestedStaticMesh;                                           // 0x2170 (size: 0x8)
-    bool DamageTargetWhileTethering;                                                  // 0x2178 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x20E8 (size: 0x8)
+    class UCapsuleComponent* CarbuncleOverlap;                                        // 0x20F0 (size: 0x8)
+    class UStaticMeshComponent* StaticDeadVersion;                                    // 0x20F8 (size: 0x8)
+    class UCableComponent* Tongue;                                                    // 0x2100 (size: 0x8)
+    double CableOffset;                                                               // 0x2108 (size: 0x8)
+    class USceneComponent* GrabbedPhysicsObject;                                      // 0x2110 (size: 0x8)
+    bool CarbuncleHarvested;                                                          // 0x2118 (size: 0x1)
+    FText To Long Interact with Text;                                                 // 0x2120 (size: 0x10)
+    FText NPCName;                                                                    // 0x2130 (size: 0x10)
+    bool FloorPlanted;                                                                // 0x2140 (size: 0x1)
+    double CarbuncleOverlapRadius;                                                    // 0x2148 (size: 0x8)
+    class AAbioticCharacter* TetherTarget;                                            // 0x2150 (size: 0x8)
+    double Last TetherTimeStamp;                                                      // 0x2158 (size: 0x8)
+    double MaxTetherTime;                                                             // 0x2160 (size: 0x8)
+    double TetherCooldownTime;                                                        // 0x2168 (size: 0x8)
+    double MaxTetherDistance;                                                         // 0x2170 (size: 0x8)
+    bool IsOnCooldown;                                                                // 0x2178 (size: 0x1)
+    FTimerHandle CooldownTimerHandle;                                                 // 0x2180 (size: 0x8)
+    bool Tethered;                                                                    // 0x2188 (size: 0x1)
+    FName CarbuncleHarvestRow;                                                        // 0x218C (size: 0x8)
+    double StompStartTime;                                                            // 0x2198 (size: 0x8)
+    float StompDuration;                                                              // 0x21A0 (size: 0x4)
+    float StompDamage;                                                                // 0x21A4 (size: 0x4)
+    bool RunTetherCheckOnTick;                                                        // 0x21A8 (size: 0x1)
+    class UStaticMesh* HarvestedStaticMesh;                                           // 0x21B0 (size: 0x8)
+    bool DamageTargetWhileTethering;                                                  // 0x21B8 (size: 0x1)
 
     void BuffTagsUpdated();
     void Check for Lost Line Of Sight(class AAbioticCharacter*& Target, bool& LostLineOfSight);
@@ -71,6 +71,6 @@ class ANPC_Monster_Carbuncle_C : public ANPC_Base_ParentBP_C
     void ReceiveBeginPlay();
     void DoHitReaction();
     void ExecuteUbergraph_NPC_Monster_Carbuncle(int32 EntryPoint);
-}; // Size: 0x2179
+}; // Size: 0x21B9
 
 #endif

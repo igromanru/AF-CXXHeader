@@ -38,6 +38,7 @@ struct FAISpawnerData
     float TimeLastCooldownStarted;                                                    // 0x0024 (size: 0x4)
     int32 LastDayOnCooldown;                                                          // 0x0028 (size: 0x4)
     bool bShouldOnlySpawnOnce;                                                        // 0x002C (size: 0x1)
+    bool bHasBeenEncounteredOnce;                                                     // 0x002D (size: 0x1)
 
 }; // Size: 0x30
 
@@ -443,8 +444,9 @@ struct FItemAction : public FTableRowBase
 {
     FKeybindSettingRowHandle KeyBind;                                                 // 0x0008 (size: 0x20)
     FText DisplayName;                                                                // 0x0028 (size: 0x10)
+    bool bHold;                                                                       // 0x0038 (size: 0x1)
 
-}; // Size: 0x38
+}; // Size: 0x40
 
 struct FItemActionRowHandle : public FRowHandle
 {
@@ -953,50 +955,55 @@ class AAbioticAIController : public AAIController
 
 class AAbioticCharacter : public ACharacter
 {
-    bool bHasBeenRagdolling;                                                          // 0x0688 (size: 0x1)
-    class AActor* TetheredBy;                                                         // 0x0690 (size: 0x8)
-    FGameplayTagContainer GameplayTags;                                               // 0x0698 (size: 0x20)
-    TArray<class AAbioticCharacter*> NearbyCharacters;                                // 0x06B8 (size: 0x10)
-    FAbioticCharacterOnNearbyCharacterTagsUpdated OnNearbyCharacterTagsUpdated;       // 0x06C8 (size: 0x10)
+    bool bSmoothCamera;                                                               // 0x0680 (size: 0x1)
+    FVector2D PendingSmoothCameraInput;                                               // 0x0688 (size: 0x10)
+    float SmoothCameraSpeed;                                                          // 0x0698 (size: 0x4)
+    bool bHasBeenRagdolling;                                                          // 0x06A4 (size: 0x1)
+    class AActor* TetheredBy;                                                         // 0x06A8 (size: 0x8)
+    FGameplayTagContainer GameplayTags;                                               // 0x06B0 (size: 0x20)
+    TArray<class AAbioticCharacter*> NearbyCharacters;                                // 0x06D0 (size: 0x10)
+    FAbioticCharacterOnNearbyCharacterTagsUpdated OnNearbyCharacterTagsUpdated;       // 0x06E0 (size: 0x10)
     void NearbyCharacterTagsRefreshed();
-    class UCharacterBuffComponent* BuffComponent;                                     // 0x06D8 (size: 0x8)
-    TArray<FStatModifierEntry> StatModifiers;                                         // 0x06E0 (size: 0x10)
-    TMap<FStatModifierRowHandle, float> StatModifierMap;                              // 0x06F0 (size: 0x50)
-    TMap<FStatModifierRowHandle, int32> CheatStatModifierMap;                         // 0x0740 (size: 0x50)
-    TMap<FSkillRowHandle, int32> SkillLevelMap;                                       // 0x0790 (size: 0x50)
-    FAbioticCharacterOnStatModifiersRefreshed OnStatModifiersRefreshed;               // 0x07E0 (size: 0x10)
+    class USceneComponent* IDCardMeshSocketReference;                                 // 0x06F0 (size: 0x8)
+    bool bUseBeltIDCardLocation;                                                      // 0x06F8 (size: 0x1)
+    class UCharacterBuffComponent* BuffComponent;                                     // 0x0700 (size: 0x8)
+    TArray<FStatModifierEntry> StatModifiers;                                         // 0x0708 (size: 0x10)
+    TMap<FStatModifierRowHandle, float> StatModifierMap;                              // 0x0718 (size: 0x50)
+    TMap<FStatModifierRowHandle, int32> CheatStatModifierMap;                         // 0x0768 (size: 0x50)
+    TMap<FSkillRowHandle, int32> SkillLevelMap;                                       // 0x07B8 (size: 0x50)
+    FAbioticCharacterOnStatModifiersRefreshed OnStatModifiersRefreshed;               // 0x0808 (size: 0x10)
     void OnStatModifiersRefreshed();
-    bool bStatsLocked;                                                                // 0x07F0 (size: 0x1)
-    FStatModifierRowHandle MaxHealthModifier;                                         // 0x07F8 (size: 0x20)
-    FStatModifierRowHandle MaxHeadHealthModifier;                                     // 0x0818 (size: 0x20)
-    FStatModifierRowHandle MaxTorsoHealthModifier;                                    // 0x0838 (size: 0x20)
-    TMap<EBodyLimbs, float> DefaultMax_LimbHealthMap;                                 // 0x0858 (size: 0x50)
-    float CurrentHealth_Head;                                                         // 0x08A8 (size: 0x4)
-    float CurrentHealth_Torso;                                                        // 0x08AC (size: 0x4)
-    float CurrentHealth_LeftArm;                                                      // 0x08B0 (size: 0x4)
-    float CurrentHealth_RightArm;                                                     // 0x08B4 (size: 0x4)
-    float CurrentHealth_LeftLeg;                                                      // 0x08B8 (size: 0x4)
-    float CurrentHealth_RightLeg;                                                     // 0x08BC (size: 0x4)
-    FAbioticCharacterOnHealthChanged OnHealthChanged;                                 // 0x08C0 (size: 0x10)
+    bool bStatsLocked;                                                                // 0x0818 (size: 0x1)
+    FStatModifierRowHandle MaxHealthModifier;                                         // 0x0820 (size: 0x20)
+    FStatModifierRowHandle MaxHeadHealthModifier;                                     // 0x0840 (size: 0x20)
+    FStatModifierRowHandle MaxTorsoHealthModifier;                                    // 0x0860 (size: 0x20)
+    TMap<EBodyLimbs, float> DefaultMax_LimbHealthMap;                                 // 0x0880 (size: 0x50)
+    float CurrentHealth_Head;                                                         // 0x08D0 (size: 0x4)
+    float CurrentHealth_Torso;                                                        // 0x08D4 (size: 0x4)
+    float CurrentHealth_LeftArm;                                                      // 0x08D8 (size: 0x4)
+    float CurrentHealth_RightArm;                                                     // 0x08DC (size: 0x4)
+    float CurrentHealth_LeftLeg;                                                      // 0x08E0 (size: 0x4)
+    float CurrentHealth_RightLeg;                                                     // 0x08E4 (size: 0x4)
+    FAbioticCharacterOnHealthChanged OnHealthChanged;                                 // 0x08E8 (size: 0x10)
     void HealthChangedDelegate();
-    float CurrentStamina;                                                             // 0x08D0 (size: 0x4)
-    float MaxStamina;                                                                 // 0x08D4 (size: 0x4)
-    float StaminaRequiredToSprint;                                                    // 0x08D8 (size: 0x4)
-    FAbioticCharacterOnStaminaChanged OnStaminaChanged;                               // 0x08E0 (size: 0x10)
+    float CurrentStamina;                                                             // 0x08F8 (size: 0x4)
+    float MaxStamina;                                                                 // 0x08FC (size: 0x4)
+    float StaminaRequiredToSprint;                                                    // 0x0900 (size: 0x4)
+    FAbioticCharacterOnStaminaChanged OnStaminaChanged;                               // 0x0908 (size: 0x10)
     void StaminaChangedDelegate();
-    float BaseWalkSpeed;                                                              // 0x08F0 (size: 0x4)
-    float BaseSprintSpeed;                                                            // 0x08F4 (size: 0x4)
-    float MinimumMovementSpeed;                                                       // 0x08F8 (size: 0x4)
-    float GlobalSpeedModifier;                                                        // 0x08FC (size: 0x4)
-    float GlobalSprintSpeedModifier;                                                  // 0x0900 (size: 0x4)
-    float GlobalSwimSpeedModifier;                                                    // 0x0904 (size: 0x4)
-    float GlobalCrouchSpeedModifier;                                                  // 0x0908 (size: 0x4)
-    uint8 bIsSprinting;                                                               // 0x090C (size: 0x1)
-    uint8 bIsAiming;                                                                  // 0x090C (size: 0x1)
-    float JetpackTimestamp;                                                           // 0x0910 (size: 0x4)
-    bool bHasStaminaToSprint;                                                         // 0x0914 (size: 0x1)
-    float ToggleSprintEnabledTimestamp;                                               // 0x0918 (size: 0x4)
-    bool GhostMode;                                                                   // 0x091C (size: 0x1)
+    float BaseWalkSpeed;                                                              // 0x0918 (size: 0x4)
+    float BaseSprintSpeed;                                                            // 0x091C (size: 0x4)
+    float MinimumMovementSpeed;                                                       // 0x0920 (size: 0x4)
+    float GlobalSpeedModifier;                                                        // 0x0924 (size: 0x4)
+    float GlobalSprintSpeedModifier;                                                  // 0x0928 (size: 0x4)
+    float GlobalSwimSpeedModifier;                                                    // 0x092C (size: 0x4)
+    float GlobalCrouchSpeedModifier;                                                  // 0x0930 (size: 0x4)
+    uint8 bIsSprinting;                                                               // 0x0934 (size: 0x1)
+    uint8 bIsAiming;                                                                  // 0x0934 (size: 0x1)
+    float JetpackTimestamp;                                                           // 0x0938 (size: 0x4)
+    bool bHasStaminaToSprint;                                                         // 0x093C (size: 0x1)
+    float ToggleSprintEnabledTimestamp;                                               // 0x0940 (size: 0x4)
+    bool GhostMode;                                                                   // 0x0944 (size: 0x1)
 
     void UpdateSkillStatLevel(FSkillRowHandle Skill, int32 Level);
     void ToggleSprint();
@@ -1005,6 +1012,7 @@ class AAbioticCharacter : public ACharacter
     void StopSprint(bool bClientSimulation);
     void StopAim(bool bClientSimulation);
     void Sprint(bool bClientSimulation);
+    void SetUseBeltIDCardLocation(bool bUseBeltLocation);
     void SetStatUpdateLock(bool bLocked);
     void SetMaxStamina(float NewMaxStamina);
     void SetLimbHealth(EBodyLimbs Limb, float Health);
@@ -1013,8 +1021,10 @@ class AAbioticCharacter : public ACharacter
     void ScaledLaunchCharacter(FVector LaunchVelocity, bool bXYOverride, bool bZOverride);
     void RemoveNearbyCharacter(class AAbioticCharacter* Character, class UPrimitiveComponent* OverlapPrimitive);
     void RejectDLCTeleport();
+    void OnUseBeltIDCardLocationUpdated();
     void OnStatModifiersUpdated();
     void OnSprintUpdated();
+    void OnRep_UseBeltIDCardLocation();
     void OnRep_StatModifiers();
     void OnRep_MaxStamina();
     void OnRep_IsSprinting();
@@ -1055,7 +1065,7 @@ class AAbioticCharacter : public ACharacter
     void Aim(bool bClientSimulation);
     void AddNearbyCharacter(class AAbioticCharacter* Character, class UPrimitiveComponent* OverlapPrimitive);
     void AddCheatStatModifier(FStatModifierRowHandle Modifier, int32 Value);
-}; // Size: 0x920
+}; // Size: 0x950
 
 class AAbioticGameMode : public AGameMode
 {
@@ -1083,6 +1093,7 @@ class AAbioticGameState : public AGameState
     FUniqueNetIdRepl SessionId;                                                       // 0x0460 (size: 0x30)
     TArray<FString> ServerEntitlements;                                               // 0x0490 (size: 0x10)
     bool bHomeWorldsEnabled;                                                          // 0x04A0 (size: 0x1)
+    bool bHardcoreMode;                                                               // 0x04A1 (size: 0x1)
     FAbioticGameStateOnServerEntitlementsUpdated OnServerEntitlementsUpdated;         // 0x04A8 (size: 0x10)
     void ServerEntitlementsUpdated();
 
@@ -1096,6 +1107,7 @@ class AAbioticGameState : public AGameState
     bool HasServerGameEntitlement(FGameEntitlementRowHandle Entitlement);
     int32 GetElapsedMinutes();
     bool DoesLocationHaveMatchingTeleporter(FString LocationName, class AActor* Teleporter);
+    bool CanLevelBeActive(FGameEntitlementRowHandle RequiredEntitlement, FWorldFlagRowHandle RequiredWorldFlag);
 }; // Size: 0x4B8
 
 class AAbioticLevelStreamingVolume : public AVolume
@@ -1103,12 +1115,13 @@ class AAbioticLevelStreamingVolume : public AVolume
     TSoftObjectPtr<UWorld> LevelToLoad;                                               // 0x02D0 (size: 0x28)
     TSoftObjectPtr<UWorld> RequiredParentLevel;                                       // 0x02F8 (size: 0x28)
     FGameEntitlementRowHandle RequiredEntitlement;                                    // 0x0320 (size: 0x20)
-    bool bDisabledForDemo;                                                            // 0x0340 (size: 0x1)
-    float X;                                                                          // 0x0344 (size: 0x4)
-    float Y;                                                                          // 0x0348 (size: 0x4)
-    float Z;                                                                          // 0x034C (size: 0x4)
+    FWorldFlagRowHandle RequiredWorldFlag;                                            // 0x0340 (size: 0x20)
+    bool bDisabledForDemo;                                                            // 0x0360 (size: 0x1)
+    float X;                                                                          // 0x0364 (size: 0x4)
+    float Y;                                                                          // 0x0368 (size: 0x4)
+    float Z;                                                                          // 0x036C (size: 0x4)
 
-}; // Size: 0x350
+}; // Size: 0x370
 
 class AAbioticPlayerController : public APlayerController
 {
@@ -1124,6 +1137,7 @@ class AAbioticPlayerController : public APlayerController
     void SetUseSoftwareCursor(bool bEnabled);
     void ServerPlayerVoiceIsBlocked(class AAbioticPlayerState* OtherPlayer);
     void Request_ExecuteGameCommand(FGameCommandRowHandle RowHandle, FString FirstParam, FString SecondParam);
+    bool ProjectWorldToScreenClamped(const FVector& WorldPosition, FVector2D& ScreenPosition, FVector2D& ScreenDirection, FMargin Padding, bool bPlayerViewportRelative, bool bClamp);
     void OnDetectAnyInput(const FKey& InKey);
     void BumpCursor();
 }; // Size: 0x8E0
@@ -1224,6 +1238,7 @@ class UAIDirectorSubsystem : public UWorldSubsystem
     void SpawnerCooldownUpdated(TSoftObjectPtr<AActor> Spawner);
 
     void UpdateCurrentDay(int32 Day);
+    bool TriggerEncounterOnOwningSpawner(const class UObject* WorldContextObject, class AAbioticCharacter* AI);
     void SetCooldownForSpawner(const class UObject* WorldContextObject, class AActor* Spawner, float TimeRemaining, int32 InCurrentDay, bool bOnlySpawnOnce);
     void RemoveVignetteAISpawnData(const TArray<FString>& VignetteNames);
     bool RefreshCooldownOnOwningSpawner(const class UObject* WorldContextObject, class AAbioticCharacter* AI, TArray<class AActor*> NearbyPlayers);
@@ -1233,6 +1248,7 @@ class UAIDirectorSubsystem : public UWorldSubsystem
     TArray<class AActor*> GetNearbyPlayersOnDeathFromSpawner(const class UObject* WorldContextObject, class AActor* Spawner);
     float GetLastTotalCooldownFromSpawner(class AActor* Spawner);
     int32 GetLastCooldownDayForSpawner(const class UObject* WorldContextObject, class AActor* Spawner);
+    bool GetHasBeenEncounteredOnceForSpawner(const class UObject* WorldContextObject, class AActor* Spawner);
     float GetCurrentCooldownRemainingFromSpawner(const class UObject* WorldContextObject, class AActor* Spawner);
     int32 GetCooldownDaysRemainingFromSpawner(const class UObject* WorldContextObject, class AActor* Spawner, int32 DaysRequired);
     bool FastNPCDormancy();
@@ -1345,7 +1361,10 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     FString SanitizeSaveFolderName(FString FolderName);
     FSoftObjectPath RemovePIEPrefix(const FSoftObjectPath& InPath);
     void ProcessDamageResults(TArray<FHitResult>& HitResults, TEnumAsByte<ECollisionChannel> TraceChannel, TArray<FHitData>& OutHitData, TArray<class AActor*>& OutHitPawns);
+    void PasteFromClipboard(FString& Text);
     void OpenFolderDirectory(FString FolderPath);
+    void MontageGetSections(class UAnimMontage* Montage, TMap<FName, float>& OutSectionData);
+    void MontageGetSectionNames(class UAnimMontage* Montage, TArray<FName>& OutSectionNames);
     void ModifyPhysicsLocks(class UPrimitiveComponent* Primitive, bool bLockXRotation, bool bLockYRotation, bool bLockZRotation);
     void MarkObjectDirty(class UObject* Object);
     FSoftObjectPath MakeSavedObjectPath(const class AActor* Actor);
@@ -1356,6 +1375,7 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     bool KeyIsEnter(const FKey& Key);
     bool IsWorldTearingDown(const class UObject* WorldContextObject);
     void IsWindowsTimezoneAutomatic(bool& bTimezoneAutomatic, bool& bTimeAutomatic);
+    bool IsValidNotifyName(class UAnimMontage* Montage, FName NotifyName);
     bool IsUsingAnimBlueprint(const class USkeletalMeshComponent* SkeletalMeshComponent);
     bool IsTRMode();
     bool IsSubscribedApp(int32 AppID);
@@ -1388,6 +1408,7 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     FString GetSteamIDFromPlayerState(const class APlayerState* PlayerState);
     FString GetSourceTextFromDialogueWave(const class UDialogueWave* DialogueWave);
     class USoundWave* GetSoundWaveFromDialogue(const class UDialogueWave* DialogueWave);
+    bool GetSessionFavoriteID(class UObject* WorldContextObject, const FBlueprintSessionResult& SessionResult, bool& bDedicated, FString& OutFavoriteID);
     int32 GetServerMaxPlayers();
     FString GetSaveSubfolderName();
     void GetSavedObjectPath(const FSoftObjectPath& InSavePath, FSoftObjectPath& OutSavePath);
@@ -1749,6 +1770,14 @@ class UAbioticTargetingSubsystem : public UWorldSubsystem
 
 }; // Size: 0x50
 
+class UAbioticTreeView : public UTreeView
+{
+    bool AlwaysShowScrollbar;                                                         // 0x0CC8 (size: 0x1)
+
+    void SetAlwaysShowScrollbar(bool NewAlwaysShowScrollbar);
+    bool IsAlwaysShowScrollbar();
+}; // Size: 0xCD0
+
 class UAbioticUIActionRouter : public ULocalPlayerSubsystem
 {
     FAbioticUIActionRouterOnInputTypeChanged OnInputTypeChanged;                      // 0x0040 (size: 0x10)
@@ -2075,6 +2104,7 @@ class UCharacterBuffComponent : public UActorComponent
     void OnRep_BuffMaterials();
     bool HasBuffTag(FGameplayTag Tag);
     TArray<EBodyLimbs> HasBuff(FBuffDebuffRowHandle BuffRow, bool bMustBeOnSameLimb, EBodyLimbs Limb);
+    TArray<FBuffDebuffEntry> GetBuffsToSave();
     bool GetBuffExpireTime(FBuffDebuffRowHandle BuffRow, float& ExpireTime);
     void GetBuffCountMap(bool bIgnoreSilent, TMap<FBuffDebuffRowHandle, int32>& OutBuffCountMap);
     bool FindBuffInArray(TArray<FBuffDebuffEntry> BuffArray, FBuffDebuffEntry& OutBuffEntry);
@@ -2455,6 +2485,21 @@ class UHeldItemAnimInstance : public UAnimInstance
 
 }; // Size: 0x3D0
 
+class UHelicopterMovementComponent : public UAbioticCharacterMovementComponent
+{
+    FVector AngularVelocity;                                                          // 0x0FC0 (size: 0x18)
+    bool HelicopterFlight;                                                            // 0x0FD8 (size: 0x1)
+    float YawSpeed;                                                                   // 0x0FDC (size: 0x4)
+    float TiltSpeed;                                                                  // 0x0FE0 (size: 0x4)
+    class AActor* LookTargetActor;                                                    // 0x0FE8 (size: 0x8)
+    float FlightPower;                                                                // 0x0FF0 (size: 0x4)
+
+    void TickRotation(const float DeltaTime);
+    FVector GetLookTargetLocation();
+    float GetFlightPower();
+    void ApplyGravity(const float DeltaTime);
+}; // Size: 0x1000
+
 class UItemActionHandleFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
@@ -2550,12 +2595,13 @@ class ULevelManagerInstance : public UObject
     TArray<class AAbioticLevelStreamingVolume*> LevelStreamingVolumes;                // 0x0030 (size: 0x10)
     TSoftObjectPtr<UWorld> ParentWorldAsset;                                          // 0x0040 (size: 0x28)
     FGameEntitlementRowHandle RequiredEntitlement;                                    // 0x0068 (size: 0x20)
+    FWorldFlagRowHandle RequiredWorldFlag;                                            // 0x0088 (size: 0x20)
 
     void OnPlayerLeaveLevel(class AActor* OverlappedActor, class AActor* OtherActor);
     void OnPlayerEnterLevel(class AActor* OverlappedActor, class AActor* OtherActor);
     void OnLevelUnloaded();
     void OnLevelLoaded();
-}; // Size: 0x98
+}; // Size: 0xB8
 
 class ULevelManagerSubsystem : public UWorldSubsystem
 {
@@ -2738,6 +2784,32 @@ class UPlayerStatsSave : public USaveGame
 
 }; // Size: 0xD8
 
+class UPostProcessCharacterAnimInstance : public UAnimInstance
+{
+    FName IDCardSocketName;                                                           // 0x0368 (size: 0x8)
+    FName IDCardAltSocketName;                                                        // 0x0370 (size: 0x8)
+    FName OffsetXCurve;                                                               // 0x0378 (size: 0x8)
+    FName OffsetYCurve;                                                               // 0x0380 (size: 0x8)
+    FName OffsetZCurve;                                                               // 0x0388 (size: 0x8)
+    FVector2D ForwardMovementVelocityRange;                                           // 0x0390 (size: 0x10)
+    FVector2D ForwardMovementRotationRange;                                           // 0x03A0 (size: 0x10)
+    FVector2D FallVelocityRange;                                                      // 0x03B0 (size: 0x10)
+    FVector2D FallRotationRange;                                                      // 0x03C0 (size: 0x10)
+    FVector2D RollVelocityRange;                                                      // 0x03D0 (size: 0x10)
+    FVector2D RollRotationRange;                                                      // 0x03E0 (size: 0x10)
+    float BlendSpeed;                                                                 // 0x03F0 (size: 0x4)
+    float TransformAlpha;                                                             // 0x03F4 (size: 0x4)
+    float TransformAltAlpha;                                                          // 0x03F8 (size: 0x4)
+    FVector IDLocation;                                                               // 0x0400 (size: 0x18)
+    FRotator IDRotation;                                                              // 0x0418 (size: 0x18)
+    FVector IDScale;                                                                  // 0x0430 (size: 0x18)
+    FRotator IDRotationOffset;                                                        // 0x0448 (size: 0x18)
+    FRotator IDRotationOffsetBlend;                                                   // 0x0460 (size: 0x18)
+    FVector PreviousLocation;                                                         // 0x0478 (size: 0x18)
+    FVector IDLocationOffset;                                                         // 0x0490 (size: 0x18)
+
+}; // Size: 0x4B0
+
 class UQuestHandleFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
@@ -2835,7 +2907,8 @@ class USessionResultItem : public UObject
     FBlueprintSessionResult SessionResult;                                            // 0x0028 (size: 0x120)
     int32 Ping;                                                                       // 0x0148 (size: 0x4)
     bool bDedicated;                                                                  // 0x014C (size: 0x1)
-    bool bLocked;                                                                     // 0x014D (size: 0x1)
+    bool bHardcore;                                                                   // 0x014D (size: 0x1)
+    bool bLocked;                                                                     // 0x014E (size: 0x1)
     int32 PlayerCount;                                                                // 0x0150 (size: 0x4)
     int32 MaxPlayers;                                                                 // 0x0154 (size: 0x4)
     FName StoryProgressionRow;                                                        // 0x0158 (size: 0x8)

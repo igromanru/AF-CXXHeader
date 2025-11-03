@@ -9,6 +9,7 @@ class AAI_Controller_NPC_Boxy_C : public AAbiotic_AI_Controller_ParentBP_C
     FTimerHandle CrouchCheckTimer;                                                    // 0x08D0 (size: 0x8)
     FTimerHandle FollowPlayerTimer;                                                   // 0x08D8 (size: 0x8)
 
+    void WasShoved(class AAbiotic_Character_ParentBP_C* Shover);
     void BT_CheckObstruction();
     void CheckCombatTargetValidity(class AActor* TargetToCheck, bool Maintain, bool& Valid);
     void CheckLineOfSightToLocations(TArray<FVector>& LocationsMustSee, class AActor* OwningTarget, int32 RequiredLocationsToCount, bool QueryOnly, bool& Can See);

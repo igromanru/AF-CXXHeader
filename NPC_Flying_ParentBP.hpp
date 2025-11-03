@@ -3,12 +3,12 @@
 
 class ANPC_Flying_ParentBP_C : public ANPC_Base_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x20A8 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x20E8 (size: 0x8)
 
     void ReceiveTick(float DeltaSeconds);
     void LocalUpdateWalkSpeed();
     void ReceiveBeginPlay();
     void ExecuteUbergraph_NPC_Flying_ParentBP(int32 EntryPoint);
-}; // Size: 0x20B0
+}; // Size: 0x20F0
 
 #endif

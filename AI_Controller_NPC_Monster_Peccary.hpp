@@ -6,6 +6,7 @@ class AAI_Controller_NPC_Monster_Peccary_C : public AAbiotic_AI_Controller_Paren
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x08B8 (size: 0x8)
     class ANPC_Monster_Peccary_C* MyPeccaryPawn;                                      // 0x08C0 (size: 0x8)
 
+    void AdditionalFocusTurnOverride(bool& Override);
     void ReceiveBeginPlay();
     void ExecuteUbergraph_AI_Controller_NPC_Monster_Peccary(int32 EntryPoint);
 }; // Size: 0x8C8

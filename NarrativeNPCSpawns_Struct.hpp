@@ -10,7 +10,8 @@ struct FNarrativeNPCSpawns_Struct
     TArray<class UNarrativeNPCLureComponent_C*> CachedLures_44_0B08235448EC22CFC0E375A8F418FD46; // 0x0048 (size: 0x10)
     FDataTableRowHandle TradeItemsRow_42_F0DF4F674D1D03B6366AD586C8422542;            // 0x0058 (size: 0x10)
     TArray<int32> TradeStock_40_DA0C4F0B49D178F54FB3648F09624F0A;                     // 0x0068 (size: 0x10)
+    TEnumAsByte<E_NarrativeNPCStates::Type> NarrativeState_47_801949D24EEB38548B042FA7462911BC; // 0x0078 (size: 0x1)
 
-}; // Size: 0x78
+}; // Size: 0x79
 
 #endif

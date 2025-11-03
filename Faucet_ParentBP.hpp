@@ -23,8 +23,8 @@ class AFaucet_ParentBP_C : public ADeployed_LiquidContainer_ParentBP_C
     void RefillFaucetWater();
     void SetInitialRandomFill(TEnumAsByte<E_LiquidType::Type> Liquid Type);
     void StartRefillCountdown();
-    void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void ReceiveBeginPlay();
+    void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void OnLoadedFromSave(double NewLifespan);
     void ExecuteUbergraph_Faucet_ParentBP(int32 EntryPoint);
 }; // Size: 0xAC1

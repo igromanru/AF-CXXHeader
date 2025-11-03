@@ -40,6 +40,7 @@ class AAbioticDeployed_Furniture_ParentBP_C : public AAbioticDeployed_ParentBP_C
     class UAnimSequenceBase* DefaultSleepingAnim;                                     // 0x0830 (size: 0x8)
     FString AlternativeDisplayName;                                                   // 0x0838 (size: 0x10)
     bool PoweredInUnloadedLevel;                                                      // 0x0848 (size: 0x1)
+    bool BlocksItemUsage;                                                             // 0x0849 (size: 0x1)
 
     void GetFriendlyFireDamageMultiplier(bool& Return, double& DamageMultiplier);
     void TargetableByTurrets(bool& Targetable);
@@ -55,6 +56,7 @@ class AAbioticDeployed_Furniture_ParentBP_C : public AAbioticDeployed_ParentBP_C
     void GetBuffOverlayMeshes(TArray<class UMeshComponent*>& Meshes);
     bool GetCurrentLightLevel(double& LightLevel);
     bool GetSpottability(double& Spottability, bool& Crouched);
+    FBuffDebuffRowHandle GetSeatRestBuff(class AAbiotic_Character_ParentBP_C* Character);
     void IsPowered(bool& PowerOn);
     void GetDeployedActorBounds(FVector& Origin, FVector& BoxExtent);
     void OnRep_CurrentActorRotation();
@@ -107,6 +109,6 @@ class AAbioticDeployed_Furniture_ParentBP_C : public AAbioticDeployed_ParentBP_C
     void OnLevelUnloaded(class ULevelStreaming* Level);
     void ExecuteUbergraph_AbioticDeployed_Furniture_ParentBP(int32 EntryPoint);
     void OccupantSittingStateChanged__DelegateSignature(int32 SeatIndex, bool Sitting);
-}; // Size: 0x849
+}; // Size: 0x84A
 
 #endif

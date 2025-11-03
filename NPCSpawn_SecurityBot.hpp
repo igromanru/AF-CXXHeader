@@ -3,9 +3,9 @@
 
 class ANPCSpawn_SecurityBot_C : public AAbiotic_NPCSpawn_ParentBP_C
 {
-    bool HasSpawnedThisNight;                                                         // 0x055A (size: 0x1)
+    bool HasSpawnedThisNight;                                                         // 0x055B (size: 0x1)
 
     void TrySpawnNPC(bool IsNight, bool ForceSuccessByTrigger, bool CheckOnlyNoSpawn, bool& Success, class ANPC_Base_ParentBP_C*& SpawnedNPC, FString& DebugMessage, TEnumAsByte<E_NPCSpawnResponse::Type>& Response);
-}; // Size: 0x55B
+}; // Size: 0x55C
 
 #endif

@@ -16,7 +16,7 @@ class UTraderComponent_C : public UActorComponent
     TArray<int32> TradeStock;                                                         // 0x0138 (size: 0x10)
     bool AllowTradeWithoutIntro;                                                      // 0x0148 (size: 0x1)
     class AContainer_LootSpillBag_C* CurrentLootSpillBag;                             // 0x0150 (size: 0x8)
-    bool HasPurchasedSomethingLocally;                                                // 0x0158 (size: 0x1)
+    bool HasPurchasedSomething;                                                       // 0x0158 (size: 0x1)
     TArray<FNPCConversationLine> Lines;                                               // 0x0160 (size: 0x10)
 
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
@@ -42,6 +42,8 @@ class UTraderComponent_C : public UActorComponent
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void CanUseSharedInteraction(bool& Can Use);
+    void OnNewNarrativeState(class ANarrativeNPC_ParentBP_C* NPC, TEnumAsByte<E_NarrativeNPCStates::Type> NewNarrativeState);
+    void Server_StopAllTrading();
     void Pickup Purchased Items(class AAbiotic_PlayerCharacter_C* PurchasingPlayer, const FAbioticItemCount_Struct& ItemPurchase, int32 Count);
     void TrySayRandomPurchaseLine(bool Positive);
     void Local_CheckForUIRefresh();
@@ -78,7 +80,7 @@ class UTraderComponent_C : public UActorComponent
     void Local_OpenTraderWindow();
     void Server_PerformItemPurchase(int32 TradeIndex, class AAbiotic_PlayerCharacter_C* CustomerCharacter, int32 PurchaseAmount);
     void Local_CloseTraderWindow();
-    void Server_TrySayPurchaseLine(bool Positive);
+    void Broadcast_CloseTradeWindow();
     void ExecuteUbergraph_TraderComponent(int32 EntryPoint);
     void StartTrading__DelegateSignature(class AAbiotic_PlayerCharacter_C* Player);
 }; // Size: 0x170

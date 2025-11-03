@@ -8,7 +8,10 @@ class UW_RadialWheel_Medical_C : public UW_RadialWheel_ParentBP_C
     class UImage* Centre;                                                             // 0x0368 (size: 0x8)
     class UTextBlock* EntryName;                                                      // 0x0370 (size: 0x8)
     class UUMG_RadialMenu_C* SelectionWheel;                                          // 0x0378 (size: 0x8)
-    class UW_Keybind_C* W_Keybind;                                                    // 0x0380 (size: 0x8)
+    class UTextBlock* Text_MedicalTarget;                                             // 0x0380 (size: 0x8)
+    class UW_Keybind_C* W_Keybind;                                                    // 0x0388 (size: 0x8)
+    class AAbiotic_PlayerCharacter_C* MedicalTarget;                                  // 0x0390 (size: 0x8)
+    bool IsAllyUsage;                                                                 // 0x0398 (size: 0x1)
 
     void GetRadialWheel(class UUMG_RadialMenu_C*& RadialWheel);
     void Get Wheel Categories(TArray<FName>& EntryList, bool& HasList);
@@ -17,7 +20,8 @@ class UW_RadialWheel_Medical_C : public UW_RadialWheel_ParentBP_C
     void Tick(FGeometry MyGeometry, float InDeltaTime);
     void BndEvt__W_RadialWheel_Medical_SelectionWheel_K2Node_ComponentBoundEvent_0_SelectionChanged__DelegateSignature(int32 NewSelection, int32 OldSelection);
     void SelectionChanged(int32 NewSelection, int32 OldSelection);
+    void Construct();
     void ExecuteUbergraph_W_RadialWheel_Medical(int32 EntryPoint);
-}; // Size: 0x388
+}; // Size: 0x399
 
 #endif

@@ -70,7 +70,7 @@ class UItemFunctionLibrary_C : public UBlueprintFunctionLibrary
     void GetNextFoodStageItem(const FDataTableRowHandle& OriginalItem, ECookingState NextStage, int32 StovewareType, class UObject* __WorldContext, bool& Success, FDataTableRowHandle& ItemRow, FAbiotic_InventoryChangeableDataStruct& ChangeableData);
     TEnumAsByte<E_InventorySlotType::Type> IndexToSlotType(int32 Index, class UObject* __WorldContext);
     int32 SlotTypeToIndex(TEnumAsByte<E_InventorySlotType::Type> SlotType, class UObject* __WorldContext);
-    bool DecayItem(FDataTableRowHandle& ItemDataTable, FAbiotic_InventoryChangeableDataStruct& ChangeableData, TEnumAsByte<E_InternalTemperature::Type> InternalTemperature, class UObject* __WorldContext, bool& FullyDecayed, FDataTableRowHandle& NewItemData, FAbiotic_InventoryChangeableDataStruct& NewChangeableData);
+    bool DecayItem(FDataTableRowHandle& ItemDataTable, FAbiotic_InventoryChangeableDataStruct& ChangeableData, TEnumAsByte<E_InternalTemperature::Type> InternalTemperature, bool Repair, class UObject* __WorldContext, bool& FullyDecayed, FDataTableRowHandle& NewItemData, FAbiotic_InventoryChangeableDataStruct& NewChangeableData);
     void ItemCanBeEquipped(const FDataTableRowHandle& ItemData, class UObject* __WorldContext, bool& CanBeEquipped);
     void FilterItemsForSubstitutes(TArray<FAbioticItemCount_Struct>& InItems, class UObject* __WorldContext, TArray<FAbioticItemCount_Struct>& RegularItems, TArray<FAbioticSubstituteCount_Struct>& SubstituteItems);
     void AreItemsAvailable(TArray<FAbioticItemCount_Struct>& Items, class AAbiotic_PlayerCharacter_C* Player, TArray<class UAbiotic_InventoryComponent_C*>& AdditionalInventories, class UObject* __WorldContext, bool& Success);

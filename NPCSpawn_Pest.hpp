@@ -3,6 +3,6 @@
 
 class ANPCSpawn_Pest_C : public AAbiotic_NPCSpawn_ParentBP_C
 {
-}; // Size: 0x55A
+}; // Size: 0x55B
 
 #endif

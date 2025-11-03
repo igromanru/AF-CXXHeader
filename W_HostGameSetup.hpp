@@ -21,18 +21,22 @@ class UW_HostGameSetup_C : public UAbioticWidget
     class UHorizontalBox* MP_HBox_2;                                                  // 0x0358 (size: 0x8)
     class UHorizontalBox* MP_HBox_LAN;                                                // 0x0360 (size: 0x8)
     class USettingRow_C* SettingRow_Difficulty;                                       // 0x0368 (size: 0x8)
-    class UW_Settings_SliderBar_C* Slider_MaxPlayers;                                 // 0x0370 (size: 0x8)
-    class UEditableTextBox* TextInput_Password;                                       // 0x0378 (size: 0x8)
-    class UEditableTextBox* TextInput_ServerName;                                     // 0x0380 (size: 0x8)
-    class UEditableTextBox* TextInput_WorldName;                                      // 0x0388 (size: 0x8)
-    int32 Character_Limit;                                                            // 0x0390 (size: 0x4)
-    int32 Character_Limit_Password;                                                   // 0x0394 (size: 0x4)
-    class UW_MenuPopup_YesNo_C* CurrentPopup;                                         // 0x0398 (size: 0x8)
-    FW_HostGameSetup_CSandboxSettingsPressed SandboxSettingsPressed;                  // 0x03A0 (size: 0x10)
+    class USettingRow_C* SettingRow_Hardcore;                                         // 0x0370 (size: 0x8)
+    class UW_Settings_SliderBar_C* Slider_MaxPlayers;                                 // 0x0378 (size: 0x8)
+    class UEditableTextBox* TextInput_Password;                                       // 0x0380 (size: 0x8)
+    class UEditableTextBox* TextInput_ServerName;                                     // 0x0388 (size: 0x8)
+    class UEditableTextBox* TextInput_WorldName;                                      // 0x0390 (size: 0x8)
+    int32 Character_Limit;                                                            // 0x0398 (size: 0x4)
+    int32 Character_Limit_Password;                                                   // 0x039C (size: 0x4)
+    class UW_MenuPopup_YesNo_C* CurrentPopup;                                         // 0x03A0 (size: 0x8)
+    FW_HostGameSetup_CSandboxSettingsPressed SandboxSettingsPressed;                  // 0x03A8 (size: 0x10)
     void SandboxSettingsPressed();
-    TArray<FString> ABC_Strings;                                                      // 0x03B0 (size: 0x10)
-    TArray<FString> ABC_Strings_NoSpace;                                              // 0x03C0 (size: 0x10)
+    TArray<FString> ABC_Strings;                                                      // 0x03B8 (size: 0x10)
+    TArray<FString> ABC_Strings_NoSpace;                                              // 0x03C8 (size: 0x10)
+    class UStyledComboBoxSetting_C* DifficultySetting;                                // 0x03D8 (size: 0x8)
+    int32 PreviousDifficultyIndex;                                                    // 0x03E0 (size: 0x4)
 
+    void OnHardcoreCheckedStateChanged(bool bIsChecked);
     void SetupSoloOrLanOnly();
     void SetupDifficultyButtons();
     void CheckForSpecialCharacters(FString SourceString, bool& FoundBadCharacter);
@@ -50,6 +54,6 @@ class UW_HostGameSetup_C : public UAbioticWidget
     void BndEvt__W_HostGameSetup_TextInput_Password_K2Node_ComponentBoundEvent_4_OnEditableTextBoxChangedEvent__DelegateSignature(const FText& Text);
     void ExecuteUbergraph_W_HostGameSetup(int32 EntryPoint);
     void SandboxSettingsPressed__DelegateSignature();
-}; // Size: 0x3D0
+}; // Size: 0x3E4
 
 #endif

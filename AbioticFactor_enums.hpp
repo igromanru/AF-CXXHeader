@@ -346,10 +346,11 @@ enum class EReleaseGroup {
     DarkEnergy = 1,
     Residence = 2,
     CRUX = 3,
-    LUCA = 4,
-    Future = 5,
-    Development = 6,
-    EReleaseGroup_MAX = 7,
+    XMAS25 = 4,
+    LUCA = 5,
+    Future = 6,
+    Development = 7,
+    EReleaseGroup_MAX = 8,
 };
 
 enum class ERowValid {

@@ -21,7 +21,7 @@ class UAbioticFunctionLibrary_C : public UBlueprintFunctionLibrary
     TArray<FItemActionRowHandle> GetItemActionsArray(class AAbiotic_Item_ParentBP_C*& Item, class UObject* __WorldContext);
     void GetAllPossibleActionsArray(TArray<class AAbiotic_Item_ParentBP_C*>& Items, class UObject* __WorldContext, TArray<FItemActionRowHandle>& Return);
     FVector TargetDropCapsuleLocationCheck(class AAbiotic_Character_ParentBP_C* Instigator, class AAbiotic_Character_ParentBP_C* Target, class UObject* __WorldContext, bool& LocationHit);
-    void TargetGrabHeightCheck(class AAbiotic_Character_ParentBP_C* Instigator, class AAbiotic_Character_ParentBP_C* Target, class UObject* __WorldContext, bool& CanGrabTarget, FVector& Location);
+    void TargetGrabHeightCheck(class AAbiotic_Character_ParentBP_C* Instigator, class AAbiotic_Character_ParentBP_C* Target, bool StartFromEyes, class UObject* __WorldContext, bool& CanGrabTarget, FVector& Location);
     void GetAssaultTypeList(bool WorldFlagsRequiredOnly, class UObject* __WorldContext, TArray<FName>& Return);
     void CheckAndRemoveSpecialCharacter(FString SourceString, const TArray<FString>& ABCStrings, bool CheckOnly, class UObject* __WorldContext, bool& FoundBadCharacter, FString& FinalString);
     void FilterString(bool AllowSpecialCharacters, const TArray<FString>& ABCStrings, FString SourceString, int32 CharacterLimit, class UObject* __WorldContext, FString& FilteredString, bool& HasSpecialCharacters);
@@ -92,7 +92,7 @@ class UAbioticFunctionLibrary_C : public UBlueprintFunctionLibrary
     void TryPlaceInHotbar?(const FDataTableRowHandle& Item, class UObject* __WorldContext, bool& TryHotbarFirst);
     void GetTotalValueBasedOnPercentage(double InitialValue, double PercentageToCalculateWith, bool SubtractInstead?, class UObject* __WorldContext, double& Total);
     void DoesLevelContainActor(FString LevelName, class AActor* Actor, class UObject* __WorldContext, bool& ContainsActor);
-    void Add to Stack Size(const FAbiotic_InventoryItemSlotStruct& SlotStruct, int32 ValueToAdd, int32 MaxStackSize, class UObject* __WorldContext, FAbiotic_InventoryItemSlotStruct& Return Struct, int32& TotalValue, bool& ExceedMaxSize?);
+    void Add to Stack Size(const FAbiotic_InventoryItemSlotStruct& SlotStruct, int32 ValueToAdd, int32 MaxStackSize, double DurabilityFromNewValue, class UObject* __WorldContext, FAbiotic_InventoryItemSlotStruct& Return Struct, int32& TotalValue, bool& ExceedMaxSize?);
     void Calculate Item Weight(double ItemDefaultWeight, int32 MaxLiquid, double LiquidWeightMultiplier, FAbiotic_InventoryChangeableDataStruct& ChangeableData, TEnumAsByte<E_InventorySlotType::Type> InventorySlotType, TArray<TEnumAsByte<E_LiquidType::Type>>& Allowed Liquid Types, class UObject* __WorldContext, double& TotalWeight);
     void TimeElapsedSince(double SinceTime, double ElapsedTimeRequired, class UObject* __WorldContext, bool& Elapsed);
 }; // Size: 0x28

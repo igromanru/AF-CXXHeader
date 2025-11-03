@@ -4,11 +4,12 @@
 class AContainer_LootSpillBag_C : public ADeployed_Container_ParentBP_C
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0920 (size: 0x8)
+    bool FallOnSpawn;                                                                 // 0x0928 (size: 0x1)
 
     void ReceiveBeginPlay();
     void UpdateDurabilityVisualFX();
     void ReceiveDestroyed();
     void ExecuteUbergraph_Container_LootSpillBag(int32 EntryPoint);
-}; // Size: 0x928
+}; // Size: 0x929
 
 #endif

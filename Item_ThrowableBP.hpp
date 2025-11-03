@@ -15,7 +15,17 @@ class AItem_ThrowableBP_C : public AAbiotic_Item_Held_C
     int32 FuseCountdown;                                                              // 0x0B30 (size: 0x4)
     FTimerHandle ThrowableCookingTimer;                                               // 0x0B38 (size: 0x8)
     double FuseStartTime;                                                             // 0x0B40 (size: 0x8)
+    bool CanThrowUnderhand;                                                           // 0x0B48 (size: 0x1)
+    double UnderhandThrowingSpeed;                                                    // 0x0B50 (size: 0x8)
 
+    void GetUpcomingProjectileVelocity(double ProjectilePredictBaseSpeed, double ProjectilePredictSpeedMultiplier, float CollisionRadius);
+    void GetItemUseSpeed(bool SecondaryUse, class AAbiotic_Character_ParentBP_C* UsingCharacter, class AAbiotic_Character_ParentBP_C* TargetCharacter, double BaseSpeed, double& Speed);
+    void GetUseSFXOverride(bool Use Override In TP, class APawn* Instigator, bool SecondaryAction, bool& Override, class USoundCue*& Sound Cue);
+    void GetAltFPAnims(class AAbiotic_PlayerCharacter_C* PlayerOwner, class UAnimSequence*& AltIdle, class UAnimSequence*& AltWalk, class UAnimSequence*& AltCrouchIdle, class UAnimSequence*& AltCrouchWalk);
+    void GetAltAnimState(class AAbiotic_PlayerCharacter_C* PlayerOwner, bool& AltAnimsActive);
+    TArray<FItemActionRowHandle> GetSecondaryItemActionArray();
+    bool GetFPArmsUseMontageOverride(bool SecondaryUse, TSoftObjectPtr<UAnimMontage>& Montage);
+    void GetThrowUnderhand(bool& ThrowUnderhand);
     double GetNewFuseTime(bool ItemHasBeenCooked);
     void Set Throwable Changeable Data(int32 Value, FAbiotic_InventoryChangeableDataStruct& NewChangeableData);
     void OnRep_FuseCountdown();
@@ -36,11 +46,9 @@ class AItem_ThrowableBP_C : public AAbiotic_Item_Held_C
     void Server_StartCookingThrowable();
     void StartFuseCountdown();
     void OwningBuffTagsRefreshed();
-    void UseItem_LocalFX(class AAbiotic_Character_ParentBP_C* UsingCharacter, class AActor* TargetActor);
-    void UseItemSecondary_LocalFX(class AAbiotic_Character_ParentBP_C* UsingCharacter, class AActor* TargetActor);
     void UseItem(class AAbiotic_Character_ParentBP_C* UsingCharacter, FTransform Transform, class AActor* TargetActor);
     void TriggerThrowingArcPulse();
     void ExecuteUbergraph_Item_ThrowableBP(int32 EntryPoint);
-}; // Size: 0xB48
+}; // Size: 0xB58
 
 #endif

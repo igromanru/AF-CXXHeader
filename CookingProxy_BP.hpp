@@ -6,7 +6,7 @@ class ACookingProxy_BP_C : public AItemProxyParent_BP_C
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0350 (size: 0x8)
     class UStaticMeshComponent* LiquidMesh;                                           // 0x0358 (size: 0x8)
     class UTextRenderComponent* LiquidLevelDebugText;                                 // 0x0360 (size: 0x8)
-    class UNiagaraComponent* Particle;                                                // 0x0368 (size: 0x8)
+    class UNiagaraComponent* particle;                                                // 0x0368 (size: 0x8)
     class UStaticMeshComponent* PanMesh;                                              // 0x0370 (size: 0x8)
     class UTextRenderComponent* DebugText;                                            // 0x0378 (size: 0x8)
     class UAudioComponent* Audio;                                                     // 0x0380 (size: 0x8)
@@ -90,7 +90,6 @@ class ACookingProxy_BP_C : public AItemProxyParent_BP_C
     void OnLoaded_1CDF4CF8466EE541FDCA03A4674BC021(class UObject* Loaded);
     void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
-    void InteractWith_B_LocalFX(bool Hold);
     void NPC_InteractWith(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void DeliverString(FString String, bool FromSave);
     void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbiotic_InventoryItemSlotStruct SlotData);
@@ -113,6 +112,7 @@ class ACookingProxy_BP_C : public AItemProxyParent_BP_C
     void InteractWith_A_LocalFX(bool Hold);
     void RadialWheelInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed, FName SelectionWheelContentName);
     void Local_SetSoupAppearance(class UPrimaryDataAsset* DatAsset);
+    void InteractWith_B_LocalFX(bool Hold);
     void ExecuteUbergraph_CookingProxy_BP(int32 EntryPoint);
     void SoupDisplayUpdated__DelegateSignature();
 }; // Size: 0x4A8

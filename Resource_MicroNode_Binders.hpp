@@ -3,6 +3,6 @@
 
 class AResource_MicroNode_Binders_C : public AResource_MicroNode_ParentBP_C
 {
-}; // Size: 0x4E8
+}; // Size: 0x4F0
 
 #endif

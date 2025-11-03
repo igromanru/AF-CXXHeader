@@ -4,6 +4,7 @@
 class II_PhysicsInteractions_C : public IInterface
 {
 
+    TEnumAsByte<EBloodSplatterType::Type> GetBloodSplatterType();
     bool CanBeGrabbed(FGameplayTag TagToCheck);
     void DoHitReaction();
     void CanBeCarbuncled(bool& Success);

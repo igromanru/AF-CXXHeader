@@ -48,7 +48,6 @@ class UW_Wristwatch_C : public UUserWidget
     void GetCurrentWatchTime(int32& Hour12, int32& Hour_24_Format, int32& Minute, bool& Daytime, bool& AM, bool& Scrambled);
     void UpdateDay(int32 DayNumber);
     void SetCurrentMinutesDisplay(int32 Minutes);
-    void ChangeDayNightMode(bool Night);
     void Construct();
     void HourlyBeep(int32 NewHour, int32 PreviousHour);
     void ToggleHourlyBeeps(bool Enable);
@@ -59,6 +58,7 @@ class UW_Wristwatch_C : public UUserWidget
     void Tick(FGeometry MyGeometry, float InDeltaTime);
     void TemperatureCelsiusCallback(bool NewValue);
     void Use24HourCallback(bool NewValue);
+    void ChangeDayNightMode(bool Night);
     void ExecuteUbergraph_W_Wristwatch(int32 EntryPoint);
 }; // Size: 0x3F8
 

@@ -27,12 +27,13 @@ class UW_ServerAdminMenu_C : public UUserWidget
     class UTextBlock* TitleText;                                                      // 0x0388 (size: 0x8)
     class UW_MainMenuButton_C* W_MainMenuButton_ForceSave;                            // 0x0390 (size: 0x8)
     class UW_MainMenuButton_C* W_MainMenuButton_Refresh;                              // 0x0398 (size: 0x8)
-    class UW_MenuTitleBig_C* W_MenuTitleBig;                                          // 0x03A0 (size: 0x8)
-    class UW_MenuTitleBig_C* W_MenuTitleBig_1;                                        // 0x03A8 (size: 0x8)
-    class UW_NPCDebugInfo_C* W_NPCDebugInfo;                                          // 0x03B0 (size: 0x8)
-    class UW_PlayerList_C* W_PlayerList;                                              // 0x03B8 (size: 0x8)
-    class UW_PlayerList_C* W_PlayerList_Banned;                                       // 0x03C0 (size: 0x8)
-    TArray<class UW_SettingsPanel_C*> SettingsPanels;                                 // 0x03C8 (size: 0x10)
+    class UW_MainMenuButton_C* W_MainMenuButton_Spectate;                             // 0x03A0 (size: 0x8)
+    class UW_MenuTitleBig_C* W_MenuTitleBig;                                          // 0x03A8 (size: 0x8)
+    class UW_MenuTitleBig_C* W_MenuTitleBig_1;                                        // 0x03B0 (size: 0x8)
+    class UW_NPCDebugInfo_C* W_NPCDebugInfo;                                          // 0x03B8 (size: 0x8)
+    class UW_PlayerList_C* W_PlayerList;                                              // 0x03C0 (size: 0x8)
+    class UW_PlayerList_C* W_PlayerList_Banned;                                       // 0x03C8 (size: 0x8)
+    TArray<class UW_SettingsPanel_C*> SettingsPanels;                                 // 0x03D0 (size: 0x10)
 
     void RefreshEntireUI_State();
     void GetGameInst(class UAbiotic_GameInstance_C*& ABF_Game_Instance);
@@ -46,7 +47,8 @@ class UW_ServerAdminMenu_C : public UUserWidget
     void BndEvt__W_ServerAdminMenu_Button_Yes_K2Node_ComponentBoundEvent_9_OnButtonClickedEvent__DelegateSignature();
     void ResetAttempt();
     void OnAdminGranted_Event();
+    void BndEvt__W_ServerAdminMenu_W_MainMenuButton_Spectate_K2Node_ComponentBoundEvent_3_ButtonPressed__DelegateSignature();
     void ExecuteUbergraph_W_ServerAdminMenu(int32 EntryPoint);
-}; // Size: 0x3D8
+}; // Size: 0x3E0
 
 #endif

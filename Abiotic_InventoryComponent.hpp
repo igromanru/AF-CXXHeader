@@ -50,6 +50,7 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     FAbiotic_InventoryComponent_CSlotAppearanceOverridesUpdated SlotAppearanceOverridesUpdated; // 0x0300 (size: 0x10)
     void SlotAppearanceOverridesUpdated();
     TArray<int32> WarmingSlots;                                                       // 0x0310 (size: 0x10)
+    bool RepairItemsWhenPowered;                                                      // 0x0320 (size: 0x1)
 
     void Server_TransferItemsToCharacterByRowName(class AAbiotic_Character_ParentBP_C* Character, FName ItemRowName, int32 Amount);
     void ExcludeItemsInInventoryByTag(FGameplayTag Item Tag, bool& ContainsItem, TMap<int32, FAbiotic_InventoryItemSlotStruct>& ItemsRemaining);
@@ -57,7 +58,7 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     void ServerSetInventoryTraitSlots(FDataTableRowHandle ItemRow);
     void IsItemSlotShielded(int32 SlotIndex, bool& Return);
     void GetInventoryDataAsset(const FDataTableRowHandle& ItemDataRow, class UInventoryData_Parent_C*& Return);
-    void GetItemSlotTemperature(int32 SlotIndex, TEnumAsByte<E_InternalTemperature::Type>& SlotTemperature);
+    void GetItemSlotTemperature(int32 SlotIndex, TEnumAsByte<E_InternalTemperature::Type>& SlotTemperature, bool& Repair);
     void GetSlotAppearanceForSlot(int32 Index, TEnumAsByte<E_InventorySlotAppearance::Type>& Appearance);
     void GetTagRequirementForSlot(int32 Index, FGameplayTagQuery& Requirement);
     void Transfer Multiple Items to Inventory(TArray<FAbiotic_InventoryItemSlotStruct>& Items, bool& At Least One Item Is Transferred, TArray<FAbiotic_InventoryItemSlotStruct>& Leftovers);
@@ -83,7 +84,7 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     float GetResistanceReductionAmount();
     void UpdateRadioactiveValue();
     void GetItemInSlot(int32 Index, bool& Success, FAbiotic_InventoryItemSlotStruct& SlotData, FAbiotic_InventoryItemStruct& ItemData);
-    TEnumAsByte<E_InternalTemperature::Type> GetContainerTemperature();
+    TEnumAsByte<E_InternalTemperature::Type> GetContainerTemperature(bool& Repair);
     void ItemDecayTick();
     void StartItemDecayTimer();
     void CheckForRecipeUnlocks(FName RowName);
@@ -94,9 +95,9 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     void PickupMoney(class AAbiotic_PlayerCharacter_C* IntreractingCharacter, int32 MoneyValue, int32 SlotIndex);
     void IsItemMoney(const FAbiotic_InventoryItemSlotStruct& ItemSlot, bool& TRUE);
     void Server Try Quick Move Item(class AAbiotic_PlayerCharacter_C* InteractingCharacter, int32 SlotIndex, bool EquippingGear, class UAbiotic_InventoryComponent_C* ContainerInventory, bool SingleStackOnly, bool EnableNotifyPopus, bool& Successful);
-    void Try Place In Inventory By Same Item Type(TArray<class UAbiotic_InventoryComponent_C*>& Source Inventories, FGameplayTagContainer TagsToIgnore, class UAbiotic_InventoryComponent_C*& TargetInventory, bool& Success);
+    void Try Place In Inventory By Same Item Type(TArray<class UAbiotic_InventoryComponent_C*>& Source Inventories, FGameplayTagContainer TagsToIgnore, bool ItemNotifyOnHUD, class UAbiotic_InventoryComponent_C*& TargetInventory, bool& Success);
     void IsInventoryFull(bool IgnoreStackSize, bool& Full);
-    void GetAllInventoryItemsByTag(FGameplayTag Tag, TMap<int32, FAbiotic_InventoryItemSlotStruct>& ItemIndexesAndData);
+    void GetAllInventoryItemsByTag(FGameplayTag Tag, bool UseExcludeTag, FGameplayTag ExcludeTag, TMap<int32, FAbiotic_InventoryItemSlotStruct>& ItemIndexesAndData);
     void ContainsMeleeWeapon(bool& Contains);
     void CheckForDuplicateItem(FString AssetID, int32 SlotIndexToIgnore, bool& DuplicateFound);
     void Remove Item from Inventory(FName Item, bool AllItemsOfType, int32 Count);
@@ -115,7 +116,7 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     void IsInventoryEmpty(bool& Empty);
     void Try Place Item in Inventory(FDataTableRowHandle DataTableRowHandle, FAbiotic_InventoryChangeableDataStruct ChangeableData, bool CheckOnly, bool IsEquippingGear?, bool Place Leftover in the Same Inventory?, int32& Remaining, bool& Success, FAbiotic_InventoryItemSlotStruct& CurrentItem);
     void OnRep_CurrentInventory();
-    void UpdateInventorySlotCount(int32 NewMaxSlots);
+    void UpdateInventorySlotCount(int32 NewMaxSlots, bool FallOnSpawn, FVector OverrideLocation);
     void ReceiveBeginPlay();
     void DelayedUpdateRadioactive();
     void Local_UpdateInventorySlotOverrides(const FDataTableRowHandle& ItemDataRow);
@@ -128,6 +129,6 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     void SlotHighlighted__DelegateSignature(int32 SlotIndex);
     void InventoryUpdated__DelegateSignature(class UAbiotic_InventoryComponent_C* Inventory);
     void AnySlotStateChanged__DelegateSignature(int32 SlotIndex);
-}; // Size: 0x320
+}; // Size: 0x321
 
 #endif

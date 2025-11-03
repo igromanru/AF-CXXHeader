@@ -73,7 +73,7 @@ class UAbiotic_GameInstance_C : public UAbioticGameInstance
     void AttemptVOIPInit();
     void UpdatePushToTalk(bool Enabled);
     void UpdateVoipMicrophone();
-    TArray<FSessionPropertyKeyPair> GetSessionSettings(int32 PlayerCount, FName StoryProgress, EModifiedRuleset ModifiedRuleset);
+    TArray<FSessionPropertyKeyPair> GetSessionSettings(int32 PlayerCount, FName StoryProgress, EModifiedRuleset ModifiedRuleset, bool Hardcore);
     void CheckNoticePopups();
     void UnregisterPopupFromStack(const class UWidget*& Widget, bool& FoundAndRemoved);
     void Display_Notice_Popup(FText Text_Main, FText Text_Title, FText Text_Detailed, FString ErrorCode, class UW_MenuPopup_YesNo_C*& Widget);
@@ -121,7 +121,7 @@ class UAbiotic_GameInstance_C : public UAbioticGameInstance
     void SaveTimer();
     void ForceSave();
     void UploadAchievementStats();
-    void UpdateAutoSaveTimestamp();
+    void UpdateAutosaveTimestamp();
     void ShowFPSCallback(int32 NewValue);
     void AnalyticsEnableCallback(bool NewValue);
     void PagerVolumeCallback(float NewValue);

@@ -30,6 +30,7 @@ class ADeployed_ElectricFan_C : public AAbioticDeployed_Furniture_ParentBP_C
     void BndEvt__Deployed_ElectricFan_FanFriendlyVolume_K2Node_ComponentBoundEvent_2_ComponentBeginOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
     void BndEvt__Deployed_ElectricFan_FanFriendlyVolume_K2Node_ComponentBoundEvent_3_ComponentEndOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
     void UpdateDurabilityVisualFX();
+    void Broadcast_SliceSFX(FVector Location);
     void ExecuteUbergraph_Deployed_ElectricFan(int32 EntryPoint);
 }; // Size: 0x8C4
 

@@ -50,6 +50,7 @@ class ABP_Teleporter_ParentBP_C : public AActor
     void PortalActivateOnButtonPress(bool Activated);
     void CheckRecentArrivals();
     void AddRecentArrival(class ABP_Teleporter_ParentBP_C* Teleporter, const class AActor*& NewArrival);
+    void Broadcast_TeleportFX(FVector EnterLocation, FVector ExitLocation);
     void ExecuteUbergraph_BP_Teleporter_ParentBP(int32 EntryPoint);
 }; // Size: 0x409
 

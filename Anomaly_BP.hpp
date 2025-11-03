@@ -7,7 +7,7 @@ class AAnomaly_BP_C : public AAbioticActor_C
     class UPostProcessComponent* PostProcess;                                         // 0x02D8 (size: 0x8)
     class UAudioComponent* Lure;                                                      // 0x02E0 (size: 0x8)
     class USphereComponent* Sphere;                                                   // 0x02E8 (size: 0x8)
-    class UNiagaraComponent* Particle;                                                // 0x02F0 (size: 0x8)
+    class UNiagaraComponent* particle;                                                // 0x02F0 (size: 0x8)
     FName ItemName;                                                                   // 0x02F8 (size: 0x8)
 
     void CanUseSharedInteraction(bool& Can Use);

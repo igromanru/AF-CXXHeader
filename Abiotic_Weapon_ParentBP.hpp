@@ -23,6 +23,7 @@ class AAbiotic_Weapon_ParentBP_C : public AAbiotic_Item_Held_C
     bool LastUseToggleActive;                                                         // 0x0B52 (size: 0x1)
     bool IsUseToggleable;                                                             // 0x0B53 (size: 0x1)
     class UAudioComponent* UseSound;                                                  // 0x0B58 (size: 0x8)
+    double MaxXPPerReload;                                                            // 0x0B60 (size: 0x8)
 
     double GetProjectileSpeedMultiplier();
     void PlayToggleUseAnimationForFirstAndThirdPerson();
@@ -71,7 +72,7 @@ class AAbiotic_Weapon_ParentBP_C : public AAbiotic_Item_Held_C
     void ReceiveBeginPlay();
     void Request_SetCharging(bool Charging);
     void Server_DamageBlockedByWeapon(FHitResult Hit Result, class AActor* Instigator);
-    void  Modify Reload XP From Reload Amount(int32 AmmoToReload);
+    void  Modify Reload XP From Reload Amount(int32 AmmoToReload, bool Incremental);
     void Request_AmmoWarningMessage(const class AAbiotic_PlayerCharacter_C*& UsingCharacter, const FText& AmmoType);
     void Local_NewAmmoSelected(FName AmmoType);
     void Request_ChangeAmmoType(int32 Index);
@@ -82,6 +83,6 @@ class AAbiotic_Weapon_ParentBP_C : public AAbiotic_Item_Held_C
     void Local_SetUseToggle(bool NewActive);
     void Request_SetUseToggle(bool NewActive);
     void ExecuteUbergraph_Abiotic_Weapon_ParentBP(int32 EntryPoint);
-}; // Size: 0xB60
+}; // Size: 0xB68
 
 #endif

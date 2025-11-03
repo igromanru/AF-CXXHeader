@@ -3,6 +3,6 @@
 
 class ADeployed_Painting_Vertical_Fancy_C : public ADeployed_Figurine_ParentBP_C
 {
-}; // Size: 0x849
+}; // Size: 0x84A
 
 #endif

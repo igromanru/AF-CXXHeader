@@ -43,15 +43,15 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     bool Location_FoundNewSectorName;                                                 // 0x0F68 (size: 0x1)
     FText Location_PreviousSectorName;                                                // 0x0F70 (size: 0x10)
     FText Location_CurrentSectorName;                                                 // 0x0F80 (size: 0x10)
-    bool ContinenceMinigameActive;                                                    // 0x0F90 (size: 0x1)
+    bool MinigameActive;                                                              // 0x0F90 (size: 0x1)
     double ContinenceMinigameSliderValue;                                             // 0x0F98 (size: 0x8)
     bool ContinenceMinigame_MoveLeft;                                                 // 0x0FA0 (size: 0x1)
     double ContinenceMinigame_BigWindowL;                                             // 0x0FA8 (size: 0x8)
     double ContinenceMinigame_BigWindowR;                                             // 0x0FB0 (size: 0x8)
     double ContinenceMinigame_SmallWindowL;                                           // 0x0FB8 (size: 0x8)
     double ContinenceMinigame_SmallWindowR;                                           // 0x0FC0 (size: 0x8)
-    class UW_HUD_ContinenceMinigame_C* ContinenceMinigameWidget;                      // 0x0FC8 (size: 0x8)
-    bool ContinenceMinigame_Paused;                                                   // 0x0FD0 (size: 0x1)
+    class UUserWidget* MinigameWidget;                                                // 0x0FC8 (size: 0x8)
+    bool Minigame_Paused;                                                             // 0x0FD0 (size: 0x1)
     int32 ContinenceMinigame_Counter;                                                 // 0x0FD4 (size: 0x4)
     FTimerHandle Timer_AutoSaveCharacter;                                             // 0x0FD8 (size: 0x8)
     int32 CheatAttempt;                                                               // 0x0FE0 (size: 0x4)
@@ -113,6 +113,8 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     bool SoundtrackCurrentlyBlocked;                                                  // 0x11FA (size: 0x1)
     double CreditsStartTime;                                                          // 0x1200 (size: 0x8)
     TArray<double> Credits_AudioStartingPoints;                                       // 0x1208 (size: 0x10)
+    class APlayerSpectatorActor_C* ActiveSpectatorActor;                              // 0x1218 (size: 0x8)
+    TMap<FBuffDebuffRowHandle, double> PendingSuddenDeathHUD;                         // 0x1220 (size: 0x50)
 
     void GetJoystickDirection(TEnumAsByte<EJoystickTypes::Type> Stick, FVector2D& StickInput);
     void GetFriendlyFireDamageMultiplier(bool& Return, double& DamageMultiplier);
@@ -129,6 +131,8 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     void TargetableByNPCs(bool Maintain, bool& Targetable);
     void GetSpottablePoints(TArray<FVector>& SpottablePoints);
     void GetFactionTeam(TEnumAsByte<E_Factions::Type>& Faction);
+    void GetLevelFXCharacter(class AAbioticCharacter*& OutCharacter);
+    void OnRep_ActiveSpectatorActor();
     void Local_UnlockCustomization(const TArray<FDataTableRowHandle>& CustomizationUnlocks);
     void Is Valid Text Chat Platform(bool& bIsValid);
     void SetInvalidFXdataFromRow(const FLevelFXData_Struct& BaseFXData, FDataTableRowHandle OverridingFXRow);
@@ -145,7 +149,7 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     bool IsCheatMenuVisible();
     bool IsVOIPActorValid();
     void Server_DoDragDropTransaction(FInventorySlotSelected_Struct IncomingItemSlot, TEnumAsByte<E_InventorySlotType::Type> IncomingSlotType, FInventorySlotSelected_Struct ItemSlotToCheck, TEnumAsByte<E_InventorySlotType::Type> SlotTypeToCheck, bool IsSplitStack, int32 StackSize, TEnumAsByte<E_ItemDragDropOutcome::Type> LocalOutcome);
-    void Server_AddToItemStack(class UAbiotic_InventoryComponent_C* Inventory, int32 SlotIndex, int32 StackSize);
+    void Server_AddToItemStack(class UAbiotic_InventoryComponent_C* Inventory, int32 SlotIndex, int32 StackSize, double DurabilityFromNewValue);
     void StopItemDragOperation();
     void StartItemDragOperation(FInventorySlotSelected_Struct ItemOrigin, bool DraggedBySplitStack, int32 StackAmount, class UTexture2D* itemicon, TEnumAsByte<E_InventorySlotType::Type> InventorySlotFrom, class UW_InventoryItemSlot_C* SlotOrigin);
     void UpdatePushToTalk(bool Enabled);
@@ -153,7 +157,7 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     void Highlighted Draggable Gear Slot Update (bool StopHighlight, TEnumAsByte<E_InventorySlotType::Type> Slot Type);
     void CloseBetaNotice(bool& ClosedNotice);
     void ContinenceMinigame_Tick(double DeltaSeconds);
-    void ContinenceMinigame_Toggle(bool Show);
+    void Minigame_Toggle(TSubclassOf<class UUserWidget> MinigameClass);
     void Inventory_RemoveItemContextMenu();
     void Day Night Change();
     void UpdateToNewEnvironmentFX(bool Daytime, double Alpha);
@@ -174,6 +178,8 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     void CursorInterpTimeline__UpdateFunc();
     void EndCredits_FadeAudio__FinishedFunc();
     void EndCredits_FadeAudio__UpdateFunc();
+    void InpActEvt_Comma_K2Node_InputKeyEvent_8(FKey Key);
+    void InpActEvt_Period_K2Node_InputKeyEvent_7(FKey Key);
     void OnFailure_C7661F8F4B3E0FFF76181C87ACF34330();
     void OnSuccess_C7661F8F4B3E0FFF76181C87ACF34330();
     void SaveWorld_CAD3B20C4604EACAD784B18E1A347CD3(bool bSuccess);
@@ -215,6 +221,8 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     void InpActEvt_GameCommandMenu_K2Node_InputActionEvent_0(FKey Key);
     void DoActionToSensedTarget(bool SuccessfullySensed);
     void SetNewWandererNPC(class ANPC_Base_ParentBP_C* PotentialWanderer);
+    void Request_EnableSpectator();
+    void Request_DisableSpectator();
     void SetupSessionInviteWhenInGame();
     void SessionInviteAccepted(FBlueprintSessionResult Session);
     void Quit_Stay();
@@ -231,6 +239,7 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     void Request_UpdateDLCEntitlements(FUserEntitlements PlayerEntitlements);
     void Request_AttemptAdminLogin(FString Password);
     void Client_RejectAdminLogin();
+    void Request_ReviveHardcoreCharacter(class APlayerState* PlayerState);
     void Client_Stat_NPCKill(FAchievementStatRowHandle Stat);
     void Client_ACH_Keypad();
     void Client_ACH_Plant();
@@ -270,7 +279,6 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     void ToggleLoadingScreen(bool bShow);
     void OnInputTypeChanged(bool bUsingGamepad);
     void Local_Try_FinishHoldInteractionA();
-    void Client_ToggleContinenceMinigame(bool Show);
     void Client_AddSuddenDeathTimer(FBuffDebuffRowHandle BuffRow, double MaxTime);
     void SetHardwareCursor(bool NewValue);
     void PushToTalkEnabledCallback(bool NewValue);
@@ -321,6 +329,9 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     void Request_ExitGameCredits();
     void Request_Trader_StopTrading(class UTraderComponent_C* Component);
     void GlobalIlluminationUpdated(int32 NewValue);
+    void Client_SetMinigame(TSubclassOf<class UUserWidget> Class);
+    void Client_ClearMinigame();
+    void Request_BenchPressReward(double XPToAdd);
     void ExecuteUbergraph_Abiotic_PlayerController(int32 EntryPoint);
     void OnAdminGranted__DelegateSignature();
     void OnAdminPasswordIncorrect__DelegateSignature();
@@ -328,6 +339,6 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     void ItemDragStarted__DelegateSignature(TEnumAsByte<E_InventorySlotType::Type> Item Type);
     void HeldInteractEnded__DelegateSignature();
     void HeldInteractStarted__DelegateSignature(double InteractionDuration);
-}; // Size: 0x1218
+}; // Size: 0x1270
 
 #endif

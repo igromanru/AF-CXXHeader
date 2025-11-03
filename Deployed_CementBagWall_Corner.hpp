@@ -3,6 +3,6 @@
 
 class ADeployed_CementBagWall_Corner_C : public ADeployed_Barricade_ParentBP_C
 {
-}; // Size: 0x849
+}; // Size: 0x84A
 
 #endif

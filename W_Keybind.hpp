@@ -19,6 +19,7 @@ class UW_Keybind_C : public UUserWidget
     void KeybindUpdated();
     bool HideIfUnbound;                                                               // 0x03C0 (size: 0x1)
 
+    void ShowHoldIcon(bool Hold);
     void IsBound(bool& bIsBound);
     void SetKeybind(const FKeybindSettingRowHandle& KeyBind);
     void ApplyKeybind(const FKeybindSetting& KeybindSetting, bool UsingGamepad);

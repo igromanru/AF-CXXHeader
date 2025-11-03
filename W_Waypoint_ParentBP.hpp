@@ -7,15 +7,18 @@ class UW_Waypoint_ParentBP_C : public UUserWidget
     class UWidgetAnimation* Expand;                                                   // 0x02E8 (size: 0x8)
     class UWidgetAnimation* FadeIn;                                                   // 0x02F0 (size: 0x8)
     class UCanvasPanel* CanvasPanel_0;                                                // 0x02F8 (size: 0x8)
-    class UTextBlock* WaypointText;                                                   // 0x0300 (size: 0x8)
-    class UImage* WaypoointIcon;                                                      // 0x0308 (size: 0x8)
-    double EdgeBuffer;                                                                // 0x0310 (size: 0x8)
-    FVector2D Alignment;                                                              // 0x0318 (size: 0x10)
-    bool WaypointExpanded;                                                            // 0x0328 (size: 0x1)
-    bool WaypointFaded;                                                               // 0x0329 (size: 0x1)
-    FW_Waypoint_ParentBP_COnPositionUpdated OnPositionUpdated;                        // 0x0330 (size: 0x10)
+    class UImage* WaypointArrow;                                                      // 0x0300 (size: 0x8)
+    class UOverlay* WaypointRoot;                                                     // 0x0308 (size: 0x8)
+    class UTextBlock* WaypointText;                                                   // 0x0310 (size: 0x8)
+    class UImage* WaypoointIcon;                                                      // 0x0318 (size: 0x8)
+    double EdgeBuffer;                                                                // 0x0320 (size: 0x8)
+    FVector2D Alignment;                                                              // 0x0328 (size: 0x10)
+    bool WaypointExpanded;                                                            // 0x0338 (size: 0x1)
+    bool WaypointFaded;                                                               // 0x0339 (size: 0x1)
+    FW_Waypoint_ParentBP_COnPositionUpdated OnPositionUpdated;                        // 0x0340 (size: 0x10)
     void OnPositionUpdated();
 
+    void SetArrow(bool Visible, FVector2D Direction);
     void AllowedInVignette(bool& AllowInVignette);
     void GetWaypointLocation(FVector& Location);
     bool ShouldBeVisible();
@@ -26,6 +29,6 @@ class UW_Waypoint_ParentBP_C : public UUserWidget
     void UpdateIcon(TSoftObjectPtr<UTexture2D> Texture);
     void ExecuteUbergraph_W_Waypoint_ParentBP(int32 EntryPoint);
     void OnPositionUpdated__DelegateSignature();
-}; // Size: 0x340
+}; // Size: 0x350
 
 #endif

@@ -30,10 +30,6 @@ struct FAnimBlueprintGeneratedConstantData : public FAnimBlueprintConstantData
 
 }; // Size: 0x2A0
 
-struct FAnimBlueprintGeneratedMutableData : public FAnimBlueprintMutableData
-{
-}; // Size: 0x1
-
 class UAnimBP_Shield_Hardlight_C : public UAnimInstance
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0370 (size: 0x8)

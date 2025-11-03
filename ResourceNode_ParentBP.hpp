@@ -47,6 +47,7 @@ class AResourceNode_ParentBP_C : public AAbioticActor_C
     int32 DayWasDepleted;                                                             // 0x04C8 (size: 0x4)
     bool AllowRespawnAfterDays;                                                       // 0x04CC (size: 0x1)
     int32 RequiredDaysToRespawn;                                                      // 0x04D0 (size: 0x4)
+    class AAbiotic_PlayerCharacter_C* LastPlayerInteractor;                           // 0x04D8 (size: 0x8)
 
     void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
     void GetFriendlyFireDamageMultiplier(bool& Return, double& DamageMultiplier);
@@ -86,6 +87,8 @@ class AResourceNode_ParentBP_C : public AAbioticActor_C
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);
     void HasSitLocations(bool& IsSittable);
+    int32 GetExtraStackCount();
+    void CacheLastPlayerInteractor(class AController* Controller);
     void Server_OnLoadRespawnCheck(bool& Respawned);
     void IsItemInPinnedRecipes(bool& IsPinnedIngredient);
     void Server_SetDormant();
@@ -141,6 +144,6 @@ class AResourceNode_ParentBP_C : public AAbioticActor_C
     void ExecuteUbergraph_ResourceNode_ParentBP(int32 EntryPoint);
     void OnDepleted__DelegateSignature();
     void OnMoved__DelegateSignature(class AActor* MovedActor);
-}; // Size: 0x4D4
+}; // Size: 0x4E0
 
 #endif

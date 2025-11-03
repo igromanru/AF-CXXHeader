@@ -3,6 +3,6 @@
 
 class ANPC_Skink_Crafted_C : public ANPC_Skink_Basic_C
 {
-}; // Size: 0x21A8
+}; // Size: 0x21F0
 
 #endif

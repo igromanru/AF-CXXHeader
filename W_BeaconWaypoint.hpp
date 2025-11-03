@@ -3,9 +3,9 @@
 
 class UW_BeaconWaypoint_C : public UW_Waypoint_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0340 (size: 0x8)
-    FString BeaconStringData;                                                         // 0x0348 (size: 0x10)
-    class AActor* LinkedActor;                                                        // 0x0358 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0350 (size: 0x8)
+    FString BeaconStringData;                                                         // 0x0358 (size: 0x10)
+    class AActor* LinkedActor;                                                        // 0x0368 (size: 0x8)
 
     void GetWaypointLocation(FVector& Location);
     bool ShouldBeVisible();
@@ -14,6 +14,6 @@ class UW_BeaconWaypoint_C : public UW_Waypoint_ParentBP_C
     void Tick(FGeometry MyGeometry, float InDeltaTime);
     void Construct();
     void ExecuteUbergraph_W_BeaconWaypoint(int32 EntryPoint);
-}; // Size: 0x360
+}; // Size: 0x370
 
 #endif

@@ -42,6 +42,7 @@ class AAbiotic_Survival_GameState_C : public AAbioticGameState
     FAbiotic_Survival_GameState_COnUserLeftContainer OnUserLeftContainer;             // 0x0708 (size: 0x10)
     void OnUserLeftContainer(const class AAbiotic_Character_ParentBP_C*& ContainerUser);
 
+    bool CanLevelBeActive(FGameEntitlementRowHandle RequiredEntitlement, FWorldFlagRowHandle RequiredWorldFlag);
     void CreateHitscanTracer(FVector StartLocation, const FVector& EndLocation, double Velocity, bool RicochetEnabled, bool CreateBulletWhizzAudio, TSubclassOf<class ABP_BulletTracer_C> BulletTracerClass);
     void Set Leyak Containment ID(FString NewID);
     void UpdateNPCDebugInfo();
@@ -58,7 +59,7 @@ class AAbiotic_Survival_GameState_C : public AAbioticGameState
     void Broadcast_ResetAllVOIP();
     void Broadcast_PlaySound2D(class USoundCue* Sound);
     void ReceiveBeginPlay();
-    void UpdateAutoSaveTimestamp();
+    void UpdateAutosaveTimestamp();
     void Broadcast_Autosaved();
     void AttemptRandomSound();
     void Server_UserLeftContainer(const class AAbiotic_Character_ParentBP_C*& ContainerUser);

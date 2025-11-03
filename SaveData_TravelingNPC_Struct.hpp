@@ -7,7 +7,8 @@ struct FSaveData_TravelingNPC_Struct
     TSoftObjectPtr<ANPCSpawn_Narrative_C> PreferredSpawn_21_101A3B0A419A367323CA53B9BD8875BA; // 0x0008 (size: 0x28)
     FName TradeItemsRow_23_B610045C470B5C487BC3B0A8BA72515B;                          // 0x0030 (size: 0x8)
     TArray<int32> TradeStock_26_432081D540F3B4356C1F298035180AF6;                     // 0x0038 (size: 0x10)
+    TEnumAsByte<E_NarrativeNPCStates::Type> NarrativeState_30_C4CBF7D64EA49446F41B0DB8517B6B7E; // 0x0048 (size: 0x1)
 
-}; // Size: 0x48
+}; // Size: 0x49
 
 #endif

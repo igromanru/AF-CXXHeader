@@ -46,7 +46,12 @@ class UHumanCustomizationComponent_C : public UActorComponent
     FHumanCustomizationComponent_COnCustomizationComplete OnCustomizationComplete;    // 0x0208 (size: 0x10)
     void OnCustomizationComplete();
     bool CustomizationInProgress;                                                     // 0x0218 (size: 0x1)
+    class UStaticMeshComponent* IDCardMesh;                                           // 0x0220 (size: 0x8)
+    FTransform CachedIDCardLocation;                                                  // 0x0230 (size: 0x60)
+    bool StaticIDCardLocation;                                                        // 0x0290 (size: 0x1)
+    bool OverrideIDComponentTarget;                                                   // 0x0291 (size: 0x1)
 
+    void CacheIDCardLocation();
     FLinearColor GetSkinBrightnessValue();
     void OnRep_SkinBrightnessValue();
     void SetMaterialColor(class UMeshComponent*& Mesh, FLinearColor Color, FName MaterialSlotName);
@@ -72,6 +77,6 @@ class UHumanCustomizationComponent_C : public UActorComponent
     void RefreshAllCustomization();
     void ExecuteUbergraph_HumanCustomizationComponent(int32 EntryPoint);
     void OnCustomizationComplete__DelegateSignature();
-}; // Size: 0x219
+}; // Size: 0x292
 
 #endif

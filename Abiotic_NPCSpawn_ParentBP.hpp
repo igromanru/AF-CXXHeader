@@ -26,10 +26,11 @@ class AAbiotic_NPCSpawn_ParentBP_C : public AActor
     int32 NPCsAllowedFromSpawn;                                                       // 0x03C0 (size: 0x4)
     TArray<class AAI_PatrolPath_C*> PotentialPatrolPaths;                             // 0x03C8 (size: 0x10)
     bool PatrolOnlyActiveAfterCombat;                                                 // 0x03D8 (size: 0x1)
-    bool CanSpawnInLineOfSight;                                                       // 0x03D9 (size: 0x1)
-    TEnumAsByte<ENPCAwarenessState::Type> AwarenessState;                             // 0x03DA (size: 0x1)
-    bool StationaryUntilPlayerEncounter;                                              // 0x03DB (size: 0x1)
-    bool AlwaysPassDistanceCheck;                                                     // 0x03DC (size: 0x1)
+    bool AllowPatrolAfterKilledOnce;                                                  // 0x03D9 (size: 0x1)
+    bool CanSpawnInLineOfSight;                                                       // 0x03DA (size: 0x1)
+    TEnumAsByte<ENPCAwarenessState::Type> AwarenessState;                             // 0x03DB (size: 0x1)
+    bool StationaryUntilPlayerEncounter;                                              // 0x03DC (size: 0x1)
+    bool AlwaysPassDistanceCheck;                                                     // 0x03DD (size: 0x1)
     int32 DirectorFailCounter;                                                        // 0x03E0 (size: 0x4)
     class AAbiotic_AIDirector_C* AI Director;                                         // 0x03E8 (size: 0x8)
     bool NoLoot;                                                                      // 0x03F0 (size: 0x1)
@@ -58,6 +59,7 @@ class AAbiotic_NPCSpawn_ParentBP_C : public AActor
     TSoftObjectPtr<UWorld> OwningLevel;                                               // 0x0530 (size: 0x28)
     bool ExcludedFromAssaults;                                                        // 0x0558 (size: 0x1)
     bool ShouldSpawnSkipPlayerChecks;                                                 // 0x0559 (size: 0x1)
+    bool HasBeenEncounteredOnce;                                                      // 0x055A (size: 0x1)
 
     void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
     void UpdateCooldownDays();
@@ -89,6 +91,6 @@ class AAbiotic_NPCSpawn_ParentBP_C : public AActor
     void UpdateDebugVisibility();
     void ExecuteUbergraph_Abiotic_NPCSpawn_ParentBP(int32 EntryPoint);
     void CooldownUpdated__DelegateSignature();
-}; // Size: 0x55A
+}; // Size: 0x55B
 
 #endif

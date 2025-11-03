@@ -3,8 +3,7 @@
 
 struct FBuffSave_Struct
 {
-    FName BuffID_3_2276236A4B2235B483FBBD8E932EAA87;                                  // 0x0000 (size: 0x8)
-    double TimeToExpire_5_2239BEF149DD973CF764D78EFB1A466A;                           // 0x0008 (size: 0x8)
+    TArray<FBuffDebuffEntry> Buffs_8_2276236A4B2235B483FBBD8E932EAA87;                // 0x0000 (size: 0x10)
 
 }; // Size: 0x10
 

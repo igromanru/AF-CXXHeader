@@ -8,7 +8,8 @@ namespace E_OutlineMode {
         NewEnumerator5 = 5,
         NewEnumerator2 = 6,
         NewEnumerator6 = 7,
-        E_MAX = 8,
+        NewEnumerator8 = 8,
+        E_MAX = 9,
     };
 }
 

@@ -22,7 +22,9 @@ class ADeployed_ChargingStation_ParentBP_C : public AAbioticDeployed_Furniture_P
     int32 LastLightElement;                                                           // 0x08C8 (size: 0x4)
     bool BlinkOn;                                                                     // 0x08CC (size: 0x1)
     FTimerHandle BeepTimer;                                                           // 0x08D0 (size: 0x8)
+    bool ChargingBeepDisabled;                                                        // 0x08D8 (size: 0x1)
 
+    void OnRep_ChargingBeepDisabled();
     void CanLongInteractWith_A(bool& Success);
     void OnLoadedFromSave(double NewLifespan);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
@@ -38,7 +40,6 @@ class ADeployed_ChargingStation_ParentBP_C : public AAbioticDeployed_Furniture_P
     void Place Item and Try Start Charging(class AAbiotic_PlayerCharacter_C* PlayerCharacter, int32 Index, FInventorySlotSelected_Struct SourceInventorySlot);
     void IsCharacterHoldingChargeableItem(class AAbiotic_PlayerCharacter_C* PlayerCharacter, bool& Rechargeable, double& Current BatteryPercentage);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
-    void RequiresPowerSocket(bool& MustBePluggedIn);
     void Timeline__FinishedFunc();
     void Timeline__UpdateFunc();
     void TogglePowerFX();
@@ -52,6 +53,6 @@ class ADeployed_ChargingStation_ParentBP_C : public AAbioticDeployed_Furniture_P
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void UpdateChargingSFX();
     void ExecuteUbergraph_Deployed_ChargingStation_ParentBP(int32 EntryPoint);
-}; // Size: 0x8D8
+}; // Size: 0x8D9
 
 #endif

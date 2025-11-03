@@ -35,6 +35,7 @@ class UW_Character_Trait_Selection_C : public UUserWidget
     FName Selected_Job;                                                               // 0x040C (size: 0x8)
     bool HasMadeCharacterBefore;                                                      // 0x0414 (size: 0x1)
     bool EnteredAmnesiaThreshold;                                                     // 0x0415 (size: 0x1)
+    bool InitialJobSelect;                                                            // 0x0416 (size: 0x1)
 
     void GetFinishPopupContent(FText& Title, FText& Content, FText& Yes, FText& No);
     void UpdateCharacterStatSummary();
@@ -48,7 +49,8 @@ class UW_Character_Trait_Selection_C : public UUserWidget
     void PopupYesSelected();
     void PopupNoSelected();
     void CloseInitialPopup();
+    void PreConstruct(bool IsDesignTime);
     void ExecuteUbergraph_W_Character_Trait_Selection(int32 EntryPoint);
-}; // Size: 0x416
+}; // Size: 0x417
 
 #endif

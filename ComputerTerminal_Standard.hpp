@@ -12,6 +12,7 @@ class AComputerTerminal_Standard_C : public AComputerTerminal_ParentBP_C
     TEnumAsByte<E_OS_Themes::Type> Terminal_OS_Theme;                                 // 0x0378 (size: 0x1)
     bool DebugTerminal;                                                               // 0x0379 (size: 0x1)
 
+    void InitWidget();
     void OnRep_HasBeenUsed();
     void ToggleTerminalUse_FX();
     void UseTerminal_Primary();

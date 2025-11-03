@@ -6,21 +6,30 @@ class UW_RespawnOptions_C : public UUserWidget
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UTextBlock* Bed_Flavor_Text;                                                // 0x02E8 (size: 0x8)
     class USpacer* BedSpacer;                                                         // 0x02F0 (size: 0x8)
-    class UImage* BG;                                                                 // 0x02F8 (size: 0x8)
-    class UButton* Button_BedRespawn;                                                 // 0x0300 (size: 0x8)
-    class UButton* Button_OriginRespawn;                                              // 0x0308 (size: 0x8)
-    class UButton* Button_SectorEntrance;                                             // 0x0310 (size: 0x8)
-    class UButton* Button_VignetteRespawn;                                            // 0x0318 (size: 0x8)
-    class UImage* Image;                                                              // 0x0320 (size: 0x8)
-    class UImage* Image_1;                                                            // 0x0328 (size: 0x8)
-    class UImage* Image_2;                                                            // 0x0330 (size: 0x8)
-    class UImage* Image_181;                                                          // 0x0338 (size: 0x8)
-    class UTextBlock* PortalEntrance_Flavor_Text;                                     // 0x0340 (size: 0x8)
-    class UTextBlock* PunchCardLocationText;                                          // 0x0348 (size: 0x8)
-    class USpacer* VignetteSpacer;                                                    // 0x0350 (size: 0x8)
-    class USpacer* VignetteSpacer_1;                                                  // 0x0358 (size: 0x8)
-    FName Entrance Teleporter;                                                        // 0x0360 (size: 0x8)
-    FName TerminalRespawnID;                                                          // 0x0368 (size: 0x8)
+    class USpacer* BedSpacer_1;                                                       // 0x02F8 (size: 0x8)
+    class USpacer* BedSpacer_2;                                                       // 0x0300 (size: 0x8)
+    class UImage* BG;                                                                 // 0x0308 (size: 0x8)
+    class UButton* Button_BedRespawn;                                                 // 0x0310 (size: 0x8)
+    class UButton* Button_OriginRespawn;                                              // 0x0318 (size: 0x8)
+    class UButton* Button_Quit;                                                       // 0x0320 (size: 0x8)
+    class UButton* Button_SectorEntrance;                                             // 0x0328 (size: 0x8)
+    class UButton* Button_Spectate;                                                   // 0x0330 (size: 0x8)
+    class UButton* Button_VignetteRespawn;                                            // 0x0338 (size: 0x8)
+    class UVerticalBox* HardcoreMode;                                                 // 0x0340 (size: 0x8)
+    class UImage* Image;                                                              // 0x0348 (size: 0x8)
+    class UImage* Image_1;                                                            // 0x0350 (size: 0x8)
+    class UImage* Image_2;                                                            // 0x0358 (size: 0x8)
+    class UImage* Image_3;                                                            // 0x0360 (size: 0x8)
+    class UImage* Image_5;                                                            // 0x0368 (size: 0x8)
+    class UImage* Image_181;                                                          // 0x0370 (size: 0x8)
+    class UWidgetSwitcher* ModeSwitcher;                                              // 0x0378 (size: 0x8)
+    class UVerticalBox* NormalMode;                                                   // 0x0380 (size: 0x8)
+    class UTextBlock* PortalEntrance_Flavor_Text;                                     // 0x0388 (size: 0x8)
+    class UTextBlock* PunchCardLocationText;                                          // 0x0390 (size: 0x8)
+    class USpacer* VignetteSpacer;                                                    // 0x0398 (size: 0x8)
+    class USpacer* VignetteSpacer_1;                                                  // 0x03A0 (size: 0x8)
+    FName Entrance Teleporter;                                                        // 0x03A8 (size: 0x8)
+    FName TerminalRespawnID;                                                          // 0x03B0 (size: 0x8)
 
     void RequestRespawn(bool RevivedOnSpot, bool UsePlayerStartOnly, FName DestinationID);
     void SetupRespawnButtons();
@@ -28,7 +37,9 @@ class UW_RespawnOptions_C : public UUserWidget
     void BndEvt__W_RespawnOptions_RespawnAtOrigin_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__W_RespawnOptions_RespawnAtVignette_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__W_RespawnOptions_Button_SectorEntrance_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature();
+    void BndEvt__W_RespawnOptions_Button_Spectate_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature();
+    void BndEvt__W_RespawnOptions_Button_Quit_K2Node_ComponentBoundEvent_5_OnButtonClickedEvent__DelegateSignature();
     void ExecuteUbergraph_W_RespawnOptions(int32 EntryPoint);
-}; // Size: 0x370
+}; // Size: 0x3B8
 
 #endif

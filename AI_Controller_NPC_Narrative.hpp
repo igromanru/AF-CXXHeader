@@ -9,11 +9,13 @@ class AAI_Controller_NPC_Narrative_C : public AAbioticAIController
     double TimeOfLastIdlePatrol;                                                      // 0x03D8 (size: 0x8)
     float TargetFaceDirectionYaw;                                                     // 0x03E0 (size: 0x4)
 
+    void UpdateSimplePerception();
     void ReceiveBeginPlay();
     void TurnToFaceDirection(FVector Direction, bool AllowTurnDuringMontage);
     void TurnToFaceTick();
     void TurnToFaceActor(class AActor* LookAtTarget, bool AllowTurnDuringMontage);
     void ResetPatrolTime();
+    void DecisionTick();
     void ExecuteUbergraph_AI_Controller_NPC_Narrative(int32 EntryPoint);
 }; // Size: 0x3E4
 

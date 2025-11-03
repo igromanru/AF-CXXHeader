@@ -96,6 +96,7 @@ class AStove_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
     void StoveInventorySaveFix();
     void InteractWith_A_LocalFX(bool Hold);
     void RadialWheelInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed, FName SelectionWheelContentName);
+    void InteractWith_B_LocalFX(bool Hold);
     void ExecuteUbergraph_Stove_ParentBP(int32 EntryPoint);
 }; // Size: 0x970
 

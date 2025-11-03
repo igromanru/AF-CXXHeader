@@ -11,10 +11,12 @@ class UW_ServerBrowser_Row_C : public UUserWidget
     class UTextBlock* PingText;                                                       // 0x0308 (size: 0x8)
     class UTextBlock* PlayersText;                                                    // 0x0310 (size: 0x8)
     class UImage* ProgressImage;                                                      // 0x0318 (size: 0x8)
-    class UTextBlock* ServerNameText;                                                 // 0x0320 (size: 0x8)
-    bool Selected;                                                                    // 0x0328 (size: 0x1)
-    FName StoryProgressionRow;                                                        // 0x032C (size: 0x8)
-    class USessionResultItem* SessionResult;                                          // 0x0338 (size: 0x8)
+    class UTextBlock* ServerHardcore;                                                 // 0x0320 (size: 0x8)
+    class UTextBlock* ServerNameText;                                                 // 0x0328 (size: 0x8)
+    class USpacer* Spacer_171;                                                        // 0x0330 (size: 0x8)
+    bool Selected;                                                                    // 0x0338 (size: 0x1)
+    FName StoryProgressionRow;                                                        // 0x033C (size: 0x8)
+    class USessionResultItem* SessionResult;                                          // 0x0348 (size: 0x8)
 
     void ToggleServerSelected(bool Selected);
     void OnLoaded_5E28FF9F4EACEDE4EBEA6FBB115D50E0(class UObject* Loaded);
@@ -23,6 +25,6 @@ class UW_ServerBrowser_Row_C : public UUserWidget
     void BP_OnEntryReleased();
     void BP_OnItemSelectionChanged(bool bIsSelected);
     void ExecuteUbergraph_W_ServerBrowser_Row(int32 EntryPoint);
-}; // Size: 0x340
+}; // Size: 0x350
 
 #endif

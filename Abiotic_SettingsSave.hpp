@@ -12,7 +12,9 @@ class UAbiotic_SettingsSave_C : public UAbiotic_SaveGame_C
     TArray<FName> TutorialPanelsSeen;                                                 // 0x0080 (size: 0x10)
     FName SelectedMainMenuBackground;                                                 // 0x0090 (size: 0x8)
     TArray<FName> PinnedRecipeList;                                                   // 0x0098 (size: 0x10)
+    TArray<FString> RecentServers;                                                    // 0x00A8 (size: 0x10)
 
-}; // Size: 0xA8
+    void AddRecentServer(FString FavoriteID);
+}; // Size: 0xB8
 
 #endif

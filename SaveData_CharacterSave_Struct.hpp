@@ -23,7 +23,7 @@ struct FSaveData_CharacterSave_Struct
     TArray<FName> EmailsRead_82_C3961BBA4AC266EDE4EC7A85E176A75E;                     // 0x0110 (size: 0x10)
     FBodyLimbHealth_Struct CharacterHealth_51_C8B0855046256D908ECD3FAC9FD050C0;       // 0x0120 (size: 0x30)
     FCharacterStatsSave_Struct CurrentSurvivalStats_61_828D08B64E0E5CCA5B7C968C1EFA0E07; // 0x0150 (size: 0x40)
-    TArray<FBuffSave_Struct> CurrentBuffDebuffs_58_9E6DA0704D0DE0DEF375ACA4CFD2D80A;  // 0x0190 (size: 0x10)
+    FBuffSave_Struct CurrentBuffDebuffs_150_9E6DA0704D0DE0DEF375ACA4CFD2D80A;         // 0x0190 (size: 0x10)
     TSoftObjectPtr<ADeployed_Furniture_Bed_ParentBP_C> CurrentBed_65_AD4B63414DC6CA930DD825966CF17F32; // 0x01A0 (size: 0x28)
     bool IsCrouching_72_680FCFCC416605B90367E48F72C519EE;                             // 0x01C8 (size: 0x1)
     int32 LastHotbarSelection_75_9D56EAE8464F9FFF52C04AA7B388D489;                    // 0x01CC (size: 0x4)
@@ -39,7 +39,10 @@ struct FSaveData_CharacterSave_Struct
     TArray<FName> Compendium_Kill_134_68DA7D3440838FFFA0A3E996BC33C549;               // 0x0250 (size: 0x10)
     TArray<FCompendiumKillCount> Compendium_KillCount_137_580C4765460383FB00B3A0B49694B010; // 0x0260 (size: 0x10)
     TArray<FName> NewestRecipes_141_C7277E904ACCEB6C26F1FB967CADCAFA;                 // 0x0270 (size: 0x10)
+    TArray<FName> Compendium_Unread_149_38D44AA044D8087E1B4026B3D3723202;             // 0x0280 (size: 0x10)
+    TArray<FName> Fish_Unread_157_A91CA2374071D28DF6671F9816A63CA5;                   // 0x0290 (size: 0x10)
+    TArray<FName> Journal_Unread_158_D78ED364437E5F530D2BD9A60F06DCE7;                // 0x02A0 (size: 0x10)
 
-}; // Size: 0x280
+}; // Size: 0x2B0
 
 #endif

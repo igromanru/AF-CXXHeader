@@ -5,7 +5,7 @@ class UW_SkillXPGain_C : public UUserWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UWidgetAnimation* FadeInXP;                                                 // 0x02E8 (size: 0x8)
-    class UImage* Line;                                                               // 0x02F0 (size: 0x8)
+    class UImage* line;                                                               // 0x02F0 (size: 0x8)
     class UImage* Skill_Icon;                                                         // 0x02F8 (size: 0x8)
     class UTextBlock* SkillName;                                                      // 0x0300 (size: 0x8)
     class UVerticalBox* VBox_SkillXP;                                                 // 0x0308 (size: 0x8)

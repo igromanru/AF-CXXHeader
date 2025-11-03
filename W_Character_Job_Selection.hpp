@@ -23,6 +23,7 @@ class UW_Character_Job_Selection_C : public UUserWidget
     class UW_UIPopup_Generic_C* W_UIPopup_Generic;                                    // 0x0368 (size: 0x8)
     class UW_Character_Trait_Selection_C* ParentTraitSelectMenu;                      // 0x0370 (size: 0x8)
     FName LastSelectedJob;                                                            // 0x0378 (size: 0x8)
+    bool InitialJobSelect;                                                            // 0x0380 (size: 0x1)
 
     void UpdateSelectedJobInfo(FTrait_Struct JobData, FString AttributeInfo);
     void SaveWorld_BB5507364C3F00F0785F918A0BF20768(bool bSuccess);
@@ -34,6 +35,6 @@ class UW_Character_Job_Selection_C : public UUserWidget
     void BndEvt__W_Character_Job_Selection_Button_Finish_K2Node_ComponentBoundEvent_1_ButtonPressed__DelegateSignature();
     void LoadAndDisplayJobBanner(FSimpleTexture2D_Struct JobBanner);
     void ExecuteUbergraph_W_Character_Job_Selection(int32 EntryPoint);
-}; // Size: 0x380
+}; // Size: 0x381
 
 #endif

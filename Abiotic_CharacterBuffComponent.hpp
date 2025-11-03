@@ -23,6 +23,8 @@ class UAbiotic_CharacterBuffComponent_C : public UCharacterBuffComponent
     void PlayDialogLine(FBuffDebuffRowHandle BuffRow);
     void ApplyBuffMaterial(FBuffDebuffRowHandle BuffRow);
     void RemoveBuffMaterial(FBuffDebuffRowHandle BuffRow);
+    void ReceiveBeginPlay();
+    void RadiationDamageTick();
     void ExecuteUbergraph_Abiotic_CharacterBuffComponent(int32 EntryPoint);
     void RemovedBuff__DelegateSignature(FBuffDebuffRowHandle BuffDebuffRowHandle);
     void ReceivedNewBuff__DelegateSignature(FBuffDebuffRowHandle BuffDebuffRowHandle);
