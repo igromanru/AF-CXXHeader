@@ -3,6 +3,6 @@
 
 class ABenchUpgrade_ItemTransporter_ChefStation_C : public ABenchUpgrade_ItemTransporter_C
 {
-}; // Size: 0x318
+}; // Size: 0x328
 
 #endif

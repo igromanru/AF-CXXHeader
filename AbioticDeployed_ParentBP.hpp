@@ -56,6 +56,7 @@ class AAbioticDeployed_ParentBP_C : public AAbioticActor_C
     bool ResizeInventoriesAfterLoad;                                                  // 0x0548 (size: 0x1)
     bool AlwaysPackageOnDestroy;                                                      // 0x0549 (size: 0x1)
     double ReducedDamageMultiplier;                                                   // 0x0550 (size: 0x8)
+    float PlayerDeployableCullDistance;                                               // 0x0558 (size: 0x4)
 
     void ReceiveLaserHit(class ULaserComponent_C* Laser, int32 CurrentBounce, FHitResult& HitResult, bool& Handled);
     void GetPluggedInDeviceCount(int32& Count);
@@ -93,6 +94,7 @@ class AAbioticDeployed_ParentBP_C : public AAbioticActor_C
     void GetDeployableLifespan(double& LifeSpan);
     bool GetDeployedStackCount(TArray<class AActor*>& inArray, int32& Count, TArray<class AActor*>& OutArray);
     void GetDeployHologramMesh(class UStaticMesh*& Mesh);
+    void UpdateDrawDistance();
     void ShouldReduceDamageToDeployable(class AController*& Instigator, class UObject* DamageType, bool& Return);
     void OnRep_DeployedByPlayer();
     void OnRep_FoundByPlayer();
@@ -174,6 +176,6 @@ class AAbioticDeployed_ParentBP_C : public AAbioticActor_C
     void ReceiveEndPlay(TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
     void ExecuteUbergraph_AbioticDeployed_ParentBP(int32 EntryPoint);
     void DeployableRequestedSave__DelegateSignature();
-}; // Size: 0x558
+}; // Size: 0x55C
 
 #endif

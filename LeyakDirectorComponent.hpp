@@ -9,6 +9,8 @@ class ULeyakDirectorComponent_C : public UStalkingNpcDirector_ParentBP_C
     double LeyakTauntCooldownMultiplier;                                              // 0x0128 (size: 0x8)
     double LeyakCooldown;                                                             // 0x0130 (size: 0x8)
     FString ActiveLeyakContainmentID;                                                 // 0x0138 (size: 0x10)
+    bool SuperTauntActive;                                                            // 0x0148 (size: 0x1)
+    double SuperTauntCooldownMultiplier;                                              // 0x0150 (size: 0x8)
 
     void SetLeyakContainmentID(FString NewID);
     void IncreaseLeyakViewCounter();
@@ -17,10 +19,10 @@ class ULeyakDirectorComponent_C : public UStalkingNpcDirector_ParentBP_C
     bool CanSpawn();
     void LeyakFailsafeRemove();
     void SetLeyakOnCooldown(double CooldownReductionMultiplier);
-    void PlayerTauntedLeyak();
+    void PlayerTauntedLeyak(bool SuperTaunt);
     void CheckForStuckNPC();
     void ReceiveBeginPlay();
     void ExecuteUbergraph_LeyakDirectorComponent(int32 EntryPoint);
-}; // Size: 0x148
+}; // Size: 0x158
 
 #endif

@@ -134,7 +134,7 @@ class UAbiotic_CharacterProgressionComponent_C : public UActorComponent
     void Request_RemoveRecipeFromNewestList(FName RecipeRowName);
     void Request_UnlockNewRecipe(FName RecipeRow);
     void Request_UnlockCompendiumEmail(FName CompendiumRow);
-    void Request_ResetAllSkills();
+    void Request_ResetAllSkills(bool AmnesiaThreshold);
     void Request_UnlockNewFish(FName FishRowName);
     void Request_UnlockCompendiumSection(FName CompendiumRow, ECompendiumUnlockType UnlockType);
     void Request_InitDefaultNewRecipes();

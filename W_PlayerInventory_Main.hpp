@@ -47,7 +47,7 @@ class UW_PlayerInventory_Main_C : public UAbioticWidget
     EInventoryMode InventoryMode;                                                     // 0x0430 (size: 0x1)
     class UAbiotic_InventoryComponent_C* ActiveContainer;                             // 0x0438 (size: 0x8)
     bool LShiftModifierHeld;                                                          // 0x0440 (size: 0x1)
-    FString BackpackName;                                                             // 0x0448 (size: 0x10)
+    FText BackpackName;                                                               // 0x0448 (size: 0x10)
     class UW_Player_Journal_Main_C* W Player Journal Main;                            // 0x0458 (size: 0x8)
     FString TakeAllInputAction;                                                       // 0x0460 (size: 0x10)
     bool TakeAllActionInProgress;                                                     // 0x0470 (size: 0x1)

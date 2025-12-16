@@ -49,6 +49,8 @@ class UAbiotic_GameInstance_C : public UAbioticGameInstance
     TArray<FString> ProfanityTextCurrentlyFiltering;                                  // 0x05C8 (size: 0x10)
     FBlueprintSessionResult CachedSessionInviteAccepted;                              // 0x05D8 (size: 0x120)
     bool HasCachedSessionInvite;                                                      // 0x06F8 (size: 0x1)
+    FAbiotic_GameInstance_COnVignetteReset OnVignetteReset;                           // 0x0700 (size: 0x10)
+    void OnVignetteReset(bool AtLeastOneVignetteDidNotReset);
 
     int32 GetSessionMaxPlayers();
     void ClearCachedSessionInvite();
@@ -157,9 +159,10 @@ class UAbiotic_GameInstance_C : public UAbioticGameInstance
     void OnPlayerHasActiveSanction(bool bIsPermenantSanction, FDateTime ExpirationTime);
     void BannedNotice_Closed();
     void ExecuteUbergraph_Abiotic_GameInstance(int32 EntryPoint);
+    void OnVignetteReset__DelegateSignature(bool AtLeastOneVignetteDidNotReset);
     void OnlineLoginComplete__DelegateSignature(bool bWasSuccessful);
     void SessionInviteAccepted__DelegateSignature(FBlueprintSessionResult Session);
     void PersistentLevelLoaded__DelegateSignature(bool Success);
-}; // Size: 0x6F9
+}; // Size: 0x710
 
 #endif

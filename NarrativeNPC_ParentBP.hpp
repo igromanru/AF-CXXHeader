@@ -63,6 +63,7 @@ class ANarrativeNPC_ParentBP_C : public AAbiotic_Character_ParentBP_C
     FTimerHandle SittingTimer;                                                        // 0x17C8 (size: 0x8)
     FNarrativeNPC_ParentBP_COnNarrativeStateChanged OnNarrativeStateChanged;          // 0x17D0 (size: 0x10)
     void OnNarrativeStateChanged(class ANarrativeNPC_ParentBP_C* NPC, TEnumAsByte<E_NarrativeNPCStates::Type> NewNarrativeState);
+    bool CanEnterCombat;                                                              // 0x17E0 (size: 0x1)
 
     void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
     void CanUseSharedInteraction(bool& Can Use);
@@ -184,6 +185,6 @@ class ANarrativeNPC_ParentBP_C : public AAbiotic_Character_ParentBP_C
     void OnNarrativeStateChanged__DelegateSignature(class ANarrativeNPC_ParentBP_C* NPC, TEnumAsByte<E_NarrativeNPCStates::Type> NewNarrativeState);
     void OnCombatStateChanged__DelegateSignature(class ANarrativeNPC_ParentBP_C* NarrativeNPC);
     void NPCFinishedDialogLine__DelegateSignature();
-}; // Size: 0x17E0
+}; // Size: 0x17E1
 
 #endif

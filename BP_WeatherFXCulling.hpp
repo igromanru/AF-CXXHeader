@@ -7,9 +7,9 @@ class ABP_WeatherFXCulling_C : public AActor
     class USceneCaptureComponent2D* SceneCaptureComponent2D;                          // 0x02A0 (size: 0x8)
     class USceneComponent* DefaultSceneRoot;                                          // 0x02A8 (size: 0x8)
 
-    void UserConstructionScript();
     void ReceiveBeginPlay();
     void ReceiveTick(float DeltaSeconds);
+    void WeatherSettingUpdated(int32 NewValue);
     void ExecuteUbergraph_BP_WeatherFXCulling(int32 EntryPoint);
 }; // Size: 0x2B0
 

@@ -366,6 +366,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     bool NewVar;                                                                      // 0x2978 (size: 0x1)
     class AActor* MountedActor;                                                       // 0x2980 (size: 0x8)
     class AActor* LastMountedActor;                                                   // 0x2988 (size: 0x8)
+    bool PreviousSeatBlockedItemUse;                                                  // 0x2990 (size: 0x1)
 
     void ReceiveLaserHit(class ULaserComponent_C* Laser, int32 CurrentBounce, FHitResult& HitResult, bool& Handled);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
@@ -1130,6 +1131,6 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void TerminalUseState_Changed__DelegateSignature(bool UsingTerminal);
     void Sanity_Changed__DelegateSignature();
     void Money_Changed__DelegateSignature();
-}; // Size: 0x2990
+}; // Size: 0x2991
 
 #endif

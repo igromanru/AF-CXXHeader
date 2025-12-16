@@ -27,12 +27,14 @@ class UW_Player_JournalSectorTab_C : public UUserWidget
     void CreateJournalNoteTooltip(FText Text, FText Text_Additional, FText Text_Negative, bool ShowResources);
     void AreWorldFlagsReady(bool& Ready);
     void Check Current Viewed Page(TEnumAsByte<E_JournalEntryCategories::Type> CurrentViewedPage, bool& Same Page);
+    void PreConstruct(bool IsDesignTime);
     void StartHighlightUnreadIconPage();
     void Construct();
     void RefreshTabState(int32 NumberOfEntries);
     void BndEvt__W_Player_JournalSectorTab_PageCheckbox_K2Node_ComponentBoundEvent_0_OnCheckBoxComponentStateChanged__DelegateSignature(bool bIsChecked);
-    void PreConstruct(bool IsDesignTime);
     void Tick(FGeometry MyGeometry, float InDeltaTime);
+    void OnMouseEnter(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
+    void ResetTooltip();
     void ExecuteUbergraph_W_Player_JournalSectorTab(int32 EntryPoint);
     void ClickJournalTab__DelegateSignature(bool IsChecked, class UW_Player_JournalSectorTab_C* Tab);
 }; // Size: 0x3C1

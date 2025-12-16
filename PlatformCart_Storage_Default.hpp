@@ -24,6 +24,7 @@ class APlatformCart_Storage_Default_C : public APlatformCart_Storage_ParentBP_C
 
     void RefreshContainerVisuals();
     void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void UserConstructionScript();
     void ReceiveBeginPlay();
     void ExecuteUbergraph_PlatformCart_Storage_Default(int32 EntryPoint);
 }; // Size: 0x9C8

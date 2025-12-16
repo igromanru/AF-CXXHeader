@@ -9,7 +9,7 @@ class AHandDryer_BP_C : public AAbioticActor_C
     class UStaticMeshComponent* HandDryer;                                            // 0x02E8 (size: 0x8)
     float ButtonpressTimeline_NewTrack_0_9A74C8D141C4EF509CAEA59C56A98CCD;            // 0x02F0 (size: 0x4)
     TEnumAsByte<ETimelineDirection::Type> ButtonpressTimeline__Direction_9A74C8D141C4EF509CAEA59C56A98CCD; // 0x02F4 (size: 0x1)
-    class UTimelineComponent* ButtonPressTimeline;                                    // 0x02F8 (size: 0x8)
+    class UTimelineComponent* ButtonpressTimeline;                                    // 0x02F8 (size: 0x8)
     bool DryerActive;                                                                 // 0x0300 (size: 0x1)
 
     void CanUseSharedInteraction(bool& Can Use);
@@ -35,8 +35,8 @@ class AHandDryer_BP_C : public AAbioticActor_C
     void Landing Damage Multiplier(double Damage, double& DamageMultiplier);
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
     bool IsRadioactive();
-    void ButtonPressTimeline__FinishedFunc();
-    void ButtonPressTimeline__UpdateFunc();
+    void ButtonpressTimeline__FinishedFunc();
+    void ButtonpressTimeline__UpdateFunc();
     void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);

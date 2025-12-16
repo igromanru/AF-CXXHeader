@@ -9,6 +9,7 @@ class ADeployed_ItemStand_ParentBP_C : public ADeployed_Container_ParentBP_C
     TArray<class USceneComponent*> ItemDisplaysList;                                  // 0x0938 (size: 0x10)
     TArray<TSoftObjectPtr<UStaticMesh>> DisplayMeshRefs;                              // 0x0948 (size: 0x10)
 
+    FRotator GetRotationOffsetForItem(FName ItemRow);
     void PopulateMeshRefsArray(class UAbiotic_InventoryComponent_C* InventoryComponent);
     void SetNewMeshDisplaySlot(int32 CurrentSlotIndex, class UObject* NewMeshDisplay);
     void CreateNewItemBoxMesh(class UStaticMeshComponent* CurrentItemDisplayMesh, class UStaticMesh* NewMesh, FDataTableRowHandle TextureDataRow);
@@ -16,7 +17,7 @@ class ADeployed_ItemStand_ParentBP_C : public ADeployed_Container_ParentBP_C
     void RequiresNewMesh(class UStaticMeshComponent* CurrentItemDisplayMesh, TSoftObjectPtr<UStaticMesh> MeshToCheck, int32 CurrentMeshIndex, bool& NewMesh);
     void GetHighlightComponents(TArray<class UActorComponent*>& Components);
     void GetPossibleTextureVariantFromItemDisplay(FAbiotic_InventoryItemSlotStruct SlotData, FDataTableRowHandle& TextureDataRow);
-    void Setup Item Display Mesh(class UStaticMesh* MeshData, FVector New Scale, class UStaticMeshComponent* CurrentItemDisplay);
+    void Setup Item Display Mesh(class UStaticMesh* MeshData, FVector New Scale, class UStaticMeshComponent* CurrentItemDisplay, FRotator RotationOffset);
     void ReceiveBeginPlay();
     void SetupItemBox(TSoftObjectPtr<UStaticMesh> 3DModel, FDataTableRowHandle TextureDataRow, class UStaticMeshComponent* CurrentItemDisplay);
     void ApplyItemDisplayTextureVariant(class UStaticMeshComponent* CurrentMesh, FDataTableRowHandle TextureDataRow);

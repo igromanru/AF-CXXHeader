@@ -9,6 +9,8 @@ class UNarrativeNPCDirectorComponent_C : public UActorComponent
     float DefaultChanceToSpawn;                                                       // 0x0108 (size: 0x4)
     bool HasLoaded;                                                                   // 0x010C (size: 0x1)
     int32 LastDay;                                                                    // 0x0110 (size: 0x4)
+    FNarrativeNPCDirectorComponent_COnTraderSpawn OnTraderSpawn;                      // 0x0118 (size: 0x10)
+    void OnTraderSpawn(class ANarrativeNPC_ParentBP_C* NPC, FVector SpawnLocation, bool AtLure);
 
     bool DoesTraderHavePreferredSpawn(FNarrativeNPCSpawns_Struct TraderData);
     void UnregisterNarrativeSpawnLocation(class ANPCSpawn_Narrative_C* SpawnPoint);
@@ -24,6 +26,7 @@ class UNarrativeNPCDirectorComponent_C : public UActorComponent
     void RegisterNarrativeSpawnLocation(class ANPCSpawn_Narrative_C* SpawnPoint);
     void ReceiveBeginPlay();
     void ExecuteUbergraph_NarrativeNPCDirectorComponent(int32 EntryPoint);
-}; // Size: 0x114
+    void OnTraderSpawn__DelegateSignature(class ANarrativeNPC_ParentBP_C* NPC, FVector SpawnLocation, bool AtLure);
+}; // Size: 0x128
 
 #endif

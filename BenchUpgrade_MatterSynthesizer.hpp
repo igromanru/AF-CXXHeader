@@ -3,29 +3,29 @@
 
 class ABenchUpgrade_MatterSynthesizer_C : public ABenchUpgrade_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
-    class USceneComponent* NewLootFX;                                                 // 0x02D0 (size: 0x8)
-    class UStaticMeshComponent* Drawer;                                               // 0x02D8 (size: 0x8)
-    class UStaticMeshComponent* MailFlag;                                             // 0x02E0 (size: 0x8)
-    class UStaticMeshComponent* FurnitureMesh;                                        // 0x02E8 (size: 0x8)
-    class USceneComponent* ButtonPrompt;                                              // 0x02F0 (size: 0x8)
-    class UAbiotic_InventoryComponent_C* ContainerInventory;                          // 0x02F8 (size: 0x8)
-    float ContainerFlagRotation_NewTrack_0_43CB3D0D4CD0A447EE1A169D3353121D;          // 0x0300 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> ContainerFlagRotation__Direction_43CB3D0D4CD0A447EE1A169D3353121D; // 0x0304 (size: 0x1)
-    class UTimelineComponent* ContainerFlagRotation;                                  // 0x0308 (size: 0x8)
-    float DrawerTimeline_NewTrack_0_9F5B20B449DC046EECD61C8431815430;                 // 0x0310 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> DrawerTimeline__Direction_9F5B20B449DC046EECD61C8431815430; // 0x0314 (size: 0x1)
-    class UTimelineComponent* DrawerTimeline;                                         // 0x0318 (size: 0x8)
-    FDataTableRowHandle SalvageDropDataRow;                                           // 0x0320 (size: 0x10)
-    bool IsContainerBeingUsed;                                                        // 0x0330 (size: 0x1)
-    TArray<class AAbiotic_Character_ParentBP_C*> ContainerUsers;                      // 0x0338 (size: 0x10)
-    TSoftObjectPtr<USoundBase> OpenCue;                                               // 0x0348 (size: 0x28)
-    TSoftObjectPtr<USoundBase> CloseCue;                                              // 0x0370 (size: 0x28)
-    TMap<class FWorldFlagRowHandle, class FDataTableRowHandle> LootByWorldFlag;       // 0x0398 (size: 0x50)
-    FVector Drawer_Closed;                                                            // 0x03E8 (size: 0x18)
-    FVector Drawer_Open;                                                              // 0x0400 (size: 0x18)
-    bool NewLootUpdated;                                                              // 0x0418 (size: 0x1)
-    bool IsContainerNotEmpty;                                                         // 0x0419 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D8 (size: 0x8)
+    class USceneComponent* NewLootFX;                                                 // 0x02E0 (size: 0x8)
+    class UStaticMeshComponent* Drawer;                                               // 0x02E8 (size: 0x8)
+    class UStaticMeshComponent* MailFlag;                                             // 0x02F0 (size: 0x8)
+    class UStaticMeshComponent* FurnitureMesh;                                        // 0x02F8 (size: 0x8)
+    class USceneComponent* ButtonPrompt;                                              // 0x0300 (size: 0x8)
+    class UAbiotic_InventoryComponent_C* ContainerInventory;                          // 0x0308 (size: 0x8)
+    float ContainerFlagRotation_NewTrack_0_43CB3D0D4CD0A447EE1A169D3353121D;          // 0x0310 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> ContainerFlagRotation__Direction_43CB3D0D4CD0A447EE1A169D3353121D; // 0x0314 (size: 0x1)
+    class UTimelineComponent* ContainerFlagRotation;                                  // 0x0318 (size: 0x8)
+    float DrawerTimeline_NewTrack_0_9F5B20B449DC046EECD61C8431815430;                 // 0x0320 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> DrawerTimeline__Direction_9F5B20B449DC046EECD61C8431815430; // 0x0324 (size: 0x1)
+    class UTimelineComponent* DrawerTimeline;                                         // 0x0328 (size: 0x8)
+    FDataTableRowHandle SalvageDropDataRow;                                           // 0x0330 (size: 0x10)
+    bool IsContainerBeingUsed;                                                        // 0x0340 (size: 0x1)
+    TArray<class AAbiotic_Character_ParentBP_C*> ContainerUsers;                      // 0x0348 (size: 0x10)
+    TSoftObjectPtr<USoundBase> OpenCue;                                               // 0x0358 (size: 0x28)
+    TSoftObjectPtr<USoundBase> CloseCue;                                              // 0x0380 (size: 0x28)
+    TMap<class FWorldFlagRowHandle, class FDataTableRowHandle> LootByWorldFlag;       // 0x03A8 (size: 0x50)
+    FVector Drawer_Closed;                                                            // 0x03F8 (size: 0x18)
+    FVector Drawer_Open;                                                              // 0x0410 (size: 0x18)
+    bool NewLootUpdated;                                                              // 0x0428 (size: 0x1)
+    bool IsContainerNotEmpty;                                                         // 0x0429 (size: 0x1)
 
     void OnRep_IsContainerNotEmpty();
     void OnRep_NewLootUpdated();
@@ -53,6 +53,6 @@ class ABenchUpgrade_MatterSynthesizer_C : public ABenchUpgrade_ParentBP_C
     void TogglePowerFX();
     void UpdateContainerVisuals(bool NewLootAdded);
     void ExecuteUbergraph_BenchUpgrade_MatterSynthesizer(int32 EntryPoint);
-}; // Size: 0x41A
+}; // Size: 0x42A
 
 #endif

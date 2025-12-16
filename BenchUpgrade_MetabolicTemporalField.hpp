@@ -3,11 +3,11 @@
 
 class ABenchUpgrade_MetabolicTemporalField_C : public ABenchUpgrade_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
-    class USphereComponent* Sphere;                                                   // 0x02D0 (size: 0x8)
-    class UAudioComponent* Audio;                                                     // 0x02D8 (size: 0x8)
-    class UPointLightComponent* PointLight;                                           // 0x02E0 (size: 0x8)
-    class UStaticMeshComponent* StaticMesh;                                           // 0x02E8 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D8 (size: 0x8)
+    class USphereComponent* Sphere;                                                   // 0x02E0 (size: 0x8)
+    class UAudioComponent* Audio;                                                     // 0x02E8 (size: 0x8)
+    class UPointLightComponent* PointLight;                                           // 0x02F0 (size: 0x8)
+    class UStaticMeshComponent* StaticMesh;                                           // 0x02F8 (size: 0x8)
 
     void Update Powered State();
     void ReceiveBeginPlay();
@@ -15,6 +15,6 @@ class ABenchUpgrade_MetabolicTemporalField_C : public ABenchUpgrade_ParentBP_C
     void BndEvt__BenchUpgrade_Dioxohealer_Sphere_K2Node_ComponentBoundEvent_1_ComponentEndOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
     void TogglePowerFX();
     void ExecuteUbergraph_BenchUpgrade_MetabolicTemporalField(int32 EntryPoint);
-}; // Size: 0x2F0
+}; // Size: 0x300
 
 #endif

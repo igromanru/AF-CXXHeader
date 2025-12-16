@@ -3,16 +3,16 @@
 
 class ABenchUpgrade_BenchTurret_C : public ABenchUpgrade_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
-    class UTurret_Component_C* Turret_Component;                                      // 0x02D0 (size: 0x8)
-    class ULaserComponent_C* LaserComponent;                                          // 0x02D8 (size: 0x8)
-    class USceneComponent* ProjectileSpawnLocation;                                   // 0x02E0 (size: 0x8)
-    class UStaticMeshComponent* TurretTop;                                            // 0x02E8 (size: 0x8)
-    class UStaticMeshComponent* TurretRotator;                                        // 0x02F0 (size: 0x8)
-    class UStaticMeshComponent* FurnitureMesh;                                        // 0x02F8 (size: 0x8)
-    class UThermalEmitterComponent* ThermalEmitter;                                   // 0x0300 (size: 0x8)
-    class USphereComponent* HeatRadiusSphere;                                         // 0x0308 (size: 0x8)
-    class URectLightComponent* RectLight;                                             // 0x0310 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D8 (size: 0x8)
+    class UTurret_Component_C* Turret_Component;                                      // 0x02E0 (size: 0x8)
+    class ULaserComponent_C* LaserComponent;                                          // 0x02E8 (size: 0x8)
+    class USceneComponent* ProjectileSpawnLocation;                                   // 0x02F0 (size: 0x8)
+    class UStaticMeshComponent* TurretTop;                                            // 0x02F8 (size: 0x8)
+    class UStaticMeshComponent* TurretRotator;                                        // 0x0300 (size: 0x8)
+    class UStaticMeshComponent* FurnitureMesh;                                        // 0x0308 (size: 0x8)
+    class UThermalEmitterComponent* ThermalEmitter;                                   // 0x0310 (size: 0x8)
+    class USphereComponent* HeatRadiusSphere;                                         // 0x0318 (size: 0x8)
+    class URectLightComponent* RectLight;                                             // 0x0320 (size: 0x8)
 
     void GetFriendlyFireDamageMultiplier(bool& Return, double& DamageMultiplier);
     void TargetableByTurrets(bool& Targetable);
@@ -38,6 +38,6 @@ class ABenchUpgrade_BenchTurret_C : public ABenchUpgrade_ParentBP_C
     void StartFiringProjectile();
     void Broadcast_FireFX();
     void ExecuteUbergraph_BenchUpgrade_BenchTurret(int32 EntryPoint);
-}; // Size: 0x318
+}; // Size: 0x328
 
 #endif

@@ -22,7 +22,7 @@ class UAbiotic_CustomizationSave_C : public UAbiotic_SaveGame_C
 
     void FixCustomizationValue(FName& TypeRef, class UDataTable* Table);
     void FixCustomizationSave();
-    void FillNewSaveData(FName Head, FName HeadAccessory, FName Wristwatch, FName Tie, FName UpperBody, FName LowerBody, FName hair, FName HairColor, FName ShirtColor, FName shoes, FName belt, FName Beard, TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Voice, FName IDCard, double SkinTone);
+    void FillNewSaveData(FName Head, FName HeadAccessory, FName Wristwatch, FName Tie, FName UpperBody, FName LowerBody, FName Hair, FName HairColor, FName ShirtColor, FName Shoes, FName Belt, FName Beard, TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Voice, FName IDCard, double SkinTone);
 }; // Size: 0xC8
 
 #endif

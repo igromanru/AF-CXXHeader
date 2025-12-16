@@ -6,6 +6,7 @@ class ABenchUpgrade_ParentBP_C : public ABenchUpgradeActor
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0298 (size: 0x8)
     class USceneComponent* DefaultSceneRoot;                                          // 0x02A0 (size: 0x8)
     FBuffDebuffRowHandle BenchUpgradeBuff;                                            // 0x02A8 (size: 0x20)
+    TArray<class UPrimitiveComponent*> TempPrimitiveList;                             // 0x02C8 (size: 0x10)
 
     void CanUseSharedInteraction(bool& Can Use);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
@@ -65,6 +66,6 @@ class ABenchUpgrade_ParentBP_C : public ABenchUpgradeActor
     void Local_ToggleBenchUpgrade(double Duration);
     void LoadBenchUpgradeStatesFromSave();
     void ExecuteUbergraph_BenchUpgrade_ParentBP(int32 EntryPoint);
-}; // Size: 0x2C8
+}; // Size: 0x2D8
 
 #endif

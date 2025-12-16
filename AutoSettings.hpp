@@ -166,7 +166,10 @@ class USandboxPreviewSubsystem : public UGameInstanceSubsystem
     TMap<class FName, class FString> SandboxPreviewDefaultSettings;                   // 0x0090 (size: 0x50)
 
     void SetSandboxPreviewSettings(const TMap<class FName, class FString>& Settings, const TMap<class FName, class FString>& DefaultSettings);
+    void SetPreviewSetting(FName SettingName, FString Value);
     bool IsPreviewSettingModified(FName SettingName);
+    FString GetPreviewSetting(FName SettingName);
+    FString GetPreviewDefaultSetting(FName SettingName);
     TMap<class FName, class FString> GetModifiedPreviewSettings();
 }; // Size: 0xE0
 

@@ -52,6 +52,7 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     TArray<int32> WarmingSlots;                                                       // 0x0310 (size: 0x10)
     bool RepairItemsWhenPowered;                                                      // 0x0320 (size: 0x1)
 
+    void TryPlaceIteminInventorySlot(FDataTableRowHandle DataTableRowHandle, FAbiotic_InventoryChangeableDataStruct ChangeableData, int32 TargetIndex, bool CheckOnly, bool IsEquippingGear?, int32& Remaining, bool& Success, FAbiotic_InventoryItemSlotStruct& CurrentItem);
     void Server_TransferItemsToCharacterByRowName(class AAbiotic_Character_ParentBP_C* Character, FName ItemRowName, int32 Amount);
     void ExcludeItemsInInventoryByTag(FGameplayTag Item Tag, bool& ContainsItem, TMap<int32, FAbiotic_InventoryItemSlotStruct>& ItemsRemaining);
     void Get Trait Slot DisplayTooltipData(int32 SlotIndex, bool& HasData, FText& DisplayText);

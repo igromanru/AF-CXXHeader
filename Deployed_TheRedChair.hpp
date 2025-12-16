@@ -9,6 +9,8 @@ class ADeployed_TheRedChair_C : public AAbioticDeployed_Furniture_ParentBP_C
     void HasSitLocations(bool& IsSittable);
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void ExecuteSittingIndividual(class AAbiotic_PlayerCharacter_C* Character);
+    void ReceiveBeginPlay();
+    void OnSit(int32 SeatIndex, bool Sitting);
     void ExecuteUbergraph_Deployed_TheRedChair(int32 EntryPoint);
 }; // Size: 0x860
 

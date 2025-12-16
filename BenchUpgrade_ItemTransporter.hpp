@@ -3,16 +3,16 @@
 
 class ABenchUpgrade_ItemTransporter_C : public ABenchUpgrade_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C8 (size: 0x8)
-    class UNiagaraComponent* Niagara_ItemTransporter_Elecricity4;                     // 0x02D0 (size: 0x8)
-    class UNiagaraComponent* Niagara_ItemTransporter_Electricity3;                    // 0x02D8 (size: 0x8)
-    class UNiagaraComponent* Niagara_ItemTransporter_Electricity2;                    // 0x02E0 (size: 0x8)
-    class UNiagaraComponent* Niagara_ItemTransporter_Electricity1;                    // 0x02E8 (size: 0x8)
-    class UNiagaraComponent* Niagara_ItemTransporter_Energy;                          // 0x02F0 (size: 0x8)
-    class USphereComponent* Sphere;                                                   // 0x02F8 (size: 0x8)
-    class UStaticMeshComponent* StaticMesh;                                           // 0x0300 (size: 0x8)
-    class UMaterialInterface* Material_Powered;                                       // 0x0308 (size: 0x8)
-    class UMaterialInterface* Material_Unpowered;                                     // 0x0310 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D8 (size: 0x8)
+    class UNiagaraComponent* Niagara_ItemTransporter_Elecricity4;                     // 0x02E0 (size: 0x8)
+    class UNiagaraComponent* Niagara_ItemTransporter_Electricity3;                    // 0x02E8 (size: 0x8)
+    class UNiagaraComponent* Niagara_ItemTransporter_Electricity2;                    // 0x02F0 (size: 0x8)
+    class UNiagaraComponent* Niagara_ItemTransporter_Electricity1;                    // 0x02F8 (size: 0x8)
+    class UNiagaraComponent* Niagara_ItemTransporter_Energy;                          // 0x0300 (size: 0x8)
+    class USphereComponent* Sphere;                                                   // 0x0308 (size: 0x8)
+    class UStaticMeshComponent* StaticMesh;                                           // 0x0310 (size: 0x8)
+    class UMaterialInterface* Material_Powered;                                       // 0x0318 (size: 0x8)
+    class UMaterialInterface* Material_Unpowered;                                     // 0x0320 (size: 0x8)
 
     void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
     void ToggleItemTransporterFX(float Duration);
@@ -25,6 +25,6 @@ class ABenchUpgrade_ItemTransporter_C : public ABenchUpgrade_ParentBP_C
     void Local_ToggleBenchUpgrade(double Duration);
     void TogglePowerFX();
     void ExecuteUbergraph_BenchUpgrade_ItemTransporter(int32 EntryPoint);
-}; // Size: 0x318
+}; // Size: 0x328
 
 #endif

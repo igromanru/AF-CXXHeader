@@ -10,7 +10,8 @@ namespace E_InventorySlotAppearance {
         NewEnumerator7 = 7,
         NewEnumerator8 = 8,
         NewEnumerator9 = 9,
-        E_MAX = 10,
+        NewEnumerator10 = 10,
+        E_MAX = 11,
     };
 }
 

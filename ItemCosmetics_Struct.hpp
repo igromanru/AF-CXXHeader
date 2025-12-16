@@ -16,7 +16,8 @@ struct FItemCosmetics_Struct
     TSoftObjectPtr<USoundWave> SoundEffect_47_E7ECD482476A97BF11A125BBE0E28834;       // 0x00D0 (size: 0x28)
     TSoftObjectPtr<UNiagaraSystem> ParticleEffect_48_6D868AB84AF2A0F6716372932A7930D9; // 0x00F8 (size: 0x28)
     class UPrimaryDataAsset* DataAsset_51_083C190445D5CD182B8E95B43BD31D1F;           // 0x0120 (size: 0x8)
+    FRotator ItemStand_WallMountRotation_55_FCC799214501CB30A9A8108EDFAF3D84;         // 0x0128 (size: 0x18)
 
-}; // Size: 0x128
+}; // Size: 0x140
 
 #endif

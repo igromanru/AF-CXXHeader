@@ -10,6 +10,7 @@ class ASubFXZone_C : public AActor
     FDataTableRowHandle FXRow;                                                        // 0x02C8 (size: 0x10)
     int32 Priority;                                                                   // 0x02D8 (size: 0x4)
 
+    void SubFXLocallyUpdated();
     void UserConstructionScript();
     void BndEvt__RadiationZone_ParentBP_RadiationVolume_K2Node_ComponentBoundEvent_2_ComponentBeginOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
     void BndEvt__RadiationZone_ParentBP_RadiationVolume_K2Node_ComponentBoundEvent_3_ComponentEndOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
