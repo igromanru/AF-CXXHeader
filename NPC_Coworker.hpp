@@ -5,7 +5,7 @@ class ANPC_Coworker_C : public ANPC_Base_ParentBP_C
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x20E8 (size: 0x8)
     class UStaticMeshComponent* IDCardMesh;                                           // 0x20F0 (size: 0x8)
-    class USkeletalMeshComponent* Hair;                                               // 0x20F8 (size: 0x8)
+    class USkeletalMeshComponent* hair;                                               // 0x20F8 (size: 0x8)
     class USkeletalMeshComponent* Legs;                                               // 0x2100 (size: 0x8)
     class USkeletalMeshComponent* Chest;                                              // 0x2108 (size: 0x8)
     bool Eating;                                                                      // 0x2110 (size: 0x1)

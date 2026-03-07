@@ -14,7 +14,7 @@ class ANarrativeNPC_Human_ParentBP_C : public ANarrativeNPC_ParentBP_C
     class USkeletalMeshComponent* ArmorSuit_Chest;                                    // 0x1828 (size: 0x8)
     class USkeletalMeshComponent* Hat;                                                // 0x1830 (size: 0x8)
     class USkeletalMeshComponent* Chest;                                              // 0x1838 (size: 0x8)
-    class USkeletalMeshComponent* Hair;                                               // 0x1840 (size: 0x8)
+    class USkeletalMeshComponent* hair;                                               // 0x1840 (size: 0x8)
     class USkeletalMeshComponent* Glasses;                                            // 0x1848 (size: 0x8)
     class USkeletalMeshComponent* pants;                                              // 0x1850 (size: 0x8)
     TEnumAsByte<EBloodSplatterType::Type> NarrativeNPC_BloodColor;                    // 0x1858 (size: 0x1)

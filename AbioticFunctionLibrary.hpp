@@ -69,7 +69,7 @@ class UAbioticFunctionLibrary_C : public UBlueprintFunctionLibrary
     void Try Set Material by Name(class UMeshComponent* MeshComponent, const FName& MaterialSlotName, class UMaterialInterface* Material, class UObject* __WorldContext, bool& Found);
     void Update Criticial Injury Visual(class AAbiotic_Character_ParentBP_C*& OwningCharacter, class UImage* BleedingImageToShow, class UImage* BrokenBoneToShow, TEnumAsByte<ECriticalityLevels::Type> Critical Level, EBodyLimbs Limb, class UObject* __WorldContext);
     void Is Object Not Aligned with the Ground?(class AActor* TargetActor, class UObject* __WorldContext, bool& Not Aligned);
-    bool PlayerTeleportCheck(FVector TeleportLocation, class AActor* OwningActor, double CapsuleRadius, class UObject* __WorldContext);
+    bool PlayerTeleportCheck(FVector TeleportLocation, class AActor* OwningActor, double CapsuleRadius, bool UsePlayerZ, class UObject* __WorldContext);
     void GetPaintColor(EPaintColor PaintColor, class UObject* __WorldContext, FLinearColor& FinalColor);
     void FindSoupRecipe(class UDataTable* RecipeTable, TArray<FName>& Ingredient, class UObject* __WorldContext, bool& FoundRecipe, FAbioticRecipe_Struct& Recipes, FName& RecipeRow);
     void Get Point Location in Circle from Segment(int32 CurrentSegment, int32 TotalAngle, int32 TotalSegment, FRotator SourceRotation, double DistanceFromTheSource, double ConeAngle, double RotationOffset, class UObject* __WorldContext, FVector& PointLocation);

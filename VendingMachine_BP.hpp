@@ -24,7 +24,7 @@ class AVendingMachine_BP_C : public AAbioticDeployed_Furniture_ParentBP_C
     class UTimelineComponent* BillAcceptedTimeline;                                   // 0x08C8 (size: 0x8)
     float ButtonPressTimeline_NewTrack_0_428D6DCA4922D632272A598403529F9F;            // 0x08D0 (size: 0x4)
     TEnumAsByte<ETimelineDirection::Type> ButtonPressTimeline__Direction_428D6DCA4922D632272A598403529F9F; // 0x08D4 (size: 0x1)
-    class UTimelineComponent* ButtonpressTimeline;                                    // 0x08D8 (size: 0x8)
+    class UTimelineComponent* ButtonPressTimeline;                                    // 0x08D8 (size: 0x8)
     FVector DollarBill_In;                                                            // 0x08E0 (size: 0x18)
     FVector DollarBill_Out;                                                           // 0x08F8 (size: 0x18)
     bool IsBusyWithAction;                                                            // 0x0910 (size: 0x1)
@@ -84,8 +84,8 @@ class AVendingMachine_BP_C : public AAbioticDeployed_Furniture_ParentBP_C
     void ProduceItem(int32 ButtonIndex);
     void FindButtonPressed(class UActorComponent* PressedComponent, bool& WasButton, class UActorComponent*& Button, int32& ButtonIndex);
     void ResetAllButtonPositions();
-    void ButtonpressTimeline__FinishedFunc();
-    void ButtonpressTimeline__UpdateFunc();
+    void ButtonPressTimeline__FinishedFunc();
+    void ButtonPressTimeline__UpdateFunc();
     void BillAcceptedTimeline__FinishedFunc();
     void BillAcceptedTimeline__UpdateFunc();
     void BillRejectedTimeline__FinishedFunc();
