@@ -21,7 +21,7 @@ class UW_TextChatBox_C : public UUserWidget
     void BndEvt__TextInputBox_K2Node_ComponentBoundEvent_0_OnEditableTextBoxCommittedEvent__DelegateSignature(const FText& Text, TEnumAsByte<ETextCommit::Type> CommitMethod);
     void DisplayTextChatMessage(FString Prefix, FLinearColor PrefixColor, FString MessageContent, FLinearColor MessageColor, bool IsPlayerChatMessage);
     void ChangeTextChatVisibility(TEnumAsByte<E_AbioticWidgetVisbility::Type> Visibility);
-    void ChatMessageReady(FString Text1, FString text2);
+    void ChatMessageReady(FString Text1, FString Text2);
     void ExecuteUbergraph_W_TextChatBox(int32 EntryPoint);
     void ChatBoxToggled__DelegateSignature(bool Opened);
 }; // Size: 0x348

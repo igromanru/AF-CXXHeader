@@ -10,7 +10,7 @@ class ADeployed_IS0012_C : public ADeployed_Figurine_Composer_C
 
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void Broadcast_BellDing(int32 RingType);
     void ExecuteUbergraph_Deployed_IS0012(int32 EntryPoint);

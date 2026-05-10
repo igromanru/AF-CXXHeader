@@ -15,6 +15,9 @@ class AAbiotic_Survival_GameMode_C : public AAbioticGameMode
     bool ServerConfigIsLoaded;                                                        // 0x03D8 (size: 0x1)
     TArray<FString> OldTeleporterStrings;                                             // 0x03E0 (size: 0x10)
 
+    class ANPC_Base_ParentBP_C* SpawnPetFromItem(const FAbiotic_InventoryItemSlotStruct& ItemSlotData, FTransform SpawnTransform, class AActor* Owner);
+    class ANPC_Base_ParentBP_C* SpawnPet(TSubclassOf<class ANPC_Base_ParentBP_C> Class, FTransform SpawnTransform, FString Guid, FText Name, class AActor* Owner, TArray<FDynamicProperty>& DynamicProperties, bool Tamed);
+    void Update Decal to World Save(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
     void RemovePlayerDLCEntitlements(FString PlayerId);
     void AddPlayerDLCEntitlements(FString PlayerId, FUserEntitlements Entitlements);
     void InitDLCEntitlements();
@@ -83,6 +86,7 @@ class AAbiotic_Survival_GameMode_C : public AAbioticGameMode
     void ApplyWorldSaveData|DayNightCycle(class UAbiotic_WorldSave_C*& Save);
     void SetTimeOfDayOnWorldSave();
     void ApplyWorldSaveData|SecurityDoor(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
+    void ApplyWorldSaveData|Decals(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
     void Update Security Door State to World Save(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
     void ApplyWorldSaveData|Destructibles(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
     void Update Destructible to World Save(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
@@ -95,7 +99,7 @@ class AAbiotic_Survival_GameMode_C : public AAbioticGameMode
     void ApplyAllWorldSaveData(FString Level, int32 Iteration (0-4), bool DoAllIterationsAtOnce, class UAbiotic_WorldSave_C* Save, class UObject* LevelObject, bool Persistent);
     void LevelLoad_ApplySavedWorldData(FString LevelName, int32 Iteration (0-4), bool DoAllIterationsAtOnce, bool Persistent);
     void CalculateItemDrop(const FAbiotic_ItemDropStruct& ItemDropStruct, FGameplayTagContainer Ignore Drop Chance Tags, FGameplayTagContainer& GameplayTags, double ExtraLootChance, bool& DropSuccess, FDataTableRowHandle& ItemStruct, int32& Count);
-    void GenerateLootDrop(const FDataTableRowHandle& SalvageDropRow, FVector Origin, FVector BoxExtent, bool HasLifespan, bool TryPlaceInInventory, class AAbiotic_PlayerCharacter_C* inventoryOwner, bool IsMicroNode, bool IsNotReceivingDamage, FDataTableRowHandle TextureVariant, int32 ExtraStackCount, FGameplayTagContainer Ignore Drop Chance Item Tags, bool RandomRotation, FRotator RotationOverride, bool AlwaysDropOverflow, FGameplayTagContainer& BuffTags, double ExtraLootChance, TArray<FDynamicProperty>& DynamicProperties, bool& LootIsGenerated?);
+    void GenerateLootDrop(const FDataTableRowHandle& SalvageDropRow, FVector Origin, FVector BoxExtent, bool HasLifespan, bool TryPlaceInInventory, class AAbiotic_PlayerCharacter_C* InventoryOwner, bool IsMicroNode, bool IsNotReceivingDamage, FDataTableRowHandle TextureVariant, int32 ExtraStackCount, FGameplayTagContainer Ignore Drop Chance Item Tags, bool RandomRotation, FRotator RotationOverride, bool AlwaysDropOverflow, FGameplayTagContainer& BuffTags, double ExtraLootChance, TArray<FDynamicProperty>& DynamicProperties, bool& LootIsGenerated?);
     void FindRespawnPointForPlayer(class AAbiotic_PlayerState_C* PlayerState, bool ForcePlayerStartOnly, FName DestinationID, bool& Valid, FVector& RespawnLocation);
     void OnFailure_B055BD084F90B3B2266C78903EFE91F0();
     void OnSuccess_B055BD084F90B3B2266C78903EFE91F0();

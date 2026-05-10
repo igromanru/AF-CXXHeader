@@ -16,8 +16,10 @@ struct FItemCosmetics_Struct
     TSoftObjectPtr<USoundWave> SoundEffect_47_E7ECD482476A97BF11A125BBE0E28834;       // 0x00D0 (size: 0x28)
     TSoftObjectPtr<UNiagaraSystem> ParticleEffect_48_6D868AB84AF2A0F6716372932A7930D9; // 0x00F8 (size: 0x28)
     class UPrimaryDataAsset* DataAsset_51_083C190445D5CD182B8E95B43BD31D1F;           // 0x0120 (size: 0x8)
-    FRotator ItemStand_WallMountRotation_55_FCC799214501CB30A9A8108EDFAF3D84;         // 0x0128 (size: 0x18)
+    bool ItemStand_UseRotationOverride_64_62C0EF124E756EFF9C56DEAEB035BC6B;           // 0x0128 (size: 0x1)
+    FItemStandOffset_Struct ItemStand_Offsets_70_039D8AEB4644EF669F4DCCB964B82151;    // 0x0130 (size: 0x60)
+    FWeaponCoatingCosmetic_Struct WeaponCoating_58_75C1DC6F4AB7A7B9D32E43A8685CA408;  // 0x0190 (size: 0x68)
 
-}; // Size: 0x140
+}; // Size: 0x1F8
 
 #endif

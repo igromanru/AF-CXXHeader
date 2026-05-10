@@ -19,7 +19,7 @@ class ADeployed_Container_FilingCabinet_Huge_C : public ADeployed_Container_Pare
     FVector Drawer3_Closed;                                                           // 0x09B8 (size: 0x18)
     FVector Drawer3_Open;                                                             // 0x09D0 (size: 0x18)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void Timeline__FinishedFunc();
     void Timeline__UpdateFunc();
     void ToggleOpenFX(bool Open);

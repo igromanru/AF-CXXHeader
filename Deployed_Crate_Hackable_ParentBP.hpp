@@ -32,7 +32,7 @@ class ADeployed_Crate_Hackable_ParentBP_C : public ADeployed_Container_ParentBP_
     void CanLongInteractWith_A(bool& Success);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void Timeline__FinishedFunc();
     void Timeline__UpdateFunc();
     void KeyInsertTimeline__FinishedFunc();

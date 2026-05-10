@@ -20,7 +20,7 @@ class ADeployed_PowerLever_C : public ADeployed_PowerStrip_ParentBP_C
     void IsPowerSocket(bool& CanBePluggedInto);
     FText GetItemNameText();
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void OnRep_LeverOn();
     void LeverTimeline__FinishedFunc();
     void LeverTimeline__UpdateFunc();

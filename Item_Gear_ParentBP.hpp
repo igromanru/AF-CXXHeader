@@ -8,6 +8,8 @@ class AItem_Gear_ParentBP_C : public AAbiotic_Item_ParentBP_C
     TArray<class UMaterialInstanceDynamic*> PlayerGearMeshMaterial;                   // 0x0B00 (size: 0x10)
     bool Equipped;                                                                    // 0x0B10 (size: 0x1)
 
+    void RemoveGearBuffs();
+    void ApplyGearBuffs();
     void Check for Similar Gear Item in Slot(TEnumAsByte<E_InventorySlotType::Type> Slot Type To Check, bool& Same);
     void Check for Existing Gear Buff(FName InputPin, class UAbiotic_InventoryComponent_C*& EquipInventory, bool& Buff Exist);
     void FindGearCosmeticData(bool CheckForTransmog, TEnumAsByte<E_InventorySlotType::Type> InventorySlot, bool& Success, FItemCosmetics_Struct& ItemCosmeticData);

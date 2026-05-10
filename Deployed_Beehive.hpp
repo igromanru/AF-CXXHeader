@@ -19,6 +19,7 @@ class ADeployed_Beehive_C : public AAbioticDeployed_Furniture_ParentBP_C
     bool Local_LastBeehiveState;                                                      // 0x089D (size: 0x1)
     bool HiveActive;                                                                  // 0x089E (size: 0x1)
     TMap<FName, int32> Map_ItemTypes_Max;                                             // 0x08A0 (size: 0x50)
+    float AntejuiceSearchRadius;                                                      // 0x08F0 (size: 0x4)
 
     void DropAllProduceOnGround(class AAbioticCharacter* DamageCauser);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
@@ -32,7 +33,7 @@ class ADeployed_Beehive_C : public AAbioticDeployed_Furniture_ParentBP_C
     void SetBeeActivityFX();
     TArray<FText> CalculateBeehiveMessage();
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void UserConstructionScript();
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void ReceiveBeginPlay();
@@ -41,6 +42,6 @@ class ADeployed_Beehive_C : public AAbioticDeployed_Furniture_ParentBP_C
     void ReceiveAnyDamage(float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, class AActor* DamageCauser);
     void OnLoadedFromSave(double NewLifespan);
     void ExecuteUbergraph_Deployed_Beehive(int32 EntryPoint);
-}; // Size: 0x8F0
+}; // Size: 0x8F4
 
 #endif

@@ -41,6 +41,7 @@ class AAbiotic_Survival_GameState_C : public AAbioticGameState
     FString ActiveLeyakContainmentID;                                                 // 0x06F8 (size: 0x10)
     FAbiotic_Survival_GameState_COnUserLeftContainer OnUserLeftContainer;             // 0x0708 (size: 0x10)
     void OnUserLeftContainer(const class AAbiotic_Character_ParentBP_C*& ContainerUser);
+    TArray<FName> GlobalItemsDistilled;                                               // 0x0718 (size: 0x10)
 
     bool CanLevelBeActive(FGameEntitlementRowHandle RequiredEntitlement, FWorldFlagRowHandle RequiredWorldFlag);
     void CreateHitscanTracer(FVector StartLocation, const FVector& EndLocation, double Velocity, bool RicochetEnabled, bool CreateBulletWhizzAudio, TSubclassOf<class ABP_BulletTracer_C> BulletTracerClass);
@@ -66,6 +67,6 @@ class AAbiotic_Survival_GameState_C : public AAbioticGameState
     void ExecuteUbergraph_Abiotic_Survival_GameState(int32 EntryPoint);
     void OnUserLeftContainer__DelegateSignature(const class AAbiotic_Character_ParentBP_C*& ContainerUser);
     void OnAutosave__DelegateSignature();
-}; // Size: 0x718
+}; // Size: 0x728
 
 #endif

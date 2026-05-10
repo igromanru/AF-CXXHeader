@@ -23,7 +23,7 @@ class ADeployed_TeslaCoil_C : public AAbioticDeployed_Furniture_ParentBP_C
     class UMaterialInstanceDynamic* BottomRingMaterial;                               // 0x08D0 (size: 0x8)
 
     void Target Can be Attacked(class AActor* Target, bool& Yes);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void PickTargetInLineOfSight(bool& FoundValid);
     void CheckForActiveTargets(bool& TargetsAvailable);
     void DeRegister(class AActor* NewTarget);

@@ -21,7 +21,7 @@ class ABenchUpgrade_BenchTurret_C : public ABenchUpgrade_ParentBP_C
     void Targetable By Triggers(bool& Targetable);
     void GetFactionTeam(TEnumAsByte<E_Factions::Type>& Faction);
     void GetSpottablePoints(TArray<FVector>& SpottablePoints);
-    void TargetableByNPCs(bool Maintain, bool& Targetable);
+    void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
     void RequiresRangedWeaponToEngage(bool& RequiresRanged);
     void DoesAwardSkillXPWhenHit(bool& MeleeXP, bool& RangedXP, double& XPMultiplier);
     void IsStompable(class AAbiotic_Character_ParentBP_C* AskingCharacter, bool& IsStompable);

@@ -90,6 +90,7 @@ class AAbiotic_AIDirector_C : public AActor
     double LastBoxySpawnTime;                                                         // 0x0880 (size: 0x8)
     double BoxySpawnFrequency;                                                        // 0x0888 (size: 0x8)
     double BoxySpawnFrequency_Encumbered;                                             // 0x0890 (size: 0x8)
+    bool PetGodMode;                                                                  // 0x0898 (size: 0x1)
 
     bool IsAssaultHappening();
     void SpawnBoxy(FVector Location);
@@ -189,6 +190,6 @@ class AAbiotic_AIDirector_C : public AActor
     void ExecuteUbergraph_Abiotic_AIDirector(int32 EntryPoint);
     void OnFoundAssaultEQSLocation__DelegateSignature(TEnumAsByte<EEnvQueryStatus::Type> QuesryStatus);
     void OnFinishFindingPlayerBases__DelegateSignature();
-}; // Size: 0x898
+}; // Size: 0x899
 
 #endif

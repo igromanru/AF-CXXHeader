@@ -20,7 +20,7 @@ class ABenchUpgrade_BenchWarmer_C : public ABenchUpgrade_ParentBP_C
     void OnRep_Switch On();
     FText GetItemNameText();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void Timeline__FinishedFunc();
     void Timeline__UpdateFunc();

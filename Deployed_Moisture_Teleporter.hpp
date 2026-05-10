@@ -11,7 +11,7 @@ class ADeployed_Moisture_Teleporter_C : public AAbioticDeployed_Furniture_Parent
     int32 MaxLiquidLevel;                                                             // 0x0880 (size: 0x4)
 
     void Start Dispense Water to Container();
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void ReceiveBeginPlay();
     void ReceiveTick(float DeltaSeconds);
     void TogglePowerFX();

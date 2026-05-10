@@ -32,17 +32,19 @@ class UW_PlayerHUD_InteractionPrompt_C : public UUserWidget
     class UTextBlock* SecondaryFireSuffix;                                            // 0x03B0 (size: 0x8)
     class UVerticalBox* VBox_NoteList;                                                // 0x03B8 (size: 0x8)
     class UW_CookingPrompt_C* W_CookingPrompt;                                        // 0x03C0 (size: 0x8)
-    class AActor* FocusedObject;                                                      // 0x03C8 (size: 0x8)
-    FText InteractSuffixPartA;                                                        // 0x03D0 (size: 0x10)
-    FText CurrentLookAt_ItemName;                                                     // 0x03E0 (size: 0x10)
-    FSlateColor CurrentLookAt_Color;                                                  // 0x03F0 (size: 0x14)
+    class UProgressBar* XpBar;                                                        // 0x03C8 (size: 0x8)
+    class AActor* FocusedObject;                                                      // 0x03D0 (size: 0x8)
+    FText InteractSuffixPartA;                                                        // 0x03D8 (size: 0x10)
+    FText CurrentLookAt_ItemName;                                                     // 0x03E8 (size: 0x10)
+    FSlateColor CurrentLookAt_Color;                                                  // 0x03F8 (size: 0x14)
 
+    void TrySetPetData(class UObject* Object);
     void UpdateCookingPrompt(class ACookingProxy_BP_C* Proxy);
     void UpdateItemDurability(double CurrentDurability, double MaxDurability);
     void Check Actor in Pinned Recipe(class AActor*& ActorToCheck, class AAbiotic_PlayerCharacter_C*& InteractingCharacter, bool& Exist);
     FAbiotic_InventoryItemStruct GetItemDataFromActor(class UObject* Object);
     void GetInteractTexts(class AActor* HitActor, const FAbiotic_InventoryItemStruct& ItemData, FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
-    void DoesLineAlreadyExist(FText line, bool& Exists);
+    void DoesLineAlreadyExist(FText Line, bool& Exists);
     void UpdateJumpPromptLine(bool ShowFlag, FText Action, FText Item Name);
     void UpdatePrimaryPromptLine(bool ShowFlag, FText Action, FText Item Name);
     void UpdateTextPromptLine(class UWidget* WidgetToToggle, class UTextBlock* TextToChange, bool ShowFlag, FText& FormatString);
@@ -50,6 +52,6 @@ class UW_PlayerHUD_InteractionPrompt_C : public UUserWidget
     void Construct();
     void OnLargerTextChanged(bool NewValue);
     void ExecuteUbergraph_W_PlayerHUD_InteractionPrompt(int32 EntryPoint);
-}; // Size: 0x404
+}; // Size: 0x40C
 
 #endif

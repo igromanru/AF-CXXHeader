@@ -7,7 +7,7 @@ class ADeployed_Turret_Laser_C : public ADeployed_Turret_ParentBP_C
     class ULaserComponent_C* LaserComponent;                                          // 0x08A8 (size: 0x8)
     class UAudioComponent* Laser Sound;                                               // 0x08B0 (size: 0x8)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void TogglePowerFX();
     void Broadcast_FireFX();
     void StartFiringProjectile();

@@ -3,14 +3,14 @@
 
 class AProjectile_Grenade_ParentBP_C : public AAbioticProjectile_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0710 (size: 0x8)
-    bool FirstBounce;                                                                 // 0x0718 (size: 0x1)
-    float FuseAfterFirstBounce;                                                       // 0x071C (size: 0x4)
-    bool FuseStartsImmediately;                                                       // 0x0720 (size: 0x1)
-    bool HasDetonated;                                                                // 0x0721 (size: 0x1)
-    float Base Damage;                                                                // 0x0724 (size: 0x4)
-    bool ExplodesOnContact;                                                           // 0x0728 (size: 0x1)
-    bool ExplodesOnContactWithCharacter;                                              // 0x0729 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0730 (size: 0x8)
+    bool FirstBounce;                                                                 // 0x0738 (size: 0x1)
+    float FuseAfterFirstBounce;                                                       // 0x073C (size: 0x4)
+    bool FuseStartsImmediately;                                                       // 0x0740 (size: 0x1)
+    bool HasDetonated;                                                                // 0x0741 (size: 0x1)
+    float Base Damage;                                                                // 0x0744 (size: 0x4)
+    bool ExplodesOnContact;                                                           // 0x0748 (size: 0x1)
+    bool ExplodesOnContactWithCharacter;                                              // 0x0749 (size: 0x1)
 
     void Detonate();
     void ReceiveBeginPlay();
@@ -19,6 +19,6 @@ class AProjectile_Grenade_ParentBP_C : public AAbioticProjectile_ParentBP_C
     void BndEvt__Projectile_Grenade_ParentBP_ProjectileMovement_K2Node_ComponentBoundEvent_1_OnProjectileBounceDelegate__DelegateSignature(const FHitResult& ImpactResult, const FVector& ImpactVelocity);
     void ProjectileOverlap(class AActor* OtherActor, class UPrimitiveComponent* OtherComp);
     void ExecuteUbergraph_Projectile_Grenade_ParentBP(int32 EntryPoint);
-}; // Size: 0x72A
+}; // Size: 0x74A
 
 #endif

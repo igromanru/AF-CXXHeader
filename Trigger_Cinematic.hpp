@@ -3,6 +3,6 @@
 
 class ATrigger_Cinematic_C : public AAbiotic_TriggerVolume_ParentBP_C
 {
-}; // Size: 0x342
+}; // Size: 0x368
 
 #endif

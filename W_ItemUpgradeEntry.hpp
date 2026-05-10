@@ -34,7 +34,7 @@ class UW_ItemUpgradeEntry_C : public UUserWidget
     void BndEvt__W_ItemUpgradeEntry_Item3_K2Node_ComponentBoundEvent_3_OnSpecialClick__DelegateSignature(bool Clicked);
     void BndEvt__W_ItemUpgradeEntry_Item4_K2Node_ComponentBoundEvent_4_OnSpecialClick__DelegateSignature(bool Clicked);
     void BndEvt__W_ItemUpgradeEntry_PrimaryItemIcon_K2Node_ComponentBoundEvent_5_OnSpecialClick__DelegateSignature(bool Clicked);
-    void UpdateSelectionHighlightVisual(bool Highlight);
+    void UpdateSelectionHighlightVisual(bool highlight);
     void ExecuteUbergraph_W_ItemUpgradeEntry(int32 EntryPoint);
     void OnSelectionClicked__DelegateSignature(int32 Index);
 }; // Size: 0x391

@@ -4,7 +4,7 @@
 class ADeployed_Figurine_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
 
-    void TargetableByNPCs(bool Maintain, bool& Targetable);
+    void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
     void TargetableByTurrets(bool& Targetable);
 }; // Size: 0x84A
 

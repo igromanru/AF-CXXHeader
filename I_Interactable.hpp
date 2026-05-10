@@ -33,7 +33,7 @@ class II_Interactable_C : public IInterface
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void NPC_InteractWith(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void NPC_CanInteractWith(bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void InteractWith_B_LocalFX(bool Hold);
     void InteractWith_A_LocalFX(bool Hold);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);

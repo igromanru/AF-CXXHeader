@@ -10,7 +10,7 @@ class ADeployed_LaserPowerConverter_C : public AAbioticDeployed_Furniture_Parent
     void GetPoweringActors(TArray<class AActor*>& PowerSourceParents);
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void IsPowered(bool& PowerOn);
     void TogglePowerFX();
     void DestroyDeployable(bool NoLoot, int32 Extra Loot Quantity, bool LootBagLocationOverride, FVector LocationOverride);

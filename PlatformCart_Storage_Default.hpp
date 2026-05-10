@@ -23,7 +23,7 @@ class APlatformCart_Storage_Default_C : public APlatformCart_Storage_ParentBP_C
     TArray<class UStaticMeshComponent*> VisualCrates;                                 // 0x09B8 (size: 0x10)
 
     void RefreshContainerVisuals();
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void UserConstructionScript();
     void ReceiveBeginPlay();
     void ExecuteUbergraph_PlatformCart_Storage_Default(int32 EntryPoint);

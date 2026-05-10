@@ -3,12 +3,12 @@
 
 class ATrigger_WorldFlag_C : public AAbiotic_TriggerVolume_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0348 (size: 0x8)
-    FWorldFlagRowHandle WorldFlagToActivate;                                          // 0x0350 (size: 0x20)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0368 (size: 0x8)
+    FWorldFlagRowHandle WorldFlagToActivate;                                          // 0x0370 (size: 0x20)
 
     void OnTrigger();
     void OnLoadedFromSave();
     void ExecuteUbergraph_Trigger_WorldFlag(int32 EntryPoint);
-}; // Size: 0x370
+}; // Size: 0x390
 
 #endif

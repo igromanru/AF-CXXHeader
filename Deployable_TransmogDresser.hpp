@@ -15,6 +15,8 @@ class ADeployable_TransmogDresser_C : public AAbioticDeployed_Furniture_ParentBP
     TMap<TEnumAsByte<E_InventorySlotType::Type>, bool> BodyMeshVisibilityStatus;      // 0x08E0 (size: 0x50)
     bool HeadAccessoryEnabled;                                                        // 0x0930 (size: 0x1)
 
+    void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
+    void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void StoreInitialVisibilities(class AAbiotic_PlayerCharacter_C* InteractingCharacter, bool& FinishedSetup);
     void SetEquippedGearsVisibility(class AAbiotic_PlayerCharacter_C* InteractingCharacter, bool Visible);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);

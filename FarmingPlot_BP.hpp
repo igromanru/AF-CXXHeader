@@ -19,6 +19,8 @@ class AFarmingPlot_BP_C : public AAbioticActor_C
     FFarmingPlot_BP_CGrowthStageUpdated GrowthStageUpdated;                           // 0x0328 (size: 0x10)
     void GrowthStageUpdated(EPlantGrowthStage NewGrowthStage);
     int32 VisualFertilizeQuality;                                                     // 0x0338 (size: 0x4)
+    FFarmingPlot_BP_COnPlantSet OnPlantSet;                                           // 0x0340 (size: 0x10)
+    void OnPlantSet(class AFarmingPlot_BP_C* FarmingPlot, class APlantProxy_ParentBP_C* PlantProxy);
 
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
@@ -28,7 +30,7 @@ class AFarmingPlot_BP_C : public AAbioticActor_C
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanLongInteractWith_A(bool& Success);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);
@@ -43,6 +45,7 @@ class AFarmingPlot_BP_C : public AAbioticActor_C
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void Landing Damage Multiplier(double Damage, double& DamageMultiplier);
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
+    void IsHoldingFarmableItem(class AAbiotic_PlayerCharacter_C* Character, bool& FarmItem);
     void UpdateFertilizeTexture();
     void OnRep_VisualFertilizeQuality();
     void GetGrowthAmountMultiplier(int32& TotalGrowthAmountPerTick);
@@ -91,7 +94,8 @@ class AFarmingPlot_BP_C : public AAbioticActor_C
     void InteractWith_A_LocalFX(bool Hold);
     void Broadcast_PlayGrowFX();
     void ExecuteUbergraph_FarmingPlot_BP(int32 EntryPoint);
+    void OnPlantSet__DelegateSignature(class AFarmingPlot_BP_C* FarmingPlot, class APlantProxy_ParentBP_C* PlantProxy);
     void GrowthStageUpdated__DelegateSignature(EPlantGrowthStage NewGrowthStage);
-}; // Size: 0x33C
+}; // Size: 0x350
 
 #endif

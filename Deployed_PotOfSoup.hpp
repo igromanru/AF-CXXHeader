@@ -4,7 +4,7 @@
 class ADeployed_PotOfSoup_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0850 (size: 0x8)
-    class UNiagaraComponent* particle;                                                // 0x0858 (size: 0x8)
+    class UNiagaraComponent* Particle;                                                // 0x0858 (size: 0x8)
     class UStaticMeshComponent* LiquidMesh;                                           // 0x0860 (size: 0x8)
     int32 Portions;                                                                   // 0x0868 (size: 0x4)
     int32 DefaultPortions;                                                            // 0x086C (size: 0x4)

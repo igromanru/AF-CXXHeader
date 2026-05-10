@@ -33,7 +33,7 @@ class ADeployed_CraftingBench_Default_C : public AAbioticDeployed_CraftingBench_
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void UpdateOverlappingContainers();
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void RemoveHomeBuffIfNotInHomeZone(bool AllActorsInZone, class AActor* Actor);
     void RefreshConstructionModeStateFX();
     void OnFailure_E8A92F1B45AB94A93A2F8685BDBE6B7C(bool bSuccess, const TArray<FString>& SanitizedMessages);

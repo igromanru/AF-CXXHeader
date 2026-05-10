@@ -11,7 +11,7 @@ class ADeployed_Container_Boxy_C : public ADeployed_Container_Cargo_C
     FDeployed_Container_Boxy_COnContainerOpened OnContainerOpened;                    // 0x0970 (size: 0x10)
     void OnContainerOpened();
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void IsBoxAsleep(bool& Asleep);
     void OnContainerBeingUsed();
     void SaveDeployable(bool RemoveFromSave);

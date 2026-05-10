@@ -11,7 +11,7 @@ class AContainer_KitchenCabinet_C : public ADeployed_Container_ParentBP_C
     class UTimelineComponent* Timeline;                                               // 0x0940 (size: 0x8)
     bool Laboratory;                                                                  // 0x0948 (size: 0x1)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void UserConstructionScript();
     void Timeline__FinishedFunc();
     void Timeline__UpdateFunc();

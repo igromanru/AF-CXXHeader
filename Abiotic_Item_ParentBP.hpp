@@ -73,8 +73,12 @@ class AAbiotic_Item_ParentBP_C : public AAbioticActor_C
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
+    double GetPowerDrainMultiplier();
+    class UAnimMontage* GetTPMontage(bool Secondary);
+    class UAnimMontage* GetItemTPMontage(bool Secondary);
+    bool CanPourOutOf();
     void GetAltAnimState(class AAbiotic_PlayerCharacter_C* PlayerOwner, bool& AltAnimsActive);
     void GetAltFPAnims(class AAbiotic_PlayerCharacter_C* PlayerOwner, class UAnimSequence*& AltIdle, class UAnimSequence*& AltWalk, class UAnimSequence*& AltCrouchIdle, class UAnimSequence*& AltCrouchWalk);
     bool CanBeginThrowing(FText& ErrorMessage);
@@ -117,23 +121,24 @@ class AAbiotic_Item_ParentBP_C : public AAbioticActor_C
     void OnLoaded_AE1796A74769F9E45686FB9613D11A6A(class UObject* Loaded);
     void OnLoaded_4A549FF641D38A691D6561A63936BF89(class UObject* Loaded);
     void OnLoaded_F3B89B67484534E24EB80A9CF8C9D1AB(class UObject* Loaded);
+    void DeliverInt(bool FromSave, const int32 New Int);
     void Set New Attached Power Cord(class UCableComponent* New Power Cord);
     void RadialWheelInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed, FName SelectionWheelContentName);
     void DeliverDynamicProperty(bool FromSave, FDynamicProperty Property);
     void InteractTeleportUpdate(class AAbiotic_Character_ParentBP_C* InteractingCharacter, bool TryingToTeleport, bool TeleportSuccessful);
     void ReceiveBeginPlay();
-    void OnInteractHighlightEnd(class UActorComponent* Component);
     void OnInteractHighlightStart(class UActorComponent* Component);
     void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbiotic_InventoryItemSlotStruct SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
     void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbiotic_InventoryItemSlotStruct SlotData);
-    void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void DeliverString(FString String, bool FromSave);
+    void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void NPC_InteractWith(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
-    void SetupItem();
     void InteractWith_B_LocalFX(bool Hold);
+    void SetupItem();
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
-    void UseItem_BroadcastFX(class AAbiotic_Character_ParentBP_C* UsingCharacter, bool SecondaryUse);
     void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
+    void UseItem_BroadcastFX(class AAbiotic_Character_ParentBP_C* UsingCharacter, bool SecondaryUse);
+    void StopUsingItem(class AAbiotic_Character_ParentBP_C* UsingCharacter);
     void Update Current Item Data();
     void SetupItem_FirstPerson();
     void UseItem_OnTarget(class AActor* TargetActor);
@@ -159,7 +164,7 @@ class AAbiotic_Item_ParentBP_C : public AAbioticActor_C
     void UpdateOwnerLightFunctionMaterial();
     void InitRadioactivity();
     void SetupItemBox(TSoftObjectPtr<UTexture2D> InventoryIcon, TSoftObjectPtr<UStaticMesh> 3DModel);
-    void DeliverInt(bool FromSave, const int32 New Int);
+    void OnInteractHighlightEnd(class UActorComponent* Component);
     void OwningBuffTagsRefreshed();
     void OnPlayerEndPlay(class AActor* Actor, TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
     void Local_TryHighlightOnProjectileSpawnImpact();
@@ -172,6 +177,7 @@ class AAbiotic_Item_ParentBP_C : public AAbioticActor_C
     void LocalUpdateSharedInteraction();
     void ReceiveEndPlay(TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
     void ReceiveTick(float DeltaSeconds);
+    void OnMeshComponentReady(class UMeshComponent* MeshComponent, bool FirstPerson);
     void ExecuteUbergraph_Abiotic_Item_ParentBP(int32 EntryPoint);
 }; // Size: 0xAF0
 

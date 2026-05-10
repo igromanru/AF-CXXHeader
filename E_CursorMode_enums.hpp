@@ -5,7 +5,8 @@ namespace E_CursorMode {
         NewEnumerator2 = 2,
         NewEnumerator3 = 3,
         NewEnumerator5 = 4,
-        E_MAX = 5,
+        NewEnumerator6 = 5,
+        E_MAX = 6,
     };
 }
 

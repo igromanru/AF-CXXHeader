@@ -10,7 +10,7 @@ class AFacilityQuaker_C : public AActor
     FFacilityQuaker_COnFacilityShake OnFacilityShake;                                 // 0x02B8 (size: 0x10)
     void OnFacilityShake();
 
-    void CheckBadTimeForQuake(bool& BadTime);
+    void CheckBadTimeForQuake(bool& BadTime, bool& StillPlaySound);
     void Trigger_FacilityShake();
     void ReceiveBeginPlay();
     void Server_DoFacilityShake();

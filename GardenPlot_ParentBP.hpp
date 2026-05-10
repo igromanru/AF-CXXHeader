@@ -25,7 +25,7 @@ class AGardenPlot_ParentBP_C : public ADeployed_LiquidContainer_ParentBP_C
     void GetNewWaterLossPerTick(int32& TotalWaterAmountPerTick);
     void Server_CheckWaterRequiredLight(bool WaterDepleted);
     void OnRep_WaterRequiredLight();
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     bool CurrentlyRequiresWater?(int32& PlantsRequiringWater, int32& EntangledPlantsRequiringWater);
     void Server_ModifyFillState(TEnumAsByte<E_LiquidType::Type> Liquid, int32 NewLiquidValue, bool SkipSave, class AAbiotic_PlayerCharacter_C* FillInstigator);
     void UpdateWaterState();
@@ -42,6 +42,8 @@ class AGardenPlot_ParentBP_C : public ADeployed_LiquidContainer_ParentBP_C
     void Update Deployable Proxies(const TArray<FSaveData_ItemProxy_Struct>& Item Proxies);
     void SaveGardenPlot();
     void OnLoadedFromSave(double NewLifespan);
+    void OnPlantSet(class AFarmingPlot_BP_C* FarmingPlot, class APlantProxy_ParentBP_C* PlantProxy);
+    void OnPlantCleared(class AFarmingPlot_BP_C* FarmingPlot);
     void ExecuteUbergraph_GardenPlot_ParentBP(int32 EntryPoint);
 }; // Size: 0x988
 

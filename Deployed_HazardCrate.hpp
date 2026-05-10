@@ -9,7 +9,7 @@ class ADeployed_HazardCrate_C : public ADeployed_Container_ParentBP_C
     TEnumAsByte<ETimelineDirection::Type> Timeline__Direction_3EFC55DA44329E9BB8975AA3DA97359B; // 0x0934 (size: 0x1)
     class UTimelineComponent* Timeline;                                               // 0x0938 (size: 0x8)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void Timeline__FinishedFunc();
     void Timeline__UpdateFunc();
     void ToggleOpenFX(bool Open);

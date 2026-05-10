@@ -3,93 +3,91 @@
 
 class AAbiotic_PlayerController_C : public AAbioticPlayerController
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x08E0 (size: 0x8)
-    class UPlayerController_WaypointManagerComponent_C* PlayerController_WaypointManagerComponent; // 0x08E8 (size: 0x8)
-    class UAudioComponent* NPCMusic;                                                  // 0x08F0 (size: 0x8)
-    class UAudioComponent* NPCRadioAudio;                                             // 0x08F8 (size: 0x8)
-    class UCheatComponent_C* CheatComponent;                                          // 0x0900 (size: 0x8)
-    float EndCredits_FadeAudio_NewTrack_0_CDED426346DDEA1919651594D659DD6B;           // 0x0908 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> EndCredits_FadeAudio__Direction_CDED426346DDEA1919651594D659DD6B; // 0x090C (size: 0x1)
-    class UTimelineComponent* EndCredits_FadeAudio;                                   // 0x0910 (size: 0x8)
-    float CursorInterpTimeline_Alpha_50F311B84F055D70817F88AF3E379DAF;                // 0x0918 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> CursorInterpTimeline__Direction_50F311B84F055D70817F88AF3E379DAF; // 0x091C (size: 0x1)
-    class UTimelineComponent* CursorInterpTimeline;                                   // 0x0920 (size: 0x8)
-    float NewFXTimeline_FXTime_C8276CED400572E6FD10CF8A61D816D7;                      // 0x0928 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> NewFXTimeline__Direction_C8276CED400572E6FD10CF8A61D816D7; // 0x092C (size: 0x1)
-    class UTimelineComponent* NewFXTimeline;                                          // 0x0930 (size: 0x8)
-    class UW_PlayerHUD_Main_C* PlayerHUDRef;                                          // 0x0938 (size: 0x8)
-    bool IsTextChatOpen;                                                              // 0x0940 (size: 0x1)
-    class UW_MainMenu_Master_C* MainMenuRef;                                          // 0x0948 (size: 0x8)
-    class UAudioComponent* CurrentSoundtrackMusic;                                    // 0x0950 (size: 0x8)
-    TEnumAsByte<E_CursorMode::Type> AbioticCursorMode;                                // 0x0958 (size: 0x1)
-    class UDraggableItem_Operation_C* CurrentItemOnCursor;                            // 0x0960 (size: 0x8)
-    double LastMouseGrabItemTime;                                                     // 0x0968 (size: 0x8)
-    class ADirectionalLight* Global_DirectionalLight;                                 // 0x0970 (size: 0x8)
-    class AAbioticSkylight_C* Global_SkyLight;                                        // 0x0978 (size: 0x8)
-    class AExponentialHeightFog* Global_AtmoFog;                                      // 0x0980 (size: 0x8)
-    FLevelFXData_Struct CurrentDaytimeFX;                                             // 0x0988 (size: 0x168)
-    FLevelFXData_Struct CurrentNighttimeFX;                                           // 0x0AF0 (size: 0x168)
-    FLevelFXData_Struct PreviousDaytimeFX;                                            // 0x0C58 (size: 0x168)
-    FLevelFXData_Struct PreviousNighttimeFX;                                          // 0x0DC0 (size: 0x168)
-    class ADayNightManager_C* DayNightManager;                                        // 0x0F28 (size: 0x8)
-    FName Day_FX_Row;                                                                 // 0x0F30 (size: 0x8)
-    FName Night_FX_Row;                                                               // 0x0F38 (size: 0x8)
-    bool GlobalActorsFound;                                                           // 0x0F40 (size: 0x1)
-    bool NextSoundtrackLoaded;                                                        // 0x0F41 (size: 0x1)
-    FName PreviousDayFXRow;                                                           // 0x0F44 (size: 0x8)
-    FName PreviousNightFXRow;                                                         // 0x0F4C (size: 0x8)
-    class AAbiotic_PlayerCharacter_C* MyPlayerCharacter;                              // 0x0F58 (size: 0x8)
-    class UW_CheatMenu_C* CheatMenu;                                                  // 0x0F60 (size: 0x8)
-    bool Location_FoundNewSectorName;                                                 // 0x0F68 (size: 0x1)
-    FText Location_PreviousSectorName;                                                // 0x0F70 (size: 0x10)
-    FText Location_CurrentSectorName;                                                 // 0x0F80 (size: 0x10)
-    bool MinigameActive;                                                              // 0x0F90 (size: 0x1)
-    double ContinenceMinigameSliderValue;                                             // 0x0F98 (size: 0x8)
-    bool ContinenceMinigame_MoveLeft;                                                 // 0x0FA0 (size: 0x1)
-    double ContinenceMinigame_BigWindowL;                                             // 0x0FA8 (size: 0x8)
-    double ContinenceMinigame_BigWindowR;                                             // 0x0FB0 (size: 0x8)
-    double ContinenceMinigame_SmallWindowL;                                           // 0x0FB8 (size: 0x8)
-    double ContinenceMinigame_SmallWindowR;                                           // 0x0FC0 (size: 0x8)
-    class UUserWidget* MinigameWidget;                                                // 0x0FC8 (size: 0x8)
-    bool Minigame_Paused;                                                             // 0x0FD0 (size: 0x1)
-    int32 ContinenceMinigame_Counter;                                                 // 0x0FD4 (size: 0x4)
-    FTimerHandle Timer_AutoSaveCharacter;                                             // 0x0FD8 (size: 0x8)
-    int32 CheatAttempt;                                                               // 0x0FE0 (size: 0x4)
-    class AMinigame_SleepRunner_BP_C* Sidescoller Minigame Actor;                     // 0x0FE8 (size: 0x8)
-    class UAudioComponent* CurrentAmbientTrack;                                       // 0x0FF0 (size: 0x8)
-    bool IsOnMousePressed;                                                            // 0x0FF8 (size: 0x1)
-    bool IsCurrentlyDraggingItemSlot;                                                 // 0x0FF9 (size: 0x1)
-    TSet<FName> CraftableItemsList;                                                   // 0x1000 (size: 0x50)
-    TArray<FName> HintsSeen;                                                          // 0x1050 (size: 0x10)
-    FString BugReportURL;                                                             // 0x1060 (size: 0x10)
-    double LastLevelFXTransitionTime;                                                 // 0x1070 (size: 0x8)
-    class A3D_ItemDisplay_BP_C* 3DItemDisplayActor;                                   // 0x1078 (size: 0x8)
-    TSoftObjectPtr<UWorld> CurrentFXLevel;                                            // 0x1080 (size: 0x28)
-    FTimerHandle InteractionHeldTimer;                                                // 0x10A8 (size: 0x8)
-    FName HeldTimer_LastTutorialPanelRow;                                             // 0x10B0 (size: 0x8)
-    FAbiotic_PlayerController_CHeldInteractStarted HeldInteractStarted;               // 0x10B8 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0900 (size: 0x8)
+    class UPlayerController_WaypointManagerComponent_C* PlayerController_WaypointManagerComponent; // 0x0908 (size: 0x8)
+    class UAudioComponent* NPCMusic;                                                  // 0x0910 (size: 0x8)
+    class UAudioComponent* NPCRadioAudio;                                             // 0x0918 (size: 0x8)
+    class UCheatComponent_C* CheatComponent;                                          // 0x0920 (size: 0x8)
+    float EndCredits_FadeAudio_NewTrack_0_CDED426346DDEA1919651594D659DD6B;           // 0x0928 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> EndCredits_FadeAudio__Direction_CDED426346DDEA1919651594D659DD6B; // 0x092C (size: 0x1)
+    class UTimelineComponent* EndCredits_FadeAudio;                                   // 0x0930 (size: 0x8)
+    float CursorInterpTimeline_Alpha_50F311B84F055D70817F88AF3E379DAF;                // 0x0938 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> CursorInterpTimeline__Direction_50F311B84F055D70817F88AF3E379DAF; // 0x093C (size: 0x1)
+    class UTimelineComponent* CursorInterpTimeline;                                   // 0x0940 (size: 0x8)
+    float NewFXTimeline_FXTime_C8276CED400572E6FD10CF8A61D816D7;                      // 0x0948 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> NewFXTimeline__Direction_C8276CED400572E6FD10CF8A61D816D7; // 0x094C (size: 0x1)
+    class UTimelineComponent* NewFXTimeline;                                          // 0x0950 (size: 0x8)
+    class UW_PlayerHUD_Main_C* PlayerHUDRef;                                          // 0x0958 (size: 0x8)
+    bool IsTextChatOpen;                                                              // 0x0960 (size: 0x1)
+    class UW_MainMenu_Master_C* MainMenuRef;                                          // 0x0968 (size: 0x8)
+    class UAudioComponent* CurrentSoundtrackMusic;                                    // 0x0970 (size: 0x8)
+    TEnumAsByte<E_CursorMode::Type> AbioticCursorMode;                                // 0x0978 (size: 0x1)
+    class UDraggableItem_Operation_C* CurrentItemOnCursor;                            // 0x0980 (size: 0x8)
+    double LastMouseGrabItemTime;                                                     // 0x0988 (size: 0x8)
+    class ADirectionalLight* Global_DirectionalLight;                                 // 0x0990 (size: 0x8)
+    class AAbioticSkylight_C* Global_SkyLight;                                        // 0x0998 (size: 0x8)
+    class AExponentialHeightFog* Global_AtmoFog;                                      // 0x09A0 (size: 0x8)
+    FLevelFXData_Struct CurrentDaytimeFX;                                             // 0x09A8 (size: 0x168)
+    FLevelFXData_Struct CurrentNighttimeFX;                                           // 0x0B10 (size: 0x168)
+    FLevelFXData_Struct PreviousDaytimeFX;                                            // 0x0C78 (size: 0x168)
+    FLevelFXData_Struct PreviousNighttimeFX;                                          // 0x0DE0 (size: 0x168)
+    class ADayNightManager_C* DayNightManager;                                        // 0x0F48 (size: 0x8)
+    FName Day_FX_Row;                                                                 // 0x0F50 (size: 0x8)
+    FName Night_FX_Row;                                                               // 0x0F58 (size: 0x8)
+    bool GlobalActorsFound;                                                           // 0x0F60 (size: 0x1)
+    bool NextSoundtrackLoaded;                                                        // 0x0F61 (size: 0x1)
+    FName PreviousDayFXRow;                                                           // 0x0F64 (size: 0x8)
+    FName PreviousNightFXRow;                                                         // 0x0F6C (size: 0x8)
+    class AAbiotic_PlayerCharacter_C* MyPlayerCharacter;                              // 0x0F78 (size: 0x8)
+    class UW_CheatMenu_C* CheatMenu;                                                  // 0x0F80 (size: 0x8)
+    bool Location_FoundNewSectorName;                                                 // 0x0F88 (size: 0x1)
+    FText Location_PreviousSectorName;                                                // 0x0F90 (size: 0x10)
+    FText Location_CurrentSectorName;                                                 // 0x0FA0 (size: 0x10)
+    bool MinigameActive;                                                              // 0x0FB0 (size: 0x1)
+    double ContinenceMinigameSliderValue;                                             // 0x0FB8 (size: 0x8)
+    bool ContinenceMinigame_MoveLeft;                                                 // 0x0FC0 (size: 0x1)
+    double ContinenceMinigame_BigWindowL;                                             // 0x0FC8 (size: 0x8)
+    double ContinenceMinigame_BigWindowR;                                             // 0x0FD0 (size: 0x8)
+    double ContinenceMinigame_SmallWindowL;                                           // 0x0FD8 (size: 0x8)
+    double ContinenceMinigame_SmallWindowR;                                           // 0x0FE0 (size: 0x8)
+    class UUserWidget* MinigameWidget;                                                // 0x0FE8 (size: 0x8)
+    bool Minigame_Paused;                                                             // 0x0FF0 (size: 0x1)
+    int32 ContinenceMinigame_Counter;                                                 // 0x0FF4 (size: 0x4)
+    FTimerHandle Timer_AutoSaveCharacter;                                             // 0x0FF8 (size: 0x8)
+    int32 CheatAttempt;                                                               // 0x1000 (size: 0x4)
+    class AMinigame_SleepRunner_BP_C* Sidescoller Minigame Actor;                     // 0x1008 (size: 0x8)
+    class UAudioComponent* CurrentAmbientTrack;                                       // 0x1010 (size: 0x8)
+    bool IsOnMousePressed;                                                            // 0x1018 (size: 0x1)
+    bool IsCurrentlyDraggingItemSlot;                                                 // 0x1019 (size: 0x1)
+    TSet<FName> CraftableItemsList;                                                   // 0x1020 (size: 0x50)
+    TArray<FName> HintsSeen;                                                          // 0x1070 (size: 0x10)
+    double LastLevelFXTransitionTime;                                                 // 0x1080 (size: 0x8)
+    class A3D_ItemDisplay_BP_C* 3DItemDisplayActor;                                   // 0x1088 (size: 0x8)
+    TSoftObjectPtr<UWorld> CurrentFXLevel;                                            // 0x1090 (size: 0x28)
+    FTimerHandle InteractionHeldTimer;                                                // 0x10B8 (size: 0x8)
+    FName HeldTimer_LastTutorialPanelRow;                                             // 0x10C0 (size: 0x8)
+    FAbiotic_PlayerController_CHeldInteractStarted HeldInteractStarted;               // 0x10C8 (size: 0x10)
     void HeldInteractStarted(double InteractionDuration);
-    FAbiotic_PlayerController_CHeldInteractEnded HeldInteractEnded;                   // 0x10C8 (size: 0x10)
+    FAbiotic_PlayerController_CHeldInteractEnded HeldInteractEnded;                   // 0x10D8 (size: 0x10)
     void HeldInteractEnded();
-    bool NextAmbientSoundLoaded;                                                      // 0x10D8 (size: 0x1)
-    FVector LastRadioLocation;                                                        // 0x10E0 (size: 0x18)
-    double NPC_Radio_MaxVolume;                                                       // 0x10F8 (size: 0x8)
-    FAbiotic_PlayerController_CItemDragStarted ItemDragStarted;                       // 0x1100 (size: 0x10)
+    bool NextAmbientSoundLoaded;                                                      // 0x10E8 (size: 0x1)
+    FVector LastRadioLocation;                                                        // 0x10F0 (size: 0x18)
+    double NPC_Radio_MaxVolume;                                                       // 0x1108 (size: 0x8)
+    FAbiotic_PlayerController_CItemDragStarted ItemDragStarted;                       // 0x1110 (size: 0x10)
     void ItemDragStarted(TEnumAsByte<E_InventorySlotType::Type> Item Type);
-    FAbiotic_PlayerController_CItemDragFinished ItemDragFinished;                     // 0x1110 (size: 0x10)
+    FAbiotic_PlayerController_CItemDragFinished ItemDragFinished;                     // 0x1120 (size: 0x10)
     void ItemDragFinished();
-    bool ClientHasRecievedCharacter;                                                  // 0x1120 (size: 0x1)
-    bool TriedFindGlobalActorsOnce;                                                   // 0x1121 (size: 0x1)
-    bool IsDebugLevel;                                                                // 0x1122 (size: 0x1)
-    bool StartupFadeActive;                                                           // 0x1123 (size: 0x1)
-    FName ActiveLevelFXName;                                                          // 0x1124 (size: 0x8)
-    FName ActiveSubFXName;                                                            // 0x112C (size: 0x8)
-    FName ActiveWeatherFXName;                                                        // 0x1134 (size: 0x8)
-    FName OverrideLevelFXName;                                                        // 0x113C (size: 0x8)
-    FName CheatLevelFXName;                                                           // 0x1144 (size: 0x8)
-    bool DisableAutomaticFX;                                                          // 0x114C (size: 0x1)
-    class UW_MainMenu_CustomizeCharacter_C* TransmogCustomizationHUD;                 // 0x1150 (size: 0x8)
-    FString ForumLinkURL;                                                             // 0x1158 (size: 0x10)
+    bool ClientHasRecievedCharacter;                                                  // 0x1130 (size: 0x1)
+    bool TriedFindGlobalActorsOnce;                                                   // 0x1131 (size: 0x1)
+    bool IsDebugLevel;                                                                // 0x1132 (size: 0x1)
+    bool StartupFadeActive;                                                           // 0x1133 (size: 0x1)
+    FName ActiveLevelFXName;                                                          // 0x1134 (size: 0x8)
+    FName ActiveSubFXName;                                                            // 0x113C (size: 0x8)
+    FName ActiveWeatherFXName;                                                        // 0x1144 (size: 0x8)
+    FName OverrideLevelFXName;                                                        // 0x114C (size: 0x8)
+    FName CheatLevelFXName;                                                           // 0x1154 (size: 0x8)
+    bool DisableAutomaticFX;                                                          // 0x115C (size: 0x1)
+    class UW_MainMenu_CustomizeCharacter_C* TransmogCustomizationHUD;                 // 0x1160 (size: 0x8)
     double Local_LastSoundtrackChange;                                                // 0x1168 (size: 0x8)
     TArray<FString> CachedBannedPlayers;                                              // 0x1170 (size: 0x10)
     bool IsModerator;                                                                 // 0x1180 (size: 0x1)
@@ -115,6 +113,8 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     TArray<double> Credits_AudioStartingPoints;                                       // 0x1208 (size: 0x10)
     class APlayerSpectatorActor_C* ActiveSpectatorActor;                              // 0x1218 (size: 0x8)
     TMap<FBuffDebuffRowHandle, double> PendingSuddenDeathHUD;                         // 0x1220 (size: 0x50)
+    FInventorySlotSelected_Struct LastWeaponCoatingSelected;                          // 0x1270 (size: 0x10)
+    class USceneComponent* LastRadioComponent;                                        // 0x1280 (size: 0x8)
 
     void GetJoystickDirection(TEnumAsByte<EJoystickTypes::Type> Stick, FVector2D& StickInput);
     void GetFriendlyFireDamageMultiplier(bool& Return, double& DamageMultiplier);
@@ -128,9 +128,11 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     void IsStompable(class AAbiotic_Character_ParentBP_C* AskingCharacter, bool& IsStompable);
     void DoesAwardSkillXPWhenHit(bool& MeleeXP, bool& RangedXP, double& XPMultiplier);
     void RequiresRangedWeaponToEngage(bool& RequiresRanged);
-    void TargetableByNPCs(bool Maintain, bool& Targetable);
+    void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
     void GetSpottablePoints(TArray<FVector>& SpottablePoints);
     void GetFactionTeam(TEnumAsByte<E_Factions::Type>& Faction);
+    FString GetForumLinkURL();
+    FString GetBugReportURL();
     void GetLevelFXCharacter(class AAbioticCharacter*& OutCharacter);
     void OnRep_ActiveSpectatorActor();
     void Local_UnlockCustomization(const TArray<FDataTableRowHandle>& CustomizationUnlocks);
@@ -285,7 +287,7 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     void MicrophoneVolumeCallback(float NewValue);
     void MicrophoneLoopbackCallback(bool NewValue);
     void Request_ResetAllVOIP();
-    void Client_PlayNPCRadio(TSoftObjectPtr<UDialogueWave> CueToPlay, FVector Location, FName NarrativeRow);
+    void Client_PlayNPCRadio(TSoftObjectPtr<UDialogueWave> CueToPlay, FVector Location, FName NarrativeRow, class USceneComponent* Component);
     void BndEvt__Abiotic_PlayerController_NPCRadioAudio_K2Node_ComponentBoundEvent_0_OnAudioFinished__DelegateSignature();
     void Request_ApplyDragDrop(FInventorySlotSelected_Struct IncomingItemSlot, TEnumAsByte<E_InventorySlotType::Type> IncomingSlotType, FInventorySlotSelected_Struct ItemSlotToCheck, TEnumAsByte<E_InventorySlotType::Type> SlotTypeToCheck, bool IsSplitStack, int32 StackSize, TEnumAsByte<E_ItemDragDropOutcome::Type> LocalOutcome);
     void Request_SplitStackDrop(const FInventorySlotSelected_Struct& ItemSlot, int32 StackSize);
@@ -339,6 +341,6 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     void ItemDragStarted__DelegateSignature(TEnumAsByte<E_InventorySlotType::Type> Item Type);
     void HeldInteractEnded__DelegateSignature();
     void HeldInteractStarted__DelegateSignature(double InteractionDuration);
-}; // Size: 0x1270
+}; // Size: 0x1288
 
 #endif

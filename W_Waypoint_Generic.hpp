@@ -18,6 +18,7 @@ class UW_Waypoint_Generic_C : public UUserWidget
     double CallForHelpStart;                                                          // 0x03B8 (size: 0x8)
     FName WaypointRowName;                                                            // 0x03C0 (size: 0x8)
 
+    void UpdateName();
     void SetArrow(bool Visible, FVector2D Direction);
     void OnLoaded_A3D3539E4A95F1B5962DC8BAE7A8AFEB(class UObject* Loaded);
     void UpdateProgressBar();

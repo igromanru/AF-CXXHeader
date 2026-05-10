@@ -15,7 +15,8 @@ namespace E_InventorySlotType {
         NewEnumerator18 = 12,
         NewEnumerator19 = 13,
         NewEnumerator20 = 14,
-        E_MAX = 15,
+        NewEnumerator21 = 15,
+        E_MAX = 16,
     };
 }
 

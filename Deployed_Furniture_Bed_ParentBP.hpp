@@ -19,6 +19,7 @@ class ADeployed_Furniture_Bed_ParentBP_C : public AAbioticDeployed_Furniture_Par
     FString Local_BedOwnerLastPlayerName;                                             // 0x08C0 (size: 0x10)
     class AAbiotic_PlayerState_C* BedOwnerPlayerState;                                // 0x08D0 (size: 0x8)
 
+    void OnRep_CharacterSleepingInBed();
     void OnRep_BedOwnerPlayerState();
     void OnRep_BedOwnerLastPlayerName();
     bool CanKickPlayerOutOfBed();
@@ -41,6 +42,7 @@ class ADeployed_Furniture_Bed_ParentBP_C : public AAbioticDeployed_Furniture_Par
     void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void DeliverString(FString String, bool FromSave);
     void LocalBedOwnerLastPlayerName();
+    void SleepingOccupantChanged_FX();
     void ExecuteUbergraph_Deployed_Furniture_Bed_ParentBP(int32 EntryPoint);
     void OccupantSleepingStateChange__DelegateSignature(bool Sleeping);
 }; // Size: 0x8D8

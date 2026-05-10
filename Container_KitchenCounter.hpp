@@ -15,7 +15,7 @@ class AContainer_KitchenCounter_C : public ADeployed_Container_ParentBP_C
     bool ShowBackboard;                                                               // 0x0959 (size: 0x1)
     bool Laboratory;                                                                  // 0x095A (size: 0x1)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void UserConstructionScript();
     void Timeline__FinishedFunc();
     void Timeline__UpdateFunc();

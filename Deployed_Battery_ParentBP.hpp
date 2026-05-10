@@ -34,7 +34,7 @@ class ADeployed_Battery_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_
     void UpdatePullingPowerLevelFX();
     void UpdateBatteryLevelFX();
     void OnLoadedFromSave(double NewLifespan);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void CreateBatteryLevelMaterials();
     void OnRep_DevicesPullingPower();
     void OnRep_BatteryPercentage();
@@ -62,6 +62,7 @@ class ADeployed_Battery_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_
     void TryPerformBatteryChangeOnUse();
     void UseItemSecondary_LocalFX(class AAbiotic_Character_ParentBP_C* UsingCharacter, class AActor* TargetActor);
     void UseItem_OnTarget(class AActor* TargetActor);
+    void StopUsingItem(class AAbiotic_Character_ParentBP_C* UsingCharacter);
     void ReceiveBeginPlay();
     void TogglePowerFX();
     void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);

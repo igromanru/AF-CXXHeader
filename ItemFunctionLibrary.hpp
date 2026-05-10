@@ -4,6 +4,11 @@
 class UItemFunctionLibrary_C : public UBlueprintFunctionLibrary
 {
 
+    void IsItemPlayerPet?(const FGameplayTagContainer& TagContainer, class UObject* __WorldContext, bool& Pet);
+    void DoesItemSupportWeaponCoatings(FAbiotic_InventoryItemStruct& ItemData, class UObject* __WorldContext, bool& Supported);
+    void ReduceWeaponCoatingDurability(const FAbiotic_InventoryChangeableDataStruct& ChangeableData, double DurabilityLossAmount, class UObject* __WorldContext, bool& CoatingWasRemoved);
+    void HasWeaponCoating?(FAbiotic_InventoryChangeableDataStruct& ChangeableData, class UObject* __WorldContext, bool& HasCoating, FName& CoatingRow);
+    FName ConvertBetweenNpcRowAndItemRow(FName RowName, class UObject* __WorldContext);
     void TryGetCorrectItemSlotIcon(const FAbiotic_InventoryChangeableDataStruct& ChangeableData, FName ItemRowName, TSoftObjectPtr<UTexture2D> DefaultIcon, class UObject* __WorldContext, TSoftObjectPtr<UTexture2D>& Icon);
     void GetTeleporterIdentifier(int32 Index, class UObject* __WorldContext, bool& Found, FString& Identifier);
     void CanPlayerAccessItem(class AAbiotic_PlayerCharacter_C* PlayerCharacter, FDataTableRowHandle Item, int32 RequiredCount, bool IncludeItemTransporterBenchUpgrade, class UObject* __WorldContext, bool& Accessible);
@@ -65,8 +70,8 @@ class UItemFunctionLibrary_C : public UBlueprintFunctionLibrary
     void Get Long Interact Duration Based on Tag(FGameplayTag Tag, float BaseValue, FStatModifierRowHandle Modifier, class AAbiotic_PlayerCharacter_C* InteractingCharacter, class UObject* __WorldContext, double& Duration);
     FText SlotTypeToDisplayText(TEnumAsByte<E_InventorySlotType::Type> Index, class UObject* __WorldContext);
     bool IsItemRadioactive(FDataTableRowHandle& ItemDataTable, FAbiotic_InventoryChangeableDataStruct& ChangeableData, class UObject* __WorldContext, double& RadiationAmount);
-    void Find Owning Character Medical Items(class AAbiotic_PlayerCharacter_C* OwningCharacter, class UObject* __WorldContext, TMap<FName, int32>& ItemsFound);
-    void DetermineDroppedItemOutcome(FInventorySlotSelected_Struct IncomingItemSlot, TEnumAsByte<E_InventorySlotType::Type> IncomingSlotType, FInventorySlotSelected_Struct ItemSlotToCheck, TEnumAsByte<E_InventorySlotType::Type> SlotTypeToCheck, bool IsSplitStack, int32 StackSize, class UAbiotic_InventoryComponent_C* IncomingInventory, class UAbiotic_InventoryComponent_C* InventoryToCheck, class UObject* __WorldContext, TEnumAsByte<E_ItemDragDropOutcome::Type>& Outcome, int32& Leftovers);
+    void Find Owning Character Medical Items(class AAbiotic_PlayerCharacter_C* OwningCharacter, bool SkipTinctures, class UObject* __WorldContext, TMap<FName, int32>& ItemsFound);
+    void DetermineDroppedItemOutcome(FInventorySlotSelected_Struct IncomingItemSlot, TEnumAsByte<E_InventorySlotType::Type> IncomingSlotType, FInventorySlotSelected_Struct ItemSlotToCheck, TEnumAsByte<E_InventorySlotType::Type> SlotTypeToCheck, bool IsSplitStack, int32 StackSize, class UAbiotic_InventoryComponent_C* IncomingInventory, class UAbiotic_InventoryComponent_C* InventoryToCheck, class UObject* __WorldContext, TEnumAsByte<E_ItemDragDropOutcome::Type>& Outcome, int32& Leftovers, FText& ErrorMessage);
     void GetNextFoodStageItem(const FDataTableRowHandle& OriginalItem, ECookingState NextStage, int32 StovewareType, class UObject* __WorldContext, bool& Success, FDataTableRowHandle& ItemRow, FAbiotic_InventoryChangeableDataStruct& ChangeableData);
     TEnumAsByte<E_InventorySlotType::Type> IndexToSlotType(int32 Index, class UObject* __WorldContext);
     int32 SlotTypeToIndex(TEnumAsByte<E_InventorySlotType::Type> SlotType, class UObject* __WorldContext);

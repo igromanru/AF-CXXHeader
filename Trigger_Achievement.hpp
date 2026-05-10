@@ -3,9 +3,9 @@
 
 class ATrigger_Achievement_C : public AAbiotic_TriggerVolume_ParentBP_C
 {
-    FAchievementRowHandle Achievement;                                                // 0x0348 (size: 0x20)
+    FAchievementRowHandle Achievement;                                                // 0x0368 (size: 0x20)
 
     void ProcessTriggerOverlap(class AActor* Actor, bool& Success);
-}; // Size: 0x368
+}; // Size: 0x388
 
 #endif

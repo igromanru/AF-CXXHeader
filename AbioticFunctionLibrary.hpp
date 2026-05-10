@@ -4,6 +4,9 @@
 class UAbioticFunctionLibrary_C : public UBlueprintFunctionLibrary
 {
 
+    void GetHostilityTowardsTarget(class UObject* Owner, class UObject* OtherTarget, class UObject* __WorldContext, bool& Hostile);
+    bool GetPetData(FName RowName, class UObject* __WorldContext, FPet_Struct& PetData);
+    FVector GetGravityForCharacter(class AActor* OverrideActor, class AAbiotic_Character_ParentBP_C* Character, TEnumAsByte<E_GravityOverrideType::Type> GravityType, class UObject* __WorldContext);
     void GetCustomizationTableCategoryName(const class UDataTable*& Table, class UObject* __WorldContext, FString& LocalizedText);
     void IsCompendiumEntryAccessible(FGameplayTag CompendiumFilterTag, FName EntryName, class UObject* __WorldContext, bool& Accessible);
     void IsReceivingDamageFromRangedWeapon(TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageTypeClass, class AActor* DamageCauser, class UObject* __WorldContext, bool& Received);

@@ -20,7 +20,10 @@ struct FAbiotic_WeaponAnimationData_Struct
     TSoftObjectPtr<UAnimMontage> ItemFidget01_41_EF3421BE4EDF685FCDCCAFB08AEAB92F;    // 0x0230 (size: 0x28)
     TSoftObjectPtr<UAnimMontage> ItemFidget02_42_58E7A00141AB8093206F66B14E149AD6;    // 0x0258 (size: 0x28)
     TSoftObjectPtr<UAnimMontage> ItemEquip_45_AABDECDE4E6B3F3912D6AD832ACE7A32;       // 0x0280 (size: 0x28)
+    TSoftClassPtr<UAnimInstance> TP_AnimBP_61_EF75DB7B46EAC3D7E960DE9DAB5A880D;       // 0x02A8 (size: 0x28)
+    TSoftObjectPtr<UAnimMontage> TP_ItemUse_64_CEC7DBAA46A792810CC35F88A1E60B15;      // 0x02D0 (size: 0x28)
+    TSoftObjectPtr<UAnimMontage> TP_ItemUseSecondary_66_53D8DBB0434328B2E75F9CA84556B582; // 0x02F8 (size: 0x28)
 
-}; // Size: 0x2A8
+}; // Size: 0x320
 
 #endif

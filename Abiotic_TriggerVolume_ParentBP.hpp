@@ -21,7 +21,9 @@ class AAbiotic_TriggerVolume_ParentBP_C : public AActor
     FSaveData_Trigger_Struct CurrentSaveData;                                         // 0x0328 (size: 0x18)
     bool RunTriggerOnWorldLoad;                                                       // 0x0340 (size: 0x1)
     bool LocalOnlyTrigger;                                                            // 0x0341 (size: 0x1)
+    FWorldFlagRowHandle BlockingWorldFlag;                                            // 0x0348 (size: 0x20)
 
+    bool ShouldAllowTriggerOverlap();
     void ResetTriggerState();
     void TriggerLimitReached?(bool& LimitReached);
     void SaveTriggerData();
@@ -36,6 +38,6 @@ class AAbiotic_TriggerVolume_ParentBP_C : public AActor
     void OnLoadedFromSave();
     void ExecuteUbergraph_Abiotic_TriggerVolume_ParentBP(int32 EntryPoint);
     void WasTriggered__DelegateSignature();
-}; // Size: 0x342
+}; // Size: 0x368
 
 #endif

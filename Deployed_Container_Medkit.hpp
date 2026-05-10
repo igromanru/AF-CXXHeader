@@ -11,7 +11,7 @@ class ADeployed_Container_Medkit_C : public ADeployed_Container_ParentBP_C
     FRotator LidClosedRot;                                                            // 0x0940 (size: 0x18)
     FRotator LidOpenRot;                                                              // 0x0958 (size: 0x18)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void LidAnimTimeline__FinishedFunc();
     void LidAnimTimeline__UpdateFunc();
     void ToggleOpenFX(bool Open);

@@ -24,7 +24,23 @@ class AAbiotic_Weapon_ParentBP_C : public AAbiotic_Item_Held_C
     bool IsUseToggleable;                                                             // 0x0B53 (size: 0x1)
     class UAudioComponent* UseSound;                                                  // 0x0B58 (size: 0x8)
     double MaxXPPerReload;                                                            // 0x0B60 (size: 0x8)
+    bool WeaponCoatingApplied;                                                        // 0x0B68 (size: 0x1)
+    class UMaterialInterface* WeaponCoatingMaterial;                                  // 0x0B70 (size: 0x8)
+    class UWeaponCoating_ParentBP_C* ActiveWeaponCoating;                             // 0x0B78 (size: 0x8)
+    class UPrimitiveComponent* RuntimeThermalVolume;                                  // 0x0B80 (size: 0x8)
+    class UNiagaraSystem* WeaponCoatingHitParticle;                                   // 0x0B88 (size: 0x8)
+    class USoundBase* WeaponCoatingHitSound;                                          // 0x0B90 (size: 0x8)
+    FName ActiveWeaponCoatingRow;                                                     // 0x0B98 (size: 0x8)
 
+    void Server_OnItemLiquidUpdated();
+    void OnRep_ActiveWeaponCoatingRow();
+    void ShouldConsumeResource(bool& Consume);
+    void ShouldBypassDamageResistance(bool& ShouldBypass);
+    void GetThermalOverlapPrimitives(TArray<class UPrimitiveComponent*>& OutPrimitives);
+    void UpdateMeshMaterials();
+    void UpdateWeaponCoatingMaterials();
+    void Server_AddWeaponCoating();
+    void Server_RemoveWeaponCoating();
     double GetProjectileSpeedMultiplier();
     void PlayToggleUseAnimationForFirstAndThirdPerson();
     void SetUseToggle(bool NewActive);
@@ -62,6 +78,8 @@ class AAbiotic_Weapon_ParentBP_C : public AAbiotic_Item_Held_C
     void OnRep_IsCharging();
     double GetDamageMultiplier(FHitResult HitResult);
     void Get Magazine Ammo Deficit(int32& MissingRounds);
+    void OnLoaded_7B573E93411E28451C49AAAD8DAD094F(class UObject* Loaded);
+    void OnLoaded_260DF76F412A11E2589ED2B31141E8C2(class UObject* Loaded);
     void SetupItem();
     void LoadAmmoVisuals(int32 AmmoCount, const class AAbiotic_PlayerCharacter_C*& OwningCharacter, double ReloadDuration);
     void Use Item_Secondary(class AAbiotic_Character_ParentBP_C* UsingCharacter, FTransform Transform, class AActor* TargetActor);
@@ -69,10 +87,10 @@ class AAbiotic_Weapon_ParentBP_C : public AAbiotic_Item_Held_C
     void Server_OnHit(FHitResult HitResult);
     void Broadcast_ParticleEffectAndSound(class UNiagaraSystem* NiagaraParticle, FVector Location, class USoundBase* OptionalSound);
     void ReceiveTick(float DeltaSeconds);
-    void ReceiveBeginPlay();
     void Request_SetCharging(bool Charging);
     void Server_DamageBlockedByWeapon(FHitResult Hit Result, class AActor* Instigator);
     void  Modify Reload XP From Reload Amount(int32 AmmoToReload, bool Incremental);
+    void ReceiveBeginPlay();
     void Request_AmmoWarningMessage(const class AAbiotic_PlayerCharacter_C*& UsingCharacter, const FText& AmmoType);
     void Local_NewAmmoSelected(FName AmmoType);
     void Request_ChangeAmmoType(int32 Index);
@@ -82,7 +100,12 @@ class AAbiotic_Weapon_ParentBP_C : public AAbiotic_Item_Held_C
     void UseToggleUpdated(bool NewActive);
     void Local_SetUseToggle(bool NewActive);
     void Request_SetUseToggle(bool NewActive);
+    void Server_OnDamageApplied(class AActor* DamagedActor, double RawDamage, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType, FHitResult HitResult, bool IsMelee, class AActor* DamageSource);
+    void Server_OnProjectileFired(class AAbioticProjectile_ParentBP_C* Projectile);
+    void OnProjectileHitTarget(class AActor* DamagedActor, double RawDamage, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType, FHitResult HitResult, class AAbioticProjectile_ParentBP_C* Projectile);
+    void Broadcast_CoatingHitFX(FVector Location, FRotator Rotation);
+    void LoadCoatingFX(TSoftObjectPtr<UNiagaraSystem> Particle, TSoftObjectPtr<USoundBase> Sound);
     void ExecuteUbergraph_Abiotic_Weapon_ParentBP(int32 EntryPoint);
-}; // Size: 0xB68
+}; // Size: 0xBA0
 
 #endif

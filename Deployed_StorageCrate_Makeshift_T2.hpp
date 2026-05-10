@@ -9,7 +9,7 @@ class ADeployed_StorageCrate_Makeshift_T2_C : public ADeployed_Container_ParentB
     TEnumAsByte<ETimelineDirection::Type> Timeline__Direction_0F7ACEE543E910E16E0818BCD8CE3DA0; // 0x0934 (size: 0x1)
     class UTimelineComponent* Timeline;                                               // 0x0938 (size: 0x8)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void UserConstructionScript();
     void Timeline__FinishedFunc();
     void Timeline__UpdateFunc();

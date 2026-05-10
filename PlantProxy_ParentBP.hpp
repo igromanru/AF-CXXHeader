@@ -7,6 +7,7 @@ class APlantProxy_ParentBP_C : public AItemProxyParent_BP_C
     class USceneComponent* Scene;                                                     // 0x0358 (size: 0x8)
     EPlantGrowthStage GrowthStage;                                                    // 0x0360 (size: 0x1)
     bool DestroyPlantAfterHarvest;                                                    // 0x0361 (size: 0x1)
+    class USoundBase* PlantGrowSound;                                                 // 0x0368 (size: 0x8)
 
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
@@ -16,7 +17,7 @@ class APlantProxy_ParentBP_C : public AItemProxyParent_BP_C
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanLongInteractWith_A(bool& Success);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);
@@ -31,6 +32,7 @@ class APlantProxy_ParentBP_C : public AItemProxyParent_BP_C
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void Landing Damage Multiplier(double Damage, double& DamageMultiplier);
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
+    void PlayGrowthSound();
     void SetAttachedTextureOverride(TArray<TSoftObjectPtr<UMaterialInterface>>& TextureVariance);
     void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
     bool CanDecay();
@@ -62,6 +64,6 @@ class APlantProxy_ParentBP_C : public AItemProxyParent_BP_C
     void ProxyMeshLoaded();
     void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void ExecuteUbergraph_PlantProxy_ParentBP(int32 EntryPoint);
-}; // Size: 0x362
+}; // Size: 0x370
 
 #endif

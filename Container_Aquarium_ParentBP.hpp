@@ -10,7 +10,7 @@ class AContainer_Aquarium_ParentBP_C : public ADeployed_Container_ParentBP_C
     class UAudioComponent* BubblerAudio;                                              // 0x0940 (size: 0x8)
     TArray<class UBP_FishTankMesh_C*> FishMeshes;                                     // 0x0948 (size: 0x10)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void UpdateInventoryFish();
     void InitFishSplines();
     void ReceiveBeginPlay();

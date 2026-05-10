@@ -33,7 +33,7 @@ class AContainer_LaserCollector_C : public AAbioticDeployed_Furniture_ParentBP_C
     void LaserCollectorTimer();
     void UpdateLaserLevelFX();
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void OnRep_CollectionState();
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void DelayedSave();

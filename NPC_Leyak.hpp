@@ -3,29 +3,29 @@
 
 class ANPC_Leyak_C : public ANPC_Flying_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x20F0 (size: 0x8)
-    class USphereComponent* DamageSphere;                                             // 0x20F8 (size: 0x8)
-    class USphereComponent* GhostCollisionOverlap;                                    // 0x2100 (size: 0x8)
-    float Timeline_Dissolve_NewTrack_1_039C1F844D7D7D0E8CA9FEBA672ECF59;              // 0x2108 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> Timeline_Dissolve__Direction_039C1F844D7D7D0E8CA9FEBA672ECF59; // 0x210C (size: 0x1)
-    class UTimelineComponent* Timeline_Dissolve;                                      // 0x2110 (size: 0x8)
-    float RequiredMegalightDuration;                                                  // 0x2118 (size: 0x4)
-    class AAbioticCharacter* TargetPlayer;                                            // 0x2120 (size: 0x8)
-    bool HasBeenXrayed;                                                               // 0x2128 (size: 0x1)
-    bool ViewedByTarget;                                                              // 0x2129 (size: 0x1)
-    double CachedTimeSeen;                                                            // 0x2130 (size: 0x8)
-    double DistanceDifferenceToDespawn;                                               // 0x2138 (size: 0x8)
-    double SeenDespawnTime;                                                           // 0x2140 (size: 0x8)
-    bool DealDamageInfront;                                                           // 0x2148 (size: 0x1)
-    FTimerHandle DamageTimer;                                                         // 0x2150 (size: 0x8)
-    class ULeyakDirectorComponent_C* LinkedLeyakDirector;                             // 0x2158 (size: 0x8)
-    double StuckStartTime;                                                            // 0x2160 (size: 0x8)
-    bool PotentiallyStuck;                                                            // 0x2168 (size: 0x1)
-    bool AbsolutelyStuck;                                                             // 0x2169 (size: 0x1)
-    double TimeAllowedToBeStuck;                                                      // 0x2170 (size: 0x8)
-    TSubclassOf<class AResourceNode_ParentBP_C> ItemDropWhenBanished;                 // 0x2178 (size: 0x8)
-    FLinearColor DebugColor;                                                          // 0x2180 (size: 0x10)
-    TEnumAsByte<E_LeyakType::Type> LeyakType;                                         // 0x2190 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x21B8 (size: 0x8)
+    class USphereComponent* DamageSphere;                                             // 0x21C0 (size: 0x8)
+    class USphereComponent* GhostCollisionOverlap;                                    // 0x21C8 (size: 0x8)
+    float Timeline_Dissolve_NewTrack_1_039C1F844D7D7D0E8CA9FEBA672ECF59;              // 0x21D0 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> Timeline_Dissolve__Direction_039C1F844D7D7D0E8CA9FEBA672ECF59; // 0x21D4 (size: 0x1)
+    class UTimelineComponent* Timeline_Dissolve;                                      // 0x21D8 (size: 0x8)
+    float RequiredMegalightDuration;                                                  // 0x21E0 (size: 0x4)
+    class AAbioticCharacter* TargetPlayer;                                            // 0x21E8 (size: 0x8)
+    bool HasBeenXrayed;                                                               // 0x21F0 (size: 0x1)
+    bool ViewedByTarget;                                                              // 0x21F1 (size: 0x1)
+    double CachedTimeSeen;                                                            // 0x21F8 (size: 0x8)
+    double DistanceDifferenceToDespawn;                                               // 0x2200 (size: 0x8)
+    double SeenDespawnTime;                                                           // 0x2208 (size: 0x8)
+    bool DealDamageInfront;                                                           // 0x2210 (size: 0x1)
+    FTimerHandle DamageTimer;                                                         // 0x2218 (size: 0x8)
+    class ULeyakDirectorComponent_C* LinkedLeyakDirector;                             // 0x2220 (size: 0x8)
+    double StuckStartTime;                                                            // 0x2228 (size: 0x8)
+    bool PotentiallyStuck;                                                            // 0x2230 (size: 0x1)
+    bool AbsolutelyStuck;                                                             // 0x2231 (size: 0x1)
+    double TimeAllowedToBeStuck;                                                      // 0x2238 (size: 0x8)
+    TSubclassOf<class AResourceNode_ParentBP_C> ItemDropWhenBanished;                 // 0x2240 (size: 0x8)
+    FLinearColor DebugColor;                                                          // 0x2248 (size: 0x10)
+    TEnumAsByte<E_LeyakType::Type> LeyakType;                                         // 0x2258 (size: 0x1)
 
     void SetLeyakInSleepMinigame();
     void GetLinkedDirectorFallback();
@@ -35,7 +35,7 @@ class ANPC_Leyak_C : public ANPC_Flying_ParentBP_C
     void TargetableByTurrets(bool& Targetable);
     void LeyakDamageTarget(class AActor* HitActor);
     void Server_UpdateDamageVolume();
-    void TargetableByNPCs(bool Maintain, bool& Targetable);
+    void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
     void CheckViewedByTargetDistance();
     void TriggerViewedByTarget();
     void CheckLineOfSightFromTarget(bool& Visible);
@@ -63,6 +63,6 @@ class ANPC_Leyak_C : public ANPC_Flying_ParentBP_C
     void PrepareLeyakDespawn();
     void OnMegalightHit(class UAbiotic_MegalightComponent_C* megalight, int32 Tier);
     void ExecuteUbergraph_NPC_Leyak(int32 EntryPoint);
-}; // Size: 0x2191
+}; // Size: 0x2259
 
 #endif

@@ -49,13 +49,14 @@ class AAbioticDeployed_Furniture_ParentBP_C : public AAbioticDeployed_ParentBP_C
     void Targetable By Triggers(bool& Targetable);
     void GetFactionTeam(TEnumAsByte<E_Factions::Type>& Faction);
     void GetSpottablePoints(TArray<FVector>& SpottablePoints);
-    void TargetableByNPCs(bool Maintain, bool& Targetable);
+    void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
     void RequiresRangedWeaponToEngage(bool& RequiresRanged);
     void DoesAwardSkillXPWhenHit(bool& MeleeXP, bool& RangedXP, double& XPMultiplier);
     void IsStompable(class AAbiotic_Character_ParentBP_C* AskingCharacter, bool& IsStompable);
     void GetBuffOverlayMeshes(TArray<class UMeshComponent*>& Meshes);
     bool GetCurrentLightLevel(double& LightLevel);
     bool GetSpottability(double& Spottability, bool& Crouched);
+    void OnRep_SeatsOccupied();
     FBuffDebuffRowHandle GetSeatRestBuff(class AAbiotic_Character_ParentBP_C* Character);
     void IsPowered(bool& PowerOn);
     void GetDeployedActorBounds(FVector& Origin, FVector& BoxExtent);
@@ -107,6 +108,7 @@ class AAbioticDeployed_Furniture_ParentBP_C : public AAbioticDeployed_ParentBP_C
     void OnLevelLoadUpdated(class ULevelStreaming* Level);
     void OnLevelLoaded(class ULevelStreaming* Level);
     void OnLevelUnloaded(class ULevelStreaming* Level);
+    void SeatOccupied_FX();
     void ExecuteUbergraph_AbioticDeployed_Furniture_ParentBP(int32 EntryPoint);
     void OccupantSittingStateChanged__DelegateSignature(int32 SeatIndex, bool Sitting);
 }; // Size: 0x84A

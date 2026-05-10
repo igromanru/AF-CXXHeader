@@ -14,6 +14,7 @@ class AItem_Consumable_ParentBP_C : public AAbiotic_Item_ParentBP_C
     FString LastKnownID;                                                              // 0x0B30 (size: 0x10)
     FGuid Consume Delay GUID;                                                         // 0x0B40 (size: 0x10)
 
+    class UAnimMontage* GetTPMontage(bool Secondary);
     TArray<FItemActionRowHandle> GetSecondaryItemActionArray();
     TArray<FItemActionRowHandle> GetPrimaryItemActionArray();
     bool GetFPArmsUseMontageOverride(bool SecondaryUse, TSoftObjectPtr<UAnimMontage>& Montage);
@@ -34,7 +35,6 @@ class AItem_Consumable_ParentBP_C : public AAbiotic_Item_ParentBP_C
     void IsApplyingSplintBuff(class AAbiotic_Character_ParentBP_C* UsingCharacter, FBuffDebuffRowHandle Buff to be applied, bool& Success, double& SplintDuration);
     void Server_Consumed_Trigger(class AAbiotic_Character_ParentBP_C* AffectedCharacter, bool& Success);
     void PlayTPMontage(class AAbiotic_PlayerCharacter_C* Player, bool Secondary, float PlayRate);
-    class UAnimMontage* GetTPMontage(bool Secondary);
     void Check Item Tag Query(class AActor* TargetActor, bool& Success, FText& PopupText);
     void Can Use_Secondary(bool& Can Use, class AActor*& TargetActor, bool& OverrideLogic);
     void Update Owning Character Inventory(class AAbiotic_PlayerCharacter_C* UsingCharacter);
@@ -46,7 +46,7 @@ class AItem_Consumable_ParentBP_C : public AAbiotic_Item_ParentBP_C
     void UseItem_BroadcastFX(class AAbiotic_Character_ParentBP_C* UsingCharacter, bool SecondaryUse);
     void ReceiveBeginPlay();
     void Use Item_Secondary(class AAbiotic_Character_ParentBP_C* UsingCharacter, FTransform Transform, class AActor* TargetActor);
-    void ShareableItemInteractionText(class AAbiotic_PlayerCharacter_C* TargetCharacter, class AAbiotic_PlayerCharacter_C* UsingCharacter);
+    void ShareableItemInteractionText(class AAbiotic_Character_ParentBP_C* TargetCharacter, class AAbiotic_PlayerCharacter_C* UsingCharacter);
     void Server_OnLiquidValueUpdated();
     void ExecuteUbergraph_Item_Consumable_ParentBP(int32 EntryPoint);
 }; // Size: 0xB50

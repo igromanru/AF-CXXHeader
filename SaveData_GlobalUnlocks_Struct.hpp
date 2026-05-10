@@ -12,7 +12,8 @@ struct FSaveData_GlobalUnlocks_Struct
     TArray<FName> GlobalCompendiumNarrative_40_EEBC4619442FF6008D8282A684063892;      // 0x00E0 (size: 0x10)
     TArray<FName> GlobalCompendiumExploration_42_D35947E2407A37D800A2538AB82EDEA5;    // 0x00F0 (size: 0x10)
     FString ActiveLeyakContainmentID_48_759AE779473F27DD9483AAB34D22A795;             // 0x0100 (size: 0x10)
+    TArray<FName> GlobalItemsDistilled_52_359C87824289E29B1CEDBFB9CFCEDEBC;           // 0x0110 (size: 0x10)
 
-}; // Size: 0x110
+}; // Size: 0x120
 
 #endif

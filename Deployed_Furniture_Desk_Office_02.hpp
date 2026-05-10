@@ -8,7 +8,7 @@ class ADeployed_Furniture_Desk_Office_02_C : public ADeployed_Container_ParentBP
     class UStaticMeshComponent* SM_Desk_Drawer_02;                                    // 0x0930 (size: 0x8)
     class UStaticMeshComponent* SM_Desk_Drawer_01;                                    // 0x0938 (size: 0x8)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
 }; // Size: 0x940
 
 #endif

@@ -3,27 +3,27 @@
 
 class AWeapon_Gun_Vacuum_C : public AAbiotic_Weapon_Gun_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0BD0 (size: 0x8)
-    class UCapsuleComponent* AirFunnelOverlap;                                        // 0x0BD8 (size: 0x8)
-    class USphereComponent* VacuumOverlap;                                            // 0x0BE0 (size: 0x8)
-    class UNiagaraComponent* Niagara_AirFunnel;                                       // 0x0BE8 (size: 0x8)
-    class URechargeableComponent_C* RechargeableComponent;                            // 0x0BF0 (size: 0x8)
-    TArray<class UPrimitiveComponent*> PulledComponents;                              // 0x0BF8 (size: 0x10)
-    double VacuumSpeed;                                                               // 0x0C08 (size: 0x8)
-    class UMeshComponent* FP_Mesh;                                                    // 0x0C10 (size: 0x8)
-    class UMeshComponent* TP_Mesh;                                                    // 0x0C18 (size: 0x8)
-    class UAudioComponent* Vacuum_SFXComp;                                            // 0x0C20 (size: 0x8)
-    class USoundBase* VacuumStart_SFX;                                                // 0x0C28 (size: 0x8)
-    class USoundBase* VacuumEnd_SFX;                                                  // 0x0C30 (size: 0x8)
-    class USoundBase* PestIn_SFX;                                                     // 0x0C38 (size: 0x8)
-    class USoundBase* PestOut_SFX;                                                    // 0x0C40 (size: 0x8)
-    bool IsLocalWeapon;                                                               // 0x0C48 (size: 0x1)
-    bool FunnelActive;                                                                // 0x0C49 (size: 0x1)
-    TArray<FVacuumSuctionableData_Struct> SuctionableData;                            // 0x0C50 (size: 0x10)
-    FVacuumSuctionableData_Struct CurrentSuctionedData;                               // 0x0C60 (size: 0xD0)
-    int32 SuctionedIndex;                                                             // 0x0D30 (size: 0x4)
-    int32 LastIndex;                                                                  // 0x0D34 (size: 0x4)
-    bool RecentlyFiredProjectile;                                                     // 0x0D38 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0C08 (size: 0x8)
+    class UCapsuleComponent* AirFunnelOverlap;                                        // 0x0C10 (size: 0x8)
+    class USphereComponent* VacuumOverlap;                                            // 0x0C18 (size: 0x8)
+    class UNiagaraComponent* Niagara_AirFunnel;                                       // 0x0C20 (size: 0x8)
+    class URechargeableComponent_C* RechargeableComponent;                            // 0x0C28 (size: 0x8)
+    TArray<class UPrimitiveComponent*> PulledComponents;                              // 0x0C30 (size: 0x10)
+    double VacuumSpeed;                                                               // 0x0C40 (size: 0x8)
+    class UMeshComponent* FP_Mesh;                                                    // 0x0C48 (size: 0x8)
+    class UMeshComponent* TP_Mesh;                                                    // 0x0C50 (size: 0x8)
+    class UAudioComponent* Vacuum_SFXComp;                                            // 0x0C58 (size: 0x8)
+    class USoundBase* VacuumStart_SFX;                                                // 0x0C60 (size: 0x8)
+    class USoundBase* VacuumEnd_SFX;                                                  // 0x0C68 (size: 0x8)
+    class USoundBase* PestIn_SFX;                                                     // 0x0C70 (size: 0x8)
+    class USoundBase* PestOut_SFX;                                                    // 0x0C78 (size: 0x8)
+    bool IsLocalWeapon;                                                               // 0x0C80 (size: 0x1)
+    bool FunnelActive;                                                                // 0x0C81 (size: 0x1)
+    TArray<FVacuumSuctionableData_Struct> SuctionableData;                            // 0x0C88 (size: 0x10)
+    FVacuumSuctionableData_Struct CurrentSuctionedData;                               // 0x0CA0 (size: 0xD0)
+    int32 SuctionedIndex;                                                             // 0x0D70 (size: 0x4)
+    int32 LastIndex;                                                                  // 0x0D74 (size: 0x4)
+    bool RecentlyFiredProjectile;                                                     // 0x0D78 (size: 0x1)
 
     void Local_FireReleased(bool& ShouldFire);
     void Local_FirePressed(bool& ConsumedByWeapon);
@@ -60,6 +60,6 @@ class AWeapon_Gun_Vacuum_C : public AAbiotic_Weapon_Gun_ParentBP_C
     void BndEvt__Weapon_Gun_Vacuum_VacuumOverlap_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
     void SetVacuumSfxPlaying(bool Playing);
     void ExecuteUbergraph_Weapon_Gun_Vacuum(int32 EntryPoint);
-}; // Size: 0xD39
+}; // Size: 0xD79
 
 #endif

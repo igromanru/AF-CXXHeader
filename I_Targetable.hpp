@@ -17,7 +17,7 @@ class II_Targetable_C : public IInterface
     void IsStompable(class AAbiotic_Character_ParentBP_C* AskingCharacter, bool& IsStompable);
     void DoesAwardSkillXPWhenHit(bool& MeleeXP, bool& RangedXP, double& XPMultiplier);
     void RequiresRangedWeaponToEngage(bool& RequiresRanged);
-    void TargetableByNPCs(bool Maintain, bool& Targetable);
+    void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
     void GetSpottablePoints(TArray<FVector>& SpottablePoints);
     void GetFactionTeam(TEnumAsByte<E_Factions::Type>& Faction);
 }; // Size: 0x28

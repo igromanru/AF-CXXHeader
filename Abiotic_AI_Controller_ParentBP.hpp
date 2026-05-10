@@ -119,7 +119,7 @@ class AAbiotic_AI_Controller_ParentBP_C : public AAbioticAIController
     void IsStompable(class AAbiotic_Character_ParentBP_C* AskingCharacter, bool& IsStompable);
     void DoesAwardSkillXPWhenHit(bool& MeleeXP, bool& RangedXP, double& XPMultiplier);
     void RequiresRangedWeaponToEngage(bool& RequiresRanged);
-    void TargetableByNPCs(bool Maintain, bool& Targetable);
+    void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
     void GetSpottablePoints(TArray<FVector>& SpottablePoints);
     void GetFactionTeam(TEnumAsByte<E_Factions::Type>& Faction);
     bool IsTargetInvisible(class AActor* CombatTarget);

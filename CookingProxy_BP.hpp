@@ -6,7 +6,7 @@ class ACookingProxy_BP_C : public AItemProxyParent_BP_C
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0350 (size: 0x8)
     class UStaticMeshComponent* LiquidMesh;                                           // 0x0358 (size: 0x8)
     class UTextRenderComponent* LiquidLevelDebugText;                                 // 0x0360 (size: 0x8)
-    class UNiagaraComponent* particle;                                                // 0x0368 (size: 0x8)
+    class UNiagaraComponent* Particle;                                                // 0x0368 (size: 0x8)
     class UStaticMeshComponent* PanMesh;                                              // 0x0370 (size: 0x8)
     class UTextRenderComponent* DebugText;                                            // 0x0378 (size: 0x8)
     class UAudioComponent* Audio;                                                     // 0x0380 (size: 0x8)
@@ -53,7 +53,7 @@ class ACookingProxy_BP_C : public AItemProxyParent_BP_C
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanLongInteractWith_A(bool& Success);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);

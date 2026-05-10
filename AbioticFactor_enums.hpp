@@ -195,7 +195,12 @@ enum class EDynamicProperty {
     CookingState = 18,
     Portions = 21,
     StovewareType = 22,
-    EDynamicProperty_MAX = 23,
+    WeaponCoating = 23,
+    CoatingDurability = 27,
+    PetMutation = 25,
+    MutationProgress = 26,
+    XP = 24,
+    EDynamicProperty_MAX = 28,
 };
 
 enum class EFPAnimState {
@@ -248,6 +253,13 @@ enum class EGameSettingType {
     Radio = 2,
     Combo = 3,
     EGameSettingType_MAX = 4,
+};
+
+enum class EGravityCameraBehavior {
+    Default = 0,
+    GravityLocal = 1,
+    WorldGlobal = 2,
+    EGravityCameraBehavior_MAX = 3,
 };
 
 enum class EInventoryMode {
@@ -343,14 +355,13 @@ enum class EProjectileHomingType {
 
 enum class EReleaseGroup {
     Core = 0,
-    DarkEnergy = 1,
-    Residence = 2,
-    CRUX = 3,
-    XMAS25 = 4,
-    LUCA = 5,
-    Future = 6,
-    Development = 7,
-    EReleaseGroup_MAX = 8,
+    MOXY = 1,
+    CAKE = 2,
+    LUCA = 3,
+    AXON = 4,
+    Future = 5,
+    Development = 6,
+    EReleaseGroup_MAX = 7,
 };
 
 enum class ERowValid {

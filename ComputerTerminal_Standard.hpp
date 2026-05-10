@@ -11,6 +11,7 @@ class AComputerTerminal_Standard_C : public AComputerTerminal_ParentBP_C
     TArray<FDataTableRowHandle> Emails;                                               // 0x0368 (size: 0x10)
     TEnumAsByte<E_OS_Themes::Type> Terminal_OS_Theme;                                 // 0x0378 (size: 0x1)
     bool DebugTerminal;                                                               // 0x0379 (size: 0x1)
+    class USoundBase* LureSound;                                                      // 0x0380 (size: 0x8)
 
     void InitWidget();
     void OnRep_HasBeenUsed();
@@ -19,6 +20,6 @@ class AComputerTerminal_Standard_C : public AComputerTerminal_ParentBP_C
     void ReceiveBeginPlay();
     void ChimeLure();
     void ExecuteUbergraph_ComputerTerminal_Standard(int32 EntryPoint);
-}; // Size: 0x37A
+}; // Size: 0x388
 
 #endif

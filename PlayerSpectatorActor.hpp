@@ -3,17 +3,17 @@
 
 class APlayerSpectatorActor_C : public AAbioticCharacter
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0950 (size: 0x8)
-    class UCameraComponent* Camera;                                                   // 0x0958 (size: 0x8)
-    class USpringArmComponent* SpringArm;                                             // 0x0960 (size: 0x8)
-    class APlayerController* OwningController;                                        // 0x0968 (size: 0x8)
-    class AAbiotic_PlayerCharacter_C* FocusPlayer;                                    // 0x0970 (size: 0x8)
-    class AAbiotic_PlayerCharacter_C* OriginalDeadPlayer;                             // 0x0978 (size: 0x8)
-    double Base Turn Rate;                                                            // 0x0980 (size: 0x8)
-    double Base Look Up Rate;                                                         // 0x0988 (size: 0x8)
-    double Ctrls Mouse XSensitivity;                                                  // 0x0990 (size: 0x8)
-    double Ctrls Mouse YSensitivity;                                                  // 0x0998 (size: 0x8)
-    bool Ctrls Invert YAxis;                                                          // 0x09A0 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x09D0 (size: 0x8)
+    class UCameraComponent* Camera;                                                   // 0x09D8 (size: 0x8)
+    class USpringArmComponent* SpringArm;                                             // 0x09E0 (size: 0x8)
+    class APlayerController* OwningController;                                        // 0x09E8 (size: 0x8)
+    class AAbiotic_PlayerCharacter_C* FocusPlayer;                                    // 0x09F0 (size: 0x8)
+    class AAbiotic_PlayerCharacter_C* OriginalDeadPlayer;                             // 0x09F8 (size: 0x8)
+    double Base Turn Rate;                                                            // 0x0A00 (size: 0x8)
+    double Base Look Up Rate;                                                         // 0x0A08 (size: 0x8)
+    double Ctrls Mouse XSensitivity;                                                  // 0x0A10 (size: 0x8)
+    double Ctrls Mouse YSensitivity;                                                  // 0x0A18 (size: 0x8)
+    bool Ctrls Invert YAxis;                                                          // 0x0A20 (size: 0x1)
 
     void UpdatePlayerValues();
     void OnRep_OriginalDeadPlayer();
@@ -30,6 +30,6 @@ class APlayerSpectatorActor_C : public AAbioticCharacter
     void EndSpectator();
     void ReceiveBeginPlay();
     void ExecuteUbergraph_PlayerSpectatorActor(int32 EntryPoint);
-}; // Size: 0x9A1
+}; // Size: 0xA21
 
 #endif

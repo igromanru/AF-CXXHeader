@@ -12,6 +12,7 @@ class UW_OperatingSystem_InboxEntry_C : public UUserWidget
     FName Email Row Name;                                                             // 0x0370 (size: 0x8)
     FCheckBoxStyle CheckBoxStyle_DefaultTheme;                                        // 0x0380 (size: 0xAD0)
     FCheckBoxStyle CheckBoxStyle_StoneTheme;                                          // 0x0E50 (size: 0xAD0)
+    FCheckBoxStyle CheckBoxStyle_SignalTheme;                                         // 0x1920 (size: 0xAD0)
 
     void DisplayNewEmail();
     void PopulateAttachments();
@@ -20,6 +21,6 @@ class UW_OperatingSystem_InboxEntry_C : public UUserWidget
     void BndEvt__EmailCheckbox_K2Node_ComponentBoundEvent_0_OnCheckBoxComponentStateChanged__DelegateSignature(bool bIsChecked);
     void SetAsActiveEmail();
     void ExecuteUbergraph_W_OperatingSystem_InboxEntry(int32 EntryPoint);
-}; // Size: 0x1920
+}; // Size: 0x23F0
 
 #endif

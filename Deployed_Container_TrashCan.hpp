@@ -11,7 +11,7 @@ class ADeployed_Container_TrashCan_C : public ADeployed_Container_ParentBP_C
     FVector LidClosed;                                                                // 0x0940 (size: 0x18)
     FVector LidOpen;                                                                  // 0x0958 (size: 0x18)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void Drawer__FinishedFunc();
     void Drawer__UpdateFunc();
     void ToggleOpenFX(bool Open);

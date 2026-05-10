@@ -23,7 +23,7 @@ class ADeployed_Armor_Stand_C : public ADeployed_Container_ParentBP_C
     void SetAllSkelMeshesUpdate(bool NoSkeletonUpdate);
     void OnRep_PoseNumber();
     void UpdateCurrentArmorVisual(class UMeshComponent*& Mesh, FAbiotic_InventoryItemSlotStruct SlotData);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void UserConstructionScript();
     void InteractWith_A_LocalFX(bool Hold);
     void UpdateArmorState(FAbiotic_InventoryItemSlotStruct SlotData, TEnumAsByte<E_InventorySlotType::Type> SlotType);

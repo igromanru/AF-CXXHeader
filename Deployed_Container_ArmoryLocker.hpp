@@ -12,7 +12,7 @@ class ADeployed_Container_ArmoryLocker_C : public ADeployed_Container_ParentBP_C
     TEnumAsByte<ETimelineDirection::Type> Timeline__Direction_1E43A095483F5E26C37FA28009EBEBE9; // 0x094C (size: 0x1)
     class UTimelineComponent* Timeline;                                               // 0x0950 (size: 0x8)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void Timeline__FinishedFunc();
     void Timeline__UpdateFunc();
     void ToggleOpenFX(bool Open);

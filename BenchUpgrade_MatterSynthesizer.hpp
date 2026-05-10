@@ -30,7 +30,7 @@ class ABenchUpgrade_MatterSynthesizer_C : public ABenchUpgrade_ParentBP_C
     void OnRep_IsContainerNotEmpty();
     void OnRep_NewLootUpdated();
     class UMeshComponent* GetInteractMesh();
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     FText GetItemNameText();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);

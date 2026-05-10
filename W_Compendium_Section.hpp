@@ -20,6 +20,7 @@ class UW_Compendium_Section_C : public UAbioticWidget
     ECompendiumUnlockType SectionType;                                                // 0x0424 (size: 0x1)
     FCompendiumEntryRowHandle CompendiumRow;                                          // 0x0428 (size: 0x20)
     TArray<FText> DamageDefinitionNames;                                              // 0x0448 (size: 0x10)
+    FText OptionalLockedText;                                                         // 0x0458 (size: 0x10)
 
     void SetNewDamageDefinitions(const FGameplayTagQuery& TagQuery, int32 ResistanceType);
     void SetLockedContentText();
@@ -27,6 +28,6 @@ class UW_Compendium_Section_C : public UAbioticWidget
     void Construct();
     void BndEvt__W_Compendium_Section_Button_DebugUnlock_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void ExecuteUbergraph_W_Compendium_Section(int32 EntryPoint);
-}; // Size: 0x458
+}; // Size: 0x468
 
 #endif

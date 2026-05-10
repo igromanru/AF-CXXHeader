@@ -7,11 +7,16 @@ class UBTT_DoRangedAttack_C : public UBTTask_BlueprintBase
     bool TurnBeforeFiring;                                                            // 0x00B0 (size: 0x1)
     bool ResetCounter;                                                                // 0x00B1 (size: 0x1)
     bool SkipCooldown;                                                                // 0x00B2 (size: 0x1)
+    FTimerHandle AbortTimer;                                                          // 0x00B8 (size: 0x8)
+    FTimerHandle WaitTimer;                                                           // 0x00C0 (size: 0x8)
 
+    void ClearTimers();
     double GetTargetDotProduct(class AAIController* OwnerController, class APawn* ControlledPawn);
     void ReceiveExecuteAI(class AAIController* OwnerController, class APawn* ControlledPawn);
     void CombatReset_Event(bool Success);
+    void TryShoot();
+    void FinishedAbortTimer();
     void ExecuteUbergraph_BTT_DoRangedAttack(int32 EntryPoint);
-}; // Size: 0xB3
+}; // Size: 0xC8
 
 #endif

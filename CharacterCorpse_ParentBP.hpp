@@ -35,7 +35,7 @@ class ACharacterCorpse_ParentBP_C : public AAbioticActor_C
     bool GetTargetPriority(TEnumAsByte<E_TargetPriority::Type>& Priority);
     void GetFactionTeam(TEnumAsByte<E_Factions::Type>& Faction);
     void GetSpottablePoints(TArray<FVector>& SpottablePoints);
-    void TargetableByNPCs(bool Maintain, bool& Targetable);
+    void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
     void RequiresRangedWeaponToEngage(bool& RequiresRanged);
     void DoesAwardSkillXPWhenHit(bool& MeleeXP, bool& RangedXP, double& XPMultiplier);
     void IsStompable(class AAbiotic_Character_ParentBP_C* AskingCharacter, bool& IsStompable);
@@ -50,7 +50,7 @@ class ACharacterCorpse_ParentBP_C : public AAbioticActor_C
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanLongInteractWith_A(bool& Success);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);
@@ -98,7 +98,7 @@ class ACharacterCorpse_ParentBP_C : public AAbioticActor_C
     void InteractWith_A_LocalFX(bool Hold);
     void ReceivePointDamage(float Damage, const class UDamageType* DamageType, FVector HitLocation, FVector HitNormal, class UPrimitiveComponent* HitComponent, FName BoneName, FVector ShotFromDirection, class AController* InstigatedBy, class AActor* DamageCauser, const FHitResult& HitInfo);
     void ReceiveBeginPlay();
-    void DropLoot(bool TryToPlaceInInventory, class AAbiotic_PlayerCharacter_C* inventoryOwner);
+    void DropLoot(bool TryToPlaceInInventory, class AAbiotic_PlayerCharacter_C* InventoryOwner);
     void ExecuteUbergraph_CharacterCorpse_ParentBP(int32 EntryPoint);
     void OnGibbed__DelegateSignature();
 }; // Size: 0x3F0

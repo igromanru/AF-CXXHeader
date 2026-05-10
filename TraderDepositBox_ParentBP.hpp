@@ -38,7 +38,7 @@ class ATraderDepositBox_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_
     void OnRep_Tradeable Items();
     void OnRep_Buyable Items();
     FText GetItemNameText();
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void Add Item Into Trade Container(class AActor* Item, int32 Index, int32 Stack);
     void GetTradeContainer(class UAbiotic_InventoryComponent_C*& ContainerInventory);
     void BlankAllScreens();

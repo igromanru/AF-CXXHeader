@@ -13,7 +13,7 @@ class ADeployed_Refrigerator_C : public ADeployed_Container_ParentBP_C
     class UTimelineComponent* Timeline_0;                                             // 0x0950 (size: 0x8)
 
     void UpdateFridgePoweredFX(bool DoorsOpen);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void Timeline_0__FinishedFunc();
     void Timeline_0__UpdateFunc();
     void ToggleOpenFX(bool Open);

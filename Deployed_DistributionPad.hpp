@@ -23,7 +23,7 @@ class ADeployed_DistributionPad_C : public AAbioticDeployed_Furniture_ParentBP_C
     void RemoveContainer(const class UAbiotic_InventoryComponent_C*& Inventory);
     void AddContainer(const class UAbiotic_InventoryComponent_C*& Inventory);
     void SanitizeContainerArray();
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void TogglePowerFX();
     void Broadcast_ItemTransportFX(FVector SourceLocation, FVector TargetLocation);
     void BndEvt__Deployed_DistributionPad_PlayerOverlapSphere_K2Node_ComponentBoundEvent_3_ComponentEndOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);

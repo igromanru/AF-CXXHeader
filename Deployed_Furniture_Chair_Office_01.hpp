@@ -11,20 +11,23 @@ class ADeployed_Furniture_Chair_Office_01_C : public AAbioticDeployed_Furniture_
     TEnumAsByte<ETimelineDirection::Type> SpinChairTimeline__Direction_5DD43E714E18FDB87F0D12B32F5963E7; // 0x0874 (size: 0x1)
     class UTimelineComponent* SpinChairTimeline;                                      // 0x0878 (size: 0x8)
     TSubclassOf<class ADeployed_Furniture_Chair_Office_01_C> ReplacementVersion;      // 0x0880 (size: 0x8)
+    TSubclassOf<class AChairPawn_ParentBP_C> ChairPawnClass;                          // 0x0888 (size: 0x8)
 
+    TSubclassOf<class AAbioticDeployed_ParentBP_C> GetSaveClass();
     class USceneComponent* GetSeatAttachComponent();
     class ADeployed_Furniture_Chair_Office_01_C* SpawnReplacementChair();
     void CheckForWorldPlacedChair();
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void SitLocationParent(class USceneComponent*& ParentComponent);
     void CanLongInteractWith_A(bool& Success);
     void SpinChairTimeline__FinishedFunc();
     void SpinChairTimeline__UpdateFunc();
-    void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void Broadcast_SpinChair();
+    void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void Server_RevertChairClass();
+    void PushFX(class AChairPawn_ParentBP_C* Chair);
     void ExecuteUbergraph_Deployed_Furniture_Chair_Office_01(int32 EntryPoint);
-}; // Size: 0x888
+}; // Size: 0x890
 
 #endif

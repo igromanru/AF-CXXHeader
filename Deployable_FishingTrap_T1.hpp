@@ -9,7 +9,7 @@ class ADeployable_FishingTrap_T1_C : public AContainer_Aquarium_ParentBP_C
     class ADayNightManager_C* DayNightManager;                                        // 0x0988 (size: 0x8)
 
     void TargetableByTurrets(bool& Targetable);
-    void TargetableByNPCs(bool Maintain, bool& Targetable);
+    void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void UpdateInventoryFish();

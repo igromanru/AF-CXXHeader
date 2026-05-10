@@ -22,7 +22,7 @@ class ATV_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
     void GetTVContent(TArray<TSoftObjectPtr<UMaterialInterface>>& OnScreenMaterials, TArray<TSoftObjectPtr<USoundBase>>& AudioLoops);
     void IsPowered(bool& PowerOn);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void OnRep_AudioPlayIndex();
     void OnRep_TV_PoweredOn();
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);

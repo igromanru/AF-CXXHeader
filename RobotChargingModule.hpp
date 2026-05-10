@@ -16,7 +16,7 @@ class ARobotChargingModule_C : public AAbioticDeployed_Furniture_ParentBP_C
     double StartingDurability;                                                        // 0x08A0 (size: 0x8)
     class UMaterialInterface* TopLightMaterial;                                       // 0x08A8 (size: 0x8)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void SpawnerCooldownUpdated();
     void OnRep_RobotActive();

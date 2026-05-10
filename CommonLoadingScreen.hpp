@@ -26,6 +26,7 @@ class ULoadingScreenManager : public UGameInstanceSubsystem
     FLoadingScreenManagerOnSeamlessTravelStart OnSeamlessTravelStart;                 // 0x0068 (size: 0x10)
     void OnSeamlessTravelStart(FString MapName);
 
+    void SetIsShaderCompiling(bool bIsCompiling);
     void RemoveLoadingScreenWatcher(class UObject* Object);
     void K2_SetLoadingScreenCustomText(class UWorld* WorldContextObject, FString NewText);
     FString GetLoadingScreenCustomText();

@@ -11,7 +11,7 @@ class ADeployed_Container_SecurityCartCargo_C : public ADeployed_Container_Cargo
     FRotator LidClosedRot;                                                            // 0x0948 (size: 0x18)
     FRotator LidOpenRot;                                                              // 0x0960 (size: 0x18)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void LidAnimTimeline__FinishedFunc();
     void LidAnimTimeline__UpdateFunc();
     void ToggleOpenFX(bool Open);

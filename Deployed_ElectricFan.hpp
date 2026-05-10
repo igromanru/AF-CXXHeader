@@ -18,7 +18,7 @@ class ADeployed_ElectricFan_C : public AAbioticDeployed_Furniture_ParentBP_C
     float Blade Speed;                                                                // 0x08C0 (size: 0x4)
 
     bool IsFanSpinningFastEnoughToDamage?();
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void ApplyDamageToActor(class AActor* DamageActor, bool& Applied);
     void Gradual Fan Blade Spin__FinishedFunc();
     void Gradual Fan Blade Spin__UpdateFunc();

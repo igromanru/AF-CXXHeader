@@ -5,6 +5,7 @@ class AAbiotic_Item_Held_C : public AAbiotic_Item_ParentBP_C
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0AF0 (size: 0x8)
 
+    void UpdateMeshMaterials();
     void Server_GetAmmoConsumeAmount(double ChargeAmount, int32& AmountToConsume);
     void Local_GetOverrideAmmoIcon(bool& Handled, TSoftObjectPtr<UTexture2D>& Icon);
     void Local_InteractWithLiquidContainer(class ADeployed_LiquidContainer_ParentBP_C* Container, bool& Handled);

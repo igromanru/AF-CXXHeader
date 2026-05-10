@@ -42,7 +42,8 @@ struct FSaveData_CharacterSave_Struct
     TArray<FName> Compendium_Unread_149_38D44AA044D8087E1B4026B3D3723202;             // 0x0280 (size: 0x10)
     TArray<FName> Fish_Unread_157_A91CA2374071D28DF6671F9816A63CA5;                   // 0x0290 (size: 0x10)
     TArray<FName> Journal_Unread_158_D78ED364437E5F530D2BD9A60F06DCE7;                // 0x02A0 (size: 0x10)
+    TArray<FName> ItemsDistilled_162_360CC93D4F1B4060A4AB61AC1E77FFC0;                // 0x02B0 (size: 0x10)
 
-}; // Size: 0x2B0
+}; // Size: 0x2C0
 
 #endif

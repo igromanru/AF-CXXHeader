@@ -11,7 +11,7 @@ class ADeployed_Toilet_Makeshift_C : public AToilet_ParentBP_C
     void UpdateWorldSave(bool Destroyed);
     void OnInventoriesLoadedFromSave(TArray<FSaveData_Inventories_Struct>& Data);
     void GetInventoriesToSave(TArray<class UAbiotic_InventoryComponent_C*>& Inventories);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void ReceiveBeginPlay();
     void SetupPaintAndTexture();
     void NewSeatOccupyStatus(bool Occupied, int32 Index, class AAbiotic_Character_ParentBP_C* Character);

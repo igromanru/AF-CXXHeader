@@ -63,7 +63,13 @@ class UAbiotic_CharacterProgressionComponent_C : public UActorComponent
     void OnNewEmailRead(class UAbiotic_CharacterProgressionComponent_C* ProgressionComponent, FName NewEmail);
     bool InitialisedCompendiumUnread;                                                 // 0x0630 (size: 0x1)
     TArray<FName> UnreadFishEntries;                                                  // 0x0638 (size: 0x10)
+    TArray<FName> ItemsDistilled;                                                     // 0x0648 (size: 0x10)
+    FAbiotic_CharacterProgressionComponent_COnItemsDistilledUpdated OnItemsDistilledUpdated; // 0x0658 (size: 0x10)
+    void OnItemsDistilledUpdated();
 
+    void DelayedLinkedRecipeCheck();
+    void Server_AddItemDistilled(FName ItemRow);
+    void OnRep_ItemsDistilled();
     bool MarkJournalEntriesRead(TEnumAsByte<E_JournalEntryCategories::Type> JournalPage);
     void OnRep_UnreadFishEntries();
     void OnRep_UnreadJournalEntries();
@@ -149,8 +155,9 @@ class UAbiotic_CharacterProgressionComponent_C : public UActorComponent
     void Request_ReadJournalEntries(TEnumAsByte<E_JournalEntryCategories::Type> JournalPage);
     void JournalUpdateNotifyIconStatus();
     void ExecuteUbergraph_Abiotic_CharacterProgressionComponent(int32 EntryPoint);
+    void OnItemsDistilledUpdated__DelegateSignature();
     void OnNewEmailRead__DelegateSignature(class UAbiotic_CharacterProgressionComponent_C* ProgressionComponent, FName NewEmail);
     void SkillLevelUp__DelegateSignature(TEnumAsByte<E_CharacterSkills::Type> Skill, int32 NewLevel);
-}; // Size: 0x648
+}; // Size: 0x668
 
 #endif

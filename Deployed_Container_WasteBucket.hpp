@@ -9,7 +9,7 @@ class ADeployed_Container_WasteBucket_C : public ADeployed_Container_ParentBP_C
 
     void SaveDeployable(bool RemoveFromSave);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     FText GetItemNameText();
     void AddWasteIntoBucket(int32 StackAmount);
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);

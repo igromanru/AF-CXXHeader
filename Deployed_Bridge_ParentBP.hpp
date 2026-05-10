@@ -13,7 +13,7 @@ class ADeployed_Bridge_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 
     void Get Support Socket Location(int32 Index, TEnumAsByte<ERelativeTransformSpace> TransformSpace, FName OptionalSocketName, FVector& Return);
     void Try_ApplyTextureOverrides(TArray<TSoftObjectPtr<UMaterialInterface>>& Texture Variants, bool ContainsPaintTextures, bool& Applied);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void UpdateGroundPosition();
     void UpdateSupports();
 }; // Size: 0x888

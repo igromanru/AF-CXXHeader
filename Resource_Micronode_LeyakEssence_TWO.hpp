@@ -1,0 +1,8 @@
+#ifndef UE4SS_SDK_Resource_Micronode_LeyakEssence_TWO_HPP
+#define UE4SS_SDK_Resource_Micronode_LeyakEssence_TWO_HPP
+
+class AResource_Micronode_LeyakEssence_TWO_C : public AResource_Micronode_LeyakEssence_C
+{
+}; // Size: 0x518
+
+#endif

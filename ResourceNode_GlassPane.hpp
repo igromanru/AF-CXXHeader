@@ -11,7 +11,7 @@ class AResourceNode_GlassPane_C : public AResourceNode_ParentBP_C
 
     void UserConstructionScript();
     void RefreshDepletedStateFX();
-    void DropLoot(bool TryToPlaceInInventory, class AAbiotic_PlayerCharacter_C* inventoryOwner, bool IsNotReceivingDamage);
+    void DropLoot(bool TryToPlaceInInventory, class AAbiotic_PlayerCharacter_C* InventoryOwner, bool IsNotReceivingDamage);
     void ExecuteUbergraph_ResourceNode_GlassPane(int32 EntryPoint);
 }; // Size: 0x500
 

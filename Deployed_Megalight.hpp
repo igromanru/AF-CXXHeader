@@ -17,7 +17,7 @@ class ADeployed_Megalight_C : public AAbioticDeployed_Furniture_ParentBP_C
     void HitActiveTarget();
     void SetActiveTarget(class AAbioticCharacter* Target);
     void OnRep_ActiveTarget();
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void BndEvt__Deployed_Megalight_DetectionSphere_K2Node_ComponentBoundEvent_0_ComponentBeginOverlapSignature__DelegateSignature(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
     void ReceiveTick(float DeltaSeconds);

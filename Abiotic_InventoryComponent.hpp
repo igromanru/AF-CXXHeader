@@ -51,7 +51,9 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     void SlotAppearanceOverridesUpdated();
     TArray<int32> WarmingSlots;                                                       // 0x0310 (size: 0x10)
     bool RepairItemsWhenPowered;                                                      // 0x0320 (size: 0x1)
+    FGameplayTagQuery TagRequirementWhenTagsDisabled;                                 // 0x0328 (size: 0x48)
 
+    void ConsumeItemInSlot(int32 Index, int32 Amount);
     void TryPlaceIteminInventorySlot(FDataTableRowHandle DataTableRowHandle, FAbiotic_InventoryChangeableDataStruct ChangeableData, int32 TargetIndex, bool CheckOnly, bool IsEquippingGear?, int32& Remaining, bool& Success, FAbiotic_InventoryItemSlotStruct& CurrentItem);
     void Server_TransferItemsToCharacterByRowName(class AAbiotic_Character_ParentBP_C* Character, FName ItemRowName, int32 Amount);
     void ExcludeItemsInInventoryByTag(FGameplayTag Item Tag, bool& ContainsItem, TMap<int32, FAbiotic_InventoryItemSlotStruct>& ItemsRemaining);
@@ -92,7 +94,7 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     void LocateInventoryItemByTypes(TArray<FName>& Items, bool& Success, TEnumAsByte<E_InventorySlotType::Type>& InventoryArray, int32& InventoryIndex, FAbiotic_InventoryItemSlotStruct& Element Found);
     void GetInventorySlotIndex(TEnumAsByte<E_InventorySlotType::Type> SlotTypeToSearch, bool& Found, int32& SlotIndex);
     void CheckForStacks(class AAbiotic_PlayerCharacter_C* InteractingCharacter, int32 SlotIndex);
-    void Get Destination Inventory(class AAbioticCharacter* InteractingCharacter, bool& Container, bool& backpack, bool& Hotbar, bool& Gear);
+    void Get Destination Inventory(class AAbioticCharacter* InteractingCharacter, bool& Container, bool& Backpack, bool& Hotbar, bool& Gear);
     void PickupMoney(class AAbiotic_PlayerCharacter_C* IntreractingCharacter, int32 MoneyValue, int32 SlotIndex);
     void IsItemMoney(const FAbiotic_InventoryItemSlotStruct& ItemSlot, bool& TRUE);
     void Server Try Quick Move Item(class AAbiotic_PlayerCharacter_C* InteractingCharacter, int32 SlotIndex, bool EquippingGear, class UAbiotic_InventoryComponent_C* ContainerInventory, bool SingleStackOnly, bool EnableNotifyPopus, bool& Successful);
@@ -115,7 +117,7 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     void LocateInventoryItemByType(FDataTableRowHandle ItemRowHandle, FGameplayTag ItemTagToLookFor, bool CheckForTagOnly, bool& Success, TEnumAsByte<E_InventorySlotType::Type>& InventoryArray, int32& InventoryIndex, FAbiotic_InventoryItemSlotStruct& Element Found);
     void DoesInventoryContainItem(FDataTableRowHandle Item, int32 RequiredCount, int32 ExistingCount, bool& ItemFoundInCorrectQuantity, int32& CountFound);
     void IsInventoryEmpty(bool& Empty);
-    void Try Place Item in Inventory(FDataTableRowHandle DataTableRowHandle, FAbiotic_InventoryChangeableDataStruct ChangeableData, bool CheckOnly, bool IsEquippingGear?, bool Place Leftover in the Same Inventory?, int32& Remaining, bool& Success, FAbiotic_InventoryItemSlotStruct& CurrentItem);
+    void Try Place Item in Inventory(FDataTableRowHandle DataTableRowHandle, FAbiotic_InventoryChangeableDataStruct ChangeableData, bool CheckOnly, bool IsEquippingGear?, bool Place Leftover in the Same Inventory?, bool SkipStack, int32& Remaining, bool& Success, FAbiotic_InventoryItemSlotStruct& CurrentItem);
     void OnRep_CurrentInventory();
     void UpdateInventorySlotCount(int32 NewMaxSlots, bool FallOnSpawn, FVector OverrideLocation);
     void ReceiveBeginPlay();
@@ -130,6 +132,6 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     void SlotHighlighted__DelegateSignature(int32 SlotIndex);
     void InventoryUpdated__DelegateSignature(class UAbiotic_InventoryComponent_C* Inventory);
     void AnySlotStateChanged__DelegateSignature(int32 SlotIndex);
-}; // Size: 0x321
+}; // Size: 0x370
 
 #endif

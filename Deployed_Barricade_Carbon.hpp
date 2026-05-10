@@ -11,7 +11,7 @@ class ADeployed_Barricade_Carbon_C : public ADeployed_Barricade_ParentBP_C
     TEnumAsByte<ETimelineDirection::Type> WindowSlideAnimTimeline__Direction_7E93ECEC405EFF093620BE82914F6F2A; // 0x0874 (size: 0x1)
     class UTimelineComponent* WindowSlideAnimTimeline;                                // 0x0878 (size: 0x8)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void WindowSlideAnimTimeline__FinishedFunc();
     void WindowSlideAnimTimeline__UpdateFunc();
     void TogglePowerFX();

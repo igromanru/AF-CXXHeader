@@ -10,7 +10,7 @@ class AAI_Controller_PowerLeech_C : public AAbiotic_AI_Controller_ParentBP_C
 
     void JustTookDamage(class AAbiotic_Character_ParentBP_C* FromCharacter, FVector FromLocation, double Damage, bool FriendlyFire, bool SkipPainLine);
     void TargetableByTurrets(bool& Targetable);
-    void TargetableByNPCs(bool Maintain, bool& Targetable);
+    void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
     void BT_CheckObstruction();
     void GetFactionTeam(TEnumAsByte<E_Factions::Type>& Faction);
     void TurnToFaceDirection(FVector Direction, bool AllowTurnDuringMontage, bool TurningToAttack);

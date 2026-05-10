@@ -49,6 +49,16 @@ struct FAbioticBlockedPlayer
 
 }; // Size: 0x20
 
+struct FAbioticSoundNotifyData
+{
+    class USoundBase* Sound;                                                          // 0x0000 (size: 0x8)
+    float VolumeMultiplier;                                                           // 0x0008 (size: 0x4)
+    float PitchMultiplier;                                                            // 0x000C (size: 0x4)
+    uint8 bFollow;                                                                    // 0x0010 (size: 0x1)
+    FName AttachName;                                                                 // 0x0014 (size: 0x8)
+
+}; // Size: 0x20
+
 struct FAbioticTargetingManagerTickFunction : public FTickFunction
 {
 }; // Size: 0x30
@@ -113,6 +123,20 @@ struct FAnalyticsData
 
 }; // Size: 0x2D8
 
+struct FAudioOverride
+{
+    TSoftObjectPtr<USoundBase> Sound;                                                 // 0x0000 (size: 0x28)
+    float VolumeMultiplier;                                                           // 0x0028 (size: 0x4)
+    float PitchMultiplier;                                                            // 0x002C (size: 0x4)
+
+}; // Size: 0x30
+
+struct FAudioOverrideMap
+{
+    TMap<class FGameplayTag, class FAudioOverride> AudioOverrideMap;                  // 0x0000 (size: 0x50)
+
+}; // Size: 0x50
+
 struct FAudioSettingRowHandle : public FRowHandle
 {
 }; // Size: 0x20
@@ -121,10 +145,11 @@ struct FBaseCompendiumSection
 {
     FText SectionText;                                                                // 0x0000 (size: 0x10)
     TSoftObjectPtr<UTexture2D> OptionalSectionImage;                                  // 0x0010 (size: 0x28)
-    TArray<FDataTableRowHandle> RecipesToUnlock;                                      // 0x0038 (size: 0x10)
-    bool bDebugUnlock;                                                                // 0x0048 (size: 0x1)
+    FText OptionalLockedText;                                                         // 0x0038 (size: 0x10)
+    TArray<FDataTableRowHandle> RecipesToUnlock;                                      // 0x0048 (size: 0x10)
+    bool bDebugUnlock;                                                                // 0x0058 (size: 0x1)
 
-}; // Size: 0x50
+}; // Size: 0x60
 
 struct FBenchUpgrade : public FTableRowBase
 {
@@ -178,8 +203,9 @@ struct FBuffDebuff : public FTableRowBase
     TSoftObjectPtr<UMaterialInterface> MaterialEffect;                                // 0x0218 (size: 0x28)
     EVoiceLineType PlayerVoiceLine;                                                   // 0x0240 (size: 0x1)
     float PlayerDialogLineDelay;                                                      // 0x0244 (size: 0x4)
+    FLinearColor SkinTintColor;                                                       // 0x0248 (size: 0x10)
 
-}; // Size: 0x248
+}; // Size: 0x258
 
 struct FBuffDebuffEntry
 {
@@ -219,9 +245,9 @@ struct FCompendiumEntry : public FTableRowBase
     FDataTableRowHandle NPCRow;                                                       // 0x0070 (size: 0x10)
     TArray<FCompendiumSection> Sections;                                              // 0x0080 (size: 0x10)
     bool bHasKillRequirementSection;                                                  // 0x0090 (size: 0x1)
-    FKillCompendiumSection KillRequirementSection;                                    // 0x0098 (size: 0x58)
+    FKillCompendiumSection KillRequirementSection;                                    // 0x0098 (size: 0x68)
 
-}; // Size: 0xF0
+}; // Size: 0x100
 
 struct FCompendiumEntryRowHandle : public FRowHandle
 {
@@ -236,9 +262,9 @@ struct FCompendiumKillCount
 
 struct FCompendiumSection : public FBaseCompendiumSection
 {
-    ECompendiumUnlockType UnlockRequirement;                                          // 0x0050 (size: 0x1)
+    ECompendiumUnlockType UnlockRequirement;                                          // 0x0060 (size: 0x1)
 
-}; // Size: 0x58
+}; // Size: 0x68
 
 struct FControlSettingRowHandle : public FRowHandle
 {
@@ -255,6 +281,13 @@ struct FDamageDefinition : public FTableRowBase
 struct FDamageDefinitionRowHandle : public FRowHandle
 {
 }; // Size: 0x20
+
+struct FDataTableValidation : public FTableRowBase
+{
+    TSet<UDataTable*> DataTables;                                                     // 0x0008 (size: 0x50)
+    TSet<TSubclassOf<UDataTableValidationObject>> ValidationObjects;                  // 0x0058 (size: 0x50)
+
+}; // Size: 0xA8
 
 struct FDynamicProperty
 {
@@ -505,9 +538,9 @@ struct FKeybindSettingRowHandle : public FRowHandle
 
 struct FKillCompendiumSection : public FBaseCompendiumSection
 {
-    int32 RequiredCount;                                                              // 0x0050 (size: 0x4)
+    int32 RequiredCount;                                                              // 0x0060 (size: 0x4)
 
-}; // Size: 0x58
+}; // Size: 0x68
 
 struct FMainMenuBackground : public FTableRowBase
 {
@@ -955,55 +988,60 @@ class AAbioticAIController : public AAIController
 
 class AAbioticCharacter : public ACharacter
 {
-    bool bSmoothCamera;                                                               // 0x0680 (size: 0x1)
-    FVector2D PendingSmoothCameraInput;                                               // 0x0688 (size: 0x10)
-    float SmoothCameraSpeed;                                                          // 0x0698 (size: 0x4)
-    bool bHasBeenRagdolling;                                                          // 0x06A4 (size: 0x1)
-    class AActor* TetheredBy;                                                         // 0x06A8 (size: 0x8)
-    FGameplayTagContainer GameplayTags;                                               // 0x06B0 (size: 0x20)
-    TArray<class AAbioticCharacter*> NearbyCharacters;                                // 0x06D0 (size: 0x10)
-    FAbioticCharacterOnNearbyCharacterTagsUpdated OnNearbyCharacterTagsUpdated;       // 0x06E0 (size: 0x10)
+    bool bSmoothCamera;                                                               // 0x0688 (size: 0x1)
+    FVector2D PendingSmoothCameraInput;                                               // 0x0690 (size: 0x10)
+    float SmoothCameraSpeed;                                                          // 0x06A0 (size: 0x4)
+    bool bZeroControllerRotationPitch;                                                // 0x06A4 (size: 0x1)
+    bool bZeroControllerRotationRoll;                                                 // 0x06A5 (size: 0x1)
+    TArray<TScriptInterface<IGravityOverrideInterface>> GravityOverrides;             // 0x06A8 (size: 0x10)
+    bool bHasBeenRagdolling;                                                          // 0x06C0 (size: 0x1)
+    class AActor* TetheredBy;                                                         // 0x06C8 (size: 0x8)
+    FGameplayTagContainer GameplayTags;                                               // 0x06D0 (size: 0x20)
+    TArray<class AAbioticCharacter*> NearbyCharacters;                                // 0x06F0 (size: 0x10)
+    FAbioticCharacterOnNearbyCharacterTagsUpdated OnNearbyCharacterTagsUpdated;       // 0x0700 (size: 0x10)
     void NearbyCharacterTagsRefreshed();
-    class USceneComponent* IDCardMeshSocketReference;                                 // 0x06F0 (size: 0x8)
-    bool bUseBeltIDCardLocation;                                                      // 0x06F8 (size: 0x1)
-    class UCharacterBuffComponent* BuffComponent;                                     // 0x0700 (size: 0x8)
-    TArray<FStatModifierEntry> StatModifiers;                                         // 0x0708 (size: 0x10)
-    TMap<FStatModifierRowHandle, float> StatModifierMap;                              // 0x0718 (size: 0x50)
-    TMap<FStatModifierRowHandle, int32> CheatStatModifierMap;                         // 0x0768 (size: 0x50)
-    TMap<FSkillRowHandle, int32> SkillLevelMap;                                       // 0x07B8 (size: 0x50)
-    FAbioticCharacterOnStatModifiersRefreshed OnStatModifiersRefreshed;               // 0x0808 (size: 0x10)
+    class USceneComponent* IDCardMeshSocketReference;                                 // 0x0710 (size: 0x8)
+    bool bUseBeltIDCardLocation;                                                      // 0x0718 (size: 0x1)
+    class UCharacterBuffComponent* BuffComponent;                                     // 0x0720 (size: 0x8)
+    class UAudioOverrideComponent* AudioOverrideComponent;                            // 0x0728 (size: 0x8)
+    TArray<FStatModifierEntry> StatModifiers;                                         // 0x0730 (size: 0x10)
+    TMap<FStatModifierRowHandle, float> StatModifierMap;                              // 0x0740 (size: 0x50)
+    TMap<FStatModifierRowHandle, int32> CheatStatModifierMap;                         // 0x0790 (size: 0x50)
+    TMap<FSkillRowHandle, int32> SkillLevelMap;                                       // 0x07E0 (size: 0x50)
+    FAbioticCharacterOnStatModifiersRefreshed OnStatModifiersRefreshed;               // 0x0830 (size: 0x10)
     void OnStatModifiersRefreshed();
-    bool bStatsLocked;                                                                // 0x0818 (size: 0x1)
-    FStatModifierRowHandle MaxHealthModifier;                                         // 0x0820 (size: 0x20)
-    FStatModifierRowHandle MaxHeadHealthModifier;                                     // 0x0840 (size: 0x20)
-    FStatModifierRowHandle MaxTorsoHealthModifier;                                    // 0x0860 (size: 0x20)
-    TMap<EBodyLimbs, float> DefaultMax_LimbHealthMap;                                 // 0x0880 (size: 0x50)
-    float CurrentHealth_Head;                                                         // 0x08D0 (size: 0x4)
-    float CurrentHealth_Torso;                                                        // 0x08D4 (size: 0x4)
-    float CurrentHealth_LeftArm;                                                      // 0x08D8 (size: 0x4)
-    float CurrentHealth_RightArm;                                                     // 0x08DC (size: 0x4)
-    float CurrentHealth_LeftLeg;                                                      // 0x08E0 (size: 0x4)
-    float CurrentHealth_RightLeg;                                                     // 0x08E4 (size: 0x4)
-    FAbioticCharacterOnHealthChanged OnHealthChanged;                                 // 0x08E8 (size: 0x10)
+    bool bStatsLocked;                                                                // 0x0840 (size: 0x1)
+    FStatModifierRowHandle MaxHealthModifier;                                         // 0x0848 (size: 0x20)
+    FStatModifierRowHandle MaxHeadHealthModifier;                                     // 0x0868 (size: 0x20)
+    FStatModifierRowHandle MaxTorsoHealthModifier;                                    // 0x0888 (size: 0x20)
+    TMap<EBodyLimbs, float> DefaultMax_LimbHealthMap;                                 // 0x08A8 (size: 0x50)
+    float CurrentHealth_Head;                                                         // 0x08F8 (size: 0x4)
+    float CurrentHealth_Torso;                                                        // 0x08FC (size: 0x4)
+    float CurrentHealth_LeftArm;                                                      // 0x0900 (size: 0x4)
+    float CurrentHealth_RightArm;                                                     // 0x0904 (size: 0x4)
+    float CurrentHealth_LeftLeg;                                                      // 0x0908 (size: 0x4)
+    float CurrentHealth_RightLeg;                                                     // 0x090C (size: 0x4)
+    FAbioticCharacterOnHealthChanged OnHealthChanged;                                 // 0x0910 (size: 0x10)
     void HealthChangedDelegate();
-    float CurrentStamina;                                                             // 0x08F8 (size: 0x4)
-    float MaxStamina;                                                                 // 0x08FC (size: 0x4)
-    float StaminaRequiredToSprint;                                                    // 0x0900 (size: 0x4)
-    FAbioticCharacterOnStaminaChanged OnStaminaChanged;                               // 0x0908 (size: 0x10)
+    float CurrentStamina;                                                             // 0x0920 (size: 0x4)
+    float MaxStamina;                                                                 // 0x0924 (size: 0x4)
+    float StaminaRequiredToSprint;                                                    // 0x0928 (size: 0x4)
+    FAbioticCharacterOnStaminaChanged OnStaminaChanged;                               // 0x0930 (size: 0x10)
     void StaminaChangedDelegate();
-    float BaseWalkSpeed;                                                              // 0x0918 (size: 0x4)
-    float BaseSprintSpeed;                                                            // 0x091C (size: 0x4)
-    float MinimumMovementSpeed;                                                       // 0x0920 (size: 0x4)
-    float GlobalSpeedModifier;                                                        // 0x0924 (size: 0x4)
-    float GlobalSprintSpeedModifier;                                                  // 0x0928 (size: 0x4)
-    float GlobalSwimSpeedModifier;                                                    // 0x092C (size: 0x4)
-    float GlobalCrouchSpeedModifier;                                                  // 0x0930 (size: 0x4)
-    uint8 bIsSprinting;                                                               // 0x0934 (size: 0x1)
-    uint8 bIsAiming;                                                                  // 0x0934 (size: 0x1)
-    float JetpackTimestamp;                                                           // 0x0938 (size: 0x4)
-    bool bHasStaminaToSprint;                                                         // 0x093C (size: 0x1)
-    float ToggleSprintEnabledTimestamp;                                               // 0x0940 (size: 0x4)
-    bool GhostMode;                                                                   // 0x0944 (size: 0x1)
+    float BaseWalkSpeed;                                                              // 0x0940 (size: 0x4)
+    float BaseSprintSpeed;                                                            // 0x0944 (size: 0x4)
+    float MinimumMovementSpeed;                                                       // 0x0948 (size: 0x4)
+    float GlobalSpeedModifier;                                                        // 0x094C (size: 0x4)
+    float GlobalSprintSpeedModifier;                                                  // 0x0950 (size: 0x4)
+    float GlobalSwimSpeedModifier;                                                    // 0x0954 (size: 0x4)
+    float GlobalCrouchSpeedModifier;                                                  // 0x0958 (size: 0x4)
+    uint8 bIsSprinting;                                                               // 0x095C (size: 0x1)
+    uint8 bIsAiming;                                                                  // 0x095C (size: 0x1)
+    float JetpackTimestamp;                                                           // 0x0960 (size: 0x4)
+    bool bHasStaminaToSprint;                                                         // 0x0964 (size: 0x1)
+    float ToggleSprintEnabledTimestamp;                                               // 0x0968 (size: 0x4)
+    TMap<class FGameplayTag, class FAudioOverride> AudioOverrides;                    // 0x0970 (size: 0x50)
+    bool GhostMode;                                                                   // 0x09C0 (size: 0x1)
 
     void UpdateSkillStatLevel(FSkillRowHandle Skill, int32 Level);
     void ToggleSprint();
@@ -1020,6 +1058,7 @@ class AAbioticCharacter : public ACharacter
     void SetCurrentStamina(float NewCurrentStamina);
     void ScaledLaunchCharacter(FVector LaunchVelocity, bool bXYOverride, bool bZOverride);
     void RemoveNearbyCharacter(class AAbioticCharacter* Character, class UPrimitiveComponent* OverlapPrimitive);
+    void RemoveGravityOverride(TScriptInterface<class IGravityOverrideInterface> Override, bool bCanReset);
     void RejectDLCTeleport();
     void OnUseBeltIDCardLocationUpdated();
     void OnStatModifiersUpdated();
@@ -1042,6 +1081,7 @@ class AAbioticCharacter : public ACharacter
     bool IsAlive();
     bool IsAiming();
     bool HasMatchingGameplayTag(FGameplayTag TagToCheck);
+    bool HasGravityOverrides();
     bool HasAnyMatchingGameplayTags(const FGameplayTagContainer& TagContainer);
     bool HasAllMatchingGameplayTags(const FGameplayTagContainer& TagContainer);
     void GhostModeChanged(bool IsGhost);
@@ -1056,6 +1096,10 @@ class AAbioticCharacter : public ACharacter
     float GetLimbHealth(EBodyLimbs Limb);
     FVector GetJetpackVelocity(const FVector& InitialVelocity, const FVector& FallingVelocity, const float JetpackStartTime, const float DeltaTime);
     class UInputComponent* GetInputComponent();
+    FRotator GetGravityWorldRotation(const FRotator& Rotation);
+    FRotator GetGravityRelativeRotation(const FRotator& Rotation);
+    void GetGravityOverrides(TArray<TScriptInterface<IGravityOverrideInterface>>& OutOverrides);
+    FVector GetDefaultMeshScale();
     void GetCurrentHealthMap(TMap<EBodyLimbs, float>& CurrentHealthMap);
     bool DoesNearbyCharacterMatchTagQuery(FGameplayTagQuery TagQuery);
     bool DoesNearbyCharacterHaveTag(FGameplayTag Tag);
@@ -1064,8 +1108,9 @@ class AAbioticCharacter : public ACharacter
     bool CanLaunchOutOfWater();
     void Aim(bool bClientSimulation);
     void AddNearbyCharacter(class AAbioticCharacter* Character, class UPrimitiveComponent* OverlapPrimitive);
+    void AddGravityOverride(TScriptInterface<class IGravityOverrideInterface> Override);
     void AddCheatStatModifier(FStatModifierRowHandle Modifier, int32 Value);
-}; // Size: 0x950
+}; // Size: 0x9D0
 
 class AAbioticGameMode : public AGameMode
 {
@@ -1127,11 +1172,12 @@ class AAbioticPlayerController : public APlayerController
 {
     class AAbioticCharacter* PlayerCharacter;                                         // 0x0860 (size: 0x8)
     FCachedInputData CachedFrameInput;                                                // 0x0868 (size: 0x60)
-    TSubclassOf<class UAbioticTargetingManager> TargetingManagerClass;                // 0x08C8 (size: 0x8)
-    class UAbioticTargetingManager* TargetingManager;                                 // 0x08D0 (size: 0x8)
-    bool bAllowKeyUINavigation;                                                       // 0x08D8 (size: 0x1)
-    bool bAllowTabUINavigation;                                                       // 0x08D9 (size: 0x1)
-    bool bAllowAnalogUINavigation;                                                    // 0x08DA (size: 0x1)
+    bool CameraCompensateForGravityRotation;                                          // 0x08C8 (size: 0x1)
+    TSubclassOf<class UAbioticTargetingManager> TargetingManagerClass;                // 0x08D0 (size: 0x8)
+    class UAbioticTargetingManager* TargetingManager;                                 // 0x08D8 (size: 0x8)
+    bool bAllowKeyUINavigation;                                                       // 0x08E0 (size: 0x1)
+    bool bAllowTabUINavigation;                                                       // 0x08E1 (size: 0x1)
+    bool bAllowAnalogUINavigation;                                                    // 0x08E2 (size: 0x1)
 
     void ToggleLoadingScreen(bool bShow);
     void SetUseSoftwareCursor(bool bEnabled);
@@ -1139,8 +1185,10 @@ class AAbioticPlayerController : public APlayerController
     void Request_ExecuteGameCommand(FGameCommandRowHandle RowHandle, FString FirstParam, FString SecondParam);
     bool ProjectWorldToScreenClamped(const FVector& WorldPosition, FVector2D& ScreenPosition, FVector2D& ScreenDirection, FMargin Padding, bool bPlayerViewportRelative, bool bClamp);
     void OnDetectAnyInput(const FKey& InKey);
+    FRotator GetGravityWorldRotation(const FRotator& Rotation);
+    FRotator GetGravityRelativeRotation(const FRotator& Rotation);
     void BumpCursor();
-}; // Size: 0x8E0
+}; // Size: 0x900
 
 class AAbioticPlayerState : public APlayerState
 {
@@ -1203,10 +1251,24 @@ class AWeatherDirector : public AActor
 {
 }; // Size: 0x298
 
+class IAudioOverrideInterface : public IInterface
+{
+
+    class UAudioOverrideComponent* GetAudioOverrideComponent();
+    void AudioMapChangeReceived(const TMap<class FGameplayTag, class FAudioOverride>& NewAudioOverrides);
+}; // Size: 0x28
+
 class ICraftedTeleporter : public IInterface
 {
 
     void UpdateTeleporterActiveState(bool NewActiveState);
+}; // Size: 0x28
+
+class IGravityOverrideInterface : public IInterface
+{
+
+    int32 GetGravityPriority();
+    void GetGravityData(class AAbioticCharacter* Character, FVector& OutDirection, float& OutStrength, EGravityCameraBehavior& CameraBehavior);
 }; // Size: 0x28
 
 class IThermal : public IInterface
@@ -1241,6 +1303,7 @@ class UAIDirectorSubsystem : public UWorldSubsystem
     bool TriggerEncounterOnOwningSpawner(const class UObject* WorldContextObject, class AAbioticCharacter* AI);
     void SetCooldownForSpawner(const class UObject* WorldContextObject, class AActor* Spawner, float TimeRemaining, int32 InCurrentDay, bool bOnlySpawnOnce);
     void RemoveVignetteAISpawnData(const TArray<FString>& VignetteNames);
+    bool RemoveSpawnedAIFromSpawnList(class AAbioticCharacter* SpawnedAI, TSoftObjectPtr<AActor> OptionalSpawner);
     bool RefreshCooldownOnOwningSpawner(const class UObject* WorldContextObject, class AAbioticCharacter* AI, TArray<class AActor*> NearbyPlayers);
     bool NPCSpawnDebug();
     int32 GetSpawnedAIFromSpawnerPtr(TSoftObjectPtr<AActor> Spawner, TArray<class AAbioticCharacter*>& SpawnedAI);
@@ -1283,6 +1346,16 @@ class UAIFunctionLibrary : public UBlueprintFunctionLibrary
     UClass* GetValueAsClass(const class UBlackboardComponent* Blackboard, FBlackboardName Key);
     bool GetValueAsBool(const class UBlackboardComponent* Blackboard, FBlackboardName Key);
 }; // Size: 0x28
+
+class UAbioticAnimNotify_PlaySound : public UAnimNotify_PlaySound
+{
+    FName NotifyName;                                                                 // 0x0058 (size: 0x8)
+    FGameplayTag NotifyTag;                                                           // 0x0060 (size: 0x8)
+    bool bFireMontageNotify;                                                          // 0x0068 (size: 0x1)
+
+    void PlaySoundNotify(class USkeletalMeshComponent* MeshComp, const FAbioticSoundNotifyData& SoundNotifyData);
+    FAbioticSoundNotifyData AsSoundNotifyData();
+}; // Size: 0x70
 
 class UAbioticAutomationLibrary : public UBlueprintFunctionLibrary
 {
@@ -1336,6 +1409,7 @@ class UAbioticCharacterMovementComponent : public UCharacterMovementComponent
     float GetScaledGravity();
     float GetScaledFriction();
     float GetImmersionDepth();
+    float GetDefaultAirControl();
 }; // Size: 0xFC0
 
 class UAbioticCheatManager : public UCheatManager
@@ -1348,6 +1422,8 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
     void ValidateDamageResults(class UObject* WorldContextObject, TArray<FHitResult>& HitResults, TArray<FHitData>& HitData, TArray<class AActor*>& HitPawns, TEnumAsByte<ETraceTypeQuery> TraceChannel, TMap<class AActor*, class FHitResult>& OutHitActors);
+    int32 UpperBound_Int32(const TArray<int32>& Array, int32 Value);
+    int32 UpperBound_Float(const TArray<double>& Array, float Value);
     void UpdateWidgetInteractionKeyboardFocus(class UWidgetInteractionComponent* WidgetInteractionComponent);
     void SortSavesByDate(TMap<class UObject*, class FDateTime>& SaveMap, bool bSortByNewest);
     void SortLocationsByDistanceToLocation(TArray<FVector>& Locations, const FVector& Target);
@@ -1357,6 +1433,7 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     bool ShouldUseRCON();
     void SetPrimitiveCanEverAffectNavigation(class UPrimitiveComponent* Primitive, bool bCanEverAffectNavigation);
     void SetMouseSmoothing(bool bEnabled);
+    void SetDecalSize(class UDecalComponent* DecalComponent, FVector Size);
     void SetActorCanEverAffectNavigation(class AActor* Actor, bool bCanEverAffectNavigation);
     FString SanitizeSaveFolderName(FString FolderName);
     FSoftObjectPath RemovePIEPrefix(const FSoftObjectPath& InPath);
@@ -1366,8 +1443,11 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     void MontageGetSections(class UAnimMontage* Montage, TMap<FName, float>& OutSectionData);
     void MontageGetSectionNames(class UAnimMontage* Montage, TArray<FName>& OutSectionNames);
     void ModifyPhysicsLocks(class UPrimitiveComponent* Primitive, bool bLockXRotation, bool bLockYRotation, bool bLockZRotation);
+    void MergeValidStructData(class UStruct* BaseStruct, class UStruct* OverridingStruct);
     void MarkObjectDirty(class UObject* Object);
     FSoftObjectPath MakeSavedObjectPath(const class AActor* Actor);
+    int32 LowerBound_Int32(const TArray<int32>& Array, int32 Value);
+    int32 LowerBound_Float(const TArray<double>& Array, float Value);
     bool LessThan_String(FString LHS, FString RHS);
     bool KeyIsSpaceBar(const FKey& Key);
     bool KeyIsLeftMouse(const FKey& Key);
@@ -1405,9 +1485,11 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     bool GetVideoSetting_Bool(FVideoSettingRowHandle VideoSetting);
     FString GetSystemLanguage();
     bool GetSubtitlesFromDialogue(const class UDialogueWave* DialogueWave, bool bUseSourceText, TArray<FString>& OutSubtitleLines, TArray<float>& OutSubtitleTimes);
+    void GetStructPropertiesOfClass(class UStruct* Struct, UClass* Class, TArray<class UObject*>& OutObjects, TArray<FName>& OutNames);
     FString GetSteamIDFromPlayerState(const class APlayerState* PlayerState);
     FString GetSourceTextFromDialogueWave(const class UDialogueWave* DialogueWave);
     class USoundWave* GetSoundWaveFromDialogue(const class UDialogueWave* DialogueWave);
+    class USkeleton* GetSkeleton(const class UAnimSequenceBase* Animation);
     bool GetSessionFavoriteID(class UObject* WorldContextObject, const FBlueprintSessionResult& SessionResult, bool& bDedicated, FString& OutFavoriteID);
     int32 GetServerMaxPlayers();
     FString GetSaveSubfolderName();
@@ -1431,6 +1513,7 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     FString GetGamepadIdentifier();
     TEnumAsByte<EABFGamepadType> GetGamepadEnumID(class UObject* WorldContextObject);
     class UWidget* GetFocusedWidget();
+    class UDamageType* GetDamageTypeCDO(TSubclassOf<class UDamageType> DamageType);
     TArray<FDamageDefinitionRowHandle> GetDamageDefinitionsFromQuery(const FGameplayTagQuery& TagQuery);
     void GetCurrectFacilityDate(const int32 DaysPassed, EDayOfTheWeek& CurrentWeekday, int32& CurrentDay, EMonthOfTheYear& CurrentMonth, int32& CurrentYear);
     FString GetControlSetting_String(FControlSettingRowHandle VideoSetting);
@@ -1934,6 +2017,20 @@ class UAudioDeviceOptionFactory : public USettingOptionFactory
 {
 }; // Size: 0x28
 
+class UAudioOverrideComponent : public UActorComponent
+{
+    TMap<class FGameplayTag, class FAudioOverride> AudioOverrides;                    // 0x00B0 (size: 0x50)
+    FAudioOverrideComponentAudioMapChangedDelegate AudioMapChangedDelegate;           // 0x0100 (size: 0x10)
+    void AudioOverrideDelegate(const FAudioOverrideMap& AudioOverrides);
+
+    void RemoveAudioOverrides(const TArray<FGameplayTag>& RemoveAudioOverrides);
+    TMap<class FGameplayTag, class FAudioOverride> GetAudioOverrideMap();
+    bool GetAudioOverride(const FGameplayTag& AudioTag, FAudioOverride& AudioOverride);
+    bool FindAudioOverrideInMap(const TMap<class FGameplayTag, class FAudioOverride>& AudioMap, const FGameplayTagContainer& AudioTags, FAudioOverride& AudioOverride);
+    bool FindAudioOverride(const FGameplayTagContainer& AudioTags, FAudioOverride& AudioOverride);
+    void AddAudioOverrides(const TMap<class FGameplayTag, class FAudioOverride>& NewAudioOverrides);
+}; // Size: 0x110
+
 class UAudioSettingHandleFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
@@ -2073,19 +2170,23 @@ class UCharacterBuffComponent : public UActorComponent
     TArray<FBuffDebuffEntry> CurrentBuffs;                                            // 0x00B8 (size: 0x10)
     TArray<FBuffDebuffRowHandle> BuffParticles;                                       // 0x00C8 (size: 0x10)
     TArray<FBuffDebuffRowHandle> BuffMaterials;                                       // 0x00D8 (size: 0x10)
-    TMap<class FBuffDebuffRowHandle, class UBuffDebuffObject*> BuffObjectMap;         // 0x00E8 (size: 0x50)
-    TMap<class FBuffDebuffRowHandle, class ABuffActor*> BuffActorMap;                 // 0x0138 (size: 0x50)
-    TArray<FBuffDebuffRowHandle> TraitBuffRows;                                       // 0x0188 (size: 0x10)
-    TArray<class UBuffDebuffObject*> TraitBuffObjects;                                // 0x0198 (size: 0x10)
-    FGameplayTagContainer BuffTagContainer;                                           // 0x01A8 (size: 0x20)
-    FCharacterBuffComponentOnBuffTagContainerRefreshed OnBuffTagContainerRefreshed;   // 0x01C8 (size: 0x10)
+    TArray<FBuffDebuffRowHandle> BuffTints;                                           // 0x00E8 (size: 0x10)
+    FBuffDebuffRowHandle CurrentBuffTint;                                             // 0x00F8 (size: 0x20)
+    TMap<class FBuffDebuffRowHandle, class UBuffDebuffObject*> BuffObjectMap;         // 0x0118 (size: 0x50)
+    TMap<class FBuffDebuffRowHandle, class ABuffActor*> BuffActorMap;                 // 0x0168 (size: 0x50)
+    TArray<FBuffDebuffRowHandle> TraitBuffRows;                                       // 0x01B8 (size: 0x10)
+    TArray<class UBuffDebuffObject*> TraitBuffObjects;                                // 0x01C8 (size: 0x10)
+    FGameplayTagContainer BuffTagContainer;                                           // 0x01D8 (size: 0x20)
+    FCharacterBuffComponentOnBuffTagContainerRefreshed OnBuffTagContainerRefreshed;   // 0x01F8 (size: 0x10)
     void OnBuffTagContainerRefreshed();
-    FCharacterBuffComponentOnCurrentBuffsUpdated OnCurrentBuffsUpdated;               // 0x01D8 (size: 0x10)
+    FCharacterBuffComponentOnCurrentBuffsUpdated OnCurrentBuffsUpdated;               // 0x0208 (size: 0x10)
     void OnCurrentBuffsUpdated(class UCharacterBuffComponent* BuffComponent);
-    FCharacterBuffComponentOnBuffBlocked OnBuffBlocked;                               // 0x01E8 (size: 0x10)
+    FCharacterBuffComponentOnBuffBlocked OnBuffBlocked;                               // 0x0218 (size: 0x10)
     void OnBuffUpdated(FBuffDebuffRowHandle BuffRow);
-    TMap<class FBuffDebuffRowHandle, class UActorComponent*> BuffParticleMap;         // 0x01F8 (size: 0x50)
-    TMap<class FBuffDebuffRowHandle, class TSoftObjectPtr<UMaterialInterface>> BuffMaterialMap; // 0x0248 (size: 0x50)
+    FCharacterBuffComponentOnBuffTintChanged OnBuffTintChanged;                       // 0x0228 (size: 0x10)
+    void OnBuffUpdated(FBuffDebuffRowHandle BuffRow);
+    TMap<class FBuffDebuffRowHandle, class UActorComponent*> BuffParticleMap;         // 0x0238 (size: 0x50)
+    TMap<class FBuffDebuffRowHandle, class TSoftObjectPtr<UMaterialInterface>> BuffMaterialMap; // 0x0288 (size: 0x50)
 
     class UActorComponent* SpawnBuffParticle(FBuffDebuffRowHandle BuffRow);
     void Server_RemoveTraitBuff(FBuffDebuffRowHandle BuffRow);
@@ -2099,6 +2200,7 @@ class UCharacterBuffComponent : public UActorComponent
     void RemoveBuffMaterial(FBuffDebuffRowHandle BuffRow);
     void PlayDialogLine(FBuffDebuffRowHandle BuffRow);
     void OnRep_CurrentBuffs();
+    void OnRep_BuffTints();
     void OnRep_BuffTagContainer();
     void OnRep_BuffParticles();
     void OnRep_BuffMaterials();
@@ -2112,7 +2214,7 @@ class UCharacterBuffComponent : public UActorComponent
     void BuffRemoved(FBuffDebuffRowHandle BuffRow);
     void BuffReceived(FBuffDebuffRowHandle BuffRow);
     void ApplyBuffMaterial(FBuffDebuffRowHandle BuffRow);
-}; // Size: 0x298
+}; // Size: 0x2D8
 
 class UCompendiumEntryHandleFunctionLibrary : public UBlueprintFunctionLibrary
 {
@@ -2174,6 +2276,10 @@ class UCraftingEntryItem : public UObject
     void FilterCraftingEntries(const TArray<class UCraftingEntryItem*>& CraftingEntries, bool bOnlyUnlocked, bool bOnlyFavorites, bool bFilterBench, bool bUseCategory, uint8 FilterCategory, FGameplayTag FilterTag, FString SearchString, TArray<class UCraftingEntryItem*>& OutFilteredEntries, TArray<class UCraftingEntryItem*>& OutFilteredBenchEntries);
 }; // Size: 0xC0
 
+class UDTValidation_SoftReference : public UDataTableValidationObject
+{
+}; // Size: 0x38
+
 class UDamageDefinitionHandleFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
@@ -2187,6 +2293,16 @@ class UDamageDefinitionHandleFunctionLibrary : public UBlueprintFunctionLibrary
     FName BreakDamageDefinitionRowHandle(const FDamageDefinitionRowHandle RowHandle);
 }; // Size: 0x28
 
+class UDataTableValidationObject : public UObject
+{
+    class UDataTable* TableRef;                                                       // 0x0028 (size: 0x8)
+
+    void ValidationWarning(FText Message, bool bCondition);
+    void ValidationError(FText Message, bool bCondition);
+    void ValidateRow(class UDataTable* Table, FName RowName);
+    void ValidateDataTable(class UDataTable* DataTable, bool FlushLogs);
+}; // Size: 0x38
+
 class UDynamicPropertyFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
@@ -2196,6 +2312,7 @@ class UDynamicPropertyFunctionLibrary : public UBlueprintFunctionLibrary
     bool GetDynamicProperty(const TArray<FDynamicProperty>& DynamicProperties, EDynamicProperty Property, int32& Value);
     ECookingState GetCookingState(const TArray<FDynamicProperty>& DynamicProperties);
     TArray<FDynamicProperty> CopyCookingDynamicProperties(const TArray<FDynamicProperty>& SourceDynamicProperties, TArray<FDynamicProperty>& DestinationDynamicProperties);
+    TArray<FDynamicProperty> ClearDynamicProperty(TArray<FDynamicProperty>& DynamicProperties, EDynamicProperty Property);
     TArray<FDynamicProperty> ClearCookingDynamicProperties(TArray<FDynamicProperty>& DynamicProperties);
 }; // Size: 0x28
 
@@ -2209,6 +2326,13 @@ class UEQGenerator_CoverPoints : public UEnvQueryGenerator_ProjectedPoints
 class UEnvQueryTest_LevelLoaded : public UEnvQueryTest
 {
 }; // Size: 0x1F8
+
+class UEnvQueryTest_LineDistance : public UEnvQueryTest
+{
+    FEnvDirection Line;                                                               // 0x01F8 (size: 0x20)
+    FAIDataProviderFloatValue MaxDistance;                                            // 0x0218 (size: 0x38)
+
+}; // Size: 0x250
 
 class UEnvQueryTest_Tether : public UEnvQueryTest
 {
@@ -2477,11 +2601,13 @@ class UHeldItemAnimInstance : public UAnimInstance
     class UAnimSequence* CrouchWalkAnim;                                              // 0x0388 (size: 0x8)
     class UAnimSequence* SprintAnim;                                                  // 0x0390 (size: 0x8)
     class USkeletalMeshComponent* FPArmsMeshComponent;                                // 0x0398 (size: 0x8)
-    float SyncTime_Idle;                                                              // 0x03A0 (size: 0x4)
-    float SyncTime_CrouchIdle;                                                        // 0x03A4 (size: 0x4)
-    float SyncTime_Walk;                                                              // 0x03A8 (size: 0x4)
-    float SyncTime_CrouchWalk;                                                        // 0x03AC (size: 0x4)
-    float SyncTime_Sprint;                                                            // 0x03B0 (size: 0x4)
+    float IdleSpeedThreshold_Walk;                                                    // 0x03A0 (size: 0x4)
+    float IdleSpeedThreshold_CrouchWalk;                                              // 0x03A4 (size: 0x4)
+    float SyncTime_Idle;                                                              // 0x03A8 (size: 0x4)
+    float SyncTime_CrouchIdle;                                                        // 0x03AC (size: 0x4)
+    float SyncTime_Walk;                                                              // 0x03B0 (size: 0x4)
+    float SyncTime_CrouchWalk;                                                        // 0x03B4 (size: 0x4)
+    float SyncTime_Sprint;                                                            // 0x03B8 (size: 0x4)
 
 }; // Size: 0x3D0
 

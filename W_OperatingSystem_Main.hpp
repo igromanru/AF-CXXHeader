@@ -47,6 +47,7 @@ class UW_OperatingSystem_Main_C : public UAbioticWidget
     void WidgetAction_CycleCrafting(bool Next, bool& Handled);
     void WidgetAction_FaceTop(bool& Handled);
     void WidgetAction_DPadDirection(TEnumAsByte<E_NavigationDirection::Type> Direction, bool& Handled);
+    class UTexture2D* GetFolderIcon();
     FEventReply OnPreviewKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
     void GetEmails(TArray<FDataTableRowHandle>& Emails);
     void UpdateAppIcons();

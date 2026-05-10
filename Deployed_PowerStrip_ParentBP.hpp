@@ -9,7 +9,7 @@ class ADeployed_PowerStrip_ParentBP_C : public AAbioticDeployed_Furniture_Parent
 
     bool CheckPowerSocketsValid();
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void GetPluggedInDeviceCount(int32& Count);
     void RequiresPowerSocket(bool& MustBePluggedIn);
     void IsPowerSocket(bool& CanBePluggedInto);

@@ -89,11 +89,12 @@ class AAbioticDeployed_ParentBP_C : public AAbioticActor_C
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void GetDeployableLifespan(double& LifeSpan);
     bool GetDeployedStackCount(TArray<class AActor*>& inArray, int32& Count, TArray<class AActor*>& OutArray);
     void GetDeployHologramMesh(class UStaticMesh*& Mesh);
+    TSubclassOf<class AAbioticDeployed_ParentBP_C> GetSaveClass();
     void UpdateDrawDistance();
     void ShouldReduceDamageToDeployable(class AController*& Instigator, class UObject* DamageType, bool& Return);
     void OnRep_DeployedByPlayer();

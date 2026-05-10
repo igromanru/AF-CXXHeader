@@ -13,7 +13,7 @@ class ABenchUpgrade_ParentBP_C : public ABenchUpgradeActor
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanLongInteractWith_A(bool& Success);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);
@@ -41,9 +41,10 @@ class ABenchUpgrade_ParentBP_C : public ABenchUpgradeActor
     void RestoresSanityNearbyWhenPowered(bool& RestoresSanity);
     bool HasBatteryInParentChain();
     void GetPluggedInDeviceCount(int32& Count);
+    bool CanApplyBuff(class AAbiotic_Character_ParentBP_C* Character);
     class UMeshComponent* GetInteractMesh();
-    void RemoveBuff(class AAbiotic_PlayerCharacter_C* PlayerCharacter);
-    void ApplyBuff(class AAbiotic_PlayerCharacter_C* Player);
+    void RemoveBuff(class AAbiotic_Character_ParentBP_C* Character);
+    void ApplyBuff(class AAbiotic_Character_ParentBP_C* Character);
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);

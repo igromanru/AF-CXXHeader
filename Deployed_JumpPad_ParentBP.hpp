@@ -16,7 +16,10 @@ class ADeployed_JumpPad_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_
     bool AnimateJumppad;                                                              // 0x08B1 (size: 0x1)
     bool IgnoreIncomingVelocity;                                                      // 0x08B2 (size: 0x1)
     bool NoFallDamage;                                                                // 0x08B3 (size: 0x1)
+    bool NoAirControl;                                                                // 0x08B4 (size: 0x1)
+    bool GravityCompensation;                                                         // 0x08B5 (size: 0x1)
 
+    void ShowLandingLocation();
     void ApplyEffectOnJump(class ACharacter* Character);
     void JumpPadWooshAnim__FinishedFunc();
     void JumpPadWooshAnim__UpdateFunc();
@@ -24,6 +27,6 @@ class ADeployed_JumpPad_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_
     void Broadcast_TriggerJumpPad();
     void DropPackagedItem(bool HasDoubleDropChance, bool FromDestruction);
     void ExecuteUbergraph_Deployed_JumpPad_ParentBP(int32 EntryPoint);
-}; // Size: 0x8B4
+}; // Size: 0x8B6
 
 #endif

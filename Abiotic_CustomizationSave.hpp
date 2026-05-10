@@ -14,7 +14,7 @@ class UAbiotic_CustomizationSave_C : public UAbiotic_SaveGame_C
     FName Customization_ShirtColor;                                                   // 0x0068 (size: 0x8)
     FName Customization_Shoes;                                                        // 0x0070 (size: 0x8)
     FName Customization_Belt;                                                         // 0x0078 (size: 0x8)
-    FName Customization_Beard;                                                        // 0x0080 (size: 0x8)
+    FName customization_beard;                                                        // 0x0080 (size: 0x8)
     TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Customization_Voice;               // 0x0088 (size: 0x28)
     FName Customization_SkinColor;                                                    // 0x00B0 (size: 0x8)
     FName Customization_IDCard;                                                       // 0x00B8 (size: 0x8)
@@ -22,7 +22,7 @@ class UAbiotic_CustomizationSave_C : public UAbiotic_SaveGame_C
 
     void FixCustomizationValue(FName& TypeRef, class UDataTable* Table);
     void FixCustomizationSave();
-    void FillNewSaveData(FName Head, FName HeadAccessory, FName Wristwatch, FName Tie, FName UpperBody, FName LowerBody, FName hair, FName HairColor, FName ShirtColor, FName shoes, FName belt, FName Beard, TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Voice, FName IDCard, double SkinTone);
+    void FillNewSaveData(FName Head, FName HeadAccessory, FName Wristwatch, FName tie, FName UpperBody, FName LowerBody, FName Hair, FName HairColor, FName ShirtColor, FName shoes, FName belt, FName Beard, TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Voice, FName IDCard, double SkinTone);
 }; // Size: 0xC8
 
 #endif

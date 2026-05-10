@@ -7,7 +7,7 @@ class ADeployed_ChristmasTree_C : public AAbioticDeployed_Furniture_ParentBP_C
     class UAudioComponent* TreeMusic;                                                 // 0x0858 (size: 0x8)
     class UStaticMeshComponent* SM_ChristmasTree_Star;                                // 0x0860 (size: 0x8)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void TogglePowerFX();
     void ReceiveTick(float DeltaSeconds);
     void ExecuteUbergraph_Deployed_ChristmasTree(int32 EntryPoint);

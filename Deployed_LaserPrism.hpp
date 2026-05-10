@@ -8,7 +8,7 @@ class ADeployed_LaserPrism_C : public ADeployed_LaserReflector_C
     class ULaserComponent_C* LaserComponent2;                                         // 0x08A0 (size: 0x8)
     class ULaserComponent_C* LaserComponent1;                                         // 0x08A8 (size: 0x8)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
 }; // Size: 0x8B0

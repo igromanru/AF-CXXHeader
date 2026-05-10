@@ -16,7 +16,7 @@ class UW_Compendium_Main_C : public UUserWidget
     FString LastHeaderText;                                                           // 0x0348 (size: 0x10)
 
     void CreateCompendiumPage_Divider();
-    void CreateCompendiumPage_Content(FText& SectionText, TSoftObjectPtr<UTexture2D>& OptionalSectionImage, bool Unlocked, FName NPCRow, int32 SectionIndex, ECompendiumUnlockType SectionType, FCompendiumEntryRowHandle CompendiumRow);
+    void CreateCompendiumPage_Content(FText& SectionText, TSoftObjectPtr<UTexture2D>& OptionalSectionImage, bool Unlocked, FName NPCRow, int32 SectionIndex, ECompendiumUnlockType SectionType, FCompendiumEntryRowHandle CompendiumRow, FText OptionalLockedText);
     void CreateCompendiumPage_Title(FText& Title, FText& Subtitle, bool Unlocked);
     void DisplayCompendiumPage(FCompendiumEntryRowHandle CurrentCompendiumRow);
     void RefreshCompendiumList(FGameplayTag FilterTag, FString HeaderText);

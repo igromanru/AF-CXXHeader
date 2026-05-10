@@ -139,7 +139,10 @@ class UW_Inventory_CraftingArea_C : public UUserWidget
     FLinearColor TitleTextColor;                                                      // 0x0FAC (size: 0x10)
     TSoftObjectPtr<UObject> PreviouslySelectedItem;                                   // 0x0FC0 (size: 0x28)
     bool JustUsedRecipeShortcut;                                                      // 0x0FE8 (size: 0x1)
+    TMap<class TSubclassOf<AAbioticDeployed_CraftingBench_ParentBP_C>, class USoundBase*> CraftStartSFX; // 0x0FF0 (size: 0x50)
+    TMap<class TSubclassOf<AAbioticDeployed_CraftingBench_ParentBP_C>, class USoundBase*> CraftEndSFX; // 0x1040 (size: 0x50)
 
+    void FindSfxForClass(const TMap<class TSubclassOf<AAbioticDeployed_CraftingBench_ParentBP_C>, class USoundBase*>& TargetMap, class USoundBase* DefaultSfx, class USoundBase*& SFX);
     void CycleCraftingList(bool Next);
     void SetRecipeItemName(FText ItemName, int32 CraftCount, bool RecipeStripped, bool ItemStripped);
     void ShouldCraftingItemBeShown(bool HideUnknownItems, FName ItemName, bool& Show);
@@ -220,6 +223,6 @@ class UW_Inventory_CraftingArea_C : public UUserWidget
     void ExecuteUbergraph_W_Inventory_CraftingArea(int32 EntryPoint);
     void NeverCraftedItemUpdate__DelegateSignature();
     void CraftQueueCountUpdate__DelegateSignature(int32 QueueCount);
-}; // Size: 0xFE9
+}; // Size: 0x1090
 
 #endif

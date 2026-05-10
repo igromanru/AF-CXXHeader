@@ -3,8 +3,8 @@
 
 class UAbiotic_CharacterSave_C : public UAbioticSave
 {
-    FSaveData_CharacterSave_Struct CharacterSaveData;                                 // 0x00E0 (size: 0x2B0)
+    FSaveData_CharacterSave_Struct CharacterSaveData;                                 // 0x00E0 (size: 0x2C0)
 
-}; // Size: 0x390
+}; // Size: 0x3A0
 
 #endif

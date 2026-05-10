@@ -17,7 +17,7 @@ class ULaserComponent_C : public USceneComponent
     double LaserTimestamp;                                                            // 0x02A8 (size: 0x8)
     float LaserDamage;                                                                // 0x02B0 (size: 0x4)
     int32 MaxLaserBounces;                                                            // 0x02B4 (size: 0x4)
-    TSubclassOf<class UDamageType> DamageType;                                        // 0x02B8 (size: 0x8)
+    TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType;                     // 0x02B8 (size: 0x8)
     EPaintColor LaserColor;                                                           // 0x02C0 (size: 0x1)
     bool OverridePaintedColor;                                                        // 0x02C1 (size: 0x1)
     FLinearColor LaserColor_White;                                                    // 0x02C4 (size: 0x10)
@@ -46,6 +46,8 @@ class ULaserComponent_C : public USceneComponent
     FLaserComponent_CLaserFX_End LaserFX_End;                                         // 0x03F0 (size: 0x10)
     void LaserFX_End();
     bool FriendlyFireEnabled;                                                         // 0x0400 (size: 0x1)
+    FLaserComponent_COnLaserDealDamage OnLaserDealDamage;                             // 0x0408 (size: 0x10)
+    void OnLaserDealDamage(class ULaserComponent_C* LaserComponent, FHitResult HitResult, double BaseDamage, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType);
 
     void OnRep_CurrentBounceCount();
     void ReflectLaser(class AActor* TargetActor, FHitResult& Hit, int32 MaxSimultaneousReflects, FVector DirectionOverride);
@@ -68,8 +70,9 @@ class ULaserComponent_C : public USceneComponent
     void ReceiveBeginPlay();
     void ReceiveEndPlay(TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
     void ExecuteUbergraph_LaserComponent(int32 EntryPoint);
+    void OnLaserDealDamage__DelegateSignature(class ULaserComponent_C* LaserComponent, FHitResult HitResult, double BaseDamage, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType);
     void LaserFX_End__DelegateSignature();
     void LaserFX_Start__DelegateSignature();
-}; // Size: 0x401
+}; // Size: 0x418
 
 #endif

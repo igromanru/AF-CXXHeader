@@ -18,7 +18,7 @@ class ADeployed_Crate_HMusicBox_C : public ADeployed_Crate_Hackable_ParentBP_C
     FTransform Lid1Open;                                                              // 0x0BE0 (size: 0x60)
     FTransform Lid2Open;                                                              // 0x0C40 (size: 0x60)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void OpenMusicBoxTimeline__FinishedFunc();
     void OpenMusicBoxTimeline__UpdateFunc();
     void PlayChestTimeline(bool Open);

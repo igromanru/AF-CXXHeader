@@ -4,7 +4,7 @@
 class AFaucet_Sink_Office_Kitchen_C : public AFaucet_ParentBP_C
 {
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
 }; // Size: 0xAC1
 
 #endif

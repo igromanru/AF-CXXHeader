@@ -7,7 +7,7 @@ class AAnomaly_BP_C : public AAbioticActor_C
     class UPostProcessComponent* PostProcess;                                         // 0x02D8 (size: 0x8)
     class UAudioComponent* Lure;                                                      // 0x02E0 (size: 0x8)
     class USphereComponent* Sphere;                                                   // 0x02E8 (size: 0x8)
-    class UNiagaraComponent* particle;                                                // 0x02F0 (size: 0x8)
+    class UNiagaraComponent* Particle;                                                // 0x02F0 (size: 0x8)
     FName ItemName;                                                                   // 0x02F8 (size: 0x8)
 
     void CanUseSharedInteraction(bool& Can Use);
@@ -17,7 +17,7 @@ class AAnomaly_BP_C : public AAbioticActor_C
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanLongInteractWith_A(bool& Success);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);

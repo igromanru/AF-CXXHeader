@@ -8,7 +8,7 @@ class ADeployed_LiquidContainer_Barrel_C : public ADeployed_LiquidContainer_Pare
     class UStaticMeshComponent* Lid;                                                  // 0x0930 (size: 0x8)
     class UMaterialInterface* Option 0;                                               // 0x0938 (size: 0x8)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void RefreshAllLiquidStateFX();
     void ExecuteUbergraph_Deployed_LiquidContainer_Barrel(int32 EntryPoint);
 }; // Size: 0x940

@@ -57,7 +57,7 @@ class AResourceNode_ParentBP_C : public AAbioticActor_C
     void Targetable By Triggers(bool& Targetable);
     void GetFactionTeam(TEnumAsByte<E_Factions::Type>& Faction);
     void GetSpottablePoints(TArray<FVector>& SpottablePoints);
-    void TargetableByNPCs(bool Maintain, bool& Targetable);
+    void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
     void RequiresRangedWeaponToEngage(bool& RequiresRanged);
     void DoesAwardSkillXPWhenHit(bool& MeleeXP, bool& RangedXP, double& XPMultiplier);
     void IsStompable(class AAbiotic_Character_ParentBP_C* AskingCharacter, bool& IsStompable);
@@ -82,7 +82,7 @@ class AResourceNode_ParentBP_C : public AAbioticActor_C
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);
@@ -131,7 +131,7 @@ class AResourceNode_ParentBP_C : public AAbioticActor_C
     void ReceiveBeginPlay();
     void InteractWith_A_LocalFX(bool Hold);
     void Local_TookDamage();
-    void DropLoot(bool TryToPlaceInInventory, class AAbiotic_PlayerCharacter_C* inventoryOwner, bool IsNotReceivingDamage);
+    void DropLoot(bool TryToPlaceInInventory, class AAbiotic_PlayerCharacter_C* InventoryOwner, bool IsNotReceivingDamage);
     void SetupNodeFromWorldSave();
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void DoubleCheckGroundPlacement();

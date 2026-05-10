@@ -57,6 +57,7 @@ class AVendingMachine_BP_C : public AAbioticDeployed_Furniture_ParentBP_C
     class USoundBase* SFX_Dispense;                                                   // 0x0A30 (size: 0x8)
     float PreShakeDelay;                                                              // 0x0A38 (size: 0x4)
     double RecentExplosiveDamage;                                                     // 0x0A40 (size: 0x8)
+    int32 MinSodasOnRestock;                                                          // 0x0A48 (size: 0x4)
 
     void Try Apply New Durability Value After Hit(double TotalDurabilityToBeApplied, const class UAbiotic_DamageType_ParentBP_C* DamageType, bool& Applied);
     void UpdateDurabilityVisualFX();
@@ -73,7 +74,7 @@ class AVendingMachine_BP_C : public AAbioticDeployed_Furniture_ParentBP_C
     FText GetItemNameText();
     void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void CanLongInteractWith_A(bool& Success);
     void Refill Random Empty Slot(int32 SlotsToRefill);
     void LocalFX_UpdateButtonStates();
@@ -110,6 +111,6 @@ class AVendingMachine_BP_C : public AAbioticDeployed_Furniture_ParentBP_C
     void ReceiveRadialDamage(float DamageReceived, const class UDamageType* DamageType, FVector Origin, const FHitResult& HitInfo, class AController* InstigatedBy, class AActor* DamageCauser);
     void Broadcast_ProduceItemSound();
     void ExecuteUbergraph_VendingMachine_BP(int32 EntryPoint);
-}; // Size: 0xA48
+}; // Size: 0xA4C
 
 #endif

@@ -67,7 +67,11 @@ class ADayNightManager_C : public AAbioticActor_C
     FDayNightManager_CBlackoutUpdated BlackoutUpdated;                                // 0x04C8 (size: 0x10)
     void BlackoutUpdated();
     int32 LastPowerLeechDay;                                                          // 0x04D8 (size: 0x4)
+    double TimeProgressSeconds;                                                       // 0x04E0 (size: 0x8)
+    TSet<EDayOfTheWeek> PortalResetDays;                                              // 0x04E8 (size: 0x50)
 
+    int32 GetTotalInGameMinutes();
+    void ProgressTimeSeconds_Internal();
     void OnRep_BlackoutActive();
     void ServerCalculateNewSleepingPlayersCount(class AAbiotic_Character_ParentBP_C* SleepingCharacter);
     void ClearActiveWeatherRequests();
@@ -103,6 +107,8 @@ class ADayNightManager_C : public AAbioticActor_C
     void TryWorldAutosave();
     void StartAutosaveTimer();
     void SleepState_Changed_Event(class AAbiotic_Character_ParentBP_C* InteractingPlayer);
+    void ProgressTimeSeconds(double Seconds);
+    void ForceProgressClock();
     void ExecuteUbergraph_DayNightManager(int32 EntryPoint);
     void BlackoutUpdated__DelegateSignature();
     void WeatherEventUpdated__DelegateSignature(FName NewWeatherEvent);
@@ -114,6 +120,6 @@ class ADayNightManager_C : public AAbioticActor_C
     void Morning__DelegateSignature();
     void NewDay__DelegateSignature(int32 DayNumber);
     void Nightfall__DelegateSignature();
-}; // Size: 0x4DC
+}; // Size: 0x538
 
 #endif

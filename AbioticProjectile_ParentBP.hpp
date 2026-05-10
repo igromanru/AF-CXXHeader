@@ -53,7 +53,12 @@ class AAbioticProjectile_ParentBP_C : public AActor
     bool StopIgnoringOwnerAfterShortPeriod;                                           // 0x06FA (size: 0x1)
     float IgnoreOwnerDuration;                                                        // 0x06FC (size: 0x4)
     TArray<class UMaterialInterface*> ExposionDecalMaterials;                         // 0x0700 (size: 0x10)
+    FAbioticProjectile_ParentBP_CProjectileHitTarget ProjectileHitTarget;             // 0x0710 (size: 0x10)
+    void ProjectileHitTarget(class AActor* DamagedActor, double RawDamage, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType, FHitResult HitResult, class AAbioticProjectile_ParentBP_C* Projectile);
+    class UWeaponCoating_ParentBP_C* ActiveWeaponCoating;                             // 0x0720 (size: 0x8)
+    bool AddCoatingComponent;                                                         // 0x0728 (size: 0x1)
 
+    void Server_AddWeaponCoating();
     class APawn* GetInstigatorPawn();
     void SpawnExplosionSurfaceDecal(FHitResult HitOverride);
     void ApplyHomingSettings();
@@ -102,7 +107,8 @@ class AAbioticProjectile_ParentBP_C : public AActor
     void SetVelocityNextTick(FVector Velocity);
     void DelayedStopIgnoringOwner();
     void ExecuteUbergraph_AbioticProjectile_ParentBP(int32 EntryPoint);
+    void ProjectileHitTarget__DelegateSignature(class AActor* DamagedActor, double RawDamage, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType, FHitResult HitResult, class AAbioticProjectile_ParentBP_C* Projectile);
     void ProjectileHitUpdate__DelegateSignature(bool Hit Established);
-}; // Size: 0x710
+}; // Size: 0x729
 
 #endif

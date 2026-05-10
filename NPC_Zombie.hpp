@@ -3,34 +3,34 @@
 
 class ANPC_Zombie_C : public ANPC_Base_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x20E8 (size: 0x8)
-    class UStaticMeshComponent* IDCardMesh;                                           // 0x20F0 (size: 0x8)
-    class UStaticMeshComponent* backpack;                                             // 0x20F8 (size: 0x8)
-    class USkeletalMeshComponent* hair;                                               // 0x2100 (size: 0x8)
-    class USkeletalMeshComponent* Hat;                                                // 0x2108 (size: 0x8)
-    class UHumanCustomizationComponent_C* HumanCustomizationComponent;                // 0x2110 (size: 0x8)
-    class USkeletalMeshComponent* Legs;                                               // 0x2118 (size: 0x8)
-    class USkeletalMeshComponent* Chest;                                              // 0x2120 (size: 0x8)
-    bool Eating;                                                                      // 0x2128 (size: 0x1)
-    class UAudioComponent* EatingAudio;                                               // 0x2130 (size: 0x8)
-    bool HeadExplode;                                                                 // 0x2138 (size: 0x1)
-    TArray<FName> ZombieHeads;                                                        // 0x2140 (size: 0x10)
-    TArray<FName> ZombieTorsos;                                                       // 0x2150 (size: 0x10)
-    TArray<FName> ZombieLegs;                                                         // 0x2160 (size: 0x10)
-    TArray<FName> ZombieBelts;                                                        // 0x2170 (size: 0x10)
-    TArray<FName> ZombieShoes;                                                        // 0x2180 (size: 0x10)
-    TArray<FName> ZombieShirtColors;                                                  // 0x2190 (size: 0x10)
-    TArray<FName> PotentialHats;                                                      // 0x21A0 (size: 0x10)
-    FName SelectedHat;                                                                // 0x21B0 (size: 0x8)
-    TArray<FName> PotentialBackpacks;                                                 // 0x21B8 (size: 0x10)
-    FName SelectedBackpack;                                                           // 0x21C8 (size: 0x8)
-    TArray<FName> ZombieHairTypes;                                                    // 0x21D0 (size: 0x10)
-    TArray<FName> ZombieHairColors;                                                   // 0x21E0 (size: 0x10)
-    FName HatTextureVariant;                                                          // 0x21F0 (size: 0x8)
-    FName BackpackTextureVariant;                                                     // 0x21F8 (size: 0x8)
-    TArray<FName> ZombieHeadAccessories;                                              // 0x2200 (size: 0x10)
-    double HatDropRate;                                                               // 0x2210 (size: 0x8)
-    double BackpackDropRate;                                                          // 0x2218 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x21B0 (size: 0x8)
+    class UStaticMeshComponent* IDCardMesh;                                           // 0x21B8 (size: 0x8)
+    class UStaticMeshComponent* Backpack;                                             // 0x21C0 (size: 0x8)
+    class USkeletalMeshComponent* Hair;                                               // 0x21C8 (size: 0x8)
+    class USkeletalMeshComponent* Hat;                                                // 0x21D0 (size: 0x8)
+    class UHumanCustomizationComponent_C* HumanCustomizationComponent;                // 0x21D8 (size: 0x8)
+    class USkeletalMeshComponent* Legs;                                               // 0x21E0 (size: 0x8)
+    class USkeletalMeshComponent* Chest;                                              // 0x21E8 (size: 0x8)
+    bool Eating;                                                                      // 0x21F0 (size: 0x1)
+    class UAudioComponent* EatingAudio;                                               // 0x21F8 (size: 0x8)
+    bool HeadExplode;                                                                 // 0x2200 (size: 0x1)
+    TArray<FName> ZombieHeads;                                                        // 0x2208 (size: 0x10)
+    TArray<FName> ZombieTorsos;                                                       // 0x2218 (size: 0x10)
+    TArray<FName> ZombieLegs;                                                         // 0x2228 (size: 0x10)
+    TArray<FName> ZombieBelts;                                                        // 0x2238 (size: 0x10)
+    TArray<FName> ZombieShoes;                                                        // 0x2248 (size: 0x10)
+    TArray<FName> ZombieShirtColors;                                                  // 0x2258 (size: 0x10)
+    TArray<FName> PotentialHats;                                                      // 0x2268 (size: 0x10)
+    FName SelectedHat;                                                                // 0x2278 (size: 0x8)
+    TArray<FName> PotentialBackpacks;                                                 // 0x2280 (size: 0x10)
+    FName SelectedBackpack;                                                           // 0x2290 (size: 0x8)
+    TArray<FName> ZombieHairTypes;                                                    // 0x2298 (size: 0x10)
+    TArray<FName> ZombieHairColors;                                                   // 0x22A8 (size: 0x10)
+    FName HatTextureVariant;                                                          // 0x22B8 (size: 0x8)
+    FName BackpackTextureVariant;                                                     // 0x22C0 (size: 0x8)
+    TArray<FName> ZombieHeadAccessories;                                              // 0x22C8 (size: 0x10)
+    double HatDropRate;                                                               // 0x22D8 (size: 0x8)
+    double BackpackDropRate;                                                          // 0x22E0 (size: 0x8)
 
     void OnRep_HatTextureVariant();
     void DropZombieLoot();
@@ -57,6 +57,6 @@ class ANPC_Zombie_C : public ANPC_Base_ParentBP_C
     void All_PerformDeathSequence();
     void BndEvt__NPC_Zombie_HumanCustomizationComponent_K2Node_ComponentBoundEvent_0_OnCustomizationComplete__DelegateSignature();
     void ExecuteUbergraph_NPC_Zombie(int32 EntryPoint);
-}; // Size: 0x2220
+}; // Size: 0x22E8
 
 #endif

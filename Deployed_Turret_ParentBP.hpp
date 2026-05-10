@@ -14,7 +14,7 @@ class ADeployed_Turret_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 
     void Target Is Enemy To Turret(class AActor* TargetToCheck, bool& Enemy);
     bool CheckForHidingTarget(class AActor* TargetToCheck, FHitResult& OutHit);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void GetClosestEnemy(double Radius, bool& IsValid, class AActor*& SelectedTarget);
     void OnLoaded_E36C7C9C4588B0D3E9E50BBE7E243680(UClass* Loaded);
     void TogglePowerFX();

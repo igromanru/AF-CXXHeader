@@ -7,11 +7,14 @@ class ADeployed_WallClock_C : public AAbioticDeployed_Furniture_ParentBP_C
     class UStaticMeshComponent* MinuteNeedle;                                         // 0x0858 (size: 0x8)
     class UStaticMeshComponent* HourNeedle;                                           // 0x0860 (size: 0x8)
 
+    bool CheckScrambledTime();
     void TargetableByTurrets(bool& Targetable);
     void Targetable By Triggers(bool& Targetable);
-    void TargetableByNPCs(bool Maintain, bool& Targetable);
+    void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
     void ReceiveBeginPlay();
+    void ReceiveTick(float DeltaSeconds);
     void UpdateClockNeedles(double TimeInSeconds);
+    void OnLevelLoaded(class ULevelStreaming* Level);
     void ExecuteUbergraph_Deployed_WallClock(int32 EntryPoint);
 }; // Size: 0x868
 

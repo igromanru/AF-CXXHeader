@@ -146,6 +146,7 @@ class UW_PlayerHUD_Main_C : public UAbioticWidget
     FW_PlayerHUD_Main_CBeaconWaypointUpdate BeaconWaypointUpdate;                     // 0x0868 (size: 0x10)
     void BeaconWaypointUpdate(FString WaypointStringData);
 
+    bool GetWaypointForActor(class AActor* Actor, class UW_Waypoint_Generic_C*& Waypoint);
     FEventReply OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
     void GetDBNOGiveUpText(class AAbiotic_Character_ParentBP_C* Character, FText& DBNOText);
     void Timer_Tick_OxygenBar();

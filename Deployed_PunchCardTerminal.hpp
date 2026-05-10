@@ -13,7 +13,7 @@ class ADeployed_PunchCardTerminal_C : public AAbioticDeployed_Furniture_ParentBP
     class UStaticMeshComponent* Monitor;                                              // 0x0888 (size: 0x8)
     FText LocationName;                                                               // 0x0890 (size: 0x10)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     FText GetItemNameText();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);

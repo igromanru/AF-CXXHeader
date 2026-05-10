@@ -4,6 +4,7 @@
 class II_Useable_C : public IInterface
 {
 
+    void StopUsingItem(class AAbiotic_Character_ParentBP_C* UsingCharacter);
     void GetItemUseSpeed(bool SecondaryUse, class AAbiotic_Character_ParentBP_C* UsingCharacter, class AAbiotic_Character_ParentBP_C* TargetCharacter, double BaseSpeed, double& Speed);
     void CanLoseDurabilityOnUse(bool Secondary, bool& CanLose);
     void Update Current Item Data();

@@ -40,6 +40,7 @@ class AButton_Generic_C : public AAbioticActor_C
     bool IsChildActorButton;                                                          // 0x0438 (size: 0x1)
     bool ButtonWasForceSaved;                                                         // 0x0439 (size: 0x1)
     bool NoVignetteReset;                                                             // 0x043A (size: 0x1)
+    float ButtonPressSoundDelay;                                                      // 0x043C (size: 0x4)
 
     void GetPluggedInDeviceCount(int32& Count);
     bool HasBatteryInParentChain();
@@ -68,7 +69,7 @@ class AButton_Generic_C : public AAbioticActor_C
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanLongInteractWith_A(bool& Success);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components);
+    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);
@@ -105,8 +106,9 @@ class AButton_Generic_C : public AAbioticActor_C
     void ChangedPower_DayNight();
     void UpdateLinkedButtons();
     void Local_JustActivated();
+    void Delayed_ButtonActivateSound(bool Active, float Delay);
     void ExecuteUbergraph_Button_Generic(int32 EntryPoint);
     void ButtonPressed__DelegateSignature(bool Activated);
-}; // Size: 0x43B
+}; // Size: 0x440
 
 #endif
