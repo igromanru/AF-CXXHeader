@@ -48,6 +48,7 @@ class AResourceNode_ParentBP_C : public AAbioticActor_C
     bool AllowRespawnAfterDays;                                                       // 0x04CC (size: 0x1)
     int32 RequiredDaysToRespawn;                                                      // 0x04D0 (size: 0x4)
     class AAbiotic_PlayerCharacter_C* LastPlayerInteractor;                           // 0x04D8 (size: 0x8)
+    bool CanBeDamagedByPests;                                                         // 0x04E0 (size: 0x1)
 
     void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
     void GetFriendlyFireDamageMultiplier(bool& Return, double& DamageMultiplier);
@@ -87,6 +88,7 @@ class AResourceNode_ParentBP_C : public AAbioticActor_C
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);
     void HasSitLocations(bool& IsSittable);
+    void PlaySoundOnDestroy();
     int32 GetExtraStackCount();
     void CacheLastPlayerInteractor(class AController* Controller);
     void Server_OnLoadRespawnCheck(bool& Respawned);
@@ -131,7 +133,7 @@ class AResourceNode_ParentBP_C : public AAbioticActor_C
     void ReceiveBeginPlay();
     void InteractWith_A_LocalFX(bool Hold);
     void Local_TookDamage();
-    void DropLoot(bool TryToPlaceInInventory, class AAbiotic_PlayerCharacter_C* InventoryOwner, bool IsNotReceivingDamage);
+    void DropLoot(bool TryToPlaceInInventory, class AAbiotic_PlayerCharacter_C* inventoryOwner, bool IsNotReceivingDamage);
     void SetupNodeFromWorldSave();
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void DoubleCheckGroundPlacement();
@@ -144,6 +146,6 @@ class AResourceNode_ParentBP_C : public AAbioticActor_C
     void ExecuteUbergraph_ResourceNode_ParentBP(int32 EntryPoint);
     void OnDepleted__DelegateSignature();
     void OnMoved__DelegateSignature(class AActor* MovedActor);
-}; // Size: 0x4E0
+}; // Size: 0x4E1
 
 #endif

@@ -562,6 +562,18 @@ struct FManagedTickObject
 
 }; // Size: 0x20
 
+struct FMaterialSwap
+{
+    TArray<TSoftObjectPtr<UMaterialInterface>> Materials;                             // 0x0000 (size: 0x10)
+
+}; // Size: 0x10
+
+struct FMaterialSwapMap
+{
+    TMap<class FGameplayTag, class FMaterialSwap> MaterialSwapMap;                    // 0x0000 (size: 0x50)
+
+}; // Size: 0x50
+
 struct FNPCConversation : public FTableRowBase
 {
     EReleaseGroup ReleaseGroup;                                                       // 0x0008 (size: 0x1)
@@ -669,11 +681,12 @@ struct FPlantData : public FTableRowBase
     TSoftClassPtr<AActor> ProxyBP;                                                    // 0x0018 (size: 0x28)
     FDataTableRowHandle PlantItem;                                                    // 0x0040 (size: 0x10)
     FDataTableRowHandle HarvestedItem;                                                // 0x0050 (size: 0x10)
-    TMap<class EPlantGrowthStage, class FPlantMeshData> GrowthStages;                 // 0x0060 (size: 0x50)
-    TSoftObjectPtr<UStaticMesh> FruitMesh;                                            // 0x00B0 (size: 0x28)
-    int32 FruitMeshCount;                                                             // 0x00D8 (size: 0x4)
+    FDataTableRowHandle SeedItem;                                                     // 0x0060 (size: 0x10)
+    TMap<class EPlantGrowthStage, class FPlantMeshData> GrowthStages;                 // 0x0070 (size: 0x50)
+    TSoftObjectPtr<UStaticMesh> FruitMesh;                                            // 0x00C0 (size: 0x28)
+    int32 FruitMeshCount;                                                             // 0x00E8 (size: 0x4)
 
-}; // Size: 0xE0
+}; // Size: 0xF0
 
 struct FPlantMeshData
 {
@@ -1240,6 +1253,7 @@ class ABuffActor : public AActor
 
     void Server_OnBuffEndPlay(FBuffDebuffRowHandle BuffRow);
     void Server_OnBuffBeginPlay(FBuffDebuffRowHandle BuffRow);
+    void OnBuffComponentInitialized(class UCharacterBuffComponent* BuffComponent);
     void Local_OnBuffEndPlay(FBuffDebuffRowHandle BuffRow);
     void Local_OnBuffBeginPlay(FBuffDebuffRowHandle BuffRow);
     bool DoesSameBuffActorExist();
@@ -1347,6 +1361,13 @@ class UAIFunctionLibrary : public UBlueprintFunctionLibrary
     bool GetValueAsBool(const class UBlackboardComponent* Blackboard, FBlackboardName Key);
 }; // Size: 0x28
 
+class UAbioticAnimNotify_MaterialSwap : public UAnimNotifyState
+{
+    FGameplayTag NotifyTag;                                                           // 0x0030 (size: 0x8)
+    TArray<class UMaterialInterface*> Materials;                                      // 0x0038 (size: 0x10)
+
+}; // Size: 0x48
+
 class UAbioticAnimNotify_PlaySound : public UAnimNotify_PlaySound
 {
     FName NotifyName;                                                                 // 0x0058 (size: 0x8)
@@ -1431,6 +1452,7 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     void SortLocationsByDistanceToClosestActor(TArray<FVector>& Locations, const TArray<class AActor*>& Actors);
     TArray<FSortedItemResult> SortInventoryArray(TArray<FSortedItem> InventoryArray, TArray<int32>& OutIndexesToClear);
     bool ShouldUseRCON();
+    void SetShapeAreaClassOverride(class UShapeComponent* ShapeComponent, TSubclassOf<class UNavAreaBase> AreaClassOverride);
     void SetPrimitiveCanEverAffectNavigation(class UPrimitiveComponent* Primitive, bool bCanEverAffectNavigation);
     void SetMouseSmoothing(bool bEnabled);
     void SetDecalSize(class UDecalComponent* DecalComponent, FVector Size);
@@ -1458,18 +1480,21 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     bool IsValidNotifyName(class UAnimMontage* Montage, FName NotifyName);
     bool IsUsingAnimBlueprint(const class USkeletalMeshComponent* SkeletalMeshComponent);
     bool IsTRMode();
+    bool IsTamedPet(const class AActor* TargetActor);
     bool IsSubscribedApp(int32 AppID);
     bool IsSteamSocketsInitialized();
     bool IsSteamdeck();
     bool IsReleaseMode();
     bool IsReleaseGroupActive(EReleaseGroup ReleaseGroup);
     bool IsPIERunning();
+    bool IsFunctionImplemented(const UClass* Class, FName FunctionName, const bool bIncludeSuperClass);
     bool IsFilmMode();
     bool IsFeatureEnabled(FName FeatureName);
     bool IsEditor();
     bool IsDemoMode();
     bool IsConsoleBuild();
     bool IsBuildType(TEnumAsByte<EGameSettingPlatformType> BuildType);
+    void InitSteamInput();
     void InitSteamDeck();
     bool HasValidOnlineSubsystem();
     bool HasActorRecentlyLoaded(class UObject* WorldContextObject, class AActor* Actor, float Tolerance);
@@ -1504,6 +1529,7 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     FString GetLevelNameFromWorldAsset(const TSoftObjectPtr<UWorld>& WorldAsset);
     class UObject* GetLevelFromStreamingLevel(class ULevelStreaming* LevelStreaming);
     float GetHitPenetration(const FHitResult& Hit);
+    FVector GetGravityAtLocation(const FVector& Location);
     void GetGameplayTagsFromQuery(const FGameplayTagQuery& Query, TArray<FGameplayTag>& OutTags);
     FString GetGameplaySetting_String(FGameplaySettingRowHandle VideoSetting);
     int32 GetGameplaySetting_Int(FGameplaySettingRowHandle GameplaySetting);
@@ -1546,6 +1572,7 @@ class UAbioticFunctionLibrary : public UBlueprintFunctionLibrary
     FString ConvertStringToSearchable(FString InString);
     FString ConvertStringToSave(FString String);
     FSoftObjectPath ConvertSoftObjectToSave(const TSoftObjectPtr<UObject> SoftObject);
+    FVector ComputeBounceResult(const FHitResult& Hit, const FVector& Velocity, float Bounciness, float Friction, float CurrentMaxSpeed);
     float CharacterItemWeightModifiers(class AAbioticCharacter* Character, float InItemWeight, float ItemRadioactivity, const FGameplayTagContainer& ItemTags);
     bool CanReleaseGroupBeStripped(EReleaseGroup ReleaseGroup);
     bool CalculateFishingReward(FFishingZoneRowHandle FishingZone, int32 TimeOfDayHour, const FGameplayTagContainer& RodTags, const FGameplayTagContainer& BaitTags, const FGameplayTagContainer& PlayerTags, const FGameplayTagContainer& WeatherTags, bool bHotspot, bool bNoRares, const TArray<FWorldFlagRowHandle>& WorldFlags, bool bDebug, bool& bWasJunkCatch, FDataTableRowHandle& OutJunkSalvage, FFishRowHandle& OutFishReward);
@@ -2124,6 +2151,15 @@ class UBenchUpgradeHandleFunctionLibrary : public UBlueprintFunctionLibrary
     FName BreakBenchUpgradeRowHandle(const FBenchUpgradeRowHandle RowHandle);
 }; // Size: 0x28
 
+class UBoxNavAreaComponent : public UBoxComponent
+{
+
+    void SetDynamicObstacle(const bool bNewDynamicObstacle);
+    void K2_SetCanEverAffectNavigation(const bool bNewCanEverAffectNavigation);
+    void K2_SetAreaClassOverride(const TSubclassOf<class UNavAreaBase> NewAreaClassOverride, bool bForceRebuildNav);
+    void ForceRebuildNavigation();
+}; // Size: 0x560
+
 class UBuffDebuffDataAsset : public UDataAsset
 {
 }; // Size: 0x30
@@ -2174,19 +2210,20 @@ class UCharacterBuffComponent : public UActorComponent
     FBuffDebuffRowHandle CurrentBuffTint;                                             // 0x00F8 (size: 0x20)
     TMap<class FBuffDebuffRowHandle, class UBuffDebuffObject*> BuffObjectMap;         // 0x0118 (size: 0x50)
     TMap<class FBuffDebuffRowHandle, class ABuffActor*> BuffActorMap;                 // 0x0168 (size: 0x50)
-    TArray<FBuffDebuffRowHandle> TraitBuffRows;                                       // 0x01B8 (size: 0x10)
-    TArray<class UBuffDebuffObject*> TraitBuffObjects;                                // 0x01C8 (size: 0x10)
-    FGameplayTagContainer BuffTagContainer;                                           // 0x01D8 (size: 0x20)
-    FCharacterBuffComponentOnBuffTagContainerRefreshed OnBuffTagContainerRefreshed;   // 0x01F8 (size: 0x10)
+    TArray<class ABuffActor*> BuffActors;                                             // 0x01B8 (size: 0x10)
+    TArray<FBuffDebuffRowHandle> TraitBuffRows;                                       // 0x01C8 (size: 0x10)
+    TArray<class UBuffDebuffObject*> TraitBuffObjects;                                // 0x01D8 (size: 0x10)
+    FGameplayTagContainer BuffTagContainer;                                           // 0x01E8 (size: 0x20)
+    FCharacterBuffComponentOnBuffTagContainerRefreshed OnBuffTagContainerRefreshed;   // 0x0208 (size: 0x10)
     void OnBuffTagContainerRefreshed();
-    FCharacterBuffComponentOnCurrentBuffsUpdated OnCurrentBuffsUpdated;               // 0x0208 (size: 0x10)
+    FCharacterBuffComponentOnCurrentBuffsUpdated OnCurrentBuffsUpdated;               // 0x0218 (size: 0x10)
     void OnCurrentBuffsUpdated(class UCharacterBuffComponent* BuffComponent);
-    FCharacterBuffComponentOnBuffBlocked OnBuffBlocked;                               // 0x0218 (size: 0x10)
+    FCharacterBuffComponentOnBuffBlocked OnBuffBlocked;                               // 0x0228 (size: 0x10)
     void OnBuffUpdated(FBuffDebuffRowHandle BuffRow);
-    FCharacterBuffComponentOnBuffTintChanged OnBuffTintChanged;                       // 0x0228 (size: 0x10)
+    FCharacterBuffComponentOnBuffTintChanged OnBuffTintChanged;                       // 0x0238 (size: 0x10)
     void OnBuffUpdated(FBuffDebuffRowHandle BuffRow);
-    TMap<class FBuffDebuffRowHandle, class UActorComponent*> BuffParticleMap;         // 0x0238 (size: 0x50)
-    TMap<class FBuffDebuffRowHandle, class TSoftObjectPtr<UMaterialInterface>> BuffMaterialMap; // 0x0288 (size: 0x50)
+    TMap<class FBuffDebuffRowHandle, class UActorComponent*> BuffParticleMap;         // 0x0248 (size: 0x50)
+    TMap<class FBuffDebuffRowHandle, class TSoftObjectPtr<UMaterialInterface>> BuffMaterialMap; // 0x0298 (size: 0x50)
 
     class UActorComponent* SpawnBuffParticle(FBuffDebuffRowHandle BuffRow);
     void Server_RemoveTraitBuff(FBuffDebuffRowHandle BuffRow);
@@ -2214,7 +2251,7 @@ class UCharacterBuffComponent : public UActorComponent
     void BuffRemoved(FBuffDebuffRowHandle BuffRow);
     void BuffReceived(FBuffDebuffRowHandle BuffRow);
     void ApplyBuffMaterial(FBuffDebuffRowHandle BuffRow);
-}; // Size: 0x2D8
+}; // Size: 0x2E8
 
 class UCompendiumEntryHandleFunctionLibrary : public UBlueprintFunctionLibrary
 {
@@ -2788,6 +2825,29 @@ class ULevelStreamingCustom : public UBlueprintFunctionLibrary
     void GetAllActorsInLevel(const class UObject* WorldContextObject, FString LevelName, TArray<class AActor*>& OutActors);
     FString GetActorLevelName(const class UObject* WorldContextObject, class AActor* Actor);
 }; // Size: 0x28
+
+class UMaterialSwapSkeletalMeshComponent : public USkeletalMeshComponent
+{
+    TMap<class FGameplayTag, class FMaterialSwap> MaterialSwaps;                      // 0x0F68 (size: 0x50)
+    TArray<class UMaterialInterface*> SavedOverrideMaterials;                         // 0x0FB8 (size: 0x10)
+    FMaterialSwapSkeletalMeshComponentMaterialsMapChangedDelegate MaterialsMapChangedDelegate; // 0x0FC8 (size: 0x10)
+    void MaterialSwapDelegate(const FMaterialSwapMap& MaterialSwaps);
+    bool bSwappingMaterials;                                                          // 0x0FD8 (size: 0x1)
+    TArray<TWeakObjectPtr<UAnimNotifyState>> ActiveSwapNotifies;                      // 0x0FE0 (size: 0x10)
+    TArray<FGameplayTag> ActiveSwapTags;                                              // 0x0FF0 (size: 0x10)
+
+    void SetActiveMaterialSwap(const TArray<class UMaterialInterface*>& NewMaterialSwaps, const FGameplayTag& NotifyTag, const class UAnimNotifyState* OwningNotify);
+    void RemoveMaterialSwaps(const TArray<FGameplayTag>& RemoveMaterialSwaps);
+    TMap<class FGameplayTag, class FMaterialSwap> GetMaterialSwapMap();
+    bool GetMaterialSwap(const FGameplayTag& MaterialTag, FMaterialSwap& MaterialSwap);
+    TMap<class FGameplayTag, class FMaterialSwap> GetClassDefaultMaterialSwapMap(const TSubclassOf<class AActor> ActorClass);
+    bool FindMaterialSwapInMap(const TMap<class FGameplayTag, class FMaterialSwap>& MaterialsMap, const FGameplayTagContainer& Tags, FMaterialSwap& MaterialSwap);
+    bool FindMaterialSwap(const FGameplayTagContainer& Tags, FMaterialSwap& MaterialSwap);
+    void ClearMaterialSwapByTag(const FGameplayTag& Tag);
+    void ClearMaterialSwapByNotify(const class UAnimNotifyState* Notify);
+    void ClearAllMaterialSwaps();
+    void AddMaterialSwaps(const TMap<class FGameplayTag, class FMaterialSwap>& NewMaterialSwaps);
+}; // Size: 0x1000
 
 class UNPCConversationHandleFunctionLibrary : public UBlueprintFunctionLibrary
 {

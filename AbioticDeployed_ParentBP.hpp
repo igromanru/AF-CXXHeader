@@ -57,6 +57,10 @@ class AAbioticDeployed_ParentBP_C : public AAbioticActor_C
     bool AlwaysPackageOnDestroy;                                                      // 0x0549 (size: 0x1)
     double ReducedDamageMultiplier;                                                   // 0x0550 (size: 0x8)
     float PlayerDeployableCullDistance;                                               // 0x0558 (size: 0x4)
+    class USoundBase* OverRepairSFX;                                                  // 0x0560 (size: 0x8)
+    class UNiagaraSystem* OverRepairVFX;                                              // 0x0568 (size: 0x8)
+    class USoundBase* DeploySoundOverride;                                            // 0x0570 (size: 0x8)
+    bool ShowDamageTexture;                                                           // 0x0578 (size: 0x1)
 
     void ReceiveLaserHit(class ULaserComponent_C* Laser, int32 CurrentBounce, FHitResult& HitResult, bool& Handled);
     void GetPluggedInDeviceCount(int32& Count);
@@ -175,8 +179,9 @@ class AAbioticDeployed_ParentBP_C : public AAbioticActor_C
     void Set New Attached Power Cord(class UCableComponent* New Power Cord);
     void StopLaserHitUpdate(class ULaserComponent_C* Laser);
     void ReceiveEndPlay(TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
+    void Broadcast_OverRepair(FVector Location);
     void ExecuteUbergraph_AbioticDeployed_ParentBP(int32 EntryPoint);
     void DeployableRequestedSave__DelegateSignature();
-}; // Size: 0x55C
+}; // Size: 0x579
 
 #endif

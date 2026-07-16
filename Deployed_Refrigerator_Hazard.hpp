@@ -3,6 +3,6 @@
 
 class ADeployed_Refrigerator_Hazard_C : public ADeployed_Refrigerator_C
 {
-}; // Size: 0x958
+}; // Size: 0x978
 
 #endif

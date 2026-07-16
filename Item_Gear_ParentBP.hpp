@@ -3,15 +3,17 @@
 
 class AItem_Gear_ParentBP_C : public AAbiotic_Item_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0AF0 (size: 0x8)
-    double CurrentDurabilityLeft;                                                     // 0x0AF8 (size: 0x8)
-    TArray<class UMaterialInstanceDynamic*> PlayerGearMeshMaterial;                   // 0x0B00 (size: 0x10)
-    bool Equipped;                                                                    // 0x0B10 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B08 (size: 0x8)
+    double CurrentDurabilityLeft;                                                     // 0x0B10 (size: 0x8)
+    TArray<class UMaterialInstanceDynamic*> PlayerGearMeshMaterial;                   // 0x0B18 (size: 0x10)
+    bool Equipped;                                                                    // 0x0B28 (size: 0x1)
 
+    void GetBuffsToRemove(TArray<FName>& BuffsToAdd);
+    void GetBuffsToAdd(TArray<FName>& BuffsToAdd);
     void RemoveGearBuffs();
     void ApplyGearBuffs();
     void Check for Similar Gear Item in Slot(TEnumAsByte<E_InventorySlotType::Type> Slot Type To Check, bool& Same);
-    void Check for Existing Gear Buff(FName InputPin, class UAbiotic_InventoryComponent_C*& EquipInventory, bool& Buff Exist);
+    void Check for Existing Gear Buff(FName BuffName, class AAbiotic_PlayerCharacter_C* PlayerCharacter, bool& Buff Exist);
     void FindGearCosmeticData(bool CheckForTransmog, TEnumAsByte<E_InventorySlotType::Type> InventorySlot, bool& Success, FItemCosmetics_Struct& ItemCosmeticData);
     void CanLoseDurabilityOnUse(bool Secondary, bool& CanLose);
     void CanUse(bool& CanUse, class AActor*& TargetActor, bool& OverrideLogic);
@@ -30,6 +32,6 @@ class AItem_Gear_ParentBP_C : public AAbiotic_Item_ParentBP_C
     void DestroyGearItem(TEnumAsByte<E_InventorySlotType::Type> Slot Type);
     void ReceiveDestroyed();
     void ExecuteUbergraph_Item_Gear_ParentBP(int32 EntryPoint);
-}; // Size: 0xB11
+}; // Size: 0xB29
 
 #endif

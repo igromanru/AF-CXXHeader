@@ -4,13 +4,15 @@
 class ADeathFan_BP_C : public AAbioticActor_C
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D0 (size: 0x8)
-    class UAudioComponent* Audio;                                                     // 0x02D8 (size: 0x8)
-    class UBoxComponent* DeathBox;                                                    // 0x02E0 (size: 0x8)
-    class UStaticMeshComponent* Mesh;                                                 // 0x02E8 (size: 0x8)
-    class URotatingMovementComponent* RotatingMovement;                               // 0x02F0 (size: 0x8)
-    bool FanActive;                                                                   // 0x02F8 (size: 0x1)
-    bool FanOnlyNoDeath;                                                              // 0x02F9 (size: 0x1)
-    bool TurnOffAtNight;                                                              // 0x02FA (size: 0x1)
+    class UBoxComponent* NavVolume;                                                   // 0x02D8 (size: 0x8)
+    class UAudioComponent* Audio;                                                     // 0x02E0 (size: 0x8)
+    class UBoxComponent* DeathBox;                                                    // 0x02E8 (size: 0x8)
+    class UStaticMeshComponent* Mesh;                                                 // 0x02F0 (size: 0x8)
+    class URotatingMovementComponent* RotatingMovement;                               // 0x02F8 (size: 0x8)
+    bool FanActive;                                                                   // 0x0300 (size: 0x1)
+    bool FanOnlyNoDeath;                                                              // 0x0301 (size: 0x1)
+    bool TurnOffAtNight;                                                              // 0x0302 (size: 0x1)
+    TArray<class AAbiotic_Character_ParentBP_C*> DelayedDamageCharacters;             // 0x0308 (size: 0x10)
 
     void GetPluggedInDeviceCount(int32& Count);
     bool HasBatteryInParentChain();
@@ -26,6 +28,6 @@ class ADeathFan_BP_C : public AAbioticActor_C
     void ReceiveBeginPlay();
     void ChangePowerState();
     void ExecuteUbergraph_DeathFan_BP(int32 EntryPoint);
-}; // Size: 0x2FB
+}; // Size: 0x318
 
 #endif

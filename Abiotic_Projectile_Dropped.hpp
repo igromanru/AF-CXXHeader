@@ -3,11 +3,11 @@
 
 class AAbiotic_Projectile_Dropped_C : public AAbiotic_Item_Dropped_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0A18 (size: 0x8)
-    class USphereComponent* PickupOverlap;                                            // 0x0A20 (size: 0x8)
-    class AActor* ProjectileOwner;                                                    // 0x0A28 (size: 0x8)
-    FHitResult LastHitInfo;                                                           // 0x0A30 (size: 0xF8)
-    bool SweepToPreventGettingStuck;                                                  // 0x0B28 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0A48 (size: 0x8)
+    class USphereComponent* PickupOverlap;                                            // 0x0A50 (size: 0x8)
+    class AActor* ProjectileOwner;                                                    // 0x0A58 (size: 0x8)
+    FHitResult LastHitInfo;                                                           // 0x0A60 (size: 0xF8)
+    bool SweepToPreventGettingStuck;                                                  // 0x0B58 (size: 0x1)
 
     void ItemDroppedMeshSetup(TSoftObjectPtr<UObject> MeshObjectRef, class UStaticMesh*& OutMeshAsset);
     void ServerTryAutoPickupItem(class AActor*& InteractingActor);
@@ -16,6 +16,6 @@ class AAbiotic_Projectile_Dropped_C : public AAbiotic_Item_Dropped_C
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void OnBuffTagContainerRefreshed_Event();
     void ExecuteUbergraph_Abiotic_Projectile_Dropped(int32 EntryPoint);
-}; // Size: 0xB29
+}; // Size: 0xB59
 
 #endif

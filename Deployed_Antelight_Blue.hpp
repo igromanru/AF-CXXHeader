@@ -3,6 +3,6 @@
 
 class ADeployed_Antelight_Blue_C : public ADeployed_Antelight_C
 {
-}; // Size: 0x868
+}; // Size: 0x888
 
 #endif

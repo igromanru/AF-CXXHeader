@@ -48,7 +48,12 @@ class ULaserComponent_C : public USceneComponent
     bool FriendlyFireEnabled;                                                         // 0x0400 (size: 0x1)
     FLaserComponent_COnLaserDealDamage OnLaserDealDamage;                             // 0x0408 (size: 0x10)
     void OnLaserDealDamage(class ULaserComponent_C* LaserComponent, FHitResult HitResult, double BaseDamage, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType);
+    bool DamageFollowers;                                                             // 0x0418 (size: 0x1)
+    class UBoxNavAreaComponent* NavDangerComponent;                                   // 0x0420 (size: 0x8)
+    bool CreateDangerNavArea;                                                         // 0x0428 (size: 0x1)
 
+    void TryTriggerPetMovement(class ANPC_Base_ParentBP_C* NPC);
+    void UpdateDangerNavArea();
     void OnRep_CurrentBounceCount();
     void ReflectLaser(class AActor* TargetActor, FHitResult& Hit, int32 MaxSimultaneousReflects, FVector DirectionOverride);
     void OnRep_LaserEndHandled();
@@ -73,6 +78,6 @@ class ULaserComponent_C : public USceneComponent
     void OnLaserDealDamage__DelegateSignature(class ULaserComponent_C* LaserComponent, FHitResult HitResult, double BaseDamage, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType);
     void LaserFX_End__DelegateSignature();
     void LaserFX_Start__DelegateSignature();
-}; // Size: 0x418
+}; // Size: 0x429
 
 #endif

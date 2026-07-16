@@ -3,27 +3,27 @@
 
 class ADeployed_Battery_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0850 (size: 0x8)
-    class UTextRenderComponent* DeviceText;                                           // 0x0858 (size: 0x8)
-    class UTextRenderComponent* BatteryText;                                          // 0x0860 (size: 0x8)
-    class UTextRenderComponent* PoweredText;                                          // 0x0868 (size: 0x8)
-    class UChildActorComponent* PowerSocket1;                                         // 0x0870 (size: 0x8)
-    class USceneComponent* PowerSocketContainer;                                      // 0x0878 (size: 0x8)
-    class URechargeableComponent_C* RechargeableComponent;                            // 0x0880 (size: 0x8)
-    TArray<class APowerSocket_ChildOfActor_C*> PlugStripPowerSockets;                 // 0x0888 (size: 0x10)
-    bool HasBatteryPower;                                                             // 0x0898 (size: 0x1)
-    FTimerHandle BatteryTickHandle;                                                   // 0x08A0 (size: 0x8)
-    TEnumAsByte<E_PowerTimerModes::Type> TimerMode;                                   // 0x08A8 (size: 0x1)
-    FTimerHandle PowerModeTimerHandle;                                                // 0x08B0 (size: 0x8)
-    class ADayNightManager_C* DayNightManager;                                        // 0x08B8 (size: 0x8)
-    bool PowerTimerActive;                                                            // 0x08C0 (size: 0x1)
-    double BatteryPercentage;                                                         // 0x08C8 (size: 0x8)
-    int32 DevicesPullingPower;                                                        // 0x08D0 (size: 0x4)
-    class UMaterialInstanceDynamic* DynMat_BatteryLevel;                              // 0x08D8 (size: 0x8)
-    class UMaterialInstanceDynamic* DynMat_PowerDraw;                                 // 0x08E0 (size: 0x8)
-    int32 MaxBattery;                                                                 // 0x08E8 (size: 0x4)
-    bool FreezeBatteryDrain;                                                          // 0x08EC (size: 0x1)
-    int32 BatteryChargeSpeed;                                                         // 0x08F0 (size: 0x4)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0870 (size: 0x8)
+    class UTextRenderComponent* DeviceText;                                           // 0x0878 (size: 0x8)
+    class UTextRenderComponent* BatteryText;                                          // 0x0880 (size: 0x8)
+    class UTextRenderComponent* PoweredText;                                          // 0x0888 (size: 0x8)
+    class UChildActorComponent* PowerSocket1;                                         // 0x0890 (size: 0x8)
+    class USceneComponent* PowerSocketContainer;                                      // 0x0898 (size: 0x8)
+    class URechargeableComponent_C* RechargeableComponent;                            // 0x08A0 (size: 0x8)
+    TArray<class APowerSocket_ChildOfActor_C*> PlugStripPowerSockets;                 // 0x08A8 (size: 0x10)
+    bool HasBatteryPower;                                                             // 0x08B8 (size: 0x1)
+    FTimerHandle BatteryTickHandle;                                                   // 0x08C0 (size: 0x8)
+    TEnumAsByte<E_PowerTimerModes::Type> TimerMode;                                   // 0x08C8 (size: 0x1)
+    FTimerHandle PowerModeTimerHandle;                                                // 0x08D0 (size: 0x8)
+    class ADayNightManager_C* DayNightManager;                                        // 0x08D8 (size: 0x8)
+    bool PowerTimerActive;                                                            // 0x08E0 (size: 0x1)
+    double BatteryPercentage;                                                         // 0x08E8 (size: 0x8)
+    int32 DevicesPullingPower;                                                        // 0x08F0 (size: 0x4)
+    class UMaterialInstanceDynamic* DynMat_BatteryLevel;                              // 0x08F8 (size: 0x8)
+    class UMaterialInstanceDynamic* DynMat_PowerDraw;                                 // 0x0900 (size: 0x8)
+    int32 MaxBattery;                                                                 // 0x0908 (size: 0x4)
+    bool FreezeBatteryDrain;                                                          // 0x090C (size: 0x1)
+    int32 BatteryChargeSpeed;                                                         // 0x0910 (size: 0x4)
 
     void GetItemUseSpeed(bool SecondaryUse, class AAbiotic_Character_ParentBP_C* UsingCharacter, class AAbiotic_Character_ParentBP_C* TargetCharacter, double BaseSpeed, double& Speed);
     void CanLoseDurabilityOnUse(bool Secondary, bool& CanLose);
@@ -73,6 +73,6 @@ class ADeployed_Battery_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_
     void DelayedSave();
     void ReconnectPowerSockets();
     void ExecuteUbergraph_Deployed_Battery_ParentBP(int32 EntryPoint);
-}; // Size: 0x8F4
+}; // Size: 0x914
 
 #endif

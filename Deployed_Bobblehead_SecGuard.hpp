@@ -3,6 +3,6 @@
 
 class ADeployed_Bobblehead_SecGuard_C : public ADeployed_Bobblehead_ParentBP_C
 {
-}; // Size: 0x880
+}; // Size: 0x8A0
 
 #endif

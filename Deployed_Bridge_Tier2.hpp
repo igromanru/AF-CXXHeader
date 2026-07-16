@@ -3,6 +3,6 @@
 
 class ADeployed_Bridge_Tier2_C : public ADeployed_Bridge_ParentBP_C
 {
-}; // Size: 0x888
+}; // Size: 0x8A8
 
 #endif

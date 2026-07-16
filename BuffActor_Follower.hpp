@@ -55,6 +55,8 @@ class ABuffActor_Follower_C : public ABuffActor
     void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void CanUseSharedInteraction(bool& Can Use);
+    FVector GetSpawnLocation(bool& Valid);
+    void InitialInteractPress(bool TypeA);
     void OnRep_WantsToSprint();
     void UpdateSprintState();
     bool IsWantingToSprint();
@@ -130,7 +132,6 @@ class ABuffActor_Follower_C : public ABuffActor
     void RadialWheelInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed, FName SelectionWheelContentName);
     void DeliverDynamicProperty(bool FromSave, FDynamicProperty Property);
     void InteractTeleportUpdate(class AAbiotic_Character_ParentBP_C* InteractingCharacter, bool TryingToTeleport, bool TeleportSuccessful);
-    void ReceiveBeginPlay();
     void LocalSetupNewName();
     void InteractWith_A_LocalFX(bool Hold);
     void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
@@ -139,9 +140,9 @@ class ABuffActor_Follower_C : public ABuffActor
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void UpdateHealthData();
-    void InitNewCharacterNPC();
-    void ReceiveTick(float DeltaSeconds);
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
+    void ReceiveBeginPlay();
+    void OnBuffComponentInitialized(class UCharacterBuffComponent* BuffComponent);
     void ExecuteUbergraph_BuffActor_Follower(int32 EntryPoint);
 }; // Size: 0x3E0
 

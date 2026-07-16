@@ -3,10 +3,10 @@
 
 class AGear_Trinket_Balloon_C : public AGear_Trinket_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B38 (size: 0x8)
-    double TestVar;                                                                   // 0x0B40 (size: 0x8)
-    class AAbiotic_PlayerCharacter_C* AttachedCharacter;                              // 0x0B48 (size: 0x8)
-    FName TrinketSlot;                                                                // 0x0B50 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B50 (size: 0x8)
+    double TestVar;                                                                   // 0x0B58 (size: 0x8)
+    class AAbiotic_PlayerCharacter_C* AttachedCharacter;                              // 0x0B60 (size: 0x8)
+    FName TrinketSlot;                                                                // 0x0B68 (size: 0x8)
 
     void OnRep_TestVar();
     void ReceiveTick(float DeltaSeconds);
@@ -14,6 +14,6 @@ class AGear_Trinket_Balloon_C : public AGear_Trinket_ParentBP_C
     void OnTrinketAttachComplete();
     void ReceiveEndPlay(TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
     void ExecuteUbergraph_Gear_Trinket_Balloon(int32 EntryPoint);
-}; // Size: 0xB58
+}; // Size: 0xB70
 
 #endif

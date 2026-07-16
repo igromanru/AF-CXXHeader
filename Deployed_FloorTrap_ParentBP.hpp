@@ -3,14 +3,14 @@
 
 class ADeployed_FloorTrap_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0850 (size: 0x8)
-    class URechargeableComponent_C* RechargeableComponent;                            // 0x0858 (size: 0x8)
-    class UBoxComponent* ColliderBox;                                                 // 0x0860 (size: 0x8)
-    TSubclassOf<class UDamageType> TrapDamageType;                                    // 0x0868 (size: 0x8)
-    TArray<FName> TrapDebuffs;                                                        // 0x0870 (size: 0x10)
-    float TrapInitialDamage;                                                          // 0x0880 (size: 0x4)
-    int32 BatteryAmountUsedOnTrigger;                                                 // 0x0884 (size: 0x4)
-    bool IsActive;                                                                    // 0x0888 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0870 (size: 0x8)
+    class URechargeableComponent_C* RechargeableComponent;                            // 0x0878 (size: 0x8)
+    class UBoxComponent* ColliderBox;                                                 // 0x0880 (size: 0x8)
+    TSubclassOf<class UDamageType> TrapDamageType;                                    // 0x0888 (size: 0x8)
+    TArray<FName> TrapDebuffs;                                                        // 0x0890 (size: 0x10)
+    float TrapInitialDamage;                                                          // 0x08A0 (size: 0x4)
+    int32 BatteryAmountUsedOnTrigger;                                                 // 0x08A4 (size: 0x4)
+    bool IsActive;                                                                    // 0x08A8 (size: 0x1)
 
     void OnRep_IsActive();
     void CanUse(bool& CanUse);
@@ -22,6 +22,6 @@ class ADeployed_FloorTrap_ParentBP_C : public AAbioticDeployed_Furniture_ParentB
     void Local_UpdateCurrentTrapState();
     void Server_TrapNewStateUpdate();
     void ExecuteUbergraph_Deployed_FloorTrap_ParentBP(int32 EntryPoint);
-}; // Size: 0x889
+}; // Size: 0x8A9
 
 #endif

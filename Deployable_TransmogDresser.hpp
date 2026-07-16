@@ -3,17 +3,17 @@
 
 class ADeployable_TransmogDresser_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0850 (size: 0x8)
-    class USceneComponent* TmogButtonPrompt1;                                         // 0x0858 (size: 0x8)
-    class USceneComponent* TmogButtonPrompt;                                          // 0x0860 (size: 0x8)
-    class UStaticMeshComponent* TmogMesh;                                             // 0x0868 (size: 0x8)
-    class UStaticMeshComponent* CustomizeMesh;                                        // 0x0870 (size: 0x8)
-    class UChildActorComponent* CharacterCustomization;                               // 0x0878 (size: 0x8)
-    class UActorComponent* LastHitComponent;                                          // 0x0880 (size: 0x8)
-    bool UsingTransmog;                                                               // 0x0888 (size: 0x1)
-    TMap<TEnumAsByte<E_InventorySlotType::Type>, bool> GearVisibilityStatus;          // 0x0890 (size: 0x50)
-    TMap<TEnumAsByte<E_InventorySlotType::Type>, bool> BodyMeshVisibilityStatus;      // 0x08E0 (size: 0x50)
-    bool HeadAccessoryEnabled;                                                        // 0x0930 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0870 (size: 0x8)
+    class USceneComponent* TmogButtonPrompt1;                                         // 0x0878 (size: 0x8)
+    class USceneComponent* TmogButtonPrompt;                                          // 0x0880 (size: 0x8)
+    class UStaticMeshComponent* TmogMesh;                                             // 0x0888 (size: 0x8)
+    class UStaticMeshComponent* CustomizeMesh;                                        // 0x0890 (size: 0x8)
+    class UChildActorComponent* CharacterCustomization;                               // 0x0898 (size: 0x8)
+    class UActorComponent* LastHitComponent;                                          // 0x08A0 (size: 0x8)
+    bool UsingTransmog;                                                               // 0x08A8 (size: 0x1)
+    TMap<TEnumAsByte<E_InventorySlotType::Type>, bool> GearVisibilityStatus;          // 0x08B0 (size: 0x50)
+    TMap<TEnumAsByte<E_InventorySlotType::Type>, bool> BodyMeshVisibilityStatus;      // 0x0900 (size: 0x50)
+    bool HeadAccessoryEnabled;                                                        // 0x0950 (size: 0x1)
 
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
@@ -28,6 +28,6 @@ class ADeployable_TransmogDresser_C : public AAbioticDeployed_Furniture_ParentBP
     void ReceiveEndPlay(TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void ExecuteUbergraph_Deployable_TransmogDresser(int32 EntryPoint);
-}; // Size: 0x931
+}; // Size: 0x951
 
 #endif

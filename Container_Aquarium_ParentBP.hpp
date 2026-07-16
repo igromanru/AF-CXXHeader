@@ -3,12 +3,12 @@
 
 class AContainer_Aquarium_ParentBP_C : public ADeployed_Container_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0920 (size: 0x8)
-    class UAudioComponent* AmbientWater;                                              // 0x0928 (size: 0x8)
-    class UNiagaraComponent* Niagara_Bubbler;                                         // 0x0930 (size: 0x8)
-    class UNiagaraComponent* Niagara_WaterDebris;                                     // 0x0938 (size: 0x8)
-    class UAudioComponent* BubblerAudio;                                              // 0x0940 (size: 0x8)
-    TArray<class UBP_FishTankMesh_C*> FishMeshes;                                     // 0x0948 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0940 (size: 0x8)
+    class UAudioComponent* AmbientWater;                                              // 0x0948 (size: 0x8)
+    class UNiagaraComponent* Niagara_Bubbler;                                         // 0x0950 (size: 0x8)
+    class UNiagaraComponent* Niagara_WaterDebris;                                     // 0x0958 (size: 0x8)
+    class UAudioComponent* BubblerAudio;                                              // 0x0960 (size: 0x8)
+    TArray<class UBP_FishTankMesh_C*> FishMeshes;                                     // 0x0968 (size: 0x10)
 
     void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void UpdateInventoryFish();
@@ -18,6 +18,6 @@ class AContainer_Aquarium_ParentBP_C : public ADeployed_Container_ParentBP_C
     void TogglePowerFX();
     void RefreshConstructionModeStateFX();
     void ExecuteUbergraph_Container_Aquarium_ParentBP(int32 EntryPoint);
-}; // Size: 0x958
+}; // Size: 0x978
 
 #endif

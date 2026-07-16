@@ -66,8 +66,6 @@ class ATram_ParentBP_C : public AActor
     void FindNextTarget();
     void UpdateTramPosition(double DeltaTime, bool ForceUpdate);
     void TickTramPosition(double DeltaTime);
-    void ReceiveBeginPlay();
-    void ReceiveTick(float DeltaSeconds);
     void PositiveButtonPressed(bool Activated);
     void NegativeButtonPressed(bool Activated);
     void UpdateExternalStations();
@@ -75,6 +73,9 @@ class ATram_ParentBP_C : public AActor
     void OnInventorySaveLoaded(const TArray<FSaveData_Inventories_Struct>& SaveData);
     void SaveTram();
     void DebugMove();
+    void ReceiveTick(float DeltaSeconds);
+    void ReceiveBeginPlay();
+    void SetMoving(bool NewMoving);
     void ExecuteUbergraph_Tram_ParentBP(int32 EntryPoint);
     void TargetStationUpdated__DelegateSignature(class ATramSystem_Station_C* NewTarget);
 }; // Size: 0x430

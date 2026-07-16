@@ -5,7 +5,7 @@ class UW_HUD_ItemPickupNotify_C : public UUserWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UWidgetAnimation* FadeOut;                                                  // 0x02E8 (size: 0x8)
-    class UWidgetAnimation* Popin;                                                    // 0x02F0 (size: 0x8)
+    class UWidgetAnimation* PopIn;                                                    // 0x02F0 (size: 0x8)
     class UBorder* Border_0;                                                          // 0x02F8 (size: 0x8)
     class UImage* Icon;                                                               // 0x0300 (size: 0x8)
     class UTextBlock* ItemCountText;                                                  // 0x0308 (size: 0x8)

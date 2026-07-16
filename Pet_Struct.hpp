@@ -24,7 +24,7 @@ struct FPet_Struct
     TSoftObjectPtr<USoundBase> PetAudio_27_5FAC21A34F17A6AC4CF29F8D083F5EA7;          // 0x01D0 (size: 0x28)
     TSoftObjectPtr<USoundBase> FollowStartAudio_66_D566729F418E40B59FF2E0AD28043CC8;  // 0x01F8 (size: 0x28)
     TSoftObjectPtr<USoundBase> PickedUpAudio_68_E6291BCC49BD02C311BC839F8E272469;     // 0x0220 (size: 0x28)
-    TSoftObjectPtr<UAnimMontage> SleepAnim_57_FB14A33F4F93D0826F0C2F9105515322;       // 0x0248 (size: 0x28)
+    TSoftObjectPtr<UAnimSequence> SleepAnim_96_FB14A33F4F93D0826F0C2F9105515322;      // 0x0248 (size: 0x28)
     TSoftObjectPtr<UStaticMesh> CollarMesh_60_681C9D6241D34104ABA8A8A35B74E452;       // 0x0270 (size: 0x28)
     FAudioOverrideMap AudioOverrides_90_059F00C44D7E37B4582392855CAC2DA2;             // 0x0298 (size: 0x50)
 

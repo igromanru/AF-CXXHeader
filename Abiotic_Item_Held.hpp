@@ -3,7 +3,7 @@
 
 class AAbiotic_Item_Held_C : public AAbiotic_Item_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0AF0 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B08 (size: 0x8)
 
     void UpdateMeshMaterials();
     void Server_GetAmmoConsumeAmount(double ChargeAmount, int32& AmountToConsume);
@@ -15,6 +15,6 @@ class AAbiotic_Item_Held_C : public AAbiotic_Item_ParentBP_C
     void ReceiveBeginPlay();
     void UpdateItemActionDisplay(bool bUsingGamepad);
     void ExecuteUbergraph_Abiotic_Item_Held(int32 EntryPoint);
-}; // Size: 0xAF8
+}; // Size: 0xB10
 
 #endif

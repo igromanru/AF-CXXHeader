@@ -3,6 +3,6 @@
 
 class AResourceNode_OfficePhotocopier_C : public AResourceNode_ParentBP_C
 {
-}; // Size: 0x4E0
+}; // Size: 0x4E1
 
 #endif

@@ -6,6 +6,6 @@ class ADeployed_Furniture_Cot_Military_C : public ADeployed_Furniture_Bed_Parent
 
     void CanLongInteractWith_A(bool& Success);
     void HasSitLocations(bool& IsSittable);
-}; // Size: 0x8D8
+}; // Size: 0x8F8
 
 #endif

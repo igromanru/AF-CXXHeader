@@ -94,7 +94,7 @@ class UAbiotic_InventoryComponent_C : public UActorComponent
     void LocateInventoryItemByTypes(TArray<FName>& Items, bool& Success, TEnumAsByte<E_InventorySlotType::Type>& InventoryArray, int32& InventoryIndex, FAbiotic_InventoryItemSlotStruct& Element Found);
     void GetInventorySlotIndex(TEnumAsByte<E_InventorySlotType::Type> SlotTypeToSearch, bool& Found, int32& SlotIndex);
     void CheckForStacks(class AAbiotic_PlayerCharacter_C* InteractingCharacter, int32 SlotIndex);
-    void Get Destination Inventory(class AAbioticCharacter* InteractingCharacter, bool& Container, bool& Backpack, bool& Hotbar, bool& Gear);
+    void Get Destination Inventory(class AAbioticCharacter* InteractingCharacter, bool& Container, bool& backpack, bool& Hotbar, bool& Gear);
     void PickupMoney(class AAbiotic_PlayerCharacter_C* IntreractingCharacter, int32 MoneyValue, int32 SlotIndex);
     void IsItemMoney(const FAbiotic_InventoryItemSlotStruct& ItemSlot, bool& TRUE);
     void Server Try Quick Move Item(class AAbiotic_PlayerCharacter_C* InteractingCharacter, int32 SlotIndex, bool EquippingGear, class UAbiotic_InventoryComponent_C* ContainerInventory, bool SingleStackOnly, bool EnableNotifyPopus, bool& Successful);

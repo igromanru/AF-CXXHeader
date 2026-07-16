@@ -3,13 +3,13 @@
 
 class ANPC_Boxy_C : public ANPC_Base_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x21B0 (size: 0x8)
-    class UChildActorComponent* ChildActor;                                           // 0x21B8 (size: 0x8)
-    class UAudioComponent* EatingAudio;                                               // 0x21C0 (size: 0x8)
-    float BoxyLifespan;                                                               // 0x21C8 (size: 0x4)
-    float BoxyDespawnDistance;                                                        // 0x21CC (size: 0x4)
-    class ADayNightManager_C* DayNightManager;                                        // 0x21D0 (size: 0x8)
-    bool BoxyIsAsleep;                                                                // 0x21D8 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x21B8 (size: 0x8)
+    class UChildActorComponent* ChildActor;                                           // 0x21C0 (size: 0x8)
+    class UAudioComponent* EatingAudio;                                               // 0x21C8 (size: 0x8)
+    float BoxyLifespan;                                                               // 0x21D0 (size: 0x4)
+    float BoxyDespawnDistance;                                                        // 0x21D4 (size: 0x4)
+    class ADayNightManager_C* DayNightManager;                                        // 0x21D8 (size: 0x8)
+    bool BoxyIsAsleep;                                                                // 0x21E0 (size: 0x1)
 
     void CanBePushed(class AAbiotic_Character_ParentBP_C* PushingCharacter, bool& Pushable);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
@@ -28,6 +28,6 @@ class ANPC_Boxy_C : public ANPC_Base_ParentBP_C
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void InteractWith_A_LocalFX(bool Hold);
     void ExecuteUbergraph_NPC_Boxy(int32 EntryPoint);
-}; // Size: 0x21D9
+}; // Size: 0x21E1
 
 #endif

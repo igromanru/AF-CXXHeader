@@ -8,7 +8,7 @@ class UW_Credits_GenericEntry_C : public UAbioticWidget
     class UHorizontalBox* HBox;                                                       // 0x02F0 (size: 0x8)
     class UImage* Image;                                                              // 0x02F8 (size: 0x8)
     class USpacer* ImageSpacer;                                                       // 0x0300 (size: 0x8)
-    class UVerticalBox* MainVBox;                                                     // 0x0308 (size: 0x8)
+    class UVerticalBox* MainVBOX;                                                     // 0x0308 (size: 0x8)
     class UTextBlock* NameText;                                                       // 0x0310 (size: 0x8)
     class UTextBlock* NameText_Centered;                                              // 0x0318 (size: 0x8)
     class UTextBlock* TitleText;                                                      // 0x0320 (size: 0x8)

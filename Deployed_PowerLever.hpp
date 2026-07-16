@@ -3,16 +3,16 @@
 
 class ADeployed_PowerLever_C : public ADeployed_PowerStrip_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0870 (size: 0x8)
-    class UMaterialBillboardComponent* MaterialBillboard;                             // 0x0878 (size: 0x8)
-    class UChildActorComponent* PowerSocket;                                          // 0x0880 (size: 0x8)
-    class UStaticMeshComponent* lever;                                                // 0x0888 (size: 0x8)
-    float LeverTimeline_NewTrack_0_DDA4FA7344E7FE88BFF0D398819D5F0E;                  // 0x0890 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> LeverTimeline__Direction_DDA4FA7344E7FE88BFF0D398819D5F0E; // 0x0894 (size: 0x1)
-    class UTimelineComponent* LeverTimeline;                                          // 0x0898 (size: 0x8)
-    FRotator Lever_On_Rot;                                                            // 0x08A0 (size: 0x18)
-    FRotator Lever_Off_Rot;                                                           // 0x08B8 (size: 0x18)
-    bool LeverOn;                                                                     // 0x08D0 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0890 (size: 0x8)
+    class UMaterialBillboardComponent* MaterialBillboard;                             // 0x0898 (size: 0x8)
+    class UChildActorComponent* PowerSocket;                                          // 0x08A0 (size: 0x8)
+    class UStaticMeshComponent* lever;                                                // 0x08A8 (size: 0x8)
+    float LeverTimeline_NewTrack_0_DDA4FA7344E7FE88BFF0D398819D5F0E;                  // 0x08B0 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> LeverTimeline__Direction_DDA4FA7344E7FE88BFF0D398819D5F0E; // 0x08B4 (size: 0x1)
+    class UTimelineComponent* LeverTimeline;                                          // 0x08B8 (size: 0x8)
+    FRotator Lever_On_Rot;                                                            // 0x08C0 (size: 0x18)
+    FRotator Lever_Off_Rot;                                                           // 0x08D8 (size: 0x18)
+    bool LeverOn;                                                                     // 0x08F0 (size: 0x1)
 
     void GetPluggedInDeviceCount(int32& Count);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
@@ -29,6 +29,6 @@ class ADeployed_PowerLever_C : public ADeployed_PowerStrip_ParentBP_C
     void UpdateLeverFX();
     void OnLoadedFromSave(double NewLifespan);
     void ExecuteUbergraph_Deployed_PowerLever(int32 EntryPoint);
-}; // Size: 0x8D1
+}; // Size: 0x8F1
 
 #endif

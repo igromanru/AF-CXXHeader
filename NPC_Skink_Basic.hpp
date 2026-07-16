@@ -3,9 +3,9 @@
 
 class ANPC_Skink_Basic_C : public ANPC_Monster_Pest_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x22C0 (size: 0x8)
-    FDataTableRowHandle ProjectileRow;                                                // 0x22C8 (size: 0x10)
-    FVector PoopLocation;                                                             // 0x22D8 (size: 0x18)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x22C8 (size: 0x8)
+    FDataTableRowHandle ProjectileRow;                                                // 0x22D0 (size: 0x10)
+    FVector PoopLocation;                                                             // 0x22E0 (size: 0x18)
 
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
@@ -21,6 +21,6 @@ class ANPC_Skink_Basic_C : public ANPC_Monster_Pest_C
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void InteractWith_A_LocalFX(bool Hold);
     void ExecuteUbergraph_NPC_Skink_Basic(int32 EntryPoint);
-}; // Size: 0x22F0
+}; // Size: 0x22F8
 
 #endif

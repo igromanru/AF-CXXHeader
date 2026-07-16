@@ -3,6 +3,6 @@
 
 class ADeployed_Ramp_Small_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-}; // Size: 0x84A
+}; // Size: 0x86A
 
 #endif

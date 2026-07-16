@@ -4,7 +4,7 @@
 class UW_HUD_PinnedJournals_C : public UUserWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
-    class UVerticalBox* MainVBox;                                                     // 0x02E8 (size: 0x8)
+    class UVerticalBox* MainVBOX;                                                     // 0x02E8 (size: 0x8)
 
     void Journal Entry Is Visible?(FName JournalRow, bool& Visible);
     void TogglePinnedJournalEntry(bool Remove, FDataTableRowHandle JournalRow);

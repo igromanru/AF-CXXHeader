@@ -21,6 +21,9 @@ class AFarmingPlot_BP_C : public AAbioticActor_C
     int32 VisualFertilizeQuality;                                                     // 0x0338 (size: 0x4)
     FFarmingPlot_BP_COnPlantSet OnPlantSet;                                           // 0x0340 (size: 0x10)
     void OnPlantSet(class AFarmingPlot_BP_C* FarmingPlot, class APlantProxy_ParentBP_C* PlantProxy);
+    FGameplayTagQuery FarmableItemTagQuery;                                           // 0x0350 (size: 0x48)
+    FDataTableRowHandle DeadPlant;                                                    // 0x0398 (size: 0x10)
+    FGameplayTagQuery FertilizerQuery;                                                // 0x03A8 (size: 0x48)
 
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
@@ -45,13 +48,15 @@ class AFarmingPlot_BP_C : public AAbioticActor_C
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void Landing Damage Multiplier(double Damage, double& DamageMultiplier);
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
+    void GetSeedItem(FDataTableRowHandle& SeedItem);
+    bool PickUpOrDropPlantSeed(class AAbiotic_PlayerCharacter_C* OptionalPlayer);
     void IsHoldingFarmableItem(class AAbiotic_PlayerCharacter_C* Character, bool& FarmItem);
     void UpdateFertilizeTexture();
     void OnRep_VisualFertilizeQuality();
     void GetGrowthAmountMultiplier(int32& TotalGrowthAmountPerTick);
     void IsGrowingPlant(EPlantGrowthStage GrowthStage, bool& IsPlant?);
     bool CurrentlyRequiresWater?();
-    void StartHarvestingPlant(class AAbiotic_PlayerCharacter_C*& Character, bool& LootIsGenerated?);
+    void DropHarvestLoot(class AAbiotic_PlayerCharacter_C* Character, bool& LootIsGenerated?);
     void PickupPlant(class AAbiotic_Character_ParentBP_C* Character);
     void FertilizePlant(class AAbiotic_Character_ParentBP_C* Character);
     void CanFertilizePlant(class AAbioticCharacter* Character, bool& FertilizerAllowed, double& FertilizerEfficacy);
@@ -62,7 +67,7 @@ class AFarmingPlot_BP_C : public AAbioticActor_C
     void UnDecayPlant();
     void DecayPlant();
     void SavePlot();
-    void HarvestPlant(class AAbiotic_Character_ParentBP_C* Character);
+    void HarvestPlant(class AAbiotic_Character_ParentBP_C* Character, bool Force);
     void UpdateGrowthTimer();
     void SetCurrentGrowthProgress(int32 NewProgress);
     int32 GetCurrentGrowthProgress();
@@ -96,6 +101,6 @@ class AFarmingPlot_BP_C : public AAbioticActor_C
     void ExecuteUbergraph_FarmingPlot_BP(int32 EntryPoint);
     void OnPlantSet__DelegateSignature(class AFarmingPlot_BP_C* FarmingPlot, class APlantProxy_ParentBP_C* PlantProxy);
     void GrowthStageUpdated__DelegateSignature(EPlantGrowthStage NewGrowthStage);
-}; // Size: 0x350
+}; // Size: 0x3F0
 
 #endif

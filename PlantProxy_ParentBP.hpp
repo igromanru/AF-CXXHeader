@@ -7,6 +7,7 @@ class APlantProxy_ParentBP_C : public AItemProxyParent_BP_C
     class USceneComponent* Scene;                                                     // 0x0358 (size: 0x8)
     EPlantGrowthStage GrowthStage;                                                    // 0x0360 (size: 0x1)
     bool DestroyPlantAfterHarvest;                                                    // 0x0361 (size: 0x1)
+    bool KillPlantAfterHarvest;                                                       // 0x0362 (size: 0x1)
     class USoundBase* PlantGrowSound;                                                 // 0x0368 (size: 0x8)
 
     void CanUseSharedInteraction(bool& Can Use);

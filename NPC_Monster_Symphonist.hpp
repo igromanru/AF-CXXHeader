@@ -3,35 +3,35 @@
 
 class ANPC_Monster_Symphonist_C : public ANPC_Base_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x21B0 (size: 0x8)
-    class USceneComponent* ThrowEndLocation;                                          // 0x21B8 (size: 0x8)
-    class UNiagaraComponent* Fog;                                                     // 0x21C0 (size: 0x8)
-    class UCapsuleComponent* NearbyAlertCapsule;                                      // 0x21C8 (size: 0x8)
-    class URadialForceComponent* RadialForce;                                         // 0x21D0 (size: 0x8)
-    class UNiagaraComponent* DissolveParticle;                                        // 0x21D8 (size: 0x8)
-    class USceneComponent* StompLocation;                                             // 0x21E0 (size: 0x8)
-    class UNavigationInvokerComponent* NavigationInvoker;                             // 0x21E8 (size: 0x8)
-    float Timeline_Dissolve_NewTrack_1_3CA55A274045FB46A1A835948F11E3C3;              // 0x21F0 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> Timeline_Dissolve__Direction_3CA55A274045FB46A1A835948F11E3C3; // 0x21F4 (size: 0x1)
-    class UTimelineComponent* Timeline_Dissolve;                                      // 0x21F8 (size: 0x8)
-    float Timeline_1_Value_1B8B4C8C4D664960582146A1ABA187CE;                          // 0x2200 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> Timeline_1__Direction_1B8B4C8C4D664960582146A1ABA187CE; // 0x2204 (size: 0x1)
-    class UTimelineComponent* Timeline_1;                                             // 0x2208 (size: 0x8)
-    double StompCheckDistance;                                                        // 0x2210 (size: 0x8)
-    bool SoundAlerted;                                                                // 0x2218 (size: 0x1)
-    class UAnimMontage* SoundAlertMontage;                                            // 0x2220 (size: 0x8)
-    bool HasTriggeredAlertAggro;                                                      // 0x2228 (size: 0x1)
-    bool IsStampeding;                                                                // 0x2229 (size: 0x1)
-    double TimeStampedeStarted;                                                       // 0x2230 (size: 0x8)
-    float StampedeDuration;                                                           // 0x2238 (size: 0x4)
-    class USoundBase* ChargeImpactSFX;                                                // 0x2240 (size: 0x8)
-    float ThrowVelocity;                                                              // 0x2248 (size: 0x4)
-    int32 NumberOfMirages;                                                            // 0x224C (size: 0x4)
-    bool WantsToActivateMirage;                                                       // 0x2250 (size: 0x1)
-    bool PerformingMirage;                                                            // 0x2251 (size: 0x1)
-    class UAnimMontage* LeapAttackMontage;                                            // 0x2258 (size: 0x8)
-    bool ScarecrowEscape;                                                             // 0x2260 (size: 0x1)
-    FVector CalculatedThrowLocation;                                                  // 0x2268 (size: 0x18)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x21B8 (size: 0x8)
+    class USceneComponent* ThrowEndLocation;                                          // 0x21C0 (size: 0x8)
+    class UNiagaraComponent* Fog;                                                     // 0x21C8 (size: 0x8)
+    class UCapsuleComponent* NearbyAlertCapsule;                                      // 0x21D0 (size: 0x8)
+    class URadialForceComponent* RadialForce;                                         // 0x21D8 (size: 0x8)
+    class UNiagaraComponent* DissolveParticle;                                        // 0x21E0 (size: 0x8)
+    class USceneComponent* StompLocation;                                             // 0x21E8 (size: 0x8)
+    class UNavigationInvokerComponent* NavigationInvoker;                             // 0x21F0 (size: 0x8)
+    float Timeline_Dissolve_NewTrack_1_3CA55A274045FB46A1A835948F11E3C3;              // 0x21F8 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> Timeline_Dissolve__Direction_3CA55A274045FB46A1A835948F11E3C3; // 0x21FC (size: 0x1)
+    class UTimelineComponent* Timeline_Dissolve;                                      // 0x2200 (size: 0x8)
+    float Timeline_1_Value_1B8B4C8C4D664960582146A1ABA187CE;                          // 0x2208 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> Timeline_1__Direction_1B8B4C8C4D664960582146A1ABA187CE; // 0x220C (size: 0x1)
+    class UTimelineComponent* Timeline_1;                                             // 0x2210 (size: 0x8)
+    double StompCheckDistance;                                                        // 0x2218 (size: 0x8)
+    bool SoundAlerted;                                                                // 0x2220 (size: 0x1)
+    class UAnimMontage* SoundAlertMontage;                                            // 0x2228 (size: 0x8)
+    bool HasTriggeredAlertAggro;                                                      // 0x2230 (size: 0x1)
+    bool IsStampeding;                                                                // 0x2231 (size: 0x1)
+    double TimeStampedeStarted;                                                       // 0x2238 (size: 0x8)
+    float StampedeDuration;                                                           // 0x2240 (size: 0x4)
+    class USoundBase* ChargeImpactSFX;                                                // 0x2248 (size: 0x8)
+    float ThrowVelocity;                                                              // 0x2250 (size: 0x4)
+    int32 NumberOfMirages;                                                            // 0x2254 (size: 0x4)
+    bool WantsToActivateMirage;                                                       // 0x2258 (size: 0x1)
+    bool PerformingMirage;                                                            // 0x2259 (size: 0x1)
+    class UAnimMontage* LeapAttackMontage;                                            // 0x2260 (size: 0x8)
+    bool ScarecrowEscape;                                                             // 0x2268 (size: 0x1)
+    FVector CalculatedThrowLocation;                                                  // 0x2270 (size: 0x18)
 
     void DropHoldingCharacter();
     void FindBestMeleeAttack(class AActor* SwingAtActor, FVector SwingAtTarget, bool& TurnToFaceTarget);
@@ -100,6 +100,6 @@ class ANPC_Monster_Symphonist_C : public ANPC_Base_ParentBP_C
     void Broadcast_TeleportFadeIn();
     void Broadcast_CombatAbility3();
     void ExecuteUbergraph_NPC_Monster_Symphonist(int32 EntryPoint);
-}; // Size: 0x2280
+}; // Size: 0x2288
 
 #endif

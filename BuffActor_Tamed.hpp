@@ -13,7 +13,17 @@ class ABuffActor_Tamed_C : public ABuffActor_Follower_C
     class USoundBase* MutationSFX;                                                    // 0x0418 (size: 0x8)
     class UNiagaraSystem* MutationVFX;                                                // 0x0420 (size: 0x8)
     int32 MaxXpPerFeed;                                                               // 0x0428 (size: 0x4)
+    FTimerHandle AutosaveTimer;                                                       // 0x0430 (size: 0x8)
+    FCompendiumEntryRowHandle PetTamingEntry;                                         // 0x0438 (size: 0x20)
+    FCompendiumEntryRowHandle PetMutationEntry;                                       // 0x0458 (size: 0x20)
+    FVector LastValidSpawnLocation;                                                   // 0x0478 (size: 0x18)
 
+    void SetFollowTarget(class AAbiotic_Character_ParentBP_C* NewTarget, bool PlayFX);
+    FVector GetSpawnLocation(bool& Valid);
+    void InitalizeNpcHealthAndDamage();
+    void SetCharacterNpc(class ANPC_Base_ParentBP_C* CharacterNPC);
+    void InitialInteractPress(bool TypeA);
+    void RemoveDBNOWaypoint();
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void CanPet(bool& Success);
     void CanPickUp(bool& Success);
@@ -46,8 +56,8 @@ class ABuffActor_Tamed_C : public ABuffActor_Follower_C
     void InteractWith_A_LocalFX(bool Hold);
     void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void ReceiveEndPlay(TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
-    void InitNewCharacterNPC();
+    void ReceiveBeginPlay();
     void ExecuteUbergraph_BuffActor_Tamed(int32 EntryPoint);
-}; // Size: 0x42C
+}; // Size: 0x490
 
 #endif

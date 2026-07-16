@@ -98,7 +98,7 @@ class ACharacterCorpse_ParentBP_C : public AAbioticActor_C
     void InteractWith_A_LocalFX(bool Hold);
     void ReceivePointDamage(float Damage, const class UDamageType* DamageType, FVector HitLocation, FVector HitNormal, class UPrimitiveComponent* HitComponent, FName BoneName, FVector ShotFromDirection, class AController* InstigatedBy, class AActor* DamageCauser, const FHitResult& HitInfo);
     void ReceiveBeginPlay();
-    void DropLoot(bool TryToPlaceInInventory, class AAbiotic_PlayerCharacter_C* InventoryOwner);
+    void DropLoot(bool TryToPlaceInInventory, class AAbiotic_PlayerCharacter_C* inventoryOwner);
     void ExecuteUbergraph_CharacterCorpse_ParentBP(int32 EntryPoint);
     void OnGibbed__DelegateSignature();
 }; // Size: 0x3F0

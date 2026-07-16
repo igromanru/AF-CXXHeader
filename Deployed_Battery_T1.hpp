@@ -3,6 +3,6 @@
 
 class ADeployed_Battery_T1_C : public ADeployed_Battery_ParentBP_C
 {
-}; // Size: 0x8F4
+}; // Size: 0x914
 
 #endif

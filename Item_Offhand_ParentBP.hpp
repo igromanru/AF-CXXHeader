@@ -3,10 +3,10 @@
 
 class AItem_Offhand_ParentBP_C : public AItem_Gear_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B18 (size: 0x8)
-    class AAbiotic_PlayerCharacter_C* CurrentOwner;                                   // 0x0B20 (size: 0x8)
-    FInventorySlotSelected_Struct CurrentSlot;                                        // 0x0B28 (size: 0x10)
-    double LastTimeUsed;                                                              // 0x0B38 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B30 (size: 0x8)
+    class AAbiotic_PlayerCharacter_C* CurrentOwner;                                   // 0x0B38 (size: 0x8)
+    FInventorySlotSelected_Struct CurrentSlot;                                        // 0x0B40 (size: 0x10)
+    double LastTimeUsed;                                                              // 0x0B50 (size: 0x8)
 
     void CanUse(bool& CanUse, class AActor*& TargetActor, bool& OverrideLogic);
     void Server_GetAmmoConsumeAmount(double ChargeAmount, int32& AmountToConsume);
@@ -22,6 +22,6 @@ class AItem_Offhand_ParentBP_C : public AItem_Gear_ParentBP_C
     void TryAutoSecondary();
     void Server_OnMeleeHit(const FHitResult& Hit);
     void ExecuteUbergraph_Item_Offhand_ParentBP(int32 EntryPoint);
-}; // Size: 0xB40
+}; // Size: 0xB58
 
 #endif

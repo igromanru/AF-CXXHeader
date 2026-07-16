@@ -3,7 +3,7 @@
 
 class ADeployed_CraftedChargingStation_C : public ADeployed_ChargingStation_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x08E0 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0900 (size: 0x8)
 
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
@@ -13,6 +13,6 @@ class ADeployed_CraftedChargingStation_C : public ADeployed_ChargingStation_Pare
     void PlayBeep();
     void SetTimer_BeepPeriodically(bool End);
     void ExecuteUbergraph_Deployed_CraftedChargingStation(int32 EntryPoint);
-}; // Size: 0x8E8
+}; // Size: 0x908
 
 #endif

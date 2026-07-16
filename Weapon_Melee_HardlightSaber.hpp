@@ -3,13 +3,13 @@
 
 class AWeapon_Melee_HardlightSaber_C : public AAbiotic_Weapon_Melee_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0BA8 (size: 0x8)
-    class URechargeableComponent_C* RechargeableComponent;                            // 0x0BB0 (size: 0x8)
-    float DeflectedHitscanConeAngle;                                                  // 0x0BB8 (size: 0x4)
-    TArray<FHitResult> RecentHitArray;                                                // 0x0BC0 (size: 0x10)
-    TArray<class TSubclassOf<UDamageType>> DamageTypes;                               // 0x0BD0 (size: 0x10)
-    bool RecentlyBlocked;                                                             // 0x0BE0 (size: 0x1)
-    bool RecentlyAttacked;                                                            // 0x0BE1 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0BC0 (size: 0x8)
+    class URechargeableComponent_C* RechargeableComponent;                            // 0x0BC8 (size: 0x8)
+    float DeflectedHitscanConeAngle;                                                  // 0x0BD0 (size: 0x4)
+    TArray<FHitResult> RecentHitArray;                                                // 0x0BD8 (size: 0x10)
+    TArray<class TSubclassOf<UDamageType>> DamageTypes;                               // 0x0BE8 (size: 0x10)
+    bool RecentlyBlocked;                                                             // 0x0BF8 (size: 0x1)
+    bool RecentlyAttacked;                                                            // 0x0BF9 (size: 0x1)
 
     void CanStartBlocking(bool& StartBlocking);
     bool CheckProjectileBlockOverridden(class AAbioticProjectile_ParentBP_C* Projectile, FHitResult& Hit);
@@ -28,6 +28,6 @@ class AWeapon_Melee_HardlightSaber_C : public AAbiotic_Weapon_Melee_ParentBP_C
     void BlockProjectile(FHitResult Hit Result, class AAbioticProjectile_ParentBP_C* Projectile);
     void BlockHitscanRanged(FHitResult HitResult, class AActor* Instigator, double BaseDamage, TSubclassOf<class UDamageType> DamageType);
     void ExecuteUbergraph_Weapon_Melee_HardlightSaber(int32 EntryPoint);
-}; // Size: 0xBE2
+}; // Size: 0xBFA
 
 #endif

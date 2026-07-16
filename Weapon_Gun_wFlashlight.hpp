@@ -3,9 +3,9 @@
 
 class AWeapon_Gun_wFlashlight_C : public AAbiotic_Weapon_Gun_ParentBP_C
 {
-    class URechargeableComponent_C* RechargeableComponent;                            // 0x0C08 (size: 0x8)
+    class URechargeableComponent_C* RechargeableComponent;                            // 0x0C20 (size: 0x8)
 
     TArray<FItemActionRowHandle> GetPrimaryItemActionArray();
-}; // Size: 0xC10
+}; // Size: 0xC28
 
 #endif

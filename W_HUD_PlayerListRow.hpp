@@ -36,7 +36,7 @@ class UW_HUD_PlayerListRow_C : public UUserWidget
     void RefreshRequested();
 
     void ConvertUniqueID(FString& InStr, FString& OutStr);
-    void UpdateButtonVisibility(bool Mute, bool bLock, bool Report, bool Ban, bool Kick, bool Revive);
+    void UpdateButtonVisibility(bool Mute, bool bLock, bool Report, bool ban, bool kick, bool Revive);
     FString GetNameString();
     FString GetUniqueIDString();
     void BndEvt__W_HUD_PlayerListRow_Button_Mute_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature();

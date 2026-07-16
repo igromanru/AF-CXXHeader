@@ -3,10 +3,10 @@
 
 class ADeployed_Bench_AmmoStation_C : public AAbioticDeployed_CraftingBench_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x08E0 (size: 0x8)
-    class UBenchUpgradeActorComponent* BenchUpgrade_ItemTransporter;                  // 0x08E8 (size: 0x8)
-    class UPointLightComponent* PointLight;                                           // 0x08F0 (size: 0x8)
-    double LastContainerUpdate;                                                       // 0x08F8 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0900 (size: 0x8)
+    class UBenchUpgradeActorComponent* BenchUpgrade_ItemTransporter;                  // 0x0908 (size: 0x8)
+    class UPointLightComponent* PointLight;                                           // 0x0910 (size: 0x8)
+    double LastContainerUpdate;                                                       // 0x0918 (size: 0x8)
 
     void UpdateOverlappingContainers();
     void TogglePowerFX();
@@ -14,6 +14,6 @@ class ADeployed_Bench_AmmoStation_C : public AAbioticDeployed_CraftingBench_Pare
     void InteractWith_A_LocalFX(bool Hold);
     void ReceiveBeginPlay();
     void ExecuteUbergraph_Deployed_Bench_AmmoStation(int32 EntryPoint);
-}; // Size: 0x900
+}; // Size: 0x920
 
 #endif

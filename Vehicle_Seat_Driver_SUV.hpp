@@ -3,6 +3,6 @@
 
 class AVehicle_Seat_Driver_SUV_C : public AVehicle_Seat_Driver_C
 {
-}; // Size: 0x871
+}; // Size: 0x891
 
 #endif

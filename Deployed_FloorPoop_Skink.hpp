@@ -3,6 +3,6 @@
 
 class ADeployed_FloorPoop_Skink_C : public ADeployed_FloorPoop_C
 {
-}; // Size: 0x588
+}; // Size: 0x5A8
 
 #endif

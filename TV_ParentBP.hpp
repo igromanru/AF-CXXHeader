@@ -3,19 +3,19 @@
 
 class ATV_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0850 (size: 0x8)
-    class UStaticMeshComponent* ScreenMesh;                                           // 0x0858 (size: 0x8)
-    class UTextRenderComponent* TVDebug;                                              // 0x0860 (size: 0x8)
-    class UAudioComponent* TV_Audio;                                                  // 0x0868 (size: 0x8)
-    class URectLightComponent* RectLight;                                             // 0x0870 (size: 0x8)
-    bool TV_PoweredOn;                                                                // 0x0878 (size: 0x1)
-    double DelayBetweenPlays;                                                         // 0x0880 (size: 0x8)
-    int32 AudioPlayIndex;                                                             // 0x0888 (size: 0x4)
-    double CurrentAudioStartTime;                                                     // 0x0890 (size: 0x8)
-    double CurrentAudioDuration;                                                      // 0x0898 (size: 0x8)
-    TEnumAsByte<E_TVColors::Type> TV Style;                                           // 0x08A0 (size: 0x1)
-    bool IgnoreStyle;                                                                 // 0x08A1 (size: 0x1)
-    FTimerHandle TVChannelHandle;                                                     // 0x08A8 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0870 (size: 0x8)
+    class UStaticMeshComponent* ScreenMesh;                                           // 0x0878 (size: 0x8)
+    class UTextRenderComponent* TVDebug;                                              // 0x0880 (size: 0x8)
+    class UAudioComponent* TV_Audio;                                                  // 0x0888 (size: 0x8)
+    class URectLightComponent* RectLight;                                             // 0x0890 (size: 0x8)
+    bool TV_PoweredOn;                                                                // 0x0898 (size: 0x1)
+    double DelayBetweenPlays;                                                         // 0x08A0 (size: 0x8)
+    int32 AudioPlayIndex;                                                             // 0x08A8 (size: 0x4)
+    double CurrentAudioStartTime;                                                     // 0x08B0 (size: 0x8)
+    double CurrentAudioDuration;                                                      // 0x08B8 (size: 0x8)
+    TEnumAsByte<E_TVColors::Type> TV Style;                                           // 0x08C0 (size: 0x1)
+    bool IgnoreStyle;                                                                 // 0x08C1 (size: 0x1)
+    FTimerHandle TVChannelHandle;                                                     // 0x08C8 (size: 0x8)
 
     void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
@@ -36,6 +36,6 @@ class ATV_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
     void StartChannelSurfTimer();
     void OnLoadedFromSave(double NewLifespan);
     void ExecuteUbergraph_TV_ParentBP(int32 EntryPoint);
-}; // Size: 0x8B0
+}; // Size: 0x8D0
 
 #endif

@@ -3,35 +3,36 @@
 
 class AAbiotic_Weapon_ParentBP_C : public AAbiotic_Item_Held_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0AF8 (size: 0x8)
-    int32 MaxMagazineSize;                                                            // 0x0B00 (size: 0x4)
-    int32 CurrentRoundsInMagazine;                                                    // 0x0B04 (size: 0x4)
-    int32 CurrentAmmoIndex;                                                           // 0x0B08 (size: 0x4)
-    double FireDelayDuration;                                                         // 0x0B10 (size: 0x8)
-    bool OnHitOnlyOncePerAttack;                                                      // 0x0B18 (size: 0x1)
-    bool OnHitBlocked;                                                                // 0x0B19 (size: 0x1)
-    bool IsCharging;                                                                  // 0x0B1A (size: 0x1)
-    bool UsesChargingLogic;                                                           // 0x0B1B (size: 0x1)
-    double ChargeAmount;                                                              // 0x0B20 (size: 0x8)
-    double ChargeSpeed;                                                               // 0x0B28 (size: 0x8)
-    class AAbiotic_PlayerCharacter_C* CurrentOwner;                                   // 0x0B30 (size: 0x8)
-    bool OnAmmoHit;                                                                   // 0x0B38 (size: 0x1)
-    bool HasAmmoVisualsLoaded;                                                        // 0x0B39 (size: 0x1)
-    TArray<FDataTableRowHandle> CompatibleAmmoTypes;                                  // 0x0B40 (size: 0x10)
-    bool ConsumeAmmoOnFire;                                                           // 0x0B50 (size: 0x1)
-    bool UseToggleActive;                                                             // 0x0B51 (size: 0x1)
-    bool LastUseToggleActive;                                                         // 0x0B52 (size: 0x1)
-    bool IsUseToggleable;                                                             // 0x0B53 (size: 0x1)
-    class UAudioComponent* UseSound;                                                  // 0x0B58 (size: 0x8)
-    double MaxXPPerReload;                                                            // 0x0B60 (size: 0x8)
-    bool WeaponCoatingApplied;                                                        // 0x0B68 (size: 0x1)
-    class UMaterialInterface* WeaponCoatingMaterial;                                  // 0x0B70 (size: 0x8)
-    class UWeaponCoating_ParentBP_C* ActiveWeaponCoating;                             // 0x0B78 (size: 0x8)
-    class UPrimitiveComponent* RuntimeThermalVolume;                                  // 0x0B80 (size: 0x8)
-    class UNiagaraSystem* WeaponCoatingHitParticle;                                   // 0x0B88 (size: 0x8)
-    class USoundBase* WeaponCoatingHitSound;                                          // 0x0B90 (size: 0x8)
-    FName ActiveWeaponCoatingRow;                                                     // 0x0B98 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B10 (size: 0x8)
+    int32 MaxMagazineSize;                                                            // 0x0B18 (size: 0x4)
+    int32 CurrentRoundsInMagazine;                                                    // 0x0B1C (size: 0x4)
+    int32 CurrentAmmoIndex;                                                           // 0x0B20 (size: 0x4)
+    double FireDelayDuration;                                                         // 0x0B28 (size: 0x8)
+    bool OnHitOnlyOncePerAttack;                                                      // 0x0B30 (size: 0x1)
+    bool OnHitBlocked;                                                                // 0x0B31 (size: 0x1)
+    bool IsCharging;                                                                  // 0x0B32 (size: 0x1)
+    bool UsesChargingLogic;                                                           // 0x0B33 (size: 0x1)
+    double ChargeAmount;                                                              // 0x0B38 (size: 0x8)
+    double ChargeSpeed;                                                               // 0x0B40 (size: 0x8)
+    class AAbiotic_PlayerCharacter_C* CurrentOwner;                                   // 0x0B48 (size: 0x8)
+    bool OnAmmoHit;                                                                   // 0x0B50 (size: 0x1)
+    bool HasAmmoVisualsLoaded;                                                        // 0x0B51 (size: 0x1)
+    TArray<FDataTableRowHandle> CompatibleAmmoTypes;                                  // 0x0B58 (size: 0x10)
+    bool ConsumeAmmoOnFire;                                                           // 0x0B68 (size: 0x1)
+    bool UseToggleActive;                                                             // 0x0B69 (size: 0x1)
+    bool LastUseToggleActive;                                                         // 0x0B6A (size: 0x1)
+    bool IsUseToggleable;                                                             // 0x0B6B (size: 0x1)
+    class UAudioComponent* UseSound;                                                  // 0x0B70 (size: 0x8)
+    double MaxXPPerReload;                                                            // 0x0B78 (size: 0x8)
+    bool WeaponCoatingApplied;                                                        // 0x0B80 (size: 0x1)
+    class UMaterialInterface* WeaponCoatingMaterial;                                  // 0x0B88 (size: 0x8)
+    class UWeaponCoating_ParentBP_C* ActiveWeaponCoating;                             // 0x0B90 (size: 0x8)
+    class UPrimitiveComponent* RuntimeThermalVolume;                                  // 0x0B98 (size: 0x8)
+    class UNiagaraSystem* WeaponCoatingHitParticle;                                   // 0x0BA0 (size: 0x8)
+    class USoundBase* WeaponCoatingHitSound;                                          // 0x0BA8 (size: 0x8)
+    FName ActiveWeaponCoatingRow;                                                     // 0x0BB0 (size: 0x8)
 
+    double GetFireDelayDuration();
     void Server_OnItemLiquidUpdated();
     void OnRep_ActiveWeaponCoatingRow();
     void ShouldConsumeResource(bool& Consume);
@@ -104,8 +105,9 @@ class AAbiotic_Weapon_ParentBP_C : public AAbiotic_Item_Held_C
     void Server_OnProjectileFired(class AAbioticProjectile_ParentBP_C* Projectile);
     void OnProjectileHitTarget(class AActor* DamagedActor, double RawDamage, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType, FHitResult HitResult, class AAbioticProjectile_ParentBP_C* Projectile);
     void Broadcast_CoatingHitFX(FVector Location, FRotator Rotation);
-    void LoadCoatingFX(TSoftObjectPtr<UNiagaraSystem> Particle, TSoftObjectPtr<USoundBase> Sound);
+    void LoadCoatingFX(TSoftObjectPtr<UNiagaraSystem> particle, TSoftObjectPtr<USoundBase> Sound);
+    void ReceiveEndPlay(TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
     void ExecuteUbergraph_Abiotic_Weapon_ParentBP(int32 EntryPoint);
-}; // Size: 0xBA0
+}; // Size: 0xBB8
 
 #endif

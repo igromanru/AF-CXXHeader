@@ -3,6 +3,6 @@
 
 class ADeployed_Crate_HSecurity_C : public ADeployed_Crate_Hackable_ParentBP_C
 {
-}; // Size: 0xAD8
+}; // Size: 0xAF8
 
 #endif

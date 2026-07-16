@@ -371,6 +371,9 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     class UMeshComponent* TP_ItemInHand;                                              // 0x2A40 (size: 0x8)
     FAbiotic_PlayerCharacter_COnDamageApplied OnDamageApplied;                        // 0x2A48 (size: 0x10)
     void OnDamageApplied(class AActor* DamagedActor, double RawDamage, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType, FHitResult HitResult, bool IsMelee, class AActor* DamageCauser);
+    FTimerHandle ExertionTimer;                                                       // 0x2A58 (size: 0x8)
+    double AnaerobicRecoveryExertionDelay;                                            // 0x2A60 (size: 0x8)
+    bool RespawnInProgress;                                                           // 0x2A68 (size: 0x1)
 
     void ReceiveLaserHit(class ULaserComponent_C* Laser, int32 CurrentBounce, FHitResult& HitResult, bool& Handled);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
@@ -396,6 +399,8 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
+    void ClearExertion();
+    void Server_SetRecentlyExertedSelf(bool WasSprinting);
     void DespawnCompanion();
     void TrySetItemInHandFpMeshReady();
     void PlayLinkedTPMontage(TSoftObjectPtr<UAnimMontage> ItemMontage, TSoftObjectPtr<UAnimMontage> TPMeshMontage, float InTimeToStartMontageAt, float InPlayRate);
@@ -509,7 +514,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void CheckForHungerDebuffs(double HungerChange, EBuffSeverity& SeverityLevel);
     void TryCloseRadialWheel(bool CommitAction, TSubclassOf<class UW_RadialWheel_ParentBP_C> Class, bool& WasClosed);
     void CheckNearbyCharactersForSimilarVoiceLine(EVoiceLineType LineType, bool& AllowedToSpeak);
-    bool TeleportPlayer(FVector DestLocation, FRotator DestRotation, bool Force, bool SkipAdjustment);
+    bool TeleportPlayer(FVector DestLocation, FRotator DestRotation, bool Force, bool SkipAdjustment, bool ExitChairs);
     void Targetable By Triggers(bool& Targetable);
     bool CanCurrentlyShieldBlock(class AActor* DamageCauser, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageTypeClass, double& DamagePassthroughPercent);
     void Server_TryScrapItem(FAbiotic_InventoryItemSlotStruct SlotData, class UAbiotic_InventoryComponent_C* Inventory, int32 Index, bool& Success, FString& DebugNote);
@@ -930,7 +935,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void Request_MeleeAttackFX(TEnumAsByte<E_MeleeAction::Type> Type, int32 MontageIndex, double ThrowDistance, bool Offhand);
     void TryLoad_ItemInHand_ScopeTexture(FName ItemRowName);
     void Local_Safe_EndWeaponZoom();
-    void Broadcast_TryDeployItemFX(FVector FX Location, bool PlaySound);
+    void Broadcast_TryDeployItemFX(FVector FX Location, bool PlaySound, class USoundBase* OverrideSound);
     void Local_MeleeSwingMontage(class AAbiotic_Item_ParentBP_C* Weapon, bool Unarmed, bool WindupEnd);
     void Local_ThrowWeapon(bool StartThrow);
     void Safe_EndReadyToThrow();
@@ -979,6 +984,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void Request_RespawnPlayerCharacter(bool RevivedOnSpot, bool UsePlayerStartOnly, FName DestinationID);
     void Revive_From_DBNO(bool RespawnedFromDeath);
     void ProcessDamage(double Damage, const class UDamageType* DamageType, FVector HitLocation, FVector HitNormal, class UPrimitiveComponent* HitComponent, FName BoneHitName, FVector DirectionOfSource, class AActor* Instigator, class AActor* DamageCauser, FHitResult HitInfo);
+    void Request_FollowerInitialInteractPress(class ABuffActor_Follower_C* Target, bool TypeA);
     void Request_SetMountedActor(class AActor* NewMountedActor);
     void Client_AllowNewCableConnection();
     void PlugModeChanged(bool PlugModeActive);
@@ -1011,7 +1017,6 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void StartCrouchRoll();
     void CheckForStaminaEvents();
     void OnSprintUpdated();
-    void Server_SetRecentlyExertedSelf();
     void ForceStopViewingWristwatch_Safe();
     void ToggleWristwatchBeeps();
     void Request_SetWristwatchState(bool Viewing);
@@ -1110,7 +1115,7 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void Request_TryPlaceItemInInventory(class UAbiotic_InventoryComponent_C* InventoryComponent, FDataTableRowHandle DataTableRowHandle, FAbiotic_InventoryChangeableDataStruct ChangeableData, bool CheckOnly, bool IsEquippingGear?, bool Place Leftover in the Same Inventory?);
     void Request_ApplyCustomizationChange(const FDataTableRowHandle& CustomizationDataRow, TEnumAsByte<E_CustomizationCategories::Type> CustomizationType, TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Customization_Voice, FVector Customization_Vector);
     void Set_PlayerVoice(class UPlayerCharacterVoiceDataAsset* LoadedVoiceAsset);
-    void Server_ApplyAllCustomizationData(TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Customization_Voice, FName Customization_Head, FName Customization_HairStyle, FName Customization_HairColor, FName Customization_HeadAccessory, FName Customization_UpperBody, FName Customization_LowerBody, FName Customization_ShirtColor, FName Customization_Belt, FName Customization_Shoes, FName Customization_Tie, FName customization_beard, FName Customization_Watch, FName Customization_IDCard, double Customization_SkinTone);
+    void Server_ApplyAllCustomizationData(TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Customization_Voice, FName Customization_Head, FName Customization_HairStyle, FName Customization_HairColor, FName Customization_HeadAccessory, FName Customization_UpperBody, FName Customization_LowerBody, FName Customization_ShirtColor, FName Customization_Belt, FName Customization_Shoes, FName Customization_Tie, FName Customization_Beard, FName Customization_Watch, FName Customization_IDCard, double Customization_SkinTone);
     void Server_PoopOnFloor();
     void Request_ForceStaggerTarget(class AActor* Target);
     void PlayFirstPersonMontage(class UAnimMontage* MontageToPlay, bool HideHeldItemDuringAnim);
@@ -1154,6 +1159,6 @@ class AAbiotic_PlayerCharacter_C : public AAbiotic_Character_ParentBP_C
     void TerminalUseState_Changed__DelegateSignature(bool UsingTerminal);
     void Sanity_Changed__DelegateSignature();
     void Money_Changed__DelegateSignature();
-}; // Size: 0x2A58
+}; // Size: 0x2A69
 
 #endif

@@ -184,6 +184,7 @@ class ANPC_Base_ParentBP_C : public AAbiotic_Character_ParentBP_C
     float MeleeAttackPlayRate;                                                        // 0x219C (size: 0x4)
     double TamedFriendlyFireMultiplier;                                               // 0x21A0 (size: 0x8)
     bool BusyInSeat;                                                                  // 0x21A8 (size: 0x1)
+    double ChargeFromWeapon;                                                          // 0x21B0 (size: 0x8)
 
     void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
     void CanUseSharedInteraction(bool& Can Use);
@@ -209,6 +210,8 @@ class ANPC_Base_ParentBP_C : public AAbiotic_Character_ParentBP_C
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void RequiresToolToDismantle(bool& Tool Required);
     void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
+    void OnTamedChanged(bool Tamed);
+    bool CanAlwaysDBNO(bool InstantDeathDamage);
     bool WantsToSprint();
     void Server_Elapse_Bleedout_Timer();
     void GetFriendlyFireDamageMultiplier(bool& Return, double& DamageMultiplier);
@@ -223,7 +226,7 @@ class ANPC_Base_ParentBP_C : public AAbiotic_Character_ParentBP_C
     void WasLastDamagePlayerAligned(bool& IsPlayerFaction, TEnumAsByte<E_Factions::Type>& SpecificFaction);
     void ApplyParry(FVector HitOrigin, class AAbiotic_Character_ParentBP_C* ParryCause);
     void Server_OnKilledBy(class AAbioticPlayerController* FoundController);
-    void ServerTryScareOffNPC();
+    void ServerTryScareOffNPC(class AActor* Instigator);
     void BodyShieldsResetOnDamage();
     bool CanEvadeProjectile();
     void BeginDropLoot(FGameplayTagContainer& BuffTags);
@@ -243,7 +246,7 @@ class ANPC_Base_ParentBP_C : public AAbiotic_Character_ParentBP_C
     void UpdateInternalStates();
     float Get Attacker Loot Chance();
     void GetLootDropInformation(TArray<FDataTableRowHandle>& PotentialLoot);
-    void DoFootstepFX(TEnumAsByte<E_4LegFootfalls::Type> LastFootfallType, double CameraShakeIntensity, double CameraShakeDistance, double VolumeMultiplier, double PitchMultiplier);
+    void DoFootstepFX(TEnumAsByte<E_4LegFootfalls::Type> LastFootfallType, double CameraShakeIntensity, double CameraShakeDistance, double VolumeMultiplier, double PitchMultiplier, FGameplayTag TagOverride);
     void Set New NPCVoice(TArray<FNPCVoiceRowHandle>& NPCVoiceRow);
     void AddCageIDToIgnore(const FName& ID);
     void OnRep_IsPerformingSpawnFX();
@@ -299,7 +302,7 @@ class ANPC_Base_ParentBP_C : public AAbiotic_Character_ParentBP_C
     void OnRep_WalkSpeed();
     FVector GetAttackLocation(class AActor* Target);
     void HasEnoughHitCountToGib(double DamagePerHit, bool& CanGib);
-    void ApplyDBNODamage();
+    void ApplyDBNODamage(class AActor* Instigator);
     void RestoreHealthFromDBNO();
     double GetMaxBleedoutTime();
     void ToggleState_DownButNotOut(bool Begin (False=End));
@@ -489,6 +492,6 @@ class ANPC_Base_ParentBP_C : public AAbiotic_Character_ParentBP_C
     void FiredWeapon__DelegateSignature();
     void CombatStateChanged__DelegateSignature(class ANPC_Base_ParentBP_C* Target NPC);
     void CombatReset__DelegateSignature(bool Success);
-}; // Size: 0x21A9
+}; // Size: 0x21B8
 
 #endif

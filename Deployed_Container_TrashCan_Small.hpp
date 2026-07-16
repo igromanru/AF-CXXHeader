@@ -3,9 +3,9 @@
 
 class ADeployed_Container_TrashCan_Small_C : public ADeployed_Container_ParentBP_C
 {
-    FVector LidClosed;                                                                // 0x0920 (size: 0x18)
-    FVector LidOpen;                                                                  // 0x0938 (size: 0x18)
+    FVector LidClosed;                                                                // 0x0940 (size: 0x18)
+    FVector LidOpen;                                                                  // 0x0958 (size: 0x18)
 
-}; // Size: 0x950
+}; // Size: 0x970
 
 #endif

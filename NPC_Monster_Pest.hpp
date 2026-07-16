@@ -3,30 +3,30 @@
 
 class ANPC_Monster_Pest_C : public ANPC_Base_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x21B0 (size: 0x8)
-    class UAudioComponent* LungeLoopAudio;                                            // 0x21B8 (size: 0x8)
-    double PestLeapVelocity;                                                          // 0x21C0 (size: 0x8)
-    bool IsLungingInAir;                                                              // 0x21C8 (size: 0x1)
-    FVector LastPestLeapAtLocation;                                                   // 0x21D0 (size: 0x18)
-    bool ExecutedWithStomp;                                                           // 0x21E8 (size: 0x1)
-    double CurrentCableLength;                                                        // 0x21F0 (size: 0x8)
-    FNPC_Monster_Pest_COnPestJumpLiftoff OnPestJumpLiftoff;                           // 0x21F8 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x21B8 (size: 0x8)
+    class UAudioComponent* LungeLoopAudio;                                            // 0x21C0 (size: 0x8)
+    double PestLeapVelocity;                                                          // 0x21C8 (size: 0x8)
+    bool IsLungingInAir;                                                              // 0x21D0 (size: 0x1)
+    FVector LastPestLeapAtLocation;                                                   // 0x21D8 (size: 0x18)
+    bool ExecutedWithStomp;                                                           // 0x21F0 (size: 0x1)
+    double CurrentCableLength;                                                        // 0x21F8 (size: 0x8)
+    FNPC_Monster_Pest_COnPestJumpLiftoff OnPestJumpLiftoff;                           // 0x2200 (size: 0x10)
     void OnPestJumpLiftoff();
-    FNPC_Monster_Pest_COnPestCollideWithObject OnPestCollideWithObject;               // 0x2208 (size: 0x10)
+    FNPC_Monster_Pest_COnPestCollideWithObject OnPestCollideWithObject;               // 0x2210 (size: 0x10)
     void OnPestCollideWithObject(FHitResult HitInfo);
-    FText PetName;                                                                    // 0x2218 (size: 0x10)
-    double FeedingStartTime;                                                          // 0x2228 (size: 0x8)
-    double FeedingDuration;                                                           // 0x2230 (size: 0x8)
-    FString Guid;                                                                     // 0x2238 (size: 0x10)
-    bool ServerLevelLoaded;                                                           // 0x2248 (size: 0x1)
-    class AActor* FollowingOwner;                                                     // 0x2250 (size: 0x8)
-    FName PestSpineSocket;                                                            // 0x2258 (size: 0x8)
-    TArray<FDynamicProperty> DynamicProperties;                                       // 0x2260 (size: 0x10)
-    FString SanitizedName;                                                            // 0x2270 (size: 0x10)
-    class USoundBase* PestLungeSound;                                                 // 0x2280 (size: 0x8)
-    bool LungeInterrupted;                                                            // 0x2288 (size: 0x1)
-    class USoundBase* SplatCollisionSound;                                            // 0x2290 (size: 0x8)
-    TSoftObjectPtr<UAnimMontage> PestWheelIdleMontage;                                // 0x2298 (size: 0x28)
+    FText PetName;                                                                    // 0x2220 (size: 0x10)
+    double FeedingStartTime;                                                          // 0x2230 (size: 0x8)
+    double FeedingDuration;                                                           // 0x2238 (size: 0x8)
+    FString Guid;                                                                     // 0x2240 (size: 0x10)
+    bool ServerLevelLoaded;                                                           // 0x2250 (size: 0x1)
+    class AActor* FollowingOwner;                                                     // 0x2258 (size: 0x8)
+    FName PestSpineSocket;                                                            // 0x2260 (size: 0x8)
+    TArray<FDynamicProperty> DynamicProperties;                                       // 0x2268 (size: 0x10)
+    FString SanitizedName;                                                            // 0x2278 (size: 0x10)
+    class USoundBase* PestLungeSound;                                                 // 0x2288 (size: 0x8)
+    bool LungeInterrupted;                                                            // 0x2290 (size: 0x1)
+    class USoundBase* SplatCollisionSound;                                            // 0x2298 (size: 0x8)
+    TSoftObjectPtr<UAnimMontage> PestWheelIdleMontage;                                // 0x22A0 (size: 0x28)
 
     FVector PestWheelOffset();
     void OnRep_PetName();
@@ -60,6 +60,6 @@ class ANPC_Monster_Pest_C : public ANPC_Base_ParentBP_C
     void ExecuteUbergraph_NPC_Monster_Pest(int32 EntryPoint);
     void OnPestCollideWithObject__DelegateSignature(FHitResult HitInfo);
     void OnPestJumpLiftoff__DelegateSignature();
-}; // Size: 0x22C0
+}; // Size: 0x22C8
 
 #endif

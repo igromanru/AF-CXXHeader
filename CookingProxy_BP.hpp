@@ -6,7 +6,7 @@ class ACookingProxy_BP_C : public AItemProxyParent_BP_C
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0350 (size: 0x8)
     class UStaticMeshComponent* LiquidMesh;                                           // 0x0358 (size: 0x8)
     class UTextRenderComponent* LiquidLevelDebugText;                                 // 0x0360 (size: 0x8)
-    class UNiagaraComponent* Particle;                                                // 0x0368 (size: 0x8)
+    class UNiagaraComponent* particle;                                                // 0x0368 (size: 0x8)
     class UStaticMeshComponent* PanMesh;                                              // 0x0370 (size: 0x8)
     class UTextRenderComponent* DebugText;                                            // 0x0378 (size: 0x8)
     class UAudioComponent* Audio;                                                     // 0x0380 (size: 0x8)
@@ -40,6 +40,8 @@ class ACookingProxy_BP_C : public AItemProxyParent_BP_C
     int32 StovewareMeshType;                                                          // 0x0490 (size: 0x4)
     FName FoodRow;                                                                    // 0x0494 (size: 0x8)
     double Internal_TimeCookDelayFinishes;                                            // 0x04A0 (size: 0x8)
+    FCookingProxy_BP_COnUpdateChangeableState OnUpdateChangeableState;                // 0x04A8 (size: 0x10)
+    void OnUpdateChangeableState(class ACookingProxy_BP_C* CookingProxy, ECookingState CookingState);
 
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
@@ -114,7 +116,8 @@ class ACookingProxy_BP_C : public AItemProxyParent_BP_C
     void Local_SetSoupAppearance(class UPrimaryDataAsset* DatAsset);
     void InteractWith_B_LocalFX(bool Hold);
     void ExecuteUbergraph_CookingProxy_BP(int32 EntryPoint);
+    void OnUpdateChangeableState__DelegateSignature(class ACookingProxy_BP_C* CookingProxy, ECookingState CookingState);
     void SoupDisplayUpdated__DelegateSignature();
-}; // Size: 0x4A8
+}; // Size: 0x4B8
 
 #endif

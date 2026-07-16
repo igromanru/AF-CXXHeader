@@ -3,19 +3,19 @@
 
 class AAbiotic_PlayerCorpse_C : public ADeployed_Container_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0920 (size: 0x8)
-    class UAbiotic_InventoryComponent_C* FormerEquipSlotInventory;                    // 0x0928 (size: 0x8)
-    class UAbiotic_InventoryComponent_C* FormerHotbarInventory;                       // 0x0930 (size: 0x8)
-    class UAbiotic_InventoryComponent_C* FormerBackpackInventory;                     // 0x0938 (size: 0x8)
-    FString playerName;                                                               // 0x0940 (size: 0x10)
-    FString OwningPlayerID;                                                           // 0x0950 (size: 0x10)
-    bool BodyFadingOut;                                                               // 0x0960 (size: 0x1)
-    double CorpseFadeTime;                                                            // 0x0968 (size: 0x8)
-    TArray<class UMaterialInstanceDynamic*> DynMatInstances;                          // 0x0970 (size: 0x10)
-    bool Looted;                                                                      // 0x0980 (size: 0x1)
-    FText CorpseDisplayText;                                                          // 0x0988 (size: 0x10)
-    class UHumanCustomizationComponent_C* DeadPlayerCustomizationComponent;           // 0x0998 (size: 0x8)
-    bool WasPlacedAtWorldStart;                                                       // 0x09A0 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0940 (size: 0x8)
+    class UAbiotic_InventoryComponent_C* FormerEquipSlotInventory;                    // 0x0948 (size: 0x8)
+    class UAbiotic_InventoryComponent_C* FormerHotbarInventory;                       // 0x0950 (size: 0x8)
+    class UAbiotic_InventoryComponent_C* FormerBackpackInventory;                     // 0x0958 (size: 0x8)
+    FString playerName;                                                               // 0x0960 (size: 0x10)
+    FString OwningPlayerID;                                                           // 0x0970 (size: 0x10)
+    bool BodyFadingOut;                                                               // 0x0980 (size: 0x1)
+    double CorpseFadeTime;                                                            // 0x0988 (size: 0x8)
+    TArray<class UMaterialInstanceDynamic*> DynMatInstances;                          // 0x0990 (size: 0x10)
+    bool Looted;                                                                      // 0x09A0 (size: 0x1)
+    FText CorpseDisplayText;                                                          // 0x09A8 (size: 0x10)
+    class UHumanCustomizationComponent_C* DeadPlayerCustomizationComponent;           // 0x09B8 (size: 0x8)
+    bool WasPlacedAtWorldStart;                                                       // 0x09C0 (size: 0x1)
 
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void Local_TrySendMessageToOwner();
@@ -51,6 +51,6 @@ class AAbiotic_PlayerCorpse_C : public ADeployed_Container_ParentBP_C
     void OnLoadedFromSave(double NewLifespan);
     void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void ExecuteUbergraph_Abiotic_PlayerCorpse(int32 EntryPoint);
-}; // Size: 0x9A1
+}; // Size: 0x9C1
 
 #endif

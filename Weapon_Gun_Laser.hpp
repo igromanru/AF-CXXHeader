@@ -3,24 +3,24 @@
 
 class AWeapon_Gun_Laser_C : public AAbiotic_Weapon_Gun_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0C08 (size: 0x8)
-    class UNiagaraComponent* Niagara_LaserEnd;                                        // 0x0C10 (size: 0x8)
-    class ULaserComponent_C* LaserComponent;                                          // 0x0C18 (size: 0x8)
-    class UNiagaraComponent* Niagara_LaserEmitterBeam;                                // 0x0C20 (size: 0x8)
-    class USceneComponent* LaserEndLocation;                                          // 0x0C28 (size: 0x8)
-    bool LaserFiring;                                                                 // 0x0C30 (size: 0x1)
-    FTimerHandle AmmoConsumptionTimer;                                                // 0x0C38 (size: 0x8)
-    bool TickAmmoConsumption;                                                         // 0x0C40 (size: 0x1)
-    float AmmoConsumptionInterval;                                                    // 0x0C44 (size: 0x4)
-    float LaserDuration;                                                              // 0x0C48 (size: 0x4)
-    bool Overdrive;                                                                   // 0x0C4C (size: 0x1)
-    float AmmoOverdriveConsumptionInterval;                                           // 0x0C50 (size: 0x4)
-    float LaserDamage;                                                                // 0x0C54 (size: 0x4)
-    float LaserOverdriveDamage;                                                       // 0x0C58 (size: 0x4)
-    bool IsLocalWeapon;                                                               // 0x0C5C (size: 0x1)
-    class USoundBase* LaserStartSFX;                                                  // 0x0C60 (size: 0x8)
-    float In Value;                                                                   // 0x0C68 (size: 0x4)
-    EPaintColor LaserBeamColor;                                                       // 0x0C6C (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0C20 (size: 0x8)
+    class UNiagaraComponent* Niagara_LaserEnd;                                        // 0x0C28 (size: 0x8)
+    class ULaserComponent_C* LaserComponent;                                          // 0x0C30 (size: 0x8)
+    class UNiagaraComponent* Niagara_LaserEmitterBeam;                                // 0x0C38 (size: 0x8)
+    class USceneComponent* LaserEndLocation;                                          // 0x0C40 (size: 0x8)
+    bool LaserFiring;                                                                 // 0x0C48 (size: 0x1)
+    FTimerHandle AmmoConsumptionTimer;                                                // 0x0C50 (size: 0x8)
+    bool TickAmmoConsumption;                                                         // 0x0C58 (size: 0x1)
+    float AmmoConsumptionInterval;                                                    // 0x0C5C (size: 0x4)
+    float LaserDuration;                                                              // 0x0C60 (size: 0x4)
+    bool Overdrive;                                                                   // 0x0C64 (size: 0x1)
+    float AmmoOverdriveConsumptionInterval;                                           // 0x0C68 (size: 0x4)
+    float LaserDamage;                                                                // 0x0C6C (size: 0x4)
+    float LaserOverdriveDamage;                                                       // 0x0C70 (size: 0x4)
+    bool IsLocalWeapon;                                                               // 0x0C74 (size: 0x1)
+    class USoundBase* LaserStartSFX;                                                  // 0x0C78 (size: 0x8)
+    float In Value;                                                                   // 0x0C80 (size: 0x4)
+    EPaintColor LaserBeamColor;                                                       // 0x0C84 (size: 0x1)
 
     void PlaySFX();
     void Try Award XP to Instigating Player(class AActor* HitActor);
@@ -55,6 +55,6 @@ class AWeapon_Gun_Laser_C : public AAbiotic_Weapon_Gun_ParentBP_C
     void OnMeshComponentReady(class UMeshComponent* MeshComponent, bool FirstPerson);
     void BndEvt__Weapon_Gun_Laser_LaserComponent_K2Node_ComponentBoundEvent_0_OnLaserDealDamage__DelegateSignature(class ULaserComponent_C* LaserComponent, FHitResult HitResult, double BaseDamage, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType);
     void ExecuteUbergraph_Weapon_Gun_Laser(int32 EntryPoint);
-}; // Size: 0xC6D
+}; // Size: 0xC85
 
 #endif

@@ -3,21 +3,21 @@
 
 class ADeployed_Furniture_Bed_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0850 (size: 0x8)
-    class USceneComponent* SleepSocket;                                               // 0x0858 (size: 0x8)
-    class USceneComponent* TeleportLocation3;                                         // 0x0860 (size: 0x8)
-    class USceneComponent* TeleportLocation2;                                         // 0x0868 (size: 0x8)
-    class USceneComponent* TeleportLocation;                                          // 0x0870 (size: 0x8)
-    class AAbiotic_Character_ParentBP_C* CharacterSleepingInBed;                      // 0x0878 (size: 0x8)
-    int32 BedComfortRating;                                                           // 0x0880 (size: 0x4)
-    bool CanBeUsedAsSpawn;                                                            // 0x0884 (size: 0x1)
-    FString BedOwnerID;                                                               // 0x0888 (size: 0x10)
-    FString BedOwnerLastPlayerName;                                                   // 0x0898 (size: 0x10)
-    bool Local_JustClaimedBed;                                                        // 0x08A8 (size: 0x1)
-    FDeployed_Furniture_Bed_ParentBP_COccupantSleepingStateChange OccupantSleepingStateChange; // 0x08B0 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0870 (size: 0x8)
+    class USceneComponent* SleepSocket;                                               // 0x0878 (size: 0x8)
+    class USceneComponent* TeleportLocation3;                                         // 0x0880 (size: 0x8)
+    class USceneComponent* TeleportLocation2;                                         // 0x0888 (size: 0x8)
+    class USceneComponent* TeleportLocation;                                          // 0x0890 (size: 0x8)
+    class AAbiotic_Character_ParentBP_C* CharacterSleepingInBed;                      // 0x0898 (size: 0x8)
+    int32 BedComfortRating;                                                           // 0x08A0 (size: 0x4)
+    bool CanBeUsedAsSpawn;                                                            // 0x08A4 (size: 0x1)
+    FString BedOwnerID;                                                               // 0x08A8 (size: 0x10)
+    FString BedOwnerLastPlayerName;                                                   // 0x08B8 (size: 0x10)
+    bool Local_JustClaimedBed;                                                        // 0x08C8 (size: 0x1)
+    FDeployed_Furniture_Bed_ParentBP_COccupantSleepingStateChange OccupantSleepingStateChange; // 0x08D0 (size: 0x10)
     void OccupantSleepingStateChange(bool Sleeping);
-    FString Local_BedOwnerLastPlayerName;                                             // 0x08C0 (size: 0x10)
-    class AAbiotic_PlayerState_C* BedOwnerPlayerState;                                // 0x08D0 (size: 0x8)
+    FString Local_BedOwnerLastPlayerName;                                             // 0x08E0 (size: 0x10)
+    class AAbiotic_PlayerState_C* BedOwnerPlayerState;                                // 0x08F0 (size: 0x8)
 
     void OnRep_CharacterSleepingInBed();
     void OnRep_BedOwnerPlayerState();
@@ -45,6 +45,6 @@ class ADeployed_Furniture_Bed_ParentBP_C : public AAbioticDeployed_Furniture_Par
     void SleepingOccupantChanged_FX();
     void ExecuteUbergraph_Deployed_Furniture_Bed_ParentBP(int32 EntryPoint);
     void OccupantSleepingStateChange__DelegateSignature(bool Sleeping);
-}; // Size: 0x8D8
+}; // Size: 0x8F8
 
 #endif

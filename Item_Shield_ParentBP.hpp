@@ -3,16 +3,16 @@
 
 class AItem_Shield_ParentBP_C : public AItem_Gear_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B18 (size: 0x8)
-    double LastBlockTime;                                                             // 0x0B20 (size: 0x8)
-    double CounterAttackWindow;                                                       // 0x0B28 (size: 0x8)
-    double CounterAttackDamageMultiplier;                                             // 0x0B30 (size: 0x8)
-    double BlockTimeWindow;                                                           // 0x0B38 (size: 0x8)
-    bool ShieldBlocking;                                                              // 0x0B40 (size: 0x1)
-    class USoundBase* ShieldBlockStartSound;                                          // 0x0B48 (size: 0x8)
-    class USoundBase* ShieldBlockEndSound;                                            // 0x0B50 (size: 0x8)
-    class UAudioComponent* StartAndEndAudioComponent;                                 // 0x0B58 (size: 0x8)
-    double PartialPassthroughAmount;                                                  // 0x0B60 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B30 (size: 0x8)
+    double LastBlockTime;                                                             // 0x0B38 (size: 0x8)
+    double CounterAttackWindow;                                                       // 0x0B40 (size: 0x8)
+    double CounterAttackDamageMultiplier;                                             // 0x0B48 (size: 0x8)
+    double BlockTimeWindow;                                                           // 0x0B50 (size: 0x8)
+    bool ShieldBlocking;                                                              // 0x0B58 (size: 0x1)
+    class USoundBase* ShieldBlockStartSound;                                          // 0x0B60 (size: 0x8)
+    class USoundBase* ShieldBlockEndSound;                                            // 0x0B68 (size: 0x8)
+    class UAudioComponent* StartAndEndAudioComponent;                                 // 0x0B70 (size: 0x8)
+    double PartialPassthroughAmount;                                                  // 0x0B78 (size: 0x8)
 
     double GetDamagePassthroughPercent(TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType);
     uint8 GetDamageShieldPierceStrength(TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType, class UObject* __WorldContext);
@@ -34,6 +34,6 @@ class AItem_Shield_ParentBP_C : public AItem_Gear_ParentBP_C
     void ShieldBlockUpdated(bool Blocking);
     void ReceiveEndPlay(TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
     void ExecuteUbergraph_Item_Shield_ParentBP(int32 EntryPoint);
-}; // Size: 0xB68
+}; // Size: 0xB80
 
 #endif

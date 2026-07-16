@@ -3,27 +3,27 @@
 
 class ADeployed_CraftingBench_Default_C : public AAbioticDeployed_CraftingBench_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x08E0 (size: 0x8)
-    class UNarrativeNPCLureComponent_C* NarrativeNPCLureComponent;                    // 0x08E8 (size: 0x8)
-    class UBenchUpgradeActorComponent* BenchUpgrade_MatterSynthesizer;                // 0x08F0 (size: 0x8)
-    class UBenchUpgradeActorComponent* BenchUpgrade_PortalSuppression;                // 0x08F8 (size: 0x8)
-    class UChildActorComponent* NoBuildZone;                                          // 0x0900 (size: 0x8)
-    class UBenchUpgradeActorComponent* BenchUpgrade_BenchTurret;                      // 0x0908 (size: 0x8)
-    class UBenchUpgradeActorComponent* BenchUpgrade_MetabolicField;                   // 0x0910 (size: 0x8)
-    class USceneComponent* TeleportLocation;                                          // 0x0918 (size: 0x8)
-    class UBenchUpgradeActorComponent* BenchUpgrade_TougherBench;                     // 0x0920 (size: 0x8)
-    class UBenchUpgradeActorComponent* BenchUpgrade_Warmer;                           // 0x0928 (size: 0x8)
-    class UBenchUpgradeActorComponent* BenchUpgrade_ItemTransporter;                  // 0x0930 (size: 0x8)
-    class UBenchUpgradeActorComponent* BenchUpgrade_Dioxohealer;                      // 0x0938 (size: 0x8)
-    class UPointLightComponent* PointLight;                                           // 0x0940 (size: 0x8)
-    class UBoxComponent* HomeArea;                                                    // 0x0948 (size: 0x8)
-    FName HomeBuffID;                                                                 // 0x0950 (size: 0x8)
-    FBuffDebuffRowHandle HomeBuff;                                                    // 0x0958 (size: 0x20)
-    TArray<class AAbiotic_Item_ParentBP_C*> SyncedDevices;                            // 0x0978 (size: 0x10)
-    double LastContainerUpdate;                                                       // 0x0988 (size: 0x8)
-    class ANPC_Base_ParentBP_C* WanderingNPC;                                         // 0x0990 (size: 0x8)
-    class ADayNightManager_C* DayNightManager;                                        // 0x0998 (size: 0x8)
-    FTimerHandle WanderNPCTimer;                                                      // 0x09A0 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0900 (size: 0x8)
+    class UNarrativeNPCLureComponent_C* NarrativeNPCLureComponent;                    // 0x0908 (size: 0x8)
+    class UBenchUpgradeActorComponent* BenchUpgrade_MatterSynthesizer;                // 0x0910 (size: 0x8)
+    class UBenchUpgradeActorComponent* BenchUpgrade_PortalSuppression;                // 0x0918 (size: 0x8)
+    class UChildActorComponent* NoBuildZone;                                          // 0x0920 (size: 0x8)
+    class UBenchUpgradeActorComponent* BenchUpgrade_BenchTurret;                      // 0x0928 (size: 0x8)
+    class UBenchUpgradeActorComponent* BenchUpgrade_MetabolicField;                   // 0x0930 (size: 0x8)
+    class USceneComponent* TeleportLocation;                                          // 0x0938 (size: 0x8)
+    class UBenchUpgradeActorComponent* BenchUpgrade_TougherBench;                     // 0x0940 (size: 0x8)
+    class UBenchUpgradeActorComponent* BenchUpgrade_Warmer;                           // 0x0948 (size: 0x8)
+    class UBenchUpgradeActorComponent* BenchUpgrade_ItemTransporter;                  // 0x0950 (size: 0x8)
+    class UBenchUpgradeActorComponent* BenchUpgrade_Dioxohealer;                      // 0x0958 (size: 0x8)
+    class UPointLightComponent* PointLight;                                           // 0x0960 (size: 0x8)
+    class UBoxComponent* HomeArea;                                                    // 0x0968 (size: 0x8)
+    FName HomeBuffID;                                                                 // 0x0970 (size: 0x8)
+    FBuffDebuffRowHandle HomeBuff;                                                    // 0x0978 (size: 0x20)
+    TArray<class AAbiotic_Item_ParentBP_C*> SyncedDevices;                            // 0x0998 (size: 0x10)
+    double LastContainerUpdate;                                                       // 0x09A8 (size: 0x8)
+    class ANPC_Base_ParentBP_C* WanderingNPC;                                         // 0x09B0 (size: 0x8)
+    class ADayNightManager_C* DayNightManager;                                        // 0x09B8 (size: 0x8)
+    FTimerHandle WanderNPCTimer;                                                      // 0x09C0 (size: 0x8)
 
     void Check for Bench Upgrades Inventories(bool& Empty);
     void GetInventoriesToSave(TArray<class UAbiotic_InventoryComponent_C*>& Inventories);
@@ -53,6 +53,6 @@ class ADeployed_CraftingBench_Default_C : public AAbioticDeployed_CraftingBench_
     void OnLoadedFromSave(double NewLifespan);
     void NewPlayerMadeString();
     void ExecuteUbergraph_Deployed_CraftingBench_Default(int32 EntryPoint);
-}; // Size: 0x9A8
+}; // Size: 0x9C8
 
 #endif

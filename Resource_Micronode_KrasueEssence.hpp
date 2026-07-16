@@ -3,6 +3,6 @@
 
 class AResource_Micronode_KrasueEssence_C : public AResource_Micronode_LeyakEssence_C
 {
-}; // Size: 0x518
+}; // Size: 0x520
 
 #endif

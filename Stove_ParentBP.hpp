@@ -3,42 +3,43 @@
 
 class AStove_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0850 (size: 0x8)
-    class USceneComponent* InteractFallbackPoint;                                     // 0x0858 (size: 0x8)
-    class UBoxComponent* FixableInteractBox;                                          // 0x0860 (size: 0x8)
-    class UStaticMeshComponent* FixableDevice;                                        // 0x0868 (size: 0x8)
-    class UAbiotic_InventoryComponent_C* PanInventory;                                // 0x0870 (size: 0x8)
-    class UAbiotic_InventoryComponent_C* CookingInventory;                            // 0x0878 (size: 0x8)
-    class UStaticMeshComponent* CookSpot1;                                            // 0x0880 (size: 0x8)
-    bool IsBakingOven;                                                                // 0x0888 (size: 0x1)
-    bool Local_LookingAtEmptyStoveSlot;                                               // 0x0889 (size: 0x1)
-    bool Local_CookableItemInHand;                                                    // 0x088A (size: 0x1)
-    TArray<class USceneComponent*> CookSpots;                                         // 0x0890 (size: 0x10)
-    TArray<class ACookingProxy_BP_C*> CookableProxies;                                // 0x08A0 (size: 0x10)
-    TArray<bool> StovesOn;                                                            // 0x08B0 (size: 0x10)
-    double StoveTopVerticalOffset;                                                    // 0x08C0 (size: 0x8)
-    bool Local_LookingAtEmptyCookware;                                                // 0x08C8 (size: 0x1)
-    bool LocalHoldingCookware;                                                        // 0x08C9 (size: 0x1)
-    bool Local Cookware Is A Pot;                                                     // 0x08CA (size: 0x1)
-    bool Local Holding A Container;                                                   // 0x08CB (size: 0x1)
-    bool Local Start Cooking Soup;                                                    // 0x08CC (size: 0x1)
-    class UActorComponent* Component Used;                                            // 0x08D0 (size: 0x8)
-    TArray<double> TimeStartedCooking;                                                // 0x08D8 (size: 0x10)
-    bool LocalHoldingBakeable;                                                        // 0x08E8 (size: 0x1)
-    TEnumAsByte<E_StoveTopStates::Type> Current Stove Top State;                      // 0x08E9 (size: 0x1)
-    TEnumAsByte<E_ItemStateInHand::Type> Current Held Item State;                     // 0x08EA (size: 0x1)
-    class USceneComponent* LastHighlightedComponent;                                  // 0x08F0 (size: 0x8)
-    float SoupWidgetOffset;                                                           // 0x08F8 (size: 0x4)
-    FString RequiredItemName;                                                         // 0x0900 (size: 0x10)
-    FDataTableRowHandle RequiredFixItItem;                                            // 0x0910 (size: 0x10)
-    bool HasBeenFixed;                                                                // 0x0920 (size: 0x1)
-    TArray<double> PanRotations;                                                      // 0x0928 (size: 0x10)
-    TSubclassOf<class ACookingProxy_BP_C> CookingProxyClass;                          // 0x0938 (size: 0x8)
-    bool IsFixingInventorySave;                                                       // 0x0940 (size: 0x1)
-    FVector StoveRefundOffset;                                                        // 0x0948 (size: 0x18)
-    class UMaterialInterface* StoveMaterial_ON;                                       // 0x0960 (size: 0x8)
-    class UMaterialInterface* StoveMaterial_OFF;                                      // 0x0968 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0870 (size: 0x8)
+    class USceneComponent* InteractFallbackPoint;                                     // 0x0878 (size: 0x8)
+    class UBoxComponent* FixableInteractBox;                                          // 0x0880 (size: 0x8)
+    class UStaticMeshComponent* FixableDevice;                                        // 0x0888 (size: 0x8)
+    class UAbiotic_InventoryComponent_C* PanInventory;                                // 0x0890 (size: 0x8)
+    class UAbiotic_InventoryComponent_C* CookingInventory;                            // 0x0898 (size: 0x8)
+    class UStaticMeshComponent* CookSpot1;                                            // 0x08A0 (size: 0x8)
+    bool IsBakingOven;                                                                // 0x08A8 (size: 0x1)
+    bool Local_LookingAtEmptyStoveSlot;                                               // 0x08A9 (size: 0x1)
+    bool Local_CookableItemInHand;                                                    // 0x08AA (size: 0x1)
+    TArray<class USceneComponent*> CookSpots;                                         // 0x08B0 (size: 0x10)
+    TArray<class ACookingProxy_BP_C*> CookableProxies;                                // 0x08C0 (size: 0x10)
+    TArray<bool> StovesOn;                                                            // 0x08D0 (size: 0x10)
+    double StoveTopVerticalOffset;                                                    // 0x08E0 (size: 0x8)
+    bool Local_LookingAtEmptyCookware;                                                // 0x08E8 (size: 0x1)
+    bool LocalHoldingCookware;                                                        // 0x08E9 (size: 0x1)
+    bool Local Cookware Is A Pot;                                                     // 0x08EA (size: 0x1)
+    bool Local Holding A Container;                                                   // 0x08EB (size: 0x1)
+    bool Local Start Cooking Soup;                                                    // 0x08EC (size: 0x1)
+    class UActorComponent* Component Used;                                            // 0x08F0 (size: 0x8)
+    TArray<double> TimeStartedCooking;                                                // 0x08F8 (size: 0x10)
+    bool LocalHoldingBakeable;                                                        // 0x0908 (size: 0x1)
+    TEnumAsByte<E_StoveTopStates::Type> Current Stove Top State;                      // 0x0909 (size: 0x1)
+    TEnumAsByte<E_ItemStateInHand::Type> Current Held Item State;                     // 0x090A (size: 0x1)
+    class USceneComponent* LastHighlightedComponent;                                  // 0x0910 (size: 0x8)
+    float SoupWidgetOffset;                                                           // 0x0918 (size: 0x4)
+    FString RequiredItemName;                                                         // 0x0920 (size: 0x10)
+    FDataTableRowHandle RequiredFixItItem;                                            // 0x0930 (size: 0x10)
+    bool HasBeenFixed;                                                                // 0x0940 (size: 0x1)
+    TArray<double> PanRotations;                                                      // 0x0948 (size: 0x10)
+    TSubclassOf<class ACookingProxy_BP_C> CookingProxyClass;                          // 0x0958 (size: 0x8)
+    bool IsFixingInventorySave;                                                       // 0x0960 (size: 0x1)
+    FVector StoveRefundOffset;                                                        // 0x0968 (size: 0x18)
+    class UMaterialInterface* StoveMaterial_ON;                                       // 0x0980 (size: 0x8)
+    class UMaterialInterface* StoveMaterial_OFF;                                      // 0x0988 (size: 0x8)
 
+    bool IsHeldItemInPlayerInventory(class AAbiotic_PlayerCharacter_C* InputPin);
     void CalculateRemovedItem(int32 InIndex, FAbiotic_InventoryChangeableDataStruct& InChangeableData, FAbiotic_InventoryItemSlotStruct& OutItem);
     void DestroyDeployable(bool NoLoot, int32 Extra Loot Quantity, bool LootBagLocationOverride, FVector LocationOverride);
     void GetLiquidContainerStoveState(int32 StoveSpot, TEnumAsByte<E_LiquidType::Type> Liquid Type, int32 ContainerMaxLiquid, bool& Can Pour, TEnumAsByte<E_StoveTopStates::Type>& NewStoveState);
@@ -98,6 +99,6 @@ class AStove_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
     void RadialWheelInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed, FName SelectionWheelContentName);
     void InteractWith_B_LocalFX(bool Hold);
     void ExecuteUbergraph_Stove_ParentBP(int32 EntryPoint);
-}; // Size: 0x970
+}; // Size: 0x990
 
 #endif

@@ -26,6 +26,8 @@ class AAbiotic_Item_Dropped_C : public AActor
     class USceneComponent* InitialAttachToComponent;                                  // 0x0A00 (size: 0x8)
     FName InitialAttachToBone;                                                        // 0x0A08 (size: 0x8)
     bool NoDespawn;                                                                   // 0x0A10 (size: 0x1)
+    FVector RelativeOffsetLoc;                                                        // 0x0A18 (size: 0x18)
+    FRotator RelativeOffsetRot;                                                       // 0x0A30 (size: 0x18)
 
     void GetOutlineComponent(bool& ComponentEnabled, class UOutlineComponent_C*& Components);
     void IsItemInPinnedRecipes(bool& IsPinnedIngredient);
@@ -61,6 +63,7 @@ class AAbiotic_Item_Dropped_C : public AActor
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
+    void AttachItemToComponent(class USceneComponent* Parent, FName SocketName);
     void ItemDroppedMeshSetup(TSoftObjectPtr<UObject> MeshObjectRef, class UStaticMesh*& OutMeshAsset);
     void AdjustTargetingCapsule();
     void OnItemDespawn();
@@ -123,6 +126,6 @@ class AAbiotic_Item_Dropped_C : public AActor
     void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void ForceItemPickup();
     void ExecuteUbergraph_Abiotic_Item_Dropped(int32 EntryPoint);
-}; // Size: 0xA11
+}; // Size: 0xA48
 
 #endif

@@ -3,16 +3,16 @@
 
 class ADeployed_CraftingBench_Upgrade_C : public AAbioticDeployed_CraftingBench_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x08E0 (size: 0x8)
-    class UAudioComponent* SoundEffect;                                               // 0x08E8 (size: 0x8)
-    class UBenchUpgradeActorComponent* BenchUpgrade_ItemTransporter;                  // 0x08F0 (size: 0x8)
-    class UAbiotic_InventoryComponent_C* UpgradeItemInventory;                        // 0x08F8 (size: 0x8)
-    class UPointLightComponent* PointLight;                                           // 0x0900 (size: 0x8)
-    bool IsContainerBeingUsed;                                                        // 0x0908 (size: 0x1)
-    TSoftObjectPtr<USoundBase> OpenCue;                                               // 0x0910 (size: 0x28)
-    TSoftObjectPtr<USoundBase> CloseCue;                                              // 0x0938 (size: 0x28)
-    double LastContainerUpdate;                                                       // 0x0960 (size: 0x8)
-    double DistanceForSubtitles;                                                      // 0x0968 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0900 (size: 0x8)
+    class UAudioComponent* SoundEffect;                                               // 0x0908 (size: 0x8)
+    class UBenchUpgradeActorComponent* BenchUpgrade_ItemTransporter;                  // 0x0910 (size: 0x8)
+    class UAbiotic_InventoryComponent_C* UpgradeItemInventory;                        // 0x0918 (size: 0x8)
+    class UPointLightComponent* PointLight;                                           // 0x0920 (size: 0x8)
+    bool IsContainerBeingUsed;                                                        // 0x0928 (size: 0x1)
+    TSoftObjectPtr<USoundBase> OpenCue;                                               // 0x0930 (size: 0x28)
+    TSoftObjectPtr<USoundBase> CloseCue;                                              // 0x0958 (size: 0x28)
+    double LastContainerUpdate;                                                       // 0x0980 (size: 0x8)
+    double DistanceForSubtitles;                                                      // 0x0988 (size: 0x8)
 
     void ReturnOriginalItemChangeableDataToPlayer(double CurrentLiquidPercentage, class AAbiotic_PlayerCharacter_C* CraftingPlayer, FAbiotic_InventoryChangeableDataStruct& CarryoverChangeableData, double& LiquidPercentageRemains, double& DurabilityPercentage);
     void UpdateOverlappingContainers();
@@ -30,6 +30,6 @@ class ADeployed_CraftingBench_Upgrade_C : public AAbioticDeployed_CraftingBench_
     void Server_CheckCraftSoundEffect(TSoftObjectPtr<UObject> CraftSoundToPlay, double InitialStartDelay, const FText& CraftedItemName);
     void InteractWith_A_LocalFX(bool Hold);
     void ExecuteUbergraph_Deployed_CraftingBench_Upgrade(int32 EntryPoint);
-}; // Size: 0x970
+}; // Size: 0x990
 
 #endif

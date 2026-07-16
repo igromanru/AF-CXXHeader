@@ -89,6 +89,7 @@ class AABF_Vehicle_ParentBP_C : public AAbioticWheeledVehiclePawn
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void Landing Damage Multiplier(double Damage, double& DamageMultiplier);
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
+    void KickOutLocalOccupant();
     void AutoMoveCheck(double AxisValue, double& OutValue);
     void Client Check Position();
     void OnRep_VehicleBeingDriven();

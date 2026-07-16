@@ -30,14 +30,17 @@ class UW_PlayerHUD_InteractionPrompt_C : public UUserWidget
     class UImage* RadioactiveIcon;                                                    // 0x03A0 (size: 0x8)
     class UW_Keybind_C* SecondaryFireKeybind;                                         // 0x03A8 (size: 0x8)
     class UTextBlock* SecondaryFireSuffix;                                            // 0x03B0 (size: 0x8)
-    class UVerticalBox* VBox_NoteList;                                                // 0x03B8 (size: 0x8)
-    class UW_CookingPrompt_C* W_CookingPrompt;                                        // 0x03C0 (size: 0x8)
-    class UProgressBar* XpBar;                                                        // 0x03C8 (size: 0x8)
-    class AActor* FocusedObject;                                                      // 0x03D0 (size: 0x8)
-    FText InteractSuffixPartA;                                                        // 0x03D8 (size: 0x10)
-    FText CurrentLookAt_ItemName;                                                     // 0x03E8 (size: 0x10)
-    FSlateColor CurrentLookAt_Color;                                                  // 0x03F8 (size: 0x14)
+    class UVerticalBox* VBox_Main;                                                    // 0x03B8 (size: 0x8)
+    class UVerticalBox* VBox_NoteList;                                                // 0x03C0 (size: 0x8)
+    class UW_CookingPrompt_C* W_CookingPrompt;                                        // 0x03C8 (size: 0x8)
+    class UProgressBar* XpBar;                                                        // 0x03D0 (size: 0x8)
+    class AActor* FocusedObject;                                                      // 0x03D8 (size: 0x8)
+    FText InteractSuffixPartA;                                                        // 0x03E0 (size: 0x10)
+    FText CurrentLookAt_ItemName;                                                     // 0x03F0 (size: 0x10)
+    FSlateColor CurrentLookAt_Color;                                                  // 0x0400 (size: 0x14)
+    class UW_Player_BuffBar_C* BuffBar;                                               // 0x0418 (size: 0x8)
 
+    void TryShowbuffBar(class AAbiotic_Character_ParentBP_C* Character);
     void TrySetPetData(class UObject* Object);
     void UpdateCookingPrompt(class ACookingProxy_BP_C* Proxy);
     void UpdateItemDurability(double CurrentDurability, double MaxDurability);
@@ -52,6 +55,6 @@ class UW_PlayerHUD_InteractionPrompt_C : public UUserWidget
     void Construct();
     void OnLargerTextChanged(bool NewValue);
     void ExecuteUbergraph_W_PlayerHUD_InteractionPrompt(int32 EntryPoint);
-}; // Size: 0x40C
+}; // Size: 0x420
 
 #endif

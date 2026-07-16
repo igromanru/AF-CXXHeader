@@ -3,9 +3,9 @@
 
 class ADeployed_JackOLantern_C : public ADeployed_Figurine_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0850 (size: 0x8)
-    class UPointLightComponent* PointLight;                                           // 0x0858 (size: 0x8)
-    int32 CraftedPumpkinIndex;                                                        // 0x0860 (size: 0x4)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0870 (size: 0x8)
+    class UPointLightComponent* PointLight;                                           // 0x0878 (size: 0x8)
+    int32 CraftedPumpkinIndex;                                                        // 0x0880 (size: 0x4)
 
     void GetTextureOverrides(TArray<TSoftObjectPtr<UMaterialInterface>>& TextureOverride, bool& PaintApplied);
     void SetupPumpkinTexture();
@@ -15,6 +15,6 @@ class ADeployed_JackOLantern_C : public ADeployed_Figurine_ParentBP_C
     void OnLoadedFromSave(double NewLifespan);
     void SetupPaintAndTexture();
     void ExecuteUbergraph_Deployed_JackOLantern(int32 EntryPoint);
-}; // Size: 0x864
+}; // Size: 0x884
 
 #endif

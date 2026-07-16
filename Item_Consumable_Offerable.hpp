@@ -3,8 +3,8 @@
 
 class AItem_Consumable_Offerable_C : public AItem_Consumable_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B50 (size: 0x8)
-    class UAnimMontage* TPOfferItemMontage;                                           // 0x0B58 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B68 (size: 0x8)
+    class UAnimMontage* TPOfferItemMontage;                                           // 0x0B70 (size: 0x8)
 
     TArray<FItemActionRowHandle> GetSecondaryItemActionArray();
     void RemoveItemAfterOffer(class AAbiotic_PlayerCharacter_C* UsingCharacter);
@@ -24,6 +24,6 @@ class AItem_Consumable_Offerable_C : public AItem_Consumable_ParentBP_C
     void UseItem_BroadcastFX(class AAbiotic_Character_ParentBP_C* UsingCharacter, bool SecondaryUse);
     void UseItemSecondary_LocalFX(class AAbiotic_Character_ParentBP_C* UsingCharacter, class AActor* TargetActor);
     void ExecuteUbergraph_Item_Consumable_Offerable(int32 EntryPoint);
-}; // Size: 0xB60
+}; // Size: 0xB78
 
 #endif

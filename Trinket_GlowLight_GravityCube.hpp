@@ -3,8 +3,8 @@
 
 class ATrinket_GlowLight_GravityCube_C : public ATrinket_GlowLight_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B48 (size: 0x8)
-    FBuffDebuffRowHandle BuffToAdd;                                                   // 0x0B50 (size: 0x20)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B60 (size: 0x8)
+    FBuffDebuffRowHandle BuffToAdd;                                                   // 0x0B68 (size: 0x20)
 
     void ApplyBuffs();
     void CheckForBuffApply();
@@ -15,6 +15,6 @@ class ATrinket_GlowLight_GravityCube_C : public ATrinket_GlowLight_ParentBP_C
     void RemovedBuff_Event(FBuffDebuffRowHandle BuffDebuffRowHandle);
     void TryReapplyTrinketGearBuff();
     void ExecuteUbergraph_Trinket_GlowLight_GravityCube(int32 EntryPoint);
-}; // Size: 0xB70
+}; // Size: 0xB88
 
 #endif

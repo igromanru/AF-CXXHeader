@@ -115,6 +115,7 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     TMap<FBuffDebuffRowHandle, double> PendingSuddenDeathHUD;                         // 0x1220 (size: 0x50)
     FInventorySlotSelected_Struct LastWeaponCoatingSelected;                          // 0x1270 (size: 0x10)
     class USceneComponent* LastRadioComponent;                                        // 0x1280 (size: 0x8)
+    bool EquipmentHasRadio;                                                           // 0x1288 (size: 0x1)
 
     void GetJoystickDirection(TEnumAsByte<EJoystickTypes::Type> Stick, FVector2D& StickInput);
     void GetFriendlyFireDamageMultiplier(bool& Return, double& DamageMultiplier);
@@ -334,6 +335,7 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     void Client_SetMinigame(TSubclassOf<class UUserWidget> Class);
     void Client_ClearMinigame();
     void Request_BenchPressReward(double XPToAdd);
+    void OnEquipmentUpdated(class UAbiotic_InventoryComponent_C* Inventory);
     void ExecuteUbergraph_Abiotic_PlayerController(int32 EntryPoint);
     void OnAdminGranted__DelegateSignature();
     void OnAdminPasswordIncorrect__DelegateSignature();
@@ -341,6 +343,6 @@ class AAbiotic_PlayerController_C : public AAbioticPlayerController
     void ItemDragStarted__DelegateSignature(TEnumAsByte<E_InventorySlotType::Type> Item Type);
     void HeldInteractEnded__DelegateSignature();
     void HeldInteractStarted__DelegateSignature(double InteractionDuration);
-}; // Size: 0x1288
+}; // Size: 0x1289
 
 #endif

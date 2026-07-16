@@ -3,6 +3,6 @@
 
 class AItem_SharedConsumable_ParentBP_C : public AItem_Consumable_ParentBP_C
 {
-}; // Size: 0xB50
+}; // Size: 0xB68
 
 #endif

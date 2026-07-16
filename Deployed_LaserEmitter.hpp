@@ -3,10 +3,10 @@
 
 class ADeployed_LaserEmitter_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0850 (size: 0x8)
-    class ULaserComponent_C* LaserComponent;                                          // 0x0858 (size: 0x8)
-    class UArrowComponent* Arrow;                                                     // 0x0860 (size: 0x8)
-    float ImaginaryPlaneDistance;                                                     // 0x0868 (size: 0x4)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0870 (size: 0x8)
+    class ULaserComponent_C* LaserComponent;                                          // 0x0878 (size: 0x8)
+    class UArrowComponent* Arrow;                                                     // 0x0880 (size: 0x8)
+    float ImaginaryPlaneDistance;                                                     // 0x0888 (size: 0x4)
 
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
@@ -23,6 +23,6 @@ class ADeployed_LaserEmitter_C : public AAbioticDeployed_Furniture_ParentBP_C
     void Owner_StartMount();
     void Owner_EndMount();
     void ExecuteUbergraph_Deployed_LaserEmitter(int32 EntryPoint);
-}; // Size: 0x86C
+}; // Size: 0x88C
 
 #endif

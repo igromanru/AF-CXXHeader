@@ -4,7 +4,7 @@
 class AFixit_ParentBP_C : public AAbioticActor_C
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D0 (size: 0x8)
-    class UNiagaraComponent* sparks;                                                  // 0x02D8 (size: 0x8)
+    class UNiagaraComponent* Sparks;                                                  // 0x02D8 (size: 0x8)
     class UBoxComponent* InteractBox;                                                 // 0x02E0 (size: 0x8)
     class URectLightComponent* RectLight;                                             // 0x02E8 (size: 0x8)
     class UStaticMeshComponent* PartMesh;                                             // 0x02F0 (size: 0x8)

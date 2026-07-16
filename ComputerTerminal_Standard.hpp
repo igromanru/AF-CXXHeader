@@ -13,6 +13,7 @@ class AComputerTerminal_Standard_C : public AComputerTerminal_ParentBP_C
     bool DebugTerminal;                                                               // 0x0379 (size: 0x1)
     class USoundBase* LureSound;                                                      // 0x0380 (size: 0x8)
 
+    bool Local_AreAllEmailsRead();
     void InitWidget();
     void OnRep_HasBeenUsed();
     void ToggleTerminalUse_FX();

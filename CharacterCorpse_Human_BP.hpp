@@ -6,7 +6,7 @@ class ACharacterCorpse_Human_BP_C : public ACharacterCorpse_ParentBP_C
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x03F0 (size: 0x8)
     class UStaticMeshComponent* IDCardMesh;                                           // 0x03F8 (size: 0x8)
     class USkeletalMeshComponent* Beard;                                              // 0x0400 (size: 0x8)
-    class USkeletalMeshComponent* Hair;                                               // 0x0408 (size: 0x8)
+    class USkeletalMeshComponent* hair;                                               // 0x0408 (size: 0x8)
     class USkeletalMeshComponent* HeadAccessory;                                      // 0x0410 (size: 0x8)
     class USkeletalMeshComponent* Helmet;                                             // 0x0418 (size: 0x8)
     class USkeletalMeshComponent* ArmArmor;                                           // 0x0420 (size: 0x8)

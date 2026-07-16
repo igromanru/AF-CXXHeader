@@ -3,6 +3,6 @@
 
 class ADeployed_ClothRope_C : public ADeployed_Ladder_ParentBP_C
 {
-}; // Size: 0x908
+}; // Size: 0x928
 
 #endif

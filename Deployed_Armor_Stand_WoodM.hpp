@@ -3,6 +3,6 @@
 
 class ADeployed_Armor_Stand_WoodM_C : public ADeployed_Armor_Stand_C
 {
-}; // Size: 0x96D
+}; // Size: 0x98D
 
 #endif

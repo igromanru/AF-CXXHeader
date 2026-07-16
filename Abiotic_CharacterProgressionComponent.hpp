@@ -66,6 +66,7 @@ class UAbiotic_CharacterProgressionComponent_C : public UActorComponent
     TArray<FName> ItemsDistilled;                                                     // 0x0648 (size: 0x10)
     FAbiotic_CharacterProgressionComponent_COnItemsDistilledUpdated OnItemsDistilledUpdated; // 0x0658 (size: 0x10)
     void OnItemsDistilledUpdated();
+    TSet<FName> LocalFishEntries;                                                     // 0x0668 (size: 0x50)
 
     void DelayedLinkedRecipeCheck();
     void Server_AddItemDistilled(FName ItemRow);
@@ -158,6 +159,6 @@ class UAbiotic_CharacterProgressionComponent_C : public UActorComponent
     void OnItemsDistilledUpdated__DelegateSignature();
     void OnNewEmailRead__DelegateSignature(class UAbiotic_CharacterProgressionComponent_C* ProgressionComponent, FName NewEmail);
     void SkillLevelUp__DelegateSignature(TEnumAsByte<E_CharacterSkills::Type> Skill, int32 NewLevel);
-}; // Size: 0x668
+}; // Size: 0x6B8
 
 #endif
