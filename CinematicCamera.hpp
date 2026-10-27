@@ -39,7 +39,7 @@ struct FCameraLookatTrackingSettings
     uint8 bEnableLookAtTracking;                                                      // 0x0000 (size: 0x1)
     uint8 bDrawDebugLookAtTrackingPosition;                                           // 0x0000 (size: 0x1)
     float LookAtTrackingInterpSpeed;                                                  // 0x0004 (size: 0x4)
-    TSoftObjectPtr<AActor> ActorToTrack;                                              // 0x0020 (size: 0x28)
+    TSoftObjectPtr<class AActor> ActorToTrack;                                        // 0x0020 (size: 0x28)
     FVector RelativeOffset;                                                           // 0x0048 (size: 0x18)
     uint8 bAllowRoll;                                                                 // 0x0060 (size: 0x1)
 
@@ -47,7 +47,7 @@ struct FCameraLookatTrackingSettings
 
 struct FCameraTrackingFocusSettings
 {
-    TSoftObjectPtr<AActor> ActorToTrack;                                              // 0x0000 (size: 0x28)
+    TSoftObjectPtr<class AActor> ActorToTrack;                                        // 0x0000 (size: 0x28)
     FVector RelativeOffset;                                                           // 0x0028 (size: 0x18)
     uint8 bDrawDebugTrackingFocusPoint;                                               // 0x0040 (size: 0x1)
 
@@ -102,14 +102,14 @@ class ACameraRig_Rail : public AActor
     class USplineComponent* RailSplineComponent;                                      // 0x02A8 (size: 0x8)
     class USceneComponent* RailCameraMount;                                           // 0x02B0 (size: 0x8)
 
-    class USplineComponent* GetRailSplineComponent();
+    void GetRailSplineComponent();
 }; // Size: 0x2B8
 
 class ACineCameraActor : public ACameraActor
 {
     FCameraLookatTrackingSettings LookatTrackingSettings;                             // 0x09B0 (size: 0x68)
 
-    class UCineCameraComponent* GetCineCameraComponent();
+    void GetCineCameraComponent();
 }; // Size: 0xA30
 
 class UCineCameraComponent : public UCameraComponent
@@ -142,14 +142,14 @@ class UCineCameraComponent : public UCameraComponent
     void SetCurrentAperture(const float NewCurrentAperture);
     void SetCropSettings(const FPlateCropSettings& NewCropSettings);
     void SetCropPresetByName(FString InPresetName);
-    float GetVerticalFieldOfView();
-    TArray<FNamedLensPreset> GetLensPresetsCopy();
-    FString GetLensPresetName();
-    float GetHorizontalFieldOfView();
-    TArray<FNamedFilmbackPreset> GetFilmbackPresetsCopy();
-    FString GetFilmbackPresetName();
-    FString GetDefaultFilmbackPresetName();
-    FString GetCropPresetName();
+    void GetVerticalFieldOfView();
+    void GetLensPresetsCopy();
+    void GetLensPresetName();
+    void GetHorizontalFieldOfView();
+    void GetFilmbackPresetsCopy();
+    void GetFilmbackPresetName();
+    void GetDefaultFilmbackPresetName();
+    void GetCropPresetName();
 }; // Size: 0xAF0
 
 class UCineCameraSettings : public UDeveloperSettings
@@ -171,13 +171,13 @@ class UCineCameraSettings : public UDeveloperSettings
     void SetDefaultFilmbackPreset(const FString InDefaultFilmbackPreset);
     void SetDefaultCropPresetName(const FString InDefaultCropPresetName);
     void SetCropPresets(const TArray<FNamedPlateCropPreset>& InCropPresets);
-    TArray<FString> GetLensPresetNames();
-    bool GetLensPresetByName(const FString PresetName, FCameraLensSettings& LensSettings);
-    TArray<FString> GetFilmbackPresetNames();
-    bool GetFilmbackPresetByName(const FString PresetName, FCameraFilmbackSettings& FilmbackSettings);
-    TArray<FString> GetCropPresetNames();
-    bool GetCropPresetByName(const FString PresetName, FPlateCropSettings& CropSettings);
-    class UCineCameraSettings* GetCineCameraSettings();
+    void GetLensPresetNames();
+    void GetLensPresetByName(const FString PresetName, FCameraLensSettings& LensSettings);
+    void GetFilmbackPresetNames();
+    void GetFilmbackPresetByName(const FString PresetName, FCameraFilmbackSettings& FilmbackSettings);
+    void GetCropPresetNames();
+    void GetCropPresetByName(const FString PresetName, FPlateCropSettings& CropSettings);
+    void GetCineCameraSettings();
 }; // Size: 0xB0
 
 #endif

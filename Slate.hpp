@@ -25,7 +25,7 @@ struct FCharRangeList
 
 struct FCustomizedToolMenu : public FToolMenuProfile
 {
-    TMap<class FName, class FCustomizedToolMenuNameArray> EntryOrder;                 // 0x01A0 (size: 0x50)
+    TMap<FName, FCustomizedToolMenuNameArray> EntryOrder;                             // 0x01A0 (size: 0x50)
     TArray<FName> SectionOrder;                                                       // 0x01F0 (size: 0x10)
 
 }; // Size: 0x200
@@ -61,8 +61,8 @@ struct FInputChord
 struct FToolMenuProfile
 {
     FName Name;                                                                       // 0x0000 (size: 0x8)
-    TMap<class FName, class FCustomizedToolMenuEntry> Entries;                        // 0x0008 (size: 0x50)
-    TMap<class FName, class FCustomizedToolMenuSection> Sections;                     // 0x0058 (size: 0x50)
+    TMap<FName, FCustomizedToolMenuEntry> Entries;                                    // 0x0008 (size: 0x50)
+    TMap<FName, FCustomizedToolMenuSection> Sections;                                 // 0x0058 (size: 0x50)
     TArray<FName> SuppressExtenders;                                                  // 0x00A8 (size: 0x10)
 
 }; // Size: 0x1A0

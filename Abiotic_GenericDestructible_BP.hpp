@@ -13,35 +13,35 @@ class AAbiotic_GenericDestructible_BP_C : public AAbioticActor_C
     class UStaticMesh* DefaultStaticMesh;                                             // 0x0308 (size: 0x8)
     class UStaticMesh* DestroyedStaticMesh;                                           // 0x0310 (size: 0x8)
     bool DestroyedOnlyByTrigger;                                                      // 0x0318 (size: 0x1)
-    FWorldFlagRowHandle DestroyOnWorldFlag;                                           // 0x0320 (size: 0x20)
-    class UNiagaraSystem* BreakFXParticles;                                           // 0x0340 (size: 0x8)
-    class USoundBase* BreakSFX;                                                       // 0x0348 (size: 0x8)
-    FAbiotic_GenericDestructible_BP_COnDestructibleDestroyed OnDestructibleDestroyed; // 0x0350 (size: 0x10)
+    FWorldFlagRowHandle DestroyOnWorldFlag;                                           // 0x0320 (size: 0x10)
+    class UNiagaraSystem* BreakFXParticles;                                           // 0x0330 (size: 0x8)
+    class USoundBase* BreakSFX;                                                       // 0x0338 (size: 0x8)
+    FAbiotic_GenericDestructible_BP_COnDestructibleDestroyed OnDestructibleDestroyed; // 0x0340 (size: 0x10)
     void OnDestructibleDestroyed();
-    FWorldFlagRowHandle SetWorldFlagOnBreak;                                          // 0x0360 (size: 0x20)
-    TArray<class TSubclassOf<UAbiotic_DamageType_ParentBP_C>> ValidDamageTypes;       // 0x0380 (size: 0x10)
+    FWorldFlagRowHandle SetWorldFlagOnBreak;                                          // 0x0350 (size: 0x10)
+    TArray<TSubclassOf<class UAbioticDamageType>> ValidDamageTypes;                   // 0x0360 (size: 0x10)
 
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanLongInteractWith_A(bool& Success);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
+    void GetHighlightComponents(TArray<UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);
     void HasSitLocations(bool& IsSittable);
     void SitLocationParent(class USceneComponent*& ParentComponent);
-    void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
+    void GetItemChangeableData(FAbioticInventoryChangeableData& ChangeableData);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void RequiresToolToDismantle(bool& Tool Required);
     void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void GetStoredString(FString& String);
-    FText GetItemNameText();
+    void GetItemNameText();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void Landing Damage Multiplier(double Damage, double& DamageMultiplier);
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
-    bool IsRadioactive();
-    void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
+    void IsRadioactive();
+    void GetAttachedPowerCord(TArray<UCableComponent*>& Power Cord Found);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void CanUseSharedInteraction(bool& Can Use);
     void HealthUpdated();
@@ -59,8 +59,8 @@ class AAbiotic_GenericDestructible_BP_C : public AAbioticActor_C
     void InteractWith_B_LocalFX(bool Hold);
     void NPC_InteractWith(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void DeliverString(FString String, bool FromSave);
-    void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbiotic_InventoryItemSlotStruct SlotData);
-    void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbiotic_InventoryItemSlotStruct SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
+    void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbioticInventoryItemSlot SlotData);
+    void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbioticInventoryItemSlot SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
     void OnInteractHighlightStart(class UActorComponent* Component);
     void OnInteractHighlightEnd(class UActorComponent* Component);
     void DeliverInt(bool FromSave, const int32 New Int);
@@ -75,6 +75,6 @@ class AAbiotic_GenericDestructible_BP_C : public AAbioticActor_C
     void WorldFlagBreakCheck();
     void ExecuteUbergraph_Abiotic_GenericDestructible_BP(int32 EntryPoint);
     void OnDestructibleDestroyed__DelegateSignature();
-}; // Size: 0x390
+}; // Size: 0x370
 
 #endif

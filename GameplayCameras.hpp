@@ -40,7 +40,7 @@ struct FCameraAnimationParams
 
 struct FCameraModeTransition
 {
-    TArray<class UCameraModeTransitionCondition*> Conditions;                         // 0x0000 (size: 0x10)
+    TArray<UCameraModeTransitionCondition*> Conditions;                               // 0x0000 (size: 0x10)
     class UBlendCameraNode* Blend;                                                    // 0x0010 (size: 0x8)
 
 }; // Size: 0x18
@@ -109,8 +109,8 @@ class AGameplayCameraActor : public AActor
     class USceneComponent* SceneComponent;                                            // 0x0298 (size: 0x8)
     class UGameplayCameraComponent* CameraComponent;                                  // 0x02A0 (size: 0x8)
 
-    class USceneComponent* GetSceneComponent();
-    class UGameplayCameraComponent* GetCameraComponent();
+    void GetSceneComponent();
+    void GetCameraComponent();
 }; // Size: 0x2A8
 
 class AGameplayCameraSystemActor : public AActor
@@ -118,13 +118,13 @@ class AGameplayCameraSystemActor : public AActor
     class UGameplayCameraSystemComponent* CameraSystemComponent;                      // 0x0298 (size: 0x8)
     TEnumAsByte<EAutoReceiveInput::Type> AutoActivateForPlayer;                       // 0x02A0 (size: 0x1)
 
-    class UGameplayCameraSystemComponent* GetCameraSystemComponent();
+    void GetCameraSystemComponent();
     void ActivateForPlayer(int32 PlayerIndex);
 }; // Size: 0x2A8
 
 class UArrayCameraNode : public UCameraNode
 {
-    TArray<class UCameraNode*> Children;                                              // 0x0030 (size: 0x10)
+    TArray<UCameraNode*> Children;                                                    // 0x0030 (size: 0x10)
 
 }; // Size: 0x40
 
@@ -154,11 +154,11 @@ class UCameraAnimationCameraModifier : public UCameraModifier
     void StopCameraAnimation(const FCameraAnimationHandle& Handle, bool bImmediate);
     void StopAllCameraAnimationsOf(class UCameraAnimationSequence* Sequence, bool bImmediate);
     void StopAllCameraAnimations(bool bImmediate);
-    FCameraAnimationHandle PlayCameraAnimation(class UCameraAnimationSequence* Sequence, FCameraAnimationParams Params);
-    bool IsCameraAnimationActive(const FCameraAnimationHandle& Handle);
-    class UCameraAnimationCameraModifier* GetCameraAnimationCameraModifierFromPlayerController(const class APlayerController* PlayerController);
-    class UCameraAnimationCameraModifier* GetCameraAnimationCameraModifierFromID(const class UObject* WorldContextObject, int32 ControllerId);
-    class UCameraAnimationCameraModifier* GetCameraAnimationCameraModifier(const class UObject* WorldContextObject, int32 PlayerIndex);
+    void PlayCameraAnimation(class UCameraAnimationSequence* Sequence, FCameraAnimationParams Params);
+    void IsCameraAnimationActive(const FCameraAnimationHandle& Handle);
+    void GetCameraAnimationCameraModifierFromPlayerController(const class APlayerController* PlayerController);
+    void GetCameraAnimationCameraModifierFromID(const class UObject* WorldContextObject, int32 ControllerId);
+    void GetCameraAnimationCameraModifier(const class UObject* WorldContextObject, int32 PlayerIndex);
 }; // Size: 0x60
 
 class UCameraAsset : public UObject
@@ -209,7 +209,7 @@ class UCameraSystemEvaluator : public UObject
 
 class UCompositeCameraShakePattern : public UCameraShakePattern
 {
-    TArray<class UCameraShakePattern*> ChildPatterns;                                 // 0x0028 (size: 0x10)
+    TArray<UCameraShakePattern*> ChildPatterns;                                       // 0x0028 (size: 0x10)
 
 }; // Size: 0x38
 
@@ -249,15 +249,15 @@ class UGameplayCameraSystemComponent : public USceneComponent
 {
     class UCameraSystemEvaluator* Evaluator;                                          // 0x0238 (size: 0x8)
 
-    class UCameraSystemEvaluator* GetCameraSystemEvaluator();
+    void GetCameraSystemEvaluator();
 }; // Size: 0x240
 
 class UGameplayCamerasFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
-    ECameraShakePlaySpace Conv_CameraShakePlaySpace(ECameraAnimationPlaySpace CameraAnimationPlaySpace);
-    ECameraAnimationPlaySpace Conv_CameraAnimationPlaySpace(ECameraShakePlaySpace CameraShakePlaySpace);
-    class UCameraAnimationCameraModifier* Conv_CameraAnimationCameraModifier(class APlayerCameraManager* PlayerCameraManager);
+    void Conv_CameraShakePlaySpace(ECameraAnimationPlaySpace CameraAnimationPlaySpace);
+    void Conv_CameraAnimationPlaySpace(ECameraShakePlaySpace CameraShakePlaySpace);
+    void Conv_CameraAnimationCameraModifier(class APlayerCameraManager* PlayerCameraManager);
 }; // Size: 0x28
 
 class UGameplayCamerasSubsystem : public UWorldSubsystem
@@ -266,8 +266,8 @@ class UGameplayCamerasSubsystem : public UWorldSubsystem
     void StopCameraAnimation(class APlayerController* PlayerController, const FCameraAnimationHandle& Handle, bool bImmediate);
     void StopAllCameraAnimationsOf(class APlayerController* PlayerController, class UCameraAnimationSequence* Sequence, bool bImmediate);
     void StopAllCameraAnimations(class APlayerController* PlayerController, bool bImmediate);
-    FCameraAnimationHandle PlayCameraAnimation(class APlayerController* PlayerController, class UCameraAnimationSequence* Sequence, FCameraAnimationParams Params);
-    bool IsCameraAnimationActive(class APlayerController* PlayerController, const FCameraAnimationHandle& Handle);
+    void PlayCameraAnimation(class APlayerController* PlayerController, class UCameraAnimationSequence* Sequence, FCameraAnimationParams Params);
+    void IsCameraAnimationActive(class APlayerController* PlayerController, const FCameraAnimationHandle& Handle);
 }; // Size: 0x30
 
 class ULegacyCameraShake : public UCameraShakeBase
@@ -288,18 +288,18 @@ class ULegacyCameraShake : public UCameraShakeBase
     float OscillatorTimeRemaining;                                                    // 0x015C (size: 0x4)
     class USequenceCameraShakePattern* SequenceShakePattern;                          // 0x01D8 (size: 0x8)
 
-    class ULegacyCameraShake* StartLegacyCameraShakeFromSource(class APlayerCameraManager* PlayerCameraManager, TSubclassOf<class ULegacyCameraShake> ShakeClass, class UCameraShakeSourceComponent* SourceComponent, float Scale, ECameraShakePlaySpace PlaySpace, FRotator UserPlaySpaceRot);
-    class ULegacyCameraShake* StartLegacyCameraShake(class APlayerCameraManager* PlayerCameraManager, TSubclassOf<class ULegacyCameraShake> ShakeClass, float Scale, ECameraShakePlaySpace PlaySpace, FRotator UserPlaySpaceRot);
+    void StartLegacyCameraShakeFromSource(class APlayerCameraManager* PlayerCameraManager, TSubclassOf<class ULegacyCameraShake> ShakeClass, class UCameraShakeSourceComponent* SourceComponent, float Scale, ECameraShakePlaySpace PlaySpace, FRotator UserPlaySpaceRot);
+    void StartLegacyCameraShake(class APlayerCameraManager* PlayerCameraManager, TSubclassOf<class ULegacyCameraShake> ShakeClass, float Scale, ECameraShakePlaySpace PlaySpace, FRotator UserPlaySpaceRot);
     void ReceiveStopShake(bool bImmediately);
     void ReceivePlayShake(float Scale);
-    bool ReceiveIsFinished();
+    void ReceiveIsFinished();
     void BlueprintUpdateCameraShake(float DeltaTime, float Alpha, const FMinimalViewInfo& POV, FMinimalViewInfo& ModifiedPOV);
 }; // Size: 0x1F0
 
 class ULegacyCameraShakeFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
-    class ULegacyCameraShake* Conv_LegacyCameraShake(class UCameraShakeBase* CameraShake);
+    void Conv_LegacyCameraShake(class UCameraShakeBase* CameraShake);
 }; // Size: 0x28
 
 class ULegacyCameraShakePattern : public UCameraShakePattern

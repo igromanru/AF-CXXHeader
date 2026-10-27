@@ -11,7 +11,7 @@ class UBTT_DoRangedAttack_C : public UBTTask_BlueprintBase
     FTimerHandle WaitTimer;                                                           // 0x00C0 (size: 0x8)
 
     void ClearTimers();
-    double GetTargetDotProduct(class AAIController* OwnerController, class APawn* ControlledPawn);
+    void GetTargetDotProduct(class AAIController* OwnerController, class APawn* ControlledPawn);
     void ReceiveExecuteAI(class AAIController* OwnerController, class APawn* ControlledPawn);
     void CombatReset_Event(bool Success);
     void TryShoot();

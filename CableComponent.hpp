@@ -33,8 +33,8 @@ class UCableComponent : public UMeshComponent
     void SetAttachEndToComponent(class USceneComponent* Component, FName SocketName);
     void SetAttachEndTo(class AActor* Actor, FName ComponentProperty, FName SocketName);
     void GetCableParticleLocations(TArray<FVector>& Locations);
-    class USceneComponent* GetAttachedComponent();
-    class AActor* GetAttachedActor();
+    void GetAttachedComponent();
+    void GetAttachedActor();
 }; // Size: 0x610
 
 #endif

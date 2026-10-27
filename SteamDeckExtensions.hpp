@@ -4,7 +4,7 @@
 class USteamDeckExtStatics : public UBlueprintFunctionLibrary
 {
 
-    bool IsSteamDeckRunning();
+    void IsSteamDeckRunning();
     void InitSteamInput();
     void InitSteamDeck();
 }; // Size: 0x28

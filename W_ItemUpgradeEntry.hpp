@@ -19,11 +19,11 @@ class UW_ItemUpgradeEntry_C : public UUserWidget
     class AAbiotic_PlayerCharacter_C* CraftingPlayerCharacter;                        // 0x0388 (size: 0x8)
     bool CanCraft;                                                                    // 0x0390 (size: 0x1)
 
-    TArray<class UAbiotic_InventoryComponent_C*> GetAdditionalInventories();
-    void ShouldCraftingItemBeShown(bool HideUnknownItems, FName ItemName, bool& Show);
+    void GetAdditionalInventories();
+    void ShouldCraftingItemBeShown(bool HideUnknownItems, FAnyItemRowHandle ItemName, bool& Show);
     void UpdateSelectedRecipeItem(bool IgnoreCraftingVisual, bool& Success, bool& AtLeast1HiddenItem);
     void UpgradePressed();
-    FEventReply OnMouseButtonDown(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
+    void OnMouseButtonDown(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
     void BP_OnEntryReleased();
     void BP_OnItemExpansionChanged(bool bIsExpanded);
     void BP_OnItemSelectionChanged(bool bIsSelected);

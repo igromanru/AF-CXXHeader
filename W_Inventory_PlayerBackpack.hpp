@@ -19,7 +19,7 @@ class UW_Inventory_PlayerBackpack_C : public UUserWidget
     class UW_PlayerInventory_Main_C* ParentInventoryWidget;                           // 0x0348 (size: 0x8)
     double CurrentWeight;                                                             // 0x0350 (size: 0x8)
     class UWidget* Temp Slot;                                                         // 0x0358 (size: 0x8)
-    TArray<class UWidget*> SortedGridSlots;                                           // 0x0360 (size: 0x10)
+    TArray<UWidget*> SortedGridSlots;                                                 // 0x0360 (size: 0x10)
     int32 Index;                                                                      // 0x0370 (size: 0x4)
     float LiquidWeightMultiplier;                                                     // 0x0374 (size: 0x4)
 

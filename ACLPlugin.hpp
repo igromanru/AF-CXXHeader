@@ -36,7 +36,7 @@ class UAnimationCompressionLibraryDatabase : public UObject
     uint32 MaxStreamRequestSizeKB;                                                    // 0x0120 (size: 0x4)
 
     void SetVisualFidelity(class UObject* WorldContextObject, FLatentActionInfo LatentInfo, class UAnimationCompressionLibraryDatabase* DatabaseAsset, ACLVisualFidelityChangeResult& Result, ACLVisualFidelity VisualFidelity);
-    ACLVisualFidelity GetVisualFidelity(class UAnimationCompressionLibraryDatabase* DatabaseAsset);
+    void GetVisualFidelity(class UAnimationCompressionLibraryDatabase* DatabaseAsset);
 }; // Size: 0x128
 
 #endif

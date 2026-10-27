@@ -8,7 +8,7 @@ class UW_Player_Journal_MapCard_C : public UUserWidget
     class UImage* BG;                                                                 // 0x02F0 (size: 0x8)
     class UButton* CardButton;                                                        // 0x02F8 (size: 0x8)
     class UImage* MapImage;                                                           // 0x0300 (size: 0x8)
-    FDataTableRowHandle MapRow;                                                       // 0x0308 (size: 0x10)
+    FMapPamphletRowHandle MapRow;                                                     // 0x0308 (size: 0x10)
     class UW_Player_Journal_Main_C* JournalParent;                                    // 0x0318 (size: 0x8)
 
     void OnLoaded_A9A6A6904B1B8A0B4181968C910D5D4A(class UObject* Loaded);

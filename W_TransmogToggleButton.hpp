@@ -7,7 +7,7 @@ class UW_TransmogToggleButton_C : public UUserWidget
     class UButton* Button_Toggle;                                                     // 0x02E8 (size: 0x8)
     class UImage* Image_0;                                                            // 0x02F0 (size: 0x8)
     class UAbiotic_TransmogInventoryComp_C* TmogInventory;                            // 0x02F8 (size: 0x8)
-    TEnumAsByte<E_InventorySlotType::Type> EquipSlot;                                 // 0x0300 (size: 0x1)
+    EInventorySlotType EquipSlot;                                                     // 0x0300 (size: 0x1)
     bool NewButtonState;                                                              // 0x0301 (size: 0x1)
 
     void UpdateButton(bool ShowingTransmog);

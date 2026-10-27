@@ -3,6 +3,6 @@
 
 class ABP_Teleporter_PlayerPortal_C : public ABP_Teleporter_ParentBP_C
 {
-}; // Size: 0x409
+}; // Size: 0x401
 
 #endif

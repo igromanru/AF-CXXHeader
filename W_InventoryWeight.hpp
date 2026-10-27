@@ -18,12 +18,12 @@ class UW_InventoryWeight_C : public UUserWidget
     void FadeOutComplete();
     bool RapidFade;                                                                   // 0x0348 (size: 0x1)
     bool WeightUpdatedDuringDelay;                                                    // 0x0349 (size: 0x1)
-    TEnumAsByte<ECriticalityLevels::Type> WeightSeverity;                             // 0x034A (size: 0x1)
+    ECriticalityLevels WeightSeverity;                                                // 0x034A (size: 0x1)
     double WeightPercent;                                                             // 0x0350 (size: 0x8)
 
     void ToggleCurrentItemWeight(bool Show, double WeightAsPercentage);
     void UpdateWeightBar(double WeightPercent);
-    void BeginFadeUI(TEnumAsByte<ECriticalityLevels::Type> Criticality);
+    void BeginFadeUI(ECriticalityLevels Criticality);
     void RapidFadeUI();
     void Construct();
     void ExecuteUbergraph_W_InventoryWeight(int32 EntryPoint);

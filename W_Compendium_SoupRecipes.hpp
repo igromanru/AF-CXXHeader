@@ -15,7 +15,7 @@ class UW_Compendium_SoupRecipes_C : public UAbioticWidget
     int32 MaxColumn;                                                                  // 0x0320 (size: 0x4)
 
     void CanCookSoup?(bool& SoupUnlocked);
-    void GetAlphabetSoup(TArray<FName>& Array, TArray<FName>& AlphabetizedArray);
+    void GetAlphabetSoup(TArray<FSoupRecipeRowHandle>& Array, TArray<FName>& AlphabetizedArray);
     void RefreshSoupRecipeList();
     void Construct();
     void ExecuteUbergraph_W_Compendium_SoupRecipes(int32 EntryPoint);

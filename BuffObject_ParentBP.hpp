@@ -3,6 +3,6 @@
 
 class UBuffObject_ParentBP_C : public UBuffDebuffObject
 {
-}; // Size: 0x60
+}; // Size: 0x50
 
 #endif

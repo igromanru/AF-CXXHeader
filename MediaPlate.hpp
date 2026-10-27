@@ -29,7 +29,7 @@ class UMediaPlateComponent : public UActorComponent
     float StartTime;                                                                  // 0x00B4 (size: 0x4)
     class UMediaSoundComponent* SoundComponent;                                       // 0x00B8 (size: 0x8)
     class UStaticMeshComponent* StaticMeshComponent;                                  // 0x00C0 (size: 0x8)
-    TArray<class UStaticMeshComponent*> Letterboxes;                                  // 0x00C8 (size: 0x10)
+    TArray<UStaticMeshComponent*> Letterboxes;                                        // 0x00C8 (size: 0x10)
     class UMediaPlaylist* MediaPlaylist;                                              // 0x00D8 (size: 0x8)
     int32 PlaylistIndex;                                                              // 0x00E0 (size: 0x4)
     FMediaSourceCacheSettings CacheSettings;                                          // 0x00E4 (size: 0x8)
@@ -44,7 +44,7 @@ class UMediaPlateComponent : public UActorComponent
     bool bAdaptivePoleMipUpscaling;                                                   // 0x0110 (size: 0x1)
     float LetterboxAspectRatio;                                                       // 0x0114 (size: 0x4)
     FVector2D MeshRange;                                                              // 0x0120 (size: 0x10)
-    TArray<class UMediaTexture*> MediaTextures;                                       // 0x0130 (size: 0x10)
+    TArray<UMediaTexture*> MediaTextures;                                             // 0x0130 (size: 0x10)
     FMediaTextureResourceSettings MediaTextureSettings;                               // 0x0140 (size: 0x2)
     class UMediaPlayer* MediaPlayer;                                                  // 0x0148 (size: 0x8)
 
@@ -53,8 +53,8 @@ class UMediaPlateComponent : public UActorComponent
     void SetLoop(bool bInLoop);
     void SetLetterboxAspectRatio(float AspectRatio);
     void SetIsAspectRatioAuto(bool bInIsAspectRatioAuto);
-    bool Seek(const FTimespan& Time);
-    bool Rewind();
+    void Seek(const FTimespan& Time);
+    void Rewind();
     void Play();
     void Pause();
     void Open();
@@ -62,13 +62,13 @@ class UMediaPlateComponent : public UActorComponent
     void OnMediaResumed();
     void OnMediaOpened(FString DeviceUrl);
     void OnMediaEnd();
-    bool IsMediaPlatePlaying();
-    FVector2D GetMeshRange();
-    class UMediaTexture* GetMediaTexture(int32 Index);
-    class UMediaPlayer* GetMediaPlayer();
-    bool GetLoop();
-    float GetLetterboxAspectRatio();
-    bool GetIsAspectRatioAuto();
+    void IsMediaPlatePlaying();
+    void GetMeshRange();
+    void GetMediaTexture(int32 Index);
+    void GetMediaPlayer();
+    void GetLoop();
+    void GetLetterboxAspectRatio();
+    void GetIsAspectRatioAuto();
     void Close();
 }; // Size: 0x190
 

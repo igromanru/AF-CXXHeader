@@ -7,10 +7,10 @@ class UW_PlayerEmails_Entry_C : public UUserWidget
     class UCheckBox* EmailCheckbox;                                                   // 0x02E8 (size: 0x8)
     class UTextBlock* EmailTitle;                                                     // 0x02F0 (size: 0x8)
     class UImage* Paperclip;                                                          // 0x02F8 (size: 0x8)
-    FAbiotic_EmailStruct EmailContent;                                                // 0x0300 (size: 0x68)
-    class UW_Player_Emails_Main_C* ParentJournal;                                     // 0x0368 (size: 0x8)
-    FName Email Row Name;                                                             // 0x0370 (size: 0x8)
-    FSlateColor JournalTextColor;                                                     // 0x0378 (size: 0x14)
+    FAbioticEmail EmailContent;                                                       // 0x0300 (size: 0x70)
+    class UW_Player_Emails_Main_C* ParentJournal;                                     // 0x0370 (size: 0x8)
+    FName Email Row Name;                                                             // 0x0378 (size: 0x8)
+    FSlateColor JournalTextColor;                                                     // 0x0380 (size: 0x14)
 
     void DisplayNewEmail();
     void DeselectOtherEmails();
@@ -18,6 +18,6 @@ class UW_PlayerEmails_Entry_C : public UUserWidget
     void BndEvt__EmailCheckbox_K2Node_ComponentBoundEvent_0_OnCheckBoxComponentStateChanged__DelegateSignature(bool bIsChecked);
     void SetAsActiveEmail();
     void ExecuteUbergraph_W_PlayerEmails_Entry(int32 EntryPoint);
-}; // Size: 0x38C
+}; // Size: 0x394
 
 #endif

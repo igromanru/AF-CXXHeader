@@ -8,12 +8,12 @@ struct FSharedImageConstRefBlueprint
 class USharedImageConstRefBlueprintFns : public UObject
 {
 
-    bool IsValid(const FSharedImageConstRefBlueprint& Image);
-    int32 GetWidth(const FSharedImageConstRefBlueprint& Image);
-    FVector2f GetSize(const FSharedImageConstRefBlueprint& Image);
-    FVector4f GetPixelValue(const FSharedImageConstRefBlueprint& Image, int32 X, int32 Y, bool& bValid);
-    FLinearColor GetPixelLinearColor(const FSharedImageConstRefBlueprint& Image, int32 X, int32 Y, bool& bValid, FLinearColor FailureColor);
-    int32 GetHeight(const FSharedImageConstRefBlueprint& Image);
+    void IsValid(const FSharedImageConstRefBlueprint& Image);
+    void GetWidth(const FSharedImageConstRefBlueprint& Image);
+    void GetSize(const FSharedImageConstRefBlueprint& Image);
+    void GetPixelValue(const FSharedImageConstRefBlueprint& Image, int32 X, int32 Y, bool& bValid);
+    void GetPixelLinearColor(const FSharedImageConstRefBlueprint& Image, int32 X, int32 Y, bool& bValid, FLinearColor FailureColor);
+    void GetHeight(const FSharedImageConstRefBlueprint& Image);
 }; // Size: 0x28
 
 #endif

@@ -31,7 +31,7 @@ class UDefaultItem_AnimBP_C : public UAnimInstance
     FAnimNode_Slot AnimGraphNode_Slot;                                                // 0x03A8 (size: 0x48)
     FAnimNode_SequencePlayer AnimGraphNode_SequencePlayer;                            // 0x03F0 (size: 0x48)
     class UAnimSequence* IdleSequence;                                                // 0x0438 (size: 0x8)
-    FDataTableRowHandle WeaponAnimTableRow;                                           // 0x0440 (size: 0x10)
+    FWeaponAnimationRowHandle WeaponAnimTableRow;                                     // 0x0440 (size: 0x10)
 
     void AnimGraph(FPoseLink& AnimGraph);
     void BlueprintUpdateAnimation(float DeltaTimeX);

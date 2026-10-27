@@ -4,7 +4,7 @@
 class II_Megalightable_C : public IInterface
 {
 
-    void OnMegalightHit(class UAbiotic_MegalightComponent_C* megalight, int32 Tier);
+    void OnMegalightHit(class UAbiotic_MegalightComponent_C* Megalight, int32 Tier);
 }; // Size: 0x28
 
 #endif

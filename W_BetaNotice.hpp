@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_BetaNotice_HPP
 #define UE4SS_SDK_W_BetaNotice_HPP
 
-class UW_BetaNotice_C : public UUserWidget
+class UW_BetaNotice_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UWidgetAnimation* EnterButtonActivate;                                      // 0x02E8 (size: 0x8)

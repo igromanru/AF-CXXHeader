@@ -7,16 +7,16 @@ class UTraceUtilLibrary : public UBlueprintFunctionLibrary
     void TraceMarkRegionStart(FString Name);
     void TraceMarkRegionEnd(FString Name);
     void TraceBookmark(FString Name);
-    bool ToggleChannel(FString ChannelName, bool Enabled);
-    bool StopTracing();
-    bool StartTraceToFile(FString Filename, const TArray<FString>& Channels);
-    bool StartTraceSendTo(FString Target, const TArray<FString>& Channels);
-    bool ResumeTracing();
-    bool PauseTracing();
-    bool IsTracing();
-    bool IsChannelEnabled(FString ChannelName);
-    TArray<FString> GetEnabledChannels();
-    TArray<FString> GetAllChannels();
+    void ToggleChannel(FString ChannelName, bool Enabled);
+    void StopTracing();
+    void StartTraceToFile(FString Filename, const TArray<FString>& Channels);
+    void StartTraceSendTo(FString Target, const TArray<FString>& Channels);
+    void ResumeTracing();
+    void PauseTracing();
+    void IsTracing();
+    void IsChannelEnabled(FString ChannelName);
+    void GetEnabledChannels();
+    void GetAllChannels();
 }; // Size: 0x28
 
 #endif

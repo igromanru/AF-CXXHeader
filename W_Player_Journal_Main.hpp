@@ -42,10 +42,10 @@ class UW_Player_Journal_Main_C : public UUserWidget
     class UTextBlock* PinCount;                                                       // 0x0400 (size: 0x8)
     class UImage* PinImage;                                                           // 0x0408 (size: 0x8)
     class UW_Player_JournalSectorTab_C* Plant_Tab;                                    // 0x0410 (size: 0x8)
-    class UTextBlock* Quest_description;                                              // 0x0418 (size: 0x8)
-    class UTextBlock* Quest_text;                                                     // 0x0420 (size: 0x8)
-    class UW_Player_JournalSectorTab_C* Residence_Tab;                                // 0x0428 (size: 0x8)
-    class UScrollBox* ScrollBox_Entries;                                              // 0x0430 (size: 0x8)
+    class UListView* QuestsListView;                                                  // 0x0418 (size: 0x8)
+    class UW_Player_JournalSectorTab_C* Residence_Tab;                                // 0x0420 (size: 0x8)
+    class UScrollBox* ScrollBox_Entries;                                              // 0x0428 (size: 0x8)
+    class UCanvasPanel* SectorTabsMapCanvas;                                          // 0x0430 (size: 0x8)
     class UW_Player_JournalSectorTab_C* Security_Tab;                                 // 0x0438 (size: 0x8)
     class UTextBlock* SubTitle_RecipeTypeText;                                        // 0x0440 (size: 0x8)
     class UTextBlock* Text_Clock;                                                     // 0x0448 (size: 0x8)
@@ -97,7 +97,7 @@ class UW_Player_Journal_Main_C : public UUserWidget
     class UW_Compendium_FishDatabase_C* W_Compendium_FishDatabase;                    // 0x05B8 (size: 0x8)
     class UW_Compendium_Index_C* W_Compendium_Index;                                  // 0x05C0 (size: 0x8)
     class UW_Compendium_SoupRecipes_C* W_Compendium_SoupRecipes;                      // 0x05C8 (size: 0x8)
-    TEnumAsByte<E_JournalEntryCategories::Type> CurrentPage;                          // 0x05D0 (size: 0x1)
+    EJournalEntryCategories CurrentPage;                                              // 0x05D0 (size: 0x1)
     FW_Player_Journal_Main_CJournalEntriesViewed JournalEntriesViewed;                // 0x05D8 (size: 0x10)
     void JournalEntriesViewed();
     bool MapViewActive;                                                               // 0x05E8 (size: 0x1)
@@ -110,15 +110,19 @@ class UW_Player_Journal_Main_C : public UUserWidget
     FName CurrentEntry;                                                               // 0x06F8 (size: 0x8)
     TArray<FName> NewlyReadEntries;                                                   // 0x0700 (size: 0x10)
     bool bIsCompendiumOpen;                                                           // 0x0710 (size: 0x1)
+    TArray<FQuestRowHandle> CachedActiveQuests;                                       // 0x0718 (size: 0x10)
 
+    void GetMapSectorTabs();
+    void OnTrackedQuestLineChanged();
+    void HandleQuests();
     void RefreshJournalMapSectorTabs();
     void Update Date(int32 DayNumber);
     void Select Map Background();
     void SetNewActiveJournalWidget(class UWidget* Widget, class UWidget* BackButtonGoToWidget);
     void CheckForLargerFont();
-    void GetNumberOfJournalEntries(TMap<TEnumAsByte<E_JournalEntryCategories::Type>, int32>& TotalCountMap);
-    void CheckMapsExistForSector(TEnumAsByte<E_JournalEntryCategories::Type> Sector, bool& AtLeast1MapExists);
-    FEventReply On_MapViewBGBorder_MouseButtonDown(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
+    void GetNumberOfJournalEntries(TMap<EJournalEntryCategories, int32>& TotalCountMap);
+    void CheckMapsExistForSector(EJournalEntryCategories Sector, bool& AtLeast1MapExists);
+    void On_MapViewBGBorder_MouseButtonDown(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
     void ToggleMapView(bool ShowMap, class UW_Player_Journal_MapCard_C* MapCard);
     void PopulateMapCards(class UAbiotic_CharacterProgressionComponent_C* ProgressionComponent, int32& MapsFound);
     void ChangeJournalSectorTab(class UW_Player_JournalSectorTab_C* JournalTab);
@@ -143,8 +147,10 @@ class UW_Player_Journal_Main_C : public UUserWidget
     void EscapeInputActivated();
     void OpenChemistryRecipes();
     void OpenDistillationRecipe();
+    void BndEvt__W_Player_Journal_Main_QuestsListView_K2Node_ComponentBoundEvent_1_OnListItemSelectionChangedDynamic__DelegateSignature(class UObject* Item, bool bIsSelected);
+    void OnWorldFlagsUpdated();
     void ExecuteUbergraph_W_Player_Journal_Main(int32 EntryPoint);
     void JournalEntriesViewed__DelegateSignature();
-}; // Size: 0x711
+}; // Size: 0x728
 
 #endif

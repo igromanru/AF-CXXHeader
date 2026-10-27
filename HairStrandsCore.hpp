@@ -157,7 +157,7 @@ struct FHairGroupCardsInfo
 struct FHairGroupCardsTextures
 {
     EHairTextureLayout Layout;                                                        // 0x0000 (size: 0x1)
-    TArray<class UTexture2D*> Textures;                                               // 0x0008 (size: 0x10)
+    TArray<UTexture2D*> Textures;                                                     // 0x0008 (size: 0x10)
     class UTexture2D* DepthTexture;                                                   // 0x0018 (size: 0x8)
     class UTexture2D* CoverageTexture;                                                // 0x0020 (size: 0x8)
     class UTexture2D* TangentTexture;                                                 // 0x0028 (size: 0x8)
@@ -389,7 +389,7 @@ struct FHairSolverSettings
 {
     bool EnableSimulation;                                                            // 0x0000 (size: 0x1)
     EGroomNiagaraSolvers NiagaraSolver;                                               // 0x0001 (size: 0x1)
-    TSoftObjectPtr<UNiagaraSystem> CustomSystem;                                      // 0x0008 (size: 0x28)
+    TSoftObjectPtr<class UNiagaraSystem> CustomSystem;                                // 0x0008 (size: 0x28)
     float GravityPreloading;                                                          // 0x0030 (size: 0x4)
     int32 SubSteps;                                                                   // 0x0034 (size: 0x4)
     int32 IterationCount;                                                             // 0x0038 (size: 0x4)
@@ -467,7 +467,7 @@ class UGroomAsset : public UObject
     FPerPlatformInt MinLOD;                                                           // 0x00D8 (size: 0x4)
     FPerPlatformBool DisableBelowMinLodStripping;                                     // 0x00DC (size: 0x1)
     TArray<float> EffectiveLODBias;                                                   // 0x00E0 (size: 0x10)
-    TArray<class UAssetUserData*> AssetUserData;                                      // 0x0110 (size: 0x10)
+    TArray<UAssetUserData*> AssetUserData;                                            // 0x0110 (size: 0x10)
 
     void SetRiggedSkeletalMesh(class USkeletalMesh* In);
     void SetHairInterpolationType(EGroomInterpolationType In);
@@ -481,18 +481,18 @@ class UGroomAsset : public UObject
     void SetEnableSimulationCache(bool In);
     void SetEnableGlobalInterpolation(bool In);
     void SetDeformedGroupSections(const TArray<int32>& In);
-    class USkeletalMesh* GetRiggedSkeletalMesh();
-    EGroomInterpolationType GetHairInterpolationType();
-    TArray<FHairGroupsRendering> GetHairGroupsRendering();
-    TArray<FHairGroupsPhysics> GetHairGroupsPhysics();
-    TArray<FHairGroupsMeshesSourceDescription> GetHairGroupsMeshes();
-    TArray<FHairGroupsMaterial> GetHairGroupsMaterials();
-    TArray<FHairGroupsLOD> GetHairGroupsLOD();
-    TArray<FHairGroupsInterpolation> GetHairGroupsInterpolation();
-    TArray<FHairGroupsCardsSourceDescription> GetHairGroupsCards();
-    bool GetEnableSimulationCache();
-    bool GetEnableGlobalInterpolation();
-    TArray<int32> GetDeformedGroupSections();
+    void GetRiggedSkeletalMesh();
+    void GetHairInterpolationType();
+    void GetHairGroupsRendering();
+    void GetHairGroupsPhysics();
+    void GetHairGroupsMeshes();
+    void GetHairGroupsMaterials();
+    void GetHairGroupsLOD();
+    void GetHairGroupsInterpolation();
+    void GetHairGroupsCards();
+    void GetEnableSimulationCache();
+    void GetEnableGlobalInterpolation();
+    void GetDeformedGroupSections();
 }; // Size: 0x128
 
 class UGroomAssetImportData : public UAssetImportData
@@ -522,35 +522,35 @@ class UGroomBindingAsset : public UObject
     void SetGroupInfos(const TArray<FGoomBindingGroupInfo>& InGroupInfos);
     void SetGroomBindingType(EGroomBindingMeshType InGroomBindingType);
     void SetGroom(class UGroomAsset* InGroom);
-    class USkeletalMesh* GetTargetSkeletalMesh();
-    class UGeometryCache* GetTargetGeometryCache();
-    class USkeletalMesh* GetSourceSkeletalMesh();
-    class UGeometryCache* GetSourceGeometryCache();
-    int32 GetNumInterpolationPoints();
-    int32 GetMatchingSection();
-    TArray<FGoomBindingGroupInfo> GetGroupInfos();
-    EGroomBindingMeshType GetGroomBindingType();
-    class UGroomAsset* GetGroom();
+    void GetTargetSkeletalMesh();
+    void GetTargetGeometryCache();
+    void GetSourceSkeletalMesh();
+    void GetSourceGeometryCache();
+    void GetNumInterpolationPoints();
+    void GetMatchingSection();
+    void GetGroupInfos();
+    void GetGroomBindingType();
+    void GetGroom();
 }; // Size: 0xB0
 
 class UGroomBindingAssetList : public UObject
 {
-    TArray<class UGroomBindingAsset*> Bindings;                                       // 0x0028 (size: 0x10)
+    TArray<UGroomBindingAsset*> Bindings;                                             // 0x0028 (size: 0x10)
 
 }; // Size: 0x38
 
 class UGroomBlueprintLibrary : public UBlueprintFunctionLibrary
 {
 
-    class UGroomBindingAsset* CreateNewGroomBindingAssetWithPath(FString InDesiredPackagePath, class UGroomAsset* InGroomAsset, class USkeletalMesh* InSkeletalMesh, int32 InNumInterpolationPoints, class USkeletalMesh* InSourceSkeletalMeshForTransfer, int32 InMatchingSection);
-    class UGroomBindingAsset* CreateNewGroomBindingAsset(class UGroomAsset* InGroomAsset, class USkeletalMesh* InSkeletalMesh, int32 InNumInterpolationPoints, class USkeletalMesh* InSourceSkeletalMeshForTransfer, int32 InMatchingSection);
-    class UGroomBindingAsset* CreateNewGeometryCacheGroomBindingAssetWithPath(FString DesiredPackagePath, class UGroomAsset* GroomAsset, class UGeometryCache* GeometryCache, int32 NumInterpolationPoints, class UGeometryCache* SourceGeometryCacheForTransfer, int32 MatchingSection);
-    class UGroomBindingAsset* CreateNewGeometryCacheGroomBindingAsset(class UGroomAsset* GroomAsset, class UGeometryCache* GeometryCache, int32 NumInterpolationPoints, class UGeometryCache* SourceGeometryCacheForTransfer, int32 MatchingSection);
+    void CreateNewGroomBindingAssetWithPath(FString InDesiredPackagePath, class UGroomAsset* InGroomAsset, class USkeletalMesh* InSkeletalMesh, int32 InNumInterpolationPoints, class USkeletalMesh* InSourceSkeletalMeshForTransfer, int32 InMatchingSection);
+    void CreateNewGroomBindingAsset(class UGroomAsset* InGroomAsset, class USkeletalMesh* InSkeletalMesh, int32 InNumInterpolationPoints, class USkeletalMesh* InSourceSkeletalMeshForTransfer, int32 InMatchingSection);
+    void CreateNewGeometryCacheGroomBindingAssetWithPath(FString DesiredPackagePath, class UGroomAsset* GroomAsset, class UGeometryCache* GeometryCache, int32 NumInterpolationPoints, class UGeometryCache* SourceGeometryCacheForTransfer, int32 MatchingSection);
+    void CreateNewGeometryCacheGroomBindingAsset(class UGroomAsset* GroomAsset, class UGeometryCache* GeometryCache, int32 NumInterpolationPoints, class UGeometryCache* SourceGeometryCacheForTransfer, int32 MatchingSection);
 }; // Size: 0x28
 
 class UGroomCache : public UObject
 {
-    TArray<class UAssetUserData*> AssetUserData;                                      // 0x0040 (size: 0x10)
+    TArray<UAssetUserData*> AssetUserData;                                            // 0x0040 (size: 0x10)
     FGroomCacheInfo GroomCacheInfo;                                                   // 0x0050 (size: 0x28)
 
 }; // Size: 0x88
@@ -571,7 +571,7 @@ class UGroomComponent : public UMeshComponent
 {
     class UGroomAsset* GroomAsset;                                                    // 0x0568 (size: 0x8)
     class UGroomCache* GroomCache;                                                    // 0x0570 (size: 0x8)
-    TArray<class UNiagaraComponent*> NiagaraComponents;                               // 0x0578 (size: 0x10)
+    TArray<UNiagaraComponent*> NiagaraComponents;                                     // 0x0578 (size: 0x10)
     class USkeletalMesh* SourceSkeletalMesh;                                          // 0x0588 (size: 0x8)
     class UGroomBindingAsset* BindingAsset;                                           // 0x0590 (size: 0x8)
     class UPhysicsAsset* PhysicsAsset;                                                // 0x0598 (size: 0x8)
@@ -603,8 +603,8 @@ class UGroomComponent : public UMeshComponent
     void SetBindingAsset(class UGroomBindingAsset* InBinding);
     void ResetSimulation();
     void ResetCollisionComponents();
-    class UNiagaraComponent* GetNiagaraComponent(const int32 GroupIndex);
-    bool GetIsHairLengthScaleEnabled();
+    void GetNiagaraComponent(const int32 GroupIndex);
+    void GetIsHairLengthScaleEnabled();
     void AddCollisionComponent(class USkeletalMeshComponent* SkeletalMeshComponent);
 }; // Size: 0x7A0
 
@@ -676,7 +676,7 @@ class UMovieSceneGroomCacheSection : public UMovieSceneSection
 
 class UMovieSceneGroomCacheTrack : public UMovieSceneNameableTrack
 {
-    TArray<class UMovieSceneSection*> AnimationSections;                              // 0x00A0 (size: 0x10)
+    TArray<UMovieSceneSection*> AnimationSections;                                    // 0x00A0 (size: 0x10)
 
 }; // Size: 0xB0
 

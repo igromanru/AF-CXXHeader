@@ -22,21 +22,21 @@ class UW_PlayerHUD_BodyDiagram_C : public UUserWidget
     class UImage* Wound_RightArm_Bleeding;                                            // 0x0360 (size: 0x8)
     class UImage* Wound_RightLeg_Bleeding;                                            // 0x0368 (size: 0x8)
     class UImage* Wound_Torso_Bleeding;                                               // 0x0370 (size: 0x8)
-    TEnumAsByte<ECriticalityLevels::Type> HeadStatus;                                 // 0x0378 (size: 0x1)
-    TEnumAsByte<ECriticalityLevels::Type> TorsoStatus;                                // 0x0379 (size: 0x1)
-    TEnumAsByte<ECriticalityLevels::Type> LeftArmStatus;                              // 0x037A (size: 0x1)
-    TEnumAsByte<ECriticalityLevels::Type> RightArmStatus;                             // 0x037B (size: 0x1)
-    TEnumAsByte<ECriticalityLevels::Type> LeftLegStatus;                              // 0x037C (size: 0x1)
-    TEnumAsByte<ECriticalityLevels::Type> RightLegStatus;                             // 0x037D (size: 0x1)
+    ECriticalityLevels HeadStatus;                                                    // 0x0378 (size: 0x1)
+    ECriticalityLevels TorsoStatus;                                                   // 0x0379 (size: 0x1)
+    ECriticalityLevels LeftArmStatus;                                                 // 0x037A (size: 0x1)
+    ECriticalityLevels RightArmStatus;                                                // 0x037B (size: 0x1)
+    ECriticalityLevels LeftLegStatus;                                                 // 0x037C (size: 0x1)
+    ECriticalityLevels RightLegStatus;                                                // 0x037D (size: 0x1)
     class UW_PlayerHUD_Main_C* ParentHUD;                                             // 0x0380 (size: 0x8)
     bool ShowsHungerIcon;                                                             // 0x0388 (size: 0x1)
     TArray<EBodyLimbs> On Limbs;                                                      // 0x0390 (size: 0x10)
 
     void Update Current State Icon(class UImage* Icon, EBuffSeverity& SeverityLevel);
-    void GetCriticalityColor(TEnumAsByte<ECriticalityLevels::Type> Index, FLinearColor& Color, FSlateColor& SlateColor);
+    void GetCriticalityColor(ECriticalityLevels Index, FLinearColor& Color, FSlateColor& SlateColor);
     void UpdateBodyStates(class AAbiotic_Character_ParentBP_C* Character);
     void UpdateBodyHungerThirstStates(class AAbiotic_Character_ParentBP_C* Character);
-    void UpdateArmor(TEnumAsByte<E_InventorySlotType::Type> ArmorSlot, class UAbiotic_InventoryComponent_C* Inventory);
+    void UpdateArmor(EInventorySlotType ArmorSlot, class UAbiotic_InventoryComponent_C* Inventory);
     void ExecuteUbergraph_W_PlayerHUD_BodyDiagram(int32 EntryPoint);
 }; // Size: 0x3A0
 

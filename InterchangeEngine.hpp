@@ -16,18 +16,18 @@ struct FImportAssetParameters
     FImportAssetParametersOnAssetDone OnAssetDone;                                    // 0x003C (size: 0x10)
     void OnObjectImportDoneDynamic(class UObject* Object);
     FImportAssetParametersOnAssetsImportDone OnAssetsImportDone;                      // 0x0060 (size: 0x10)
-    void OnImportDoneDynamic(const TArray<class UObject*>& Objects);
+    void OnImportDoneDynamic(const TArray<UObject*>& Objects);
     FImportAssetParametersOnSceneObjectDone OnSceneObjectDone;                        // 0x0080 (size: 0x10)
     void OnObjectImportDoneDynamic(class UObject* Object);
     FImportAssetParametersOnSceneImportDone OnSceneImportDone;                        // 0x00A0 (size: 0x10)
-    void OnImportDoneDynamic(const TArray<class UObject*>& Objects);
+    void OnImportDoneDynamic(const TArray<UObject*>& Objects);
 
 }; // Size: 0xC0
 
 struct FInterchangeContentImportSettings : public FInterchangeImportSettings
 {
-    TMap<class EInterchangeTranslatorAssetType, class FName> DefaultPipelineStackOverride; // 0x0088 (size: 0x50)
-    TMap<class EInterchangeTranslatorAssetType, class FInterchangeDialogOverride> ShowImportDialogOverride; // 0x00D8 (size: 0x50)
+    TMap<EInterchangeTranslatorAssetType, FName> DefaultPipelineStackOverride;        // 0x0088 (size: 0x50)
+    TMap<EInterchangeTranslatorAssetType, FInterchangeDialogOverride> ShowImportDialogOverride; // 0x00D8 (size: 0x50)
 
 }; // Size: 0x128
 
@@ -48,7 +48,7 @@ struct FInterchangeFilePickerParameters
 
 struct FInterchangeImportSettings
 {
-    TMap<class FName, class FInterchangePipelineStack> PipelineStacks;                // 0x0000 (size: 0x50)
+    TMap<FName, FInterchangePipelineStack> PipelineStacks;                            // 0x0000 (size: 0x50)
     FName DefaultPipelineStack;                                                       // 0x0050 (size: 0x8)
     TSoftClassPtr<UInterchangePipelineConfigurationBase> ImportDialogClass;           // 0x0058 (size: 0x28)
     bool bShowImportDialog;                                                           // 0x0080 (size: 0x1)
@@ -72,7 +72,7 @@ struct FInterchangePipelineStack
 struct FInterchangeStackInfo
 {
     FName StackName;                                                                  // 0x0000 (size: 0x8)
-    TArray<class UInterchangePipelineBase*> Pipelines;                                // 0x0008 (size: 0x10)
+    TArray<UInterchangePipelineBase*> Pipelines;                                      // 0x0008 (size: 0x10)
 
 }; // Size: 0x18
 
@@ -92,23 +92,23 @@ class UInterchangeAssetImportData : public UAssetImportData
     FSoftObjectPath SceneImportAsset;                                                 // 0x0028 (size: 0x20)
     FString NodeUniqueID;                                                             // 0x0048 (size: 0x10)
     class UInterchangeBaseNodeContainer* NodeContainer;                               // 0x0058 (size: 0x8)
-    TArray<class UObject*> Pipelines;                                                 // 0x0060 (size: 0x10)
+    TArray<UObject*> Pipelines;                                                       // 0x0060 (size: 0x10)
     class UInterchangeBaseNodeContainer* TransientNodeContainer;                      // 0x0070 (size: 0x8)
-    TArray<class UObject*> TransientPipelines;                                        // 0x0078 (size: 0x10)
+    TArray<UObject*> TransientPipelines;                                              // 0x0078 (size: 0x10)
     class UInterchangeTranslatorSettings* TransientTranslatorSettings;                // 0x0088 (size: 0x8)
 
     void SetTranslatorSettings(class UInterchangeTranslatorSettings* TranslatorSettings);
-    void SetPipelines(const TArray<class UObject*>& InPipelines);
+    void SetPipelines(const TArray<UObject*>& InPipelines);
     void SetNodeContainer(class UInterchangeBaseNodeContainer* InNodeContainer);
-    FString ScriptGetFirstFilename();
-    TArray<FString> ScriptExtractFilenames();
-    TArray<FString> ScriptExtractDisplayLabels();
-    class UInterchangeTranslatorSettings* GetTranslatorSettings();
-    class UInterchangeBaseNode* GetStoredNode(FString InNodeUniqueId);
-    class UInterchangeFactoryBaseNode* GetStoredFactoryNode(FString InNodeUniqueId);
-    TArray<class UObject*> GetPipelines();
-    int32 GetNumberOfPipelines();
-    class UInterchangeBaseNodeContainer* GetNodeContainer();
+    void ScriptGetFirstFilename();
+    void ScriptExtractFilenames();
+    void ScriptExtractDisplayLabels();
+    void GetTranslatorSettings();
+    void GetStoredNode(FString InNodeUniqueId);
+    void GetStoredFactoryNode(FString InNodeUniqueId);
+    void GetPipelines();
+    void GetNumberOfPipelines();
+    void GetNodeContainer();
 }; // Size: 0xD8
 
 class UInterchangeAssetImportDataConverterBase : public UObject
@@ -122,24 +122,24 @@ class UInterchangeBlueprintPipelineBase : public UBlueprint
 class UInterchangeFilePickerBase : public UObject
 {
 
-    bool ScriptedFilePickerForTranslatorType(const EInterchangeTranslatorType TranslatorType, FInterchangeFilePickerParameters& Parameters, TArray<FString>& OutFilenames);
-    bool ScriptedFilePickerForTranslatorAssetType(const EInterchangeTranslatorAssetType TranslatorAssetType, FInterchangeFilePickerParameters& Parameters, TArray<FString>& OutFilenames);
+    void ScriptedFilePickerForTranslatorType(const EInterchangeTranslatorType TranslatorType, FInterchangeFilePickerParameters& Parameters, TArray<FString>& OutFilenames);
+    void ScriptedFilePickerForTranslatorAssetType(const EInterchangeTranslatorAssetType TranslatorAssetType, FInterchangeFilePickerParameters& Parameters, TArray<FString>& OutFilenames);
 }; // Size: 0x28
 
 class UInterchangeManager : public UObject
 {
     TSet<UClass*> RegisteredTranslatorsClass;                                         // 0x01A0 (size: 0x50)
-    TMap<class UClass*, class UClass*> RegisteredFactoryClasses;                      // 0x01F0 (size: 0x50)
-    TMap<class UClass*, class UInterchangeWriterBase*> RegisteredWriters;             // 0x0240 (size: 0x50)
-    TMap<class UClass*, class UInterchangeAssetImportDataConverterBase*> RegisteredConverters; // 0x0290 (size: 0x50)
+    TMap<UClass*, UClass*> RegisteredFactoryClasses;                                  // 0x01F0 (size: 0x50)
+    TMap<UClass*, UInterchangeWriterBase*> RegisteredWriters;                         // 0x0240 (size: 0x50)
+    TMap<UClass*, UInterchangeAssetImportDataConverterBase*> RegisteredConverters;    // 0x0290 (size: 0x50)
 
-    bool ImportScene(FString ContentPath, const class UInterchangeSourceData* SourceData, const FImportAssetParameters& ImportAssetParameters);
-    bool ImportAsset(FString ContentPath, const class UInterchangeSourceData* SourceData, const FImportAssetParameters& ImportAssetParameters);
-    UClass* GetRegisteredFactoryClass(const UClass* ClassToMake);
-    class UInterchangeManager* GetInterchangeManagerScripted();
-    bool ExportScene(const class UObject* World, bool bIsAutomated);
-    bool ExportAsset(const class UObject* Asset, bool bIsAutomated);
-    class UInterchangeSourceData* CreateSourceData(FString InFilename);
+    void ImportScene(FString ContentPath, const class UInterchangeSourceData* SourceData, const FImportAssetParameters& ImportAssetParameters);
+    void ImportAsset(FString ContentPath, const class UInterchangeSourceData* SourceData, const FImportAssetParameters& ImportAssetParameters);
+    void GetRegisteredFactoryClass(const UClass* ClassToMake);
+    void GetInterchangeManagerScripted();
+    void ExportScene(const class UObject* World, bool bIsAutomated);
+    void ExportAsset(const class UObject* Asset, bool bIsAutomated);
+    void CreateSourceData(FString InFilename);
 }; // Size: 0x350
 
 class UInterchangeMeshUtilities : public UObject
@@ -149,9 +149,9 @@ class UInterchangeMeshUtilities : public UObject
 class UInterchangePipelineConfigurationBase : public UObject
 {
 
-    EInterchangePipelineConfigurationDialogResult ScriptedShowScenePipelineConfigurationDialog(TArray<FInterchangeStackInfo>& PipelineStacks, TArray<class UInterchangePipelineBase*>& OutPipelines, class UInterchangeSourceData* SourceData, class UInterchangeTranslatorBase* Translator, class UInterchangeBaseNodeContainer* BaseNodeContainer);
-    EInterchangePipelineConfigurationDialogResult ScriptedShowReimportPipelineConfigurationDialog(TArray<FInterchangeStackInfo>& PipelineStacks, TArray<class UInterchangePipelineBase*>& OutPipelines, class UInterchangeSourceData* SourceData, class UInterchangeTranslatorBase* Translator, class UInterchangeBaseNodeContainer* BaseNodeContainer, class UObject* ReimportAsset);
-    EInterchangePipelineConfigurationDialogResult ScriptedShowPipelineConfigurationDialog(TArray<FInterchangeStackInfo>& PipelineStacks, TArray<class UInterchangePipelineBase*>& OutPipelines, class UInterchangeSourceData* SourceData, class UInterchangeTranslatorBase* Translator, class UInterchangeBaseNodeContainer* BaseNodeContainer);
+    void ScriptedShowScenePipelineConfigurationDialog(TArray<FInterchangeStackInfo>& PipelineStacks, TArray<UInterchangePipelineBase*>& OutPipelines, class UInterchangeSourceData* SourceData, class UInterchangeTranslatorBase* Translator, class UInterchangeBaseNodeContainer* BaseNodeContainer);
+    void ScriptedShowReimportPipelineConfigurationDialog(TArray<FInterchangeStackInfo>& PipelineStacks, TArray<UInterchangePipelineBase*>& OutPipelines, class UInterchangeSourceData* SourceData, class UInterchangeTranslatorBase* Translator, class UInterchangeBaseNodeContainer* BaseNodeContainer, class UObject* ReimportAsset);
+    void ScriptedShowPipelineConfigurationDialog(TArray<FInterchangeStackInfo>& PipelineStacks, TArray<UInterchangePipelineBase*>& OutPipelines, class UInterchangeSourceData* SourceData, class UInterchangeTranslatorBase* Translator, class UInterchangeBaseNodeContainer* BaseNodeContainer);
 }; // Size: 0x28
 
 class UInterchangePipelineStackOverride : public UObject

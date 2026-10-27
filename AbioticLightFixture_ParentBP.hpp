@@ -26,7 +26,7 @@ class AAbioticLightFixture_ParentBP_C : public AAbioticActor_C
     double Spotlight_InnerAngle;                                                      // 0x0340 (size: 0x8)
     double Spotlight_OuterAngle;                                                      // 0x0348 (size: 0x8)
     FLinearColor LightColor;                                                          // 0x0350 (size: 0x10)
-    TSoftObjectPtr<UMaterialInterface> TextureOverride;                               // 0x0360 (size: 0x28)
+    TSoftObjectPtr<class UMaterialInterface> TextureOverride;                         // 0x0360 (size: 0x28)
     double FlickeringIntensityLow;                                                    // 0x0388 (size: 0x8)
     double FlickerSpeed;                                                              // 0x0390 (size: 0x8)
     bool FlickerAffectsColor;                                                         // 0x0398 (size: 0x1)
@@ -34,7 +34,7 @@ class AAbioticLightFixture_ParentBP_C : public AAbioticActor_C
     bool UniqueNightState;                                                            // 0x03AC (size: 0x1)
     FLinearColor NighttimeLightColor;                                                 // 0x03B0 (size: 0x10)
     double MaxLightMeshDistance;                                                      // 0x03C0 (size: 0x8)
-    TSoftObjectPtr<USoundCue> LoopingAudio;                                           // 0x03C8 (size: 0x28)
+    TSoftObjectPtr<class USoundCue> LoopingAudio;                                     // 0x03C8 (size: 0x28)
     double DefaultAudioVolume;                                                        // 0x03F0 (size: 0x8)
     int32 ParentGeneratorIndex;                                                       // 0x03F8 (size: 0x4)
     class AGenerator_ParentBP_C* ParentGenerator;                                     // 0x0400 (size: 0x8)
@@ -50,7 +50,7 @@ class AAbioticLightFixture_ParentBP_C : public AAbioticActor_C
     bool FlickerOptimized;                                                            // 0x0438 (size: 0x1)
 
     void GetPluggedInDeviceCount(int32& Count);
-    bool HasBatteryInParentChain();
+    void HasBatteryInParentChain();
     void RestoresSanityNearbyWhenPowered(bool& RestoresSanity);
     void PowerParent(class AActor*& ParentPowerSource);
     void PlugCordAttachLocation(FVector& RelativeLocation);

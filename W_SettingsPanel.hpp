@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_SettingsPanel_HPP
 #define UE4SS_SDK_W_SettingsPanel_HPP
 
-class UW_SettingsPanel_C : public UUserWidget
+class UW_SettingsPanel_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UW_SettingsMenu_C* SettingsParentMenu;                                      // 0x02E8 (size: 0x8)

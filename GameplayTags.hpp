@@ -94,45 +94,45 @@ struct FRestrictedGameplayTagTableRow : public FGameplayTagTableRow
 class IGameplayTagAssetInterface : public IInterface
 {
 
-    bool HasMatchingGameplayTag(FGameplayTag TagToCheck);
-    bool HasAnyMatchingGameplayTags(const FGameplayTagContainer& TagContainer);
-    bool HasAllMatchingGameplayTags(const FGameplayTagContainer& TagContainer);
+    void HasMatchingGameplayTag(FGameplayTag TagToCheck);
+    void HasAnyMatchingGameplayTags(const FGameplayTagContainer& TagContainer);
+    void HasAllMatchingGameplayTags(const FGameplayTagContainer& TagContainer);
     void GetOwnedGameplayTags(FGameplayTagContainer& TagContainer);
 }; // Size: 0x28
 
 class UBlueprintGameplayTagLibrary : public UBlueprintFunctionLibrary
 {
 
-    bool RemoveGameplayTag(FGameplayTagContainer& TagContainer, FGameplayTag Tag);
-    bool NotEqual_TagTag(FGameplayTag A, FString B);
-    bool NotEqual_TagContainerTagContainer(FGameplayTagContainer A, FString B);
-    bool NotEqual_GameplayTagContainer(const FGameplayTagContainer& A, const FGameplayTagContainer& B);
-    bool NotEqual_GameplayTag(FGameplayTag A, FGameplayTag B);
-    bool MatchesTag(FGameplayTag TagOne, FGameplayTag TagTwo, bool bExactMatch);
-    bool MatchesAnyTags(FGameplayTag TagOne, const FGameplayTagContainer& OtherContainer, bool bExactMatch);
-    FGameplayTagContainer MakeLiteralGameplayTagContainer(FGameplayTagContainer Value);
-    FGameplayTag MakeLiteralGameplayTag(FGameplayTag Value);
-    FGameplayTagQuery MakeGameplayTagQuery_MatchNoTags(const FGameplayTagContainer& InTags);
-    FGameplayTagQuery MakeGameplayTagQuery_MatchAnyTags(const FGameplayTagContainer& InTags);
-    FGameplayTagQuery MakeGameplayTagQuery_MatchAllTags(const FGameplayTagContainer& InTags);
-    FGameplayTagQuery MakeGameplayTagQuery(FGameplayTagQuery TagQuery);
-    FGameplayTagContainer MakeGameplayTagContainerFromTag(FGameplayTag SingleTag);
-    FGameplayTagContainer MakeGameplayTagContainerFromArray(const TArray<FGameplayTag>& GameplayTags);
-    bool IsTagQueryEmpty(const FGameplayTagQuery& TagQuery);
-    bool IsGameplayTagValid(FGameplayTag GameplayTag);
-    bool HasTag(const FGameplayTagContainer& TagContainer, FGameplayTag Tag, bool bExactMatch);
-    bool HasAnyTags(const FGameplayTagContainer& TagContainer, const FGameplayTagContainer& OtherContainer, bool bExactMatch);
-    bool HasAllTags(const FGameplayTagContainer& TagContainer, const FGameplayTagContainer& OtherContainer, bool bExactMatch);
-    bool HasAllMatchingGameplayTags(TScriptInterface<class IGameplayTagAssetInterface> TagContainerInterface, const FGameplayTagContainer& OtherContainer);
-    FName GetTagName(const FGameplayTag& GameplayTag);
-    int32 GetNumGameplayTagsInContainer(const FGameplayTagContainer& TagContainer);
-    FString GetDebugStringFromGameplayTagContainer(const FGameplayTagContainer& TagContainer);
-    FString GetDebugStringFromGameplayTag(FGameplayTag GameplayTag);
-    void GetAllActorsOfClassMatchingTagQuery(class UObject* WorldContextObject, TSubclassOf<class AActor> ActorClass, const FGameplayTagQuery& GameplayTagQuery, TArray<class AActor*>& OutActors);
-    bool EqualEqual_GameplayTagContainer(const FGameplayTagContainer& A, const FGameplayTagContainer& B);
-    bool EqualEqual_GameplayTag(FGameplayTag A, FGameplayTag B);
-    bool DoesTagAssetInterfaceHaveTag(TScriptInterface<class IGameplayTagAssetInterface> TagContainerInterface, FGameplayTag Tag);
-    bool DoesContainerMatchTagQuery(const FGameplayTagContainer& TagContainer, const FGameplayTagQuery& TagQuery);
+    void RemoveGameplayTag(FGameplayTagContainer& TagContainer, FGameplayTag Tag);
+    void NotEqual_TagTag(FGameplayTag A, FString B);
+    void NotEqual_TagContainerTagContainer(FGameplayTagContainer A, FString B);
+    void NotEqual_GameplayTagContainer(const FGameplayTagContainer& A, const FGameplayTagContainer& B);
+    void NotEqual_GameplayTag(FGameplayTag A, FGameplayTag B);
+    void MatchesTag(FGameplayTag TagOne, FGameplayTag TagTwo, bool bExactMatch);
+    void MatchesAnyTags(FGameplayTag TagOne, const FGameplayTagContainer& OtherContainer, bool bExactMatch);
+    void MakeLiteralGameplayTagContainer(FGameplayTagContainer Value);
+    void MakeLiteralGameplayTag(FGameplayTag Value);
+    void MakeGameplayTagQuery_MatchNoTags(const FGameplayTagContainer& InTags);
+    void MakeGameplayTagQuery_MatchAnyTags(const FGameplayTagContainer& InTags);
+    void MakeGameplayTagQuery_MatchAllTags(const FGameplayTagContainer& InTags);
+    void MakeGameplayTagQuery(FGameplayTagQuery TagQuery);
+    void MakeGameplayTagContainerFromTag(FGameplayTag SingleTag);
+    void MakeGameplayTagContainerFromArray(const TArray<FGameplayTag>& GameplayTags);
+    void IsTagQueryEmpty(const FGameplayTagQuery& TagQuery);
+    void IsGameplayTagValid(FGameplayTag GameplayTag);
+    void HasTag(const FGameplayTagContainer& TagContainer, FGameplayTag Tag, bool bExactMatch);
+    void HasAnyTags(const FGameplayTagContainer& TagContainer, const FGameplayTagContainer& OtherContainer, bool bExactMatch);
+    void HasAllTags(const FGameplayTagContainer& TagContainer, const FGameplayTagContainer& OtherContainer, bool bExactMatch);
+    void HasAllMatchingGameplayTags(TScriptInterface<class IGameplayTagAssetInterface> TagContainerInterface, const FGameplayTagContainer& OtherContainer);
+    void GetTagName(const FGameplayTag& GameplayTag);
+    void GetNumGameplayTagsInContainer(const FGameplayTagContainer& TagContainer);
+    void GetDebugStringFromGameplayTagContainer(const FGameplayTagContainer& TagContainer);
+    void GetDebugStringFromGameplayTag(FGameplayTag GameplayTag);
+    void GetAllActorsOfClassMatchingTagQuery(class UObject* WorldContextObject, TSubclassOf<class AActor> ActorClass, const FGameplayTagQuery& GameplayTagQuery, TArray<AActor*>& OutActors);
+    void EqualEqual_GameplayTagContainer(const FGameplayTagContainer& A, const FGameplayTagContainer& B);
+    void EqualEqual_GameplayTag(FGameplayTag A, FGameplayTag B);
+    void DoesTagAssetInterfaceHaveTag(TScriptInterface<class IGameplayTagAssetInterface> TagContainerInterface, FGameplayTag Tag);
+    void DoesContainerMatchTagQuery(const FGameplayTagContainer& TagContainer, const FGameplayTagQuery& TagQuery);
     void BreakGameplayTagContainer(const FGameplayTagContainer& GameplayTagContainer, TArray<FGameplayTag>& GameplayTags);
     void AppendGameplayTagContainers(FGameplayTagContainer& InOutTagContainer, const FGameplayTagContainer& InTagContainer);
     void AddGameplayTag(FGameplayTagContainer& TagContainer, FGameplayTag Tag);
@@ -152,7 +152,7 @@ class UEditableGameplayTagQueryExpression : public UObject
 
 class UEditableGameplayTagQueryExpression_AllExprMatch : public UEditableGameplayTagQueryExpression
 {
-    TArray<class UEditableGameplayTagQueryExpression*> Expressions;                   // 0x0028 (size: 0x10)
+    TArray<UEditableGameplayTagQueryExpression*> Expressions;                         // 0x0028 (size: 0x10)
 
 }; // Size: 0x38
 
@@ -164,7 +164,7 @@ class UEditableGameplayTagQueryExpression_AllTagsMatch : public UEditableGamepla
 
 class UEditableGameplayTagQueryExpression_AnyExprMatch : public UEditableGameplayTagQueryExpression
 {
-    TArray<class UEditableGameplayTagQueryExpression*> Expressions;                   // 0x0028 (size: 0x10)
+    TArray<UEditableGameplayTagQueryExpression*> Expressions;                         // 0x0028 (size: 0x10)
 
 }; // Size: 0x38
 
@@ -176,7 +176,7 @@ class UEditableGameplayTagQueryExpression_AnyTagsMatch : public UEditableGamepla
 
 class UEditableGameplayTagQueryExpression_NoExprMatch : public UEditableGameplayTagQueryExpression
 {
-    TArray<class UEditableGameplayTagQueryExpression*> Expressions;                   // 0x0028 (size: 0x10)
+    TArray<UEditableGameplayTagQueryExpression*> Expressions;                         // 0x0028 (size: 0x10)
 
 }; // Size: 0x38
 
@@ -202,10 +202,10 @@ class UGameplayTagsList : public UObject
 
 class UGameplayTagsManager : public UObject
 {
-    TMap<class FName, class FGameplayTagSource> TagSources;                           // 0x0188 (size: 0x50)
-    TArray<class UDataTable*> GameplayTagTables;                                      // 0x0290 (size: 0x10)
+    TMap<FName, FGameplayTagSource> TagSources;                                       // 0x0190 (size: 0x50)
+    TArray<UDataTable*> GameplayTagTables;                                            // 0x0298 (size: 0x10)
 
-}; // Size: 0x2A0
+}; // Size: 0x2A8
 
 class UGameplayTagsSettings : public UGameplayTagsList
 {

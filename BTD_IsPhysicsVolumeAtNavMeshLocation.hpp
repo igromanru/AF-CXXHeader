@@ -7,7 +7,7 @@ class UBTD_IsPhysicsVolumeAtNavMeshLocation_C : public UBTDecorator_BlueprintBas
     FBlackboardKeySelector LocationKey;                                               // 0x00A8 (size: 0x28)
     float CheckRadius;                                                                // 0x00D0 (size: 0x4)
 
-    bool PerformConditionCheckAI(class AAIController* OwnerController, class APawn* ControlledPawn);
+    void PerformConditionCheckAI(class AAIController* OwnerController, class APawn* ControlledPawn);
 }; // Size: 0xD4
 
 #endif

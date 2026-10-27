@@ -3,10 +3,10 @@
 
 class ADeployed_Furniture_Stool_Office_01_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    class USceneComponent* SitSpot;                                                   // 0x0870 (size: 0x8)
+    class USceneComponent* SitSpot;                                                   // 0x0860 (size: 0x8)
 
     void SitLocations(TArray<FVector>& Locations);
     void HasSitLocations(bool& IsSittable);
-}; // Size: 0x878
+}; // Size: 0x868
 
 #endif

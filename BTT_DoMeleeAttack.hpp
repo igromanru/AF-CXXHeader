@@ -10,8 +10,8 @@ class UBTT_DoMeleeAttack_C : public UBTTask_BlueprintBase
     class ANPC_Base_ParentBP_C* NPC;                                                  // 0x00B8 (size: 0x8)
     bool HitTargets;                                                                  // 0x00C0 (size: 0x1)
 
-    double GetTargetDotProduct(class AAIController* OwnerController, class APawn* ControlledPawn);
-    bool DidHitAnyTargets?(TArray<class AActor*>& Actors);
+    void GetTargetDotProduct(class AAIController* OwnerController, class APawn* ControlledPawn);
+    void DidHitAnyTargets?(TArray<AActor*>& Actors);
     void ReceiveExecuteAI(class AAIController* OwnerController, class APawn* ControlledPawn);
     void CombatReset_Event(bool Success);
     void ExecuteUbergraph_BTT_DoMeleeAttack(int32 EntryPoint);

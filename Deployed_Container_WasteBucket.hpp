@@ -3,18 +3,18 @@
 
 class ADeployed_Container_WasteBucket_C : public ADeployed_Container_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0940 (size: 0x8)
-    class UBoxComponent* InteractionBox;                                              // 0x0948 (size: 0x8)
-    FDataTableRowHandle WasteItemDataRow;                                             // 0x0950 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0930 (size: 0x8)
+    class UBoxComponent* InteractionBox;                                              // 0x0938 (size: 0x8)
+    FGlobalItemRowHandle WasteItemDataRow;                                            // 0x0940 (size: 0x10)
 
     void SaveDeployable(bool RemoveFromSave);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
-    FText GetItemNameText();
+    void GetHighlightComponents(TArray<UActorComponent*>& Components, bool& DontHighlightPowerCord);
+    void GetItemNameText();
     void AddWasteIntoBucket(int32 StackAmount);
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void Process Damage(float Damage, class UObject* DamageType, FVector HitLocation, FVector HitNormal, class UPrimitiveComponent* HitComponent, FName BoneName, FVector ShotFromDirection, class AController* InstigatedBy, class UObject* DamageCauser, FHitResult HitInfo);
     void ExecuteUbergraph_Deployed_Container_WasteBucket(int32 EntryPoint);
-}; // Size: 0x960
+}; // Size: 0x950
 
 #endif

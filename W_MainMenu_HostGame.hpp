@@ -12,15 +12,16 @@ class UW_MainMenu_HostGame_C : public UW_HostMenu_Parent_C
     class UW_MainMenuButton_C* W_MainMenuButton_Back;                                 // 0x0318 (size: 0x8)
     class UW_MainMenuButton_C* W_MainMenuButton_Host;                                 // 0x0320 (size: 0x8)
     class UW_MenuTitleBig_C* W_MenuTitleBig;                                          // 0x0328 (size: 0x8)
-    class UW_SettingsPage_Sandbox_C* W_SettingsPage_Sandbox;                          // 0x0330 (size: 0x8)
-    class UWidgetSwitcher* WidgetSwitcher_0;                                          // 0x0338 (size: 0x8)
-    FName MapToHost;                                                                  // 0x0340 (size: 0x8)
-    bool HostLAN;                                                                     // 0x0348 (size: 0x1)
-    bool SingleplayerOnly;                                                            // 0x0349 (size: 0x1)
-    int32 MaxPlayerCount;                                                             // 0x034C (size: 0x4)
-    class UW_MenuPopup_YesNo_C* CurrentPopup;                                         // 0x0350 (size: 0x8)
-    class UW_PopupPleaseWait_C* PleaseWaitPopup;                                      // 0x0358 (size: 0x8)
-    class UW_LevelSavingScreen_C* AsyncBlockerPopup;                                  // 0x0360 (size: 0x8)
+    class UW_EnabledModsList_HostSettingsPage_C* W_Mods_HostSettingsPage;             // 0x0330 (size: 0x8)
+    class UW_SettingsPage_Sandbox_C* W_SettingsPage_Sandbox;                          // 0x0338 (size: 0x8)
+    class UWidgetSwitcher* WidgetSwitcher_0;                                          // 0x0340 (size: 0x8)
+    FName MapToHost;                                                                  // 0x0348 (size: 0x8)
+    bool HostLAN;                                                                     // 0x0350 (size: 0x1)
+    bool SingleplayerOnly;                                                            // 0x0351 (size: 0x1)
+    int32 MaxPlayerCount;                                                             // 0x0354 (size: 0x4)
+    class UW_MenuPopup_YesNo_C* CurrentPopup;                                         // 0x0358 (size: 0x8)
+    class UW_PopupPleaseWait_C* PleaseWaitPopup;                                      // 0x0360 (size: 0x8)
+    class UW_LevelSavingScreen_C* AsyncBlockerPopup;                                  // 0x0368 (size: 0x8)
 
     void SavePreferences();
     void LoadPreferences();
@@ -39,7 +40,10 @@ class UW_MainMenu_HostGame_C : public UW_HostMenu_Parent_C
     void HostGameSelected();
     void BndEvt__W_MainMenu_HostGame_W_HostGameSetup_K2Node_ComponentBoundEvent_1_SandboxSettingsPressed__DelegateSignature();
     void LANConfirm();
+    void BndEvt__W_MainMenu_HostGame_W_HostGameSetup_K2Node_ComponentBoundEvent_2_ModSettingsPressed__DelegateSignature();
+    void ClearModList();
+    void ModDiff_Yes();
     void ExecuteUbergraph_W_MainMenu_HostGame(int32 EntryPoint);
-}; // Size: 0x368
+}; // Size: 0x370
 
 #endif

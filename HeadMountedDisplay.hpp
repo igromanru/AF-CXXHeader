@@ -45,7 +45,7 @@ struct FXRMotionControllerData
 class UHandKeypointConversion : public UBlueprintFunctionLibrary
 {
 
-    int32 Conv_HandKeypointToInt32(EHandKeypoint Input);
+    void Conv_HandKeypointToInt32(EHandKeypoint Input);
 }; // Size: 0x28
 
 class UMotionControllerComponent : public UPrimitiveComponent
@@ -59,13 +59,13 @@ class UMotionControllerComponent : public UPrimitiveComponent
     void SetTrackingMotionSource(const FName NewSource);
     void SetAssociatedPlayerIndex(const int32 NewPlayer);
     void OnMotionControllerUpdated();
-    bool IsTracked();
-    EControllerHand GetTrackingSource();
-    float GetParameterValue(FName InName, bool& bValueFound);
-    bool GetLinearVelocity(FVector& OutLinearVelocity);
-    bool GetLinearAcceleration(FVector& OutLinearAcceleration);
-    FVector GetHandJointPosition(int32 jointIndex, bool& bValueFound);
-    bool GetAngularVelocity(FRotator& OutAngularVelocity);
+    void IsTracked();
+    void GetTrackingSource();
+    void GetParameterValue(FName InName, bool& bValueFound);
+    void GetLinearVelocity(FVector& OutLinearVelocity);
+    void GetLinearAcceleration(FVector& OutLinearAcceleration);
+    void GetHandJointPosition(int32 jointIndex, bool& bValueFound);
+    void GetAngularVelocity(FRotator& OutAngularVelocity);
 }; // Size: 0x660
 
 #endif

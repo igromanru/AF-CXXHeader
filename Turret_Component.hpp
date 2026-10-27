@@ -15,12 +15,12 @@ class UTurret_Component_C : public UActorComponent
 
     void OnRep_PatrolMode();
     void UpdatePatrolMode(bool Enable);
-    class AActor* GetOwningActor();
+    void GetOwningActor();
     void GetTurretTop(class USceneComponent*& TurretTop);
     void LookForTargetNearby(bool& Success);
-    void Get Owner Item Data(FAbiotic_InventoryItemStruct& ItemData);
+    void Get Owner Item Data(FAbioticInventoryItem& ItemData);
     void GetClosestEnemy(double Radius, bool& IsValid, class AActor*& SelectedTarget);
-    bool CheckForHidingTarget(class AActor* TargetToCheck, FHitResult& OutHit);
+    void CheckForHidingTarget(class AActor* TargetToCheck, FHitResult& OutHit);
     void StartRotateTuret();
     void FindClosestTarget();
     void TurretTimerState(bool PowerOn);

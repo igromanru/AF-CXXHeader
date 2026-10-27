@@ -17,16 +17,16 @@ class UW_PipTooltip_C : public UUserWidget
     FText Text_Negative;                                                              // 0x0348 (size: 0x10)
     double Current XP;                                                                // 0x0358 (size: 0x8)
     double MaxXP;                                                                     // 0x0360 (size: 0x8)
-    FSkillPerkRowHandle PerkRowHandle;                                                // 0x0368 (size: 0x20)
-    FLinearColor Color_Unlocked;                                                      // 0x0388 (size: 0x10)
-    FLinearColor Color_InProgress;                                                    // 0x0398 (size: 0x10)
-    FLinearColor Color_Locked;                                                        // 0x03A8 (size: 0x10)
+    FSkillPerkRowHandle PerkRowHandle;                                                // 0x0368 (size: 0x10)
+    FLinearColor Color_Unlocked;                                                      // 0x0378 (size: 0x10)
+    FLinearColor Color_InProgress;                                                    // 0x0388 (size: 0x10)
+    FLinearColor Color_Locked;                                                        // 0x0398 (size: 0x10)
 
-    double GetMaxXP(int32 Index);
+    void GetMaxXP(int32 Index);
     void RefreshTooltipPip(const int32 Index, const FSkillPerkRowHandle PerkRow);
     void RefreshTooltipSkill(const FText& Skill, const double CurrentXP);
     void UpdateUnlockState();
     void ExecuteUbergraph_W_PipTooltip(int32 EntryPoint);
-}; // Size: 0x3B8
+}; // Size: 0x3A8
 
 #endif

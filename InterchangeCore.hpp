@@ -27,104 +27,104 @@ struct FInterchangeUserDefinedAttributeInfo
 class UInterchangeBaseNode : public UObject
 {
 
-    bool SetParentUid(FString ParentUid);
-    bool SetEnabled(const bool bIsEnabled);
-    bool SetDisplayLabel(FString DisplayName);
-    bool SetAssetName(FString AssetName);
-    bool RemoveTargetNodeUid(FString AssetUid);
-    bool RemoveAttribute(FString NodeAttributeKey);
-    bool IsEnabled();
+    void SetParentUid(FString ParentUid);
+    void SetEnabled(const bool bIsEnabled);
+    void SetDisplayLabel(FString DisplayName);
+    void SetAssetName(FString AssetName);
+    void RemoveTargetNodeUid(FString AssetUid);
+    void RemoveAttribute(FString NodeAttributeKey);
+    void IsEnabled();
     void InitializeNode(FString UniqueID, FString DisplayLabel, const EInterchangeNodeContainerType NodeContainerType);
-    bool GetVector2Attribute(FString NodeAttributeKey, FVector2f& OutValue);
-    FString GetUniqueID();
+    void GetVector2Attribute(FString NodeAttributeKey, FVector2f& OutValue);
+    void GetUniqueID();
     void GetTargetNodeUids(TArray<FString>& OutTargetAssets);
-    int32 GetTargetNodeCount();
-    bool GetStringAttribute(FString NodeAttributeKey, FString& OutValue);
-    FString GetParentUid();
-    EInterchangeNodeContainerType GetNodeContainerType();
-    bool GetLinearColorAttribute(FString NodeAttributeKey, FLinearColor& OutValue);
-    bool GetInt32Attribute(FString NodeAttributeKey, int32& OutValue);
-    bool GetGuidAttribute(FString NodeAttributeKey, FGuid& OutValue);
-    bool GetFloatAttribute(FString NodeAttributeKey, float& OutValue);
-    bool GetDoubleAttribute(FString NodeAttributeKey, double& OutValue);
-    FString GetDisplayLabel();
-    bool GetBooleanAttribute(FString NodeAttributeKey, bool& OutValue);
-    FString GetAssetName();
-    bool AddVector2Attribute(FString NodeAttributeKey, const FVector2f& Value);
-    bool AddTargetNodeUid(FString AssetUid);
-    bool AddStringAttribute(FString NodeAttributeKey, FString Value);
-    bool AddLinearColorAttribute(FString NodeAttributeKey, const FLinearColor& Value);
-    bool AddInt32Attribute(FString NodeAttributeKey, const int32& Value);
-    bool AddGuidAttribute(FString NodeAttributeKey, const FGuid& Value);
-    bool AddFloatAttribute(FString NodeAttributeKey, const float& Value);
-    bool AddDoubleAttribute(FString NodeAttributeKey, const double& Value);
-    bool AddBooleanAttribute(FString NodeAttributeKey, const bool& Value);
+    void GetTargetNodeCount();
+    void GetStringAttribute(FString NodeAttributeKey, FString& OutValue);
+    void GetParentUid();
+    void GetNodeContainerType();
+    void GetLinearColorAttribute(FString NodeAttributeKey, FLinearColor& OutValue);
+    void GetInt32Attribute(FString NodeAttributeKey, int32& OutValue);
+    void GetGuidAttribute(FString NodeAttributeKey, FGuid& OutValue);
+    void GetFloatAttribute(FString NodeAttributeKey, float& OutValue);
+    void GetDoubleAttribute(FString NodeAttributeKey, double& OutValue);
+    void GetDisplayLabel();
+    void GetBooleanAttribute(FString NodeAttributeKey, bool& OutValue);
+    void GetAssetName();
+    void AddVector2Attribute(FString NodeAttributeKey, const FVector2f& Value);
+    void AddTargetNodeUid(FString AssetUid);
+    void AddStringAttribute(FString NodeAttributeKey, FString Value);
+    void AddLinearColorAttribute(FString NodeAttributeKey, const FLinearColor& Value);
+    void AddInt32Attribute(FString NodeAttributeKey, const int32& Value);
+    void AddGuidAttribute(FString NodeAttributeKey, const FGuid& Value);
+    void AddFloatAttribute(FString NodeAttributeKey, const float& Value);
+    void AddDoubleAttribute(FString NodeAttributeKey, const double& Value);
+    void AddBooleanAttribute(FString NodeAttributeKey, const bool& Value);
 }; // Size: 0x60
 
 class UInterchangeBaseNodeContainer : public UObject
 {
-    TMap<class FString, class UInterchangeBaseNode*> Nodes;                           // 0x0028 (size: 0x50)
+    TMap<FString, UInterchangeBaseNode*> Nodes;                                       // 0x0028 (size: 0x50)
 
-    bool SetNodeParentUid(FString NodeUniqueID, FString NewParentNodeUid);
+    void SetNodeParentUid(FString NodeUniqueID, FString NewParentNodeUid);
     void SaveToFile(FString Filename);
     void ResetChildrenCache();
     void Reset();
     void ReplaceNode(FString NodeUniqueID, class UInterchangeFactoryBaseNode* NewNode);
     void LoadFromFile(FString Filename);
-    bool IsNodeUidValid(FString NodeUniqueID);
+    void IsNodeUidValid(FString NodeUniqueID);
     void GetRoots(TArray<FString>& RootNodes);
     void GetNodes(const UClass* ClassNode, TArray<FString>& OutNodes);
-    TArray<FString> GetNodeChildrenUids(FString NodeUniqueID);
-    int32 GetNodeChildrenCount(FString NodeUniqueID);
-    class UInterchangeBaseNode* GetNodeChildren(FString NodeUniqueID, int32 ChildIndex);
-    class UInterchangeBaseNode* GetNode(FString NodeUniqueID);
-    class UInterchangeFactoryBaseNode* GetFactoryNode(FString NodeUniqueID);
+    void GetNodeChildrenUids(FString NodeUniqueID);
+    void GetNodeChildrenCount(FString NodeUniqueID);
+    void GetNodeChildren(FString NodeUniqueID, int32 ChildIndex);
+    void GetNode(FString NodeUniqueID);
+    void GetFactoryNode(FString NodeUniqueID);
     void ComputeChildrenCache();
-    FString AddNode(class UInterchangeBaseNode* Node);
+    void AddNode(class UInterchangeBaseNode* Node);
 }; // Size: 0xC8
 
 class UInterchangeFactoryBase : public UObject
 {
     class UInterchangeResultsContainer* Results;                                      // 0x0028 (size: 0x8)
 
-    UClass* GetFactoryClass();
+    void GetFactoryClass();
 }; // Size: 0x30
 
 class UInterchangeFactoryBaseNode : public UInterchangeBaseNode
 {
 
-    bool UnsetSkipNodeImport();
-    bool UnsetForceNodeReimport();
-    bool ShouldSkipNodeImport();
-    bool ShouldForceNodeReimport();
-    bool SetSkipNodeImport();
-    bool SetReimportStrategyFlags(const EReimportStrategyFlags& ReimportStrategyFlags);
-    bool SetForceNodeReimport();
-    bool SetCustomSubPath(FString AttributeValue);
-    bool SetCustomReferenceObject(const FSoftObjectPath& AttributeValue);
-    bool RemoveFactoryDependencyUid(FString DependencyUid);
-    EReimportStrategyFlags GetReimportStrategyFlags();
+    void UnsetSkipNodeImport();
+    void UnsetForceNodeReimport();
+    void ShouldSkipNodeImport();
+    void ShouldForceNodeReimport();
+    void SetSkipNodeImport();
+    void SetReimportStrategyFlags(const EReimportStrategyFlags& ReimportStrategyFlags);
+    void SetForceNodeReimport();
+    void SetCustomSubPath(FString AttributeValue);
+    void SetCustomReferenceObject(const FSoftObjectPath& AttributeValue);
+    void RemoveFactoryDependencyUid(FString DependencyUid);
+    void GetReimportStrategyFlags();
     void GetFactoryDependency(const int32 Index, FString& OutDependency);
-    int32 GetFactoryDependenciesCount();
+    void GetFactoryDependenciesCount();
     void GetFactoryDependencies(TArray<FString>& OutDependencies);
-    bool GetCustomSubPath(FString& AttributeValue);
-    bool GetCustomReferenceObject(FSoftObjectPath& AttributeValue);
-    bool AddFactoryDependencyUid(FString DependencyUid);
+    void GetCustomSubPath(FString& AttributeValue);
+    void GetCustomReferenceObject(FSoftObjectPath& AttributeValue);
+    void AddFactoryDependencyUid(FString DependencyUid);
 }; // Size: 0x140
 
 class UInterchangePipelineBase : public UObject
 {
     class UInterchangeResultsContainer* Results;                                      // 0x0040 (size: 0x8)
-    TMap<class FName, class FInterchangePipelinePropertyStates> PropertiesStates;     // 0x0048 (size: 0x50)
+    TMap<FName, FInterchangePipelinePropertyStates> PropertiesStates;                 // 0x0048 (size: 0x50)
 
     void ScriptedSetReimportSourceIndex(UClass* ReimportObjectClass, const int32 SourceFileIndex);
-    FString ScriptedGetPipelineDisplayName();
+    void ScriptedGetPipelineDisplayName();
     void ScriptedExecutePostImportPipeline(const class UInterchangeBaseNodeContainer* BaseNodeContainer, FString FactoryNodeKey, class UObject* CreatedAsset, bool bIsAReimport);
     void ScriptedExecutePostFactoryPipeline(const class UInterchangeBaseNodeContainer* BaseNodeContainer, FString FactoryNodeKey, class UObject* CreatedAsset, bool bIsAReimport);
-    void ScriptedExecutePipeline(class UInterchangeBaseNodeContainer* BaseNodeContainer, const TArray<class UInterchangeSourceData*>& SourceDatas, FString ContentBasePath);
+    void ScriptedExecutePipeline(class UInterchangeBaseNodeContainer* BaseNodeContainer, const TArray<UInterchangeSourceData*>& SourceDatas, FString ContentBasePath);
     void ScriptedExecuteExportPipeline(class UInterchangeBaseNodeContainer* BaseNodeContainer);
-    FInterchangePipelinePropertyStates FindOrAddPropertyStates(const FName PropertyPath);
-    bool DoesPropertyStatesExist(const FName PropertyPath);
+    void FindOrAddPropertyStates(const FName PropertyPath);
+    void DoesPropertyStatesExist(const FName PropertyPath);
 }; // Size: 0x108
 
 class UInterchangeResult : public UObject
@@ -173,7 +173,7 @@ class UInterchangeResultWarning_Generic : public UInterchangeResultWarning
 
 class UInterchangeResultsContainer : public UObject
 {
-    TArray<class UInterchangeResult*> Results;                                        // 0x0050 (size: 0x10)
+    TArray<UInterchangeResult*> Results;                                              // 0x0050 (size: 0x10)
 
 }; // Size: 0x60
 
@@ -181,28 +181,28 @@ class UInterchangeSourceData : public UObject
 {
     FString Filename;                                                                 // 0x0028 (size: 0x10)
 
-    bool SetFilename(FString InFilename);
-    FString GetFilename();
+    void SetFilename(FString InFilename);
+    void GetFilename();
 }; // Size: 0x50
 
 class UInterchangeSourceNode : public UInterchangeBaseNode
 {
 
-    bool SetCustomSourceTimelineStart(const double& AttributeValue);
-    bool SetCustomSourceTimelineEnd(const double& AttributeValue);
-    bool SetCustomSourceFrameRateNumerator(const int32& AttributeValue);
-    bool SetCustomSourceFrameRateDenominator(const int32& AttributeValue);
-    bool SetCustomImportUnusedMaterial(const bool& AttributeValue);
-    bool SetCustomAnimatedTimeStart(const double& AttributeValue);
-    bool SetCustomAnimatedTimeEnd(const double& AttributeValue);
+    void SetCustomSourceTimelineStart(const double& AttributeValue);
+    void SetCustomSourceTimelineEnd(const double& AttributeValue);
+    void SetCustomSourceFrameRateNumerator(const int32& AttributeValue);
+    void SetCustomSourceFrameRateDenominator(const int32& AttributeValue);
+    void SetCustomImportUnusedMaterial(const bool& AttributeValue);
+    void SetCustomAnimatedTimeStart(const double& AttributeValue);
+    void SetCustomAnimatedTimeEnd(const double& AttributeValue);
     void InitializeSourceNode(FString UniqueID, FString DisplayLabel);
-    bool GetCustomSourceTimelineStart(double& AttributeValue);
-    bool GetCustomSourceTimelineEnd(double& AttributeValue);
-    bool GetCustomSourceFrameRateNumerator(int32& AttributeValue);
-    bool GetCustomSourceFrameRateDenominator(int32& AttributeValue);
-    bool GetCustomImportUnusedMaterial(bool& AttributeValue);
-    bool GetCustomAnimatedTimeStart(double& AttributeValue);
-    bool GetCustomAnimatedTimeEnd(double& AttributeValue);
+    void GetCustomSourceTimelineStart(double& AttributeValue);
+    void GetCustomSourceTimelineEnd(double& AttributeValue);
+    void GetCustomSourceFrameRateNumerator(int32& AttributeValue);
+    void GetCustomSourceFrameRateDenominator(int32& AttributeValue);
+    void GetCustomImportUnusedMaterial(bool& AttributeValue);
+    void GetCustomAnimatedTimeStart(double& AttributeValue);
+    void GetCustomAnimatedTimeEnd(double& AttributeValue);
 }; // Size: 0xD0
 
 class UInterchangeTranslatorBase : public UObject
@@ -219,19 +219,19 @@ class UInterchangeTranslatorSettings : public UObject
 class UInterchangeUserDefinedAttributesAPI : public UObject
 {
 
-    bool RemoveUserDefinedAttribute(class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName);
+    void RemoveUserDefinedAttribute(class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName);
     void GetUserDefinedAttributeInfos(const class UInterchangeBaseNode* InterchangeNode, TArray<FInterchangeUserDefinedAttributeInfo>& UserDefinedAttributeInfos);
-    bool GetUserDefinedAttribute_Int32(const class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, int32& OutValue, FString& OutPayloadKey);
-    bool GetUserDefinedAttribute_FString(const class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, FString& OutValue, FString& OutPayloadKey);
-    bool GetUserDefinedAttribute_Float(const class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, float& OutValue, FString& OutPayloadKey);
-    bool GetUserDefinedAttribute_Double(const class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, double& OutValue, FString& OutPayloadKey);
-    bool GetUserDefinedAttribute_Boolean(const class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, bool& OutValue, FString& OutPayloadKey);
+    void GetUserDefinedAttribute_Int32(const class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, int32& OutValue, FString& OutPayloadKey);
+    void GetUserDefinedAttribute_FString(const class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, FString& OutValue, FString& OutPayloadKey);
+    void GetUserDefinedAttribute_Float(const class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, float& OutValue, FString& OutPayloadKey);
+    void GetUserDefinedAttribute_Double(const class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, double& OutValue, FString& OutPayloadKey);
+    void GetUserDefinedAttribute_Boolean(const class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, bool& OutValue, FString& OutPayloadKey);
     void DuplicateAllUserDefinedAttribute(const class UInterchangeBaseNode* InterchangeSourceNode, class UInterchangeBaseNode* InterchangeDestinationNode, bool bAddSourceNodeName);
-    bool CreateUserDefinedAttribute_Int32(class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, const int32& Value, FString PayloadKey, bool RequiresDelegate);
-    bool CreateUserDefinedAttribute_FString(class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, FString Value, FString PayloadKey, bool RequiresDelegate);
-    bool CreateUserDefinedAttribute_Float(class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, const float& Value, FString PayloadKey, bool RequiresDelegate);
-    bool CreateUserDefinedAttribute_Double(class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, const double& Value, FString PayloadKey, bool RequiresDelegate);
-    bool CreateUserDefinedAttribute_Boolean(class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, const bool& Value, FString PayloadKey, bool RequiresDelegate);
+    void CreateUserDefinedAttribute_Int32(class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, const int32& Value, FString PayloadKey, bool RequiresDelegate);
+    void CreateUserDefinedAttribute_FString(class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, FString Value, FString PayloadKey, bool RequiresDelegate);
+    void CreateUserDefinedAttribute_Float(class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, const float& Value, FString PayloadKey, bool RequiresDelegate);
+    void CreateUserDefinedAttribute_Double(class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, const double& Value, FString PayloadKey, bool RequiresDelegate);
+    void CreateUserDefinedAttribute_Boolean(class UInterchangeBaseNode* InterchangeNode, FString UserDefinedAttributeName, const bool& Value, FString PayloadKey, bool RequiresDelegate);
 }; // Size: 0x28
 
 class UInterchangeWriterBase : public UObject

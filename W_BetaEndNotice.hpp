@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_BetaEndNotice_HPP
 #define UE4SS_SDK_W_BetaEndNotice_HPP
 
-class UW_BetaEndNotice_C : public UUserWidget
+class UW_BetaEndNotice_C : public UAbioticMenuWidget
 {
     class UImage* BG;                                                                 // 0x02E0 (size: 0x8)
     class UImage* Image;                                                              // 0x02E8 (size: 0x8)

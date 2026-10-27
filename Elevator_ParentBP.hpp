@@ -17,9 +17,9 @@ class AElevator_ParentBP_C : public AActor
     class UStaticMeshComponent* ElevatorMesh;                                         // 0x02F0 (size: 0x8)
     class USceneComponent* DefaultSceneRoot;                                          // 0x02F8 (size: 0x8)
     FVector ElevatorTopPosition;                                                      // 0x0300 (size: 0x18)
-    TArray<class AButton_Generic_C*> Buttons_Top;                                     // 0x0318 (size: 0x10)
+    TArray<AButton_Generic_C*> Buttons_Top;                                           // 0x0318 (size: 0x10)
     bool AttachTop_Idx_0_ButtonToLift;                                                // 0x0328 (size: 0x1)
-    TArray<class AButton_Generic_C*> Buttons_Bottom;                                  // 0x0330 (size: 0x10)
+    TArray<AButton_Generic_C*> Buttons_Bottom;                                        // 0x0330 (size: 0x10)
     bool AttachBottom_Idx_0_ButtonToLift;                                             // 0x0340 (size: 0x1)
     bool StartAtTop;                                                                  // 0x0341 (size: 0x1)
     FVector ElevatorServerRelativePosition;                                           // 0x0348 (size: 0x18)
@@ -45,7 +45,7 @@ class AElevator_ParentBP_C : public AActor
     FVector LoadIgnoreVolumeSize;                                                     // 0x0408 (size: 0x18)
 
     void GetPluggedInDeviceCount(int32& Count);
-    bool HasBatteryInParentChain();
+    void HasBatteryInParentChain();
     void RestoresSanityNearbyWhenPowered(bool& RestoresSanity);
     void IsPowered(bool& PowerOn);
     void GetPowerParentIndex(int32& Index);
@@ -56,7 +56,7 @@ class AElevator_ParentBP_C : public AActor
     void OnElevatorServerRelativePositionUpdated();
     void OnRep_ElevatorServerRelativePosition();
     void IsLocationWithinHorizontalBounds(FVector Location, bool& WithinBounds);
-    bool IsElevatorMoving();
+    void IsElevatorMoving();
     void CharacterEnteredElevator(class AAbiotic_Character_ParentBP_C* Character);
     void CharacterLeftElevator(class AAbiotic_Character_ParentBP_C* Character);
     void SaveElevatorStateToWorldSave();

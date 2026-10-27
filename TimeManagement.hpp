@@ -41,24 +41,24 @@ class UGenlockedTimecodeProvider : public UTimecodeProvider
 class UTimeManagementBlueprintLibrary : public UBlueprintFunctionLibrary
 {
 
-    FFrameTime TransformTime(const FFrameTime& SourceTime, const FFrameRate& SourceRate, const FFrameRate& DestinationRate);
-    FFrameNumber Subtract_FrameNumberInteger(FFrameNumber A, int32 B);
-    FFrameNumber Subtract_FrameNumberFrameNumber(FFrameNumber A, FFrameNumber B);
-    FFrameTime SnapFrameTimeToRate(const FFrameTime& SourceTime, const FFrameRate& SourceRate, const FFrameRate& SnapToRate);
-    FFrameTime Multiply_SecondsFrameRate(float TimeInSeconds, const FFrameRate& FrameRate);
-    FFrameNumber Multiply_FrameNumberInteger(FFrameNumber A, int32 B);
-    bool IsValid_MultipleOf(const FFrameRate& InFrameRate, const FFrameRate& OtherFramerate);
-    bool IsValid_Framerate(const FFrameRate& InFrameRate);
-    FFrameRate GetTimecodeFrameRate();
-    FTimecode GetTimecode();
-    FFrameNumber Divide_FrameNumberInteger(FFrameNumber A, int32 B);
-    FString Conv_TimecodeToString(const FTimecode& InTimecode, bool bForceSignDisplay);
-    float Conv_QualifiedFrameTimeToSeconds(const FQualifiedFrameTime& InFrameTime);
-    float Conv_FrameRateToSeconds(const FFrameRate& InFrameRate);
-    float Conv_FrameRateToInterval(const FFrameRate InFrameRate);
-    int32 Conv_FrameNumberToInteger(const FFrameNumber& InFrameNumber);
-    FFrameNumber Add_FrameNumberInteger(FFrameNumber A, int32 B);
-    FFrameNumber Add_FrameNumberFrameNumber(FFrameNumber A, FFrameNumber B);
+    void TransformTime(const FFrameTime& SourceTime, const FFrameRate& SourceRate, const FFrameRate& DestinationRate);
+    void Subtract_FrameNumberInteger(FFrameNumber A, int32 B);
+    void Subtract_FrameNumberFrameNumber(FFrameNumber A, FFrameNumber B);
+    void SnapFrameTimeToRate(const FFrameTime& SourceTime, const FFrameRate& SourceRate, const FFrameRate& SnapToRate);
+    void Multiply_SecondsFrameRate(float TimeInSeconds, const FFrameRate& FrameRate);
+    void Multiply_FrameNumberInteger(FFrameNumber A, int32 B);
+    void IsValid_MultipleOf(const FFrameRate& InFrameRate, const FFrameRate& OtherFramerate);
+    void IsValid_Framerate(const FFrameRate& InFrameRate);
+    void GetTimecodeFrameRate();
+    void GetTimecode();
+    void Divide_FrameNumberInteger(FFrameNumber A, int32 B);
+    void Conv_TimecodeToString(const FTimecode& InTimecode, bool bForceSignDisplay);
+    void Conv_QualifiedFrameTimeToSeconds(const FQualifiedFrameTime& InFrameTime);
+    void Conv_FrameRateToSeconds(const FFrameRate& InFrameRate);
+    void Conv_FrameRateToInterval(const FFrameRate InFrameRate);
+    void Conv_FrameNumberToInteger(const FFrameNumber& InFrameNumber);
+    void Add_FrameNumberInteger(FFrameNumber A, int32 B);
+    void Add_FrameNumberFrameNumber(FFrameNumber A, FFrameNumber B);
 }; // Size: 0x28
 
 class UTimeSynchronizationSource : public UObject

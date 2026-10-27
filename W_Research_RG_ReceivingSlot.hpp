@@ -10,19 +10,19 @@ class UW_Research_RG_ReceivingSlot_C : public UUserWidget
     class UImage* itemicon;                                                           // 0x0300 (size: 0x8)
     class UImage* Trim;                                                               // 0x0308 (size: 0x8)
     FName MaterialRow;                                                                // 0x0310 (size: 0x8)
-    FName ItemNameRow;                                                                // 0x0318 (size: 0x8)
-    class UW_Research_RG_DraggableItem_C* ContainedItemOriginSlot;                    // 0x0320 (size: 0x8)
-    FW_Research_RG_ReceivingSlot_CSlotReset SlotReset;                                // 0x0328 (size: 0x10)
+    FGlobalItemRowHandle ItemNameRow;                                                 // 0x0318 (size: 0x10)
+    class UW_Research_RG_DraggableItem_C* ContainedItemOriginSlot;                    // 0x0328 (size: 0x8)
+    FW_Research_RG_ReceivingSlot_CSlotReset SlotReset;                                // 0x0330 (size: 0x10)
     void SlotReset();
 
     void SetIncomingItem(class UW_Research_RG_DraggableItem_C* Item, bool& bSuccess);
-    FEventReply OnMouseButtonUp(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
-    bool OnDrop(FGeometry MyGeometry, FPointerEvent PointerEvent, class UDragDropOperation* Operation);
+    void OnMouseButtonUp(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
+    void OnDrop(FGeometry MyGeometry, FPointerEvent PointerEvent, class UDragDropOperation* Operation);
     void OnLoaded_540338A64415101FF6943E94DEDFA008(class UObject* Loaded);
-    void Async_LoadMaterialFrame(TSoftObjectPtr<UObject> Asset);
+    void Async_LoadMaterialFrame(TSoftObjectPtr<class UObject> Asset);
     void ResetSlotToEmpty();
     void ExecuteUbergraph_W_Research_RG_ReceivingSlot(int32 EntryPoint);
     void SlotReset__DelegateSignature();
-}; // Size: 0x338
+}; // Size: 0x340
 
 #endif

@@ -15,7 +15,7 @@ class ATramSystem_RecallStation_C : public AActor
     TEnumAsByte<E_TramRecallStatus::Type> TramRecallStatus;                           // 0x02E0 (size: 0x1)
     TEnumAsByte<E_TramRecallStatus::Type> LastTramRecallState;                        // 0x02E1 (size: 0x1)
 
-    void WarnLastInteractedPlayer(FText Text, TEnumAsByte<ECriticalityLevels::Type> Color, bool WarningBeep);
+    void WarnLastInteractedPlayer(FText Text, ECriticalityLevels Color, bool WarningBeep);
     void TramRecallPressed(bool Activated);
     void UpdateRecallStatus(bool Initial);
     void OnRep_TramRecallStatus();

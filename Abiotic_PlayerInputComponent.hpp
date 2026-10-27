@@ -3,6 +3,6 @@
 
 class UAbiotic_PlayerInputComponent_C : public UAbioticPlayerInputComponent
 {
-}; // Size: 0x2A8
+}; // Size: 0x2D8
 
 #endif

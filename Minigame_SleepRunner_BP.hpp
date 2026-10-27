@@ -48,8 +48,8 @@ class AMinigame_SleepRunner_BP_C : public AActor
     bool EnableMinigame;                                                              // 0x0401 (size: 0x1)
     bool StartJump;                                                                   // 0x0402 (size: 0x1)
     bool FallingDown;                                                                 // 0x0403 (size: 0x1)
-    TArray<class ASleepRunner_ObstacleBP_C*> Obstacles;                               // 0x0408 (size: 0x10)
-    TArray<class ASleepRunner_ObstacleBP_C*> AvoidedObstacles;                        // 0x0418 (size: 0x10)
+    TArray<ASleepRunner_ObstacleBP_C*> Obstacles;                                     // 0x0408 (size: 0x10)
+    TArray<ASleepRunner_ObstacleBP_C*> AvoidedObstacles;                              // 0x0418 (size: 0x10)
     FTimerHandle MovementRateIncrementTimer;                                          // 0x0428 (size: 0x8)
     FTimerHandle ObstacleSpawnTimer;                                                  // 0x0430 (size: 0x8)
     double JumpHeight;                                                                // 0x0438 (size: 0x8)
@@ -66,10 +66,10 @@ class AMinigame_SleepRunner_BP_C : public AActor
     TEnumAsByte<E_DreamStyle::Type> LastDreamStyle;                                   // 0x04C8 (size: 0x1)
     FTimerHandle BG_Spawner_Near;                                                     // 0x04D0 (size: 0x8)
     FTimerHandle BG_Spawner_Far;                                                      // 0x04D8 (size: 0x8)
-    TArray<class ASleepRunner_BG_Object_C*> BG_Objects_Near;                          // 0x04E0 (size: 0x10)
-    TArray<class ASleepRunner_BG_Object_C*> BG_Objects_Far;                           // 0x04F0 (size: 0x10)
-    TArray<class UPaperSprite*> NearSprites;                                          // 0x0500 (size: 0x10)
-    TArray<class UPaperSprite*> FarSprites;                                           // 0x0510 (size: 0x10)
+    TArray<ASleepRunner_BG_Object_C*> BG_Objects_Near;                                // 0x04E0 (size: 0x10)
+    TArray<ASleepRunner_BG_Object_C*> BG_Objects_Far;                                 // 0x04F0 (size: 0x10)
+    TArray<UPaperSprite*> NearSprites;                                                // 0x0500 (size: 0x10)
+    TArray<UPaperSprite*> FarSprites;                                                 // 0x0510 (size: 0x10)
     class ANPC_Leyak_C* ActiveKrasue;                                                 // 0x0520 (size: 0x8)
 
     void Tick_ActiveLeyak(TEnumAsByte<E_LeyakType::Type> Class);
@@ -83,7 +83,7 @@ class AMinigame_SleepRunner_BP_C : public AActor
     void OnObstacleAvoided();
     void Tick_PropelObstaclesForward(double DeltaTime);
     void Check if Obstacle Is Out Of Sight(class ASleepRunner_ObstacleBP_C* Obstacle, bool& NotVisible);
-    bool GetSpawnObstacleChance();
+    void GetSpawnObstacleChance();
     void UserConstructionScript();
     void JumpTimeline__FinishedFunc();
     void JumpTimeline__UpdateFunc();

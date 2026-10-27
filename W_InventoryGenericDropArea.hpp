@@ -12,10 +12,10 @@ class UW_InventoryGenericDropArea_C : public UUserWidget
     int32 CachedIndex;                                                                // 0x030C (size: 0x4)
 
     void FocusCursorOnSlot(double Time, int32 Index);
-    bool IsInteractable();
+    void IsInteractable();
     void Try Drop Item(bool UseCustomOrigin, FInventorySlotSelected_Struct CustomOrigin, bool& SuccessfullyDropped);
-    FEventReply OnMouseButtonUp(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
-    FEventReply OnMouseButtonDown(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
+    void OnMouseButtonUp(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
+    void OnMouseButtonDown(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
     void Construct();
     void ExecuteUbergraph_W_InventoryGenericDropArea(int32 EntryPoint);
 }; // Size: 0x310

@@ -357,12 +357,12 @@ class UABF_Scientist_AnimBP_C : public UAbioticCharacterAnimInstance
     float Direction;                                                                  // 0x28A4 (size: 0x4)
     class UAnimSequenceBase* SleepingAnim;                                            // 0x28A8 (size: 0x8)
     double GameTime;                                                                  // 0x28B0 (size: 0x8)
-    FName LastTPAnimRow;                                                              // 0x28B8 (size: 0x8)
-    TEnumAsByte<EPhysicalSurface> LastSurfaceType;                                    // 0x28C0 (size: 0x1)
-    float IDCardAlpha;                                                                // 0x28C4 (size: 0x4)
-    FVector IDLocation;                                                               // 0x28C8 (size: 0x18)
-    FRotator IDRotation;                                                              // 0x28E0 (size: 0x18)
-    FVector IDScale;                                                                  // 0x28F8 (size: 0x18)
+    FTPAnimationRowHandle LastTPAnimRow;                                              // 0x28B8 (size: 0x10)
+    TEnumAsByte<EPhysicalSurface> LastSurfaceType;                                    // 0x28C8 (size: 0x1)
+    float IDCardAlpha;                                                                // 0x28CC (size: 0x4)
+    FVector IDLocation;                                                               // 0x28D0 (size: 0x18)
+    FRotator IDRotation;                                                              // 0x28E8 (size: 0x18)
+    FVector IDScale;                                                                  // 0x2900 (size: 0x18)
 
     void AnimGraph(FPoseLink& AnimGraph);
     void ThreadSafe_CachePlayerCharacterData();
@@ -389,6 +389,6 @@ class UABF_Scientist_AnimBP_C : public UAbioticCharacterAnimInstance
     void OnMicrophoneVolumeReceived(float Volume);
     void AnimNotify_SitValidate();
     void ExecuteUbergraph_ABF_Scientist_AnimBP(int32 EntryPoint);
-}; // Size: 0x2910
+}; // Size: 0x2918
 
 #endif

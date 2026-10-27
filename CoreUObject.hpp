@@ -170,7 +170,7 @@ struct FFallbackStruct
 
 struct FFieldCookedMetaDataStore
 {
-    TMap<class FName, class FString> FieldMetaData;                                   // 0x0000 (size: 0x50)
+    TMap<FName, FString> FieldMetaData;                                               // 0x0000 (size: 0x50)
 
 }; // Size: 0x50
 
@@ -510,7 +510,7 @@ struct FMatrix44f
 
 struct FObjectCookedMetaDataStore
 {
-    TMap<class FName, class FString> ObjectMetaData;                                  // 0x0000 (size: 0x50)
+    TMap<FName, FString> ObjectMetaData;                                              // 0x0000 (size: 0x50)
 
 }; // Size: 0x50
 
@@ -530,7 +530,7 @@ struct FOverriddenPropertyNode
 {
     FOverriddenPropertyNodeID NodeID;                                                 // 0x0000 (size: 0x10)
     EOverriddenPropertyOperation Operation;                                           // 0x0010 (size: 0x1)
-    TMap<class FOverriddenPropertyNodeID, class FOverriddenPropertyNodeID> SubPropertyNodeKeys; // 0x0018 (size: 0x50)
+    TMap<FOverriddenPropertyNodeID, FOverriddenPropertyNodeID> SubPropertyNodeKeys;   // 0x0018 (size: 0x50)
 
 }; // Size: 0x68
 
@@ -608,7 +608,7 @@ struct FPolyglotTextData
     FString NameSpace;                                                                // 0x0018 (size: 0x10)
     FString Key;                                                                      // 0x0028 (size: 0x10)
     FString NativeString;                                                             // 0x0038 (size: 0x10)
-    TMap<class FString, class FString> LocalizedStrings;                              // 0x0048 (size: 0x50)
+    TMap<FString, FString> LocalizedStrings;                                          // 0x0048 (size: 0x50)
     bool bIsMinimalPatch;                                                             // 0x0098 (size: 0x1)
     FText CachedText;                                                                 // 0x00A0 (size: 0x10)
 
@@ -748,7 +748,7 @@ struct FSphere3f
 struct FStructCookedMetaDataStore
 {
     FObjectCookedMetaDataStore ObjectMetaData;                                        // 0x0000 (size: 0x50)
-    TMap<class FName, class FFieldCookedMetaDataStore> PropertiesMetaData;            // 0x0050 (size: 0x50)
+    TMap<FName, FFieldCookedMetaDataStore> PropertiesMetaData;                        // 0x0050 (size: 0x50)
 
 }; // Size: 0xA0
 
@@ -761,7 +761,7 @@ struct FTemplateString
 struct FTestUndeclaredScriptStructObjectReferencesTest
 {
     class UObject* StrongObjectPointer;                                               // 0x0000 (size: 0x8)
-    TSoftObjectPtr<UObject> SoftObjectPointer;                                        // 0x0008 (size: 0x28)
+    TSoftObjectPtr<class UObject> SoftObjectPointer;                                  // 0x0008 (size: 0x28)
     FSoftObjectPath SoftObjectPath;                                                   // 0x0030 (size: 0x20)
     TWeakObjectPtr<class UObject> WeakObjectPointer;                                  // 0x0050 (size: 0x8)
 
@@ -1012,7 +1012,7 @@ class UClass : public UStruct
 class UClassCookedMetaData : public UObject
 {
     FStructCookedMetaDataStore ClassMetaData;                                         // 0x0028 (size: 0xA0)
-    TMap<class FName, class FStructCookedMetaDataStore> FunctionsMetaData;            // 0x00C8 (size: 0x50)
+    TMap<FName, FStructCookedMetaDataStore> FunctionsMetaData;                        // 0x00C8 (size: 0x50)
 
 }; // Size: 0x118
 

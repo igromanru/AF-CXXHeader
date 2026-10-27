@@ -11,9 +11,9 @@ class AABF_CinematicSequence_C : public AActor
     class AAbiotic_GenericDestructible_BP_C* DestructiblesToDestroy;                  // 0x02C0 (size: 0x8)
     bool FinishedPlaying;                                                             // 0x02C8 (size: 0x1)
     double DestructibleDestroyDelay;                                                  // 0x02D0 (size: 0x8)
-    TArray<class ANarrativeNPC_ParentBP_C*> NarrativeNPCsToKill;                      // 0x02D8 (size: 0x10)
+    TArray<ANarrativeNPC_ParentBP_C*> NarrativeNPCsToKill;                            // 0x02D8 (size: 0x10)
     double NPCKillDelay;                                                              // 0x02E8 (size: 0x8)
-    TMap<class AAbiotic_NPCSpawn_ParentBP_C*, class UAnimMontage*> NPCSpawnsToTrigger; // 0x02F0 (size: 0x50)
+    TMap<AAbiotic_NPCSpawn_ParentBP_C*, UAnimMontage*> NPCSpawnsToTrigger;            // 0x02F0 (size: 0x50)
     double NPCSpawnDelay;                                                             // 0x0340 (size: 0x8)
     bool ForceNPCAggression;                                                          // 0x0348 (size: 0x1)
     double ForcedNearbyAggressionDistance;                                            // 0x0350 (size: 0x8)
@@ -25,12 +25,12 @@ class AABF_CinematicSequence_C : public AActor
     class USoundBase* NewSoundtrackToStart;                                           // 0x0380 (size: 0x8)
     double SoundtrackStartDelay;                                                      // 0x0388 (size: 0x8)
     double ParticleActivateDelay;                                                     // 0x0390 (size: 0x8)
-    TArray<class AReplicatedParticleFX_BP_C*> ParticlesToActivate;                    // 0x0398 (size: 0x10)
-    TArray<class ANavModifierVolume*> NavModifiersToDestroy;                          // 0x03A8 (size: 0x10)
+    TArray<AReplicatedParticleFX_BP_C*> ParticlesToActivate;                          // 0x0398 (size: 0x10)
+    TArray<ANavModifierVolume*> NavModifiersToDestroy;                                // 0x03A8 (size: 0x10)
     FABF_CinematicSequence_CCinematicBegin CinematicBegin;                            // 0x03B8 (size: 0x10)
     void CinematicBegin();
     class ANarrativeNPC_ParentBP_C* NPCToForceDialog;                                 // 0x03C8 (size: 0x8)
-    TEnumAsByte<E_NarrativeNPCStates::Type> NPCDialogState;                           // 0x03D0 (size: 0x1)
+    ENarrativeNPCState NPCDialogState;                                                // 0x03D0 (size: 0x1)
     double NPCDialogForceDelay;                                                       // 0x03D8 (size: 0x8)
 
     void AlertNPCToNearbyPlayers(class ANPC_Base_ParentBP_C* NPC);

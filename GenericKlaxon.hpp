@@ -13,7 +13,7 @@ class AGenericKlaxon_C : public AActor
     FRotator RotationRate;                                                            // 0x02D0 (size: 0x18)
 
     void GetPluggedInDeviceCount(int32& Count);
-    bool HasBatteryInParentChain();
+    void HasBatteryInParentChain();
     void IsPowered(bool& PowerOn);
     void GetPowerParentIndex(int32& Index);
     void RequiresPowerSocket(bool& MustBePluggedIn);

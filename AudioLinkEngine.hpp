@@ -7,7 +7,7 @@ class IAudioLinkBlueprintInterface : public IInterface
     void StopLink();
     void SetLinkSound(class USoundBase* NewSound);
     void PlayLink(float StartTime);
-    bool IsLinkPlaying();
+    void IsLinkPlaying();
 }; // Size: 0x28
 
 #endif

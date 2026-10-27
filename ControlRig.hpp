@@ -16,7 +16,7 @@ struct FAnimNode_ControlRig : public FAnimNode_ControlRigBase
     TSubclassOf<class UControlRig> ControlRigClass;                                   // 0x0248 (size: 0x8)
     TSubclassOf<class UControlRig> DefaultControlRigClass;                            // 0x0250 (size: 0x8)
     class UControlRig* ControlRig;                                                    // 0x0258 (size: 0x8)
-    TMap<class UClass*, class UControlRig*> ControlRigPerClass;                       // 0x0260 (size: 0x50)
+    TMap<UClass*, UControlRig*> ControlRigPerClass;                                   // 0x0260 (size: 0x50)
     float Alpha;                                                                      // 0x02B0 (size: 0x4)
     EAnimAlphaInputType AlphaInputType;                                               // 0x02B4 (size: 0x1)
     uint8 bAlphaBoolEnabled;                                                          // 0x02B5 (size: 0x1)
@@ -25,8 +25,8 @@ struct FAnimNode_ControlRig : public FAnimNode_ControlRigBase
     FInputAlphaBoolBlend AlphaBoolBlend;                                              // 0x02C0 (size: 0x48)
     FName AlphaCurveName;                                                             // 0x0308 (size: 0x8)
     FInputScaleBiasClamp AlphaScaleBiasClamp;                                         // 0x0310 (size: 0x30)
-    TMap<class FName, class FName> InputMapping;                                      // 0x0340 (size: 0x50)
-    TMap<class FName, class FName> OutputMapping;                                     // 0x0390 (size: 0x50)
+    TMap<FName, FName> InputMapping;                                                  // 0x0340 (size: 0x50)
+    TMap<FName, FName> OutputMapping;                                                 // 0x0390 (size: 0x50)
     int32 LODThreshold;                                                               // 0x0490 (size: 0x4)
 
 }; // Size: 0x4D0
@@ -40,7 +40,7 @@ struct FAnimNode_ControlRigBase : public FAnimNode_CustomProperty
     bool bTransferPoseInGlobalSpace;                                                  // 0x006B (size: 0x1)
     TArray<FBoneReference> InputBonesToTransfer;                                      // 0x0070 (size: 0x10)
     TArray<FBoneReference> OutputBonesToTransfer;                                     // 0x0080 (size: 0x10)
-    TArray<class UAssetUserData*> AssetUserData;                                      // 0x0090 (size: 0x10)
+    TArray<UAssetUserData*> AssetUserData;                                            // 0x0090 (size: 0x10)
     TWeakObjectPtr<class UNodeMappingContainer> NodeMappingContainer;                 // 0x0210 (size: 0x8)
     FControlRigIOSettings InputSettings;                                              // 0x0218 (size: 0x2)
     FControlRigIOSettings OutputSettings;                                             // 0x021A (size: 0x2)
@@ -277,14 +277,14 @@ struct FControlRigSequenceObjectReferences
 
 struct FControlRigSettingsPerPinBool
 {
-    TMap<class FString, class bool> Values;                                           // 0x0000 (size: 0x50)
+    TMap<FString, bool> Values;                                                       // 0x0000 (size: 0x50)
 
 }; // Size: 0x50
 
 struct FControlRigShapeDefinition
 {
     FName ShapeName;                                                                  // 0x0000 (size: 0x8)
-    TSoftObjectPtr<UStaticMesh> StaticMesh;                                           // 0x0008 (size: 0x28)
+    TSoftObjectPtr<class UStaticMesh> StaticMesh;                                     // 0x0008 (size: 0x28)
     FTransform Transform;                                                             // 0x0030 (size: 0x60)
 
 }; // Size: 0xA0
@@ -929,7 +929,7 @@ struct FRigModuleInstance
     FName Name;                                                                       // 0x0000 (size: 0x8)
     class UControlRig* RigPtr;                                                        // 0x0008 (size: 0x8)
     FString ParentPath;                                                               // 0x0010 (size: 0x10)
-    TMap<class FName, class FRigVMExternalVariable> VariableBindings;                 // 0x0020 (size: 0x50)
+    TMap<FName, FRigVMExternalVariable> VariableBindings;                             // 0x0020 (size: 0x50)
 
 }; // Size: 0x88
 
@@ -940,9 +940,9 @@ struct FRigModuleReference
     bool bShortNameBasedOnPath;                                                       // 0x0018 (size: 0x1)
     FString ParentPath;                                                               // 0x0020 (size: 0x10)
     TSoftClassPtr<UControlRig> Class;                                                 // 0x0030 (size: 0x28)
-    TMap<class FRigElementKey, class FRigElementKey> Connections;                     // 0x0058 (size: 0x50)
-    TMap<class FName, class FString> ConfigValues;                                    // 0x00A8 (size: 0x50)
-    TMap<class FName, class FString> Bindings;                                        // 0x00F8 (size: 0x50)
+    TMap<FRigElementKey, FRigElementKey> Connections;                                 // 0x0058 (size: 0x50)
+    TMap<FName, FString> ConfigValues;                                                // 0x00A8 (size: 0x50)
+    TMap<FName, FString> Bindings;                                                    // 0x00F8 (size: 0x50)
     FName PreviousName;                                                               // 0x0148 (size: 0x8)
     FString PreviousParentPath;                                                       // 0x0150 (size: 0x10)
 
@@ -4956,11 +4956,11 @@ class AControlRigControlActor : public AActor
     FString ColorParameter;                                                           // 0x02B8 (size: 0x10)
     bool bCastShadows;                                                                // 0x02C8 (size: 0x1)
     class USceneComponent* ActorRootComponent;                                        // 0x02D0 (size: 0x8)
-    TSoftObjectPtr<UControlRig> ControlRig;                                           // 0x02D8 (size: 0x28)
+    TSoftObjectPtr<class UControlRig> ControlRig;                                     // 0x02D8 (size: 0x28)
     TArray<FName> ControlNames;                                                       // 0x0300 (size: 0x10)
     TArray<FTransform> ShapeTransforms;                                               // 0x0310 (size: 0x10)
-    TArray<class UStaticMeshComponent*> Components;                                   // 0x0320 (size: 0x10)
-    TArray<class UMaterialInstanceDynamic*> Materials;                                // 0x0330 (size: 0x10)
+    TArray<UStaticMeshComponent*> Components;                                         // 0x0320 (size: 0x10)
+    TArray<UMaterialInstanceDynamic*> Materials;                                      // 0x0330 (size: 0x10)
     FName ColorParameterName;                                                         // 0x0340 (size: 0x8)
 
     void ResetControlActor();
@@ -4990,10 +4990,10 @@ class AControlRigShapeActor : public AActor
     void OnManipulatingChanged(bool bIsManipulating);
     void OnHoveredChanged(bool bIsSelected);
     void OnEnabledChanged(bool bIsEnabled);
-    bool IsSelectedInEditor();
-    bool IsHovered();
-    bool IsEnabled();
-    FTransform GetGlobalTransform();
+    void IsSelectedInEditor();
+    void IsHovered();
+    void IsEnabled();
+    void GetGlobalTransform();
 }; // Size: 0x350
 
 class IRigHierarchyProvider : public IInterface
@@ -5007,44 +5007,44 @@ class UAdditiveControlRig : public UControlRig
 class UAnimNodeControlRigLibrary : public UBlueprintFunctionLibrary
 {
 
-    FControlRigReference SetControlRigClass(const FControlRigReference& Node, TSubclassOf<class UControlRig> ControlRigClass);
+    void SetControlRigClass(const FControlRigReference& Node, TSubclassOf<class UControlRig> ControlRigClass);
     void ConvertToControlRigPure(const FAnimNodeReference& Node, FControlRigReference& ControlRig, bool& Result);
-    FControlRigReference ConvertToControlRig(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
+    void ConvertToControlRig(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
 }; // Size: 0x28
 
 class UControlRig : public URigVMHost
 {
     ERigExecutionType ExecutionType;                                                  // 0x0288 (size: 0x1)
     FRigHierarchySettings HierarchySettings;                                          // 0x028C (size: 0x4)
-    TMap<class FRigElementKey, class FRigControlElementCustomization> ControlCustomizations; // 0x0290 (size: 0x50)
+    TMap<FRigElementKey, FRigControlElementCustomization> ControlCustomizations;      // 0x0290 (size: 0x50)
     class URigHierarchy* DynamicHierarchy;                                            // 0x02E0 (size: 0x8)
-    TArray<TSoftObjectPtr<UControlRigShapeLibrary>> ShapeLibraries;                   // 0x02E8 (size: 0x10)
-    TMap<class FString, class FString> ShapeLibraryNameMap;                           // 0x02F8 (size: 0x50)
+    TArray<TSoftObjectPtr<class UControlRigShapeLibrary>> ShapeLibraries;             // 0x02E8 (size: 0x10)
+    TMap<FString, FString> ShapeLibraryNameMap;                                       // 0x02F8 (size: 0x50)
     FRigVMExtendedExecuteContext RigVMExtendedExecuteContext;                         // 0x0358 (size: 0x228)
     class UAnimationDataSourceRegistry* DataSourceRegistry;                           // 0x0588 (size: 0x8)
     FRigInfluenceMapPerEvent Influences;                                              // 0x0638 (size: 0x60)
-    TMap<class FName, class UDataAssetLink*> ExternalVariableDataAssetLinks;          // 0x0750 (size: 0x50)
+    TMap<FName, UDataAssetLink*> ExternalVariableDataAssetLinks;                      // 0x0750 (size: 0x50)
     FControlRigOnControlSelected_BP OnControlSelected_BP;                             // 0x0870 (size: 0x1)
     void OnControlSelectedBP(class UControlRig* Rig, const FRigControlElement& Control, bool bSelected);
     bool bIsAdditive;                                                                 // 0x0888 (size: 0x1)
     FRigModuleSettings RigModuleSettings;                                             // 0x0A18 (size: 0x80)
     FString RigModuleNameSpace;                                                       // 0x0A98 (size: 0x10)
 
-    bool SupportsBackwardsSolve();
+    void SupportsBackwardsSolve();
     void SetInteractionRigClass(TSubclassOf<class UControlRig> InInteractionRigClass);
     void SetInteractionRig(class UControlRig* InInteractionRig);
     void SelectControl(const FName& InControlName, bool bSelect);
     void RequestConstruction();
     void OnControlSelectedBP__DelegateSignature(class UControlRig* Rig, const FRigControlElement& Control, bool bSelected);
-    bool IsControlSelected(const FName& InControlName);
-    TSubclassOf<class UControlRig> GetInteractionRigClass();
-    class UControlRig* GetInteractionRig();
-    class AActor* GetHostingActor();
-    class URigHierarchy* GetHierarchy();
-    TArray<class UControlRig*> FindControlRigs(class UObject* Outer, TSubclassOf<class UControlRig> OptionalClass);
-    TArray<FName> CurrentControlSelection();
-    class UTransformableControlHandle* CreateTransformableControlHandle(const FName& ControlName);
-    bool ClearControlSelection();
+    void IsControlSelected(const FName& InControlName);
+    void GetInteractionRigClass();
+    void GetInteractionRig();
+    void GetHostingActor();
+    void GetHierarchy();
+    void FindControlRigs(class UObject* Outer, TSubclassOf<class UControlRig> OptionalClass);
+    void CurrentControlSelection();
+    void CreateTransformableControlHandle(const FName& ControlName);
+    void ClearControlSelection();
 }; // Size: 0xAA8
 
 class UControlRigAnimInstance : public UAnimInstance
@@ -5108,25 +5108,25 @@ class UControlRigComponent : public UPrimitiveComponent
     void OnPostForwardsSolve(class UControlRigComponent* Component);
     void OnPostConstruction(class UControlRigComponent* Component);
     void Initialize();
-    FTransform GetSpaceTransform(FName SpaceName, EControlRigComponentSpace Space);
-    FTransform GetInitialSpaceTransform(FName SpaceName, EControlRigComponentSpace Space);
-    FTransform GetInitialBoneTransform(FName BoneName, EControlRigComponentSpace Space);
-    TArray<FName> GetElementNames(ERigElementType ElementType);
-    FVector2D GetControlVector2D(FName ControlName);
-    FTransform GetControlTransform(FName ControlName, EControlRigComponentSpace Space);
-    FVector GetControlScale(FName ControlName, EControlRigComponentSpace Space);
-    FRotator GetControlRotator(FName ControlName, EControlRigComponentSpace Space);
-    class UControlRig* GetControlRig();
-    FVector GetControlPosition(FName ControlName, EControlRigComponentSpace Space);
-    FTransform GetControlOffset(FName ControlName, EControlRigComponentSpace Space);
-    int32 GetControlInt(FName ControlName);
-    float GetControlFloat(FName ControlName);
-    bool GetControlBool(FName ControlName);
-    FTransform GetBoneTransform(FName BoneName, EControlRigComponentSpace Space);
-    float GetAbsoluteTime();
-    bool DoesElementExist(FName Name, ERigElementType ElementType);
+    void GetSpaceTransform(FName SpaceName, EControlRigComponentSpace Space);
+    void GetInitialSpaceTransform(FName SpaceName, EControlRigComponentSpace Space);
+    void GetInitialBoneTransform(FName BoneName, EControlRigComponentSpace Space);
+    void GetElementNames(ERigElementType ElementType);
+    void GetControlVector2D(FName ControlName);
+    void GetControlTransform(FName ControlName, EControlRigComponentSpace Space);
+    void GetControlScale(FName ControlName, EControlRigComponentSpace Space);
+    void GetControlRotator(FName ControlName, EControlRigComponentSpace Space);
+    void GetControlRig();
+    void GetControlPosition(FName ControlName, EControlRigComponentSpace Space);
+    void GetControlOffset(FName ControlName, EControlRigComponentSpace Space);
+    void GetControlInt(FName ControlName);
+    void GetControlFloat(FName ControlName);
+    void GetControlBool(FName ControlName);
+    void GetBoneTransform(FName BoneName, EControlRigComponentSpace Space);
+    void GetAbsoluteTime();
+    void DoesElementExist(FName Name, ERigElementType ElementType);
     void ClearMappedElements();
-    bool CanExecute();
+    void CanExecute();
     void AddMappedSkeletalMesh(class USkeletalMeshComponent* SkeletalMeshComponent, TArray<FControlRigComponentMappedBone> Bones, TArray<FControlRigComponentMappedCurve> Curves, const EControlRigComponentMapDirection InDirection);
     void AddMappedElements(TArray<FControlRigComponentMappedElement> NewMappedElements);
     void AddMappedComponents(TArray<FControlRigComponentMappedComponent> Components);
@@ -5165,8 +5165,8 @@ class UControlRigPoseAsset : public UObject
     void ReplaceControlName(const FName& CurrentName, const FName& NewName);
     void PastePose(class UControlRig* InControlRig, bool bDoKey, bool bDoMirror);
     void GetCurrentPose(class UControlRig* InControlRig, FControlRigControlPose& OutPose);
-    TArray<FName> GetControlNames();
-    bool DoesMirrorMatch(class UControlRig* ControlRig, const FName& ControlName);
+    void GetControlNames();
+    void DoesMirrorMatch(class UControlRig* ControlRig, const FName& ControlName);
 }; // Size: 0x88
 
 class UControlRigPoseMirrorSettings : public UObject
@@ -5191,8 +5191,8 @@ class UControlRigSettings : public UDeveloperSettings
 class UControlRigShapeLibrary : public UObject
 {
     FControlRigShapeDefinition DefaultShape;                                          // 0x0030 (size: 0xA0)
-    TSoftObjectPtr<UMaterial> DefaultMaterial;                                        // 0x00D0 (size: 0x28)
-    TSoftObjectPtr<UMaterial> XRayMaterial;                                           // 0x00F8 (size: 0x28)
+    TSoftObjectPtr<class UMaterial> DefaultMaterial;                                  // 0x00D0 (size: 0x28)
+    TSoftObjectPtr<class UMaterial> XRayMaterial;                                     // 0x00F8 (size: 0x28)
     FName MaterialColorParameter;                                                     // 0x0120 (size: 0x8)
     TArray<FControlRigShapeDefinition> Shapes;                                        // 0x0128 (size: 0x10)
 
@@ -5200,12 +5200,12 @@ class UControlRigShapeLibrary : public UObject
 
 class UControlRigShapeLibraryLink : public UNameSpacedUserData
 {
-    TSoftObjectPtr<UControlRigShapeLibrary> ShapeLibrary;                             // 0x0100 (size: 0x28)
+    TSoftObjectPtr<class UControlRigShapeLibrary> ShapeLibrary;                       // 0x0100 (size: 0x28)
     TArray<FName> ShapeNames;                                                         // 0x0128 (size: 0x10)
     class UControlRigShapeLibrary* ShapeLibraryCached;                                // 0x0138 (size: 0x8)
 
-    void SetShapeLibrary(TSoftObjectPtr<UControlRigShapeLibrary> InShapeLibrary);
-    TSoftObjectPtr<UControlRigShapeLibrary> GetShapeLibrary();
+    void SetShapeLibrary(TSoftObjectPtr<class UControlRigShapeLibrary> InShapeLibrary);
+    void GetShapeLibrary();
 }; // Size: 0x140
 
 class UControlRigTestData : public UObject
@@ -5217,22 +5217,22 @@ class UControlRigTestData : public UObject
     TArray<int32> FramesToSkip;                                                       // 0x00F8 (size: 0x10)
     double Tolerance;                                                                 // 0x0108 (size: 0x8)
 
-    bool SetupReplay(class UControlRig* InControlRig, bool bGroundTruth);
+    void SetupReplay(class UControlRig* InControlRig, bool bGroundTruth);
     void ReleaseReplay();
-    bool Record(class UControlRig* InControlRig, double InRecordingDuration);
-    bool IsReplaying();
-    bool IsRecording();
-    FVector2D GetTimeRange(bool bInput);
-    EControlRigTestDataPlaybackMode GetPlaybackMode();
-    int32 GetFrameIndexForTime(double InSeconds, bool bInput);
-    class UControlRigTestData* CreateNewAsset(FString InDesiredPackagePath, FString InBlueprintPathName);
+    void Record(class UControlRig* InControlRig, double InRecordingDuration);
+    void IsReplaying();
+    void IsRecording();
+    void GetTimeRange(bool bInput);
+    void GetPlaybackMode();
+    void GetFrameIndexForTime(double InSeconds, bool bInput);
+    void CreateNewAsset(FString InDesiredPackagePath, FString InBlueprintPathName);
 }; // Size: 0x150
 
 class UControlRigTransformWorkflowOptions : public UControlRigWorkflowOptions
 {
     TEnumAsByte<ERigTransformType::Type> TransformType;                               // 0x00B0 (size: 0x1)
 
-    TArray<FRigVMUserWorkflow> ProvideWorkflows(const class UObject* InSubject);
+    void ProvideWorkflows(const class UObject* InSubject);
 }; // Size: 0xB8
 
 class UControlRigValidationPass : public UObject
@@ -5241,7 +5241,7 @@ class UControlRigValidationPass : public UObject
 
 class UControlRigValidator : public UObject
 {
-    TArray<class UControlRigValidationPass*> Passes;                                  // 0x0028 (size: 0x10)
+    TArray<UControlRigValidationPass*> Passes;                                        // 0x0028 (size: 0x10)
 
 }; // Size: 0x68
 
@@ -5250,7 +5250,7 @@ class UControlRigWorkflowOptions : public URigVMUserWorkflowOptions
     class URigHierarchy* Hierarchy;                                                   // 0x0098 (size: 0x8)
     TArray<FRigElementKey> Selection;                                                 // 0x00A0 (size: 0x10)
 
-    bool EnsureAtLeastOneRigElementSelected();
+    void EnsureAtLeastOneRigElementSelected();
 }; // Size: 0xB0
 
 class UDefault__ControlRigBlueprintGeneratedClass
@@ -5276,21 +5276,21 @@ class UModularRig : public UControlRig
 class UModularRigController : public UObject
 {
 
-    bool UnBindModuleVariable(FString InModulePath, const FName& InVariableName, bool bSetupUndo);
-    bool SetModuleShortName(FString InModulePath, FString InNewShortName, bool bSetupUndo);
-    bool SetConfigValueInModule(FString InModulePath, const FName& InVariableName, FString InValue, bool bSetupUndo);
-    FString ReparentModule(FString InModulePath, FString InNewParentModulePath, bool bSetupUndo);
-    FString RenameModule(FString InModulePath, const FName& InNewName, bool bSetupUndo);
-    FString MirrorModule(FString InModulePath, const FRigVMMirrorSettings& InSettings, bool bSetupUndo);
-    TArray<FRigElementKey> DisconnectCyclicConnectors(bool bSetupUndo);
-    bool DisconnectConnector(const FRigElementKey& InConnectorKey, bool bDisconnectSubModules, bool bSetupUndo);
-    bool DeleteModule(FString InModulePath, bool bSetupUndo);
-    bool ConnectConnectorToElement(const FRigElementKey& InConnectorKey, const FRigElementKey& InTargetKey, bool bSetupUndo, bool bAutoResolveOtherConnectors, bool bCheckValidConnection);
-    bool CanConnectConnectorToElement(const FRigElementKey& InConnectorKey, const FRigElementKey& InTargetKey, FText& OutErrorMessage);
-    bool BindModuleVariable(FString InModulePath, const FName& InVariableName, FString InSourcePath, bool bSetupUndo);
-    bool AutoConnectSecondaryConnectors(const TArray<FRigElementKey>& InConnectorKeys, bool bReplaceExistingConnections, bool bSetupUndo);
-    bool AutoConnectModules(const TArray<FString>& InModulePaths, bool bReplaceExistingConnections, bool bSetupUndo);
-    FString AddModule(const FName& InModuleName, TSubclassOf<class UControlRig> InClass, FString InParentModulePath, bool bSetupUndo);
+    void UnBindModuleVariable(FString InModulePath, const FName& InVariableName, bool bSetupUndo);
+    void SetModuleShortName(FString InModulePath, FString InNewShortName, bool bSetupUndo);
+    void SetConfigValueInModule(FString InModulePath, const FName& InVariableName, FString InValue, bool bSetupUndo);
+    void ReparentModule(FString InModulePath, FString InNewParentModulePath, bool bSetupUndo);
+    void RenameModule(FString InModulePath, const FName& InNewName, bool bSetupUndo);
+    void MirrorModule(FString InModulePath, const FRigVMMirrorSettings& InSettings, bool bSetupUndo);
+    void DisconnectCyclicConnectors(bool bSetupUndo);
+    void DisconnectConnector(const FRigElementKey& InConnectorKey, bool bDisconnectSubModules, bool bSetupUndo);
+    void DeleteModule(FString InModulePath, bool bSetupUndo);
+    void ConnectConnectorToElement(const FRigElementKey& InConnectorKey, const FRigElementKey& InTargetKey, bool bSetupUndo, bool bAutoResolveOtherConnectors, bool bCheckValidConnection);
+    void CanConnectConnectorToElement(const FRigElementKey& InConnectorKey, const FRigElementKey& InTargetKey, FText& OutErrorMessage);
+    void BindModuleVariable(FString InModulePath, const FName& InVariableName, FString InSourcePath, bool bSetupUndo);
+    void AutoConnectSecondaryConnectors(const TArray<FRigElementKey>& InConnectorKeys, bool bReplaceExistingConnections, bool bSetupUndo);
+    void AutoConnectModules(const TArray<FString>& InModulePaths, bool bReplaceExistingConnections, bool bSetupUndo);
+    void AddModule(const FName& InModuleName, TSubclassOf<class UControlRig> InClass, FString InParentModulePath, bool bSetupUndo);
 }; // Size: 0x50
 
 class UModularRigRuleManager : public UObject
@@ -5304,7 +5304,7 @@ class UMovieSceneControlRigParameterSection : public UMovieSceneParameterSection
     TArray<bool> ControlsMask;                                                        // 0x01B0 (size: 0x10)
     FMovieSceneTransformMask TransformMask;                                           // 0x01C0 (size: 0x4)
     FMovieSceneFloatChannel Weight;                                                   // 0x01C8 (size: 0x110)
-    TMap<class FName, class FChannelMapInfo> ControlChannelMap;                       // 0x02D8 (size: 0x50)
+    TMap<FName, FChannelMapInfo> ControlChannelMap;                                   // 0x02D8 (size: 0x50)
     TArray<FEnumParameterNameAndCurve> EnumParameterNamesAndCurves;                   // 0x0328 (size: 0x10)
     TArray<FIntegerParameterNameAndCurve> IntegerParameterNamesAndCurves;             // 0x0338 (size: 0x10)
     TArray<FSpaceControlNameAndChannel> SpaceChannels;                                // 0x0348 (size: 0x10)
@@ -5316,11 +5316,11 @@ class UMovieSceneControlRigParameterTrack : public UMovieSceneNameableTrack
 {
     class UControlRig* ControlRig;                                                    // 0x00D8 (size: 0x8)
     class UMovieSceneSection* SectionToKey;                                           // 0x00E0 (size: 0x8)
-    TArray<class UMovieSceneSection*> Sections;                                       // 0x00E8 (size: 0x10)
+    TArray<UMovieSceneSection*> Sections;                                             // 0x00E8 (size: 0x10)
     FName TrackName;                                                                  // 0x00F8 (size: 0x8)
-    TMap<class FName, class FControlRotationOrder> ControlsRotationOrder;             // 0x0100 (size: 0x50)
+    TMap<FName, FControlRotationOrder> ControlsRotationOrder;                         // 0x0100 (size: 0x50)
     int32 PriorityOrder;                                                              // 0x0150 (size: 0x4)
-    TMap<class TWeakObjectPtr<UWorld>, class UControlRig*> GameWorldControlRigs;      // 0x0158 (size: 0x50)
+    TMap<TWeakObjectPtr<class UWorld>, UControlRig*> GameWorldControlRigs;            // 0x0158 (size: 0x50)
 
 }; // Size: 0x1A8
 
@@ -5335,41 +5335,41 @@ class URigHierarchy : public UObject
     int32 TransformStackIndex;                                                        // 0x01D4 (size: 0x4)
     class URigHierarchyController* HierarchyController;                               // 0x0250 (size: 0x8)
     class UModularRigRuleManager* RuleManager;                                        // 0x0260 (size: 0x8)
-    TMap<class FRigElementKey, class FRigElementKey> PreviousNameMap;                 // 0x02B8 (size: 0x50)
+    TMap<FRigElementKey, FRigElementKey> PreviousNameMap;                             // 0x02B8 (size: 0x50)
     class URigHierarchy* HierarchyForCacheValidation;                                 // 0x0400 (size: 0x8)
 
     void UnsetCurveValueByIndex(int32 InElementIndex, bool bSetupUndo);
     void UnsetCurveValue(FRigElementKey InKey, bool bSetupUndo);
-    bool SwitchToWorldSpace(FRigElementKey InChild, bool bInitial, bool bAffectChildren);
-    bool SwitchToParent(FRigElementKey InChild, FRigElementKey InParent, bool bInitial, bool bAffectChildren);
-    bool SwitchToDefaultParent(FRigElementKey InChild, bool bInitial, bool bAffectChildren);
-    TArray<FRigElementKey> SortKeys(const TArray<FRigElementKey>& InKeys);
-    bool SetVectorMetadata(FRigElementKey InItem, FName InMetadataName, FVector InValue);
-    bool SetVectorArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<FVector> InValue);
-    bool SetTransformMetadata(FRigElementKey InItem, FName InMetadataName, FTransform InValue);
-    bool SetTransformArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<FTransform> InValue);
-    bool SetTag(FRigElementKey InItem, FName InTag);
-    bool SetRotatorMetadata(FRigElementKey InItem, FName InMetadataName, FRotator InValue);
-    bool SetRotatorArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<FRotator> InValue);
-    bool SetRigElementKeyMetadata(FRigElementKey InItem, FName InMetadataName, FRigElementKey InValue);
-    bool SetRigElementKeyArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<FRigElementKey> InValue);
-    bool SetQuatMetadata(FRigElementKey InItem, FName InMetadataName, FQuat InValue);
-    bool SetQuatArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<FQuat> InValue);
+    void SwitchToWorldSpace(FRigElementKey InChild, bool bInitial, bool bAffectChildren);
+    void SwitchToParent(FRigElementKey InChild, FRigElementKey InParent, bool bInitial, bool bAffectChildren);
+    void SwitchToDefaultParent(FRigElementKey InChild, bool bInitial, bool bAffectChildren);
+    void SortKeys(const TArray<FRigElementKey>& InKeys);
+    void SetVectorMetadata(FRigElementKey InItem, FName InMetadataName, FVector InValue);
+    void SetVectorArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<FVector> InValue);
+    void SetTransformMetadata(FRigElementKey InItem, FName InMetadataName, FTransform InValue);
+    void SetTransformArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<FTransform> InValue);
+    void SetTag(FRigElementKey InItem, FName InTag);
+    void SetRotatorMetadata(FRigElementKey InItem, FName InMetadataName, FRotator InValue);
+    void SetRotatorArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<FRotator> InValue);
+    void SetRigElementKeyMetadata(FRigElementKey InItem, FName InMetadataName, FRigElementKey InValue);
+    void SetRigElementKeyArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<FRigElementKey> InValue);
+    void SetQuatMetadata(FRigElementKey InItem, FName InMetadataName, FQuat InValue);
+    void SetQuatArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<FQuat> InValue);
     void SetPose_ForBlueprint(FRigPose InPose);
-    bool SetParentWeightArray(FRigElementKey InChild, TArray<FRigElementWeight> InWeights, bool bInitial, bool bAffectChildren);
-    bool SetParentWeight(FRigElementKey InChild, FRigElementKey InParent, FRigElementWeight InWeight, bool bInitial, bool bAffectChildren);
-    bool SetNameMetadata(FRigElementKey InItem, FName InMetadataName, FName InValue);
-    bool SetNameArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<FName> InValue);
+    void SetParentWeightArray(FRigElementKey InChild, TArray<FRigElementWeight> InWeights, bool bInitial, bool bAffectChildren);
+    void SetParentWeight(FRigElementKey InChild, FRigElementKey InParent, FRigElementWeight InWeight, bool bInitial, bool bAffectChildren);
+    void SetNameMetadata(FRigElementKey InItem, FName InMetadataName, FName InValue);
+    void SetNameArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<FName> InValue);
     void SetLocalTransformByIndex(int32 InElementIndex, FTransform InTransform, bool bInitial, bool bAffectChildren, bool bSetupUndo, bool bPrintPythonCommands);
     void SetLocalTransform(FRigElementKey InKey, FTransform InTransform, bool bInitial, bool bAffectChildren, bool bSetupUndo, bool bPrintPythonCommands);
-    bool SetLinearColorMetadata(FRigElementKey InItem, FName InMetadataName, FLinearColor InValue);
-    bool SetLinearColorArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<FLinearColor> InValue);
-    bool SetInt32Metadata(FRigElementKey InItem, FName InMetadataName, int32 InValue);
-    bool SetInt32ArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<int32> InValue);
+    void SetLinearColorMetadata(FRigElementKey InItem, FName InMetadataName, FLinearColor InValue);
+    void SetLinearColorArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<FLinearColor> InValue);
+    void SetInt32Metadata(FRigElementKey InItem, FName InMetadataName, int32 InValue);
+    void SetInt32ArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<int32> InValue);
     void SetGlobalTransformByIndex(int32 InElementIndex, FTransform InTransform, bool bInitial, bool bAffectChildren, bool bSetupUndo, bool bPrintPythonCommand);
     void SetGlobalTransform(FRigElementKey InKey, FTransform InTransform, bool bInitial, bool bAffectChildren, bool bSetupUndo, bool bPrintPythonCommand);
-    bool SetFloatMetadata(FRigElementKey InItem, FName InMetadataName, float InValue);
-    bool SetFloatArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<float> InValue);
+    void SetFloatMetadata(FRigElementKey InItem, FName InMetadataName, float InValue);
+    void SetFloatArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<float> InValue);
     void SetCurveValueByIndex(int32 InElementIndex, float InValue, bool bSetupUndo);
     void SetCurveValue(FRigElementKey InKey, float InValue, bool bSetupUndo);
     void SetControlVisibilityByIndex(int32 InElementIndex, bool bVisibility);
@@ -5390,170 +5390,170 @@ class URigHierarchy : public UObject
     void SetControlOffsetTransform(FRigElementKey InKey, FTransform InTransform, bool bInitial, bool bAffectChildren, bool bSetupUndo, bool bPrintPythonCommands);
     void SetConnectorSettingsByIndex(int32 InElementIndex, FRigConnectorSettings InSettings, bool bSetupUndo, bool bForce, bool bPrintPythonCommands);
     void SetConnectorSettings(FRigElementKey InKey, FRigConnectorSettings InSettings, bool bSetupUndo, bool bForce, bool bPrintPythonCommands);
-    bool SetBoolMetadata(FRigElementKey InItem, FName InMetadataName, bool InValue);
-    bool SetBoolArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<bool> InValue);
+    void SetBoolMetadata(FRigElementKey InItem, FName InMetadataName, bool InValue);
+    void SetBoolArrayMetadata(FRigElementKey InItem, FName InMetadataName, TArray<bool> InValue);
     void SendAutoKeyEvent(FRigElementKey InElement, float InOffsetInSeconds, bool bAsynchronous);
-    TArray<FRigElementKey> RestoreSocketsFromStates(TArray<FRigSocketState> InStates, bool bSetupUndoRedo);
-    TArray<FRigElementKey> RestoreConnectorsFromStates(TArray<FRigConnectorState> InStates, bool bSetupUndoRedo);
+    void RestoreSocketsFromStates(TArray<FRigSocketState> InStates, bool bSetupUndoRedo);
+    void RestoreConnectorsFromStates(TArray<FRigConnectorState> InStates, bool bSetupUndoRedo);
     void ResetToDefault();
     void ResetPoseToInitial(ERigElementType InTypeFilter);
     void ResetCurveValues();
     void Reset();
-    bool RemoveMetadata(FRigElementKey InItem, FName InMetadataName);
-    bool RemoveAllMetadata(FRigElementKey InItem);
-    int32 Num();
-    FRigControlValue MakeControlValueFromVector2D(FVector2D InValue);
-    FRigControlValue MakeControlValueFromVector(FVector InValue);
-    FRigControlValue MakeControlValueFromTransformNoScale(FTransformNoScale InValue);
-    FRigControlValue MakeControlValueFromTransform(FTransform InValue);
-    FRigControlValue MakeControlValueFromRotator(FRotator InValue);
-    FRigControlValue MakeControlValueFromInt(int32 InValue);
-    FRigControlValue MakeControlValueFromFloat(float InValue);
-    FRigControlValue MakeControlValueFromEulerTransform(FEulerTransform InValue);
-    FRigControlValue MakeControlValueFromBool(bool InValue);
-    bool IsValidIndex(int32 InElementIndex);
-    bool IsSelectedByIndex(int32 InIndex);
-    bool IsSelected(FRigElementKey InKey);
-    bool IsProcedural(const FRigElementKey& InKey);
-    bool IsParentedTo(FRigElementKey InChild, FRigElementKey InParent);
-    bool IsCurveValueSetByIndex(int32 InElementIndex);
-    bool IsCurveValueSet(FRigElementKey InKey);
-    bool IsControllerAvailable();
-    bool HasTag(FRigElementKey InItem, FName InTag);
-    FVector GetVectorMetadata(FRigElementKey InItem, FName InMetadataName, FVector DefaultValue);
-    FVector GetVectorFromControlValue(FRigControlValue InValue);
-    TArray<FVector> GetVectorArrayMetadata(FRigElementKey InItem, FName InMetadataName);
-    FVector2D GetVector2DFromControlValue(FRigControlValue InValue);
-    FTransformNoScale GetTransformNoScaleFromControlValue(FRigControlValue InValue);
-    FTransform GetTransformMetadata(FRigElementKey InItem, FName InMetadataName, FTransform DefaultValue);
-    FTransform GetTransformFromControlValue(FRigControlValue InValue);
-    TArray<FTransform> GetTransformArrayMetadata(FRigElementKey InItem, FName InMetadataName);
-    TArray<FName> GetTags(FRigElementKey InItem);
-    TArray<FRigSocketState> GetSocketStates();
-    TArray<FRigElementKey> GetSocketKeys(bool bTraverse);
-    TArray<FRigElementKey> GetSelectedKeys(ERigElementType InTypeFilter);
-    class UModularRigRuleManager* GetRuleManager(bool bCreateIfNeeded);
-    FRotator GetRotatorMetadata(FRigElementKey InItem, FName InMetadataName, FRotator DefaultValue);
-    FRotator GetRotatorFromControlValue(FRigControlValue InValue);
-    TArray<FRotator> GetRotatorArrayMetadata(FRigElementKey InItem, FName InMetadataName);
-    TArray<FRigElementKey> GetRootElementKeys();
-    TArray<FRigElementKey> GetRigidBodyKeys(bool bTraverse);
-    FRigElementKey GetRigElementKeyMetadata(FRigElementKey InItem, FName InMetadataName, FRigElementKey DefaultValue);
-    TArray<FRigElementKey> GetRigElementKeyArrayMetadata(FRigElementKey InItem, FName InMetadataName);
-    TArray<FRigElementKey> GetReferenceKeys(bool bTraverse);
-    FQuat GetQuatMetadata(FRigElementKey InItem, FName InMetadataName, FQuat DefaultValue);
-    TArray<FQuat> GetQuatArrayMetadata(FRigElementKey InItem, FName InMetadataName);
-    FRigElementKey GetPreviousParent(const FRigElementKey& InKey);
-    FName GetPreviousName(const FRigElementKey& InKey);
-    FRigPose GetPose(bool bInitial, bool bIncludeTransientControls);
-    TArray<FRigElementWeight> GetParentWeightArray(FRigElementKey InChild, bool bInitial);
-    FRigElementWeight GetParentWeight(FRigElementKey InChild, FRigElementKey InParent, bool bInitial);
-    FTransform GetParentTransformByIndex(int32 InElementIndex, bool bInitial);
-    FTransform GetParentTransform(FRigElementKey InKey, bool bInitial);
-    TArray<FRigElementKey> GetParents(FRigElementKey InKey, bool bRecursive);
-    int32 GetNumberOfParents(FRigElementKey InKey);
-    TArray<FRigElementKey> GetNullKeys(bool bTraverse);
-    FName GetNameSpaceFName(FRigElementKey InItem);
-    FString GetNameSpace(FRigElementKey InItem);
-    FName GetNameMetadata(FRigElementKey InItem, FName InMetadataName, FName DefaultValue);
-    TArray<FName> GetNameArrayMetadata(FRigElementKey InItem, FName InMetadataName);
-    FName GetModulePathFName(FRigElementKey InItem);
-    FString GetModulePath(FRigElementKey InItem);
-    ERigMetadataType GetMetadataType(FRigElementKey InItem, FName InMetadataName);
-    TArray<FName> GetMetadataNames(FRigElementKey InItem);
-    FTransform GetLocalTransformByIndex(int32 InElementIndex, bool bInitial);
-    FTransform GetLocalTransform(FRigElementKey InKey, bool bInitial);
-    int32 GetLocalIndex_ForBlueprint(FRigElementKey InKey);
-    FTransform GetLocalControlShapeTransformByIndex(int32 InElementIndex, bool bInitial);
-    FTransform GetLocalControlShapeTransform(FRigElementKey InKey, bool bInitial);
-    FLinearColor GetLinearColorMetadata(FRigElementKey InItem, FName InMetadataName, FLinearColor DefaultValue);
-    TArray<FLinearColor> GetLinearColorArrayMetadata(FRigElementKey InItem, FName InMetadataName);
-    TArray<FRigElementKey> GetKeys(const TArray<int32> InElementIndices);
-    FRigElementKey GetKey(int32 InElementIndex);
-    int32 GetIntFromControlValue(FRigControlValue InValue);
-    int32 GetInt32Metadata(FRigElementKey InItem, FName InMetadataName, int32 DefaultValue);
-    TArray<int32> GetInt32ArrayMetadata(FRigElementKey InItem, FName InMetadataName);
-    int32 GetIndex_ForBlueprint(FRigElementKey InKey);
-    FTransform GetGlobalTransformByIndex(int32 InElementIndex, bool bInitial);
-    FTransform GetGlobalTransform(FRigElementKey InKey, bool bInitial);
-    FTransform GetGlobalControlShapeTransformByIndex(int32 InElementIndex, bool bInitial);
-    FTransform GetGlobalControlShapeTransform(FRigElementKey InKey, bool bInitial);
-    FTransform GetGlobalControlOffsetTransformByIndex(int32 InElementIndex, bool bInitial);
-    FTransform GetGlobalControlOffsetTransform(FRigElementKey InKey, bool bInitial);
-    float GetFloatMetadata(FRigElementKey InItem, FName InMetadataName, float DefaultValue);
-    float GetFloatFromControlValue(FRigControlValue InValue);
-    TArray<float> GetFloatArrayMetadata(FRigElementKey InItem, FName InMetadataName);
-    FRigElementKey GetFirstParent(FRigElementKey InKey);
-    FEulerTransform GetEulerTransformFromControlValue(FRigControlValue InValue);
-    FRigElementKey GetDefaultParent(FRigElementKey InKey);
-    float GetCurveValueByIndex(int32 InElementIndex);
-    float GetCurveValue(FRigElementKey InKey);
-    TArray<FRigElementKey> GetCurveKeys();
-    FRigControlValue GetControlValueByIndex(int32 InElementIndex, ERigControlValueType InValueType);
-    FRigControlValue GetControlValue(FRigElementKey InKey, ERigControlValueType InValueType);
-    FRotator GetControlPreferredRotatorByIndex(int32 InElementIndex, bool bInitial);
-    FRotator GetControlPreferredRotator(FRigElementKey InKey, bool bInitial);
-    EEulerRotationOrder GetControlPreferredEulerRotationOrderByIndex(int32 InElementIndex, bool bFromSettings);
-    EEulerRotationOrder GetControlPreferredEulerRotationOrder(FRigElementKey InKey, bool bFromSettings);
-    FVector GetControlPreferredEulerAnglesByIndex(int32 InElementIndex, EEulerRotationOrder InRotationOrder, bool bInitial);
-    FVector GetControlPreferredEulerAngles(FRigElementKey InKey, EEulerRotationOrder InRotationOrder, bool bInitial);
-    class URigHierarchyController* GetController(bool bCreateIfNeeded);
-    TArray<FRigElementKey> GetControlKeys(bool bTraverse);
-    TArray<FRigConnectorState> GetConnectorStates();
-    TArray<FRigElementKey> GetConnectorKeys(bool bTraverse);
-    TArray<FRigElementKey> GetChildren(FRigElementKey InKey, bool bRecursive);
-    bool GetBoolMetadata(FRigElementKey InItem, FName InMetadataName, bool DefaultValue);
-    TArray<bool> GetBoolArrayMetadata(FRigElementKey InItem, FName InMetadataName);
-    TArray<FRigElementKey> GetBoneKeys(bool bTraverse);
-    TArray<FRigElementKey> GetAllKeys_ForBlueprint(bool bTraverse);
-    FRigNullElement FindNull_ForBlueprintOnly(const FRigElementKey& InKey);
-    FRigControlElement FindControl_ForBlueprintOnly(const FRigElementKey& InKey);
-    FRigBoneElement FindBone_ForBlueprintOnly(const FRigElementKey& InKey);
+    void RemoveMetadata(FRigElementKey InItem, FName InMetadataName);
+    void RemoveAllMetadata(FRigElementKey InItem);
+    void Num();
+    void MakeControlValueFromVector2D(FVector2D InValue);
+    void MakeControlValueFromVector(FVector InValue);
+    void MakeControlValueFromTransformNoScale(FTransformNoScale InValue);
+    void MakeControlValueFromTransform(FTransform InValue);
+    void MakeControlValueFromRotator(FRotator InValue);
+    void MakeControlValueFromInt(int32 InValue);
+    void MakeControlValueFromFloat(float InValue);
+    void MakeControlValueFromEulerTransform(FEulerTransform InValue);
+    void MakeControlValueFromBool(bool InValue);
+    void IsValidIndex(int32 InElementIndex);
+    void IsSelectedByIndex(int32 InIndex);
+    void IsSelected(FRigElementKey InKey);
+    void IsProcedural(const FRigElementKey& InKey);
+    void IsParentedTo(FRigElementKey InChild, FRigElementKey InParent);
+    void IsCurveValueSetByIndex(int32 InElementIndex);
+    void IsCurveValueSet(FRigElementKey InKey);
+    void IsControllerAvailable();
+    void HasTag(FRigElementKey InItem, FName InTag);
+    void GetVectorMetadata(FRigElementKey InItem, FName InMetadataName, FVector DefaultValue);
+    void GetVectorFromControlValue(FRigControlValue InValue);
+    void GetVectorArrayMetadata(FRigElementKey InItem, FName InMetadataName);
+    void GetVector2DFromControlValue(FRigControlValue InValue);
+    void GetTransformNoScaleFromControlValue(FRigControlValue InValue);
+    void GetTransformMetadata(FRigElementKey InItem, FName InMetadataName, FTransform DefaultValue);
+    void GetTransformFromControlValue(FRigControlValue InValue);
+    void GetTransformArrayMetadata(FRigElementKey InItem, FName InMetadataName);
+    void GetTags(FRigElementKey InItem);
+    void GetSocketStates();
+    void GetSocketKeys(bool bTraverse);
+    void GetSelectedKeys(ERigElementType InTypeFilter);
+    void GetRuleManager(bool bCreateIfNeeded);
+    void GetRotatorMetadata(FRigElementKey InItem, FName InMetadataName, FRotator DefaultValue);
+    void GetRotatorFromControlValue(FRigControlValue InValue);
+    void GetRotatorArrayMetadata(FRigElementKey InItem, FName InMetadataName);
+    void GetRootElementKeys();
+    void GetRigidBodyKeys(bool bTraverse);
+    void GetRigElementKeyMetadata(FRigElementKey InItem, FName InMetadataName, FRigElementKey DefaultValue);
+    void GetRigElementKeyArrayMetadata(FRigElementKey InItem, FName InMetadataName);
+    void GetReferenceKeys(bool bTraverse);
+    void GetQuatMetadata(FRigElementKey InItem, FName InMetadataName, FQuat DefaultValue);
+    void GetQuatArrayMetadata(FRigElementKey InItem, FName InMetadataName);
+    void GetPreviousParent(const FRigElementKey& InKey);
+    void GetPreviousName(const FRigElementKey& InKey);
+    void GetPose(bool bInitial, bool bIncludeTransientControls);
+    void GetParentWeightArray(FRigElementKey InChild, bool bInitial);
+    void GetParentWeight(FRigElementKey InChild, FRigElementKey InParent, bool bInitial);
+    void GetParentTransformByIndex(int32 InElementIndex, bool bInitial);
+    void GetParentTransform(FRigElementKey InKey, bool bInitial);
+    void GetParents(FRigElementKey InKey, bool bRecursive);
+    void GetNumberOfParents(FRigElementKey InKey);
+    void GetNullKeys(bool bTraverse);
+    void GetNameSpaceFName(FRigElementKey InItem);
+    void GetNameSpace(FRigElementKey InItem);
+    void GetNameMetadata(FRigElementKey InItem, FName InMetadataName, FName DefaultValue);
+    void GetNameArrayMetadata(FRigElementKey InItem, FName InMetadataName);
+    void GetModulePathFName(FRigElementKey InItem);
+    void GetModulePath(FRigElementKey InItem);
+    void GetMetadataType(FRigElementKey InItem, FName InMetadataName);
+    void GetMetadataNames(FRigElementKey InItem);
+    void GetLocalTransformByIndex(int32 InElementIndex, bool bInitial);
+    void GetLocalTransform(FRigElementKey InKey, bool bInitial);
+    void GetLocalIndex_ForBlueprint(FRigElementKey InKey);
+    void GetLocalControlShapeTransformByIndex(int32 InElementIndex, bool bInitial);
+    void GetLocalControlShapeTransform(FRigElementKey InKey, bool bInitial);
+    void GetLinearColorMetadata(FRigElementKey InItem, FName InMetadataName, FLinearColor DefaultValue);
+    void GetLinearColorArrayMetadata(FRigElementKey InItem, FName InMetadataName);
+    void GetKeys(const TArray<int32> InElementIndices);
+    void GetKey(int32 InElementIndex);
+    void GetIntFromControlValue(FRigControlValue InValue);
+    void GetInt32Metadata(FRigElementKey InItem, FName InMetadataName, int32 DefaultValue);
+    void GetInt32ArrayMetadata(FRigElementKey InItem, FName InMetadataName);
+    void GetIndex_ForBlueprint(FRigElementKey InKey);
+    void GetGlobalTransformByIndex(int32 InElementIndex, bool bInitial);
+    void GetGlobalTransform(FRigElementKey InKey, bool bInitial);
+    void GetGlobalControlShapeTransformByIndex(int32 InElementIndex, bool bInitial);
+    void GetGlobalControlShapeTransform(FRigElementKey InKey, bool bInitial);
+    void GetGlobalControlOffsetTransformByIndex(int32 InElementIndex, bool bInitial);
+    void GetGlobalControlOffsetTransform(FRigElementKey InKey, bool bInitial);
+    void GetFloatMetadata(FRigElementKey InItem, FName InMetadataName, float DefaultValue);
+    void GetFloatFromControlValue(FRigControlValue InValue);
+    void GetFloatArrayMetadata(FRigElementKey InItem, FName InMetadataName);
+    void GetFirstParent(FRigElementKey InKey);
+    void GetEulerTransformFromControlValue(FRigControlValue InValue);
+    void GetDefaultParent(FRigElementKey InKey);
+    void GetCurveValueByIndex(int32 InElementIndex);
+    void GetCurveValue(FRigElementKey InKey);
+    void GetCurveKeys();
+    void GetControlValueByIndex(int32 InElementIndex, ERigControlValueType InValueType);
+    void GetControlValue(FRigElementKey InKey, ERigControlValueType InValueType);
+    void GetControlPreferredRotatorByIndex(int32 InElementIndex, bool bInitial);
+    void GetControlPreferredRotator(FRigElementKey InKey, bool bInitial);
+    void GetControlPreferredEulerRotationOrderByIndex(int32 InElementIndex, bool bFromSettings);
+    void GetControlPreferredEulerRotationOrder(FRigElementKey InKey, bool bFromSettings);
+    void GetControlPreferredEulerAnglesByIndex(int32 InElementIndex, EEulerRotationOrder InRotationOrder, bool bInitial);
+    void GetControlPreferredEulerAngles(FRigElementKey InKey, EEulerRotationOrder InRotationOrder, bool bInitial);
+    void GetController(bool bCreateIfNeeded);
+    void GetControlKeys(bool bTraverse);
+    void GetConnectorStates();
+    void GetConnectorKeys(bool bTraverse);
+    void GetChildren(FRigElementKey InKey, bool bRecursive);
+    void GetBoolMetadata(FRigElementKey InItem, FName InMetadataName, bool DefaultValue);
+    void GetBoolArrayMetadata(FRigElementKey InItem, FName InMetadataName);
+    void GetBoneKeys(bool bTraverse);
+    void GetAllKeys_ForBlueprint(bool bTraverse);
+    void FindNull_ForBlueprintOnly(const FRigElementKey& InKey);
+    void FindControl_ForBlueprintOnly(const FRigElementKey& InKey);
+    void FindBone_ForBlueprintOnly(const FRigElementKey& InKey);
     void CopyPose(class URigHierarchy* InHierarchy, bool bCurrent, bool bInitial, bool bWeights, bool bMatchPoseInGlobalIfNeeded);
     void CopyHierarchy(class URigHierarchy* InHierarchy);
-    bool Contains_ForBlueprint(FRigElementKey InKey);
+    void Contains_ForBlueprint(FRigElementKey InKey);
 }; // Size: 0x4D0
 
 class URigHierarchyController : public UObject
 {
     bool bReportWarningsAndErrors;                                                    // 0x0028 (size: 0x1)
 
-    bool SetSelection(const TArray<FRigElementKey>& InKeys, bool bPrintPythonCommand);
-    bool SetParent(FRigElementKey InChild, FRigElementKey InParent, bool bMaintainGlobalTransform, bool bSetupUndo, bool bPrintPythonCommand);
+    void SetSelection(const TArray<FRigElementKey>& InKeys, bool bPrintPythonCommand);
+    void SetParent(FRigElementKey InChild, FRigElementKey InParent, bool bMaintainGlobalTransform, bool bSetupUndo, bool bPrintPythonCommand);
     void SetHierarchy(class URigHierarchy* InHierarchy);
-    FName SetDisplayName(FRigElementKey InControl, FName InDisplayName, bool bRenameElement, bool bSetupUndo, bool bPrintPythonCommand);
-    bool SetControlSettings(FRigElementKey InKey, FRigControlSettings InSettings, bool bSetupUndo);
-    bool SelectElement(FRigElementKey InKey, bool bSelect, bool bClearSelection);
-    bool ReorderElement(FRigElementKey InElement, int32 InIndex, bool bSetupUndo, bool bPrintPythonCommand);
-    FRigElementKey RenameElement(FRigElementKey InElement, FName InName, bool bSetupUndo, bool bPrintPythonCommand, bool bClearSelection);
-    bool RemoveParent(FRigElementKey InChild, FRigElementKey InParent, bool bMaintainGlobalTransform, bool bSetupUndo, bool bPrintPythonCommand);
-    bool RemoveElement(FRigElementKey InElement, bool bSetupUndo, bool bPrintPythonCommand);
-    bool RemoveAllParents(FRigElementKey InChild, bool bMaintainGlobalTransform, bool bSetupUndo, bool bPrintPythonCommand);
-    TArray<FRigElementKey> MirrorElements(TArray<FRigElementKey> InKeys, FRigVMMirrorSettings InSettings, bool bSelectNewElements, bool bSetupUndo, bool bPrintPythonCommands);
-    TArray<FRigElementKey> ImportFromText(FString InContent, bool bReplaceExistingElements, bool bSelectNewElements, bool bSetupUndo, bool bPrintPythonCommands);
-    TArray<FRigElementKey> ImportCurves(class USkeleton* InSkeleton, FName InNameSpace, bool bSelectCurves, bool bSetupUndo, bool bPrintPythonCommand);
-    TArray<FRigElementKey> ImportBones(class USkeleton* InSkeleton, FName InNameSpace, bool bReplaceExistingBones, bool bRemoveObsoleteBones, bool bSelectBones, bool bSetupUndo, bool bPrintPythonCommand);
-    class URigHierarchy* GetHierarchy();
-    FRigControlSettings GetControlSettings(FRigElementKey InKey);
-    FString ExportToText(TArray<FRigElementKey> InKeys);
-    FString ExportSelectionToText();
-    TArray<FRigElementKey> DuplicateElements(TArray<FRigElementKey> InKeys, bool bSelectNewElements, bool bSetupUndo, bool bPrintPythonCommands);
-    bool DeselectElement(FRigElementKey InKey);
-    bool ClearSelection();
-    FRigElementKey AddSocket(FName InName, FRigElementKey InParent, FTransform InTransform, bool bTransformInGlobal, const FLinearColor& InColor, FString InDescription, bool bSetupUndo, bool bPrintPythonCommand);
-    FRigElementKey AddRigidBody(FName InName, FRigElementKey InParent, FRigRigidBodySettings InSettings, FTransform InLocalTransform, bool bSetupUndo, bool bPrintPythonCommand);
-    bool AddParent(FRigElementKey InChild, FRigElementKey InParent, float InWeight, bool bMaintainGlobalTransform, bool bSetupUndo);
-    FRigElementKey AddNull(FName InName, FRigElementKey InParent, FTransform InTransform, bool bTransformInGlobal, bool bSetupUndo, bool bPrintPythonCommand);
-    FRigElementKey AddCurve(FName InName, float InValue, bool bSetupUndo, bool bPrintPythonCommand);
-    FRigElementKey AddControl_ForBlueprint(FName InName, FRigElementKey InParent, FRigControlSettings InSettings, FRigControlValue InValue, bool bSetupUndo, bool bPrintPythonCommand);
-    FRigElementKey AddConnector(FName InName, FRigConnectorSettings InSettings, bool bSetupUndo, bool bPrintPythonCommand);
-    FRigElementKey AddBone(FName InName, FRigElementKey InParent, FTransform InTransform, bool bTransformInGlobal, ERigBoneType InBoneType, bool bSetupUndo, bool bPrintPythonCommand);
-    FRigElementKey AddAnimationChannel_ForBlueprint(FName InName, FRigElementKey InParentControl, FRigControlSettings InSettings, bool bSetupUndo, bool bPrintPythonCommand);
+    void SetDisplayName(FRigElementKey InControl, FName InDisplayName, bool bRenameElement, bool bSetupUndo, bool bPrintPythonCommand);
+    void SetControlSettings(FRigElementKey InKey, FRigControlSettings InSettings, bool bSetupUndo);
+    void SelectElement(FRigElementKey InKey, bool bSelect, bool bClearSelection);
+    void ReorderElement(FRigElementKey InElement, int32 InIndex, bool bSetupUndo, bool bPrintPythonCommand);
+    void RenameElement(FRigElementKey InElement, FName InName, bool bSetupUndo, bool bPrintPythonCommand, bool bClearSelection);
+    void RemoveParent(FRigElementKey InChild, FRigElementKey InParent, bool bMaintainGlobalTransform, bool bSetupUndo, bool bPrintPythonCommand);
+    void RemoveElement(FRigElementKey InElement, bool bSetupUndo, bool bPrintPythonCommand);
+    void RemoveAllParents(FRigElementKey InChild, bool bMaintainGlobalTransform, bool bSetupUndo, bool bPrintPythonCommand);
+    void MirrorElements(TArray<FRigElementKey> InKeys, FRigVMMirrorSettings InSettings, bool bSelectNewElements, bool bSetupUndo, bool bPrintPythonCommands);
+    void ImportFromText(FString InContent, bool bReplaceExistingElements, bool bSelectNewElements, bool bSetupUndo, bool bPrintPythonCommands);
+    void ImportCurves(class USkeleton* InSkeleton, FName InNameSpace, bool bSelectCurves, bool bSetupUndo, bool bPrintPythonCommand);
+    void ImportBones(class USkeleton* InSkeleton, FName InNameSpace, bool bReplaceExistingBones, bool bRemoveObsoleteBones, bool bSelectBones, bool bSetupUndo, bool bPrintPythonCommand);
+    void GetHierarchy();
+    void GetControlSettings(FRigElementKey InKey);
+    void ExportToText(TArray<FRigElementKey> InKeys);
+    void ExportSelectionToText();
+    void DuplicateElements(TArray<FRigElementKey> InKeys, bool bSelectNewElements, bool bSetupUndo, bool bPrintPythonCommands);
+    void DeselectElement(FRigElementKey InKey);
+    void ClearSelection();
+    void AddSocket(FName InName, FRigElementKey InParent, FTransform InTransform, bool bTransformInGlobal, const FLinearColor& InColor, FString InDescription, bool bSetupUndo, bool bPrintPythonCommand);
+    void AddRigidBody(FName InName, FRigElementKey InParent, FRigRigidBodySettings InSettings, FTransform InLocalTransform, bool bSetupUndo, bool bPrintPythonCommand);
+    void AddParent(FRigElementKey InChild, FRigElementKey InParent, float InWeight, bool bMaintainGlobalTransform, bool bSetupUndo);
+    void AddNull(FName InName, FRigElementKey InParent, FTransform InTransform, bool bTransformInGlobal, bool bSetupUndo, bool bPrintPythonCommand);
+    void AddCurve(FName InName, float InValue, bool bSetupUndo, bool bPrintPythonCommand);
+    void AddControl_ForBlueprint(FName InName, FRigElementKey InParent, FRigControlSettings InSettings, FRigControlValue InValue, bool bSetupUndo, bool bPrintPythonCommand);
+    void AddConnector(FName InName, FRigConnectorSettings InSettings, bool bSetupUndo, bool bPrintPythonCommand);
+    void AddBone(FName InName, FRigElementKey InParent, FTransform InTransform, bool bTransformInGlobal, ERigBoneType InBoneType, bool bSetupUndo, bool bPrintPythonCommand);
+    void AddAnimationChannel_ForBlueprint(FName InName, FRigElementKey InParentControl, FRigControlSettings InSettings, bool bSetupUndo, bool bPrintPythonCommand);
 }; // Size: 0x90
 
 class UTransformableControlHandle : public UTransformableHandle
 {
-    TSoftObjectPtr<UControlRig> ControlRig;                                           // 0x0060 (size: 0x28)
+    TSoftObjectPtr<class UControlRig> ControlRig;                                     // 0x0060 (size: 0x28)
     FName ControlName;                                                                // 0x0088 (size: 0x8)
 
 }; // Size: 0x90

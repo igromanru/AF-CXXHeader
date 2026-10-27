@@ -3,6 +3,6 @@
 
 class ADeployed_LiquidContainer_Barrel_Wood_C : public ADeployed_LiquidContainer_Barrel_C
 {
-}; // Size: 0x960
+}; // Size: 0x950
 
 #endif

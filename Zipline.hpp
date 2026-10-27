@@ -19,12 +19,12 @@ class AZipline_C : public AAbioticActor_C
 
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
-    void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
-    bool IsRadioactive();
+    void GetAttachedPowerCord(TArray<UCableComponent*>& Power Cord Found);
+    void IsRadioactive();
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
     void Landing Damage Multiplier(double Damage, double& DamageMultiplier);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
-    FText GetItemNameText();
+    void GetItemNameText();
     void GetStoredString(FString& String);
     void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void RequiresToolToDismantle(bool& Tool Required);
@@ -32,13 +32,13 @@ class AZipline_C : public AAbioticActor_C
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanLongInteractWith_A(bool& Success);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
+    void GetHighlightComponents(TArray<UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);
     void HasSitLocations(bool& IsSittable);
     void SitLocationParent(class USceneComponent*& ParentComponent);
-    void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
+    void GetItemChangeableData(FAbioticInventoryChangeableData& ChangeableData);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void GetNewButtonPromptLocation(class UActorComponent* Component, FVector& NewLocation);
     void Is Valid Start Location?(class USceneComponent* UsingComponent, bool& Valid);
@@ -49,8 +49,8 @@ class AZipline_C : public AAbioticActor_C
     void InteractWith_B_LocalFX(bool Hold);
     void NPC_InteractWith(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void DeliverString(FString String, bool FromSave);
-    void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbiotic_InventoryItemSlotStruct SlotData);
-    void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbiotic_InventoryItemSlotStruct SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
+    void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbioticInventoryItemSlot SlotData);
+    void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbioticInventoryItemSlot SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
     void OnInteractHighlightStart(class UActorComponent* Component);
     void OnInteractHighlightEnd(class UActorComponent* Component);
     void DeliverInt(bool FromSave, const int32 New Int);

@@ -1,38 +1,38 @@
 #ifndef UE4SS_SDK_BP_Teleporter_ParentBP_HPP
 #define UE4SS_SDK_BP_Teleporter_ParentBP_HPP
 
-class ABP_Teleporter_ParentBP_C : public AActor
+class ABP_Teleporter_ParentBP_C : public ATeleporterParent
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0298 (size: 0x8)
-    class UPointLightComponent* PointLight;                                           // 0x02A0 (size: 0x8)
-    class UAudioComponent* PortalHumLoop;                                             // 0x02A8 (size: 0x8)
-    class UArrowComponent* ExitPoint;                                                 // 0x02B0 (size: 0x8)
-    class UBoxComponent* TeleportOverlapBox;                                          // 0x02B8 (size: 0x8)
-    class UTextRenderComponent* DestText;                                             // 0x02C0 (size: 0x8)
-    class UNiagaraComponent* ParticleLoop;                                            // 0x02C8 (size: 0x8)
-    class USceneComponent* DefaultSceneRoot;                                          // 0x02D0 (size: 0x8)
-    FName MyTeleporterID;                                                             // 0x02D8 (size: 0x8)
-    FName DestinationTeleporterID;                                                    // 0x02E0 (size: 0x8)
-    FName DEMO_DestinationTeleporterID;                                               // 0x02E8 (size: 0x8)
-    bool IsTeleporterActive;                                                          // 0x02F0 (size: 0x1)
-    bool ActivateWhenUsedAsExit;                                                      // 0x02F1 (size: 0x1)
-    FVector OverlapBoxSize;                                                           // 0x02F8 (size: 0x18)
-    bool PlayersOnly;                                                                 // 0x0310 (size: 0x1)
-    bool ZeroExitVelocity;                                                            // 0x0311 (size: 0x1)
-    bool AlphaEndNotice;                                                              // 0x0312 (size: 0x1)
-    TSoftObjectPtr<UMaterialInterface> PortalImage;                                   // 0x0318 (size: 0x28)
-    TSoftObjectPtr<AResourceNode_ParentBP_C> ResourceNodeToActivate;                  // 0x0340 (size: 0x28)
-    TSoftObjectPtr<AButton_Generic_C> ButtonToActivate;                               // 0x0368 (size: 0x28)
-    double TeleportScreenshakeDistance;                                               // 0x0390 (size: 0x8)
-    bool QuieterPortal;                                                               // 0x0398 (size: 0x1)
-    TArray<FBuffDebuffRowHandle> BuffsToApplyOnUse;                                   // 0x03A0 (size: 0x10)
-    TArray<class ABP_Teleporter_ParentBP_C*> PotentialTeleporters;                    // 0x03B0 (size: 0x10)
-    bool FoundTeleporter;                                                             // 0x03C0 (size: 0x1)
-    FWorldFlagRowHandle WorldFlagToTriggerOnUse;                                      // 0x03C8 (size: 0x20)
-    class USoundBase* PortalActivateSound;                                            // 0x03E8 (size: 0x8)
-    bool NoFlashOnEnter;                                                              // 0x03F0 (size: 0x1)
-    TArray<class AActor*> RecentArrivals;                                             // 0x03F8 (size: 0x10)
-    bool NoSoundOnEnter;                                                              // 0x0408 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02A0 (size: 0x8)
+    class UPointLightComponent* PointLight;                                           // 0x02A8 (size: 0x8)
+    class UAudioComponent* PortalHumLoop;                                             // 0x02B0 (size: 0x8)
+    class UArrowComponent* ExitPoint;                                                 // 0x02B8 (size: 0x8)
+    class UBoxComponent* TeleportOverlapBox;                                          // 0x02C0 (size: 0x8)
+    class UTextRenderComponent* DestText;                                             // 0x02C8 (size: 0x8)
+    class UNiagaraComponent* ParticleLoop;                                            // 0x02D0 (size: 0x8)
+    class USceneComponent* DefaultSceneRoot;                                          // 0x02D8 (size: 0x8)
+    FName MyTeleporterID;                                                             // 0x02E0 (size: 0x8)
+    FName DestinationTeleporterID;                                                    // 0x02E8 (size: 0x8)
+    FName DEMO_DestinationTeleporterID;                                               // 0x02F0 (size: 0x8)
+    bool IsTeleporterActive;                                                          // 0x02F8 (size: 0x1)
+    bool ActivateWhenUsedAsExit;                                                      // 0x02F9 (size: 0x1)
+    FVector OverlapBoxSize;                                                           // 0x0300 (size: 0x18)
+    bool PlayersOnly;                                                                 // 0x0318 (size: 0x1)
+    bool ZeroExitVelocity;                                                            // 0x0319 (size: 0x1)
+    bool AlphaEndNotice;                                                              // 0x031A (size: 0x1)
+    TSoftObjectPtr<class UMaterialInterface> PortalImage;                             // 0x0320 (size: 0x28)
+    TSoftObjectPtr<class AResourceNode_ParentBP_C> ResourceNodeToActivate;            // 0x0348 (size: 0x28)
+    TSoftObjectPtr<class AButton_Generic_C> ButtonToActivate;                         // 0x0370 (size: 0x28)
+    double TeleportScreenshakeDistance;                                               // 0x0398 (size: 0x8)
+    bool QuieterPortal;                                                               // 0x03A0 (size: 0x1)
+    TArray<FBuffDebuffRowHandle> BuffsToApplyOnUse;                                   // 0x03A8 (size: 0x10)
+    TArray<ABP_Teleporter_ParentBP_C*> PotentialTeleporters;                          // 0x03B8 (size: 0x10)
+    bool FoundTeleporter;                                                             // 0x03C8 (size: 0x1)
+    FWorldFlagRowHandle WorldFlagToTriggerOnUse;                                      // 0x03D0 (size: 0x10)
+    class USoundBase* PortalActivateSound;                                            // 0x03E0 (size: 0x8)
+    bool NoFlashOnEnter;                                                              // 0x03E8 (size: 0x1)
+    TArray<AActor*> RecentArrivals;                                                   // 0x03F0 (size: 0x10)
+    bool NoSoundOnEnter;                                                              // 0x0400 (size: 0x1)
 
     void AttemptTeleport(class AAbiotic_PlayerCharacter_C* InPlayer);
     void UpdateControlRotation(class AAbiotic_PlayerCharacter_C* Player, class USceneComponent* TeleportLocation);
@@ -52,6 +52,6 @@ class ABP_Teleporter_ParentBP_C : public AActor
     void AddRecentArrival(class ABP_Teleporter_ParentBP_C* Teleporter, const class AActor*& NewArrival);
     void Broadcast_TeleportFX(FVector EnterLocation, FVector ExitLocation);
     void ExecuteUbergraph_BP_Teleporter_ParentBP(int32 EntryPoint);
-}; // Size: 0x409
+}; // Size: 0x401
 
 #endif

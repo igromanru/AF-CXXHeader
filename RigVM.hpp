@@ -344,7 +344,7 @@ struct FRigVMFunctionCompilationData
     TArray<FRigVMFunctionCompilationPropertyDescription> ExternalPropertyDescriptions; // 0x0120 (size: 0x10)
     TArray<FRigVMFunctionCompilationPropertyPath> ExternalPropertyPathDescriptions;   // 0x0130 (size: 0x10)
     TMap<int32, FName> ExternalRegisterIndexToVariable;                               // 0x0140 (size: 0x50)
-    TMap<class FString, class FRigVMOperand> Operands;                                // 0x0190 (size: 0x50)
+    TMap<FString, FRigVMOperand> Operands;                                            // 0x0190 (size: 0x50)
     uint32 Hash;                                                                      // 0x01E0 (size: 0x4)
     bool bEncounteredSurpressedErrors;                                                // 0x01E4 (size: 0x1)
 
@@ -354,7 +354,7 @@ struct FRigVMFunctionCompilationPropertyDescription
 {
     FName Name;                                                                       // 0x0000 (size: 0x8)
     FString CPPType;                                                                  // 0x0008 (size: 0x10)
-    TSoftObjectPtr<UObject> CPPTypeObject;                                            // 0x0018 (size: 0x28)
+    TSoftObjectPtr<class UObject> CPPTypeObject;                                      // 0x0018 (size: 0x28)
     FString DefaultValue;                                                             // 0x0040 (size: 0x10)
 
 }; // Size: 0x50
@@ -3303,12 +3303,12 @@ struct FRigVMGraphFunctionArgument
     FName Name;                                                                       // 0x0000 (size: 0x8)
     FName DisplayName;                                                                // 0x0008 (size: 0x8)
     FName CPPType;                                                                    // 0x0010 (size: 0x8)
-    TSoftObjectPtr<UObject> CPPTypeObject;                                            // 0x0018 (size: 0x28)
+    TSoftObjectPtr<class UObject> CPPTypeObject;                                      // 0x0018 (size: 0x28)
     bool bIsArray;                                                                    // 0x0040 (size: 0x1)
     ERigVMPinDirection Direction;                                                     // 0x0041 (size: 0x1)
     FString DefaultValue;                                                             // 0x0048 (size: 0x10)
     bool bIsConst;                                                                    // 0x0058 (size: 0x1)
-    TMap<class FString, class FText> PathToTooltip;                                   // 0x0060 (size: 0x50)
+    TMap<FString, FText> PathToTooltip;                                               // 0x0060 (size: 0x50)
 
 }; // Size: 0xB0
 
@@ -3403,7 +3403,7 @@ struct FRigVMMemoryContainer
     TArray<FRigVMRegister> Registers;                                                 // 0x0008 (size: 0x10)
     TArray<FRigVMRegisterOffset> RegisterOffsets;                                     // 0x0018 (size: 0x10)
     TArray<uint8> Data;                                                               // 0x0028 (size: 0x10)
-    TArray<class UScriptStruct*> ScriptStructs;                                       // 0x0038 (size: 0x10)
+    TArray<UScriptStruct*> ScriptStructs;                                             // 0x0038 (size: 0x10)
     TMap<FName, int32> NameMap;                                                       // 0x0048 (size: 0x50)
     bool bEncounteredErrorDuringLoad;                                                 // 0x0098 (size: 0x1)
 
@@ -3572,7 +3572,7 @@ struct FRigVMUserWorkflow
     FString ToolTip;                                                                  // 0x0018 (size: 0x10)
     ERigVMUserWorkflowType Type;                                                      // 0x0028 (size: 0x1)
     FRigVMUserWorkflowPerformDynamicDelegate PerformDynamicDelegate;                  // 0x0040 (size: 0x10)
-    bool RigVMPeformUserWorkflowDynamicDelegate(const class URigVMUserWorkflowOptions* InOptions, class UObject* InController);
+    void RigVMPeformUserWorkflowDynamicDelegate(const class URigVMUserWorkflowOptions* InOptions, class UObject* InController);
     UClass* OptionsClass;                                                             // 0x0050 (size: 0x8)
 
 }; // Size: 0x58
@@ -3583,11 +3583,11 @@ class IRigVMGraphFunctionHost : public IInterface
 
 class UDataAssetLink : public UNameSpacedUserData
 {
-    TSoftObjectPtr<UDataAsset> DataAsset;                                             // 0x0100 (size: 0x28)
+    TSoftObjectPtr<class UDataAsset> DataAsset;                                       // 0x0100 (size: 0x28)
     class UDataAsset* DataAssetCached;                                                // 0x0128 (size: 0x8)
 
-    void SetDataAsset(TSoftObjectPtr<UDataAsset> InDataAsset);
-    TSoftObjectPtr<UDataAsset> GetDataAsset();
+    void SetDataAsset(TSoftObjectPtr<class UDataAsset> InDataAsset);
+    void GetDataAsset();
 }; // Size: 0x130
 
 class UDefault__RigVMBlueprintGeneratedClass
@@ -3625,20 +3625,20 @@ class URigVM : public UObject
     void SetParameterValueFloat(const FName& InParameterName, float InValue, int32 InArrayIndex);
     void SetParameterValueDouble(const FName& InParameterName, double InValue, int32 InArrayIndex);
     void SetParameterValueBool(const FName& InParameterName, bool InValue, int32 InArrayIndex);
-    FRigVMStatistics GetStatistics();
-    FString GetRigVMFunctionName(int32 InFunctionIndex);
-    FVector2D GetParameterValueVector2D(const FName& InParameterName, int32 InArrayIndex);
-    FVector GetParameterValueVector(const FName& InParameterName, int32 InArrayIndex);
-    FTransform GetParameterValueTransform(const FName& InParameterName, int32 InArrayIndex);
-    FString GetParameterValueString(const FName& InParameterName, int32 InArrayIndex);
-    FQuat GetParameterValueQuat(const FName& InParameterName, int32 InArrayIndex);
-    FName GetParameterValueName(const FName& InParameterName, int32 InArrayIndex);
-    int32 GetParameterValueInt(const FName& InParameterName, int32 InArrayIndex);
-    float GetParameterValueFloat(const FName& InParameterName, int32 InArrayIndex);
-    double GetParameterValueDouble(const FName& InParameterName, int32 InArrayIndex);
-    bool GetParameterValueBool(const FName& InParameterName, int32 InArrayIndex);
-    bool Execute(FRigVMExtendedExecuteContext& Context, const FName& InEntryName);
-    int32 AddRigVMFunction(class UScriptStruct* InRigVMStruct, const FName& InMethodName);
+    void GetStatistics();
+    void GetRigVMFunctionName(int32 InFunctionIndex);
+    void GetParameterValueVector2D(const FName& InParameterName, int32 InArrayIndex);
+    void GetParameterValueVector(const FName& InParameterName, int32 InArrayIndex);
+    void GetParameterValueTransform(const FName& InParameterName, int32 InArrayIndex);
+    void GetParameterValueString(const FName& InParameterName, int32 InArrayIndex);
+    void GetParameterValueQuat(const FName& InParameterName, int32 InArrayIndex);
+    void GetParameterValueName(const FName& InParameterName, int32 InArrayIndex);
+    void GetParameterValueInt(const FName& InParameterName, int32 InArrayIndex);
+    void GetParameterValueFloat(const FName& InParameterName, int32 InArrayIndex);
+    void GetParameterValueDouble(const FName& InParameterName, int32 InArrayIndex);
+    void GetParameterValueBool(const FName& InParameterName, int32 InArrayIndex);
+    void Execute(FRigVMExtendedExecuteContext& Context, const FName& InEntryName);
+    void AddRigVMFunction(class UScriptStruct* InRigVMStruct, const FName& InMethodName);
 }; // Size: 0x390
 
 class URigVMBlueprintGeneratedClass : public UBlueprintGeneratedClass
@@ -3655,36 +3655,36 @@ class URigVMHost : public UObject
 {
     FRigVMRuntimeSettings VMRuntimeSettings;                                          // 0x0030 (size: 0x18)
     class URigVM* VM;                                                                 // 0x0058 (size: 0x8)
-    TMap<class FString, class FSoftObjectPath> UserDefinedStructGuidToPathName;       // 0x0060 (size: 0x50)
-    TMap<class FString, class FSoftObjectPath> UserDefinedEnumToPathName;             // 0x00B0 (size: 0x50)
+    TMap<FString, FSoftObjectPath> UserDefinedStructGuidToPathName;                   // 0x0060 (size: 0x50)
+    TMap<FString, FSoftObjectPath> UserDefinedEnumToPathName;                         // 0x00B0 (size: 0x50)
     TSet<UObject*> UserDefinedTypesInUse;                                             // 0x0100 (size: 0x50)
     FRigVMDrawContainer DrawContainer;                                                // 0x0158 (size: 0x18)
     TArray<FName> EventQueue;                                                         // 0x0188 (size: 0x10)
-    TArray<class UAssetUserData*> AssetUserData;                                      // 0x0228 (size: 0x10)
+    TArray<UAssetUserData*> AssetUserData;                                            // 0x0228 (size: 0x10)
 
-    bool SupportsEvent(const FName& InEventName);
-    bool SetVariableFromString(const FName& InVariableName, FString InValue);
+    void SupportsEvent(const FName& InEventName);
+    void SetVariableFromString(const FName& InVariableName, FString InValue);
     void SetFramesPerSecond(float InFramesPerSecond);
     void SetDeltaTime(float InDeltaTime);
     void SetAbsoluteTime(float InAbsoluteTime, bool InSetDeltaTimeZero);
     void SetAbsoluteAndDeltaTime(float InAbsoluteTime, float InDeltaTime);
     void RequestRunOnceEvent(const FName& InEventName, int32 InEventIndex);
     void RequestInit();
-    bool RemoveRunOnceEvent(const FName& InEventName);
-    bool IsInitRequired();
-    class URigVM* GetVM();
-    FName GetVariableType(const FName& InVariableName);
-    FString GetVariableAsString(const FName& InVariableName);
-    TArray<FName> GetSupportedEvents();
-    TArray<FName> GetScriptAccessibleVariables();
-    FRigVMExtendedExecuteContext GetExtendedExecuteContext();
-    float GetDeltaTime();
-    float GetCurrentFramesPerSecond();
-    float GetAbsoluteTime();
-    TArray<class URigVMHost*> FindRigVMHosts(class UObject* Outer, TSubclassOf<class URigVMHost> OptionalClass);
-    bool ExecuteEvent(const FName& InEventName);
-    bool Execute(const FName& InEventName);
-    bool CanExecute();
+    void RemoveRunOnceEvent(const FName& InEventName);
+    void IsInitRequired();
+    void GetVM();
+    void GetVariableType(const FName& InVariableName);
+    void GetVariableAsString(const FName& InVariableName);
+    void GetSupportedEvents();
+    void GetScriptAccessibleVariables();
+    void GetExtendedExecuteContext();
+    void GetDeltaTime();
+    void GetCurrentFramesPerSecond();
+    void GetAbsoluteTime();
+    void FindRigVMHosts(class UObject* Outer, TSubclassOf<class URigVMHost> OptionalClass);
+    void ExecuteEvent(const FName& InEventName);
+    void Execute(const FName& InEventName);
+    void CanExecute();
 }; // Size: 0x278
 
 class URigVMMemoryStorage : public UObject
@@ -3704,11 +3704,11 @@ class URigVMUserWorkflowOptions : public UObject
     class UObject* Subject;                                                           // 0x0028 (size: 0x8)
     FRigVMUserWorkflow Workflow;                                                      // 0x0030 (size: 0x58)
 
-    bool RequiresDialog();
+    void RequiresDialog();
     void ReportWarning(FString InMessage);
     void ReportInfo(FString InMessage);
     void ReportError(FString InMessage);
-    bool IsValid();
+    void IsValid();
 }; // Size: 0x98
 
 #endif

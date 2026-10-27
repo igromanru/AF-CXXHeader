@@ -3,6 +3,6 @@
 
 class UDamageType_Fire_Plasma_C : public UDamageType_Fire_C
 {
-}; // Size: 0x290
+}; // Size: 0x280
 
 #endif

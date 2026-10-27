@@ -11,9 +11,9 @@ class UW_OsAppWrapper_C : public UAbioticWidget
     class UImage* WindowBG;                                                           // 0x0308 (size: 0x8)
     FW_OsAppWrapper_COnCloseButtonPressed OnCloseButtonPressed;                       // 0x0310 (size: 0x10)
     void OnCloseButtonPressed(class UW_OsAppWrapper_C* AppWrapper, class UWidget* App);
-    TEnumAsByte<E_OS_Themes::Type> Theme;                                             // 0x0320 (size: 0x1)
+    EOSThemes Theme;                                                                  // 0x0320 (size: 0x1)
     class UWidget* AppContent;                                                        // 0x0328 (size: 0x8)
-    TSoftObjectPtr<UTexture2D> Soft Texture;                                          // 0x0330 (size: 0x28)
+    TSoftObjectPtr<class UTexture2D> Soft Texture;                                    // 0x0330 (size: 0x28)
     FText DisplayName;                                                                // 0x0358 (size: 0x10)
 
     void PreConstruct(bool IsDesignTime);

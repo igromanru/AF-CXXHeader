@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_ServerBrowser_Row_HPP
 #define UE4SS_SDK_W_ServerBrowser_Row_HPP
 
-class UW_ServerBrowser_Row_C : public UUserWidget
+class UW_ServerBrowser_Row_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UCheckBox* CheckBox;                                                        // 0x02E8 (size: 0x8)

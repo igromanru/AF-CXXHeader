@@ -21,8 +21,8 @@ class UW_PopupPleaseWait_C : public UAbioticWidget
     void WidgetAction_CycleCrafting(bool Next, bool& Handled);
     void WidgetAction_CloseMenu(bool& Handled);
     void WidgetAction_CycleMenu(bool Next, bool& Handled);
-    FEventReply OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
-    FEventReply OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
     void Construct();
     void AnimateSprite();
     void ExecuteUbergraph_W_PopupPleaseWait(int32 EntryPoint);

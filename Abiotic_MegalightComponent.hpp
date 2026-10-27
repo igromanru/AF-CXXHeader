@@ -17,7 +17,7 @@ class UAbiotic_MegalightComponent_C : public UActorComponent
     class UMaterialInterface* Material_On;                                            // 0x0110 (size: 0x8)
     class UMaterialInterface* Material_Off;                                           // 0x0118 (size: 0x8)
 
-    bool CanEnableTraces();
+    void CanEnableTraces();
     void IncrementTraceLayer();
     void PerformLightTrace(class USpotLightComponent* SpotLight, class USceneComponent* Mesh, double ConeScale, double RotationOffset);
     void LightTraceHit(FHitResult& HitResult);

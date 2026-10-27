@@ -7,7 +7,7 @@ class AAbiotic_WorldStart_C : public AActor
     class UTextRenderComponent* TextRender;                                           // 0x02A0 (size: 0x8)
     class UBillboardComponent* Billboard;                                             // 0x02A8 (size: 0x8)
     FName WorldStart_ID;                                                              // 0x02B0 (size: 0x8)
-    TEnumAsByte<E_Factions::Type> Team;                                               // 0x02B8 (size: 0x1)
+    EFactions Team;                                                                   // 0x02B8 (size: 0x1)
 
 }; // Size: 0x2B9
 

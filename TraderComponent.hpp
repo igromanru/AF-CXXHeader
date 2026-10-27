@@ -5,14 +5,14 @@ class UTraderComponent_C : public UActorComponent
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x00A8 (size: 0x8)
     TSoftClassPtr<UUserWidget> TradeWidget;                                           // 0x00B0 (size: 0x28)
-    FDataTableRowHandle TraderRow;                                                    // 0x00D8 (size: 0x10)
+    FNPCTraderRowHandle TraderRow;                                                    // 0x00D8 (size: 0x10)
     FText TradeText;                                                                  // 0x00E8 (size: 0x10)
-    TArray<class AAbiotic_PlayerCharacter_C*> TradingPlayers;                         // 0x00F8 (size: 0x10)
+    TArray<AAbiotic_PlayerCharacter_C*> TradingPlayers;                               // 0x00F8 (size: 0x10)
     FTimerHandle FallbackTimer;                                                       // 0x0108 (size: 0x8)
     double MaxTradeDistance;                                                          // 0x0110 (size: 0x8)
     FTraderComponent_CStartTrading StartTrading;                                      // 0x0118 (size: 0x10)
     void StartTrading(class AAbiotic_PlayerCharacter_C* Player);
-    FDataTableRowHandle TradeItemsRow;                                                // 0x0128 (size: 0x10)
+    FNPCTraderItemRowHandle TradeItemsRow;                                            // 0x0128 (size: 0x10)
     TArray<int32> TradeStock;                                                         // 0x0138 (size: 0x10)
     bool AllowTradeWithoutIntro;                                                      // 0x0148 (size: 0x1)
     class AContainer_LootSpillBag_C* CurrentLootSpillBag;                             // 0x0150 (size: 0x8)
@@ -23,49 +23,47 @@ class UTraderComponent_C : public UActorComponent
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanLongInteractWith_A(bool& Success);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
+    void GetHighlightComponents(TArray<UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);
     void HasSitLocations(bool& IsSittable);
     void SitLocationParent(class USceneComponent*& ParentComponent);
-    void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
+    void GetItemChangeableData(FAbioticInventoryChangeableData& ChangeableData);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void RequiresToolToDismantle(bool& Tool Required);
     void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void GetStoredString(FString& String);
-    FText GetItemNameText();
+    void GetItemNameText();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void Landing Damage Multiplier(double Damage, double& DamageMultiplier);
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
-    bool IsRadioactive();
-    void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
+    void IsRadioactive();
+    void GetAttachedPowerCord(TArray<UCableComponent*>& Power Cord Found);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
     void CanUseSharedInteraction(bool& Can Use);
-    void OnNewNarrativeState(class ANarrativeNPC_ParentBP_C* NPC, TEnumAsByte<E_NarrativeNPCStates::Type> NewNarrativeState);
+    void OnNewNarrativeState(class ANarrativeNPC_ParentBP_C* NPC, ENarrativeNPCState NewNarrativeState);
     void Server_StopAllTrading();
-    void Pickup Purchased Items(class AAbiotic_PlayerCharacter_C* PurchasingPlayer, const FAbioticItemCount_Struct& ItemPurchase, int32 Count);
+    void Pickup Purchased Items(class AAbiotic_PlayerCharacter_C* PurchasingPlayer, const FAbioticItemCount& ItemPurchase, int32 Count);
     void TrySayRandomPurchaseLine(bool Positive);
     void Local_CheckForUIRefresh();
     void OnRep_TradeStock();
-    bool Server_MakePurchase(int32 TraderItemIndex, int32 PurchaseAmount);
-    bool Server_SetTradeStockData(TArray<int32>& NewTradeStock);
-    void GetTradeData(FDataTableRowHandle& TradeItemsRow, TArray<int32>& TradeStock);
+    void Server_MakePurchase(int32 TraderItemIndex, int32 PurchaseAmount);
+    void Server_SetTradeStockData(TArray<int32>& NewTradeStock);
+    void GetTradeData(FNPCTraderItemRowHandle& TradeItemsRow, TArray<int32>& TradeStock);
     void GenerateNewInventory();
-    void SetTraderRow(FDataTableRowHandle NewTraderRow);
+    void SetTraderRow(FNPCTraderRowHandle NewTraderRow);
     void CheckPlayerFallback();
     void PlayerDespawnedWhileTrading(class AActor* Actor, TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
-    bool AreAnyPlayersTrading();
-    void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
-    void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
+    void AreAnyPlayersTrading();
     void LongInteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void InteractWith_A_LocalFX(bool Hold);
     void InteractWith_B_LocalFX(bool Hold);
     void NPC_InteractWith(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void DeliverString(FString String, bool FromSave);
-    void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbiotic_InventoryItemSlotStruct SlotData);
-    void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbiotic_InventoryItemSlotStruct SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
+    void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbioticInventoryItemSlot SlotData);
+    void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbioticInventoryItemSlot SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
     void OnInteractHighlightStart(class UActorComponent* Component);
     void OnInteractHighlightEnd(class UActorComponent* Component);
     void DeliverInt(bool FromSave, const int32 New Int);
@@ -79,8 +77,10 @@ class UTraderComponent_C : public UActorComponent
     void Server_SetTraderStock(TArray<int32>& NewTradeStock);
     void Local_OpenTraderWindow();
     void Server_PerformItemPurchase(int32 TradeIndex, class AAbiotic_PlayerCharacter_C* CustomerCharacter, int32 PurchaseAmount);
+    void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void Local_CloseTraderWindow();
     void Broadcast_CloseTradeWindow();
+    void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void ExecuteUbergraph_TraderComponent(int32 EntryPoint);
     void StartTrading__DelegateSignature(class AAbiotic_PlayerCharacter_C* Player);
 }; // Size: 0x170

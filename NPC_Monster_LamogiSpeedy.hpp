@@ -3,6 +3,6 @@
 
 class ANPC_Monster_LamogiSpeedy_C : public ANPC_Monster_WinterSprite_C
 {
-}; // Size: 0x2228
+}; // Size: 0x2238
 
 #endif

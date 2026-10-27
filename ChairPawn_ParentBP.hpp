@@ -17,17 +17,17 @@ class AChairPawn_ParentBP_C : public ACharacter
     float MinSaveDistance;                                                            // 0x06E8 (size: 0x4)
     float SaveCheckTime;                                                              // 0x06EC (size: 0x4)
 
-    void HasOccupants?(TArray<class AActor*>& Occupants);
-    bool SupportsRecall?();
-    bool IsVehicleDriveable();
-    TArray<class UAbiotic_InventoryComponent_C*> GetVehicleContainers();
-    FString GetVehicleID();
+    void HasOccupants?(TArray<AActor*>& Occupants);
+    void SupportsRecall?();
+    void IsVehicleDriveable();
+    void GetVehicleContainers();
+    void GetVehicleID();
     void GetDriver(bool& Success, class AAbiotic_Character_ParentBP_C*& Character);
-    bool CheckVehicleFreezeState();
-    class AAbiotic_Character_ParentBP_C* Server_GetSeatedCharacter();
+    void CheckVehicleFreezeState();
+    void Server_GetSeatedCharacter();
     void Local_PushFX();
     void Server_PushFX();
-    bool IsReadyToPush();
+    void IsReadyToPush();
     void ApplyFloorDamage();
     void UpdateFloorType();
     void AttachFurniture();
@@ -40,7 +40,7 @@ class AChairPawn_ParentBP_C : public ACharacter
     void Request_ChairMovement(FVector Direction);
     void ReceiveBeginPlay();
     void Broadcast_PushFX();
-    void OnInventoriesLoadedFromSave(const TArray<FSaveData_Inventories_Struct>& SaveData);
+    void OnInventoriesLoadedFromSave(const TArray<FAbioticInventorySave>& SaveData);
     void SaveChair();
     void ExecuteUbergraph_ChairPawn_ParentBP(int32 EntryPoint);
 }; // Size: 0x6F0

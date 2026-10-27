@@ -24,15 +24,15 @@ class UAudioCapture : public UAudioGenerator
 
     void StopCapturingAudio();
     void StartCapturingAudio();
-    bool IsCapturingAudio();
-    bool GetAudioCaptureDeviceInfo(FAudioCaptureDeviceInfo& OutInfo);
+    void IsCapturingAudio();
+    void GetAudioCaptureDeviceInfo(FAudioCaptureDeviceInfo& OutInfo);
 }; // Size: 0xB0
 
 class UAudioCaptureBlueprintLibrary : public UBlueprintFunctionLibrary
 {
 
     void GetAvailableAudioInputDevices(const class UObject* WorldContextObject, const FGetAvailableAudioInputDevicesOnObtainDevicesEvent& OnObtainDevicesEvent);
-    FString Conv_AudioInputDeviceInfoToString(const FAudioInputDeviceInfo& Info);
+    void Conv_AudioInputDeviceInfoToString(const FAudioInputDeviceInfo& Info);
 }; // Size: 0x28
 
 class UAudioCaptureComponent : public USynthComponent
@@ -44,7 +44,7 @@ class UAudioCaptureComponent : public USynthComponent
 class UAudioCaptureFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
-    class UAudioCapture* CreateAudioCapture();
+    void CreateAudioCapture();
 }; // Size: 0x28
 
 #endif

@@ -31,8 +31,8 @@ class UDefaultItemTP_AnimBP_C : public UAnimInstance
     FAnimNode_Slot AnimGraphNode_Slot;                                                // 0x03A8 (size: 0x48)
     FAnimNode_SequencePlayer AnimGraphNode_SequencePlayer;                            // 0x03F0 (size: 0x48)
     class UAnimSequence* IdleSequence;                                                // 0x0438 (size: 0x8)
-    FDataTableRowHandle WeaponAnimTableRow;                                           // 0x0440 (size: 0x10)
-    TSoftObjectPtr<UAnimSequence> World Skeletal Mesh Animation;                      // 0x0450 (size: 0x28)
+    FWeaponAnimationRowHandle WeaponAnimTableRow;                                     // 0x0440 (size: 0x10)
+    TSoftObjectPtr<class UAnimSequence> World Skeletal Mesh Animation;                // 0x0450 (size: 0x28)
 
     void AnimGraph(FPoseLink& AnimGraph);
     void BlueprintUpdateAnimation(float DeltaTimeX);

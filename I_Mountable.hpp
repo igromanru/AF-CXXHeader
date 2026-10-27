@@ -9,6 +9,7 @@ class II_Mountable_C : public IInterface
     void Server_EndMount(class AAbiotic_Character_ParentBP_C* Character);
     void Server_StartMount(class AAbiotic_Character_ParentBP_C* Character);
     void Server_TickRotation(class AAbiotic_Character_ParentBP_C* Character, double DeltaTime, FRotator ControlRotation);
+    void Local_InteractInputEnd();
     void Local_InteractInput();
     void Local_AltFireInput();
     void Local_FireInput();

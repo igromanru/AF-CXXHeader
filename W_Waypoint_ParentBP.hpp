@@ -21,12 +21,12 @@ class UW_Waypoint_ParentBP_C : public UUserWidget
     void SetArrow(bool Visible, FVector2D Direction);
     void AllowedInVignette(bool& AllowInVignette);
     void GetWaypointLocation(FVector& Location);
-    bool ShouldBeVisible();
+    void ShouldBeVisible();
     void UpdatePosition();
     void OnLoaded_3399A0584E409D1ECD92F48589B13B62(class UObject* Loaded);
     void Construct();
     void ComputeVisibility();
-    void UpdateIcon(TSoftObjectPtr<UTexture2D> Texture);
+    void UpdateIcon(TSoftObjectPtr<class UTexture2D> Texture);
     void ExecuteUbergraph_W_Waypoint_ParentBP(int32 EntryPoint);
     void OnPositionUpdated__DelegateSignature();
 }; // Size: 0x350

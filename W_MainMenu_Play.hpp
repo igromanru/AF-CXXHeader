@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_MainMenu_Play_HPP
 #define UE4SS_SDK_W_MainMenu_Play_HPP
 
-class UW_MainMenu_Play_C : public UUserWidget
+class UW_MainMenu_Play_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UW_MainMenuButton_C* Button_Back;                                           // 0x02E8 (size: 0x8)

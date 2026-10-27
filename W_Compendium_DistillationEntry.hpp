@@ -11,11 +11,11 @@ class UW_Compendium_DistillationEntry_C : public UUserWidget
     bool AtLeastOneDistillation;                                                      // 0x0308 (size: 0x1)
     FName DistillationRow;                                                            // 0x030C (size: 0x8)
     TMap<FName, int32> ItemRows;                                                      // 0x0318 (size: 0x50)
-    TMap<class FName, class UW_InventoryItemSlot_C*> ItemWidgets;                     // 0x0368 (size: 0x50)
+    TMap<FName, UW_InventoryItemSlot_C*> ItemWidgets;                                 // 0x0368 (size: 0x50)
 
     void UpdateFoundItems();
     void AddItemWidget(FName RowName, int32 Count, bool Found);
-    bool HasItemBeenDistilled?(FName RowName);
+    void HasItemBeenDistilled?(FName RowName);
     void BP_OnEntryReleased();
     void BP_OnItemExpansionChanged(bool bIsExpanded);
     void BP_OnItemSelectionChanged(bool bIsSelected);

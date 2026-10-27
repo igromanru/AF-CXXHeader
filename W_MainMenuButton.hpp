@@ -26,6 +26,7 @@ class UW_MainMenuButton_C : public UUserWidget
     void OnUnhover();
     void BndEvt__W_MainMenuButton_AbioticButton_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature();
     void BndEvt__W_MainMenuButton_AbioticButton_K2Node_ComponentBoundEvent_2_OnButtonHoverEvent__DelegateSignature();
+    void ReconstructButton();
     void ExecuteUbergraph_W_MainMenuButton(int32 EntryPoint);
     void ButtonPressed__DelegateSignature();
 }; // Size: 0x370

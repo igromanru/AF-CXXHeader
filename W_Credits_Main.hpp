@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_Credits_Main_HPP
 #define UE4SS_SDK_W_Credits_Main_HPP
 
-class UW_Credits_Main_C : public UAbioticWidget
+class UW_Credits_Main_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UWidgetAnimation* FadeOut;                                                  // 0x02E8 (size: 0x8)
@@ -33,8 +33,8 @@ class UW_Credits_Main_C : public UAbioticWidget
     void WidgetAction_CycleCrafting(bool Next, bool& Handled);
     void WidgetAction_FaceTop(bool& Handled);
     void WidgetAction_DPadDirection(TEnumAsByte<E_NavigationDirection::Type> Direction, bool& Handled);
-    FEventReply OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
-    FEventReply OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
     void Construct();
     void Tick(FGeometry MyGeometry, float InDeltaTime);
     void Gameplay_ExitCredits();

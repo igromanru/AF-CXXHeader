@@ -15,7 +15,7 @@ class UW_SplitStackMenu_C : public UAbioticWidget
     class UTextBlock* SplitAmount;                                                    // 0x0328 (size: 0x8)
     class USlider* StackSplitter;                                                     // 0x0330 (size: 0x8)
     class UW_InventoryItemSlot_C* W_InventoryItemSlot;                                // 0x0338 (size: 0x8)
-    FAbiotic_InventoryItemSlotStruct ItemSlotStruct;                                  // 0x0340 (size: 0x98)
+    FAbioticInventoryItemSlot ItemSlotStruct;                                         // 0x0340 (size: 0x98)
     int32 Current Stack;                                                              // 0x03D8 (size: 0x4)
     class UW_InventoryItemSlot_C* OriginSlot;                                         // 0x03E0 (size: 0x8)
 
@@ -24,9 +24,9 @@ class UW_SplitStackMenu_C : public UAbioticWidget
     void WidgetAction_CycleMenu(bool Next, bool& Handled);
     void WidgetAction_CycleCrafting(bool Next, bool& Handled);
     void WidgetAction_FaceTop(bool& Handled);
-    FEventReply OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
-    FEventReply OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
-    FEventReply OnFocusReceived(FGeometry MyGeometry, FFocusEvent InFocusEvent);
+    void OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnFocusReceived(FGeometry MyGeometry, FFocusEvent InFocusEvent);
     void Update Split Count(int32 SplitVal);
     void BndEvt__W_SplitStackMenu_StackSplitter_K2Node_ComponentBoundEvent_0_OnFloatValueChangedEvent__DelegateSignature(float Value);
     void BndEvt__W_SplitStackMenu_Proceed_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature();

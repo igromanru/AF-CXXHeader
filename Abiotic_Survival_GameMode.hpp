@@ -15,8 +15,10 @@ class AAbiotic_Survival_GameMode_C : public AAbioticGameMode
     bool ServerConfigIsLoaded;                                                        // 0x03D8 (size: 0x1)
     TArray<FString> OldTeleporterStrings;                                             // 0x03E0 (size: 0x10)
 
-    class ANPC_Base_ParentBP_C* SpawnPetFromItem(const FAbiotic_InventoryItemSlotStruct& ItemSlotData, FTransform SpawnTransform, class AActor* Owner);
-    class ANPC_Base_ParentBP_C* SpawnPet(TSubclassOf<class ANPC_Base_ParentBP_C> Class, FTransform SpawnTransform, FString Guid, FText Name, class AActor* Owner, TArray<FDynamicProperty>& DynamicProperties, bool Tamed);
+    void FindSetCurrentQuestOnWorldFlagsLoad();
+    void Update Current Quest();
+    void SpawnPetFromItem(const FAbioticInventoryItemSlot& ItemSlotData, FTransform SpawnTransform, class AActor* Owner);
+    void SpawnPet(FNPCRowHandle NPCRow, FTransform SpawnTransform, FString Guid, FText Name, class AActor* Owner, TArray<FDynamicProperty>& DynamicProperties, bool Tamed);
     void Update Decal to World Save(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
     void RemovePlayerDLCEntitlements(FString PlayerId);
     void AddPlayerDLCEntitlements(FString PlayerId, FUserEntitlements Entitlements);
@@ -42,16 +44,16 @@ class AAbiotic_Survival_GameMode_C : public AAbioticGameMode
     void UpdatePetToWorldSave(class AActor* Actor, bool RemoveFromSpawn, class UAbiotic_WorldSave_C* Save);
     void GetStoryProgressionRow(FName& RowName);
     void ApplyWorldSaveData|Trams(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
-    bool DoesVehicleSaveExist(FString VehicleID, FSaveData_Vehicle_Struct& VehicleSave);
+    void DoesVehicleSaveExist(FString VehicleID, FAbioticVehicleSave& VehicleSave);
     void SaveAllActors();
     void UpdateActorToWorldSave(class AActor* Actor, bool RemoveFromSave, TEnumAsByte<E_SaveType::Type> SaveType);
     void UpdateTramToWorldSave(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
     void UpdateSimpleDoorToWorldSave(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
     void ApplyWorldSaveData|Vehicles(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
-    FSaveData_Vehicle_Struct MakeVehicleSaveData(class AActor* Vehicle, FString VehicleID, bool Destroyed);
-    void ApplySaveDataToInventories(TArray<class UAbiotic_InventoryComponent_C*>& Inventories, TArray<FSaveData_Inventories_Struct>& SaveData);
-    TArray<FSaveData_Inventories_Struct> GatherSaveDataFromInventories(TArray<class UAbiotic_InventoryComponent_C*>& Inventories);
-    bool DoesVehicleIDExist(FString VehicleID, class AActor*& Vehicle);
+    void MakeVehicleSaveData(class AActor* Vehicle, FString VehicleID, bool Destroyed);
+    void ApplySaveDataToInventories(TArray<UAbiotic_InventoryComponent_C*>& Inventories, TArray<FAbioticInventorySave>& SaveData);
+    void GatherSaveDataFromInventories(TArray<UAbiotic_InventoryComponent_C*>& Inventories);
+    void DoesVehicleIDExist(FString VehicleID, class AActor*& Vehicle);
     void UpdateVehicleToWorldSave(class AActor* Actor, bool RemoveFromSpawn, class UAbiotic_WorldSave_C* Save);
     void CreateVoiceActor(class AController* Controller);
     void ApplyWorldSaveData|Elevators(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
@@ -64,21 +66,20 @@ class AAbiotic_Survival_GameMode_C : public AAbioticGameMode
     void UpdateTriggerToWorldSave(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
     void ApplyWorldSaveData|Triggers(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
     void Find Existing Player Placed Deployable(FString AssetID, const class UObject* LevelObject, TEnumAsByte<E_DeployableOrigin::Type>& State, class AAbioticDeployed_ParentBP_C*& DeployedActor);
-    void FindMatchingDeployableData(FSaveData_Deployable_Struct& ExistingData, FSaveData_Deployable_Struct& WorldObjectData, TEnumAsByte<E_DeployableOrigin::Type>& DeployableOrigin);
     void ApplyWorldSaveData|PowerSockets(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
     void UpdatePowerSocketToWorldSave(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
     void Apply World Save Data| NPCs(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
     void UpdateNarrativeNPCsToWorldSave(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
-    class AAbiotic_Item_Dropped_C* SpawnItem(const FTransform& InTransform, const FDataTableRowHandle& ItemRow, int32 StackSize, double Durability, bool NoPhysics, bool NoCollision, class USceneComponent* ConnectToComponent, FName ConnectToBone, int32 LiquidLevel, TEnumAsByte<E_LiquidType::Type> CurrentLiquid, bool& Success);
-    void Save All Item Proxy to World Save(FString LevelName, class AAbioticDeployed_ParentBP_C* Deployable, TArray<FSaveData_ItemProxy_Struct>& Output Item Proxies, TArray<bool>& Output Item Active Spot);
+    void SpawnItem(const FTransform& InTransform, const FGlobalItemRowHandle& ItemRow, int32 StackSize, double Durability, bool NoPhysics, bool NoCollision, class USceneComponent* ConnectToComponent, FName ConnectToBone, int32 LiquidLevel, ELiquidType CurrentLiquid, bool& Success);
+    void Save All Item Proxy to World Save(FString LevelName, class AAbioticDeployed_ParentBP_C* Deployable, TArray<FAbioticItemProxySave>& Output Item Proxies, TArray<bool>& Output Item Active Spot);
     void Update Actors to World Save(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
-    void Update Item Proxy to World Save(class AItemProxyParent_BP_C* Item Proxy, FString Level Name, int32 Spot Index, FSaveData_ItemProxy_Struct& Output_Get);
+    void Update Item Proxy to World Save(class AItemProxyParent_BP_C* Item Proxy, FString Level Name, int32 Spot Index, FAbioticItemProxySave& Output_Get);
     void ApplyWorldSaveData|Buttons(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
     void Update Button to World Save(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
     void RCON_AddChatMessage(FString Prefix, FString Message);
     void RCON_HeartBeat_GetPlayers(FString& Data);
     void OnReciveRCONConnection(uint8 Type, bool Success, FString Message, FString SessionId, FString ServerID);
-    void OnReciveRCONRequest(FString SessionId, FString ServerID, int32 RequestID, FString Request);
+    void OnReciveRCONRequest(FString SessionId, FString ServerID, int32 RequestID, FString request);
     void SetupSocketTCPRCONServer(FString IP, int32 Port);
     void LSV_OnLevelUnloaded(class ULevelStreaming* Level);
     void LSV_OnLevelHidden(class ULevelStreaming* Level, bool Visible);
@@ -90,7 +91,7 @@ class AAbiotic_Survival_GameMode_C : public AAbioticGameMode
     void Update Security Door State to World Save(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
     void ApplyWorldSaveData|Destructibles(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
     void Update Destructible to World Save(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
-    void Load Deployable Settings(FAbiotic_InventoryChangeableDataStruct& ChangeableData, class AAbioticDeployed_ParentBP_C* DeployedItem, TArray<FSaveData_Inventories_Struct>& ContainerInventories, TArray<FSaveData_ItemProxy_Struct>& ItemProxiesData, TArray<bool>& ActiveSeats, FString& CustomTextDisplay, bool FoundByPlayer, TArray<FVector>& Supports, double SpawnedTime);
+    void Load Deployable Settings(FAbioticInventoryChangeableData& ChangeableData, class AAbioticDeployed_ParentBP_C* DeployedItem, TArray<FAbioticInventorySave>& ContainerInventories, TArray<FAbioticItemProxySave>& ItemProxiesData, TArray<bool>& ActiveSeats, FString& CustomTextDisplay, bool FoundByPlayer, TArray<FVector>& Supports, double SpawnedTime);
     void ApplyWorldSaveData|ResourceNode(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
     void ApplyWorldSaveData|Deployables(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
     void Update Resource Node to World Save(class AActor* Actor, class UAbiotic_WorldSave_C* Save);
@@ -98,12 +99,12 @@ class AAbiotic_Survival_GameMode_C : public AAbioticGameMode
     void ApplyWorldSaveData|SimpleDoors(class UAbiotic_WorldSave_C*& Save, class UObject* LevelObject);
     void ApplyAllWorldSaveData(FString Level, int32 Iteration (0-4), bool DoAllIterationsAtOnce, class UAbiotic_WorldSave_C* Save, class UObject* LevelObject, bool Persistent);
     void LevelLoad_ApplySavedWorldData(FString LevelName, int32 Iteration (0-4), bool DoAllIterationsAtOnce, bool Persistent);
-    void CalculateItemDrop(const FAbiotic_ItemDropStruct& ItemDropStruct, FGameplayTagContainer Ignore Drop Chance Tags, FGameplayTagContainer& GameplayTags, double ExtraLootChance, bool& DropSuccess, FDataTableRowHandle& ItemStruct, int32& Count);
-    void GenerateLootDrop(const FDataTableRowHandle& SalvageDropRow, FVector Origin, FVector BoxExtent, bool HasLifespan, bool TryPlaceInInventory, class AAbiotic_PlayerCharacter_C* inventoryOwner, bool IsMicroNode, bool IsNotReceivingDamage, FDataTableRowHandle TextureVariant, int32 ExtraStackCount, FGameplayTagContainer Ignore Drop Chance Item Tags, bool RandomRotation, FRotator RotationOverride, bool AlwaysDropOverflow, FGameplayTagContainer& BuffTags, double ExtraLootChance, TArray<FDynamicProperty>& DynamicProperties, bool& LootIsGenerated?);
+    void CalculateItemDrop(const FAbioticItemDrop& ItemDropStruct, FGameplayTagContainer Ignore Drop Chance Tags, FGameplayTagContainer& GameplayTags, double ExtraLootChance, bool& DropSuccess, FGlobalItemRowHandle& ItemStruct, int32& Count, FTextureVariantRowHandle& OutTextureVariant);
+    void GenerateLootDrop(const FSalvageRowHandle& SalvageDropRow, FVector Origin, FVector BoxExtent, bool HasLifespan, bool TryPlaceInInventory, class AAbiotic_PlayerCharacter_C* inventoryOwner, bool IsMicroNode, bool IsNotReceivingDamage, FTextureVariantRowHandle TextureVariant, int32 ExtraStackCount, FGameplayTagContainer Ignore Drop Chance Item Tags, bool RandomRotation, FRotator RotationOverride, bool AlwaysDropOverflow, FGameplayTagContainer& BuffTags, double ExtraLootChance, TArray<FDynamicProperty>& DynamicProperties, bool& LootIsGenerated?);
     void FindRespawnPointForPlayer(class AAbiotic_PlayerState_C* PlayerState, bool ForcePlayerStartOnly, FName DestinationID, bool& Valid, FVector& RespawnLocation);
     void OnFailure_B055BD084F90B3B2266C78903EFE91F0();
     void OnSuccess_B055BD084F90B3B2266C78903EFE91F0();
-    void SendTextChatMessageToAllPlayers(bool FactionCheck, TEnumAsByte<E_Factions::Type> FactionOnlySee, FString Prefix, FLinearColor PrefixColor, FString Message, FLinearColor MessageColor, FString ExcludedCallerName, class APlayerState* PlayerState, bool IsPlayerChatTextMessage);
+    void SendTextChatMessageToAllPlayers(bool FactionCheck, EFactions FactionOnlySee, FString Prefix, FLinearColor PrefixColor, FString Message, FLinearColor MessageColor, FString ExcludedCallerName, class APlayerState* PlayerState, bool IsPlayerChatTextMessage);
     void K2_OnLogout(class AController* ExitingController);
     void K2_PostLogin(class APlayerController* NewPlayer);
     void ReceiveBeginPlay();

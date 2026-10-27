@@ -318,7 +318,7 @@ struct FAnimNode_LayeredBoneBlend : public FAnimNode_Base
     FPoseLink BasePose;                                                               // 0x0010 (size: 0x10)
     TArray<FPoseLink> BlendPoses;                                                     // 0x0020 (size: 0x10)
     ELayeredBoneBlendMode BlendMode;                                                  // 0x0030 (size: 0x1)
-    TArray<class UBlendProfile*> BlendMasks;                                          // 0x0038 (size: 0x10)
+    TArray<UBlendProfile*> BlendMasks;                                                // 0x0038 (size: 0x10)
     TArray<FInputBlendPose> LayerSetup;                                               // 0x0048 (size: 0x10)
     TArray<float> BlendWeights;                                                       // 0x0058 (size: 0x10)
     bool bMeshSpaceRotationBlend;                                                     // 0x0068 (size: 0x1)
@@ -1026,8 +1026,8 @@ struct FWarpingVectorValue
 class ISequencerAnimationOverride : public IInterface
 {
 
-    TArray<FName> GetSequencerAnimSlotNames();
-    bool AllowsCinematicOverride();
+    void GetSequencerAnimSlotNames();
+    void AllowsCinematicOverride();
 }; // Size: 0x28
 
 class ISequencerAnimationSupport : public IInterface
@@ -1037,23 +1037,23 @@ class ISequencerAnimationSupport : public IInterface
 class UAnimExecutionContextLibrary : public UBlueprintFunctionLibrary
 {
 
-    bool IsActive(const FAnimExecutionContext& Context);
-    float GetDeltaTime(const FAnimUpdateContext& Context);
-    float GetCurrentWeight(const FAnimUpdateContext& Context);
-    FAnimNodeReference GetAnimNodeReference(class UAnimInstance* Instance, int32 Index);
-    class UAnimInstance* GetAnimInstance(const FAnimExecutionContext& Context);
-    FAnimUpdateContext ConvertToUpdateContext(const FAnimExecutionContext& Context, EAnimExecutionContextConversionResult& Result);
-    FAnimPoseContext ConvertToPoseContext(const FAnimExecutionContext& Context, EAnimExecutionContextConversionResult& Result);
-    FAnimInitializationContext ConvertToInitializationContext(const FAnimExecutionContext& Context, EAnimExecutionContextConversionResult& Result);
-    FAnimComponentSpacePoseContext ConvertToComponentSpacePoseContext(const FAnimExecutionContext& Context, EAnimExecutionContextConversionResult& Result);
+    void IsActive(const FAnimExecutionContext& Context);
+    void GetDeltaTime(const FAnimUpdateContext& Context);
+    void GetCurrentWeight(const FAnimUpdateContext& Context);
+    void GetAnimNodeReference(class UAnimInstance* Instance, int32 Index);
+    void GetAnimInstance(const FAnimExecutionContext& Context);
+    void ConvertToUpdateContext(const FAnimExecutionContext& Context, EAnimExecutionContextConversionResult& Result);
+    void ConvertToPoseContext(const FAnimExecutionContext& Context, EAnimExecutionContextConversionResult& Result);
+    void ConvertToInitializationContext(const FAnimExecutionContext& Context, EAnimExecutionContextConversionResult& Result);
+    void ConvertToComponentSpacePoseContext(const FAnimExecutionContext& Context, EAnimExecutionContextConversionResult& Result);
 }; // Size: 0x28
 
 class UAnimNodeRigidBodyLibrary : public UBlueprintFunctionLibrary
 {
 
-    FRigidBodyAnimNodeReference SetOverridePhysicsAsset(const FRigidBodyAnimNodeReference& Node, class UPhysicsAsset* PhysicsAsset);
+    void SetOverridePhysicsAsset(const FRigidBodyAnimNodeReference& Node, class UPhysicsAsset* PhysicsAsset);
     void ConvertToRigidBodyAnimNodePure(const FAnimNodeReference& Node, FRigidBodyAnimNodeReference& RigidBodyAnimNode, bool& Result);
-    FRigidBodyAnimNodeReference ConvertToRigidBodyAnimNode(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
+    void ConvertToRigidBodyAnimNode(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
 }; // Size: 0x28
 
 class UAnimNotify_PlayMontageNotify : public UAnimNotify
@@ -1076,11 +1076,11 @@ class UAnimationStateMachineLibrary : public UBlueprintFunctionLibrary
 {
 
     void SetState(const FAnimUpdateContext& UpdateContext, const FAnimationStateMachineReference& Node, FName TargetState, float Duration, TEnumAsByte<ETransitionLogicType::Type> BlendType, class UBlendProfile* BlendProfile, EAlphaBlendOption AlphaBlendOption, class UCurveFloat* CustomBlendCurve);
-    bool IsStateBlendingOut(const FAnimUpdateContext& UpdateContext, const FAnimationStateResultReference& Node);
-    bool IsStateBlendingIn(const FAnimUpdateContext& UpdateContext, const FAnimationStateResultReference& Node);
-    FName GetState(const FAnimUpdateContext& UpdateContext, const FAnimationStateMachineReference& Node);
-    float GetRelevantAnimTimeRemainingFraction(const FAnimUpdateContext& UpdateContext, const FAnimationStateResultReference& Node);
-    float GetRelevantAnimTimeRemaining(const FAnimUpdateContext& UpdateContext, const FAnimationStateResultReference& Node);
+    void IsStateBlendingOut(const FAnimUpdateContext& UpdateContext, const FAnimationStateResultReference& Node);
+    void IsStateBlendingIn(const FAnimUpdateContext& UpdateContext, const FAnimationStateResultReference& Node);
+    void GetState(const FAnimUpdateContext& UpdateContext, const FAnimationStateMachineReference& Node);
+    void GetRelevantAnimTimeRemainingFraction(const FAnimUpdateContext& UpdateContext, const FAnimationStateResultReference& Node);
+    void GetRelevantAnimTimeRemaining(const FAnimUpdateContext& UpdateContext, const FAnimationStateResultReference& Node);
     void ConvertToAnimationStateResultPure(const FAnimNodeReference& Node, FAnimationStateResultReference& AnimationState, bool& Result);
     void ConvertToAnimationStateResult(const FAnimNodeReference& Node, FAnimationStateResultReference& AnimationState, EAnimNodeReferenceConversionResult& Result);
     void ConvertToAnimationStateMachinePure(const FAnimNodeReference& Node, FAnimationStateMachineReference& AnimationState, bool& Result);
@@ -1091,36 +1091,36 @@ class UBlendListBaseLibrary : public UBlueprintFunctionLibrary
 {
 
     void ResetNode(const FBlendListBaseReference& BlendListBase);
-    FBlendListBaseReference ConvertToBlendListBase(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
+    void ConvertToBlendListBase(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
 }; // Size: 0x28
 
 class UBlendSpaceLibrary : public UBlueprintFunctionLibrary
 {
 
     void SnapToPosition(const FBlendSpaceReference& BlendSpace, FVector NewPosition);
-    FVector GetPosition(const FBlendSpaceReference& BlendSpace);
-    FVector GetFilteredPosition(const FBlendSpaceReference& BlendSpace);
+    void GetPosition(const FBlendSpaceReference& BlendSpace);
+    void GetFilteredPosition(const FBlendSpaceReference& BlendSpace);
     void ConvertToBlendSpacePure(const FAnimNodeReference& Node, FBlendSpaceReference& BlendSpace, bool& Result);
-    FBlendSpaceReference ConvertToBlendSpace(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
+    void ConvertToBlendSpace(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
 }; // Size: 0x28
 
 class UBlendSpacePlayerLibrary : public UBlueprintFunctionLibrary
 {
 
     void SnapToPosition(const FBlendSpacePlayerReference& BlendSpacePlayer, FVector NewPosition);
-    bool ShouldResetPlayTimeWhenBlendSpaceChanges(const FBlendSpacePlayerReference& BlendSpacePlayer);
-    FBlendSpacePlayerReference SetResetPlayTimeWhenBlendSpaceChanges(const FBlendSpacePlayerReference& BlendSpacePlayer, bool bReset);
-    FBlendSpacePlayerReference SetPlayRate(const FBlendSpacePlayerReference& BlendSpacePlayer, float PlayRate);
-    FBlendSpacePlayerReference SetLoop(const FBlendSpacePlayerReference& BlendSpacePlayer, bool bLoop);
-    FBlendSpacePlayerReference SetBlendSpaceWithInertialBlending(const FAnimUpdateContext& UpdateContext, const FBlendSpacePlayerReference& BlendSpacePlayer, class UBlendSpace* BlendSpace, float BlendTime);
-    FBlendSpacePlayerReference SetBlendSpace(const FBlendSpacePlayerReference& BlendSpacePlayer, class UBlendSpace* BlendSpace);
-    float GetStartPosition(const FBlendSpacePlayerReference& BlendSpacePlayer);
-    FVector GetPosition(const FBlendSpacePlayerReference& BlendSpacePlayer);
-    float GetPlayRate(const FBlendSpacePlayerReference& BlendSpacePlayer);
-    bool GetLoop(const FBlendSpacePlayerReference& BlendSpacePlayer);
-    class UBlendSpace* GetBlendSpace(const FBlendSpacePlayerReference& BlendSpacePlayer);
+    void ShouldResetPlayTimeWhenBlendSpaceChanges(const FBlendSpacePlayerReference& BlendSpacePlayer);
+    void SetResetPlayTimeWhenBlendSpaceChanges(const FBlendSpacePlayerReference& BlendSpacePlayer, bool bReset);
+    void SetPlayRate(const FBlendSpacePlayerReference& BlendSpacePlayer, float PlayRate);
+    void SetLoop(const FBlendSpacePlayerReference& BlendSpacePlayer, bool bLoop);
+    void SetBlendSpaceWithInertialBlending(const FAnimUpdateContext& UpdateContext, const FBlendSpacePlayerReference& BlendSpacePlayer, class UBlendSpace* BlendSpace, float BlendTime);
+    void SetBlendSpace(const FBlendSpacePlayerReference& BlendSpacePlayer, class UBlendSpace* BlendSpace);
+    void GetStartPosition(const FBlendSpacePlayerReference& BlendSpacePlayer);
+    void GetPosition(const FBlendSpacePlayerReference& BlendSpacePlayer);
+    void GetPlayRate(const FBlendSpacePlayerReference& BlendSpacePlayer);
+    void GetLoop(const FBlendSpacePlayerReference& BlendSpacePlayer);
+    void GetBlendSpace(const FBlendSpacePlayerReference& BlendSpacePlayer);
     void ConvertToBlendSpacePlayerPure(const FAnimNodeReference& Node, FBlendSpacePlayerReference& BlendSpacePlayer, bool& Result);
-    FBlendSpacePlayerReference ConvertToBlendSpacePlayer(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
+    void ConvertToBlendSpacePlayer(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
 }; // Size: 0x28
 
 class UKismetAnimationLibrary : public UBlueprintFunctionLibrary
@@ -1128,57 +1128,57 @@ class UKismetAnimationLibrary : public UBlueprintFunctionLibrary
 
     void K2_TwoBoneIK(const FVector& RootPos, const FVector& JointPos, const FVector& EndPos, const FVector& JointTarget, const FVector& Effector, FVector& OutJointPos, FVector& OutEndPos, bool bAllowStretching, float StartStretchRatio, float MaxStretchScale);
     void K2_StartProfilingTimer();
-    FVector K2_MakePerlinNoiseVectorAndRemap(float X, float Y, float Z, float RangeOutMinX, float RangeOutMaxX, float RangeOutMinY, float RangeOutMaxY, float RangeOutMinZ, float RangeOutMaxZ);
-    float K2_MakePerlinNoiseAndRemap(float Value, float RangeOutMin, float RangeOutMax);
-    FTransform K2_LookAt(const FTransform& CurrentTransform, const FVector& TargetPosition, FVector LookAtVector, bool bUseUpVector, FVector UpVector, float ClampConeInDegree);
-    float K2_EndProfilingTimer(bool bLog, FString LogPrefix);
-    float K2_DistanceBetweenTwoSocketsAndMapRange(const class USkeletalMeshComponent* Component, const FName SocketOrBoneNameA, TEnumAsByte<ERelativeTransformSpace> SocketSpaceA, const FName SocketOrBoneNameB, TEnumAsByte<ERelativeTransformSpace> SocketSpaceB, bool bRemapRange, float InRangeMin, float InRangeMax, float OutRangeMin, float OutRangeMax);
-    FVector K2_DirectionBetweenSockets(const class USkeletalMeshComponent* Component, const FName SocketOrBoneNameFrom, const FName SocketOrBoneNameTo);
-    float K2_CalculateVelocityFromSockets(float DeltaSeconds, class USkeletalMeshComponent* Component, const FName SocketOrBoneName, const FName ReferenceSocketOrBone, TEnumAsByte<ERelativeTransformSpace> SocketSpace, FVector OffsetInBoneSpace, FPositionHistory& History, int32 NumberOfSamples, float VelocityMin, float VelocityMax, EEasingFuncType EasingType, const FRuntimeFloatCurve& CustomCurve);
-    float K2_CalculateVelocityFromPositionHistory(float DeltaSeconds, FVector position, FPositionHistory& History, int32 NumberOfSamples, float VelocityMin, float VelocityMax);
-    float CalculateDirection(const FVector& Velocity, const FRotator& BaseRotation);
+    void K2_MakePerlinNoiseVectorAndRemap(float X, float Y, float Z, float RangeOutMinX, float RangeOutMaxX, float RangeOutMinY, float RangeOutMaxY, float RangeOutMinZ, float RangeOutMaxZ);
+    void K2_MakePerlinNoiseAndRemap(float Value, float RangeOutMin, float RangeOutMax);
+    void K2_LookAt(const FTransform& CurrentTransform, const FVector& TargetPosition, FVector LookAtVector, bool bUseUpVector, FVector UpVector, float ClampConeInDegree);
+    void K2_EndProfilingTimer(bool bLog, FString LogPrefix);
+    void K2_DistanceBetweenTwoSocketsAndMapRange(const class USkeletalMeshComponent* Component, const FName SocketOrBoneNameA, TEnumAsByte<ERelativeTransformSpace> SocketSpaceA, const FName SocketOrBoneNameB, TEnumAsByte<ERelativeTransformSpace> SocketSpaceB, bool bRemapRange, float InRangeMin, float InRangeMax, float OutRangeMin, float OutRangeMax);
+    void K2_DirectionBetweenSockets(const class USkeletalMeshComponent* Component, const FName SocketOrBoneNameFrom, const FName SocketOrBoneNameTo);
+    void K2_CalculateVelocityFromSockets(float DeltaSeconds, class USkeletalMeshComponent* Component, const FName SocketOrBoneName, const FName ReferenceSocketOrBone, TEnumAsByte<ERelativeTransformSpace> SocketSpace, FVector OffsetInBoneSpace, FPositionHistory& History, int32 NumberOfSamples, float VelocityMin, float VelocityMax, EEasingFuncType EasingType, const FRuntimeFloatCurve& CustomCurve);
+    void K2_CalculateVelocityFromPositionHistory(float DeltaSeconds, FVector position, FPositionHistory& History, int32 NumberOfSamples, float VelocityMin, float VelocityMax);
+    void CalculateDirection(const FVector& Velocity, const FRotator& BaseRotation);
 }; // Size: 0x28
 
 class ULayeredBoneBlendLibrary : public UBlueprintFunctionLibrary
 {
 
-    FLayeredBoneBlendReference SetBlendMask(const FAnimUpdateContext& UpdateContext, const FLayeredBoneBlendReference& LayeredBoneBlend, int32 PoseIndex, FName BlendMaskName);
-    int32 GetNumPoses(const FLayeredBoneBlendReference& LayeredBoneBlend);
-    FLayeredBoneBlendReference ConvertToLayeredBoneBlend(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
+    void SetBlendMask(const FAnimUpdateContext& UpdateContext, const FLayeredBoneBlendReference& LayeredBoneBlend, int32 PoseIndex, FName BlendMaskName);
+    void GetNumPoses(const FLayeredBoneBlendReference& LayeredBoneBlend);
+    void ConvertToLayeredBoneBlend(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
     void ConvertToLayeredBlendPerBonePure(const FAnimNodeReference& Node, FLayeredBoneBlendReference& LayeredBoneBlend, bool& Result);
 }; // Size: 0x28
 
 class ULinkedAnimGraphLibrary : public UBlueprintFunctionLibrary
 {
 
-    bool HasLinkedAnimInstance(const FLinkedAnimGraphReference& Node);
-    class UAnimInstance* GetLinkedAnimInstance(const FLinkedAnimGraphReference& Node);
+    void HasLinkedAnimInstance(const FLinkedAnimGraphReference& Node);
+    void GetLinkedAnimInstance(const FLinkedAnimGraphReference& Node);
     void ConvertToLinkedAnimGraphPure(const FAnimNodeReference& Node, FLinkedAnimGraphReference& LinkedAnimGraph, bool& Result);
-    FLinkedAnimGraphReference ConvertToLinkedAnimGraph(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
+    void ConvertToLinkedAnimGraph(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
 }; // Size: 0x28
 
 class UMirrorAnimLibrary : public UBlueprintFunctionLibrary
 {
 
-    FMirrorAnimNodeReference SetMirrorTransitionBlendTime(const FMirrorAnimNodeReference& MirrorNode, float InBlendTime);
-    FMirrorAnimNodeReference SetMirror(const FMirrorAnimNodeReference& MirrorNode, bool bInMirror);
-    float GetMirrorTransitionBlendTime(const FMirrorAnimNodeReference& MirrorNode);
-    class UMirrorDataTable* GetMirrorDataTable(const FMirrorAnimNodeReference& MirrorNode);
-    bool GetMirror(const FMirrorAnimNodeReference& MirrorNode);
+    void SetMirrorTransitionBlendTime(const FMirrorAnimNodeReference& MirrorNode, float InBlendTime);
+    void SetMirror(const FMirrorAnimNodeReference& MirrorNode, bool bInMirror);
+    void GetMirrorTransitionBlendTime(const FMirrorAnimNodeReference& MirrorNode);
+    void GetMirrorDataTable(const FMirrorAnimNodeReference& MirrorNode);
+    void GetMirror(const FMirrorAnimNodeReference& MirrorNode);
     void ConvertToMirrorNodePure(const FAnimNodeReference& Node, FMirrorAnimNodeReference& MirrorNode, bool& Result);
-    FMirrorAnimNodeReference ConvertToMirrorNode(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
+    void ConvertToMirrorNode(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
 }; // Size: 0x28
 
 class UModifyCurveAnimLibrary : public UBlueprintFunctionLibrary
 {
 
-    FModifyCurveAnimNodeReference SetCurveMap(const FModifyCurveAnimNodeReference& ModifyCurveNode, const TMap<FName, float>& InCurveMap);
-    FModifyCurveAnimNodeReference SetApplyMode(const FModifyCurveAnimNodeReference& ModifyCurveNode, EModifyCurveApplyMode InMode);
-    FModifyCurveAnimNodeReference SetAlpha(const FModifyCurveAnimNodeReference& ModifyCurveNode, float InAlpha);
-    EModifyCurveApplyMode GetApplyMode(const FModifyCurveAnimNodeReference& ModifyCurveNode);
-    float GetAlpha(const FModifyCurveAnimNodeReference& ModifyCurveNode);
+    void SetCurveMap(const FModifyCurveAnimNodeReference& ModifyCurveNode, const TMap<FName, float>& InCurveMap);
+    void SetApplyMode(const FModifyCurveAnimNodeReference& ModifyCurveNode, EModifyCurveApplyMode InMode);
+    void SetAlpha(const FModifyCurveAnimNodeReference& ModifyCurveNode, float InAlpha);
+    void GetApplyMode(const FModifyCurveAnimNodeReference& ModifyCurveNode);
+    void GetAlpha(const FModifyCurveAnimNodeReference& ModifyCurveNode);
     void ConvertToModifyCurveNodePure(const FAnimNodeReference& Node, FModifyCurveAnimNodeReference& ModifyCurveNode, bool& Result);
-    FModifyCurveAnimNodeReference ConvertToModifyCurveNode(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
+    void ConvertToModifyCurveNode(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
 }; // Size: 0x28
 
 class UPlayMontageCallbackProxy : public UObject
@@ -1198,49 +1198,49 @@ class UPlayMontageCallbackProxy : public UObject
     void OnNotifyBeginReceived(FName NotifyName, const FBranchingPointNotifyPayload& BranchingPointNotifyPayload);
     void OnMontageEnded(class UAnimMontage* Montage, bool bInterrupted);
     void OnMontageBlendingOut(class UAnimMontage* Montage, bool bInterrupted);
-    class UPlayMontageCallbackProxy* CreateProxyObjectForPlayMontage(class USkeletalMeshComponent* InSkeletalMeshComponent, class UAnimMontage* MontageToPlay, float PlayRate, float StartingPosition, FName StartingSection);
+    void CreateProxyObjectForPlayMontage(class USkeletalMeshComponent* InSkeletalMeshComponent, class UAnimMontage* MontageToPlay, float PlayRate, float StartingPosition, FName StartingSection);
 }; // Size: 0xA8
 
 class USequenceEvaluatorLibrary : public UBlueprintFunctionLibrary
 {
 
-    FSequenceEvaluatorReference SetSequenceWithInertialBlending(const FAnimUpdateContext& UpdateContext, const FSequenceEvaluatorReference& SequenceEvaluator, class UAnimSequenceBase* Sequence, float BlendTime);
-    FSequenceEvaluatorReference SetSequence(const FSequenceEvaluatorReference& SequenceEvaluator, class UAnimSequenceBase* Sequence);
-    FSequenceEvaluatorReference SetExplicitTime(const FSequenceEvaluatorReference& SequenceEvaluator, float Time);
-    FSequenceEvaluatorReference SetExplicitFrame(const FSequenceEvaluatorReference& SequenceEvaluator, int32 Frame);
-    class UAnimSequenceBase* GetSequence(const FSequenceEvaluatorReference& SequenceEvaluator);
-    float GetAccumulatedTime(const FSequenceEvaluatorReference& SequenceEvaluator);
+    void SetSequenceWithInertialBlending(const FAnimUpdateContext& UpdateContext, const FSequenceEvaluatorReference& SequenceEvaluator, class UAnimSequenceBase* Sequence, float BlendTime);
+    void SetSequence(const FSequenceEvaluatorReference& SequenceEvaluator, class UAnimSequenceBase* Sequence);
+    void SetExplicitTime(const FSequenceEvaluatorReference& SequenceEvaluator, float Time);
+    void SetExplicitFrame(const FSequenceEvaluatorReference& SequenceEvaluator, int32 Frame);
+    void GetSequence(const FSequenceEvaluatorReference& SequenceEvaluator);
+    void GetAccumulatedTime(const FSequenceEvaluatorReference& SequenceEvaluator);
     void ConvertToSequenceEvaluatorPure(const FAnimNodeReference& Node, FSequenceEvaluatorReference& SequenceEvaluator, bool& Result);
-    FSequenceEvaluatorReference ConvertToSequenceEvaluator(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
-    FSequenceEvaluatorReference AdvanceTime(const FAnimUpdateContext& UpdateContext, const FSequenceEvaluatorReference& SequenceEvaluator, float PlayRate);
+    void ConvertToSequenceEvaluator(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
+    void AdvanceTime(const FAnimUpdateContext& UpdateContext, const FSequenceEvaluatorReference& SequenceEvaluator, float PlayRate);
 }; // Size: 0x28
 
 class USequencePlayerLibrary : public UBlueprintFunctionLibrary
 {
 
-    FSequencePlayerReference SetStartPosition(const FSequencePlayerReference& SequencePlayer, float StartPosition);
-    FSequencePlayerReference SetSequenceWithInertialBlending(const FAnimUpdateContext& UpdateContext, const FSequencePlayerReference& SequencePlayer, class UAnimSequenceBase* Sequence, float BlendTime);
-    FSequencePlayerReference SetSequence(const FSequencePlayerReference& SequencePlayer, class UAnimSequenceBase* Sequence);
-    FSequencePlayerReference SetPlayRate(const FSequencePlayerReference& SequencePlayer, float PlayRate);
-    FSequencePlayerReference SetAccumulatedTime(const FSequencePlayerReference& SequencePlayer, float Time);
-    float GetStartPosition(const FSequencePlayerReference& SequencePlayer);
-    class UAnimSequenceBase* GetSequencePure(const FSequencePlayerReference& SequencePlayer);
-    FSequencePlayerReference GetSequence(const FSequencePlayerReference& SequencePlayer, class UAnimSequenceBase*& SequenceBase);
-    float GetPlayRate(const FSequencePlayerReference& SequencePlayer);
-    bool GetLoopAnimation(const FSequencePlayerReference& SequencePlayer);
-    float GetAccumulatedTime(const FSequencePlayerReference& SequencePlayer);
+    void SetStartPosition(const FSequencePlayerReference& SequencePlayer, float StartPosition);
+    void SetSequenceWithInertialBlending(const FAnimUpdateContext& UpdateContext, const FSequencePlayerReference& SequencePlayer, class UAnimSequenceBase* Sequence, float BlendTime);
+    void SetSequence(const FSequencePlayerReference& SequencePlayer, class UAnimSequenceBase* Sequence);
+    void SetPlayRate(const FSequencePlayerReference& SequencePlayer, float PlayRate);
+    void SetAccumulatedTime(const FSequencePlayerReference& SequencePlayer, float Time);
+    void GetStartPosition(const FSequencePlayerReference& SequencePlayer);
+    void GetSequencePure(const FSequencePlayerReference& SequencePlayer);
+    void GetSequence(const FSequencePlayerReference& SequencePlayer, class UAnimSequenceBase*& SequenceBase);
+    void GetPlayRate(const FSequencePlayerReference& SequencePlayer);
+    void GetLoopAnimation(const FSequencePlayerReference& SequencePlayer);
+    void GetAccumulatedTime(const FSequencePlayerReference& SequencePlayer);
     void ConvertToSequencePlayerPure(const FAnimNodeReference& Node, FSequencePlayerReference& SequencePlayer, bool& Result);
-    FSequencePlayerReference ConvertToSequencePlayer(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
-    float ComputePlayRateFromDuration(const FSequencePlayerReference& SequencePlayer, float Duration);
+    void ConvertToSequencePlayer(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
+    void ComputePlayRateFromDuration(const FSequencePlayerReference& SequencePlayer, float Duration);
 }; // Size: 0x28
 
 class USkeletalControlLibrary : public UBlueprintFunctionLibrary
 {
 
-    FSkeletalControlReference SetAlpha(const FSkeletalControlReference& SkeletalControl, float Alpha);
-    float GetAlpha(const FSkeletalControlReference& SkeletalControl);
+    void SetAlpha(const FSkeletalControlReference& SkeletalControl, float Alpha);
+    void GetAlpha(const FSkeletalControlReference& SkeletalControl);
     void ConvertToSkeletalControlPure(const FAnimNodeReference& Node, FSkeletalControlReference& SkeletalControl, bool& Result);
-    FSkeletalControlReference ConvertToSkeletalControl(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
+    void ConvertToSkeletalControl(const FAnimNodeReference& Node, EAnimNodeReferenceConversionResult& Result);
 }; // Size: 0x28
 
 #endif

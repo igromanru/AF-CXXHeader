@@ -3,6 +3,6 @@
 
 class AAI_Controller_NPC_Monster_WinterSprite_C : public AAbiotic_AI_Controller_ParentBP_C
 {
-}; // Size: 0x8B8
+}; // Size: 0x8A8
 
 #endif

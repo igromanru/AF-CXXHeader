@@ -19,8 +19,8 @@ class UWorldMetricsExtension : public UObject
 
 class UWorldMetricsSubsystem : public UWorldSubsystem
 {
-    TArray<class UWorldMetricInterface*> Metrics;                                     // 0x0040 (size: 0x10)
-    TArray<class UWorldMetricsExtension*> Extensions;                                 // 0x0050 (size: 0x10)
+    TArray<UWorldMetricInterface*> Metrics;                                           // 0x0040 (size: 0x10)
+    TArray<UWorldMetricsExtension*> Extensions;                                       // 0x0050 (size: 0x10)
     float UpdateRateInSeconds;                                                        // 0x2870 (size: 0x4)
     int32 WarmUpFrames;                                                               // 0x2874 (size: 0x4)
 

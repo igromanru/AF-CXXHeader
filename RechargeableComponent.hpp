@@ -14,15 +14,15 @@ class URechargeableComponent_C : public UActorComponent
     int32 HeadlampIndex;                                                              // 0x00D4 (size: 0x4)
     double LastItemChargePercentage;                                                  // 0x00D8 (size: 0x8)
     bool BatteryNotRequiredToFireWeapon;                                              // 0x00E0 (size: 0x1)
-    TEnumAsByte<E_InventorySlotType::Type> OwnerSlotType;                             // 0x00E1 (size: 0x1)
+    EInventorySlotType OwnerSlotType;                                                 // 0x00E1 (size: 0x1)
     bool PlayerOwned;                                                                 // 0x00E2 (size: 0x1)
     class USoundBase* OffSound;                                                       // 0x00E8 (size: 0x8)
     class USoundBase* OnSound;                                                        // 0x00F0 (size: 0x8)
-    TEnumAsByte<E_LiquidType::Type> CompatibleLiquidType;                             // 0x00F8 (size: 0x1)
+    ELiquidType CompatibleLiquidType;                                                 // 0x00F8 (size: 0x1)
     FText NoBatteryWarningOverride;                                                   // 0x0100 (size: 0x10)
 
     void GetPluggedInDeviceCount(int32& Count);
-    bool HasBatteryInParentChain();
+    void HasBatteryInParentChain();
     void IsPowered(bool& PowerOn);
     void GetPowerParentIndex(int32& Index);
     void RequiresPowerSocket(bool& MustBePluggedIn);
@@ -31,12 +31,12 @@ class URechargeableComponent_C : public UActorComponent
     void PowerParent(class AActor*& ParentPowerSource);
     void RestoresSanityNearbyWhenPowered(bool& RestoresSanity);
     void Local Owner Try Toggle Light Gadget Bar(bool ToggleOn);
-    int32 Get New Battery Drain Amount();
+    void Get New Battery Drain Amount();
     void ShowBatteryWarning(class AAbiotic_PlayerCharacter_C* LocalCharacter);
     void GetCorrectPlayerInventory(class UAbiotic_InventoryComponent_C*& Inventory, int32& Slot);
     void Server_ModifyBattery(int32 Amount, bool NotOwnedByPlayer);
-    void SetCurrentItemDynamicState(FAbiotic_InventoryChangeableDataStruct& ItemChangeableData, bool NewDynamicState, FAbiotic_InventoryChangeableDataStruct& OutChangeableData);
-    void ModifyBatteryLevel(int32 Amount, const FAbiotic_InventoryChangeableDataStruct& ChangeableData, const FAbiotic_InventoryItemStruct& ItemData, FAbiotic_InventoryChangeableDataStruct& ChangeableDataOut, int32& LastBatteryLevel);
+    void SetCurrentItemDynamicState(FAbioticInventoryChangeableData& ItemChangeableData, bool NewDynamicState, FAbioticInventoryChangeableData& OutChangeableData);
+    void ModifyBatteryLevel(int32 Amount, const FAbioticInventoryChangeableData& ChangeableData, const FAbioticInventoryItem& ItemData, FAbioticInventoryChangeableData& ChangeableDataOut, int32& LastBatteryLevel);
     void Has Sufficient Battery to Operate(TEnumAsByte<E_BatteryUseType::Type> BatteryUsageType, bool& Sufficient, int32& CurrentBatteryAmount);
     void Server_TogglePowerState(bool RechargeableActive, bool NotOwnedByPlayer);
     void Server_DrainBattery();

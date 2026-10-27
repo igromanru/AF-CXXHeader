@@ -11,9 +11,9 @@ class UW_RadialWheel_Hotbar_C : public UW_RadialWheel_ParentBP_C
     class UW_Keybind_C* W_Keybind;                                                    // 0x0380 (size: 0x8)
     bool IsFishingRod;                                                                // 0x0388 (size: 0x1)
     int32 NewSelectionHotbarSlot;                                                     // 0x038C (size: 0x4)
-    TArray<FAbiotic_InventoryItemSlotStruct> HotbarItems;                             // 0x0390 (size: 0x10)
+    TArray<FAbioticInventoryItemSlot> HotbarItems;                                    // 0x0390 (size: 0x10)
 
-    FText GetSelectedContentDisplayName(bool& ContentFound);
+    void GetSelectedContentDisplayName(bool& ContentFound);
     void GetRadialWheel(class UUMG_RadialMenu_C*& RadialWheel);
     void Get Wheel Categories(TArray<FName>& EntryList, bool& HasList);
     void Get Wheel Data(FName Data Name, FPTCategory& CategoryData, bool& DataExists, FFBasicIconSettings& CustomIconStyle);

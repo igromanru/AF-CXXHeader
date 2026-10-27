@@ -3,18 +3,18 @@
 
 class ADeployed_LaserPowerConverter_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0870 (size: 0x8)
-    class UChildActorComponent* ChildActor;                                           // 0x0878 (size: 0x8)
-    TArray<class APowerSocket_ChildOfActor_C*> PlugStripPowerSockets;                 // 0x0880 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0860 (size: 0x8)
+    class UChildActorComponent* ChildActor;                                           // 0x0868 (size: 0x8)
+    TArray<APowerSocket_ChildOfActor_C*> PlugStripPowerSockets;                       // 0x0870 (size: 0x10)
 
-    void GetPoweringActors(TArray<class AActor*>& PowerSourceParents);
-    void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
+    void GetPoweringActors(TArray<AActor*>& PowerSourceParents);
+    void GetAttachedPowerCord(TArray<UCableComponent*>& Power Cord Found);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
+    void GetHighlightComponents(TArray<UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void IsPowered(bool& PowerOn);
     void TogglePowerFX();
     void DestroyDeployable(bool NoLoot, int32 Extra Loot Quantity, bool LootBagLocationOverride, FVector LocationOverride);
     void ExecuteUbergraph_Deployed_LaserPowerConverter(int32 EntryPoint);
-}; // Size: 0x890
+}; // Size: 0x880
 
 #endif

@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_MainMenu_Initial_HPP
 #define UE4SS_SDK_W_MainMenu_Initial_HPP
 
-class UW_MainMenu_Initial_C : public UUserWidget
+class UW_MainMenu_Initial_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UWidgetAnimation* BounceEnterArrow;                                         // 0x02E8 (size: 0x8)
@@ -21,14 +21,15 @@ class UW_MainMenu_Initial_C : public UUserWidget
     class UW_MainMenuButton_C* W_MainMenuButton_Credits;                              // 0x0358 (size: 0x8)
     class UW_MainMenuButton_C* W_MainMenuButton_Customize;                            // 0x0360 (size: 0x8)
     class UW_MainMenuButton_C* W_MainMenuButton_Feedback;                             // 0x0368 (size: 0x8)
-    class UW_MainMenuButton_C* W_MainMenuButton_Play;                                 // 0x0370 (size: 0x8)
-    class UW_MainMenuButton_C* W_MainMenuButton_Quit;                                 // 0x0378 (size: 0x8)
-    class UW_MainMenuButton_C* W_MainMenuButton_ReportBug;                            // 0x0380 (size: 0x8)
-    class UW_MainMenuButton_C* W_MainMenuButton_Settings;                             // 0x0388 (size: 0x8)
-    class UW_MainMenuButton_C* W_MainMenuButton_Tutorial;                             // 0x0390 (size: 0x8)
-    class UW_MainMenu_QRCode_C* W_QRCode;                                             // 0x0398 (size: 0x8)
-    FString ActiveQRURL;                                                              // 0x03A0 (size: 0x10)
-    bool DisplayedCrossplayPrompt;                                                    // 0x03B0 (size: 0x1)
+    class UW_MainMenuButton_C* W_MainMenuButton_Mods;                                 // 0x0370 (size: 0x8)
+    class UW_MainMenuButton_C* W_MainMenuButton_Play;                                 // 0x0378 (size: 0x8)
+    class UW_MainMenuButton_C* W_MainMenuButton_Quit;                                 // 0x0380 (size: 0x8)
+    class UW_MainMenuButton_C* W_MainMenuButton_ReportBug;                            // 0x0388 (size: 0x8)
+    class UW_MainMenuButton_C* W_MainMenuButton_Settings;                             // 0x0390 (size: 0x8)
+    class UW_MainMenuButton_C* W_MainMenuButton_Tutorial;                             // 0x0398 (size: 0x8)
+    class UW_MainMenu_QRCode_C* W_QRCode;                                             // 0x03A0 (size: 0x8)
+    FString ActiveQRURL;                                                              // 0x03A8 (size: 0x10)
+    bool DisplayedCrossplayPrompt;                                                    // 0x03B8 (size: 0x1)
 
     void HandleURL(FString URL, class UTexture2D* QRCode);
     void OnFailure_92BAA3A245E75F4C996C098BE1F18EAA();
@@ -55,7 +56,10 @@ class UW_MainMenu_Initial_C : public UUserWidget
     void BndEvt__W_MainMenuButton_Settings_1_K2Node_ComponentBoundEvent_0_ButtonPressed__DelegateSignature();
     void CrossplayEnable_Yes();
     void CrossplayEnable_No();
+    void BndEvt__W_MainMenu_Initial_W_MainMenuButton_Mods_K2Node_ComponentBoundEvent_14_ButtonPressed__DelegateSignature();
+    void ModsEnable_Yes();
+    void ModsEnable_No();
     void ExecuteUbergraph_W_MainMenu_Initial(int32 EntryPoint);
-}; // Size: 0x3B1
+}; // Size: 0x3B9
 
 #endif

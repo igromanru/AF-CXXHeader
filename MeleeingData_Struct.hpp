@@ -7,7 +7,7 @@ struct FMeleeingData_Struct
     double MeleeRange_4_2D1CF18C4342ACC3B3954AB87FCBA236;                             // 0x0008 (size: 0x8)
     bool IsWindupEnd_7_FCE4F72E4D48FAF1539395909A7E8232;                              // 0x0010 (size: 0x1)
     double SwingDuration_40_62954EAA4D9FA4FC8CAD1CA0B74680F1;                         // 0x0018 (size: 0x8)
-    TEnumAsByte<E_SwingDirections::Type> SwingDirection_17_6BF123D74BABEB03B36FDDAC2331A5A6; // 0x0020 (size: 0x1)
+    ESwingDirections SwingDirection_46_6BF123D74BABEB03B36FDDAC2331A5A6;              // 0x0020 (size: 0x1)
     double SwingTraceRadius_20_224ABF0C43CAB8C7B9B761A1BA5201E2;                      // 0x0028 (size: 0x8)
     bool EndSwingOnFirstHit_25_270E184C4A2C924BD9DCA1A8DFD8C629;                      // 0x0030 (size: 0x1)
     bool HitEnemyThisSwing_27_C99C41014ECE7E4ECE5A85BF52588795;                       // 0x0031 (size: 0x1)

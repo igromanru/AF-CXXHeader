@@ -6,16 +6,16 @@ class AButton_Keypad_C : public AButton_Generic_C
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0440 (size: 0x8)
     class UPointLightComponent* GlowLight;                                            // 0x0448 (size: 0x8)
     TEnumAsByte<E_KeypadSecurityLevels::Type> KeypadSecurityLevel;                    // 0x0450 (size: 0x1)
-    TMap<TEnumAsByte<E_KeypadSecurityLevels::Type>, FName> KeypadHackerItemNames;     // 0x0458 (size: 0x50)
+    TMap<TEnumAsByte<E_KeypadSecurityLevels::Type>, FGlobalItemRowHandle> KeypadHackerItemNames; // 0x0458 (size: 0x50)
     class UMaterialInterface* Material_KeypadOpened;                                  // 0x04A8 (size: 0x8)
     class USoundBase* KeypadNegativeBeep;                                             // 0x04B0 (size: 0x8)
     int32 Material_KeypadOpened_Index;                                                // 0x04B8 (size: 0x4)
 
     void SetUpKeypadTextures();
-    FText GetItemNameText();
+    void GetItemNameText();
     void ActivationFX();
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
-    void CheckKeypadHackerSecurityLevel(const FAbiotic_InventoryItemSlotStruct& ItemSlot, bool& SecurityClearancePermitted);
+    void CheckKeypadHackerSecurityLevel(const FAbioticInventoryItemSlot& ItemSlot, bool& SecurityClearancePermitted);
     void UserConstructionScript();
     void Broadcast_ErrorBeep();
     void ActivateKeypad(class AAbiotic_PlayerCharacter_C* PlayerCharacter);

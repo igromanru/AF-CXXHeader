@@ -3,6 +3,6 @@
 
 class UDamageType_Sharp_Throwing_InterfectorKnife_C : public UDamageType_Sharp_ThrownXP_C
 {
-}; // Size: 0x290
+}; // Size: 0x280
 
 #endif

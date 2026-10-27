@@ -11,7 +11,7 @@ class UW_Compendium_Entry_C : public UUserWidget
     class UTextBlock* CompEntryTitle;                                                 // 0x0308 (size: 0x8)
     class UImage* Icon_UnreadCompendiumEntries;                                       // 0x0310 (size: 0x8)
 
-    FEventReply OnFocusReceived(FGeometry MyGeometry, FFocusEvent InFocusEvent);
+    void OnFocusReceived(FGeometry MyGeometry, FFocusEvent InFocusEvent);
     void BP_OnItemSelectionChanged(bool bIsSelected);
     void OnListItemObjectSet(class UObject* ListItemObject);
     void BP_OnItemExpansionChanged(bool bIsExpanded);

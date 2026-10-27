@@ -9,10 +9,10 @@ class UW_PlayerHUD_PinnedRecipesList_C : public UUserWidget
     FSlateColor CanCraftColor;                                                        // 0x02F8 (size: 0x14)
     FSlateColor CannotCraftColor;                                                     // 0x030C (size: 0x14)
 
-    void CheckForAvailableItemInPinnedRecipe(class AAbiotic_PlayerCharacter_C*& OwningCharacter, const FAbioticItemCount_Struct& ItemCount, class UW_InventoryItemSlot_C*& ItemSlot, FAbioticRecipe_Struct& Recipe, const TArray<FDataTableRowHandle>& BenchesAvailable, bool& OneItemIsMissing);
+    void CheckForAvailableItemInPinnedRecipe(class AAbiotic_PlayerCharacter_C*& OwningCharacter, const FAbioticItemInput& ItemCount, class UW_InventoryItemSlot_C*& ItemSlot, FAbioticRecipe& Recipe, const TArray<FGlobalItemRowHandle>& BenchesAvailable, bool& OneItemIsMissing);
     void Add New Recipe Pin(FName Recipe);
     void Update Pinned Recipes Item(class AAbiotic_PlayerCharacter_C*& OwningCharacter);
-    void CheckForDuplicateRecipe(const FName& RecipeToLookFor, bool& HasDuplicates, TArray<class UWidget*>& DuplicateRecipePin);
+    void CheckForDuplicateRecipe(const FName& RecipeToLookFor, bool& HasDuplicates, TArray<UWidget*>& DuplicateRecipePin);
     void StartFillingRecipesToList(FName Recipe);
     void RefreshPinnedRecipeName(bool ChangeColorOnly, bool RevertToDefault, const class UTextBlock*& TextToUpdate, FText NewRecipeName);
     void ExecuteUbergraph_W_PlayerHUD_PinnedRecipesList(int32 EntryPoint);

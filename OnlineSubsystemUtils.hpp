@@ -20,7 +20,7 @@ struct FInAppPurchaseProductInfo2
     FString DecimalSeparator;                                                         // 0x0078 (size: 0x10)
     FString GroupingSeparator;                                                        // 0x0088 (size: 0x10)
     FString ReceiptData;                                                              // 0x0098 (size: 0x10)
-    TMap<class FString, class FString> DynamicFields;                                 // 0x00A8 (size: 0x50)
+    TMap<FString, FString> DynamicFields;                                             // 0x00A8 (size: 0x50)
 
 }; // Size: 0xF8
 
@@ -62,7 +62,7 @@ struct FOnlineProxyStoreOffer
     FDateTime ReleaseDate;                                                            // 0x0080 (size: 0x8)
     FDateTime ExpirationDate;                                                         // 0x0088 (size: 0x8)
     EOnlineProxyStoreOfferDiscountType DiscountType;                                  // 0x0090 (size: 0x1)
-    TMap<class FString, class FString> DynamicFields;                                 // 0x0098 (size: 0x50)
+    TMap<FString, FString> DynamicFields;                                             // 0x0098 (size: 0x50)
 
 }; // Size: 0xE8
 
@@ -131,7 +131,7 @@ class AOnlineBeaconHost : public AOnlineBeacon
     bool bReuseAddressAndPort;                                                        // 0x02CC (size: 0x1)
     bool bAuthRequired;                                                               // 0x02CD (size: 0x1)
     uint32 MaxAuthTokenSize;                                                          // 0x02D0 (size: 0x4)
-    TArray<class AOnlineBeaconClient*> ClientActors;                                  // 0x0328 (size: 0x10)
+    TArray<AOnlineBeaconClient*> ClientActors;                                        // 0x0328 (size: 0x10)
 
 }; // Size: 0x3D8
 
@@ -139,7 +139,7 @@ class AOnlineBeaconHostObject : public AActor
 {
     FString BeaconTypeName;                                                           // 0x0298 (size: 0x10)
     TSubclassOf<class AOnlineBeaconClient> ClientBeaconActorClass;                    // 0x02A8 (size: 0x8)
-    TArray<class AOnlineBeaconClient*> ClientActors;                                  // 0x02B0 (size: 0x10)
+    TArray<AOnlineBeaconClient*> ClientActors;                                        // 0x02B0 (size: 0x10)
 
 }; // Size: 0x2C0
 
@@ -223,8 +223,8 @@ class UAchievementQueryCallbackProxy : public UOnlineBlueprintCallProxyBase
     FAchievementQueryCallbackProxyOnFailure OnFailure;                                // 0x0040 (size: 0x10)
     void EmptyOnlineDelegate();
 
-    class UAchievementQueryCallbackProxy* CacheAchievements(class UObject* WorldContextObject, class APlayerController* PlayerController);
-    class UAchievementQueryCallbackProxy* CacheAchievementDescriptions(class UObject* WorldContextObject, class APlayerController* PlayerController);
+    void CacheAchievements(class UObject* WorldContextObject, class APlayerController* PlayerController);
+    void CacheAchievementDescriptions(class UObject* WorldContextObject, class APlayerController* PlayerController);
 }; // Size: 0x68
 
 class UAchievementWriteCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -234,7 +234,7 @@ class UAchievementWriteCallbackProxy : public UOnlineBlueprintCallProxyBase
     FAchievementWriteCallbackProxyOnFailure OnFailure;                                // 0x0040 (size: 0x10)
     void AchievementWriteDelegate(FName WrittenAchievementName, float WrittenProgress, int32 WrittenUserTag);
 
-    class UAchievementWriteCallbackProxy* WriteAchievementProgress(class UObject* WorldContextObject, class APlayerController* PlayerController, FName AchievementName, float Progress, int32 UserTag);
+    void WriteAchievementProgress(class UObject* WorldContextObject, class APlayerController* PlayerController, FName AchievementName, float Progress, int32 UserTag);
 }; // Size: 0x80
 
 class UConnectionCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -244,7 +244,7 @@ class UConnectionCallbackProxy : public UOnlineBlueprintCallProxyBase
     FConnectionCallbackProxyOnFailure OnFailure;                                      // 0x0040 (size: 0x10)
     void OnlineConnectionResult(int32 ErrorCode);
 
-    class UConnectionCallbackProxy* ConnectToService(class UObject* WorldContextObject, class APlayerController* PlayerController);
+    void ConnectToService(class UObject* WorldContextObject, class APlayerController* PlayerController);
 }; // Size: 0x78
 
 class UCreateSessionCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -254,7 +254,7 @@ class UCreateSessionCallbackProxy : public UOnlineBlueprintCallProxyBase
     FCreateSessionCallbackProxyOnFailure OnFailure;                                   // 0x0040 (size: 0x10)
     void EmptyOnlineDelegate();
 
-    class UCreateSessionCallbackProxy* CreateSession(class UObject* WorldContextObject, class APlayerController* PlayerController, int32 PublicConnections, bool bUseLAN, bool bUseLobbiesIfAvailable);
+    void CreateSession(class UObject* WorldContextObject, class APlayerController* PlayerController, int32 PublicConnections, bool bUseLAN, bool bUseLobbiesIfAvailable);
 }; // Size: 0x98
 
 class UDestroySessionCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -264,7 +264,7 @@ class UDestroySessionCallbackProxy : public UOnlineBlueprintCallProxyBase
     FDestroySessionCallbackProxyOnFailure OnFailure;                                  // 0x0040 (size: 0x10)
     void EmptyOnlineDelegate();
 
-    class UDestroySessionCallbackProxy* DestroySession(class UObject* WorldContextObject, class APlayerController* PlayerController);
+    void DestroySession(class UObject* WorldContextObject, class APlayerController* PlayerController);
 }; // Size: 0x78
 
 class UEndMatchCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -274,7 +274,7 @@ class UEndMatchCallbackProxy : public UOnlineBlueprintCallProxyBase
     FEndMatchCallbackProxyOnFailure OnFailure;                                        // 0x0040 (size: 0x10)
     void EmptyOnlineDelegate();
 
-    class UEndMatchCallbackProxy* EndMatch(class UObject* WorldContextObject, class APlayerController* PlayerController, TScriptInterface<class ITurnBasedMatchInterface> MatchActor, FString MatchID, TEnumAsByte<EMPMatchOutcome::Type> LocalPlayerOutcome, TEnumAsByte<EMPMatchOutcome::Type> OtherPlayersOutcome);
+    void EndMatch(class UObject* WorldContextObject, class APlayerController* PlayerController, TScriptInterface<class ITurnBasedMatchInterface> MatchActor, FString MatchID, TEnumAsByte<EMPMatchOutcome::Type> LocalPlayerOutcome, TEnumAsByte<EMPMatchOutcome::Type> OtherPlayersOutcome);
 }; // Size: 0x80
 
 class UEndTurnCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -284,7 +284,7 @@ class UEndTurnCallbackProxy : public UOnlineBlueprintCallProxyBase
     FEndTurnCallbackProxyOnFailure OnFailure;                                         // 0x0040 (size: 0x10)
     void EmptyOnlineDelegate();
 
-    class UEndTurnCallbackProxy* EndTurn(class UObject* WorldContextObject, class APlayerController* PlayerController, FString MatchID, TScriptInterface<class ITurnBasedMatchInterface> TurnBasedMatchInterface);
+    void EndTurn(class UObject* WorldContextObject, class APlayerController* PlayerController, FString MatchID, TScriptInterface<class ITurnBasedMatchInterface> TurnBasedMatchInterface);
 }; // Size: 0x78
 
 class UFindSessionsCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -294,11 +294,11 @@ class UFindSessionsCallbackProxy : public UOnlineBlueprintCallProxyBase
     FFindSessionsCallbackProxyOnFailure OnFailure;                                    // 0x0040 (size: 0x10)
     void BlueprintFindSessionsResultDelegate(const TArray<FBlueprintSessionResult>& Results);
 
-    FString GetServerName(const FBlueprintSessionResult& Result);
-    int32 GetPingInMs(const FBlueprintSessionResult& Result);
-    int32 GetMaxPlayers(const FBlueprintSessionResult& Result);
-    int32 GetCurrentPlayers(const FBlueprintSessionResult& Result);
-    class UFindSessionsCallbackProxy* FindSessions(class UObject* WorldContextObject, class APlayerController* PlayerController, int32 MaxResults, bool bUseLAN);
+    void GetServerName(const FBlueprintSessionResult& Result);
+    void GetPingInMs(const FBlueprintSessionResult& Result);
+    void GetMaxPlayers(const FBlueprintSessionResult& Result);
+    void GetCurrentPlayers(const FBlueprintSessionResult& Result);
+    void FindSessions(class UObject* WorldContextObject, class APlayerController* PlayerController, int32 MaxResults, bool bUseLAN);
 }; // Size: 0x90
 
 class UFindTurnBasedMatchCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -308,7 +308,7 @@ class UFindTurnBasedMatchCallbackProxy : public UOnlineBlueprintCallProxyBase
     FFindTurnBasedMatchCallbackProxyOnFailure OnFailure;                              // 0x0040 (size: 0x10)
     void OnlineTurnBasedMatchResult(FString MatchID);
 
-    class UFindTurnBasedMatchCallbackProxy* FindTurnBasedMatch(class UObject* WorldContextObject, class APlayerController* PlayerController, TScriptInterface<class ITurnBasedMatchInterface> MatchActor, int32 MinPlayers, int32 MaxPlayers, int32 PlayerGroup, bool ShowExistingMatches);
+    void FindTurnBasedMatch(class UObject* WorldContextObject, class APlayerController* PlayerController, TScriptInterface<class ITurnBasedMatchInterface> MatchActor, int32 MinPlayers, int32 MaxPlayers, int32 PlayerGroup, bool ShowExistingMatches);
 }; // Size: 0x88
 
 class UInAppPurchaseCallbackProxy2 : public UObject
@@ -318,9 +318,9 @@ class UInAppPurchaseCallbackProxy2 : public UObject
     FInAppPurchaseCallbackProxy2OnFailure OnFailure;                                  // 0x0038 (size: 0x10)
     void InAppPurchaseResult2(EInAppPurchaseStatus PurchaseStatus, const TArray<FInAppPurchaseReceiptInfo2>& InAppPurchaseReceipts);
 
-    class UInAppPurchaseCallbackProxy2* CreateProxyObjectForInAppPurchaseUnprocessedPurchases(class APlayerController* PlayerController);
-    class UInAppPurchaseCallbackProxy2* CreateProxyObjectForInAppPurchaseQueryOwned(class APlayerController* PlayerController);
-    class UInAppPurchaseCallbackProxy2* CreateProxyObjectForInAppPurchase(class APlayerController* PlayerController, const FInAppPurchaseProductRequest2& ProductRequest);
+    void CreateProxyObjectForInAppPurchaseUnprocessedPurchases(class APlayerController* PlayerController);
+    void CreateProxyObjectForInAppPurchaseQueryOwned(class APlayerController* PlayerController);
+    void CreateProxyObjectForInAppPurchase(class APlayerController* PlayerController, const FInAppPurchaseProductRequest2& ProductRequest);
 }; // Size: 0xA8
 
 class UInAppPurchaseCheckoutCallbackProxy : public UObject
@@ -330,13 +330,13 @@ class UInAppPurchaseCheckoutCallbackProxy : public UObject
     FInAppPurchaseCheckoutCallbackProxyOnFailure OnFailure;                           // 0x0038 (size: 0x10)
     void OnlineProxyInAppCheckoutResult(EInAppPurchaseStatus PurchaseStatus, const FInAppPurchaseReceiptInfo2& InAppPurchaseReceipt);
 
-    class UInAppPurchaseCheckoutCallbackProxy* CreateProxyObjectForInAppPurchaseCheckout(class APlayerController* PlayerController, const FInAppPurchaseProductRequest2& ProductRequest);
+    void CreateProxyObjectForInAppPurchaseCheckout(class APlayerController* PlayerController, const FInAppPurchaseProductRequest2& ProductRequest);
 }; // Size: 0xA0
 
 class UInAppPurchaseFinalizeProxy : public UObject
 {
 
-    class UInAppPurchaseFinalizeProxy* CreateProxyObjectForInAppPurchaseFinalize(const FInAppPurchaseReceiptInfo2& InAppPurchaseReceipt, class APlayerController* PlayerController);
+    void CreateProxyObjectForInAppPurchaseFinalize(const FInAppPurchaseReceiptInfo2& InAppPurchaseReceipt, class APlayerController* PlayerController);
 }; // Size: 0x28
 
 class UInAppPurchaseQueryCallbackProxy2 : public UObject
@@ -346,7 +346,7 @@ class UInAppPurchaseQueryCallbackProxy2 : public UObject
     FInAppPurchaseQueryCallbackProxy2OnFailure OnFailure;                             // 0x0038 (size: 0x10)
     void InAppPurchaseQuery2Result(const TArray<FOnlineProxyStoreOffer>& InAppOfferInformation);
 
-    class UInAppPurchaseQueryCallbackProxy2* CreateProxyObjectForInAppPurchaseQuery(class APlayerController* PlayerController, const TArray<FString>& ProductIdentifiers);
+    void CreateProxyObjectForInAppPurchaseQuery(class APlayerController* PlayerController, const TArray<FString>& ProductIdentifiers);
 }; // Size: 0x68
 
 class UInAppPurchaseReceiptsCallbackProxy : public UObject
@@ -356,9 +356,9 @@ class UInAppPurchaseReceiptsCallbackProxy : public UObject
     FInAppPurchaseReceiptsCallbackProxyOnFailure OnFailure;                           // 0x0038 (size: 0x10)
     void OnlineProxyInAppReceiptsResult(EInAppPurchaseStatus PurchaseStatus, const TArray<FInAppPurchaseReceiptInfo2>& InAppPurchaseReceipts);
 
-    class UInAppPurchaseReceiptsCallbackProxy* CreateProxyObjectForInAppPurchaseRestoreOwnedProducts(class APlayerController* PlayerController);
-    class UInAppPurchaseReceiptsCallbackProxy* CreateProxyObjectForInAppPurchaseQueryOwnedProducts(class APlayerController* PlayerController);
-    class UInAppPurchaseReceiptsCallbackProxy* CreateProxyObjectForInAppPurchaseGetKnownReceipts(class APlayerController* PlayerController);
+    void CreateProxyObjectForInAppPurchaseRestoreOwnedProducts(class APlayerController* PlayerController);
+    void CreateProxyObjectForInAppPurchaseQueryOwnedProducts(class APlayerController* PlayerController);
+    void CreateProxyObjectForInAppPurchaseGetKnownReceipts(class APlayerController* PlayerController);
 }; // Size: 0x88
 
 class UInAppPurchaseRestoreCallbackProxy2 : public UObject
@@ -368,7 +368,7 @@ class UInAppPurchaseRestoreCallbackProxy2 : public UObject
     FInAppPurchaseRestoreCallbackProxy2OnFailure OnFailure;                           // 0x0038 (size: 0x10)
     void InAppPurchaseRestoreResult2(EInAppPurchaseStatus PurchaseStatus, const TArray<FInAppPurchaseRestoreInfo2>& InAppPurchaseRestoreInfo);
 
-    class UInAppPurchaseRestoreCallbackProxy2* CreateProxyObjectForInAppPurchaseRestore(const TArray<FInAppPurchaseProductRequest2>& ConsumableProductFlags, class APlayerController* PlayerController);
+    void CreateProxyObjectForInAppPurchaseRestore(const TArray<FInAppPurchaseProductRequest2>& ConsumableProductFlags, class APlayerController* PlayerController);
 }; // Size: 0xB0
 
 class UIpConnection : public UNetConnection
@@ -404,13 +404,13 @@ class UJoinSessionCallbackProxy : public UOnlineBlueprintCallProxyBase
     FJoinSessionCallbackProxyOnCrossplayIncompatibility OnCrossplayIncompatibility;   // 0x0060 (size: 0x10)
     void EmptyOnlineDelegate();
 
-    class UJoinSessionCallbackProxy* JoinSession(class UObject* WorldContextObject, class APlayerController* PlayerController, const FBlueprintSessionResult& SearchResult, bool bIgnoreBlockedPlayers);
+    void JoinSession(class UObject* WorldContextObject, class APlayerController* PlayerController, const FBlueprintSessionResult& SearchResult, bool bIgnoreBlockedPlayers);
 }; // Size: 0x1C0
 
 class ULeaderboardBlueprintLibrary : public UBlueprintFunctionLibrary
 {
 
-    bool WriteLeaderboardInteger(class APlayerController* PlayerController, FName StatName, int32 StatValue);
+    void WriteLeaderboardInteger(class APlayerController* PlayerController, FName StatName, int32 StatValue);
 }; // Size: 0x28
 
 class ULeaderboardFlushCallbackProxy : public UObject
@@ -420,7 +420,7 @@ class ULeaderboardFlushCallbackProxy : public UObject
     FLeaderboardFlushCallbackProxyOnFailure OnFailure;                                // 0x0038 (size: 0x10)
     void OnLeaderboardFlushed(FName SessionName);
 
-    class ULeaderboardFlushCallbackProxy* CreateProxyObjectForFlush(class APlayerController* PlayerController, FName SessionName);
+    void CreateProxyObjectForFlush(class APlayerController* PlayerController, FName SessionName);
 }; // Size: 0x68
 
 class ULeaderboardQueryCallbackProxy : public UObject
@@ -430,7 +430,7 @@ class ULeaderboardQueryCallbackProxy : public UObject
     FLeaderboardQueryCallbackProxyOnFailure OnFailure;                                // 0x0038 (size: 0x10)
     void LeaderboardQueryResult(int32 LeaderboardValue);
 
-    class ULeaderboardQueryCallbackProxy* CreateProxyObjectForIntQuery(class APlayerController* PlayerController, FName StatName);
+    void CreateProxyObjectForIntQuery(class APlayerController* PlayerController, FName StatName);
 }; // Size: 0x98
 
 class ULogoutCallbackProxy : public UBlueprintAsyncActionBase
@@ -440,12 +440,12 @@ class ULogoutCallbackProxy : public UBlueprintAsyncActionBase
     FLogoutCallbackProxyOnFailure OnFailure;                                          // 0x0040 (size: 0x10)
     void OnlineLogoutResult(class APlayerController* PlayerController);
 
-    class ULogoutCallbackProxy* Logout(class UObject* WorldContextObject, class APlayerController* PlayerController);
+    void Logout(class UObject* WorldContextObject, class APlayerController* PlayerController);
 }; // Size: 0x68
 
 class UOnlineEngineInterfaceImpl : public UOnlineEngineInterface
 {
-    TMap<class FName, class FName> MappedUniqueNetIdTypes;                            // 0x0028 (size: 0x50)
+    TMap<FName, FName> MappedUniqueNetIdTypes;                                        // 0x0028 (size: 0x50)
     TArray<FName> CompatibleUniqueNetIdTypes;                                         // 0x0078 (size: 0x10)
     FName VoiceSubsystemNameOverride;                                                 // 0x0088 (size: 0x8)
 
@@ -495,7 +495,7 @@ class UQuitMatchCallbackProxy : public UOnlineBlueprintCallProxyBase
     FQuitMatchCallbackProxyOnFailure OnFailure;                                       // 0x0040 (size: 0x10)
     void EmptyOnlineDelegate();
 
-    class UQuitMatchCallbackProxy* QuitMatch(class UObject* WorldContextObject, class APlayerController* PlayerController, FString MatchID, TEnumAsByte<EMPMatchOutcome::Type> Outcome, int32 TurnTimeoutInSeconds);
+    void QuitMatch(class UObject* WorldContextObject, class APlayerController* PlayerController, FString MatchID, TEnumAsByte<EMPMatchOutcome::Type> Outcome, int32 TurnTimeoutInSeconds);
 }; // Size: 0x78
 
 class UShowLoginUICallbackProxy : public UBlueprintAsyncActionBase
@@ -505,7 +505,7 @@ class UShowLoginUICallbackProxy : public UBlueprintAsyncActionBase
     FShowLoginUICallbackProxyOnFailure OnFailure;                                     // 0x0040 (size: 0x10)
     void OnlineShowLoginUIResult(class APlayerController* PlayerController);
 
-    class UShowLoginUICallbackProxy* ShowExternalLoginUI(class UObject* WorldContextObject, class APlayerController* InPlayerController);
+    void ShowExternalLoginUI(class UObject* WorldContextObject, class APlayerController* InPlayerController);
 }; // Size: 0x60
 
 class USpectatorBeaconState : public UObject
@@ -530,7 +530,7 @@ class UTurnBasedBlueprintLibrary : public UBlueprintFunctionLibrary
 class UVoipListenerSynthComponent : public USynthComponent
 {
 
-    bool IsIdling();
+    void IsIdling();
 }; // Size: 0x900
 
 #endif

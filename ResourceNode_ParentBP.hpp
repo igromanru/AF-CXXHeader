@@ -15,81 +15,86 @@ class AResourceNode_ParentBP_C : public AAbioticActor_C
     bool IsDepleted;                                                                  // 0x0310 (size: 0x1)
     double CurrentHitPoints;                                                          // 0x0318 (size: 0x8)
     double MaxHitPoints;                                                              // 0x0320 (size: 0x8)
-    FDataTableRowHandle SalvageDropRow;                                               // 0x0328 (size: 0x10)
-    bool IgnoreRadialDamage;                                                          // 0x0338 (size: 0x1)
-    bool IgnorePointDamage;                                                           // 0x0339 (size: 0x1)
-    TEnumAsByte<E_ResourceNodeMethod::Type> ObtainmentMethod;                         // 0x033A (size: 0x1)
-    FVector SM_RelativeLocation;                                                      // 0x0340 (size: 0x18)
-    FVector SK_RelativeLocation;                                                      // 0x0358 (size: 0x18)
-    FWorldFlagRowHandle ContinualRespawnFlag;                                         // 0x0370 (size: 0x20)
-    bool JiggleWhenDamaged;                                                           // 0x0390 (size: 0x1)
-    double JiggleIntensity;                                                           // 0x0398 (size: 0x8)
-    bool IgnorePunchDamage;                                                           // 0x03A0 (size: 0x1)
-    double NodeSpawnChance;                                                           // 0x03A8 (size: 0x8)
-    FText To Interact with Text;                                                      // 0x03B0 (size: 0x10)
-    bool IgnoreSupports;                                                              // 0x03C0 (size: 0x1)
-    FResourceNode_ParentBP_COnMoved OnMoved;                                          // 0x03C8 (size: 0x10)
+    FSalvageRowHandle SalvageDropRow;                                                 // 0x0328 (size: 0x10)
+    FItemRewardRowHandle DropRow;                                                     // 0x0338 (size: 0x18)
+    bool AutomaticallySetMeshFromDrop;                                                // 0x0350 (size: 0x1)
+    bool IgnoreRadialDamage;                                                          // 0x0351 (size: 0x1)
+    bool IgnorePointDamage;                                                           // 0x0352 (size: 0x1)
+    TEnumAsByte<E_ResourceNodeMethod::Type> ObtainmentMethod;                         // 0x0353 (size: 0x1)
+    FVector SM_RelativeLocation;                                                      // 0x0358 (size: 0x18)
+    FVector SK_RelativeLocation;                                                      // 0x0370 (size: 0x18)
+    FWorldFlagRowHandle ContinualRespawnFlag;                                         // 0x0388 (size: 0x10)
+    bool JiggleWhenDamaged;                                                           // 0x0398 (size: 0x1)
+    double JiggleIntensity;                                                           // 0x03A0 (size: 0x8)
+    bool IgnorePunchDamage;                                                           // 0x03A8 (size: 0x1)
+    double NodeSpawnChance;                                                           // 0x03B0 (size: 0x8)
+    FText To Interact with Text;                                                      // 0x03B8 (size: 0x10)
+    bool IgnoreSupports;                                                              // 0x03C8 (size: 0x1)
+    FResourceNode_ParentBP_COnMoved OnMoved;                                          // 0x03D0 (size: 0x10)
     void OnMoved(class AActor* MovedActor);
-    FVector Rep_GroundPosition;                                                       // 0x03D8 (size: 0x18)
-    TArray<class UMaterialInstanceDynamic*> DynamicMaterials;                         // 0x03F0 (size: 0x10)
-    bool Loot Is Generated?;                                                          // 0x0400 (size: 0x1)
-    class USoundCue* SoundOnDestroy;                                                  // 0x0408 (size: 0x8)
-    FDataTableRowHandle TextureVariant;                                               // 0x0410 (size: 0x10)
-    FDataTableRowHandle TutorialOnCollection;                                         // 0x0420 (size: 0x10)
-    FResourceNode_ParentBP_COnDepleted OnDepleted;                                    // 0x0430 (size: 0x10)
+    FVector Rep_GroundPosition;                                                       // 0x03E0 (size: 0x18)
+    TArray<UMaterialInstanceDynamic*> DynamicMaterials;                               // 0x03F8 (size: 0x10)
+    bool Loot Is Generated?;                                                          // 0x0408 (size: 0x1)
+    class USoundCue* SoundOnDestroy;                                                  // 0x0410 (size: 0x8)
+    FTextureVariantRowHandle TextureVariant;                                          // 0x0418 (size: 0x10)
+    FTutorialHintRowHandle TutorialOnCollection;                                      // 0x0428 (size: 0x10)
+    FResourceNode_ParentBP_COnDepleted OnDepleted;                                    // 0x0438 (size: 0x10)
     void OnDepleted();
-    FDataTableRowHandle DebrisRow;                                                    // 0x0440 (size: 0x10)
-    bool DisableInDemoMode;                                                           // 0x0450 (size: 0x1)
-    FText CachedNodeName;                                                             // 0x0458 (size: 0x10)
-    TMap<ECharacterSkills, double> XPForPickup;                                       // 0x0468 (size: 0x50)
-    bool DisallowSandboxRespawning;                                                   // 0x04B8 (size: 0x1)
-    FTimerHandle MyRespawnTimer;                                                      // 0x04C0 (size: 0x8)
-    int32 DayWasDepleted;                                                             // 0x04C8 (size: 0x4)
-    bool AllowRespawnAfterDays;                                                       // 0x04CC (size: 0x1)
-    int32 RequiredDaysToRespawn;                                                      // 0x04D0 (size: 0x4)
-    class AAbiotic_PlayerCharacter_C* LastPlayerInteractor;                           // 0x04D8 (size: 0x8)
-    bool CanBeDamagedByPests;                                                         // 0x04E0 (size: 0x1)
+    FDataTableRowHandle DebrisRow;                                                    // 0x0448 (size: 0x10)
+    bool DisableInDemoMode;                                                           // 0x0458 (size: 0x1)
+    FText CachedNodeName;                                                             // 0x0460 (size: 0x10)
+    TMap<ECharacterSkills, double> XPForPickup;                                       // 0x0470 (size: 0x50)
+    bool DisallowSandboxRespawning;                                                   // 0x04C0 (size: 0x1)
+    FTimerHandle MyRespawnTimer;                                                      // 0x04C8 (size: 0x8)
+    int32 DayWasDepleted;                                                             // 0x04D0 (size: 0x4)
+    bool AllowRespawnAfterDays;                                                       // 0x04D4 (size: 0x1)
+    int32 RequiredDaysToRespawn;                                                      // 0x04D8 (size: 0x4)
+    class AAbiotic_PlayerCharacter_C* LastPlayerInteractor;                           // 0x04E0 (size: 0x8)
+    bool CanBeDamagedByPests;                                                         // 0x04E8 (size: 0x1)
 
     void DebugInfo_Tick(bool& Success, FString& DebugString, bool& UseBoundsAsOffset, FVector& Offset, FLinearColor& Color);
     void GetFriendlyFireDamageMultiplier(bool& Return, double& DamageMultiplier);
     void TargetableByTurrets(bool& Targetable);
     void GetWandererNPC(class ANPC_Base_ParentBP_C*& Wanderer);
-    bool GetTargetPriority(TEnumAsByte<E_TargetPriority::Type>& Priority);
+    void GetTargetPriority(TEnumAsByte<E_TargetPriority::Type>& Priority);
     void Targetable By Triggers(bool& Targetable);
-    void GetFactionTeam(TEnumAsByte<E_Factions::Type>& Faction);
+    void GetFactionTeam(EFactions& Faction);
     void GetSpottablePoints(TArray<FVector>& SpottablePoints);
     void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
     void RequiresRangedWeaponToEngage(bool& RequiresRanged);
     void DoesAwardSkillXPWhenHit(bool& MeleeXP, bool& RangedXP, double& XPMultiplier);
     void IsStompable(class AAbiotic_Character_ParentBP_C* AskingCharacter, bool& IsStompable);
-    void GetBuffOverlayMeshes(TArray<class UMeshComponent*>& Meshes);
-    bool GetCurrentLightLevel(double& LightLevel);
-    bool GetSpottability(double& Spottability, bool& Crouched);
+    void GetBuffOverlayMeshes(TArray<UMeshComponent*>& Meshes);
+    void GetCurrentLightLevel(double& LightLevel);
+    void GetSpottability(double& Spottability, bool& Crouched);
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
-    void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
-    bool IsRadioactive();
+    void GetAttachedPowerCord(TArray<UCableComponent*>& Power Cord Found);
+    void IsRadioactive();
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
     void Landing Damage Multiplier(double Damage, double& DamageMultiplier);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
-    FText GetItemNameText();
+    void GetItemNameText();
     void GetStoredString(FString& String);
     void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void RequiresToolToDismantle(bool& Tool Required);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
-    void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
+    void GetItemChangeableData(FAbioticInventoryChangeableData& ChangeableData);
     void SitLocationParent(class USceneComponent*& ParentComponent);
     void CanLongInteractWith_A(bool& Success);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
+    void GetHighlightComponents(TArray<UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);
     void HasSitLocations(bool& IsSittable);
+    void GetItemFromDropData(bool CheckSimplePickup);
+    void GenerateItemDrop(bool TryPlaceInInventory, class AAbiotic_PlayerCharacter_C* PlayerCharacter, bool IsNotReceivingDamage);
+    void SetMeshFromDropRow();
     void PlaySoundOnDestroy();
-    int32 GetExtraStackCount();
+    void GetExtraStackCount();
     void CacheLastPlayerInteractor(class AController* Controller);
     void Server_OnLoadRespawnCheck(bool& Respawned);
     void IsItemInPinnedRecipes(bool& IsPinnedIngredient);
@@ -97,8 +102,8 @@ class AResourceNode_ParentBP_C : public AAbioticActor_C
     void TryAwardDismantleXP(class AAbiotic_PlayerCharacter_C* Character);
     void CheckInitialDormancy();
     void SpawnDebrisFX();
-    void Can Equip Resource Node(bool& CanBeEquipped, FDataTableRowHandle& ItemData);
-    void Try Apply Texture Override(TArray<TSoftObjectPtr<UMaterialInterface>>& TextureVariants);
+    void Can Equip Resource Node(bool& CanBeEquipped, FGlobalItemRowHandle& ItemData);
+    void Try Apply Texture Override(TArray<TSoftObjectPtr<class UMaterialInterface>>& TextureVariants);
     void SaveNodeToWorldSave();
     void UpdateDurabilityFX();
     void OnRep_CurrentHitPoints();
@@ -116,8 +121,8 @@ class AResourceNode_ParentBP_C : public AAbioticActor_C
     void InteractWith_B_LocalFX(bool Hold);
     void NPC_InteractWith(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void DeliverString(FString String, bool FromSave);
-    void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbiotic_InventoryItemSlotStruct SlotData);
-    void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbiotic_InventoryItemSlotStruct SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
+    void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbioticInventoryItemSlot SlotData);
+    void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbioticInventoryItemSlot SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
     void OnInteractHighlightStart(class UActorComponent* Component);
     void OnInteractHighlightEnd(class UActorComponent* Component);
     void DeliverInt(bool FromSave, const int32 New Int);
@@ -146,6 +151,6 @@ class AResourceNode_ParentBP_C : public AAbioticActor_C
     void ExecuteUbergraph_ResourceNode_ParentBP(int32 EntryPoint);
     void OnDepleted__DelegateSignature();
     void OnMoved__DelegateSignature(class AActor* MovedActor);
-}; // Size: 0x4E1
+}; // Size: 0x4E9
 
 #endif

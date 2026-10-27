@@ -5,7 +5,7 @@ class URadialSlider : public UWidget
 {
     float Value;                                                                      // 0x0178 (size: 0x4)
     FRadialSliderValueDelegate ValueDelegate;                                         // 0x017C (size: 0x10)
-    float GetFloat();
+    void GetFloat();
     bool bUseCustomDefaultValue;                                                      // 0x018C (size: 0x1)
     float CustomDefaultValue;                                                         // 0x0190 (size: 0x4)
     FRuntimeFloatCurve SliderRange;                                                   // 0x0198 (size: 0x88)
@@ -55,9 +55,9 @@ class URadialSlider : public UWidget
     void SetCustomDefaultValue(float InValue);
     void SetCenterBackgroundColor(FLinearColor InValue);
     void SetAngularOffset(float InValue);
-    float GetValue();
-    float GetNormalizedSliderHandlePosition();
-    float GetCustomDefaultValue();
+    void GetValue();
+    void GetNormalizedSliderHandlePosition();
+    void GetCustomDefaultValue();
 }; // Size: 0x800
 
 #endif

@@ -82,7 +82,7 @@ struct FKeyIconPair
 struct FKeyIconSet
 {
     FGameplayTagContainer Tags;                                                       // 0x0000 (size: 0x20)
-    TMap<class FKey, class TSoftObjectPtr<UTexture>> IconMap;                         // 0x0020 (size: 0x50)
+    TMap<FKey, TSoftObjectPtr<class UTexture>> IconMap;                               // 0x0020 (size: 0x50)
     TArray<FKeyIconPair> Icons;                                                       // 0x0070 (size: 0x10)
 
 }; // Size: 0x80
@@ -121,9 +121,9 @@ class IAutoSettingsPlayer : public IInterface
 {
 
     void SaveInputMappings(FPlayerInputMappings InputMappings);
-    FString GetUniquePlayerIdentifier();
-    bool GetInputMappings(FPlayerInputMappings& InputMappings);
-    FInputMappingPreset GetDefaultInputMappingPreset();
+    void GetUniquePlayerIdentifier();
+    void GetInputMappings(FPlayerInputMappings& InputMappings);
+    void GetDefaultInputMappingPreset();
 }; // Size: 0x28
 
 class UActionLabel : public UInputLabel
@@ -181,9 +181,9 @@ class UAutoSettingsInputConfig : public UDeveloperSettings
 class UAutoSettingsInputProjectConfig : public UAutoSettingsInputConfig
 {
 
-    TArray<class UTexture*> LoadKeyIcons(FGameplayTagContainer KeyIconTags);
-    FGameplayTag GetKeyGroupStatic(FKey Key);
-    FText GetKeyFriendlyNameStatic(FKey Key);
+    void LoadKeyIcons(FGameplayTagContainer KeyIconTags);
+    void GetKeyGroupStatic(FKey Key);
+    void GetKeyFriendlyNameStatic(FKey Key);
 }; // Size: 0x178
 
 class UAutoSettingsInputSubsystem : public UGameInstanceSubsystem
@@ -217,7 +217,7 @@ class UBindCaptureButton : public UUserWidget
     int32 CapturePromptZOrder;                                                        // 0x02F0 (size: 0x4)
     class UBindCapturePrompt* Prompt;                                                 // 0x0308 (size: 0x8)
 
-    class UBindCapturePrompt* StartCapture();
+    void StartCapture();
     void InitializePrompt(class UBindCapturePrompt* PromptWidget);
     void ChordCaptured(FCapturedInput CapturedInput);
 }; // Size: 0x310
@@ -239,8 +239,8 @@ class UBindCapturePrompt : public UUserWidget
     FVector2D AccumulatedMouseDelta;                                                  // 0x0338 (size: 0x10)
 
     void StopListening();
-    bool IsKeyAllowed(FKey PrimaryKey);
-    FGameplayTag GetKeyGroup();
+    void IsKeyAllowed(FKey PrimaryKey);
+    void GetKeyGroup();
     void Cancel();
 }; // Size: 0x348
 
@@ -251,7 +251,7 @@ class UGlobalKeyIconTagManager : public UObject
     FGameplayTagContainer GlobalKeyIconTags;                                          // 0x0038 (size: 0x20)
 
     void SetGlobalKeyIconTags(FGameplayTagContainer InGlobalIconTags);
-    class UTexture* GetIconForKey(FKey InKey, FGameplayTagContainer IconTags, float AxisScale);
+    void GetIconForKey(FKey InKey, FGameplayTagContainer IconTags, float AxisScale);
 }; // Size: 0x58
 
 class UInputLabel : public UUserWidget
@@ -283,7 +283,7 @@ class UInputMappingManager : public UEngineSubsystem
     FInputMappingManagerOnMappingsChanged OnMappingsChanged;                          // 0x0030 (size: 0x10)
     void OnMappingsChanged(class APlayerController* Player);
     TArray<FPlayerInputMappings> PlayerInputOverrides;                                // 0x0040 (size: 0x10)
-    TArray<class APlayerController*> RegisteredPlayerControllers;                     // 0x0050 (size: 0x10)
+    TArray<APlayerController*> RegisteredPlayerControllers;                           // 0x0050 (size: 0x10)
     FInputMappingManagerMappingsWriteRequested MappingsWriteRequested;                // 0x0060 (size: 0x10)
     void OnMappingsWriteRequested();
 
@@ -291,16 +291,16 @@ class UInputMappingManager : public UEngineSubsystem
     void SetPlayerInputPresetStatic(class APlayerController* Player, FInputMappingPreset Preset);
     void SetPlayerInputPresetByTag(class APlayerController* Player, FGameplayTag PresetTag);
     void OnRegisteredPlayerControllerDestroyed(class AActor* DestroyedActor);
-    bool InitializePlayerInputOverridesStatic(class APlayerController* Player);
+    void InitializePlayerInputOverridesStatic(class APlayerController* Player);
     void GetPlayerMappingsByKey(class APlayerController* Player, FKey Key, TArray<FInputActionKeyMapping>& Actions, TArray<FInputAxisKeyMapping>& Axes);
-    FPlayerInputMappings GetPlayerInputMappingsStatic(class APlayerController* Player);
-    FInputAxisKeyMapping GetPlayerAxisMappingStatic(class APlayerController* Player, FName AxisName, float Scale, int32 MappingGroup);
-    TArray<FInputAxisKeyMapping> GetPlayerAxisMappings(class APlayerController* Player, FName AxisName, float Scale, int32 MappingGroup, FGameplayTag KeyGroup, bool bUsePlayerKeyGroup);
-    FInputAxisKeyMapping GetPlayerAxisMapping(class APlayerController* Player, FName AxisName, float Scale, int32 MappingGroup, FGameplayTag KeyGroup, bool bUsePlayerKeyGroup);
-    FInputActionKeyMapping GetPlayerActionMappingStatic(class APlayerController* Player, FName ActionName, int32 MappingGroup);
-    TArray<FInputActionKeyMapping> GetPlayerActionMappings(class APlayerController* Player, FName ActionName, int32 MappingGroup, FGameplayTag KeyGroup, bool bUsePlayerKeyGroup);
-    FInputActionKeyMapping GetPlayerActionMapping(class APlayerController* Player, FName ActionName, int32 MappingGroup, FGameplayTag KeyGroup, bool bUsePlayerKeyGroup);
-    TArray<FInputMappingPreset> GetDefaultInputPresets();
+    void GetPlayerInputMappingsStatic(class APlayerController* Player);
+    void GetPlayerAxisMappingStatic(class APlayerController* Player, FName AxisName, float Scale, int32 MappingGroup);
+    void GetPlayerAxisMappings(class APlayerController* Player, FName AxisName, float Scale, int32 MappingGroup, FGameplayTag KeyGroup, bool bUsePlayerKeyGroup);
+    void GetPlayerAxisMapping(class APlayerController* Player, FName AxisName, float Scale, int32 MappingGroup, FGameplayTag KeyGroup, bool bUsePlayerKeyGroup);
+    void GetPlayerActionMappingStatic(class APlayerController* Player, FName ActionName, int32 MappingGroup);
+    void GetPlayerActionMappings(class APlayerController* Player, FName ActionName, int32 MappingGroup, FGameplayTag KeyGroup, bool bUsePlayerKeyGroup);
+    void GetPlayerActionMapping(class APlayerController* Player, FName ActionName, int32 MappingGroup, FGameplayTag KeyGroup, bool bUsePlayerKeyGroup);
+    void GetDefaultInputPresets();
     void AddPlayerAxisOverrideStatic(class APlayerController* Player, const FInputAxisKeyMapping& NewMapping, int32 MappingGroup, bool bAnyKeyGroup);
     void AddPlayerAxisOverride(class APlayerController* Player, const FInputAxisKeyMapping& NewMapping, int32 MappingGroup, bool bAnyKeyGroup, bool bClear);
     void AddPlayerActionOverrideStatic(class APlayerController* Player, const FInputActionKeyMapping& NewMapping, int32 MappingGroup, bool bAnyKeyGroup);
@@ -318,13 +318,13 @@ class UKeyLabel : public UUserWidget
 
     void UpdateKeyLabel();
     void OnGlobalKeyIconTagsModified();
-    bool HasValidKey();
-    bool HasIcon();
-    ESlateVisibility GetIconVisibility();
-    FSlateBrush GetIconBrush();
-    class UTexture* GetIcon();
-    ESlateVisibility GetDisplayNameVisibility();
-    FText GetDisplayName();
+    void HasValidKey();
+    void HasIcon();
+    void GetIconVisibility();
+    void GetIconBrush();
+    void GetIcon();
+    void GetDisplayNameVisibility();
+    void GetDisplayName();
 }; // Size: 0x340
 
 #endif

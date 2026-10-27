@@ -18,22 +18,22 @@ class ADeployed_CraftingBench_Default_C : public AAbioticDeployed_CraftingBench_
     class UPointLightComponent* PointLight;                                           // 0x0960 (size: 0x8)
     class UBoxComponent* HomeArea;                                                    // 0x0968 (size: 0x8)
     FName HomeBuffID;                                                                 // 0x0970 (size: 0x8)
-    FBuffDebuffRowHandle HomeBuff;                                                    // 0x0978 (size: 0x20)
-    TArray<class AAbiotic_Item_ParentBP_C*> SyncedDevices;                            // 0x0998 (size: 0x10)
-    double LastContainerUpdate;                                                       // 0x09A8 (size: 0x8)
-    class ANPC_Base_ParentBP_C* WanderingNPC;                                         // 0x09B0 (size: 0x8)
-    class ADayNightManager_C* DayNightManager;                                        // 0x09B8 (size: 0x8)
-    FTimerHandle WanderNPCTimer;                                                      // 0x09C0 (size: 0x8)
+    FBuffDebuffRowHandle HomeBuff;                                                    // 0x0978 (size: 0x10)
+    TArray<AAbiotic_Item_ParentBP_C*> SyncedDevices;                                  // 0x0988 (size: 0x10)
+    double LastContainerUpdate;                                                       // 0x0998 (size: 0x8)
+    class ANPC_Base_ParentBP_C* WanderingNPC;                                         // 0x09A0 (size: 0x8)
+    class ADayNightManager_C* DayNightManager;                                        // 0x09A8 (size: 0x8)
+    FTimerHandle WanderNPCTimer;                                                      // 0x09B0 (size: 0x8)
 
     void Check for Bench Upgrades Inventories(bool& Empty);
-    void GetInventoriesToSave(TArray<class UAbiotic_InventoryComponent_C*>& Inventories);
-    FText GetItemNameText();
+    void GetInventoriesToSave(TArray<UAbiotic_InventoryComponent_C*>& Inventories);
+    void GetItemNameText();
     void Can NPC Wander Towards Base(class ANPC_Base_ParentBP_C* PotentialWanderer, bool& Return);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void UpdateOverlappingContainers();
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
+    void GetHighlightComponents(TArray<UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void RemoveHomeBuffIfNotInHomeZone(bool AllActorsInZone, class AActor* Actor);
     void RefreshConstructionModeStateFX();
     void OnFailure_E8A92F1B45AB94A93A2F8685BDBE6B7C(bool bSuccess, const TArray<FString>& SanitizedMessages);
@@ -53,6 +53,6 @@ class ADeployed_CraftingBench_Default_C : public AAbioticDeployed_CraftingBench_
     void OnLoadedFromSave(double NewLifespan);
     void NewPlayerMadeString();
     void ExecuteUbergraph_Deployed_CraftingBench_Default(int32 EntryPoint);
-}; // Size: 0x9C8
+}; // Size: 0x9B8
 
 #endif

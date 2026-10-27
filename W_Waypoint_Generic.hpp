@@ -14,9 +14,9 @@ class UW_Waypoint_Generic_C : public UUserWidget
     class AActor* LinkedActor;                                                        // 0x0320 (size: 0x8)
     double Duration;                                                                  // 0x0328 (size: 0x8)
     double TimeCreated;                                                               // 0x0330 (size: 0x8)
-    FWaypointData_Struct WaypointData;                                                // 0x0338 (size: 0x80)
-    double CallForHelpStart;                                                          // 0x03B8 (size: 0x8)
-    FName WaypointRowName;                                                            // 0x03C0 (size: 0x8)
+    FWaypointData WaypointData;                                                       // 0x0338 (size: 0x88)
+    double CallForHelpStart;                                                          // 0x03C0 (size: 0x8)
+    FName WaypointRowName;                                                            // 0x03C8 (size: 0x8)
 
     void UpdateName();
     void SetArrow(bool Visible, FVector2D Direction);
@@ -26,6 +26,6 @@ class UW_Waypoint_Generic_C : public UUserWidget
     void WaypointVFXDataUpdate();
     void Construct();
     void ExecuteUbergraph_W_Waypoint_Generic(int32 EntryPoint);
-}; // Size: 0x3C8
+}; // Size: 0x3D0
 
 #endif

@@ -4,7 +4,7 @@
 class UBTT_PlayAnimation_C : public UBTTask_BlueprintBase
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x00A8 (size: 0x8)
-    TSoftObjectPtr<UAnimMontage> MontageToPlay;                                       // 0x00B0 (size: 0x28)
+    TSoftObjectPtr<class UAnimMontage> MontageToPlay;                                 // 0x00B0 (size: 0x28)
     bool LockedInPlaceMontage;                                                        // 0x00D8 (size: 0x1)
     bool SayDialogQuip;                                                               // 0x00D9 (size: 0x1)
     TEnumAsByte<E_DialogLines::Type> DialogLineType;                                  // 0x00DA (size: 0x1)

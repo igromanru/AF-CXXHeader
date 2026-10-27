@@ -6,7 +6,7 @@ class UW_VoiceChat_Player_C : public UUserWidget
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UImage* Image_18;                                                           // 0x02E8 (size: 0x8)
     class UTextBlock* NameText;                                                       // 0x02F0 (size: 0x8)
-    TSoftObjectPtr<APlayerState> PlayerState;                                         // 0x02F8 (size: 0x28)
+    TSoftObjectPtr<class APlayerState> PlayerState;                                   // 0x02F8 (size: 0x28)
 
     void OnFailure_6C205B7F4077DC5B6B28A9A359266550(bool bSuccess, const TArray<FString>& SanitizedMessages);
     void OnSuccess_6C205B7F4077DC5B6B28A9A359266550(bool bSuccess, const TArray<FString>& SanitizedMessages);

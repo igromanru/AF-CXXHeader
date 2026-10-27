@@ -6,7 +6,7 @@ class ABP_LevelHLOD_C : public AActor
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0298 (size: 0x8)
     class UStaticMeshComponent* Mesh;                                                 // 0x02A0 (size: 0x8)
     class USceneComponent* DefaultSceneRoot;                                          // 0x02A8 (size: 0x8)
-    TSoftObjectPtr<UWorld> LinkedLevel;                                               // 0x02B0 (size: 0x28)
+    TSoftObjectPtr<class UWorld> LinkedLevel;                                         // 0x02B0 (size: 0x28)
     class UStaticMesh* HLODMesh;                                                      // 0x02D8 (size: 0x8)
 
     void IsLevelLoaded(bool& Loaded);

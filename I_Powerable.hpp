@@ -5,7 +5,7 @@ class II_Powerable_C : public IInterface
 {
 
     void GetPluggedInDeviceCount(int32& Count);
-    bool HasBatteryInParentChain();
+    void HasBatteryInParentChain();
     void RestoresSanityNearbyWhenPowered(bool& RestoresSanity);
     void PowerParent(class AActor*& ParentPowerSource);
     void PlugCordAttachLocation(FVector& RelativeLocation);

@@ -11,16 +11,16 @@ class UW_Compendium_Section_C : public UAbioticWidget
     class UTextBlock* SectionContentText;                                             // 0x0308 (size: 0x8)
     class UImage* SectionImage;                                                       // 0x0310 (size: 0x8)
     FText SectionText;                                                                // 0x0318 (size: 0x10)
-    TSoftObjectPtr<UTexture2D> OptionalSectionImage;                                  // 0x0328 (size: 0x28)
+    TSoftObjectPtr<class UTexture2D> OptionalSectionImage;                            // 0x0328 (size: 0x28)
     bool Unlocked;                                                                    // 0x0350 (size: 0x1)
     FSlateFontInfo LockedFont;                                                        // 0x0358 (size: 0x60)
     FSlateFontInfo UnlockedFont;                                                      // 0x03B8 (size: 0x60)
-    FName NPCRow;                                                                     // 0x0418 (size: 0x8)
-    int32 SectionIndex;                                                               // 0x0420 (size: 0x4)
-    ECompendiumUnlockType SectionType;                                                // 0x0424 (size: 0x1)
-    FCompendiumEntryRowHandle CompendiumRow;                                          // 0x0428 (size: 0x20)
-    TArray<FText> DamageDefinitionNames;                                              // 0x0448 (size: 0x10)
-    FText OptionalLockedText;                                                         // 0x0458 (size: 0x10)
+    FNPCRowHandle NPCRow;                                                             // 0x0418 (size: 0x10)
+    int32 SectionIndex;                                                               // 0x0428 (size: 0x4)
+    ECompendiumUnlockType SectionType;                                                // 0x042C (size: 0x1)
+    FCompendiumEntryRowHandle CompendiumRow;                                          // 0x0430 (size: 0x10)
+    TArray<FText> DamageDefinitionNames;                                              // 0x0440 (size: 0x10)
+    FText OptionalLockedText;                                                         // 0x0450 (size: 0x10)
 
     void SetNewDamageDefinitions(const FGameplayTagQuery& TagQuery, int32 ResistanceType);
     void SetLockedContentText();
@@ -28,6 +28,6 @@ class UW_Compendium_Section_C : public UAbioticWidget
     void Construct();
     void BndEvt__W_Compendium_Section_Button_DebugUnlock_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void ExecuteUbergraph_W_Compendium_Section(int32 EntryPoint);
-}; // Size: 0x468
+}; // Size: 0x460
 
 #endif

@@ -28,13 +28,13 @@ class UW_RecipeBookEntryButton_Long_C : public UUserWidget
     void CheckResearchedState();
     void CheckNeverCraftedState();
     void SetCheckboxBackgroundColor(FLinearColor Specified Color);
-    void Possible Quantity Can be Crafted(TArray<class UAbiotic_InventoryComponent_C*>& AdditionalInventories, int32& FinalCost);
-    void Construct();
+    void Possible Quantity Can be Crafted(TArray<UAbiotic_InventoryComponent_C*>& AdditionalInventories, int32& FinalCost);
     void BP_OnItemExpansionChanged(bool bIsExpanded);
+    void Construct();
     void OnListItemObjectSet(class UObject* ListItemObject);
     void BP_OnItemSelectionChanged(bool bIsSelected);
     void CheckSelectionState(bool State);
-    void SetItemCountVisibility(TArray<class UAbiotic_InventoryComponent_C*>& AdditionalInventories);
+    void SetItemCountVisibility(TArray<UAbiotic_InventoryComponent_C*>& AdditionalInventories);
     void BP_OnEntryReleased();
     void ExecuteUbergraph_W_RecipeBookEntryButton_Long(int32 EntryPoint);
     void NeverCraftedStatusUpdate__DelegateSignature();

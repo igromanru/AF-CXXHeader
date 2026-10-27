@@ -18,7 +18,7 @@ class ULocalizedTexture_BP_C : public UActorComponent
     class UTexture2D* zh_Hant_Texture;                                                // 0x0108 (size: 0x8)
 
     void ApplyTexture(class UTexture2D* Texture);
-    class UTexture2D* GetLocalizedTexture(FString CurrentCulture);
+    void GetLocalizedTexture(FString CurrentCulture);
     void ReceiveBeginPlay();
     void LanguageCallback(FString NewValue);
     void ExecuteUbergraph_LocalizedTexture_BP(int32 EntryPoint);

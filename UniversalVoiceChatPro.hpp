@@ -55,8 +55,8 @@ class UAudioCaptureAndroid : public UBlueprintFunctionLibrary
 {
 
     void AndroidMicrophoneStop(class UMicrophoneSpeakComponent* callbackComp);
-    bool AndroidMicrophoneStart(class UMicrophoneSpeakComponent* callbackComp, int32 sampleRateToUse);
-    bool AndroidHasPermission();
+    void AndroidMicrophoneStart(class UMicrophoneSpeakComponent* callbackComp, int32 sampleRateToUse);
+    void AndroidHasPermission();
     void AndroidAskPermission();
 }; // Size: 0x28
 
@@ -75,7 +75,7 @@ class UMicrophoneSpeakComponent : public UActorComponent
     class USoundWaveProcedural* VoiceCaptureSoundWaveProcedural;                      // 0x0148 (size: 0x8)
     class UAudioCapture* AudioCapture;                                                // 0x0190 (size: 0x8)
 
-    bool startSpeaking(bool _shouldHearMyOwnVoice, bool isGlobal, int32 radioChannel, bool useRange, float MaxRange);
+    void startSpeaking(bool _shouldHearMyOwnVoice, bool isGlobal, int32 radioChannel, bool useRange, float MaxRange);
     void SetVoiceVolume(float Volume);
     void setSoundEffectChainAssetPath(FString _pathToSoundEffectAsset);
     void setAttenuationAssetPath(bool enableAttenuation, FString _pathToAttenuationAsset);
@@ -86,8 +86,8 @@ class UMicrophoneSpeakComponent : public UActorComponent
     void payloadReceivedVoiceData(const TArray<uint8>& dataEncoded, int32 SampleRate, int32 NumChannels, int32 PCMSize, int32 opusFramePerSec, int32 RepVolume);
     void muteAudio(bool _isMuted);
     void MicrophoneVolumeReceived__DelegateSignature(float Volume);
-    bool isPlayingAudioVoice();
-    bool initAudioResources(int32 voiceSampleRate, int32 _voiceNumChannels, int32 opusFramesPerSec);
+    void isPlayingAudioVoice();
+    void initAudioResources(int32 voiceSampleRate, int32 _voiceNumChannels, int32 opusFramesPerSec);
     void endSpeaking();
     void DataMicrophoneReceived__DelegateSignature(const TArray<uint8>& Data);
 }; // Size: 0x268
@@ -95,31 +95,31 @@ class UMicrophoneSpeakComponent : public UActorComponent
 class UUniversalVoiceChat : public UBlueprintFunctionLibrary
 {
 
-    bool VoiceChatWasInitAudioVoiceChatQuality();
+    void VoiceChatWasInitAudioVoiceChatQuality();
     void VoiceChatUseAndroidCommunicationMode(bool use);
-    bool VoiceChatStopSpeak();
-    bool VoiceChatStartSpeak(bool _shouldHearMyOwnVoice, bool isGlobal, int32 radioChannel, bool useProximity, float maxProximityRange);
+    void VoiceChatStopSpeak();
+    void VoiceChatStartSpeak(bool _shouldHearMyOwnVoice, bool isGlobal, int32 radioChannel, bool useProximity, float maxProximityRange);
     void VoiceChatSetThresholdSendData(float thresholdSendData);
     void VoiceChatSetRawMicrophoneGain(float Gain);
-    bool VoiceChatSetPlayerName(FString Name);
+    void VoiceChatSetPlayerName(FString Name);
     void VoiceChatSetMuteAllPlayers(bool _muteAll);
-    bool VoiceChatSetMicrophoneVolume(float Volume);
+    void VoiceChatSetMicrophoneVolume(float Volume);
     void VoiceChatSetHardwareAudioInput(FString audioInputDeviceName);
     void VoiceChatSetDefaultTickRateUpdateLocation(float tickRate);
-    bool VoiceChatRemoveChannel(int32 channelToRemove);
+    void VoiceChatRemoveChannel(int32 channelToRemove);
     void VoiceChatLocalMuteSomeone(const class UObject* WorldContextObject, class APlayerState* playerToMute, bool shouldMute);
-    bool VoiceChatLocalIsMutedSomeone(const class UObject* WorldContextObject, class APlayerState* playerToCheckMute);
-    bool VoiceChatIsSpeaking();
-    bool VoiceChatInitAudioVoiceChatQuality(int32 _sampleRate, int32 _numChannels, EOpusFramePerSec _opusFramePerSec);
-    bool VoiceChatHasMicrophonePermission();
-    class APlayerVoiceChatActor* VoiceChatGetMyLocalPlayerVoiceChat();
-    bool VoiceChatGetMuteAllPlayers();
-    float VoiceChatGetMicrophoneRuntimeVolumeFromPlayerState(const class UObject* WorldContextObject, class APlayerState* fromPlayerState);
+    void VoiceChatLocalIsMutedSomeone(const class UObject* WorldContextObject, class APlayerState* playerToCheckMute);
+    void VoiceChatIsSpeaking();
+    void VoiceChatInitAudioVoiceChatQuality(int32 _sampleRate, int32 _numChannels, EOpusFramePerSec _opusFramePerSec);
+    void VoiceChatHasMicrophonePermission();
+    void VoiceChatGetMyLocalPlayerVoiceChat();
+    void VoiceChatGetMuteAllPlayers();
+    void VoiceChatGetMicrophoneRuntimeVolumeFromPlayerState(const class UObject* WorldContextObject, class APlayerState* fromPlayerState);
     void VoiceChatGetAudioDevicesList(TArray<FString>& OutDevices);
-    class APlayerVoiceChatActor* VoiceChatGetActorFromPlayerState(const class UObject* WorldContextObject, class APlayerState* fromPlayerState);
-    bool VoiceChatCheckRegisteredToChannel(int32 channelToCheck);
+    void VoiceChatGetActorFromPlayerState(const class UObject* WorldContextObject, class APlayerState* fromPlayerState);
+    void VoiceChatCheckRegisteredToChannel(int32 channelToCheck);
     void VoiceChatAskMicrophonePermission();
-    bool VoiceChatAddChannel(int32 channelToAdd);
+    void VoiceChatAddChannel(int32 channelToAdd);
     void RegisterCallbackNewVoiceChatActor(const FRegisterCallbackNewVoiceChatActorDelegate& Delegate);
     void RegisterCallbackDeleteVoiceChatActor(const FRegisterCallbackDeleteVoiceChatActorDelegate& Delegate);
 }; // Size: 0x28

@@ -6,8 +6,8 @@
 class UBinkFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
-    FTimespan BinkLoadingMovie_GetTime();
-    FTimespan BinkLoadingMovie_GetDuration();
+    void BinkLoadingMovie_GetTime();
+    void BinkLoadingMovie_GetDuration();
     void Bink_DrawOverlays();
 }; // Size: 0x28
 
@@ -33,31 +33,31 @@ class UBinkMediaPlayer : public UObject
     TEnumAsByte<EBinkMediaPlayerBinkDrawStyle> BinkDrawStyle;                         // 0x00B0 (size: 0x1)
     int32 BinkLayerDepth;                                                             // 0x00B4 (size: 0x4)
 
-    bool SupportsSeeking();
-    bool SupportsScrubbing();
-    bool SupportsRate(float Rate, bool Unthinned);
+    void SupportsSeeking();
+    void SupportsScrubbing();
+    void SupportsRate(float Rate, bool Unthinned);
     void Stop();
     void SetVolume(float Rate);
-    bool SetRate(float Rate);
-    bool SetLooping(bool InLooping);
-    bool Seek(const FTimespan& InTime);
-    bool Rewind();
-    bool Play();
-    bool Pause();
-    bool OpenUrl(FString NewUrl);
-    bool IsStopped();
-    bool IsPlaying();
-    bool IsPaused();
-    bool IsLooping();
-    bool IsInitialized();
-    FString GetUrl();
-    FTimespan GetTime();
-    float GetRate();
-    FTimespan GetDuration();
+    void SetRate(float Rate);
+    void SetLooping(bool InLooping);
+    void Seek(const FTimespan& InTime);
+    void Rewind();
+    void Play();
+    void Pause();
+    void OpenUrl(FString NewUrl);
+    void IsStopped();
+    void IsPlaying();
+    void IsPaused();
+    void IsLooping();
+    void IsInitialized();
+    void GetUrl();
+    void GetTime();
+    void GetRate();
+    void GetDuration();
     void Draw(class UTexture* Texture, bool tonemap, int32 out_nits, float Alpha, bool srgb_decode, bool hdr);
     void CloseUrl();
-    bool CanPlay();
-    bool CanPause();
+    void CanPlay();
+    void CanPause();
 }; // Size: 0x110
 
 class UBinkMediaTexture : public UTexture

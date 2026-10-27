@@ -3,11 +3,11 @@
 
 class AAI_Controller_NPC_Boxy_C : public AAbiotic_AI_Controller_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x08B8 (size: 0x8)
-    bool FollowingPlayers;                                                            // 0x08C0 (size: 0x1)
-    FTimerHandle NearbyPlayerTimer;                                                   // 0x08C8 (size: 0x8)
-    FTimerHandle CrouchCheckTimer;                                                    // 0x08D0 (size: 0x8)
-    FTimerHandle FollowPlayerTimer;                                                   // 0x08D8 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x08A8 (size: 0x8)
+    bool FollowingPlayers;                                                            // 0x08B0 (size: 0x1)
+    FTimerHandle NearbyPlayerTimer;                                                   // 0x08B8 (size: 0x8)
+    FTimerHandle CrouchCheckTimer;                                                    // 0x08C0 (size: 0x8)
+    FTimerHandle FollowPlayerTimer;                                                   // 0x08C8 (size: 0x8)
 
     void WasShoved(class AAbiotic_Character_ParentBP_C* Shover);
     void BT_CheckObstruction();
@@ -21,6 +21,6 @@ class AAI_Controller_NPC_Boxy_C : public AAbiotic_AI_Controller_ParentBP_C
     void ReceiveBeginPlay();
     void CheckForNearbyItems();
     void ExecuteUbergraph_AI_Controller_NPC_Boxy(int32 EntryPoint);
-}; // Size: 0x8E0
+}; // Size: 0x8D0
 
 #endif

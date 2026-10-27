@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_AdminMenu_HPP
 #define UE4SS_SDK_W_AdminMenu_HPP
 
-class UW_AdminMenu_C : public UUserWidget
+class UW_AdminMenu_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UTextBlock* AudioTextLabel;                                                 // 0x02E8 (size: 0x8)
@@ -14,7 +14,7 @@ class UW_AdminMenu_C : public UUserWidget
     class UW_MainMenuButton_C* W_MainMenuButton_Back;                                 // 0x0320 (size: 0x8)
     class UW_PlayerMenu_C* W_PlayerMenu;                                              // 0x0328 (size: 0x8)
     class UW_ServerAdminMenu_C* W_ServerAdminMenu;                                    // 0x0330 (size: 0x8)
-    TArray<class UW_SettingsPanel_C*> SettingsPanels;                                 // 0x0338 (size: 0x10)
+    TArray<UW_SettingsPanel_C*> SettingsPanels;                                       // 0x0338 (size: 0x10)
 
     void RefreshEntireUI_State();
     void GetGameInst(class UAbiotic_GameInstance_C*& ABF_Game_Instance);

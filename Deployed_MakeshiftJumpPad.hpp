@@ -3,10 +3,10 @@
 
 class ADeployed_MakeshiftJumpPad_C : public ADeployed_JumpPad_ParentBP_C
 {
-    class UDecalComponent* Decal;                                                     // 0x08D8 (size: 0x8)
-    class UStaticMeshComponent* TechStuff;                                            // 0x08E0 (size: 0x8)
+    class UDecalComponent* Decal;                                                     // 0x08C8 (size: 0x8)
+    class UStaticMeshComponent* TechStuff;                                            // 0x08D0 (size: 0x8)
 
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
-}; // Size: 0x8E8
+    void GetHighlightComponents(TArray<UActorComponent*>& Components, bool& DontHighlightPowerCord);
+}; // Size: 0x8D8
 
 #endif

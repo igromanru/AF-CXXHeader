@@ -11,10 +11,11 @@ class UW_PlayerHUD_RecipeVBox_C : public UUserWidget
     class USoundBase* MapPickupSound;                                                 // 0x0310 (size: 0x8)
     double TimeCreated;                                                               // 0x0318 (size: 0x8)
 
+    void CreateQuestNotify();
     void CreateFishNotify(FName FishRow);
     void CreateCompendiumNotify(FName CompendiumEntryRow);
     void JournalUpdateNotifyIconStatus();
-    void CreateCustomizationNotify(FDataTableRowHandle CustomizationRow);
+    void CreateCustomizationNotify(FAnyCustomizationRowHandle CustomizationRow);
     void CreateMapNotify();
     void CreateJournalNotify(FName JournalRow);
     void CreateRecipeNotify(FName RecipeRow);

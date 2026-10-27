@@ -15,14 +15,14 @@ class UAbiotic_CustomizationSave_C : public UAbiotic_SaveGame_C
     FName Customization_Shoes;                                                        // 0x0070 (size: 0x8)
     FName Customization_Belt;                                                         // 0x0078 (size: 0x8)
     FName Customization_Beard;                                                        // 0x0080 (size: 0x8)
-    TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Customization_Voice;               // 0x0088 (size: 0x28)
+    TSoftObjectPtr<class UPlayerCharacterVoiceDataAsset> Customization_Voice;         // 0x0088 (size: 0x28)
     FName Customization_SkinColor;                                                    // 0x00B0 (size: 0x8)
     FName Customization_IDCard;                                                       // 0x00B8 (size: 0x8)
     double Customization_SkinTone;                                                    // 0x00C0 (size: 0x8)
 
-    void FixCustomizationValue(FName& TypeRef, class UDataTable* Table);
+    void FixCustomizationValue(FName& TypeRef, EAnyCustomizationTable Table);
     void FixCustomizationSave();
-    void FillNewSaveData(FName Head, FName HeadAccessory, FName Wristwatch, FName Tie, FName UpperBody, FName LowerBody, FName hair, FName HairColor, FName ShirtColor, FName shoes, FName belt, FName Beard, TSoftObjectPtr<UPlayerCharacterVoiceDataAsset> Voice, FName IDCard, double SkinTone);
+    void FillNewSaveData(FCustomizationHeadRowHandle Head, FCustomizationHeadAccessoryRowHandle HeadAccessory, FCustomizationWatchRowHandle Wristwatch, FCustomizationTieRowHandle Tie, FCustomizationUpperBodyRowHandle UpperBody, FCustomizationLowerBodyRowHandle LowerBody, FCustomizationHairStyleRowHandle Hair, FCustomizationHairColorRowHandle HairColor, FCustomizationShirtColorRowHandle ShirtColor, FCustomizationShoesRowHandle Shoes, FCustomizationBeltRowHandle Belt, FCustomizationBeardRowHandle Beard, TSoftObjectPtr<class UPlayerCharacterVoiceDataAsset> Voice, FCustomizationIDCardRowHandle IDCard, double SkinTone);
 }; // Size: 0xC8
 
 #endif

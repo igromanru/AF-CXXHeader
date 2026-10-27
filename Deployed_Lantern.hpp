@@ -3,6 +3,6 @@
 
 class ADeployed_Lantern_C : public ADeployed_ChargingLamp_ParentBP_C
 {
-}; // Size: 0x8F8
+}; // Size: 0x8E8
 
 #endif

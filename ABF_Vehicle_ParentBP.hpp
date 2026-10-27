@@ -23,13 +23,13 @@ class AABF_Vehicle_ParentBP_C : public AAbioticWheeledVehiclePawn
     class AAbiotic_PlayerCharacter_C* LastDriver;                                     // 0x03C8 (size: 0x8)
     bool Reverse;                                                                     // 0x03D0 (size: 0x1)
     bool HornHonkOnCooldown;                                                          // 0x03D1 (size: 0x1)
-    TSoftObjectPtr<USoundBase> HonkSFX_Single;                                        // 0x03D8 (size: 0x28)
-    TSoftObjectPtr<USoundBase> ReverseBeeperSFX_Driver_Loop;                          // 0x0400 (size: 0x28)
-    TSoftObjectPtr<USoundBase> ReverseBeeperSFX_Loop;                                 // 0x0428 (size: 0x28)
+    TSoftObjectPtr<class USoundBase> HonkSFX_Single;                                  // 0x03D8 (size: 0x28)
+    TSoftObjectPtr<class USoundBase> ReverseBeeperSFX_Driver_Loop;                    // 0x0400 (size: 0x28)
+    TSoftObjectPtr<class USoundBase> ReverseBeeperSFX_Loop;                           // 0x0428 (size: 0x28)
     bool BrakeLights;                                                                 // 0x0450 (size: 0x1)
     bool HasReverseBeeper;                                                            // 0x0451 (size: 0x1)
     bool VehicleDriveable;                                                            // 0x0452 (size: 0x1)
-    TSoftObjectPtr<USoundBase> EnginePrimaryLoopSound;                                // 0x0458 (size: 0x28)
+    TSoftObjectPtr<class USoundBase> EnginePrimaryLoopSound;                          // 0x0458 (size: 0x28)
     int32 BrakeLightElementIndex;                                                     // 0x0480 (size: 0x4)
     class USoundBase* LoadedEngineLoopSound;                                          // 0x0488 (size: 0x8)
     bool HasEngineSoundLoaded;                                                        // 0x0490 (size: 0x1)
@@ -44,7 +44,7 @@ class AABF_Vehicle_ParentBP_C : public AAbioticWheeledVehiclePawn
     class UMaterialInterface* Headlights_OffMaterial;                                 // 0x04C0 (size: 0x8)
     class UMaterialInterface* Headlights_OnMaterial;                                  // 0x04C8 (size: 0x8)
     class USoundBase* VehicleImpactSound;                                             // 0x04D0 (size: 0x8)
-    FDataTableRowHandle HotwireItem;                                                  // 0x04D8 (size: 0x10)
+    FGlobalItemRowHandle HotwireItem;                                                 // 0x04D8 (size: 0x10)
     FText VehicleTypeName;                                                            // 0x04E8 (size: 0x10)
     FText HotwireItemName;                                                            // 0x04F8 (size: 0x10)
     bool IsBeingCharged;                                                              // 0x0508 (size: 0x1)
@@ -55,40 +55,44 @@ class AABF_Vehicle_ParentBP_C : public AAbioticWheeledVehiclePawn
     FVector LastSaveLocation;                                                         // 0x0540 (size: 0x18)
     bool VehicleBeingDriven;                                                          // 0x0558 (size: 0x1)
     double MaxImpactDamage;                                                           // 0x0560 (size: 0x8)
+    bool CanBePackaged;                                                               // 0x0568 (size: 0x1)
+    FGlobalItemRowHandle DeconstructedItemData;                                       // 0x0570 (size: 0x10)
+    bool HasBeenPackagedUp;                                                           // 0x0580 (size: 0x1)
 
     void GetOutlineComponent(bool& ComponentEnabled, class UOutlineComponent_C*& Components);
     void GetNewButtonPromptLocation(class UActorComponent* Component, FVector& NewLocation);
     void IsItemInPinnedRecipes(bool& IsPinnedIngredient);
-    void HasOccupants?(TArray<class AActor*>& Occupants);
-    bool SupportsRecall?();
-    bool IsVehicleDriveable();
-    TArray<class UAbiotic_InventoryComponent_C*> GetVehicleContainers();
-    FString GetVehicleID();
+    void HasOccupants?(TArray<AActor*>& Occupants);
+    void SupportsRecall?();
+    void IsVehicleDriveable();
+    void GetVehicleContainers();
+    void GetVehicleID();
     void GetDriver(bool& Success, class AAbiotic_Character_ParentBP_C*& Character);
-    bool CheckVehicleFreezeState();
+    void CheckVehicleFreezeState();
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
-    void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
-    bool IsRadioactive();
+    void GetAttachedPowerCord(TArray<UCableComponent*>& Power Cord Found);
+    void IsRadioactive();
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanLongInteractWith_A(bool& Success);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
+    void GetHighlightComponents(TArray<UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);
     void HasSitLocations(bool& IsSittable);
     void SitLocationParent(class USceneComponent*& ParentComponent);
-    void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
+    void GetItemChangeableData(FAbioticInventoryChangeableData& ChangeableData);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void RequiresToolToDismantle(bool& Tool Required);
     void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void GetStoredString(FString& String);
-    FText GetItemNameText();
+    void GetItemNameText();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void Landing Damage Multiplier(double Damage, double& DamageMultiplier);
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
+    void DropPackagedItem();
     void KickOutLocalOccupant();
     void AutoMoveCheck(double AxisValue, double& OutValue);
     void Client Check Position();
@@ -101,7 +105,7 @@ class AABF_Vehicle_ParentBP_C : public AAbioticWheeledVehiclePawn
     void GetLocalDriver(bool& Success, class AAbiotic_PlayerCharacter_C*& Character);
     void OnImpactOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
     void InitImpactOverlaps();
-    bool VehicleNeedsToBeFlipped?();
+    void VehicleNeedsToBeFlipped?();
     void OnRep_EngineSoundOn();
     void OnRep_VehicleLightsOn();
     void StopVehicleEntirely();
@@ -126,8 +130,8 @@ class AABF_Vehicle_ParentBP_C : public AAbioticWheeledVehiclePawn
     void InteractWith_B_LocalFX(bool Hold);
     void NPC_InteractWith(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void DeliverString(FString String, bool FromSave);
-    void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbiotic_InventoryItemSlotStruct SlotData);
-    void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbiotic_InventoryItemSlotStruct SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
+    void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbioticInventoryItemSlot SlotData);
+    void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbioticInventoryItemSlot SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
     void OnInteractHighlightStart(class UActorComponent* Component);
     void OnInteractHighlightEnd(class UActorComponent* Component);
     void DeliverInt(bool FromSave, const int32 New Int);
@@ -163,8 +167,8 @@ class AABF_Vehicle_ParentBP_C : public AAbioticWheeledVehiclePawn
     void ReceiveDestroyed();
     void OnStorageRequestedSave();
     void DriverWasGrabbed(class AAbiotic_Character_ParentBP_C* Character);
-    void OnInventoriesLoadedFromSave(const TArray<FSaveData_Inventories_Struct>& SaveData);
+    void OnInventoriesLoadedFromSave(const TArray<FAbioticInventorySave>& SaveData);
     void ExecuteUbergraph_ABF_Vehicle_ParentBP(int32 EntryPoint);
-}; // Size: 0x568
+}; // Size: 0x581
 
 #endif

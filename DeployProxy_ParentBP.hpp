@@ -16,28 +16,28 @@ class ADeployProxy_ParentBP_C : public AActor
     float ForwardPlacementOffset;                                                     // 0x02FC (size: 0x4)
     float UpPlacementOffset;                                                          // 0x0300 (size: 0x4)
     TArray<TEnumAsByte<EObjectTypeQuery>> Overlap Object Types Allowed;               // 0x0308 (size: 0x10)
-    FName LinkedItemRow;                                                              // 0x0318 (size: 0x8)
-    bool SnapToGrid;                                                                  // 0x0320 (size: 0x1)
-    int32 RotationSnapDegrees;                                                        // 0x0324 (size: 0x4)
-    int32 LocationSnapCm;                                                             // 0x0328 (size: 0x4)
-    class UMaterialInstanceDynamic* GridSnapDecalMat;                                 // 0x0330 (size: 0x8)
-    double LastGridSnapRotation;                                                      // 0x0338 (size: 0x8)
+    FGlobalItemRowHandle LinkedItemRowHandle;                                         // 0x0318 (size: 0x10)
+    bool SnapToGrid;                                                                  // 0x0328 (size: 0x1)
+    int32 RotationSnapDegrees;                                                        // 0x032C (size: 0x4)
+    int32 LocationSnapCm;                                                             // 0x0330 (size: 0x4)
+    class UMaterialInstanceDynamic* GridSnapDecalMat;                                 // 0x0338 (size: 0x8)
+    double LastGridSnapRotation;                                                      // 0x0340 (size: 0x8)
 
-    bool IsGridSnappingEnabled();
-    bool CanGridSnapBeEnabled();
-    bool IsSnapping();
+    void IsGridSnappingEnabled();
+    void CanGridSnapBeEnabled();
+    void IsSnapping();
     void Can Place In Vignette(bool& VignettePlaceable, bool& Placeable);
-    void RunOverlapChecks(TArray<class UPrimitiveComponent*>& Components to Overlap, bool& PlacementBlocked, TArray<class AActor*>& OverlappedActors);
+    void RunOverlapChecks(TArray<UPrimitiveComponent*>& Components to Overlap, bool& PlacementBlocked, TArray<AActor*>& OverlappedActors);
     void AdditionalDeployCheck(bool& Success, FText& FailMessage);
-    TArray<class UPrimitiveComponent*> GetDeployableCollisions();
-    void TryUpdateDeployableHologram(bool Show, TEnumAsByte<E_DeployableOrientations::Type> PlacementOrienationsAllowed, class USceneComponent* QueryComponent, bool HeldFire, bool& CanPlaceDeployable);
+    void GetDeployableCollisions();
+    void TryUpdateDeployableHologram(bool Show, EDeployableOrientations PlacementOrienationsAllowed, class USceneComponent* QueryComponent, bool HeldFire, bool& CanPlaceDeployable);
     void ChangeDeployHologramMaterials(bool CanPlace);
     void Get New Location And Rotation from Hologram Component(FVector& FinalLocation, FRotator& FinalRotation);
-    void CalculatePlacementOrientation(TEnumAsByte<E_DeployableOrientations::Type> PlacementOrienationsAllowed, class USceneComponent* QueryComponent, TEnumAsByte<ETraceTypeQuery> TraceChannel, bool& IsHit, FVector& Location, FRotator& Rotation, FVector& TraceEnd, bool& CanBePlaced?, FVector& Normal);
+    void CalculatePlacementOrientation(EDeployableOrientations PlacementOrienationsAllowed, class USceneComponent* QueryComponent, TEnumAsByte<ETraceTypeQuery> TraceChannel, bool& IsHit, FVector& Location, FRotator& Rotation, FVector& TraceEnd, bool& CanBePlaced?, FVector& Normal);
     void ReceiveBeginPlay();
-    void SetupHologramArrow(TEnumAsByte<E_DeployableOrientations::Type> Orientation);
+    void SetupHologramArrow(EDeployableOrientations Orientation);
     void ReceiveTick(float DeltaSeconds);
     void ExecuteUbergraph_DeployProxy_ParentBP(int32 EntryPoint);
-}; // Size: 0x340
+}; // Size: 0x348
 
 #endif

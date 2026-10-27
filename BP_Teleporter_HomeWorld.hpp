@@ -3,14 +3,14 @@
 
 class ABP_Teleporter_HomeWorld_C : public ABP_Teleporter_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0410 (size: 0x8)
-    FGameEntitlementRowHandle RequiredDLC;                                            // 0x0418 (size: 0x20)
-    FWorldFlagRowHandle RequiredWorldFlag;                                            // 0x0438 (size: 0x20)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0408 (size: 0x8)
+    FGameEntitlementRowHandle RequiredDLC;                                            // 0x0410 (size: 0x10)
+    FWorldFlagRowHandle RequiredWorldFlag;                                            // 0x0420 (size: 0x10)
 
     void SavePortalState(bool ForceWorldSave);
     void OnServerEntitlementsUpdated();
     void ReceiveBeginPlay();
     void ExecuteUbergraph_BP_Teleporter_HomeWorld(int32 EntryPoint);
-}; // Size: 0x458
+}; // Size: 0x430
 
 #endif

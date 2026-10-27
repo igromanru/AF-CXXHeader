@@ -14,20 +14,20 @@ class UW_BenchUpgradeEntry_C : public UUserWidget
     class UW_InventoryItemSlot_C* RequiredItem_4;                                     // 0x0320 (size: 0x8)
     class UTextBlock* UpgradeDescription;                                             // 0x0328 (size: 0x8)
     class UTextBlock* UpgradeName;                                                    // 0x0330 (size: 0x8)
-    FBenchUpgradeRowHandle BenchUpgrade;                                              // 0x0338 (size: 0x20)
-    bool HasUpgrade;                                                                  // 0x0358 (size: 0x1)
-    FButtonStyle UpgradeButton_Style_Allowed;                                         // 0x0360 (size: 0x3F0)
-    FButtonStyle UpgradeButton_Style_Disallowed;                                      // 0x0750 (size: 0x3F0)
-    bool InDevelopment;                                                               // 0x0B40 (size: 0x1)
-    class UTexture2D* BackgroundImage;                                                // 0x0B48 (size: 0x8)
-    bool CanUpgrade;                                                                  // 0x0B50 (size: 0x1)
+    FBenchUpgradeRowHandle BenchUpgrade;                                              // 0x0338 (size: 0x10)
+    bool HasUpgrade;                                                                  // 0x0348 (size: 0x1)
+    FButtonStyle UpgradeButton_Style_Allowed;                                         // 0x0350 (size: 0x3F0)
+    FButtonStyle UpgradeButton_Style_Disallowed;                                      // 0x0740 (size: 0x3F0)
+    bool InDevelopment;                                                               // 0x0B30 (size: 0x1)
+    class UTexture2D* BackgroundImage;                                                // 0x0B38 (size: 0x8)
+    bool CanUpgrade;                                                                  // 0x0B40 (size: 0x1)
 
-    bool HasSkillRequirements(TMap<ECharacterSkills, int32>& RequiredSkills, class AAbiotic_PlayerCharacter_C* Player);
-    void RefreshState(class AAbiotic_PlayerCharacter_C* Player, FGameplayTagContainer& TagContainer, TArray<class UAbiotic_InventoryComponent_C*>& AdditionalInventories);
-    void UpdateUpgradeRequirements(TArray<FItemCount>& RequiredItems, class AAbiotic_PlayerCharacter_C* Player, bool SkillLocked, TArray<class UAbiotic_InventoryComponent_C*>& AdditionalInventories, bool& Success);
+    void HasSkillRequirements(TMap<ECharacterSkills, int32>& RequiredSkills, class AAbiotic_PlayerCharacter_C* Player);
+    void RefreshState(class AAbiotic_PlayerCharacter_C* Player, FGameplayTagContainer& TagContainer, TArray<UAbiotic_InventoryComponent_C*>& AdditionalInventories);
+    void UpdateUpgradeRequirements(TArray<FAbioticItemInput>& RequiredItems, class AAbiotic_PlayerCharacter_C* Player, bool SkillLocked, TArray<UAbiotic_InventoryComponent_C*>& AdditionalInventories, bool& Success);
     void PreConstruct(bool IsDesignTime);
     void BndEvt__W_BenchUpgradeEntry_Button_Upgrade_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void ExecuteUbergraph_W_BenchUpgradeEntry(int32 EntryPoint);
-}; // Size: 0xB51
+}; // Size: 0xB41
 
 #endif

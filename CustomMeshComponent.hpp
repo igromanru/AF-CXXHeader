@@ -12,7 +12,7 @@ struct FCustomMeshTriangle
 class UCustomMeshComponent : public UMeshComponent
 {
 
-    bool SetCustomMeshTriangles(const TArray<FCustomMeshTriangle>& Triangles);
+    void SetCustomMeshTriangles(const TArray<FCustomMeshTriangle>& Triangles);
     void ClearCustomMeshTriangles();
     void AddCustomMeshTriangles(const TArray<FCustomMeshTriangle>& Triangles);
 }; // Size: 0x570

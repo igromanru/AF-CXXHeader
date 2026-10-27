@@ -1,13 +1,13 @@
 #ifndef UE4SS_SDK_W_PlayerCharacterManagement_HPP
 #define UE4SS_SDK_W_PlayerCharacterManagement_HPP
 
-class UW_PlayerCharacterManagement_C : public UUserWidget
+class UW_PlayerCharacterManagement_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UW_MainMenuButton_C* W_Button_DeleteCharacterData;                          // 0x02E8 (size: 0x8)
     class UW_MainMenuButton_C* W_MainMenuButton_Back;                                 // 0x02F0 (size: 0x8)
     class UW_MenuTitleBig_C* W_MenuTitleBig;                                          // 0x02F8 (size: 0x8)
-    TArray<class UW_SettingsPanel_C*> SettingsPanels;                                 // 0x0300 (size: 0x10)
+    TArray<UW_SettingsPanel_C*> SettingsPanels;                                       // 0x0300 (size: 0x10)
 
     void RefreshEntireUI_State();
     void GetGameInst(class UAbiotic_GameInstance_C*& ABF_Game_Instance);

@@ -60,7 +60,7 @@ class UDataflowSettings : public UDeveloperSettings
     FLinearColor ManagedArrayCollectionPinTypeColor;                                  // 0x0048 (size: 0x10)
     FLinearColor BoxPinTypeColor;                                                     // 0x0058 (size: 0x10)
     FLinearColor SpherePinTypeColor;                                                  // 0x0068 (size: 0x10)
-    TMap<class FName, class FNodeColors> NodeColorsMap;                               // 0x0078 (size: 0x50)
+    TMap<FName, FNodeColors> NodeColorsMap;                                           // 0x0078 (size: 0x50)
 
 }; // Size: 0xE0
 

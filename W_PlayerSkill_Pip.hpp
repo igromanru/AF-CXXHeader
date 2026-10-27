@@ -11,18 +11,18 @@ class UW_PlayerSkill_Pip_C : public UUserWidget
     class USpacer* RightSpacer;                                                       // 0x0308 (size: 0x8)
     class UProgressBar* SkillProgressBar;                                             // 0x0310 (size: 0x8)
     int32 PipIndex;                                                                   // 0x0318 (size: 0x4)
-    FSkillPerkRowHandle Perk;                                                         // 0x0320 (size: 0x20)
+    FSkillPerkRowHandle Perk;                                                         // 0x0320 (size: 0x10)
 
-    bool IsInteractable();
+    void IsInteractable();
     void SetPerk(FSkillPerkRowHandle RowHandle);
     void UpdateTooltip();
     void SetPipState(double Percentage, bool Disabled, FText Disabled_HoverText);
     void OnLoaded_257F65094F6833573A3B8EB117DAFA66(class UObject* Loaded);
-    void AsyncLoad_PerkIcon(TSoftObjectPtr<UTexture2D> Icon);
+    void AsyncLoad_PerkIcon(TSoftObjectPtr<class UTexture2D> Icon);
     void OnMouseEnter(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
     void BndEvt__W_PlayerSkill_Pip_Button_201_K2Node_ComponentBoundEvent_0_OnButtonHoverEvent__DelegateSignature();
     void BndEvt__W_PlayerSkill_Pip_Button_201_K2Node_ComponentBoundEvent_1_OnButtonHoverEvent__DelegateSignature();
     void ExecuteUbergraph_W_PlayerSkill_Pip(int32 EntryPoint);
-}; // Size: 0x340
+}; // Size: 0x330
 
 #endif

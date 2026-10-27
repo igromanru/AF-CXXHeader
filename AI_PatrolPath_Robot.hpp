@@ -3,7 +3,7 @@
 
 class AAI_PatrolPath_Robot_C : public AAI_PatrolPath_C
 {
-    TArray<class AVendingMachine_BP_C*> PotentialVendingMachinesOnPath;               // 0x02B0 (size: 0x10)
+    TArray<AVendingMachine_BP_C*> PotentialVendingMachinesOnPath;                     // 0x02B0 (size: 0x10)
 
 }; // Size: 0x2C0
 

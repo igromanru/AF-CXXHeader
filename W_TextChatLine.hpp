@@ -4,7 +4,7 @@
 class UW_TextChatLine_C : public UUserWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
-    class UWidgetAnimation* PopIn;                                                    // 0x02E8 (size: 0x8)
+    class UWidgetAnimation* Popin;                                                    // 0x02E8 (size: 0x8)
     class UWidgetAnimation* FadeOut;                                                  // 0x02F0 (size: 0x8)
     class UHorizontalBox* HBoxMain;                                                   // 0x02F8 (size: 0x8)
     class UTextBlock* MessageText;                                                    // 0x0300 (size: 0x8)

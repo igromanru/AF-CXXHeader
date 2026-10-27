@@ -123,15 +123,15 @@ class UAudioMixerBlueprintLibrary : public UBlueprintFunctionLibrary
 {
 
     void UnregisterAudioBusFromSubmix(const class UObject* WorldContextObject, class USoundSubmix* SoundSubmix, class UAudioBus* AudioBus);
-    float TrimAudioCache(float InMegabytesToFree);
+    void TrimAudioCache(float InMegabytesToFree);
     void SwapAudioOutputDevice(const class UObject* WorldContextObject, FString NewDeviceId, const FSwapAudioOutputDeviceOnCompletedDeviceSwap& OnCompletedDeviceSwap);
-    class USoundWave* StopRecordingOutput(const class UObject* WorldContextObject, EAudioRecordingExportType ExportType, FString Name, FString Path, class USoundSubmix* SubmixToRecord, class USoundWave* ExistingSoundWaveToOverwrite);
+    void StopRecordingOutput(const class UObject* WorldContextObject, EAudioRecordingExportType ExportType, FString Name, FString Path, class USoundSubmix* SubmixToRecord, class USoundWave* ExistingSoundWaveToOverwrite);
     void StopAudioBus(const class UObject* WorldContextObject, class UAudioBus* AudioBus);
     void StopAnalyzingOutput(const class UObject* WorldContextObject, class USoundSubmix* SubmixToStopAnalyzing);
     void StartRecordingOutput(const class UObject* WorldContextObject, float ExpectedDuration, class USoundSubmix* SubmixToRecord);
     void StartAudioBus(const class UObject* WorldContextObject, class UAudioBus* AudioBus);
     void StartAnalyzingOutput(const class UObject* WorldContextObject, class USoundSubmix* SubmixToAnalyze, EFFTSize FFTSize, EFFTPeakInterpolationMethod InterpolationMethod, EFFTWindowType WindowType, float HopSize, EAudioSpectrumType SpectrumType);
-    void SetSubmixEffectChainOverride(const class UObject* WorldContextObject, class USoundSubmix* SoundSubmix, TArray<class USoundEffectSubmixPreset*> SubmixEffectPresetChain, float FadeTimeSec);
+    void SetSubmixEffectChainOverride(const class UObject* WorldContextObject, class USoundSubmix* SoundSubmix, TArray<USoundEffectSubmixPreset*> SubmixEffectPresetChain, float FadeTimeSec);
     void SetBypassSourceEffectChainEntry(const class UObject* WorldContextObject, class USoundEffectSourcePresetChain* PresetChain, int32 EntryIndex, bool bBypassed);
     void ResumeRecordingOutput(const class UObject* WorldContextObject, class USoundSubmix* SubmixToPause);
     void ReplaceSubmixEffect(const class UObject* WorldContextObject, class USoundSubmix* InSoundSubmix, int32 SubmixChainIndex, class USoundEffectSubmixPreset* SubmixEffectPreset);
@@ -146,20 +146,20 @@ class UAudioMixerBlueprintLibrary : public UBlueprintFunctionLibrary
     void PrimeSoundForPlayback(class USoundWave* SoundWave, const FPrimeSoundForPlaybackOnLoadCompletion OnLoadCompletion);
     void PrimeSoundCueForPlayback(class USoundCue* SoundCue);
     void PauseRecordingOutput(const class UObject* WorldContextObject, class USoundSubmix* SubmixToPause);
-    TArray<FSoundSubmixSpectralAnalysisBandSettings> MakePresetSpectralAnalysisBandSettings(EAudioSpectrumBandPresetType InBandPresetType, int32 InNumBands, int32 InAttackTimeMsec, int32 InReleaseTimeMsec);
-    TArray<FSoundSubmixSpectralAnalysisBandSettings> MakeMusicalSpectralAnalysisBandSettings(int32 InNumSemitones, EMusicalNoteName InStartingMusicalNote, int32 InStartingOctave, int32 InAttackTimeMsec, int32 InReleaseTimeMsec);
-    TArray<FSoundSubmixSpectralAnalysisBandSettings> MakeFullSpectrumSpectralAnalysisBandSettings(int32 InNumBands, float InMinimumFrequency, float InMaximumFrequency, int32 InAttackTimeMsec, int32 InReleaseTimeMsec);
-    bool IsAudioBusActive(const class UObject* WorldContextObject, class UAudioBus* AudioBus);
+    void MakePresetSpectralAnalysisBandSettings(EAudioSpectrumBandPresetType InBandPresetType, int32 InNumBands, int32 InAttackTimeMsec, int32 InReleaseTimeMsec);
+    void MakeMusicalSpectralAnalysisBandSettings(int32 InNumSemitones, EMusicalNoteName InStartingMusicalNote, int32 InStartingOctave, int32 InAttackTimeMsec, int32 InReleaseTimeMsec);
+    void MakeFullSpectrumSpectralAnalysisBandSettings(int32 InNumBands, float InMinimumFrequency, float InMaximumFrequency, int32 InAttackTimeMsec, int32 InReleaseTimeMsec);
+    void IsAudioBusActive(const class UObject* WorldContextObject, class UAudioBus* AudioBus);
     void GetPhaseForFrequencies(const class UObject* WorldContextObject, const TArray<float>& Frequencies, TArray<float>& Phases, class USoundSubmix* SubmixToAnalyze);
-    int32 GetNumberOfEntriesInSourceEffectChain(const class UObject* WorldContextObject, class USoundEffectSourcePresetChain* PresetChain);
+    void GetNumberOfEntriesInSourceEffectChain(const class UObject* WorldContextObject, class USoundEffectSourcePresetChain* PresetChain);
     void GetMagnitudeForFrequencies(const class UObject* WorldContextObject, const TArray<float>& Frequencies, TArray<float>& Magnitudes, class USoundSubmix* SubmixToAnalyze);
     void GetCurrentAudioOutputDeviceName(const class UObject* WorldContextObject, const FGetCurrentAudioOutputDeviceNameOnObtainCurrentDeviceEvent& OnObtainCurrentDeviceEvent);
     void GetAvailableAudioOutputDevices(const class UObject* WorldContextObject, const FGetAvailableAudioOutputDevicesOnObtainDevicesEvent& OnObtainDevicesEvent);
-    FString Conv_AudioOutputDeviceInfoToString(const FAudioOutputDeviceInfo& Info);
+    void Conv_AudioOutputDeviceInfoToString(const FAudioOutputDeviceInfo& Info);
     void ClearSubmixEffects(const class UObject* WorldContextObject, class USoundSubmix* SoundSubmix);
     void ClearSubmixEffectChainOverride(const class UObject* WorldContextObject, class USoundSubmix* SoundSubmix, float FadeTimeSec);
     void ClearMasterSubmixEffects(const class UObject* WorldContextObject);
-    int32 AddSubmixEffect(const class UObject* WorldContextObject, class USoundSubmix* SoundSubmix, class USoundEffectSubmixPreset* SubmixEffectPreset);
+    void AddSubmixEffect(const class UObject* WorldContextObject, class USoundSubmix* SoundSubmix, class USoundEffectSubmixPreset* SubmixEffectPreset);
     void AddSourceEffectToPresetChain(const class UObject* WorldContextObject, class USoundEffectSourcePresetChain* PresetChain, FSourceEffectChainEntry Entry);
     void AddMasterSubmixEffect(const class UObject* WorldContextObject, class USoundEffectSubmixPreset* SubmixEffectPreset);
 }; // Size: 0x28
@@ -184,41 +184,41 @@ class UQuartzClockHandle : public UObject
     void ResetTransport(const class UObject* WorldContextObject, const FResetTransportInDelegate& InDelegate);
     void PauseClock(const class UObject* WorldContextObject, class UQuartzClockHandle*& ClockHandle);
     void NotifyOnQuantizationBoundary(const class UObject* WorldContextObject, FQuartzQuantizationBoundary InQuantizationBoundary, const FNotifyOnQuantizationBoundaryInDelegate& InDelegate, float InMsOffset);
-    bool IsClockRunning(const class UObject* WorldContextObject);
-    float GetTicksPerSecond(const class UObject* WorldContextObject);
-    float GetThirtySecondNotesPerMinute(const class UObject* WorldContextObject);
-    float GetSecondsPerTick(const class UObject* WorldContextObject);
-    float GetMillisecondsPerTick(const class UObject* WorldContextObject);
-    float GetEstimatedRunTime(const class UObject* WorldContextObject);
-    float GetDurationOfQuantizationTypeInSeconds(const class UObject* WorldContextObject, const EQuartzCommandQuantization& QuantizationType, float Multiplier);
-    FQuartzTransportTimeStamp GetCurrentTimestamp(const class UObject* WorldContextObject);
-    float GetBeatsPerMinute(const class UObject* WorldContextObject);
-    float GetBeatProgressPercent(EQuartzCommandQuantization QuantizationBoundary, float PhaseOffset, float MsOffset);
+    void IsClockRunning(const class UObject* WorldContextObject);
+    void GetTicksPerSecond(const class UObject* WorldContextObject);
+    void GetThirtySecondNotesPerMinute(const class UObject* WorldContextObject);
+    void GetSecondsPerTick(const class UObject* WorldContextObject);
+    void GetMillisecondsPerTick(const class UObject* WorldContextObject);
+    void GetEstimatedRunTime(const class UObject* WorldContextObject);
+    void GetDurationOfQuantizationTypeInSeconds(const class UObject* WorldContextObject, const EQuartzCommandQuantization& QuantizationType, float Multiplier);
+    void GetCurrentTimestamp(const class UObject* WorldContextObject);
+    void GetBeatsPerMinute(const class UObject* WorldContextObject);
+    void GetBeatProgressPercent(EQuartzCommandQuantization QuantizationBoundary, float PhaseOffset, float MsOffset);
 }; // Size: 0x1F0
 
 class UQuartzSubsystem : public UTickableWorldSubsystem
 {
 
     void SetQuartzSubsystemTickableWhenPaused(const bool bInTickableWhenPaused);
-    bool IsQuartzEnabled();
-    bool IsClockRunning(const class UObject* WorldContextObject, FName ClockName);
-    float GetRoundTripMinLatency(const class UObject* WorldContextObject);
-    float GetRoundTripMaxLatency(const class UObject* WorldContextObject);
-    float GetRoundTripAverageLatency(const class UObject* WorldContextObject);
-    class UQuartzClockHandle* GetHandleForClock(const class UObject* WorldContextObject, FName ClockName);
-    float GetGameThreadToAudioRenderThreadMinLatency(const class UObject* WorldContextObject);
-    float GetGameThreadToAudioRenderThreadMaxLatency(const class UObject* WorldContextObject);
-    float GetGameThreadToAudioRenderThreadAverageLatency(const class UObject* WorldContextObject);
-    float GetEstimatedClockRunTime(const class UObject* WorldContextObject, const FName& InClockName);
-    float GetDurationOfQuantizationTypeInSeconds(const class UObject* WorldContextObject, FName ClockName, const EQuartzCommandQuantization& QuantizationType, float Multiplier);
-    FQuartzTransportTimeStamp GetCurrentClockTimestamp(const class UObject* WorldContextObject, const FName& InClockName);
-    float GetAudioRenderThreadToGameThreadMinLatency();
-    float GetAudioRenderThreadToGameThreadMaxLatency();
-    float GetAudioRenderThreadToGameThreadAverageLatency();
-    bool DoesClockExist(const class UObject* WorldContextObject, FName ClockName);
+    void IsQuartzEnabled();
+    void IsClockRunning(const class UObject* WorldContextObject, FName ClockName);
+    void GetRoundTripMinLatency(const class UObject* WorldContextObject);
+    void GetRoundTripMaxLatency(const class UObject* WorldContextObject);
+    void GetRoundTripAverageLatency(const class UObject* WorldContextObject);
+    void GetHandleForClock(const class UObject* WorldContextObject, FName ClockName);
+    void GetGameThreadToAudioRenderThreadMinLatency(const class UObject* WorldContextObject);
+    void GetGameThreadToAudioRenderThreadMaxLatency(const class UObject* WorldContextObject);
+    void GetGameThreadToAudioRenderThreadAverageLatency(const class UObject* WorldContextObject);
+    void GetEstimatedClockRunTime(const class UObject* WorldContextObject, const FName& InClockName);
+    void GetDurationOfQuantizationTypeInSeconds(const class UObject* WorldContextObject, FName ClockName, const EQuartzCommandQuantization& QuantizationType, float Multiplier);
+    void GetCurrentClockTimestamp(const class UObject* WorldContextObject, const FName& InClockName);
+    void GetAudioRenderThreadToGameThreadMinLatency();
+    void GetAudioRenderThreadToGameThreadMaxLatency();
+    void GetAudioRenderThreadToGameThreadAverageLatency();
+    void DoesClockExist(const class UObject* WorldContextObject, FName ClockName);
     void DeleteClockByName(const class UObject* WorldContextObject, FName ClockName);
     void DeleteClockByHandle(const class UObject* WorldContextObject, class UQuartzClockHandle*& InClockHandle);
-    class UQuartzClockHandle* CreateNewClock(const class UObject* WorldContextObject, FName ClockName, FQuartzClockSettings InSettings, bool bOverrideSettingsIfClockExists, bool bUseAudioEngineClockManager);
+    void CreateNewClock(const class UObject* WorldContextObject, FName ClockName, FQuartzClockSettings InSettings, bool bOverrideSettingsIfClockExists, bool bUseAudioEngineClockManager);
 }; // Size: 0x68
 
 class USubmixEffectDynamicsProcessorPreset : public USoundEffectSubmixPreset
@@ -287,8 +287,8 @@ class USynthComponent : public USceneComponent
     void SetLowPassFilterEnabled(bool InLowPassFilterEnabled);
     void SetAudioBusSendPreEffect(class UAudioBus* AudioBus, float AudioBusSendLevel);
     void SetAudioBusSendPostEffect(class UAudioBus* AudioBus, float AudioBusSendLevel);
-    bool IsPlaying();
-    TSet<USoundModulatorBase*> GetModulators(const EModulationDestination Destination);
+    void IsPlaying();
+    void GetModulators(const EModulationDestination Destination);
     void FadeOut(float FadeOutDuration, float FadeVolumeLevel, const EAudioFaderCurve FadeCurve);
     void FadeIn(float FadeInDuration, float FadeVolumeLevel, float StartTime, const EAudioFaderCurve FadeCurve);
     void AdjustVolume(float AdjustVolumeDuration, float AdjustVolumeLevel, const EAudioFaderCurve FadeCurve);

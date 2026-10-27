@@ -56,7 +56,7 @@ class UConstantQAnalyzer : public UAudioAnalyzer
     FConstantQAnalyzerOnLatestConstantQResults OnLatestConstantQResults;              // 0x00D0 (size: 0x10)
     void OnLatestConstantQResults(int32 ChannelIndex, const FConstantQResults& LatestConstantQResults);
 
-    int32 GetNumCenterFrequencies();
+    void GetNumCenterFrequencies();
     void GetCenterFrequencies(TArray<float>& OutCenterFrequencies);
 }; // Size: 0xF8
 
@@ -206,7 +206,7 @@ class USynesthesiaSpectrumAnalyzer : public UAudioAnalyzer
     FSynesthesiaSpectrumAnalyzerOnLatestSpectrumResults OnLatestSpectrumResults;      // 0x00D0 (size: 0x10)
     void OnLatestSpectrumResults(int32 ChannelIndex, const FSynesthesiaSpectrumResults& LatestSpectrumResults);
 
-    int32 GetNumCenterFrequencies();
+    void GetNumCenterFrequencies();
     void GetCenterFrequencies(const float InSampleRate, TArray<float>& OutCenterFrequencies);
 }; // Size: 0xF8
 

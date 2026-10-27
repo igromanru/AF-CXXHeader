@@ -22,7 +22,7 @@ class UW_Inventory_ItemContextMenu_C : public UAbioticWidget
     class UVerticalBox* VerticalBox_126;                                              // 0x0360 (size: 0x8)
     class UW_Keybind_C* W_Keybind;                                                    // 0x0368 (size: 0x8)
     class UW_Keybind_C* W_Keybind_1;                                                  // 0x0370 (size: 0x8)
-    FAbiotic_InventoryItemSlotStruct ItemSlotStruct;                                  // 0x0378 (size: 0x98)
+    FAbioticInventoryItemSlot ItemSlotStruct;                                         // 0x0378 (size: 0x98)
     class UW_InventoryItemSlot_C* OriginSlot;                                         // 0x0410 (size: 0x8)
     bool CheckForFocus;                                                               // 0x0418 (size: 0x1)
     bool Removed;                                                                     // 0x0419 (size: 0x1)
@@ -33,21 +33,21 @@ class UW_Inventory_ItemContextMenu_C : public UAbioticWidget
     void WidgetAction_FaceTop(bool& Handled);
     void WidgetAction_DPadDirection(TEnumAsByte<E_NavigationDirection::Type> Direction, bool& Handled);
     void TryApplyWeaponCoating();
-    FEventReply OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
-    FEventReply OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
-    void GetHoveredIndex(int32& HoveredIndex, int32& LastIndex, TArray<class UButton*>& Buttons);
+    void OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void GetHoveredIndex(int32& HoveredIndex, int32& LastIndex, TArray<UButton*>& Buttons);
     void TryRechargeWithFieldBattery();
-    void Can Recharge Item(FDataTableRowHandle Item Needed To Recharge With, bool& Success, class UAbiotic_InventoryComponent_C*& Inventory, int32& InventoryIndex);
+    void Can Recharge Item(FGlobalItemRowHandle Item Needed To Recharge With, bool& Success, class UAbiotic_InventoryComponent_C*& Inventory, int32& InventoryIndex);
     void TryFavoriteSlot();
     void TryRepairWithDuctTape();
-    void Can Repair Item(FDataTableRowHandle Item Needed To Repair With, bool& Success, class UAbiotic_InventoryComponent_C*& Inventory, int32& InventoryIndex);
+    void Can Repair Item(FGlobalItemRowHandle Item Needed To Repair With, bool& Success, class UAbiotic_InventoryComponent_C*& Inventory, int32& InventoryIndex);
     void Start Request Quick Move Item(bool EquippingGear);
     void TryConsumeItemInSlot(bool& Consumed);
     void Set Widget Location(FVector2D Mouse Position, FVector2D& Desired Location);
     void EmptyLiquidContainer();
     void UnloadMagazine();
     void ShowUseButton(FText InText);
-    void IsConsumable?(const FAbiotic_Consumable_Struct& ConsumableData, FAbiotic_LiquidStruct LiquidData, bool& CanBeConsumed);
+    void IsConsumable?(const FAbioticConsumable& ConsumableData, FAbioticLiquid LiquidData, bool& CanBeConsumed);
     void InitializeContextMenu();
     void Construct();
     void BndEvt__W_Inventory_ItemContextMenu_Button_Take_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature();

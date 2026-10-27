@@ -33,8 +33,8 @@ class UW_MenuPopup_TextInputBox_C : public UUserWidget
     bool Is Password;                                                                 // 0x03CE (size: 0x1)
     bool IgnoreFirstKeyUp;                                                            // 0x03CF (size: 0x1)
 
-    FEventReply OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
-    FEventReply OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
     void BndEvt__W_BetaNotice_Button_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__W_BetaNotice_Button_Enter_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature();
     void Construct();

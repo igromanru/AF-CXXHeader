@@ -338,8 +338,8 @@ class UFPArms_AnimBP_C : public UFPArmsAnimInstance
     void UpdateWristwatch(class AAbiotic_PlayerCharacter_C* Player);
     void EvaluateFPState();
     void TickFishing(double DeltaTime);
-    void LoadAnimationReference(const TSoftObjectPtr<UObject>& SoftObjectReference, bool& Valid, class UObject*& Object);
-    void LoadAndSetAnimData(FAbiotic_FPAnimationStruct FPAnimationData);
+    void LoadAnimationReference(const TSoftObjectPtr<class UObject>& SoftObjectReference, bool& Valid, class UObject*& Object);
+    void LoadAndSetAnimData(FAbioticFPAnimation FPAnimationData);
     void EvaluateGraphExposedInputs_ExecuteUbergraph_FPArms_AnimBP_AnimGraphNode_TransitionResult_E10E4CBD4131F9A4AA742CBB905BBE14();
     void EvaluateGraphExposedInputs_ExecuteUbergraph_FPArms_AnimBP_AnimGraphNode_TransitionResult_758B324548D33454F40E5997F286D910();
     void EvaluateGraphExposedInputs_ExecuteUbergraph_FPArms_AnimBP_AnimGraphNode_SequencePlayer_30896D9B4152FE04F2FB9684EB3EA6E9();

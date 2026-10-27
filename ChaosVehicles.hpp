@@ -317,17 +317,17 @@ class UChaosVehicleMovementComponent : public UPawnMovementComponent
     void SetBrakeInput(float Brake);
     void ServerUpdateState(float InSteeringInput, float InThrottleInput, float InBrakeInput, float InHandbrakeInput, int32 InCurrentGear, float InRollInput, float InPitchInput, float InYawInput);
     void ResetVehicle();
-    bool IsParked();
+    void IsParked();
     void IncreaseThrottleInput(float ThrottleDelta);
-    bool GetUseAutoGears();
-    float GetThrottleInput();
-    int32 GetTargetGear();
-    float GetSteeringInput();
-    bool GetHandbrakeInput();
-    float GetForwardSpeedMPH();
-    float GetForwardSpeed();
-    int32 GetCurrentGear();
-    float GetBrakeInput();
+    void GetUseAutoGears();
+    void GetThrottleInput();
+    void GetTargetGear();
+    void GetSteeringInput();
+    void GetHandbrakeInput();
+    void GetForwardSpeedMPH();
+    void GetForwardSpeed();
+    void GetCurrentGear();
+    void GetBrakeInput();
     void EnableSelfRighting(bool InState);
     void DecreaseThrottleInput(float ThrottleDelta);
 }; // Size: 0x940
@@ -381,15 +381,15 @@ class UChaosVehicleWheel : public UObject
     FVector OldLocation;                                                              // 0x01B0 (size: 0x18)
     FVector Velocity;                                                                 // 0x01C8 (size: 0x18)
 
-    bool IsInAir();
-    float GetWheelRadius();
-    float GetWheelAngularVelocity();
-    float GetSuspensionOffset();
-    FVector GetSuspensionAxis();
-    float GetSteerAngle();
-    float GetRotationAngularVelocity();
-    float GetRotationAngle();
-    EAxleType GetAxleType();
+    void IsInAir();
+    void GetWheelRadius();
+    void GetWheelAngularVelocity();
+    void GetSuspensionOffset();
+    void GetSuspensionAxis();
+    void GetSteerAngle();
+    void GetRotationAngularVelocity();
+    void GetRotationAngle();
+    void GetAxleType();
 }; // Size: 0x2E0
 
 class UChaosWheeledVehicleMovementComponent : public UChaosVehicleMovementComponent
@@ -404,7 +404,7 @@ class UChaosWheeledVehicleMovementComponent : public UChaosVehicleMovementCompon
     FVehicleDifferentialConfig DifferentialSetup;                                     // 0x0A48 (size: 0x10)
     FVehicleTransmissionConfig TransmissionSetup;                                     // 0x0A58 (size: 0x70)
     FVehicleSteeringConfig SteeringSetup;                                             // 0x0AC8 (size: 0xD8)
-    TArray<class UChaosVehicleWheel*> Wheels;                                         // 0x0BA0 (size: 0x10)
+    TArray<UChaosVehicleWheel*> Wheels;                                               // 0x0BA0 (size: 0x10)
 
     void SetWheelSlipGraphMultiplier(int32 WheelIndex, float Multiplier);
     void SetWheelRadius(int32 WheelIndex, float Radius);
@@ -428,14 +428,14 @@ class UChaosWheeledVehicleMovementComponent : public UChaosVehicleMovementCompon
     void SetAffectedByEngine(int32 WheelIndex, bool Enabled);
     void SetAffectedByBrake(int32 WheelIndex, bool Enabled);
     void SetABSEnabled(int32 WheelIndex, bool Enabled);
-    FWheelStatus MakeWheelStatus(bool bInContact, FVector& ContactPoint, class UPhysicalMaterial* PhysMaterial, float NormalizedSuspensionLength, float SpringForce, float SlipAngle, bool bIsSlipping, float SlipMagnitude, bool bIsSkidding, float SkidMagnitude, FVector& SkidNormal, float DriveTorque, float BrakeTorque, bool bABSActivated);
-    FWheelSnapshot MakeWheelSnapshot(float SuspensionOffset, float WheelRotationAngle, float SteeringAngle, float WheelRadius, float WheelAngularVelocity);
-    FWheeledSnaphotData MakeWheeledSnapshot(FTransform Transform, FVector LinearVelocity, FVector AngularVelocity, int32 SelectedGear, float EngineRPM, const TArray<FWheelSnapshot>& WheelSnapshots);
-    FWheelStatus GetWheelState(int32 WheelIndex);
-    FWheeledSnaphotData GetSnapshot();
-    int32 GetNumWheels();
-    float GetEngineRotationSpeed();
-    float GetEngineMaxRotationSpeed();
+    void MakeWheelStatus(bool bInContact, FVector& ContactPoint, class UPhysicalMaterial* PhysMaterial, float NormalizedSuspensionLength, float SpringForce, float SlipAngle, bool bIsSlipping, float SlipMagnitude, bool bIsSkidding, float SkidMagnitude, FVector& SkidNormal, float DriveTorque, float BrakeTorque, bool bABSActivated);
+    void MakeWheelSnapshot(float SuspensionOffset, float WheelRotationAngle, float SteeringAngle, float WheelRadius, float WheelAngularVelocity);
+    void MakeWheeledSnapshot(FTransform Transform, FVector LinearVelocity, FVector AngularVelocity, int32 SelectedGear, float EngineRPM, const TArray<FWheelSnapshot>& WheelSnapshots);
+    void GetWheelState(int32 WheelIndex);
+    void GetSnapshot();
+    void GetNumWheels();
+    void GetEngineRotationSpeed();
+    void GetEngineMaxRotationSpeed();
     void EnableWheelFriction(bool InState);
     void EnableSuspension(bool InState);
     void EnableMechanicalSim(bool InState);
@@ -448,7 +448,7 @@ class UVehicleAnimationInstance : public UAnimInstance
 {
     class UChaosWheeledVehicleMovementComponent* WheeledVehicleComponent;             // 0x0AE0 (size: 0x8)
 
-    class AWheeledVehiclePawn* GetVehicle();
+    void GetVehicle();
 }; // Size: 0xAF0
 
 #endif

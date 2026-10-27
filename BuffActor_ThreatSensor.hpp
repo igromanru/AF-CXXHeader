@@ -3,11 +3,11 @@
 
 class ABuffActor_ThreatSensor_C : public ABuffActor
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02C0 (size: 0x8)
-    class USphereComponent* OutlineOverlap;                                           // 0x02C8 (size: 0x8)
-    class USceneComponent* DefaultSceneRoot;                                          // 0x02D0 (size: 0x8)
-    TArray<class ANPC_Base_ParentBP_C*> LocalHiglightedNPCs;                          // 0x02D8 (size: 0x10)
-    bool OnlyShowInCombat;                                                            // 0x02E8 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02B0 (size: 0x8)
+    class USphereComponent* OutlineOverlap;                                           // 0x02B8 (size: 0x8)
+    class USceneComponent* DefaultSceneRoot;                                          // 0x02C0 (size: 0x8)
+    TArray<ANPC_Base_ParentBP_C*> LocalHiglightedNPCs;                                // 0x02C8 (size: 0x10)
+    bool OnlyShowInCombat;                                                            // 0x02D8 (size: 0x1)
 
     void CheckTargetFaction(class AActor* PotentialFriend, bool& Friend);
     void CanOutlineTarget(class ANPC_Base_ParentBP_C*& TargetToCheck, bool& Outline);
@@ -21,6 +21,6 @@ class ABuffActor_ThreatSensor_C : public ABuffActor
     void LocalRemoveFromList(class ANPC_Base_ParentBP_C* Target NPC);
     void Local_UpdateOutlineState(class AAbiotic_Character_ParentBP_C* OutlinedCharacter, bool Outline);
     void ExecuteUbergraph_BuffActor_ThreatSensor(int32 EntryPoint);
-}; // Size: 0x2E9
+}; // Size: 0x2D9
 
 #endif

@@ -17,7 +17,7 @@ struct FComputeGraphEdge
 
 struct FComputeGraphInstance
 {
-    TArray<class UComputeDataProvider*> DataProviders;                                // 0x0000 (size: 0x10)
+    TArray<UComputeDataProvider*> DataProviders;                                      // 0x0000 (size: 0x10)
 
 }; // Size: 0x18
 
@@ -96,10 +96,10 @@ class UComputeDataProvider : public UObject
 
 class UComputeGraph : public UObject
 {
-    TArray<class UComputeKernel*> KernelInvocations;                                  // 0x0028 (size: 0x10)
-    TArray<class UComputeDataInterface*> DataInterfaces;                              // 0x0038 (size: 0x10)
+    TArray<UComputeKernel*> KernelInvocations;                                        // 0x0028 (size: 0x10)
+    TArray<UComputeDataInterface*> DataInterfaces;                                    // 0x0038 (size: 0x10)
     TArray<FComputeGraphEdge> GraphEdges;                                             // 0x0048 (size: 0x10)
-    TArray<class UClass*> Bindings;                                                   // 0x0058 (size: 0x10)
+    TArray<UClass*> Bindings;                                                         // 0x0058 (size: 0x10)
     TArray<int32> DataInterfaceToBinding;                                             // 0x0068 (size: 0x10)
 
 }; // Size: 0xE0
@@ -133,7 +133,7 @@ class UComputeKernelSource : public UObject
     FIntVector GroupSize;                                                             // 0x0038 (size: 0xC)
     FComputeKernelPermutationSet PermutationSet;                                      // 0x0048 (size: 0x10)
     FComputeKernelDefinitionSet DefinitionsSet;                                       // 0x0058 (size: 0x10)
-    TArray<class UComputeSource*> AdditionalSources;                                  // 0x0068 (size: 0x10)
+    TArray<UComputeSource*> AdditionalSources;                                        // 0x0068 (size: 0x10)
     TArray<FShaderFunctionDefinition> ExternalInputs;                                 // 0x0078 (size: 0x10)
     TArray<FShaderFunctionDefinition> ExternalOutputs;                                // 0x0088 (size: 0x10)
 
@@ -141,7 +141,7 @@ class UComputeKernelSource : public UObject
 
 class UComputeSource : public UObject
 {
-    TArray<class UComputeSource*> AdditionalSources;                                  // 0x0028 (size: 0x10)
+    TArray<UComputeSource*> AdditionalSources;                                        // 0x0028 (size: 0x10)
 
 }; // Size: 0x38
 

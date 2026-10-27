@@ -5,8 +5,8 @@ class ULocalizableMessageLibrary : public UBlueprintFunctionLibrary
 {
 
     void Reset_LocalizableMessage(FLocalizableMessage& Message);
-    bool IsEmpty_LocalizableMessage(const FLocalizableMessage& Message);
-    FText Conv_LocalizableMessageToText(class UObject* WorldContextObject, const FLocalizableMessage& Message);
+    void IsEmpty_LocalizableMessage(const FLocalizableMessage& Message);
+    void Conv_LocalizableMessageToText(class UObject* WorldContextObject, const FLocalizableMessage& Message);
 }; // Size: 0x28
 
 #endif

@@ -16,7 +16,7 @@ class ADeployed_Bench_CookingStation_C : public AAbioticDeployed_CraftingBench_P
     double LastContainerUpdate;                                                       // 0x0950 (size: 0x8)
 
     void UpdateOverlappingContainers();
-    FText GetItemNameText();
+    void GetItemNameText();
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void TogglePowerFX();
     void InteractWith_A_LocalFX(bool Hold);

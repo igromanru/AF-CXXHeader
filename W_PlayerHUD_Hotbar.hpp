@@ -17,7 +17,7 @@ class UW_PlayerHUD_Hotbar_C : public UUserWidget
     class UW_InventoryItemSlot_C* HotbarSlot_FannyPack1;                              // 0x0338 (size: 0x8)
     class UW_InventoryItemSlot_C* HotbarSlot_FannyPack2;                              // 0x0340 (size: 0x8)
     class UW_InventoryGrid_C* LogicOnlyInventoryGridDoNotDelete;                      // 0x0348 (size: 0x8)
-    TArray<class UW_InventoryItemSlot_C*> HotbarSlots;                                // 0x0350 (size: 0x10)
+    TArray<UW_InventoryItemSlot_C*> HotbarSlots;                                      // 0x0350 (size: 0x10)
     bool SetupComplete;                                                               // 0x0360 (size: 0x1)
     bool FannyPackUser;                                                               // 0x0361 (size: 0x1)
     double FannyPackOffset;                                                           // 0x0368 (size: 0x8)

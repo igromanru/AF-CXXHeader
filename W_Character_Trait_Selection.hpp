@@ -30,18 +30,18 @@ class UW_Character_Trait_Selection_C : public UUserWidget
     class UW_UIPopup_Generic_C* W_UIPopup_Generic;                                    // 0x03A0 (size: 0x8)
     class UWidgetSwitcher* WidgetSwitcher_24;                                         // 0x03A8 (size: 0x8)
     int32 Starting Trait Points;                                                      // 0x03B0 (size: 0x4)
-    TMap<FName, int32> TraitsAndPoints;                                               // 0x03B8 (size: 0x50)
+    TMap<FAnyTraitRowHandle, int32> TraitsAndPoints;                                  // 0x03B8 (size: 0x50)
     int32 FinalPoints;                                                                // 0x0408 (size: 0x4)
-    FName Selected_Job;                                                               // 0x040C (size: 0x8)
-    bool HasMadeCharacterBefore;                                                      // 0x0414 (size: 0x1)
-    bool EnteredAmnesiaThreshold;                                                     // 0x0415 (size: 0x1)
-    bool InitialJobSelect;                                                            // 0x0416 (size: 0x1)
+    FAnyTraitRowHandle Selected_Job;                                                  // 0x0410 (size: 0x10)
+    bool HasMadeCharacterBefore;                                                      // 0x0420 (size: 0x1)
+    bool EnteredAmnesiaThreshold;                                                     // 0x0421 (size: 0x1)
+    bool InitialJobSelect;                                                            // 0x0422 (size: 0x1)
 
     void GetFinishPopupContent(FText& Title, FText& Content, FText& Yes, FText& No);
     void UpdateCharacterStatSummary();
     void UpdateJobSummary();
-    void CalculatePointsAvailable(FName SelectedJob);
-    void Change Trait Points(FName Name, bool IsJobChange, bool Remove, FTrait_Struct TraitData, int32& FinalPoints);
+    void CalculatePointsAvailable(FAnyTraitRowHandle SelectedJob);
+    void Change Trait Points(FAnyTraitRowHandle Name, bool IsJobChange, bool Remove, FTrait TraitData, int32& FinalPoints);
     void Construct();
     void BndEvt__Button_Finish_K2Node_ComponentBoundEvent_0_ButtonPressed__DelegateSignature();
     void BndEvt__W_MainMenuButton_K2Node_ComponentBoundEvent_1_ButtonPressed__DelegateSignature();
@@ -51,6 +51,6 @@ class UW_Character_Trait_Selection_C : public UUserWidget
     void CloseInitialPopup();
     void PreConstruct(bool IsDesignTime);
     void ExecuteUbergraph_W_Character_Trait_Selection(int32 EntryPoint);
-}; // Size: 0x417
+}; // Size: 0x423
 
 #endif

@@ -14,7 +14,7 @@ class UBTT_NarrativeSit_C : public UBTTask_BlueprintBase
     bool IgnoreFilter;                                                                // 0x0101 (size: 0x1)
     TArray<TSoftClassPtr<AAbioticDeployed_ParentBP_C>> FilterClasses;                 // 0x0108 (size: 0x10)
     bool ApplyWontSitDebuff;                                                          // 0x0118 (size: 0x1)
-    FBuffDebuffRowHandle WontSitBuffRow;                                              // 0x0120 (size: 0x20)
+    FBuffDebuffRowHandle WontSitBuffRow;                                              // 0x0120 (size: 0x10)
 
     void TryResetBusyInSeat();
     void FindNearbySeatToSitIn(class AAbioticDeployed_Furniture_ParentBP_C*& OutputPin);
@@ -23,6 +23,6 @@ class UBTT_NarrativeSit_C : public UBTTask_BlueprintBase
     void StartSittingTimer();
     void FinishSitting();
     void ExecuteUbergraph_BTT_NarrativeSit(int32 EntryPoint);
-}; // Size: 0x140
+}; // Size: 0x130
 
 #endif

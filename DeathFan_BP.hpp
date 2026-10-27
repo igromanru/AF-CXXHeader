@@ -12,10 +12,10 @@ class ADeathFan_BP_C : public AAbioticActor_C
     bool FanActive;                                                                   // 0x0300 (size: 0x1)
     bool FanOnlyNoDeath;                                                              // 0x0301 (size: 0x1)
     bool TurnOffAtNight;                                                              // 0x0302 (size: 0x1)
-    TArray<class AAbiotic_Character_ParentBP_C*> DelayedDamageCharacters;             // 0x0308 (size: 0x10)
+    TArray<AAbiotic_Character_ParentBP_C*> DelayedDamageCharacters;                   // 0x0308 (size: 0x10)
 
     void GetPluggedInDeviceCount(int32& Count);
-    bool HasBatteryInParentChain();
+    void HasBatteryInParentChain();
     void RestoresSanityNearbyWhenPowered(bool& RestoresSanity);
     void PowerParent(class AActor*& ParentPowerSource);
     void PlugCordAttachLocation(FVector& RelativeLocation);

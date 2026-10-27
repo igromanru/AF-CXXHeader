@@ -4,7 +4,7 @@
 class ILoadingProcessInterface : public IInterface
 {
 
-    bool K2_ShouldShowLoadingScreen(FString& OutDebugReason);
+    void K2_ShouldShowLoadingScreen(FString& OutDebugReason);
 }; // Size: 0x28
 
 class ULoadingProcessTask : public UObject
@@ -12,7 +12,7 @@ class ULoadingProcessTask : public UObject
 
     void Unregister();
     void SetShowLoadingScreenReason(FString InDebugReason);
-    class ULoadingProcessTask* CreateLoadingScreenProcessTask(class UObject* WorldContextObject, FString ShowLoadingScreenReason);
+    void CreateLoadingScreenProcessTask(class UObject* WorldContextObject, FString ShowLoadingScreenReason);
 }; // Size: 0x40
 
 class ULoadingScreenManager : public UGameInstanceSubsystem
@@ -29,9 +29,9 @@ class ULoadingScreenManager : public UGameInstanceSubsystem
     void SetIsShaderCompiling(bool bIsCompiling);
     void RemoveLoadingScreenWatcher(class UObject* Object);
     void K2_SetLoadingScreenCustomText(class UWorld* WorldContextObject, FString NewText);
-    FString GetLoadingScreenCustomText();
-    FString GetDebugReasonForShowingOrHidingLoadingScreen();
-    FString GetCurrentLoadingMap();
+    void GetLoadingScreenCustomText();
+    void GetDebugReasonForShowingOrHidingLoadingScreen();
+    void GetCurrentLoadingMap();
     void AddLoadingScreenWatcher(class UObject* Object);
 }; // Size: 0x120
 

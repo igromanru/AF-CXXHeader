@@ -8,7 +8,7 @@ class ARadioactiveZone_ParentBP_C : public AActor
     double ZoneRadiationPerTick;                                                      // 0x02A8 (size: 0x8)
 
     void GetZoneRadiation(double& RadiationPerTick);
-    class UPrimitiveComponent* GetOverlapVolume();
+    void GetOverlapVolume();
     void ReceiveBeginPlay();
     void OnVolumeOverlapStart(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
     void OnVolumeOverlapEnd(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);

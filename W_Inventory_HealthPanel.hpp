@@ -79,25 +79,26 @@ class UW_Inventory_HealthPanel_C : public UUserWidget
     class UImage* Wound_RightLeg_Bleeding;                                            // 0x0528 (size: 0x8)
     class UImage* Wound_RightLeg_BoneInjury;                                          // 0x0530 (size: 0x8)
     class UImage* Wound_Torso_Bleeding;                                               // 0x0538 (size: 0x8)
-    TEnumAsByte<ECriticalityLevels::Type> HeadStatus;                                 // 0x0540 (size: 0x1)
-    TEnumAsByte<ECriticalityLevels::Type> TorsoStatus;                                // 0x0541 (size: 0x1)
-    TEnumAsByte<ECriticalityLevels::Type> LeftArmStatus;                              // 0x0542 (size: 0x1)
-    TEnumAsByte<ECriticalityLevels::Type> RightArmStatus;                             // 0x0543 (size: 0x1)
-    TEnumAsByte<ECriticalityLevels::Type> LeftLegStatus;                              // 0x0544 (size: 0x1)
-    TEnumAsByte<ECriticalityLevels::Type> RightLegStatus;                             // 0x0545 (size: 0x1)
+    ECriticalityLevels HeadStatus;                                                    // 0x0540 (size: 0x1)
+    ECriticalityLevels TorsoStatus;                                                   // 0x0541 (size: 0x1)
+    ECriticalityLevels LeftArmStatus;                                                 // 0x0542 (size: 0x1)
+    ECriticalityLevels RightArmStatus;                                                // 0x0543 (size: 0x1)
+    ECriticalityLevels LeftLegStatus;                                                 // 0x0544 (size: 0x1)
+    ECriticalityLevels RightLegStatus;                                                // 0x0545 (size: 0x1)
     class UW_PlayerHUD_Main_C* ParentHUD;                                             // 0x0548 (size: 0x8)
     class AAbiotic_Character_ParentBP_C* OwningCharacter;                             // 0x0550 (size: 0x8)
-    TArray<class UW_ClickableItemSlot_C*> MedicalItemButtons;                         // 0x0558 (size: 0x10)
+    TArray<UW_ClickableItemSlot_C*> MedicalItemButtons;                               // 0x0558 (size: 0x10)
     bool RanConstruct;                                                                // 0x0568 (size: 0x1)
-    TArray<class UW_HealthEntry_C*> StaticStatusEntries;                              // 0x0570 (size: 0x10)
+    TArray<UW_HealthEntry_C*> StaticStatusEntries;                                    // 0x0570 (size: 0x10)
     bool SunDisk;                                                                     // 0x0580 (size: 0x1)
 
+    void GetRecipeRowFromItem(FName ItemRowName, class UObject* __WorldContext, FRecipeRowHandle& RecipeRow);
     void UpdateStaticBuffEntries();
-    void UpdateBleedingStatus(class UImage* Image, TEnumAsByte<ECriticalityLevels::Type> Critical Level);
+    void UpdateBleedingStatus(class UImage* Image, ECriticalityLevels Critical Level);
     void RefreshVisibilityOnLimbCategoriesAndBuffLists();
     void AddBuffEntryToLimbCategory(EBodyLimbs Limb, class UW_HealthEntry_C*& Widget);
     void RefreshMedicalItemGrid();
-    void GetCriticalityColor(TEnumAsByte<ECriticalityLevels::Type> Index, FLinearColor& Color, FSlateColor& SlateColor);
+    void GetCriticalityColor(ECriticalityLevels Index, FLinearColor& Color, FSlateColor& SlateColor);
     void UpdateBodyStates(class AAbiotic_Character_ParentBP_C* Character);
     void Construct();
     void HealthChanged();

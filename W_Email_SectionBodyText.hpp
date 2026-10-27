@@ -8,7 +8,7 @@ class UW_Email_SectionBodyText_C : public UAbioticWidget
     FString BodyText;                                                                 // 0x02F0 (size: 0x10)
     FSlateColor TextColor;                                                            // 0x0300 (size: 0x14)
     bool BiggerFont;                                                                  // 0x0314 (size: 0x1)
-    TEnumAsByte<E_OS_Themes::Type> OSTheme;                                           // 0x0315 (size: 0x1)
+    EOSThemes OSTheme;                                                                // 0x0315 (size: 0x1)
 
     void Construct();
     void ExecuteUbergraph_W_Email_SectionBodyText(int32 EntryPoint);

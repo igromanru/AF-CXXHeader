@@ -3,25 +3,25 @@
 
 class ANPC_Monster_Pest_Leyak_C : public ANPC_Monster_Pest_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x22C8 (size: 0x8)
-    float DeathTimeline_ZHeight_9D92EF904DE27168978698A4FAE05B45;                     // 0x22D0 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> DeathTimeline__Direction_9D92EF904DE27168978698A4FAE05B45; // 0x22D4 (size: 0x1)
-    class UTimelineComponent* DeathTimeline;                                          // 0x22D8 (size: 0x8)
-    float Timeline_Teleport_NewTrack_1_D4423FD64CF13EA22BC3628832748A0A;              // 0x22E0 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> Timeline_Teleport__Direction_D4423FD64CF13EA22BC3628832748A0A; // 0x22E4 (size: 0x1)
-    class UTimelineComponent* Timeline_Teleport;                                      // 0x22E8 (size: 0x8)
-    FTimerHandle DamageTimer;                                                         // 0x22F0 (size: 0x8)
-    float LeyakDamageTickRate;                                                        // 0x22F8 (size: 0x4)
-    bool HasBeenXrayed;                                                               // 0x22FC (size: 0x1)
-    class AAbiotic_Character_ParentBP_C* TargetCharacter;                             // 0x2300 (size: 0x8)
-    float XrayedFearDuration;                                                         // 0x2308 (size: 0x4)
-    bool ViewedByTarget;                                                              // 0x230C (size: 0x1)
-    float ViewDistance;                                                               // 0x2310 (size: 0x4)
-    double DefaultMeshZ;                                                              // 0x2318 (size: 0x8)
-    class UAnimSequenceBase* IdleAnimOverride;                                        // 0x2320 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x22D8 (size: 0x8)
+    float DeathTimeline_ZHeight_9D92EF904DE27168978698A4FAE05B45;                     // 0x22E0 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> DeathTimeline__Direction_9D92EF904DE27168978698A4FAE05B45; // 0x22E4 (size: 0x1)
+    class UTimelineComponent* DeathTimeline;                                          // 0x22E8 (size: 0x8)
+    float Timeline_Teleport_NewTrack_1_D4423FD64CF13EA22BC3628832748A0A;              // 0x22F0 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> Timeline_Teleport__Direction_D4423FD64CF13EA22BC3628832748A0A; // 0x22F4 (size: 0x1)
+    class UTimelineComponent* Timeline_Teleport;                                      // 0x22F8 (size: 0x8)
+    FTimerHandle DamageTimer;                                                         // 0x2300 (size: 0x8)
+    float LeyakDamageTickRate;                                                        // 0x2308 (size: 0x4)
+    bool HasBeenXrayed;                                                               // 0x230C (size: 0x1)
+    class AAbiotic_Character_ParentBP_C* TargetCharacter;                             // 0x2310 (size: 0x8)
+    float XrayedFearDuration;                                                         // 0x2318 (size: 0x4)
+    bool ViewedByTarget;                                                              // 0x231C (size: 0x1)
+    float ViewDistance;                                                               // 0x2320 (size: 0x4)
+    double DefaultMeshZ;                                                              // 0x2328 (size: 0x8)
+    class UAnimSequenceBase* IdleAnimOverride;                                        // 0x2330 (size: 0x8)
 
     void OnSleepSitChanged();
-    FVector PestWheelOffset();
+    void PestWheelOffset();
     void DirectorDebugTick();
     void ApplyBuff();
     void CheckLookedAt();
@@ -39,7 +39,7 @@ class ANPC_Monster_Pest_Leyak_C : public ANPC_Monster_Pest_C
     void DeathTimeline__FinishedFunc();
     void DeathTimeline__UpdateFunc();
     void StartedSpeaking(EAudioComponentPlayState PlayState);
-    void OnMegalightHit(class UAbiotic_MegalightComponent_C* megalight, int32 Tier);
+    void OnMegalightHit(class UAbiotic_MegalightComponent_C* Megalight, int32 Tier);
     void BuffTagsUpdated();
     void Broadcast_CombatAbility1();
     void TeleportComplete(class UEnvQueryInstanceBlueprintWrapper* QueryInstance, TEnumAsByte<EEnvQueryStatus::Type> QueryStatus);
@@ -52,6 +52,6 @@ class ANPC_Monster_Pest_Leyak_C : public ANPC_Monster_Pest_C
     void ResetDeadAlive(class AAbiotic_Character_ParentBP_C* Character);
     void ToggleState_DownButNotOut(bool Begin (False=End));
     void ExecuteUbergraph_NPC_Monster_Pest_Leyak(int32 EntryPoint);
-}; // Size: 0x2328
+}; // Size: 0x2338
 
 #endif

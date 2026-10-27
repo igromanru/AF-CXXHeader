@@ -10,62 +10,62 @@ class AAbioticProjectile_ParentBP_C : public AActor
     class USphereComponent* ProjectileCollision;                                      // 0x02B8 (size: 0x8)
     class USkeletalMeshComponent* SK_Appearance;                                      // 0x02C0 (size: 0x8)
     class UStaticMeshComponent* SM_Appearance;                                        // 0x02C8 (size: 0x8)
-    FDataTableRowHandle ProjectileDataRowHandle;                                      // 0x02D0 (size: 0x10)
-    FAbiotic_InventoryChangeableDataStruct ChangeableData;                            // 0x02E0 (size: 0x88)
-    FAbiotic_ProjectileStruct ProjectileData;                                         // 0x0368 (size: 0x158)
-    double DamageFromWeapon;                                                          // 0x04C0 (size: 0x8)
-    TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType;                     // 0x04C8 (size: 0x8)
-    bool HasImpacted;                                                                 // 0x04D0 (size: 0x1)
-    class AActor* LastHitActor;                                                       // 0x04D8 (size: 0x8)
-    FHitResult LastHitInfo;                                                           // 0x04E0 (size: 0xF8)
-    class UNiagaraSystem* ExplosionParticleFX;                                        // 0x05D8 (size: 0x8)
-    class USoundBase* ExplosionSFX;                                                   // 0x05E0 (size: 0x8)
-    TArray<FName> BuffsToApplyToTargets;                                              // 0x05E8 (size: 0x10)
-    int32 MaxBounces;                                                                 // 0x05F8 (size: 0x4)
-    int32 CurrentBounceCount;                                                         // 0x05FC (size: 0x4)
-    TSoftObjectPtr<USoundBase> BounceSFX;                                             // 0x0600 (size: 0x28)
-    class USoundBase* LoadedBounceSFX;                                                // 0x0628 (size: 0x8)
-    double LastBounceSFXPlayTime;                                                     // 0x0630 (size: 0x8)
-    TSoftObjectPtr<USoundBase> LoopingAudio;                                          // 0x0638 (size: 0x28)
-    FDataTableRowHandle ImpactItem;                                                   // 0x0660 (size: 0x10)
-    bool ImpactItemNoPhysics;                                                         // 0x0670 (size: 0x1)
-    double ImpactItem_ChanceToBreak;                                                  // 0x0678 (size: 0x8)
-    double ProjectileSpeedMultiplier;                                                 // 0x0680 (size: 0x8)
-    bool SpawnImpactItemIfBuffApplyFails;                                             // 0x0688 (size: 0x1)
-    bool SpawnImpactItemAfterHit;                                                     // 0x0689 (size: 0x1)
-    bool ReportNoiseOnImpact;                                                         // 0x068A (size: 0x1)
-    bool PlayPhysicalMaterialImpactSound;                                             // 0x068B (size: 0x1)
-    bool Simulate Projectile;                                                         // 0x068C (size: 0x1)
-    bool WasThrown;                                                                   // 0x068D (size: 0x1)
-    double ChargeFromWeapon;                                                          // 0x0690 (size: 0x8)
-    bool BuffsIgnoreAllies;                                                           // 0x0698 (size: 0x1)
-    double ExtraTimeLeftBeforeExplosion;                                              // 0x06A0 (size: 0x8)
-    bool NoDamageFromProjectile;                                                      // 0x06A8 (size: 0x1)
-    FVector VelocityOverride;                                                         // 0x06B0 (size: 0x18)
-    class UCurveFloat* ProjectileCurveSpeed;                                          // 0x06C8 (size: 0x8)
-    bool ExplosionCreatesCameraShake;                                                 // 0x06D0 (size: 0x1)
-    FAbioticProjectile_ParentBP_CProjectileHitUpdate ProjectileHitUpdate;             // 0x06D8 (size: 0x10)
+    FProjectileRowHandle ProjectileDataRowHandle;                                     // 0x02D0 (size: 0x10)
+    FAbioticInventoryChangeableData ChangeableData;                                   // 0x02E0 (size: 0x88)
+    FAbioticProjectile ProjectileData;                                                // 0x0368 (size: 0x168)
+    double DamageFromWeapon;                                                          // 0x04D0 (size: 0x8)
+    TSubclassOf<class UAbioticDamageType> DamageType;                                 // 0x04D8 (size: 0x8)
+    bool HasImpacted;                                                                 // 0x04E0 (size: 0x1)
+    class AActor* LastHitActor;                                                       // 0x04E8 (size: 0x8)
+    FHitResult LastHitInfo;                                                           // 0x04F0 (size: 0xF8)
+    class UNiagaraSystem* ExplosionParticleFX;                                        // 0x05E8 (size: 0x8)
+    class USoundBase* ExplosionSFX;                                                   // 0x05F0 (size: 0x8)
+    TArray<FBuffDebuffRowHandle> BuffsToApplyToTargets;                               // 0x05F8 (size: 0x10)
+    int32 MaxBounces;                                                                 // 0x0608 (size: 0x4)
+    int32 CurrentBounceCount;                                                         // 0x060C (size: 0x4)
+    TSoftObjectPtr<class USoundBase> BounceSFX;                                       // 0x0610 (size: 0x28)
+    class USoundBase* LoadedBounceSFX;                                                // 0x0638 (size: 0x8)
+    double LastBounceSFXPlayTime;                                                     // 0x0640 (size: 0x8)
+    TSoftObjectPtr<class USoundBase> LoopingAudio;                                    // 0x0648 (size: 0x28)
+    FGlobalItemRowHandle ImpactItem;                                                  // 0x0670 (size: 0x10)
+    bool ImpactItemNoPhysics;                                                         // 0x0680 (size: 0x1)
+    double ImpactItem_ChanceToBreak;                                                  // 0x0688 (size: 0x8)
+    double ProjectileSpeedMultiplier;                                                 // 0x0690 (size: 0x8)
+    bool SpawnImpactItemIfBuffApplyFails;                                             // 0x0698 (size: 0x1)
+    bool SpawnImpactItemAfterHit;                                                     // 0x0699 (size: 0x1)
+    bool ReportNoiseOnImpact;                                                         // 0x069A (size: 0x1)
+    bool PlayPhysicalMaterialImpactSound;                                             // 0x069B (size: 0x1)
+    bool Simulate Projectile;                                                         // 0x069C (size: 0x1)
+    bool WasThrown;                                                                   // 0x069D (size: 0x1)
+    double ChargeFromWeapon;                                                          // 0x06A0 (size: 0x8)
+    bool BuffsIgnoreAllies;                                                           // 0x06A8 (size: 0x1)
+    double ExtraTimeLeftBeforeExplosion;                                              // 0x06B0 (size: 0x8)
+    bool NoDamageFromProjectile;                                                      // 0x06B8 (size: 0x1)
+    FVector VelocityOverride;                                                         // 0x06C0 (size: 0x18)
+    class UCurveFloat* ProjectileCurveSpeed;                                          // 0x06D8 (size: 0x8)
+    bool ExplosionCreatesCameraShake;                                                 // 0x06E0 (size: 0x1)
+    FAbioticProjectile_ParentBP_CProjectileHitUpdate ProjectileHitUpdate;             // 0x06E8 (size: 0x10)
     void ProjectileHitUpdate(bool Hit Established);
-    class AActor* HomingTarget;                                                       // 0x06E8 (size: 0x8)
-    class USoundBase* ExtraCharacterImpactSound;                                      // 0x06F0 (size: 0x8)
-    bool DisruptElectronicsInRadius;                                                  // 0x06F8 (size: 0x1)
-    bool PlayFallbackExplosionSFX;                                                    // 0x06F9 (size: 0x1)
-    bool StopIgnoringOwnerAfterShortPeriod;                                           // 0x06FA (size: 0x1)
-    float IgnoreOwnerDuration;                                                        // 0x06FC (size: 0x4)
-    TArray<class UMaterialInterface*> ExposionDecalMaterials;                         // 0x0700 (size: 0x10)
-    FAbioticProjectile_ParentBP_CProjectileHitTarget ProjectileHitTarget;             // 0x0710 (size: 0x10)
-    void ProjectileHitTarget(class AActor* DamagedActor, double RawDamage, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType, FHitResult HitResult, class AAbioticProjectile_ParentBP_C* Projectile);
-    class UWeaponCoating_ParentBP_C* ActiveWeaponCoating;                             // 0x0720 (size: 0x8)
-    bool AddCoatingComponent;                                                         // 0x0728 (size: 0x1)
+    class AActor* HomingTarget;                                                       // 0x06F8 (size: 0x8)
+    class USoundBase* ExtraCharacterImpactSound;                                      // 0x0700 (size: 0x8)
+    bool DisruptElectronicsInRadius;                                                  // 0x0708 (size: 0x1)
+    bool PlayFallbackExplosionSFX;                                                    // 0x0709 (size: 0x1)
+    bool StopIgnoringOwnerAfterShortPeriod;                                           // 0x070A (size: 0x1)
+    float IgnoreOwnerDuration;                                                        // 0x070C (size: 0x4)
+    TArray<UMaterialInterface*> ExposionDecalMaterials;                               // 0x0710 (size: 0x10)
+    FAbioticProjectile_ParentBP_CProjectileHitTarget ProjectileHitTarget;             // 0x0720 (size: 0x10)
+    void ProjectileHitTarget(class AActor* DamagedActor, double RawDamage, TSubclassOf<class UAbioticDamageType> DamageType, FHitResult HitResult, class AAbioticProjectile_ParentBP_C* Projectile);
+    class UWeaponCoating_ParentBP_C* ActiveWeaponCoating;                             // 0x0730 (size: 0x8)
+    bool AddCoatingComponent;                                                         // 0x0738 (size: 0x1)
 
     void Server_AddWeaponCoating();
-    class APawn* GetInstigatorPawn();
+    void GetInstigatorPawn();
     void SpawnExplosionSurfaceDecal(FHitResult HitOverride);
     void ApplyHomingSettings();
     void NotifyNPCsOfIncomingProjectile(double Radius, float MaxDistance);
-    bool TryOverrideBlock(const FHitResult& Hit);
-    bool CheckOverriddenByBlock(const FHitResult& Hit);
-    class AAbiotic_Item_Dropped_C* SpawnDroppedProjectile(bool& Spawned);
+    void TryOverrideBlock(const FHitResult& Hit);
+    void CheckOverriddenByBlock(const FHitResult& Hit);
+    void SpawnDroppedProjectile(bool& Spawned);
     void BodyShieldCheck(class AActor* Target, bool& DamageNotBlocked);
     void IgnoreOwnerCollision();
     void GetFXLocation(FVector& Location);
@@ -75,8 +75,8 @@ class AAbioticProjectile_ParentBP_C : public AActor
     void UpdateProjectileChargeFX();
     void OnRep_ChargeFromWeapon();
     void Projectile Simulate Update();
-    double Get New Speed Based On Throwing Skill(float BaseValue);
-    class AAbiotic_Item_Dropped_C* TrySpawnImpactItem(bool& Spawned);
+    void Get New Speed Based On Throwing Skill(float BaseValue);
+    void TrySpawnImpactItem(bool& Spawned);
     void TryPlayBounceFX(FHitResult Hit);
     void Try Award XP to Instigating Player(class AActor* HitActor);
     void OnLoaded_4E84ABD94E910DF42CD130B3503C4FE4(UClass* Loaded);
@@ -96,19 +96,19 @@ class AAbioticProjectile_ParentBP_C : public AActor
     void SM_Updated();
     void ProjectileOverlap(class AActor* OtherActor, class UPrimitiveComponent* OtherComp);
     void Broadcast_SurfaceImpactFX(FHitResult HitData);
-    void SetProjectileMesh(TSoftObjectPtr<UStaticMesh> StaticMesh, TSoftObjectPtr<USkeletalMesh> SkeletalMesh, double WorldScale);
+    void SetProjectileMesh(TSoftObjectPtr<class UStaticMesh> StaticMesh, TSoftObjectPtr<class USkeletalMesh> SkeletalMesh, double WorldScale);
     void Server_StartDealDamage();
     void Server_ApplyPointDamage();
     void SetAlternateProjectileMesh();
     void DoActionBeforeProjectileDestroy(const class AActor*& SpawnImpactActor);
     void TryApplyBounceDamage();
     void Broadcast_TryDisruptLights(double Radius);
-    void PlaySurfaceHitSound(TEnumAsByte<EPhysicalSurface> surface, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType, FVector Location);
+    void PlaySurfaceHitSound(TEnumAsByte<EPhysicalSurface> surface, TSubclassOf<class UAbioticDamageType> DamageType, FVector Location);
     void SetVelocityNextTick(FVector Velocity);
     void DelayedStopIgnoringOwner();
     void ExecuteUbergraph_AbioticProjectile_ParentBP(int32 EntryPoint);
-    void ProjectileHitTarget__DelegateSignature(class AActor* DamagedActor, double RawDamage, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType, FHitResult HitResult, class AAbioticProjectile_ParentBP_C* Projectile);
+    void ProjectileHitTarget__DelegateSignature(class AActor* DamagedActor, double RawDamage, TSubclassOf<class UAbioticDamageType> DamageType, FHitResult HitResult, class AAbioticProjectile_ParentBP_C* Projectile);
     void ProjectileHitUpdate__DelegateSignature(bool Hit Established);
-}; // Size: 0x729
+}; // Size: 0x739
 
 #endif

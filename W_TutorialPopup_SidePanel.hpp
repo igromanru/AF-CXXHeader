@@ -16,7 +16,7 @@ class UW_TutorialPopup_SidePanel_C : public UUserWidget
     int32 CurrentTime;                                                                // 0x0330 (size: 0x4)
     FName TutorialTipRow;                                                             // 0x0334 (size: 0x8)
     FTimerHandle CountdownTimer;                                                      // 0x0340 (size: 0x8)
-    TArray<class UUserWidget*> ExistingKeybinds;                                      // 0x0348 (size: 0x10)
+    TArray<UUserWidget*> ExistingKeybinds;                                            // 0x0348 (size: 0x10)
 
     void SetupKeybinds(bool bUsingGamepad);
     void OnLoaded_3CA8971442D3016E81C437BD5486D8C1(class UObject* Loaded);

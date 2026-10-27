@@ -7,6 +7,6 @@ class AAI_Controller_NPC_Monster_Pest_Leyak_C : public AAI_Controller_NPC_Monste
     void SetReplicatedTargetCharacter(class UObject* Object);
     void SetCurrentCombatTarget(class AActor* CombatTarget);
     void BT_SetTargetActor(class UObject* TargetActor);
-}; // Size: 0x8C9
+}; // Size: 0x8B9
 
 #endif

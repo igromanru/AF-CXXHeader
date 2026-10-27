@@ -3,6 +3,6 @@
 
 class AResourceNode_MetalVent_C : public AResourceNode_ParentBP_C
 {
-}; // Size: 0x4E1
+}; // Size: 0x4E9
 
 #endif

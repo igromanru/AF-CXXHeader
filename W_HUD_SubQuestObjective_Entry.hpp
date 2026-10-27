@@ -8,12 +8,12 @@ class UW_HUD_SubQuestObjective_Entry_C : public UUserWidget
     class UBorder* CompletedLine;                                                     // 0x02F0 (size: 0x8)
     class UImage* Dot;                                                                // 0x02F8 (size: 0x8)
     class UTextBlock* QuestTitle;                                                     // 0x0300 (size: 0x8)
-    FQuestRowHandle QuestRow;                                                         // 0x0308 (size: 0x20)
-    FWorldFlagRowHandle CompletionFlag;                                               // 0x0328 (size: 0x20)
+    FQuestRowHandle QuestRow;                                                         // 0x0308 (size: 0x10)
+    FWorldFlagRowHandle CompletionFlag;                                               // 0x0318 (size: 0x10)
 
     void Construct();
     void CheckCompletion();
     void ExecuteUbergraph_W_HUD_SubQuestObjective_Entry(int32 EntryPoint);
-}; // Size: 0x348
+}; // Size: 0x328
 
 #endif

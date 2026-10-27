@@ -24,7 +24,7 @@ struct FNiagaraGeometryCacheReference
 {
     class UGeometryCache* GeometryCache;                                              // 0x0000 (size: 0x8)
     FNiagaraUserParameterBinding GeometryCacheUserParamBinding;                       // 0x0008 (size: 0x20)
-    TArray<class UMaterialInterface*> OverrideMaterials;                              // 0x0028 (size: 0x10)
+    TArray<UMaterialInterface*> OverrideMaterials;                                    // 0x0028 (size: 0x10)
     TArray<FNiagaraGeometryCacheMICOverride> MICOverrideMaterials;                    // 0x0038 (size: 0x10)
 
 }; // Size: 0x48
@@ -37,7 +37,7 @@ class AGeometryCacheActor : public AActor
 {
     class UGeometryCacheComponent* GeometryCacheComponent;                            // 0x0298 (size: 0x8)
 
-    class UGeometryCacheComponent* GetGeometryCacheComponent();
+    void GetGeometryCacheComponent();
 }; // Size: 0x2A0
 
 class UDEPRECATED_GeometryCacheTrack_FlipbookAnimation : public UGeometryCacheTrack
@@ -61,10 +61,10 @@ class UDEPRECATED_GeometryCacheTrack_TransformGroupAnimation : public UGeometryC
 
 class UGeometryCache : public UObject
 {
-    TArray<class UMaterialInterface*> Materials;                                      // 0x0030 (size: 0x10)
+    TArray<UMaterialInterface*> Materials;                                            // 0x0030 (size: 0x10)
     TArray<FName> MaterialSlotNames;                                                  // 0x0040 (size: 0x10)
-    TArray<class UGeometryCacheTrack*> Tracks;                                        // 0x0050 (size: 0x10)
-    TArray<class UAssetUserData*> AssetUserData;                                      // 0x0060 (size: 0x10)
+    TArray<UGeometryCacheTrack*> Tracks;                                              // 0x0050 (size: 0x10)
+    TArray<UAssetUserData*> AssetUserData;                                            // 0x0060 (size: 0x10)
     int32 StartFrame;                                                                 // 0x0078 (size: 0x4)
     int32 EndFrame;                                                                   // 0x007C (size: 0x4)
     uint64 Hash;                                                                      // 0x0080 (size: 0x8)
@@ -111,26 +111,26 @@ class UGeometryCacheComponent : public UMeshComponent
     void SetOverrideWireframeColor(bool bOverride);
     void SetMotionVectorScale(const float NewMotionVectorScale);
     void SetLooping(const bool bNewLooping);
-    bool SetGeometryCache(class UGeometryCache* NewGeomCache);
+    void SetGeometryCache(class UGeometryCache* NewGeomCache);
     void SetExtrapolateFrames(const bool bNewExtrapolating);
     void PlayReversedFromEnd();
     void PlayReversed();
     void PlayFromStart();
     void Play();
     void Pause();
-    bool IsPlayingReversed();
-    bool IsPlaying();
-    bool IsLooping();
-    bool IsExtrapolatingFrames();
-    FLinearColor GetWireframeOverrideColor();
-    float GetStartTimeOffset();
-    float GetPlaybackSpeed();
-    float GetPlaybackDirection();
-    bool GetOverrideWireframeColor();
-    int32 GetNumberOfFrames();
-    float GetMotionVectorScale();
-    float GetDuration();
-    float GetAnimationTime();
+    void IsPlayingReversed();
+    void IsPlaying();
+    void IsLooping();
+    void IsExtrapolatingFrames();
+    void GetWireframeOverrideColor();
+    void GetStartTimeOffset();
+    void GetPlaybackSpeed();
+    void GetPlaybackDirection();
+    void GetOverrideWireframeColor();
+    void GetNumberOfFrames();
+    void GetMotionVectorScale();
+    void GetDuration();
+    void GetAnimationTime();
 }; // Size: 0x5E0
 
 class UGeometryCacheTrack : public UObject

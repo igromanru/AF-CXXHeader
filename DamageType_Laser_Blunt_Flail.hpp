@@ -3,6 +3,6 @@
 
 class UDamageType_Laser_Blunt_Flail_C : public UDamageType_Laser_Gib_C
 {
-}; // Size: 0x290
+}; // Size: 0x280
 
 #endif

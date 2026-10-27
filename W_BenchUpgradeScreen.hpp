@@ -28,7 +28,7 @@ class UW_BenchUpgradeScreen_C : public UUserWidget
     class UW_BenchUpgradeEntry_C* Upgrade_TougherBench;                               // 0x0390 (size: 0x8)
     class UVerticalBox* VerticalBox_16;                                               // 0x0398 (size: 0x8)
 
-    void RefreshUpgrades(class AAbiotic_PlayerCharacter_C* Player, FGameplayTagContainer& TagContainer, TArray<class UAbiotic_InventoryComponent_C*>& AdditionalInventories);
+    void RefreshUpgrades(class AAbiotic_PlayerCharacter_C* Player, FGameplayTagContainer& TagContainer, TArray<UAbiotic_InventoryComponent_C*>& AdditionalInventories);
     void Construct();
     void RefreshBenchUpgradeScreen();
     void ExecuteUbergraph_W_BenchUpgradeScreen(int32 EntryPoint);

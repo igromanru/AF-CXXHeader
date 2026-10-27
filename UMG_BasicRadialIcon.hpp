@@ -17,7 +17,7 @@ class UUMG_BasicRadialIcon_C : public UUserWidget
     double Alpha;                                                                     // 0x0360 (size: 0x8)
     bool UseItemMaterial;                                                             // 0x0368 (size: 0x1)
 
-    FLinearColor Get_Icon_ColorAndOpacity_0();
+    void Get_Icon_ColorAndOpacity_0();
     void OnHighlight();
     void OnUnhighlight();
     void Tick(FGeometry MyGeometry, float InDeltaTime);

@@ -10,7 +10,7 @@ class ADeathFallPit_BP_C : public AActor
     class USceneComponent* DefaultSceneRoot;                                          // 0x02B8 (size: 0x8)
     FVector VolumeSize;                                                               // 0x02C0 (size: 0x18)
     TSubclassOf<class UDamageType_DeathPit_C> DeathType;                              // 0x02D8 (size: 0x8)
-    TArray<class TSubclassOf<AActor>> AffectedClasses;                                // 0x02E0 (size: 0x10)
+    TArray<TSubclassOf<class AActor>> AffectedClasses;                                // 0x02E0 (size: 0x10)
     bool KillAllVehicles;                                                             // 0x02F0 (size: 0x1)
 
     void DealDamage(class AActor* ActorToDamage, const FHitResult& HitInfo);

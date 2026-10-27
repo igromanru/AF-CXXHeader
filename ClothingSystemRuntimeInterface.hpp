@@ -90,20 +90,20 @@ class UClothingSimulationFactory : public UObject
 
 class UClothingSimulationInteractor : public UObject
 {
-    TMap<class FName, class UClothingInteractor*> ClothingInteractors;                // 0x0028 (size: 0x50)
+    TMap<FName, UClothingInteractor*> ClothingInteractors;                            // 0x0028 (size: 0x50)
 
     void SetNumSubsteps(int32 NumSubsteps);
     void SetNumIterations(int32 NumIterations);
     void SetMaxNumIterations(int32 MaxNumIterations);
     void SetAnimDriveSpringStiffness(float InStiffness);
     void PhysicsAssetUpdated();
-    float GetSimulationTime();
-    int32 GetNumSubsteps();
-    int32 GetNumKinematicParticles();
-    int32 GetNumIterations();
-    int32 GetNumDynamicParticles();
-    int32 GetNumCloths();
-    class UClothingInteractor* GetClothingInteractor(FString ClothingAssetName);
+    void GetSimulationTime();
+    void GetNumSubsteps();
+    void GetNumKinematicParticles();
+    void GetNumIterations();
+    void GetNumDynamicParticles();
+    void GetNumCloths();
+    void GetClothingInteractor(FString ClothingAssetName);
     void EnableGravityOverride(const FVector& InVector);
     void DisableGravityOverride();
     void ClothConfigUpdated();

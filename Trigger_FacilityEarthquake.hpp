@@ -3,10 +3,10 @@
 
 class ATrigger_FacilityEarthquake_C : public AAbiotic_TriggerVolume_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0368 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0358 (size: 0x8)
 
     void OnTrigger();
     void ExecuteUbergraph_Trigger_FacilityEarthquake(int32 EntryPoint);
-}; // Size: 0x370
+}; // Size: 0x360
 
 #endif

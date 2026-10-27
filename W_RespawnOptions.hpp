@@ -31,14 +31,15 @@ class UW_RespawnOptions_C : public UUserWidget
     FName Entrance Teleporter;                                                        // 0x03A8 (size: 0x8)
     FName TerminalRespawnID;                                                          // 0x03B0 (size: 0x8)
 
+    void SetTerminalRespawnID(FName NewTerminalRespawnID);
     void RequestRespawn(bool RevivedOnSpot, bool UsePlayerStartOnly, FName DestinationID);
-    void SetupRespawnButtons();
     void BndEvt__W_RespawnOptions_RespawnAtBed_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__W_RespawnOptions_RespawnAtOrigin_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__W_RespawnOptions_RespawnAtVignette_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__W_RespawnOptions_Button_SectorEntrance_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__W_RespawnOptions_Button_Spectate_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__W_RespawnOptions_Button_Quit_K2Node_ComponentBoundEvent_5_OnButtonClickedEvent__DelegateSignature();
+    void SetupRespawnButtons();
     void ExecuteUbergraph_W_RespawnOptions(int32 EntryPoint);
 }; // Size: 0x3B8
 

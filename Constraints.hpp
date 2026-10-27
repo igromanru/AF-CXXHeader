@@ -17,7 +17,7 @@ struct FConstraintTickFunction : public FTickFunction
 struct FConstraintsInWorld
 {
     TWeakObjectPtr<class UWorld> World;                                               // 0x0000 (size: 0x8)
-    TArray<TWeakObjectPtr<UTickableConstraint>> Constraints;                          // 0x0008 (size: 0x10)
+    TArray<TWeakObjectPtr<class UTickableConstraint>> Constraints;                    // 0x0008 (size: 0x10)
 
 }; // Size: 0x28
 
@@ -49,7 +49,7 @@ class UConstraintsManager : public UObject
     void OnConstraintAdded(class UConstraintsManager* Mananger, class UTickableConstraint* Constraint);
     FConstraintsManagerOnConstraintRemoved_BP OnConstraintRemoved_BP;                 // 0x0029 (size: 0x1)
     void OnConstraintRemoved(class UConstraintsManager* Mananger, class UTickableConstraint* Constraint, bool bDoNotCompensate);
-    TArray<class UTickableConstraint*> Constraints;                                   // 0x0038 (size: 0x10)
+    TArray<UTickableConstraint*> Constraints;                                         // 0x0038 (size: 0x10)
 
     void OnConstraintRemoved__DelegateSignature(class UConstraintsManager* Mananger, class UTickableConstraint* Constraint, bool bDoNotCompensate);
     void OnConstraintAdded__DelegateSignature(class UConstraintsManager* Mananger, class UTickableConstraint* Constraint);
@@ -58,13 +58,13 @@ class UConstraintsManager : public UObject
 class UConstraintsScriptingLibrary : public UBlueprintFunctionLibrary
 {
 
-    bool RemoveThisConstraint(class UWorld* InWorld, class UTickableConstraint* InTickableConstraint);
-    bool RemoveConstraint(class UWorld* InWorld, int32 InIndex);
-    TArray<class UTickableConstraint*> GetConstraintsArray(class UWorld* InWorld);
-    class UTransformableHandle* CreateTransformableHandle(class UWorld* InWorld, class UObject* InObject, const FName& InAttachmentName);
-    class UTransformableComponentHandle* CreateTransformableComponentHandle(class UWorld* InWorld, class USceneComponent* InSceneComponent, const FName& InSocketName);
-    class UTickableTransformConstraint* CreateFromType(class UWorld* InWorld, const ETransformConstraintType InType);
-    bool AddConstraint(class UWorld* InWorld, class UTransformableHandle* InParentHandle, class UTransformableHandle* InChildHandle, class UTickableTransformConstraint* InConstraint, const bool bMaintainOffset);
+    void RemoveThisConstraint(class UWorld* InWorld, class UTickableConstraint* InTickableConstraint);
+    void RemoveConstraint(class UWorld* InWorld, int32 InIndex);
+    void GetConstraintsArray(class UWorld* InWorld);
+    void CreateTransformableHandle(class UWorld* InWorld, class UObject* InObject, const FName& InAttachmentName);
+    void CreateTransformableComponentHandle(class UWorld* InWorld, class USceneComponent* InSceneComponent, const FName& InSocketName);
+    void CreateFromType(class UWorld* InWorld, const ETransformConstraintType InType);
+    void AddConstraint(class UWorld* InWorld, class UTransformableHandle* InParentHandle, class UTransformableHandle* InChildHandle, class UTickableTransformConstraint* InConstraint, const bool bMaintainOffset);
 }; // Size: 0x28
 
 class UTickableConstraint : public UObject

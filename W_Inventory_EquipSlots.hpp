@@ -45,7 +45,7 @@ class UW_Inventory_EquipSlots_C : public UUserWidget
     class UImage* Weight_Needle;                                                      // 0x0418 (size: 0x8)
     class UImage* Weight_Scale;                                                       // 0x0420 (size: 0x8)
     class UImage* Weight_Trim;                                                        // 0x0428 (size: 0x8)
-    TArray<class UW_InventoryItemSlot_C*> CharacterEquipmentSlots;                    // 0x0430 (size: 0x10)
+    TArray<UW_InventoryItemSlot_C*> CharacterEquipmentSlots;                          // 0x0430 (size: 0x10)
     class UW_PlayerInventory_Main_C* ParentInventoryWidget;                           // 0x0440 (size: 0x8)
 
     void GetSlotRow(class UW_InventoryItemSlot_C* Widget, int32& OutIndex);
@@ -54,11 +54,11 @@ class UW_Inventory_EquipSlots_C : public UUserWidget
     void FocusCursorAtSlotLocation(int32 Row, double Time);
     void DragDropDPadNavigation(class UW_InventoryItemSlot_C* HoveredSlot, TEnumAsByte<E_NavigationDirection::Type> Direction, bool& HandledNavigation, TEnumAsByte<E_NavigationDirection::Type>& EscapeDirection, int32& RowIndex);
     void Get New Weight Class(int32 CurrentWeightClass, int32& NewCurrentWeightClass, bool& max);
-    void Highlight Equip Slot(TEnumAsByte<E_InventorySlotType::Type> Slot Type, bool StopHighlight);
+    void Highlight Equip Slot(EInventorySlotType Slot Type, bool StopHighlight);
     void SetupEquipSlots(class AAbiotic_PlayerCharacter_C* OwningCharacter, bool PlayerStateFailed);
     void BndEvt__W_PlayerInventory_Main_Button_0_K2Node_ComponentBoundEvent_5_OnButtonClickedEvent__DelegateSignature();
     void Construct();
-    void OnItemDragStarted(TEnumAsByte<E_InventorySlotType::Type> Item Type);
+    void OnItemDragStarted(EInventorySlotType Item Type);
     void OnItemDragFinished();
     void UpdateArmorWeightValue(int32 ArmorDefenseValue, int32 WeightClass, bool SkipAnimation);
     void WaitForPlayerState();

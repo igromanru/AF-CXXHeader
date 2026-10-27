@@ -17,7 +17,7 @@ class UAnimNotifyState_TimedNiagaraEffect : public UAnimNotifyState
     bool bApplyRateScaleAsTimeDilation;                                               // 0x0070 (size: 0x1)
     bool bDestroyAtEnd;                                                               // 0x0071 (size: 0x1)
 
-    class UFXSystemComponent* GetSpawnedEffect(class UMeshComponent* MeshComp);
+    void GetSpawnedEffect(class UMeshComponent* MeshComp);
 }; // Size: 0x78
 
 class UAnimNotifyState_TimedNiagaraEffectAdvanced : public UAnimNotifyState_TimedNiagaraEffect
@@ -27,7 +27,7 @@ class UAnimNotifyState_TimedNiagaraEffectAdvanced : public UAnimNotifyState_Time
     FName NotifyProgressUserParameter;                                                // 0x007C (size: 0x8)
     TArray<FCurveParameterPair> AnimCurves;                                           // 0x0088 (size: 0x10)
 
-    float GetNotifyProgress(class UMeshComponent* MeshComp);
+    void GetNotifyProgress(class UMeshComponent* MeshComp);
 }; // Size: 0xE8
 
 class UAnimNotify_PlayNiagaraEffect : public UAnimNotify
@@ -40,7 +40,7 @@ class UAnimNotify_PlayNiagaraEffect : public UAnimNotify
     uint8 Attached;                                                                   // 0x00C0 (size: 0x1)
     FName SocketName;                                                                 // 0x00C4 (size: 0x8)
 
-    class UFXSystemComponent* GetSpawnedEffect();
+    void GetSpawnedEffect();
 }; // Size: 0xD0
 
 #endif

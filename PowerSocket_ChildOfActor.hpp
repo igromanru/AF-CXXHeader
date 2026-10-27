@@ -11,8 +11,8 @@ class APowerSocket_ChildOfActor_C : public APowerSocket_ParentBP_C
     void UpdateCachedPowerState(bool& HasChanged);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
-    bool HasBatteryInParentChain();
-    FString GetPowerSocketID();
+    void HasBatteryInParentChain();
+    void GetPowerSocketID();
     void ReceiveBeginPlay();
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void TryUpdatePowerAfterDelay();

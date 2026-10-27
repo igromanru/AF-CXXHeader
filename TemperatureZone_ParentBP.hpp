@@ -13,8 +13,8 @@ class ATemperatureZone_ParentBP_C : public AActor
     class ADayNightManager_C* DayNightManager;                                        // 0x02C8 (size: 0x8)
     FVector VolumeExtent;                                                             // 0x02D0 (size: 0x18)
 
-    float GetAmbientTemperature();
-    void GetThermalOverlapPrimitives(TArray<class UPrimitiveComponent*>& OutPrimitives);
+    void GetAmbientTemperature();
+    void GetThermalOverlapPrimitives(TArray<UPrimitiveComponent*>& OutPrimitives);
     void UserConstructionScript();
     void ApplyNewTemperature(float NewTemperature);
     void ThermalEmitterActiveUpdated(bool bActive);

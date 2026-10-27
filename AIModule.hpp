@@ -149,7 +149,7 @@ struct FBTCompositeChild
 {
     class UBTCompositeNode* ChildComposite;                                           // 0x0000 (size: 0x8)
     class UBTTaskNode* ChildTask;                                                     // 0x0008 (size: 0x8)
-    TArray<class UBTDecorator*> Decorators;                                           // 0x0010 (size: 0x10)
+    TArray<UBTDecorator*> Decorators;                                                 // 0x0010 (size: 0x10)
     TArray<FBTDecoratorLogic> DecoratorOps;                                           // 0x0020 (size: 0x10)
 
 }; // Size: 0x30
@@ -178,7 +178,7 @@ struct FBlackboardEntry
 
 struct FBlackboardKeySelector
 {
-    TArray<class UBlackboardKeyType*> AllowedTypes;                                   // 0x0000 (size: 0x10)
+    TArray<UBlackboardKeyType*> AllowedTypes;                                         // 0x0000 (size: 0x10)
     FName SelectedKeyName;                                                            // 0x0010 (size: 0x8)
     TSubclassOf<class UBlackboardKeyType> SelectedKeyType;                            // 0x0018 (size: 0x8)
     int32 SelectedKeyID;                                                              // 0x0020 (size: 0x4)
@@ -378,27 +378,27 @@ class AAIController : public AController
     FAIControllerReceiveMoveCompleted ReceiveMoveCompleted;                           // 0x03A8 (size: 0x10)
     void AIMoveCompletedSignature(FAIRequestID RequestID, TEnumAsByte<EPathFollowingResult::Type> Result);
 
-    bool UseBlackboard(class UBlackboardData* BlackboardAsset, class UBlackboardComponent*& BlackboardComponent);
+    void UseBlackboard(class UBlackboardData* BlackboardAsset, class UBlackboardComponent*& BlackboardComponent);
     void UnclaimTaskResource(TSubclassOf<class UGameplayTaskResource> ResourceClass);
     void SetPathFollowingComponent(class UPathFollowingComponent* NewPFComponent);
     void SetMoveBlockDetection(bool bEnable);
-    bool RunBehaviorTree(class UBehaviorTree* BTAsset);
+    void RunBehaviorTree(class UBehaviorTree* BTAsset);
     void OnUsingBlackBoard(class UBlackboardComponent* BlackboardComp, class UBlackboardData* BlackboardAsset);
     void OnGameplayTaskResourcesClaimed(FGameplayResourceSet NewlyClaimed, FGameplayResourceSet FreshlyReleased);
-    TEnumAsByte<EPathFollowingRequestResult::Type> MoveToLocation(const FVector& Dest, float AcceptanceRadius, bool bStopOnOverlap, bool bUsePathfinding, bool bProjectDestinationToNavigation, bool bCanStrafe, TSubclassOf<class UNavigationQueryFilter> FilterClass, bool bAllowPartialPath);
-    TEnumAsByte<EPathFollowingRequestResult::Type> MoveToActor(class AActor* Goal, float AcceptanceRadius, bool bStopOnOverlap, bool bUsePathfinding, bool bCanStrafe, TSubclassOf<class UNavigationQueryFilter> FilterClass, bool bAllowPartialPath);
+    void MoveToLocation(const FVector& Dest, float AcceptanceRadius, bool bStopOnOverlap, bool bUsePathfinding, bool bProjectDestinationToNavigation, bool bCanStrafe, TSubclassOf<class UNavigationQueryFilter> FilterClass, bool bAllowPartialPath);
+    void MoveToActor(class AActor* Goal, float AcceptanceRadius, bool bStopOnOverlap, bool bUsePathfinding, bool bCanStrafe, TSubclassOf<class UNavigationQueryFilter> FilterClass, bool bAllowPartialPath);
     void K2_SetFocus(class AActor* NewFocus);
     void K2_SetFocalPoint(FVector FP);
     void K2_ClearFocus();
-    bool HasPartialPath();
-    class UPathFollowingComponent* GetPathFollowingComponent();
-    TEnumAsByte<EPathFollowingStatus::Type> GetMoveStatus();
-    FVector GetImmediateMoveDestination();
-    class AActor* GetFocusActor();
-    FVector GetFocalPointOnActor(const class AActor* Actor);
-    FVector GetFocalPoint();
-    class UDEPRECATED_PawnActionsComponent* GetDeprecatedActionsComponent();
-    class UAIPerceptionComponent* GetAIPerceptionComponent();
+    void HasPartialPath();
+    void GetPathFollowingComponent();
+    void GetMoveStatus();
+    void GetImmediateMoveDestination();
+    void GetFocusActor();
+    void GetFocalPointOnActor(const class AActor* Actor);
+    void GetFocalPoint();
+    void GetDeprecatedActionsComponent();
+    void GetAIPerceptionComponent();
     void ClaimTaskResource(TSubclassOf<class UGameplayTaskResource> ResourceClass);
 }; // Size: 0x3C0
 
@@ -440,8 +440,8 @@ class ANavLinkProxy : public AActor
     void SetSmartLinkEnabled(bool bEnabled);
     void ResumePathFollowing(class AActor* Agent);
     void ReceiveSmartLinkReached(class AActor* Agent, const FVector& Destination);
-    bool IsSmartLinkEnabled();
-    bool HasMovingAgents();
+    void IsSmartLinkEnabled();
+    void HasMovingAgents();
 }; // Size: 0x2E8
 
 class IAIPerceptionListenerInterface : public IInterface
@@ -459,7 +459,7 @@ class IAISightTargetInterface : public IInterface
 class IBlackboardAssetProvider : public IInterface
 {
 
-    class UBlackboardData* GetBlackboardAsset();
+    void GetBlackboardAsset();
 }; // Size: 0x28
 
 class ICrowdAgentInterface : public IInterface
@@ -488,21 +488,21 @@ class UAIBlueprintHelperLibrary : public UBlueprintFunctionLibrary
 {
 
     void UnlockAIResourcesWithAnimation(class UAnimInstance* AnimInstance, bool bUnlockMovement, bool UnlockAILogic);
-    class APawn* SpawnAIFromClass(class UObject* WorldContextObject, TSubclassOf<class APawn> PawnClass, class UBehaviorTree* BehaviorTree, FVector Location, FRotator Rotation, bool bNoCollisionFail, class AActor* Owner);
+    void SpawnAIFromClass(class UObject* WorldContextObject, TSubclassOf<class APawn> PawnClass, class UBehaviorTree* BehaviorTree, FVector Location, FRotator Rotation, bool bNoCollisionFail, class AActor* Owner);
     void SimpleMoveToLocation(class AController* Controller, const FVector& Goal);
     void SimpleMoveToActor(class AController* Controller, const class AActor* Goal);
     void SendAIMessage(class APawn* Target, FName Message, class UObject* MessageSource, bool bSuccess);
     void LockAIResourcesWithAnimation(class UAnimInstance* AnimInstance, bool bLockMovement, bool LockAILogic);
-    bool IsValidAIRotation(FRotator Rotation);
-    bool IsValidAILocation(FVector Location);
-    bool IsValidAIDirection(FVector DirectionVector);
-    int32 GetNextNavLinkIndex(const class AController* Controller);
-    TArray<FVector> GetCurrentPathPoints(class AController* Controller);
-    int32 GetCurrentPathIndex(const class AController* Controller);
-    class UNavigationPath* GetCurrentPath(class AController* Controller);
-    class UBlackboardComponent* GetBlackboard(class AActor* Target);
-    class AAIController* GetAIController(class AActor* ControlledActor);
-    class UAIAsyncTaskBlueprintProxy* CreateMoveToProxyObject(class UObject* WorldContextObject, class APawn* Pawn, FVector Destination, class AActor* TargetActor, float AcceptanceRadius, bool bStopOnOverlap);
+    void IsValidAIRotation(FRotator Rotation);
+    void IsValidAILocation(FVector Location);
+    void IsValidAIDirection(FVector DirectionVector);
+    void GetNextNavLinkIndex(const class AController* Controller);
+    void GetCurrentPathPoints(class AController* Controller);
+    void GetCurrentPathIndex(const class AController* Controller);
+    void GetCurrentPath(class AController* Controller);
+    void GetBlackboard(class AActor* Target);
+    void GetAIController(class AActor* ControlledActor);
+    void CreateMoveToProxyObject(class UObject* WorldContextObject, class APawn* Pawn, FVector Destination, class AActor* TargetActor, float AcceptanceRadius, bool bStopOnOverlap);
 }; // Size: 0x28
 
 class UAIDataProvider : public UObject
@@ -532,11 +532,11 @@ class UAIHotSpotManager : public UObject
 
 class UAIPerceptionComponent : public UActorComponent
 {
-    TArray<class UAISenseConfig*> SensesConfig;                                       // 0x00A8 (size: 0x10)
+    TArray<UAISenseConfig*> SensesConfig;                                             // 0x00A8 (size: 0x10)
     TSubclassOf<class UAISense> DominantSense;                                        // 0x00B8 (size: 0x8)
     class AAIController* AIOwner;                                                     // 0x00D0 (size: 0x8)
     FAIPerceptionComponentOnPerceptionUpdated OnPerceptionUpdated;                    // 0x0158 (size: 0x10)
-    void PerceptionUpdatedDelegate(const TArray<class AActor*>& UpdatedActors);
+    void PerceptionUpdatedDelegate(const TArray<AActor*>& UpdatedActors);
     FAIPerceptionComponentOnTargetPerceptionForgotten OnTargetPerceptionForgotten;    // 0x0168 (size: 0x10)
     void ActorPerceptionForgetUpdatedDelegate(class AActor* Actor);
     FAIPerceptionComponentOnTargetPerceptionUpdated OnTargetPerceptionUpdated;        // 0x0178 (size: 0x10)
@@ -547,19 +547,19 @@ class UAIPerceptionComponent : public UActorComponent
     void SetSenseEnabled(TSubclassOf<class UAISense> SenseClass, const bool bEnable);
     void RequestStimuliListenerUpdate();
     void OnOwnerEndPlay(class AActor* Actor, TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
-    bool IsSenseEnabled(TSubclassOf<class UAISense> SenseClass);
-    void GetPerceivedHostileActorsBySense(const TSubclassOf<class UAISense> SenseToUse, TArray<class AActor*>& OutActors);
-    void GetPerceivedHostileActors(TArray<class AActor*>& OutActors);
-    void GetKnownPerceivedActors(TSubclassOf<class UAISense> SenseToUse, TArray<class AActor*>& OutActors);
-    void GetCurrentlyPerceivedActors(TSubclassOf<class UAISense> SenseToUse, TArray<class AActor*>& OutActors);
-    bool GetActorsPerception(class AActor* Actor, FActorPerceptionBlueprintInfo& Info);
+    void IsSenseEnabled(TSubclassOf<class UAISense> SenseClass);
+    void GetPerceivedHostileActorsBySense(const TSubclassOf<class UAISense> SenseToUse, TArray<AActor*>& OutActors);
+    void GetPerceivedHostileActors(TArray<AActor*>& OutActors);
+    void GetKnownPerceivedActors(TSubclassOf<class UAISense> SenseToUse, TArray<AActor*>& OutActors);
+    void GetCurrentlyPerceivedActors(TSubclassOf<class UAISense> SenseToUse, TArray<AActor*>& OutActors);
+    void GetActorsPerception(class AActor* Actor, FActorPerceptionBlueprintInfo& Info);
     void ForgetAll();
 }; // Size: 0x198
 
 class UAIPerceptionStimuliSourceComponent : public UActorComponent
 {
     uint8 bAutoRegisterAsSource;                                                      // 0x00A8 (size: 0x1)
-    TArray<class TSubclassOf<UAISense>> RegisterAsSourceForSenses;                    // 0x00B0 (size: 0x10)
+    TArray<TSubclassOf<class UAISense>> RegisterAsSourceForSenses;                    // 0x00B0 (size: 0x10)
 
     void UnregisterFromSense(TSubclassOf<class UAISense> SenseClass);
     void UnregisterFromPerceptionSystem();
@@ -569,14 +569,14 @@ class UAIPerceptionStimuliSourceComponent : public UActorComponent
 
 class UAIPerceptionSystem : public UAISubsystem
 {
-    TArray<class UAISense*> Senses;                                                   // 0x0088 (size: 0x10)
+    TArray<UAISense*> Senses;                                                         // 0x0088 (size: 0x10)
     float PerceptionAgingRate;                                                        // 0x0098 (size: 0x4)
 
     void ReportPerceptionEvent(class UObject* WorldContextObject, class UAISenseEvent* PerceptionEvent);
     void ReportEvent(class UAISenseEvent* PerceptionEvent);
-    bool RegisterPerceptionStimuliSource(class UObject* WorldContextObject, TSubclassOf<class UAISense> Sense, class AActor* Target);
+    void RegisterPerceptionStimuliSource(class UObject* WorldContextObject, TSubclassOf<class UAISense> Sense, class AActor* Target);
     void OnPerceptionStimuliSourceEndPlay(class AActor* Actor, TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
-    TSubclassOf<class UAISense> GetSenseClassForStimulus(class UObject* WorldContextObject, const FAIStimulus& Stimulus);
+    void GetSenseClassForStimulus(class UObject* WorldContextObject, const FAIStimulus& Stimulus);
 }; // Size: 0x138
 
 class UAIResource_Logic : public UGameplayTaskResource
@@ -676,16 +676,16 @@ class UAISenseEvent_Hearing : public UAISenseEvent
 class UAISense_Blueprint : public UAISense
 {
     TSubclassOf<class UUserDefinedStruct> ListenerDataType;                           // 0x0078 (size: 0x8)
-    TArray<class UAIPerceptionComponent*> ListenerContainer;                          // 0x0080 (size: 0x10)
-    TArray<class UAISenseEvent*> UnprocessedEvents;                                   // 0x0090 (size: 0x10)
+    TArray<UAIPerceptionComponent*> ListenerContainer;                                // 0x0080 (size: 0x10)
+    TArray<UAISenseEvent*> UnprocessedEvents;                                         // 0x0090 (size: 0x10)
 
-    float OnUpdate(const TArray<class UAISenseEvent*>& EventsToProcess);
+    void OnUpdate(const TArray<UAISenseEvent*>& EventsToProcess);
     void OnListenerUpdated(class AActor* ActorListener, class UAIPerceptionComponent* PerceptionComponent);
     void OnListenerUnregistered(class AActor* ActorListener, class UAIPerceptionComponent* PerceptionComponent);
     void OnListenerRegistered(class AActor* ActorListener, class UAIPerceptionComponent* PerceptionComponent);
     void K2_OnNewPawn(class APawn* NewPawn);
-    void GetAllListenerComponents(TArray<class UAIPerceptionComponent*>& ListenerComponents);
-    void GetAllListenerActors(TArray<class AActor*>& ListenerActors);
+    void GetAllListenerComponents(TArray<UAIPerceptionComponent*>& ListenerComponents);
+    void GetAllListenerActors(TArray<AActor*>& ListenerActors);
 }; // Size: 0xA0
 
 class UAISense_Damage : public UAISense
@@ -761,12 +761,12 @@ class UAISystem : public UAISystemBase
     bool bAddBlackboardSelfKey;                                                       // 0x00D2 (size: 0x1)
     bool bClearBBEntryOnBTEQSFail;                                                    // 0x00D3 (size: 0x1)
     bool bBlackboardKeyDecoratorAllowsNoneAsValue;                                    // 0x00D4 (size: 0x1)
-    TSoftObjectPtr<UBlackboardData> DefaultBlackboard;                                // 0x00D8 (size: 0x28)
+    TSoftObjectPtr<class UBlackboardData> DefaultBlackboard;                          // 0x00D8 (size: 0x28)
     TEnumAsByte<ECollisionChannel> DefaultSightCollisionChannel;                      // 0x0100 (size: 0x1)
     class UBehaviorTreeManager* BehaviorTreeManager;                                  // 0x0108 (size: 0x8)
     class UEnvQueryManager* EnvironmentQueryManager;                                  // 0x0110 (size: 0x8)
     class UAIPerceptionSystem* PerceptionSystem;                                      // 0x0118 (size: 0x8)
-    TArray<class UAIAsyncTaskBlueprintProxy*> AllProxyObjects;                        // 0x0120 (size: 0x10)
+    TArray<UAIAsyncTaskBlueprintProxy*> AllProxyObjects;                              // 0x0120 (size: 0x10)
     class UAIHotSpotManager* HotSpotManager;                                          // 0x0130 (size: 0x8)
     class UNavLocalGridManager* NavLocalGrids;                                        // 0x0138 (size: 0x8)
 
@@ -792,13 +792,13 @@ class UAITask_MoveTo : public UAITask
     void MoveTaskCompletedSignature(TEnumAsByte<EPathFollowingResult::Type> Result, class AAIController* AIController);
     FAIMoveRequest MoveRequest;                                                       // 0x0090 (size: 0x50)
 
-    class UAITask_MoveTo* AIMoveTo(class AAIController* Controller, FVector GoalLocation, class AActor* GoalActor, float AcceptanceRadius, TEnumAsByte<EAIOptionFlag::Type> StopOnOverlap, TEnumAsByte<EAIOptionFlag::Type> AcceptPartialPath, bool bUsePathfinding, bool bLockAILogic, bool bUseContinuousGoalTracking, TEnumAsByte<EAIOptionFlag::Type> ProjectGoalOnNavigation, TEnumAsByte<EAIOptionFlag::Type> RequireNavigableEndLocation);
+    void AIMoveTo(class AAIController* Controller, FVector GoalLocation, class AActor* GoalActor, float AcceptanceRadius, TEnumAsByte<EAIOptionFlag::Type> StopOnOverlap, TEnumAsByte<EAIOptionFlag::Type> AcceptPartialPath, bool bUsePathfinding, bool bLockAILogic, bool bUseContinuousGoalTracking, TEnumAsByte<EAIOptionFlag::Type> ProjectGoalOnNavigation, TEnumAsByte<EAIOptionFlag::Type> RequireNavigableEndLocation);
 }; // Size: 0x120
 
 class UAITask_RunEQS : public UAITask
 {
 
-    class UAITask_RunEQS* RunEQS(class AAIController* Controller, class UEnvQuery* QueryTemplate);
+    void RunEQS(class AAIController* Controller, class UEnvQuery* QueryTemplate);
 }; // Size: 0xE8
 
 class UBTAuxiliaryNode : public UBTNode
@@ -808,7 +808,7 @@ class UBTAuxiliaryNode : public UBTNode
 class UBTCompositeNode : public UBTNode
 {
     TArray<FBTCompositeChild> Children;                                               // 0x0058 (size: 0x10)
-    TArray<class UBTService*> Services;                                               // 0x0068 (size: 0x10)
+    TArray<UBTService*> Services;                                                     // 0x0068 (size: 0x10)
     uint8 bApplyDecoratorScope;                                                       // 0x0078 (size: 0x1)
 
 }; // Size: 0x80
@@ -869,10 +869,10 @@ class UBTDecorator_BlueprintBase : public UBTDecorator
     void ReceiveExecutionStart(class AActor* OwnerActor);
     void ReceiveExecutionFinishAI(class AAIController* OwnerController, class APawn* ControlledPawn, TEnumAsByte<EBTNodeResult::Type> NodeResult);
     void ReceiveExecutionFinish(class AActor* OwnerActor, TEnumAsByte<EBTNodeResult::Type> NodeResult);
-    bool PerformConditionCheckAI(class AAIController* OwnerController, class APawn* ControlledPawn);
-    bool PerformConditionCheck(class AActor* OwnerActor);
-    bool IsDecoratorObserverActive();
-    bool IsDecoratorExecutionActive();
+    void PerformConditionCheckAI(class AAIController* OwnerController, class APawn* ControlledPawn);
+    void PerformConditionCheck(class AActor* OwnerActor);
+    void IsDecoratorObserverActive();
+    void IsDecoratorExecutionActive();
 }; // Size: 0xA0
 
 class UBTDecorator_CheckGameplayTagsOnActor : public UBTDecorator
@@ -1002,19 +1002,19 @@ class UBTFunctionLibrary : public UBlueprintFunctionLibrary
     void SetBlackboardValueAsEnum(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key, uint8 Value);
     void SetBlackboardValueAsClass(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key, UClass* Value);
     void SetBlackboardValueAsBool(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key, bool Value);
-    class UBlackboardComponent* GetOwnersBlackboard(class UBTNode* NodeOwner);
-    class UBehaviorTreeComponent* GetOwnerComponent(class UBTNode* NodeOwner);
-    FVector GetBlackboardValueAsVector(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
-    FString GetBlackboardValueAsString(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
-    FRotator GetBlackboardValueAsRotator(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
-    class UObject* GetBlackboardValueAsObject(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
-    FName GetBlackboardValueAsName(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
-    int32 GetBlackboardValueAsInt(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
-    float GetBlackboardValueAsFloat(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
-    uint8 GetBlackboardValueAsEnum(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
-    UClass* GetBlackboardValueAsClass(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
-    bool GetBlackboardValueAsBool(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
-    class AActor* GetBlackboardValueAsActor(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
+    void GetOwnersBlackboard(class UBTNode* NodeOwner);
+    void GetOwnerComponent(class UBTNode* NodeOwner);
+    void GetBlackboardValueAsVector(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
+    void GetBlackboardValueAsString(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
+    void GetBlackboardValueAsRotator(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
+    void GetBlackboardValueAsObject(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
+    void GetBlackboardValueAsName(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
+    void GetBlackboardValueAsInt(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
+    void GetBlackboardValueAsFloat(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
+    void GetBlackboardValueAsEnum(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
+    void GetBlackboardValueAsClass(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
+    void GetBlackboardValueAsBool(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
+    void GetBlackboardValueAsActor(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
     void ClearBlackboardValueAsVector(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
     void ClearBlackboardValue(class UBTNode* NodeOwner, const FBlackboardKeySelector& Key);
 }; // Size: 0x28
@@ -1057,7 +1057,7 @@ class UBTService_BlueprintBase : public UBTService
     void ReceiveDeactivation(class AActor* OwnerActor);
     void ReceiveActivationAI(class AAIController* OwnerController, class APawn* ControlledPawn);
     void ReceiveActivation(class AActor* OwnerActor);
-    bool IsServiceActive();
+    void IsServiceActive();
 }; // Size: 0x98
 
 class UBTService_DefaultFocus : public UBTService_BlackboardBase
@@ -1075,7 +1075,7 @@ class UBTService_RunEQS : public UBTService_BlackboardBase
 
 class UBTTaskNode : public UBTNode
 {
-    TArray<class UBTService*> Services;                                               // 0x0058 (size: 0x10)
+    TArray<UBTService*> Services;                                                     // 0x0058 (size: 0x10)
     uint8 bIgnoreRestartSelf;                                                         // 0x0068 (size: 0x1)
 
 }; // Size: 0x70
@@ -1101,8 +1101,8 @@ class UBTTask_BlueprintBase : public UBTTaskNode
     void ReceiveExecute(class AActor* OwnerActor);
     void ReceiveAbortAI(class AAIController* OwnerController, class APawn* ControlledPawn);
     void ReceiveAbort(class AActor* OwnerActor);
-    bool IsTaskExecuting();
-    bool IsTaskAborting();
+    void IsTaskExecuting();
+    void IsTaskAborting();
     void FinishExecute(bool bSuccess);
     void FinishAbort();
 }; // Size: 0xA8
@@ -1235,18 +1235,18 @@ class UBehaviorTree : public UObject
 {
     class UBTCompositeNode* RootNode;                                                 // 0x0030 (size: 0x8)
     class UBlackboardData* BlackboardAsset;                                           // 0x0038 (size: 0x8)
-    TArray<class UBTDecorator*> RootDecorators;                                       // 0x0040 (size: 0x10)
+    TArray<UBTDecorator*> RootDecorators;                                             // 0x0040 (size: 0x10)
     TArray<FBTDecoratorLogic> RootDecoratorOps;                                       // 0x0050 (size: 0x10)
 
 }; // Size: 0x68
 
 class UBehaviorTreeComponent : public UBrainComponent
 {
-    TArray<class UBTNode*> NodeInstances;                                             // 0x0120 (size: 0x10)
+    TArray<UBTNode*> NodeInstances;                                                   // 0x0120 (size: 0x10)
     class UBehaviorTree* DefaultBehaviorTreeAsset;                                    // 0x0278 (size: 0x8)
 
     void SetDynamicSubtree(FGameplayTag InjectTag, class UBehaviorTree* BehaviorAsset);
-    double GetTagCooldownEndTime(FGameplayTag CooldownTag);
+    void GetTagCooldownEndTime(FGameplayTag CooldownTag);
     void AddCooldownTagDuration(FGameplayTag CooldownTag, float CooldownDuration, bool bAddToExistingDuration);
 }; // Size: 0x298
 
@@ -1254,7 +1254,7 @@ class UBehaviorTreeManager : public UObject
 {
     int32 MaxDebuggerSteps;                                                           // 0x0028 (size: 0x4)
     TArray<FBehaviorTreeTemplateInfo> LoadedTemplates;                                // 0x0030 (size: 0x10)
-    TArray<class UBehaviorTreeComponent*> ActiveComponents;                           // 0x0040 (size: 0x10)
+    TArray<UBehaviorTreeComponent*> ActiveComponents;                                 // 0x0040 (size: 0x10)
 
 }; // Size: 0x50
 
@@ -1267,7 +1267,7 @@ class UBlackboardComponent : public UActorComponent
     class UBrainComponent* BrainComp;                                                 // 0x00A8 (size: 0x8)
     class UBlackboardData* DefaultBlackboardAsset;                                    // 0x00B0 (size: 0x8)
     class UBlackboardData* BlackboardAsset;                                           // 0x00B8 (size: 0x8)
-    TArray<class UBlackboardKeyType*> KeyInstances;                                   // 0x00E0 (size: 0x10)
+    TArray<UBlackboardKeyType*> KeyInstances;                                         // 0x00E0 (size: 0x10)
 
     void SetValueAsVector(const FName& KeyName, FVector VectorValue);
     void SetValueAsString(const FName& KeyName, FString StringValue);
@@ -1279,19 +1279,19 @@ class UBlackboardComponent : public UActorComponent
     void SetValueAsEnum(const FName& KeyName, uint8 EnumValue);
     void SetValueAsClass(const FName& KeyName, UClass* ClassValue);
     void SetValueAsBool(const FName& KeyName, bool BoolValue);
-    bool IsVectorValueSet(const FName& KeyName);
-    FVector GetValueAsVector(const FName& KeyName);
-    FString GetValueAsString(const FName& KeyName);
-    FRotator GetValueAsRotator(const FName& KeyName);
-    class UObject* GetValueAsObject(const FName& KeyName);
-    FName GetValueAsName(const FName& KeyName);
-    int32 GetValueAsInt(const FName& KeyName);
-    float GetValueAsFloat(const FName& KeyName);
-    uint8 GetValueAsEnum(const FName& KeyName);
-    UClass* GetValueAsClass(const FName& KeyName);
-    bool GetValueAsBool(const FName& KeyName);
-    bool GetRotationFromEntry(const FName& KeyName, FRotator& ResultRotation);
-    bool GetLocationFromEntry(const FName& KeyName, FVector& ResultLocation);
+    void IsVectorValueSet(const FName& KeyName);
+    void GetValueAsVector(const FName& KeyName);
+    void GetValueAsString(const FName& KeyName);
+    void GetValueAsRotator(const FName& KeyName);
+    void GetValueAsObject(const FName& KeyName);
+    void GetValueAsName(const FName& KeyName);
+    void GetValueAsInt(const FName& KeyName);
+    void GetValueAsFloat(const FName& KeyName);
+    void GetValueAsEnum(const FName& KeyName);
+    void GetValueAsClass(const FName& KeyName);
+    void GetValueAsBool(const FName& KeyName);
+    void GetRotationFromEntry(const FName& KeyName, FRotator& ResultRotation);
+    void GetLocationFromEntry(const FName& KeyName, FVector& ResultLocation);
     void ClearValue(const FName& KeyName);
 }; // Size: 0x1B0
 
@@ -1387,8 +1387,8 @@ class UBrainComponent : public UActorComponent
     void StopLogic(FString Reason);
     void StartLogic();
     void RestartLogic();
-    bool IsRunning();
-    bool IsPaused();
+    void IsRunning();
+    void IsPaused();
 }; // Size: 0x100
 
 class UCrowdFollowingComponent : public UPathFollowingComponent
@@ -1427,9 +1427,9 @@ class UDEPRECATED_PawnAction : public UObject
     uint8 bShouldPauseMovement;                                                       // 0x0080 (size: 0x1)
     uint8 bAlwaysNotifyOnFinished;                                                    // 0x0080 (size: 0x1)
 
-    TEnumAsByte<EAIRequestPriority::Type> GetActionPriority();
+    void GetActionPriority();
     void Finish(TEnumAsByte<EPawnActionResult::Type> WithResult);
-    class UDEPRECATED_PawnAction* CreateActionInstance(class UObject* WorldContextObject, TSubclassOf<class UDEPRECATED_PawnAction> ActionClass);
+    void CreateActionInstance(class UObject* WorldContextObject, TSubclassOf<class UDEPRECATED_PawnAction> ActionClass);
 }; // Size: 0x90
 
 class UDEPRECATED_PawnAction_BlueprintBase : public UDEPRECATED_PawnAction
@@ -1468,7 +1468,7 @@ class UDEPRECATED_PawnAction_Repeat : public UDEPRECATED_PawnAction
 
 class UDEPRECATED_PawnAction_Sequence : public UDEPRECATED_PawnAction
 {
-    TArray<class UDEPRECATED_PawnAction*> ActionSequence;                             // 0x0090 (size: 0x10)
+    TArray<UDEPRECATED_PawnAction*> ActionSequence;                                   // 0x0090 (size: 0x10)
     TEnumAsByte<EPawnActionFailHandling::Type> ChildFailureHandlingMode;              // 0x00A0 (size: 0x1)
     class UDEPRECATED_PawnAction* RecentActionCopy;                                   // 0x00A8 (size: 0x8)
 
@@ -1487,10 +1487,10 @@ class UDEPRECATED_PawnActionsComponent : public UActorComponent
     TArray<FPawnActionEvent> ActionEvents;                                            // 0x00C0 (size: 0x10)
     class UDEPRECATED_PawnAction* CurrentAction;                                      // 0x00D0 (size: 0x8)
 
-    bool K2_PushAction(class UDEPRECATED_PawnAction* NewAction, TEnumAsByte<EAIRequestPriority::Type> Priority, class UObject* Instigator);
-    bool K2_PerformAction(class APawn* Pawn, class UDEPRECATED_PawnAction* Action, TEnumAsByte<EAIRequestPriority::Type> Priority);
-    TEnumAsByte<EPawnActionAbortState::Type> K2_ForceAbortAction(class UDEPRECATED_PawnAction* ActionToAbort);
-    TEnumAsByte<EPawnActionAbortState::Type> K2_AbortAction(class UDEPRECATED_PawnAction* ActionToAbort);
+    void K2_PushAction(class UDEPRECATED_PawnAction* NewAction, TEnumAsByte<EAIRequestPriority::Type> Priority, class UObject* Instigator);
+    void K2_PerformAction(class APawn* Pawn, class UDEPRECATED_PawnAction* Action, TEnumAsByte<EAIRequestPriority::Type> Priority);
+    void K2_ForceAbortAction(class UDEPRECATED_PawnAction* ActionToAbort);
+    void K2_AbortAction(class UDEPRECATED_PawnAction* ActionToAbort);
 }; // Size: 0xE0
 
 class UEQSRenderingComponent : public UDebugDrawComponent
@@ -1500,7 +1500,7 @@ class UEQSRenderingComponent : public UDebugDrawComponent
 class UEnvQuery : public UDataAsset
 {
     FName QueryName;                                                                  // 0x0030 (size: 0x8)
-    TArray<class UEnvQueryOption*> Options;                                           // 0x0038 (size: 0x10)
+    TArray<UEnvQueryOption*> Options;                                                 // 0x0038 (size: 0x10)
 
 }; // Size: 0x48
 
@@ -1514,7 +1514,7 @@ class UEnvQueryContext_BlueprintBase : public UEnvQueryContext
     void ProvideSingleLocation(class UObject* QuerierObject, class AActor* QuerierActor, FVector& ResultingLocation);
     void ProvideSingleActor(class UObject* QuerierObject, class AActor* QuerierActor, class AActor*& ResultingActor);
     void ProvideLocationsSet(class UObject* QuerierObject, class AActor* QuerierActor, TArray<FVector>& ResultingLocationSet);
-    void ProvideActorsSet(class UObject* QuerierObject, class AActor* QuerierActor, TArray<class AActor*>& ResultingActorsSet);
+    void ProvideActorsSet(class UObject* QuerierObject, class AActor* QuerierActor, TArray<AActor*>& ResultingActorsSet);
 }; // Size: 0x30
 
 class UEnvQueryContext_Item : public UEnvQueryContext
@@ -1552,8 +1552,8 @@ class UEnvQueryGenerator_BlueprintBase : public UEnvQueryGenerator
     TSubclassOf<class UEnvQueryContext> Context;                                      // 0x0060 (size: 0x8)
     TSubclassOf<class UEnvQueryItemType> GeneratedItemType;                           // 0x0068 (size: 0x8)
 
-    class UObject* GetQuerier();
-    void DoItemGenerationFromActors(const TArray<class AActor*>& ContextActors);
+    void GetQuerier();
+    void DoItemGenerationFromActors(const TArray<AActor*>& ContextActors);
     void DoItemGeneration(const TArray<FVector>& ContextLocations);
     void AddGeneratedVector(FVector GeneratedVector);
     void AddGeneratedActor(class AActor* GeneratedActor);
@@ -1561,7 +1561,7 @@ class UEnvQueryGenerator_BlueprintBase : public UEnvQueryGenerator
 
 class UEnvQueryGenerator_Composite : public UEnvQueryGenerator
 {
-    TArray<class UEnvQueryGenerator*> Generators;                                     // 0x0050 (size: 0x10)
+    TArray<UEnvQueryGenerator*> Generators;                                           // 0x0050 (size: 0x10)
     uint8 bAllowDifferentItemTypes;                                                   // 0x0060 (size: 0x1)
     uint8 bHasMatchingItemType;                                                       // 0x0060 (size: 0x1)
     TSubclassOf<class UEnvQueryItemType> ForcedItemType;                              // 0x0068 (size: 0x8)
@@ -1657,11 +1657,11 @@ class UEnvQueryInstanceBlueprintWrapper : public UObject
     void EQSQueryDoneSignature(class UEnvQueryInstanceBlueprintWrapper* QueryInstance, TEnumAsByte<EEnvQueryStatus::Type> QueryStatus);
 
     void SetNamedParam(FName ParamName, float Value);
-    TArray<FVector> GetResultsAsLocations();
-    TArray<class AActor*> GetResultsAsActors();
-    bool GetQueryResultsAsLocations(TArray<FVector>& ResultLocations);
-    bool GetQueryResultsAsActors(TArray<class AActor*>& ResultActors);
-    float GetItemScore(int32 ItemIndex);
+    void GetResultsAsLocations();
+    void GetResultsAsActors();
+    void GetQueryResultsAsLocations(TArray<FVector>& ResultLocations);
+    void GetQueryResultsAsActors(TArray<AActor*>& ResultActors);
+    void GetItemScore(int32 ItemIndex);
     void EQSQueryDoneSignature__DelegateSignature(class UEnvQueryInstanceBlueprintWrapper* QueryInstance, TEnumAsByte<EEnvQueryStatus::Type> QueryStatus);
 }; // Size: 0x78
 
@@ -1692,8 +1692,8 @@ class UEnvQueryItemType_VectorBase : public UEnvQueryItemType
 class UEnvQueryManager : public UAISubsystem
 {
     TArray<FEnvQueryInstanceCache> InstanceCache;                                     // 0x00A8 (size: 0x10)
-    TArray<class UEnvQueryContext*> LocalContexts;                                    // 0x00B8 (size: 0x10)
-    TArray<class UEnvQueryInstanceBlueprintWrapper*> GCShieldedWrappers;              // 0x00C8 (size: 0x10)
+    TArray<UEnvQueryContext*> LocalContexts;                                          // 0x00B8 (size: 0x10)
+    TArray<UEnvQueryInstanceBlueprintWrapper*> GCShieldedWrappers;                    // 0x00C8 (size: 0x10)
     float MaxAllowedTestingTime;                                                      // 0x012C (size: 0x4)
     bool bTestQueriesUsingBreadth;                                                    // 0x0130 (size: 0x1)
     int32 QueryCountWarningThreshold;                                                 // 0x0134 (size: 0x4)
@@ -1702,7 +1702,7 @@ class UEnvQueryManager : public UAISubsystem
     double HandlingResultTimeWarningSeconds;                                          // 0x0148 (size: 0x8)
     double GenerationTimeWarningSeconds;                                              // 0x0150 (size: 0x8)
 
-    class UEnvQueryInstanceBlueprintWrapper* RunEQSQuery(class UObject* WorldContextObject, class UEnvQuery* QueryTemplate, class UObject* Querier, TEnumAsByte<EEnvQueryRunMode::Type> RunMode, TSubclassOf<class UEnvQueryInstanceBlueprintWrapper> WrapperClass);
+    void RunEQSQuery(class UObject* WorldContextObject, class UEnvQuery* QueryTemplate, class UObject* Querier, TEnumAsByte<EEnvQueryRunMode::Type> RunMode, TSubclassOf<class UEnvQueryInstanceBlueprintWrapper> WrapperClass);
 }; // Size: 0x158
 
 class UEnvQueryNode : public UObject
@@ -1714,7 +1714,7 @@ class UEnvQueryNode : public UObject
 class UEnvQueryOption : public UObject
 {
     class UEnvQueryGenerator* Generator;                                              // 0x0028 (size: 0x8)
-    TArray<class UEnvQueryTest*> Tests;                                               // 0x0030 (size: 0x10)
+    TArray<UEnvQueryTest*> Tests;                                                     // 0x0030 (size: 0x10)
 
 }; // Size: 0x40
 
@@ -1836,13 +1836,13 @@ class UNavFilter_AIControllerDefault : public UNavigationQueryFilter
 class UNavLocalGridManager : public UObject
 {
 
-    bool SetLocalNavigationGridDensity(class UObject* WorldContextObject, float CellSize);
+    void SetLocalNavigationGridDensity(class UObject* WorldContextObject, float CellSize);
     void RemoveLocalNavigationGrid(class UObject* WorldContextObject, int32 GridId, bool bRebuildGrids);
-    bool FindLocalNavigationGridPath(class UObject* WorldContextObject, const FVector& Start, const FVector& End, TArray<FVector>& PathPoints);
-    int32 AddLocalNavigationGridForPoints(class UObject* WorldContextObject, const TArray<FVector>& Locations, const int32 Radius2D, const float Height, bool bRebuildGrids);
-    int32 AddLocalNavigationGridForPoint(class UObject* WorldContextObject, const FVector& Location, const int32 Radius2D, const float Height, bool bRebuildGrids);
-    int32 AddLocalNavigationGridForCapsule(class UObject* WorldContextObject, const FVector& Location, float CapsuleRadius, float CapsuleHalfHeight, const int32 Radius2D, const float Height, bool bRebuildGrids);
-    int32 AddLocalNavigationGridForBox(class UObject* WorldContextObject, const FVector& Location, FVector Extent, FRotator Rotation, const int32 Radius2D, const float Height, bool bRebuildGrids);
+    void FindLocalNavigationGridPath(class UObject* WorldContextObject, const FVector& Start, const FVector& End, TArray<FVector>& PathPoints);
+    void AddLocalNavigationGridForPoints(class UObject* WorldContextObject, const TArray<FVector>& Locations, const int32 Radius2D, const float Height, bool bRebuildGrids);
+    void AddLocalNavigationGridForPoint(class UObject* WorldContextObject, const FVector& Location, const int32 Radius2D, const float Height, bool bRebuildGrids);
+    void AddLocalNavigationGridForCapsule(class UObject* WorldContextObject, const FVector& Location, float CapsuleRadius, float CapsuleHalfHeight, const int32 Radius2D, const float Height, bool bRebuildGrids);
+    void AddLocalNavigationGridForBox(class UObject* WorldContextObject, const FVector& Location, FVector Extent, FRotator Rotation, const int32 Radius2D, const float Height, bool bRebuildGrids);
 }; // Size: 0x58
 
 class UPathFollowingComponent : public UActorComponent
@@ -1852,8 +1852,8 @@ class UPathFollowingComponent : public UActorComponent
 
     void OnNavDataRegistered(class ANavigationData* NavData);
     void OnActorBump(class AActor* SelfActor, class AActor* OtherActor, FVector NormalImpulse, const FHitResult& Hit);
-    FVector GetPathDestination();
-    TEnumAsByte<EPathFollowingAction::Type> GetPathActionType();
+    void GetPathDestination();
+    void GetPathActionType();
 }; // Size: 0x2E8
 
 class UPathFollowingManager : public UObject
@@ -1883,8 +1883,8 @@ class UPawnSensingComponent : public UActorComponent
     void SetPeripheralVisionAngle(const float NewPeripheralVisionAngle);
     void SeePawnDelegate__DelegateSignature(class APawn* Pawn);
     void HearNoiseDelegate__DelegateSignature(class APawn* Instigator, const FVector& Location, float Volume);
-    float GetPeripheralVisionCosine();
-    float GetPeripheralVisionAngle();
+    void GetPeripheralVisionCosine();
+    void GetPeripheralVisionAngle();
 }; // Size: 0xF0
 
 class UVisualLoggerExtension : public UObject

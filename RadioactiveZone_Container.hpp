@@ -5,7 +5,7 @@ class ARadioactiveZone_Container_C : public ARadioactiveZone_ParentBP_C
 {
     class USphereComponent* Sphere;                                                   // 0x02B0 (size: 0x8)
 
-    class UPrimitiveComponent* GetOverlapVolume();
+    void GetOverlapVolume();
 }; // Size: 0x2B8
 
 #endif

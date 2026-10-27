@@ -111,7 +111,7 @@ struct FGeomComponentCacheParameters
 struct FGeometryCollectionAutoInstanceMesh
 {
     class UStaticMesh* Mesh;                                                          // 0x0000 (size: 0x8)
-    TArray<class UMaterialInterface*> Materials;                                      // 0x0008 (size: 0x10)
+    TArray<UMaterialInterface*> Materials;                                            // 0x0008 (size: 0x10)
     int32 NumInstances;                                                               // 0x0018 (size: 0x4)
     TArray<float> CustomData;                                                         // 0x0020 (size: 0x10)
 
@@ -175,7 +175,7 @@ struct FGeometryCollectionLevelSetData
 
 struct FGeometryCollectionProxyMeshData
 {
-    TArray<class UStaticMesh*> ProxyMeshes;                                           // 0x0000 (size: 0x10)
+    TArray<UStaticMesh*> ProxyMeshes;                                                 // 0x0000 (size: 0x10)
 
 }; // Size: 0x10
 
@@ -210,7 +210,7 @@ struct FGeometryCollectionSource
 {
     FSoftObjectPath SourceGeometryObject;                                             // 0x0000 (size: 0x20)
     FTransform LocalTransform;                                                        // 0x0020 (size: 0x60)
-    TArray<class UMaterialInterface*> SourceMaterial;                                 // 0x0080 (size: 0x10)
+    TArray<UMaterialInterface*> SourceMaterial;                                       // 0x0080 (size: 0x10)
     TArray<float> InstanceCustomData;                                                 // 0x0090 (size: 0x10)
     bool bAddInternalMaterials;                                                       // 0x00A0 (size: 0x1)
     bool bSplitComponents;                                                            // 0x00A1 (size: 0x1)
@@ -223,7 +223,7 @@ class AGeometryCollectionActor : public AActor
     class UGeometryCollectionComponent* GeometryCollectionComponent;                  // 0x0298 (size: 0x8)
     class UGeometryCollectionDebugDrawComponent* GeometryCollectionDebugDrawComponent; // 0x02A0 (size: 0x8)
 
-    bool RaycastSingle(FVector Start, FVector End, FHitResult& OutHit);
+    void RaycastSingle(FVector Start, FVector End, FHitResult& OutHit);
 }; // Size: 0x2A8
 
 class AGeometryCollectionDebugDrawActor : public AActor
@@ -349,7 +349,7 @@ class UChaosDestructionListener : public USceneComponent
     void SetBreakingEventEnabled(bool bIsEnabled);
     void RemoveGeometryCollectionActor(class AGeometryCollectionActor* GeometryCollectionActor);
     void RemoveChaosSolverActor(class AChaosSolverActor* ChaosSolverActor);
-    bool IsEventListening();
+    void IsEventListening();
     void AddGeometryCollectionActor(class AGeometryCollectionActor* GeometryCollectionActor);
     void AddChaosSolverActor(class AChaosSolverActor* ChaosSolverActor);
 }; // Size: 0x4E0
@@ -367,7 +367,7 @@ class UGeometryCollection : public UObject
     FGeometryCollectionDamagePropagationData DamagePropagationData;                   // 0x005C (size: 0xC)
     EClusterConnectionTypeEnum ClusterConnectionType;                                 // 0x0068 (size: 0x1)
     float ConnectionGraphBoundsFilteringMargin;                                       // 0x006C (size: 0x4)
-    TArray<class UMaterialInterface*> Materials;                                      // 0x0070 (size: 0x10)
+    TArray<UMaterialInterface*> Materials;                                            // 0x0070 (size: 0x10)
     TArray<FGeometryCollectionEmbeddedExemplar> EmbeddedGeometryExemplar;             // 0x0080 (size: 0x10)
     bool bUseFullPrecisionUVs;                                                        // 0x0090 (size: 0x1)
     bool bStripOnCook;                                                                // 0x0091 (size: 0x1)
@@ -393,10 +393,10 @@ class UGeometryCollection : public UObject
     float SlowMovingVelocityThreshold;                                                // 0x010C (size: 0x4)
     TArray<FGeometryCollectionSizeSpecificData> SizeSpecificData;                     // 0x0110 (size: 0x10)
     bool EnableRemovePiecesOnFracture;                                                // 0x0120 (size: 0x1)
-    TArray<class UMaterialInterface*> RemoveOnFractureMaterials;                      // 0x0128 (size: 0x10)
+    TArray<UMaterialInterface*> RemoveOnFractureMaterials;                            // 0x0128 (size: 0x10)
     class UDataflow* DataflowAsset;                                                   // 0x0138 (size: 0x8)
     FString DataflowTerminal;                                                         // 0x0140 (size: 0x10)
-    TMap<class FString, class FString> Overrides;                                     // 0x0150 (size: 0x50)
+    TMap<FString, FString> Overrides;                                                 // 0x0150 (size: 0x50)
     FGuid PersistentGuid;                                                             // 0x01A0 (size: 0x10)
     FGuid StateGuid;                                                                  // 0x01B0 (size: 0x10)
     int32 RootIndex;                                                                  // 0x01C0 (size: 0x4)
@@ -404,7 +404,7 @@ class UGeometryCollection : public UObject
     TArray<int32> AutoInstanceTransformRemapIndices;                                  // 0x01D8 (size: 0x10)
     int32 BoneSelectedMaterialIndex;                                                  // 0x01E8 (size: 0x4)
     class UMaterialInterface* BoneSelectedMaterial;                                   // 0x01F0 (size: 0x8)
-    TArray<class UAssetUserData*> AssetUserData;                                      // 0x0208 (size: 0x10)
+    TArray<UAssetUserData*> AssetUserData;                                            // 0x0208 (size: 0x10)
 
     void SetEnableNanite(bool bValue);
     void SetConvertVertexColorsToSRGB(bool bValue);
@@ -428,7 +428,7 @@ class UGeometryCollectionComponent : public UMeshComponent
 {
     class AChaosSolverActor* ChaosSolverActor;                                        // 0x0560 (size: 0x8)
     class UGeometryCollection* RestCollection;                                        // 0x0570 (size: 0x8)
-    TArray<class AFieldSystemActor*> InitializationFields;                            // 0x0578 (size: 0x10)
+    TArray<AFieldSystemActor*> InitializationFields;                                  // 0x0578 (size: 0x10)
     bool Simulating;                                                                  // 0x0588 (size: 0x1)
     EObjectStateTypeEnum ObjectType;                                                  // 0x058A (size: 0x1)
     int32 GravityGroupIndex;                                                          // 0x058C (size: 0x4)
@@ -508,7 +508,7 @@ class UGeometryCollectionComponent : public UMeshComponent
     FGeometryCollectionRepDynamicData RepDynamicData;                                 // 0x0850 (size: 0x18)
     class UBodySetup* DummyBodySetup;                                                 // 0x0988 (size: 0x8)
     class UChaosGameplayEventDispatcher* EventDispatcher;                             // 0x0990 (size: 0x8)
-    TArray<class UInstancedStaticMeshComponent*> EmbeddedGeometryComponents;          // 0x0998 (size: 0x10)
+    TArray<UInstancedStaticMeshComponent*> EmbeddedGeometryComponents;                // 0x0998 (size: 0x10)
     bool bUseStaticMeshCollisionForTraces;                                            // 0x09A8 (size: 0x1)
 
     void SetUseStaticMeshCollisionForTraces(bool bInUseStaticMeshCollisionForTraces);
@@ -542,17 +542,17 @@ class UGeometryCollectionComponent : public UMeshComponent
     void OnRep_RepData();
     void NotifyGeometryCollectionPhysicsStateChange__DelegateSignature(class UGeometryCollectionComponent* FracturedComponent);
     void NotifyGeometryCollectionPhysicsLoadingStateChange__DelegateSignature(class UGeometryCollectionComponent* FracturedComponent);
-    bool IsRootBroken();
-    bool GetUseStaticMeshCollisionForTraces();
-    FTransform GetRootInitialTransform();
-    int32 GetRootIndex();
-    FTransform GetRootCurrentTransform();
+    void IsRootBroken();
+    void GetUseStaticMeshCollisionForTraces();
+    void GetRootInitialTransform();
+    void GetRootIndex();
+    void GetRootCurrentTransform();
     void GetMassAndExtents(int32 ItemIndex, float& OutMass, FBox& OutExtents);
-    FBox GetLocalBounds();
-    TArray<FTransform> GetInitialLocalRestTransforms();
-    int32 GetInitialLevel(int32 ItemIndex);
-    FString GetDebugInfo();
-    TArray<float> GetDamageThreshold();
+    void GetLocalBounds();
+    void GetInitialLocalRestTransforms();
+    void GetInitialLevel(int32 ItemIndex);
+    void GetDebugInfo();
+    void GetDamageThreshold();
     void EnableRootProxyForCustomRenderer(bool bEnable);
     void CrumbleCluster(int32 ItemIndex);
     void CrumbleActiveClusters();

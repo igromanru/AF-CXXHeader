@@ -3,27 +3,27 @@
 
 class AGear_Watch_ParentBP_C : public AItem_Gear_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B30 (size: 0x8)
-    bool ViewingWatch;                                                                // 0x0B38 (size: 0x1)
-    bool OnlyApplyBuffsWhileViewing;                                                  // 0x0B39 (size: 0x1)
-    bool DrainBatteryWhileViewing;                                                    // 0x0B3A (size: 0x1)
-    class UW_HUD_GadgetBar_C* HUDWidget;                                              // 0x0B40 (size: 0x8)
-    FTimerHandle HudTimer;                                                            // 0x0B48 (size: 0x8)
-    FName WatchScreenSocket;                                                          // 0x0B50 (size: 0x8)
-    bool UsingWatch;                                                                  // 0x0B58 (size: 0x1)
-    class UAudioComponent* UseSoundComponent;                                         // 0x0B60 (size: 0x8)
-    class USoundBase* UseSound;                                                       // 0x0B68 (size: 0x8)
-    class USoundBase* EndUseSound;                                                    // 0x0B70 (size: 0x8)
-    class UNiagaraSystem* UsingVFX;                                                   // 0x0B78 (size: 0x8)
-    class UNiagaraComponent* UseVfxComponent;                                         // 0x0B80 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0B78 (size: 0x8)
+    bool ViewingWatch;                                                                // 0x0B80 (size: 0x1)
+    bool OnlyApplyBuffsWhileViewing;                                                  // 0x0B81 (size: 0x1)
+    bool DrainBatteryWhileViewing;                                                    // 0x0B82 (size: 0x1)
+    class UW_HUD_GadgetBar_C* HUDWidget;                                              // 0x0B88 (size: 0x8)
+    FTimerHandle HudTimer;                                                            // 0x0B90 (size: 0x8)
+    FName WatchScreenSocket;                                                          // 0x0B98 (size: 0x8)
+    bool UsingWatch;                                                                  // 0x0BA0 (size: 0x1)
+    class UAudioComponent* UseSoundComponent;                                         // 0x0BA8 (size: 0x8)
+    class USoundBase* UseSound;                                                       // 0x0BB0 (size: 0x8)
+    class USoundBase* EndUseSound;                                                    // 0x0BB8 (size: 0x8)
+    class UNiagaraSystem* UsingVFX;                                                   // 0x0BC0 (size: 0x8)
+    class UNiagaraComponent* UseVfxComponent;                                         // 0x0BC8 (size: 0x8)
 
-    void GetBuffsToRemove(TArray<FName>& BuffsToAdd);
-    void GetBuffsToAdd(TArray<FName>& BuffsToAdd);
-    class UAudioComponent* SpawnWatchSound(class USoundBase* Sound);
+    void GetBuffsToRemove(TArray<FBuffDebuffRowHandle>& BuffsToAdd);
+    void GetBuffsToAdd(TArray<FBuffDebuffRowHandle>& BuffsToAdd);
+    void SpawnWatchSound(class USoundBase* Sound);
     void UpdateUsingWatch(bool UsingWatch);
     void OnRep_UsingWatch();
     void TryStartHudTick();
-    bool CanShowHudInfo();
+    void CanShowHudInfo();
     void RemoveHudInfo();
     void UpdateHudInfo();
     void UpdateWatchWidgetFP(class UW_Wristwatch_C* WatchWidget, class UWidgetComponent* WidgetComponent, class USkeletalMeshComponent* WatchMeshComponent);
@@ -41,6 +41,6 @@ class AGear_Watch_ParentBP_C : public AItem_Gear_ParentBP_C
     void Use Item_Secondary(class AAbiotic_Character_ParentBP_C* UsingCharacter, FTransform Transform, class AActor* TargetActor);
     void ReceiveBeginPlay();
     void ExecuteUbergraph_Gear_Watch_ParentBP(int32 EntryPoint);
-}; // Size: 0xB88
+}; // Size: 0xBD0
 
 #endif

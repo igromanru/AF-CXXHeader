@@ -11,8 +11,8 @@ struct FAnalyticsEventAttr
 class UAnalyticsBlueprintLibrary : public UBlueprintFunctionLibrary
 {
 
-    bool StartSessionWithAttributes(const TArray<FAnalyticsEventAttr>& Attributes);
-    bool StartSession();
+    void StartSessionWithAttributes(const TArray<FAnalyticsEventAttr>& Attributes);
+    void StartSession();
     void SetUserId(FString UserId);
     void SetSessionId(FString SessionId);
     void SetLocation(FString Location);
@@ -35,9 +35,9 @@ class UAnalyticsBlueprintLibrary : public UBlueprintFunctionLibrary
     void RecordCurrencyPurchase(FString GameCurrencyType, int32 GameCurrencyAmount, FString RealCurrencyType, float RealMoneyCost, FString PaymentProvider);
     void RecordCurrencyGivenWithAttributes(FString GameCurrencyType, int32 GameCurrencyAmount, const TArray<FAnalyticsEventAttr>& Attributes);
     void RecordCurrencyGiven(FString GameCurrencyType, int32 GameCurrencyAmount);
-    FAnalyticsEventAttr MakeEventAttribute(FString AttributeName, FString AttributeValue);
-    FString GetUserID();
-    FString GetSessionId();
+    void MakeEventAttribute(FString AttributeName, FString AttributeValue);
+    void GetUserID();
+    void GetSessionId();
     void FlushEvents();
     void EndSession();
 }; // Size: 0x28

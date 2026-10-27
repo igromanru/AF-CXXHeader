@@ -84,10 +84,10 @@ class UAudioModulationDestination : public UObject
 {
     class USoundModulatorBase* Modulator;                                             // 0x0028 (size: 0x8)
 
-    bool SetModulator(const class USoundModulatorBase* InModulator);
-    float GetValue();
-    class USoundModulatorBase* GetModulator();
-    bool ClearModulator();
+    void SetModulator(const class USoundModulatorBase* InModulator);
+    void GetValue();
+    void GetModulator();
+    void ClearModulator();
 }; // Size: 0x40
 
 class UAudioModulationSettings : public UDeveloperSettings
@@ -105,23 +105,23 @@ class UAudioModulationStatics : public UBlueprintFunctionLibrary
     void UpdateMix(const class UObject* WorldContextObject, class USoundControlBusMix* Mix, TArray<FSoundControlBusMixStage> Stages, float FadeTime);
     void SetGlobalBusMixValue(const class UObject* WorldContextObject, class USoundControlBus* Bus, float Value, float FadeTime);
     void SaveMixToProfile(const class UObject* WorldContextObject, class USoundControlBusMix* Mix, int32 ProfileIndex);
-    TArray<FSoundControlBusMixStage> LoadMixFromProfile(const class UObject* WorldContextObject, class USoundControlBusMix* Mix, bool bActivate, int32 ProfileIndex);
-    bool IsControlBusMixActive(const class UObject* WorldContextObject, class USoundControlBusMix* Mix);
-    float GetModulatorValue(const class UObject* WorldContextObject, class USoundModulatorBase* Modulator);
-    TSet<USoundModulatorBase*> GetModulatorsFromDestination(const FSoundModulationDestinationSettings& Destination);
+    void LoadMixFromProfile(const class UObject* WorldContextObject, class USoundControlBusMix* Mix, bool bActivate, int32 ProfileIndex);
+    void IsControlBusMixActive(const class UObject* WorldContextObject, class USoundControlBusMix* Mix);
+    void GetModulatorValue(const class UObject* WorldContextObject, class USoundModulatorBase* Modulator);
+    void GetModulatorsFromDestination(const FSoundModulationDestinationSettings& Destination);
     void DeactivateGenerator(const class UObject* WorldContextObject, class USoundModulationGenerator* Generator);
     void DeactivateBusMix(const class UObject* WorldContextObject, class USoundControlBusMix* Mix);
     void DeactivateBus(const class UObject* WorldContextObject, class USoundControlBus* Bus);
     void DeactivateAllBusMixes(const class UObject* WorldContextObject);
-    class USoundModulationParameter* CreateModulationParameter(class UObject* WorldContextObject, FName Name, TSubclassOf<class USoundModulationParameter> ParamClass, float DefaultValue);
-    class UAudioModulationDestination* CreateModulationDestination(class UObject* WorldContextObject, FName Name, class USoundModulatorBase* Modulator);
-    class USoundModulationGeneratorLFO* CreateLFOGenerator(class UObject* WorldContextObject, FName Name, FSoundModulationLFOParams Params);
-    class USoundModulationGeneratorEnvelopeFollower* CreateEnvelopeFollowerGenerator(class UObject* WorldContextObject, FName Name, FEnvelopeFollowerGeneratorParams Params);
-    FSoundControlBusMixStage CreateBusMixStage(const class UObject* WorldContextObject, class USoundControlBus* Bus, float Value, float AttackTime, float ReleaseTime);
-    class USoundControlBusMix* CreateBusMixFromValue(const class UObject* WorldContextObject, FName Name, const TArray<class USoundControlBus*>& Buses, float Value, float AttackTime, float ReleaseTime, bool bActivate);
-    class USoundControlBusMix* CreateBusMix(class UObject* WorldContextObject, FName Name, TArray<FSoundControlBusMixStage> Stages, bool Activate);
-    class USoundControlBus* CreateBus(class UObject* WorldContextObject, FName Name, class USoundModulationParameter* Parameter, bool Activate);
-    class USoundModulationGeneratorADEnvelope* CreateADEnvelopeGenerator(class UObject* WorldContextObject, FName Name, const FSoundModulationADEnvelopeParams& Params);
+    void CreateModulationParameter(class UObject* WorldContextObject, FName Name, TSubclassOf<class USoundModulationParameter> ParamClass, float DefaultValue);
+    void CreateModulationDestination(class UObject* WorldContextObject, FName Name, class USoundModulatorBase* Modulator);
+    void CreateLFOGenerator(class UObject* WorldContextObject, FName Name, FSoundModulationLFOParams Params);
+    void CreateEnvelopeFollowerGenerator(class UObject* WorldContextObject, FName Name, FEnvelopeFollowerGeneratorParams Params);
+    void CreateBusMixStage(const class UObject* WorldContextObject, class USoundControlBus* Bus, float Value, float AttackTime, float ReleaseTime);
+    void CreateBusMixFromValue(const class UObject* WorldContextObject, FName Name, const TArray<USoundControlBus*>& Buses, float Value, float AttackTime, float ReleaseTime, bool bActivate);
+    void CreateBusMix(class UObject* WorldContextObject, FName Name, TArray<FSoundControlBusMixStage> Stages, bool Activate);
+    void CreateBus(class UObject* WorldContextObject, FName Name, class USoundModulationParameter* Parameter, bool Activate);
+    void CreateADEnvelopeGenerator(class UObject* WorldContextObject, FName Name, const FSoundModulationADEnvelopeParams& Params);
     void ClearGlobalBusMixValue(const class UObject* WorldContextObject, class USoundControlBus* Bus, float FadeTime);
     void ClearAllGlobalBusMixValues(const class UObject* WorldContextObject, float FadeTime);
     void ActivateGenerator(const class UObject* WorldContextObject, class USoundModulationGenerator* Generator);
@@ -132,18 +132,18 @@ class UAudioModulationStatics : public UBlueprintFunctionLibrary
 class UAudioModulationStyle : public UBlueprintFunctionLibrary
 {
 
-    FColor GetPatchColor();
-    FColor GetParameterColor();
-    FColor GetModulationGeneratorColor();
-    FColor GetControlBusMixColor();
-    FColor GetControlBusColor();
+    void GetPatchColor();
+    void GetParameterColor();
+    void GetModulationGeneratorColor();
+    void GetControlBusMixColor();
+    void GetControlBusColor();
 }; // Size: 0x28
 
 class USoundControlBus : public USoundModulatorBase
 {
     bool bBypass;                                                                     // 0x0030 (size: 0x1)
     FString Address;                                                                  // 0x0038 (size: 0x10)
-    TArray<class USoundModulationGenerator*> Generators;                              // 0x0048 (size: 0x10)
+    TArray<USoundModulationGenerator*> Generators;                                    // 0x0048 (size: 0x10)
     class USoundModulationParameter* Parameter;                                       // 0x0058 (size: 0x8)
 
 }; // Size: 0x60

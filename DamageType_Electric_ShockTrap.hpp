@@ -3,6 +3,6 @@
 
 class UDamageType_Electric_ShockTrap_C : public UDamageType_Electric_C
 {
-}; // Size: 0x290
+}; // Size: 0x280
 
 #endif

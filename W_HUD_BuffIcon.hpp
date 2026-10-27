@@ -11,9 +11,9 @@ class UW_HUD_BuffIcon_C : public UUserWidget
     class UImage* Image_Icon;                                                         // 0x0308 (size: 0x8)
     class UTextBlock* TextDesc;                                                       // 0x0310 (size: 0x8)
     class UTextBlock* TextName;                                                       // 0x0318 (size: 0x8)
-    FBuffDebuffRowHandle BuffID;                                                      // 0x0320 (size: 0x20)
-    int32 StackCount;                                                                 // 0x0340 (size: 0x4)
-    bool Removed;                                                                     // 0x0344 (size: 0x1)
+    FBuffDebuffRowHandle BuffID;                                                      // 0x0320 (size: 0x10)
+    int32 StackCount;                                                                 // 0x0330 (size: 0x4)
+    bool Removed;                                                                     // 0x0334 (size: 0x1)
 
     void ModifyStack(int32 StackSize);
     void OnLoaded_981F94BB41F2AE3ABEBFE987F9FF1AB3(class UObject* Loaded);
@@ -22,6 +22,6 @@ class UW_HUD_BuffIcon_C : public UUserWidget
     void UpdateStackAnim();
     void PlayRemoveAnim();
     void ExecuteUbergraph_W_HUD_BuffIcon(int32 EntryPoint);
-}; // Size: 0x345
+}; // Size: 0x335
 
 #endif

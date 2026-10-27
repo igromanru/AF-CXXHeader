@@ -12,9 +12,9 @@ struct FSlatePostSettings
 
 class USlateFXSubsystem : public UEngineSubsystem
 {
-    TMap<class ESlatePostRT, class USlateRHIPostBufferProcessor*> SlatePostBufferProcessors; // 0x0030 (size: 0x50)
+    TMap<ESlatePostRT, USlateRHIPostBufferProcessor*> SlatePostBufferProcessors;      // 0x0030 (size: 0x50)
 
-    class USlateRHIPostBufferProcessor* GetSlatePostProcessor(ESlatePostRT InPostBufferBit);
+    void GetSlatePostProcessor(ESlatePostRT InPostBufferBit);
 }; // Size: 0xD0
 
 class USlatePostBufferBlur : public USlateRHIPostBufferProcessor
@@ -29,10 +29,10 @@ class USlateRHIPostBufferProcessor : public UObject
 
 class USlateRHIRendererSettings : public UDeveloperSettings
 {
-    TMap<class ESlatePostRT, class FSlatePostSettings> SlatePostSettings;             // 0x0038 (size: 0x50)
+    TMap<ESlatePostRT, FSlatePostSettings> SlatePostSettings;                         // 0x0038 (size: 0x50)
 
-    FSlatePostSettings GetSlatePostSetting(ESlatePostRT InPostBufferBit);
-    FSlatePostSettings GetMutableSlatePostSetting(ESlatePostRT InPostBufferBit);
+    void GetSlatePostSetting(ESlatePostRT InPostBufferBit);
+    void GetMutableSlatePostSetting(ESlatePostRT InPostBufferBit);
 }; // Size: 0x88
 
 #endif

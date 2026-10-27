@@ -38,7 +38,7 @@ class UMovieSceneNiagaraCacheSection : public UMovieSceneBaseCacheSection
 class UMovieSceneNiagaraCacheTrack : public UMovieSceneNameableTrack
 {
     bool bIsRecording;                                                                // 0x00A8 (size: 0x1)
-    TArray<class UMovieSceneSection*> AnimationSections;                              // 0x00B0 (size: 0x10)
+    TArray<UMovieSceneSection*> AnimationSections;                                    // 0x00B0 (size: 0x10)
     bool bCacheRecordingEnabled;                                                      // 0x00C0 (size: 0x1)
 
 }; // Size: 0xC8

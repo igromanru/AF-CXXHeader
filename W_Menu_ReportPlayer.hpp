@@ -31,8 +31,8 @@ class UW_Menu_ReportPlayer_C : public UAbioticPlayerReportWidget
     bool IgnoreFirstKeyUp;                                                            // 0x03BE (size: 0x1)
     FUniqueNetIdRepl PlayerId;                                                        // 0x03C0 (size: 0x30)
 
-    FEventReply OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
-    FEventReply OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
     void BndEvt__W_BetaNotice_Button_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__W_BetaNotice_Button_Enter_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature();
     void Construct();

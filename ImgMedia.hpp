@@ -16,7 +16,7 @@ class UImgMediaSource : public UBaseMediaSource
     void SetTokenizedSequencePath(FString Path);
     void SetSequencePath(FString Path);
     void RemoveTargetObject(class AActor* InActor);
-    FString GetSequencePath();
+    void GetSequencePath();
     void GetProxies(TArray<FString>& OutProxies);
     void AddTargetObject(class AActor* InActor);
 }; // Size: 0xD0

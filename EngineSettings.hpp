@@ -59,8 +59,8 @@ class UGameMapsSettings : public UObject
     TArray<FGameModeName> GameModeClassAliases;                                       // 0x0110 (size: 0x10)
 
     void SetSkipAssigningGamepadToPlayer1(bool bSkipFirstPlayer);
-    bool GetSkipAssigningGamepadToPlayer1();
-    class UGameMapsSettings* GetGameMapsSettings();
+    void GetSkipAssigningGamepadToPlayer1();
+    void GetGameMapsSettings();
 }; // Size: 0x120
 
 class UGameNetworkManagerSettings : public UObject

@@ -9,8 +9,8 @@ class UStyledKeyLabel_C : public UKeyLabel
     bool UseBrackets;                                                                 // 0x0358 (size: 0x1)
     bool DontShowText;                                                                // 0x0359 (size: 0x1)
 
-    FSlateBrush GetIconBrush();
-    FText GetDisplayNameUpper();
+    void GetIconBrush();
+    void GetDisplayNameUpper();
     void UpdateKeyLabel();
     void ExecuteUbergraph_StyledKeyLabel(int32 EntryPoint);
 }; // Size: 0x35A

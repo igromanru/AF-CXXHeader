@@ -3,6 +3,6 @@
 
 class ADeployed_Antelight_Green_C : public ADeployed_Antelight_C
 {
-}; // Size: 0x888
+}; // Size: 0x878
 
 #endif

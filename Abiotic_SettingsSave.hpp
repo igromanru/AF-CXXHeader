@@ -13,8 +13,10 @@ class UAbiotic_SettingsSave_C : public UAbiotic_SaveGame_C
     FName SelectedMainMenuBackground;                                                 // 0x0090 (size: 0x8)
     TArray<FName> PinnedRecipeList;                                                   // 0x0098 (size: 0x10)
     TArray<FString> RecentServers;                                                    // 0x00A8 (size: 0x10)
+    TArray<FGameCommandRowHandle> PinnedCommands;                                     // 0x00B8 (size: 0x10)
+    TArray<FGameCommandShortcutData> CustomShortcuts;                                 // 0x00C8 (size: 0x10)
 
     void AddRecentServer(FString FavoriteID);
-}; // Size: 0xB8
+}; // Size: 0xD8
 
 #endif

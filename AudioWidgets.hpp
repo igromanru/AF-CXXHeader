@@ -172,7 +172,7 @@ class UAudioMeter : public UWidget
 {
     TArray<FMeterChannelInfo> MeterChannelInfo;                                       // 0x0178 (size: 0x10)
     FAudioMeterMeterChannelInfoDelegate MeterChannelInfoDelegate;                     // 0x0188 (size: 0x10)
-    TArray<FMeterChannelInfo> GetMeterChannelInfo();
+    void GetMeterChannelInfo();
     FAudioMeterStyle WidgetStyle;                                                     // 0x01A0 (size: 0x4D0)
     TEnumAsByte<EOrientation> Orientation;                                            // 0x0670 (size: 0x1)
     FLinearColor BackgroundColor;                                                     // 0x0674 (size: 0x10)
@@ -191,8 +191,8 @@ class UAudioMeter : public UWidget
     void SetMeterChannelInfo(const TArray<FMeterChannelInfo>& InMeterChannelInfo);
     void SetMeterBackgroundColor(FLinearColor InValue);
     void SetBackgroundColor(FLinearColor InValue);
-    TArray<FMeterChannelInfo> GetMeterChannelInfo__DelegateSignature();
-    TArray<FMeterChannelInfo> GetMeterChannelInfo();
+    void GetMeterChannelInfo__DelegateSignature();
+    void GetMeterChannelInfo();
 }; // Size: 0x700
 
 class UAudioOscilloscope : public UWidget
@@ -212,14 +212,14 @@ class UAudioOscilloscope : public UWidget
 
     void StopProcessing();
     void StartProcessing();
-    TArray<float> GetOscilloscopeAudioSamples__DelegateSignature();
+    void GetOscilloscopeAudioSamples__DelegateSignature();
 }; // Size: 0x690
 
 class UAudioRadialSlider : public UWidget
 {
     float Value;                                                                      // 0x0178 (size: 0x4)
     FAudioRadialSliderValueDelegate ValueDelegate;                                    // 0x017C (size: 0x10)
-    float GetFloat();
+    void GetFloat();
     TEnumAsByte<EAudioRadialSliderLayout> WidgetLayout;                               // 0x018C (size: 0x1)
     FLinearColor CenterBackgroundColor;                                               // 0x0190 (size: 0x10)
     FLinearColor SliderProgressColor;                                                 // 0x01A0 (size: 0x10)
@@ -249,8 +249,8 @@ class UAudioRadialSlider : public UWidget
     void SetOutputRange(const FVector2D InOutputRange);
     void SetHandStartEndRatio(const FVector2D InHandStartEndRatio);
     void SetCenterBackgroundColor(FLinearColor InValue);
-    float GetSliderValue(const float OutputValue);
-    float GetOutputValue(const float InSliderValue);
+    void GetSliderValue(const float OutputValue);
+    void GetOutputValue(const float InSliderValue);
 }; // Size: 0x390
 
 class UAudioSlider : public UAudioSliderBase
@@ -266,25 +266,25 @@ class UAudioSliderBase : public UWidget
     FText UnitsText;                                                                  // 0x0180 (size: 0x10)
     FLinearColor TextLabelBackgroundColor;                                            // 0x0190 (size: 0x10)
     FAudioSliderBaseTextLabelBackgroundColorDelegate TextLabelBackgroundColorDelegate; // 0x01A0 (size: 0x10)
-    FLinearColor GetLinearColor();
+    void GetLinearColor();
     bool ShowLabelOnlyOnHover;                                                        // 0x01B0 (size: 0x1)
     bool ShowUnitsText;                                                               // 0x01B1 (size: 0x1)
     bool IsUnitsTextReadOnly;                                                         // 0x01B2 (size: 0x1)
     bool IsValueTextReadOnly;                                                         // 0x01B3 (size: 0x1)
     FAudioSliderBaseValueDelegate ValueDelegate;                                      // 0x01B4 (size: 0x10)
-    float GetFloat();
+    void GetFloat();
     FLinearColor SliderBackgroundColor;                                               // 0x01C4 (size: 0x10)
     FAudioSliderBaseSliderBackgroundColorDelegate SliderBackgroundColorDelegate;      // 0x01D4 (size: 0x10)
-    FLinearColor GetLinearColor();
+    void GetLinearColor();
     FLinearColor SliderBarColor;                                                      // 0x01E4 (size: 0x10)
     FAudioSliderBaseSliderBarColorDelegate SliderBarColorDelegate;                    // 0x01F4 (size: 0x10)
-    FLinearColor GetLinearColor();
+    void GetLinearColor();
     FLinearColor SliderThumbColor;                                                    // 0x0204 (size: 0x10)
     FAudioSliderBaseSliderThumbColorDelegate SliderThumbColorDelegate;                // 0x0214 (size: 0x10)
-    FLinearColor GetLinearColor();
+    void GetLinearColor();
     FLinearColor WidgetBackgroundColor;                                               // 0x0224 (size: 0x10)
     FAudioSliderBaseWidgetBackgroundColorDelegate WidgetBackgroundColorDelegate;      // 0x0234 (size: 0x10)
-    FLinearColor GetLinearColor();
+    void GetLinearColor();
     TEnumAsByte<EOrientation> Orientation;                                            // 0x0244 (size: 0x1)
     FAudioSliderBaseOnValueChanged OnValueChanged;                                    // 0x0248 (size: 0x10)
     void OnFloatValueChangedEvent(float Value);
@@ -299,9 +299,9 @@ class UAudioSliderBase : public UWidget
     void SetSliderBackgroundColor(FLinearColor InValue);
     void SetShowUnitsText(const bool bShowUnitsText);
     void SetShowLabelOnlyOnHover(const bool bShowLabelOnlyOnHover);
-    float GetSliderValue(const float OutputValue);
-    float GetOutputValue(const float InSliderValue);
-    float GetLinValue(const float OutputValue);
+    void GetSliderValue(const float OutputValue);
+    void GetOutputValue(const float InSliderValue);
+    void GetLinValue(const float OutputValue);
 }; // Size: 0x9C0
 
 class UAudioVectorscope : public UWidget
@@ -316,7 +316,7 @@ class UAudioVectorscope : public UWidget
 
     void StopProcessing();
     void StartProcessing();
-    TArray<float> GetVectorscopeAudioSamples__DelegateSignature();
+    void GetVectorscopeAudioSamples__DelegateSignature();
 }; // Size: 0x3B0
 
 class UAudioVolumeRadialSlider : public UAudioRadialSlider

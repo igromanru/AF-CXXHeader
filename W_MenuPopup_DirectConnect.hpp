@@ -36,8 +36,8 @@ class UW_MenuPopup_DirectConnect_C : public UUserWidget
     bool IsJoinCode;                                                                  // 0x03D6 (size: 0x1)
 
     void FilterAndClampText(const FText& InText, bool AllowSpecialCharacters, const TArray<FString>& ABCStrings, FText& OutputPin);
-    FEventReply OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
-    FEventReply OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
     void BndEvt__W_BetaNotice_Button_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__W_BetaNotice_Button_Enter_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature();
     void Construct();

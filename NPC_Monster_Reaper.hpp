@@ -3,33 +3,33 @@
 
 class ANPC_Monster_Reaper_C : public ANPC_Base_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x21B8 (size: 0x8)
-    class UChildActorComponent* ChildActor;                                           // 0x21C0 (size: 0x8)
-    class UAudioComponent* Audio;                                                     // 0x21C8 (size: 0x8)
-    class UNiagaraComponent* DissolveParticle;                                        // 0x21D0 (size: 0x8)
-    class UNiagaraComponent* Niagara;                                                 // 0x21D8 (size: 0x8)
-    class USphereComponent* Sphere;                                                   // 0x21E0 (size: 0x8)
-    float Timeline_0_NewTrack_1_62DF85804DA176A7E0F38A941D8B76E6;                     // 0x21E8 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> Timeline_0__Direction_62DF85804DA176A7E0F38A941D8B76E6; // 0x21EC (size: 0x1)
-    class UTimelineComponent* Timeline_0;                                             // 0x21F0 (size: 0x8)
-    float EmissiveTimeline_Alpha_BE84A34447F20897B129359E909AF44D;                    // 0x21F8 (size: 0x4)
-    TEnumAsByte<ETimelineDirection::Type> EmissiveTimeline__Direction_BE84A34447F20897B129359E909AF44D; // 0x21FC (size: 0x1)
-    class UTimelineComponent* EmissiveTimeline;                                       // 0x2200 (size: 0x8)
-    int32 ElectronicsDisrupted;                                                       // 0x2208 (size: 0x4)
-    double TimeLastDroppedEssence;                                                    // 0x2210 (size: 0x8)
-    int32 DisruptionsToDropEssence;                                                   // 0x2218 (size: 0x4)
-    FName CustomGrabTraceSocket;                                                      // 0x221C (size: 0x8)
-    class AReaperDirector_Security_C* ReaperDirector;                                 // 0x2228 (size: 0x8)
-    int32 StaggerDespawnCount;                                                        // 0x2230 (size: 0x4)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x21C8 (size: 0x8)
+    class UChildActorComponent* ChildActor;                                           // 0x21D0 (size: 0x8)
+    class UAudioComponent* Audio;                                                     // 0x21D8 (size: 0x8)
+    class UNiagaraComponent* DissolveParticle;                                        // 0x21E0 (size: 0x8)
+    class UNiagaraComponent* Niagara;                                                 // 0x21E8 (size: 0x8)
+    class USphereComponent* Sphere;                                                   // 0x21F0 (size: 0x8)
+    float Timeline_0_NewTrack_1_62DF85804DA176A7E0F38A941D8B76E6;                     // 0x21F8 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> Timeline_0__Direction_62DF85804DA176A7E0F38A941D8B76E6; // 0x21FC (size: 0x1)
+    class UTimelineComponent* Timeline_0;                                             // 0x2200 (size: 0x8)
+    float EmissiveTimeline_Alpha_BE84A34447F20897B129359E909AF44D;                    // 0x2208 (size: 0x4)
+    TEnumAsByte<ETimelineDirection::Type> EmissiveTimeline__Direction_BE84A34447F20897B129359E909AF44D; // 0x220C (size: 0x1)
+    class UTimelineComponent* EmissiveTimeline;                                       // 0x2210 (size: 0x8)
+    int32 ElectronicsDisrupted;                                                       // 0x2218 (size: 0x4)
+    double TimeLastDroppedEssence;                                                    // 0x2220 (size: 0x8)
+    int32 DisruptionsToDropEssence;                                                   // 0x2228 (size: 0x4)
+    FName CustomGrabTraceSocket;                                                      // 0x222C (size: 0x8)
+    class AReaperDirector_Security_C* ReaperDirector;                                 // 0x2238 (size: 0x8)
+    int32 StaggerDespawnCount;                                                        // 0x2240 (size: 0x4)
 
     void CanGrabValidTarget(bool& CanGrab);
-    bool DespawnableDamageType(const class UObject* Object);
+    void DespawnableDamageType(const class UObject* Object);
     void CheckForStagger(bool ForceStagger, FVector HitOrigin);
     void HandleVehicleHit(bool& Handled);
-    double GetStaggerDamage();
-    double GetTimeLastDroppedEssence();
+    void GetStaggerDamage();
+    void GetTimeLastDroppedEssence();
     void OnTargetDamaged(class AActor* Target, bool FromMelee);
-    FName GetGrabTraceSocket();
+    void GetGrabTraceSocket();
     void TryDisruptElectronicItem(class UObject* Object);
     void DoReaperGrabStab();
     void Timeline_0__FinishedFunc();
@@ -53,8 +53,8 @@ class ANPC_Monster_Reaper_C : public ANPC_Base_ParentBP_C
     void Server_PerformMegalightFear(class AActor* Instigator);
     void Broadcast_PerformStagger(TEnumAsByte<EStaggerDirection::Type> Direction);
     void Local_DoHitReaction();
-    void OnMegalightHit(class UAbiotic_MegalightComponent_C* megalight, int32 Tier);
+    void OnMegalightHit(class UAbiotic_MegalightComponent_C* Megalight, int32 Tier);
     void ExecuteUbergraph_NPC_Monster_Reaper(int32 EntryPoint);
-}; // Size: 0x2234
+}; // Size: 0x2244
 
 #endif

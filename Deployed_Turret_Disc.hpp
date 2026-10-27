@@ -3,6 +3,6 @@
 
 class ADeployed_Turret_Disc_C : public ADeployed_Turret_ParentBP_C
 {
-}; // Size: 0x8B9
+}; // Size: 0x8A9
 
 #endif

@@ -58,7 +58,7 @@ struct FGoalBone
 struct FIKRetargetPose
 {
     FVector RootTranslationOffset;                                                    // 0x0000 (size: 0x18)
-    TMap<class FName, class FQuat> BoneRotationOffsets;                               // 0x0018 (size: 0x50)
+    TMap<FName, FQuat> BoneRotationOffsets;                                           // 0x0018 (size: 0x50)
 
 }; // Size: 0x70
 
@@ -164,7 +164,7 @@ struct FRetargetProfile
     bool bApplySourceRetargetPose;                                                    // 0x000C (size: 0x1)
     FName SourceRetargetPoseName;                                                     // 0x0010 (size: 0x8)
     bool bApplyChainSettings;                                                         // 0x0018 (size: 0x1)
-    TMap<class FName, class FTargetChainSettings> ChainSettings;                      // 0x0020 (size: 0x50)
+    TMap<FName, FTargetChainSettings> ChainSettings;                                  // 0x0020 (size: 0x50)
     bool bApplyRootSettings;                                                          // 0x0070 (size: 0x1)
     FTargetRootSettings RootSettings;                                                 // 0x0078 (size: 0x68)
     bool bApplyGlobalSettings;                                                        // 0x00E0 (size: 0x1)
@@ -235,7 +235,7 @@ struct FTargetRootSettings
 class IIKGoalCreatorInterface : public IInterface
 {
 
-    void AddIKGoals(TMap<class FName, class FIKRigGoal>& OutGoals);
+    void AddIKGoals(TMap<FName, FIKRigGoal>& OutGoals);
 }; // Size: 0x28
 
 class UCurveRemapOp : public URetargetOpBase
@@ -254,27 +254,27 @@ class UIKRetargetGlobalSettings : public UObject
 class UIKRetargetProcessor : public UObject
 {
     class UIKRigProcessor* IKRigProcessor;                                            // 0x0188 (size: 0x8)
-    TArray<class URetargetOpBase*> OpStack;                                           // 0x0388 (size: 0x10)
+    TArray<URetargetOpBase*> OpStack;                                                 // 0x0388 (size: 0x10)
 
 }; // Size: 0x3A0
 
 class UIKRetargeter : public UObject
 {
     int32 Version;                                                                    // 0x0028 (size: 0x4)
-    TSoftObjectPtr<UIKRigDefinition> SourceIKRigAsset;                                // 0x0030 (size: 0x28)
-    TSoftObjectPtr<UIKRigDefinition> TargetIKRigAsset;                                // 0x0058 (size: 0x28)
+    TSoftObjectPtr<class UIKRigDefinition> SourceIKRigAsset;                          // 0x0030 (size: 0x28)
+    TSoftObjectPtr<class UIKRigDefinition> TargetIKRigAsset;                          // 0x0058 (size: 0x28)
     TArray<FRetargetChainMap> ChainMapping;                                           // 0x0080 (size: 0x10)
-    TArray<class URetargetChainSettings*> ChainSettings;                              // 0x0090 (size: 0x10)
+    TArray<URetargetChainSettings*> ChainSettings;                                    // 0x0090 (size: 0x10)
     class URetargetRootSettings* RootSettings;                                        // 0x00A0 (size: 0x8)
     class UIKRetargetGlobalSettings* GlobalSettings;                                  // 0x00A8 (size: 0x8)
     class URetargetOpStack* OpStack;                                                  // 0x00B0 (size: 0x8)
-    TMap<class FName, class FRetargetProfile> Profiles;                               // 0x00B8 (size: 0x50)
+    TMap<FName, FRetargetProfile> Profiles;                                           // 0x00B8 (size: 0x50)
     FName CurrentProfile;                                                             // 0x0108 (size: 0x8)
-    TMap<class FName, class FIKRetargetPose> SourceRetargetPoses;                     // 0x0110 (size: 0x50)
-    TMap<class FName, class FIKRetargetPose> TargetRetargetPoses;                     // 0x0160 (size: 0x50)
+    TMap<FName, FIKRetargetPose> SourceRetargetPoses;                                 // 0x0110 (size: 0x50)
+    TMap<FName, FIKRetargetPose> TargetRetargetPoses;                                 // 0x0160 (size: 0x50)
     FName CurrentSourceRetargetPose;                                                  // 0x01B0 (size: 0x8)
     FName CurrentTargetRetargetPose;                                                  // 0x01B8 (size: 0x8)
-    TMap<class FName, class FIKRetargetPose> RetargetPoses;                           // 0x01C0 (size: 0x50)
+    TMap<FName, FIKRetargetPose> RetargetPoses;                                       // 0x01C0 (size: 0x50)
     FName CurrentRetargetPose;                                                        // 0x0210 (size: 0x8)
 
     void SetRootSettingsInRetargetProfile(FRetargetProfile& RetargetProfile, const FTargetRootSettings& RootSettings);
@@ -283,15 +283,15 @@ class UIKRetargeter : public UObject
     void SetChainSettingsInRetargetProfile(FRetargetProfile& RetargetProfile, const FTargetChainSettings& ChainSettings, const FName TargetChainName);
     void SetChainIKSettingsInRetargetProfile(FRetargetProfile& RetargetProfile, const FTargetChainIKSettings& IKSettings, const FName TargetChainName);
     void SetChainFKSettingsInRetargetProfile(FRetargetProfile& RetargetProfile, const FTargetChainFKSettings& FKSettings, const FName TargetChainName);
-    bool HasTargetIKRig();
-    bool HasSourceIKRig();
-    FTargetRootSettings GetRootSettingsFromRetargetProfile(FRetargetProfile& RetargetProfile);
+    void HasTargetIKRig();
+    void HasSourceIKRig();
+    void GetRootSettingsFromRetargetProfile(FRetargetProfile& RetargetProfile);
     void GetRootSettingsFromRetargetAsset(const class UIKRetargeter* RetargetAsset, const FName OptionalProfileName, FTargetRootSettings& OutSettings);
-    FRetargetGlobalSettings GetGlobalSettingsFromRetargetProfile(FRetargetProfile& RetargetProfile);
+    void GetGlobalSettingsFromRetargetProfile(FRetargetProfile& RetargetProfile);
     void GetGlobalSettingsFromRetargetAsset(const class UIKRetargeter* RetargetAsset, const FName OptionalProfileName, FRetargetGlobalSettings& OutSettings);
-    FTargetChainSettings GetChainUsingGoalFromRetargetAsset(const class UIKRetargeter* RetargetAsset, const FName IKGoalName);
-    FTargetChainSettings GetChainSettingsFromRetargetProfile(FRetargetProfile& RetargetProfile, const FName TargetChainName);
-    FTargetChainSettings GetChainSettingsFromRetargetAsset(const class UIKRetargeter* RetargetAsset, const FName TargetChainName, const FName OptionalProfileName);
+    void GetChainUsingGoalFromRetargetAsset(const class UIKRetargeter* RetargetAsset, const FName IKGoalName);
+    void GetChainSettingsFromRetargetProfile(FRetargetProfile& RetargetProfile, const FName TargetChainName);
+    void GetChainSettingsFromRetargetAsset(const class UIKRetargeter* RetargetAsset, const FName TargetChainName, const FName OptionalProfileName);
 }; // Size: 0x218
 
 class UIKRigComponent : public UActorComponent
@@ -305,10 +305,10 @@ class UIKRigComponent : public UActorComponent
 
 class UIKRigDefinition : public UObject
 {
-    TSoftObjectPtr<USkeletalMesh> PreviewSkeletalMesh;                                // 0x0030 (size: 0x28)
+    TSoftObjectPtr<class USkeletalMesh> PreviewSkeletalMesh;                          // 0x0030 (size: 0x28)
     FIKRigSkeleton Skeleton;                                                          // 0x0058 (size: 0x70)
-    TArray<class UIKRigEffectorGoal*> Goals;                                          // 0x00C8 (size: 0x10)
-    TArray<class UIKRigSolver*> Solvers;                                              // 0x00D8 (size: 0x10)
+    TArray<UIKRigEffectorGoal*> Goals;                                                // 0x00C8 (size: 0x10)
+    TArray<UIKRigSolver*> Solvers;                                                    // 0x00D8 (size: 0x10)
     FRetargetDefinition RetargetDefinition;                                           // 0x00E8 (size: 0x18)
 
 }; // Size: 0x100
@@ -337,14 +337,14 @@ class UIKRigFBIKSolver : public UIKRigSolver
     float MaxAngle;                                                                   // 0x006C (size: 0x4)
     float OverRelaxation;                                                             // 0x0070 (size: 0x4)
     bool bStartSolveFromInputPose;                                                    // 0x0074 (size: 0x1)
-    TArray<class UIKRig_FBIKEffector*> Effectors;                                     // 0x0078 (size: 0x10)
-    TArray<class UIKRig_FBIKBoneSettings*> BoneSettings;                              // 0x0088 (size: 0x10)
+    TArray<UIKRig_FBIKEffector*> Effectors;                                           // 0x0078 (size: 0x10)
+    TArray<UIKRig_FBIKBoneSettings*> BoneSettings;                                    // 0x0088 (size: 0x10)
 
 }; // Size: 0xF0
 
 class UIKRigProcessor : public UObject
 {
-    TArray<class UIKRigSolver*> Solvers;                                              // 0x0060 (size: 0x10)
+    TArray<UIKRigSolver*> Solvers;                                                    // 0x0060 (size: 0x10)
 
 }; // Size: 0x148
 
@@ -368,7 +368,7 @@ class UIKRig_BodyMover : public UIKRigSolver
     float RotateXAlpha;                                                               // 0x0058 (size: 0x4)
     float RotateYAlpha;                                                               // 0x005C (size: 0x4)
     float RotateZAlpha;                                                               // 0x0060 (size: 0x4)
-    TArray<class UIKRig_BodyMoverEffector*> Effectors;                                // 0x0068 (size: 0x10)
+    TArray<UIKRig_BodyMoverEffector*> Effectors;                                      // 0x0068 (size: 0x10)
 
 }; // Size: 0x80
 
@@ -494,7 +494,7 @@ class URetargetOpBase : public UObject
 
 class URetargetOpStack : public UObject
 {
-    TArray<class URetargetOpBase*> RetargetOps;                                       // 0x0028 (size: 0x10)
+    TArray<URetargetOpBase*> RetargetOps;                                             // 0x0028 (size: 0x10)
 
 }; // Size: 0x38
 

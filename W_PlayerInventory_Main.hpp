@@ -43,7 +43,7 @@ class UW_PlayerInventory_Main_C : public UAbioticWidget
     class UWidgetSwitcher* WS_Primary;                                                // 0x0408 (size: 0x8)
     class UWidgetSwitcher* WS_PrimaryRightPanel;                                      // 0x0410 (size: 0x8)
     class AAbiotic_PlayerCharacter_C* OwningCharacter;                                // 0x0418 (size: 0x8)
-    TArray<FDataTableRowHandle> CurrentCraftingBenchesInRange;                        // 0x0420 (size: 0x10)
+    TArray<FGlobalItemRowHandle> CurrentCraftingBenchesInRange;                       // 0x0420 (size: 0x10)
     EInventoryMode InventoryMode;                                                     // 0x0430 (size: 0x1)
     class UAbiotic_InventoryComponent_C* ActiveContainer;                             // 0x0438 (size: 0x8)
     bool LShiftModifierHeld;                                                          // 0x0440 (size: 0x1)
@@ -69,14 +69,14 @@ class UW_PlayerInventory_Main_C : public UAbioticWidget
     void WidgetAction_CycleMenu(bool Next, bool& Handled);
     void WidgetAction_CloseMenu(bool& Handled);
     void SetUniqueInventoryTheme();
-    bool IsSplitStackOpen();
-    void ToggleSplitStack(bool Show, FAbiotic_InventoryItemSlotStruct ItemSlotStruct, class UW_InventoryItemSlot_C* OriginSlot);
+    void IsSplitStackOpen();
+    void ToggleSplitStack(bool Show, FAbioticInventoryItemSlot ItemSlotStruct, class UW_InventoryItemSlot_C* OriginSlot);
     void RemoveUIPopup(FUIPopupRowHandle PopupRow);
     void TryAddUIPopup(FUIPopupRowHandle PopupRow, bool ForceIfSeen);
     void Reset Scrap/ Repair Cursor Mode(bool& Success);
     void CloseInventorySafely();
-    FEventReply OnMouseButtonUp(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
-    FEventReply OnMouseButtonDown(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
+    void OnMouseButtonUp(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
+    void OnMouseButtonDown(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
     void Refresh All Panels();
     void ToggleHotbarVis(EInventoryMode InventoryMode);
     void RefreshSkillsPanel();
@@ -84,10 +84,10 @@ class UW_PlayerInventory_Main_C : public UAbioticWidget
     void Get Keybinding Key Data Action(TArray<FDovracInput>& KeyBindingList, FString InputName, FKey& KeyData);
     void CloseItemContextMenu();
     void RefreshEquipmentSlots();
-    FEventReply OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
     void UncheckAllTabs();
     void RefreshInventoryMode();
-    FEventReply OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
     void UpdateMoney();
     void TryUsePager(class AActor* LinkedActor);
     void Tab_Backpack(bool bIsChecked);

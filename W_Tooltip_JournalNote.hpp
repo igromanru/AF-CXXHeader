@@ -17,14 +17,14 @@ class UW_Tooltip_JournalNote_C : public UUserWidget
     FText Text;                                                                       // 0x0338 (size: 0x10)
     FText Text_Additional;                                                            // 0x0348 (size: 0x10)
     FText Text_Negative;                                                              // 0x0358 (size: 0x10)
-    FDataTableRowHandle ResourcesDataTableRow;                                        // 0x0368 (size: 0x10)
-    bool ShowResources;                                                               // 0x0378 (size: 0x1)
+    FMapResourceRowHandle ResourcesDataTableRow;                                      // 0x0368 (size: 0x18)
+    bool ShowResources;                                                               // 0x0380 (size: 0x1)
 
-    void AddItemToList(FName ItemRow, int32 Index);
+    void AddItemToList(FGlobalItemRowHandle ItemRow, int32 Index);
     void Construct();
     void RefreshTooltip();
     void PinnedRecipeChanged(FName RecipesToPin, bool UnpinAllRecipes);
     void ExecuteUbergraph_W_Tooltip_JournalNote(int32 EntryPoint);
-}; // Size: 0x379
+}; // Size: 0x381
 
 #endif

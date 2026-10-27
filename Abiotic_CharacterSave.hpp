@@ -1,10 +1,8 @@
 #ifndef UE4SS_SDK_Abiotic_CharacterSave_HPP
 #define UE4SS_SDK_Abiotic_CharacterSave_HPP
 
-class UAbiotic_CharacterSave_C : public UAbioticSave
+class UAbiotic_CharacterSave_C : public UAbioticCharacterSave
 {
-    FSaveData_CharacterSave_Struct CharacterSaveData;                                 // 0x00E0 (size: 0x2C0)
-
-}; // Size: 0x3A0
+}; // Size: 0x3C8
 
 #endif

@@ -11,7 +11,7 @@ struct FStringValuePair
 class UDataflow : public UEdGraph
 {
     bool bActive;                                                                     // 0x0088 (size: 0x1)
-    TArray<class UObject*> Targets;                                                   // 0x0090 (size: 0x10)
+    TArray<UObject*> Targets;                                                         // 0x0090 (size: 0x10)
     class UMaterial* Material;                                                        // 0x00A0 (size: 0x8)
 
 }; // Size: 0xA8

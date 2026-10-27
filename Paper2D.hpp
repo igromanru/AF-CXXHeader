@@ -21,7 +21,7 @@ struct FPaperFlipbookKeyFrame
 
 struct FPaperSpriteAtlasSlot
 {
-    TSoftObjectPtr<UPaperSprite> SpriteRef;                                           // 0x0000 (size: 0x28)
+    TSoftObjectPtr<class UPaperSprite> SpriteRef;                                     // 0x0000 (size: 0x28)
     int32 AtlasIndex;                                                                 // 0x0028 (size: 0x4)
     int32 X;                                                                          // 0x002C (size: 0x4)
     int32 Y;                                                                          // 0x0030 (size: 0x4)
@@ -40,7 +40,7 @@ struct FPaperSpriteSocket
 struct FPaperTerrainMaterialRule
 {
     class UPaperSprite* StartCap;                                                     // 0x0000 (size: 0x8)
-    TArray<class UPaperSprite*> Body;                                                 // 0x0008 (size: 0x10)
+    TArray<UPaperSprite*> Body;                                                       // 0x0008 (size: 0x10)
     class UPaperSprite* EndCap;                                                       // 0x0018 (size: 0x8)
     float MinimumAngle;                                                               // 0x0020 (size: 0x4)
     float MaximumAngle;                                                               // 0x0024 (size: 0x4)
@@ -170,13 +170,13 @@ class UPaperFlipbook : public UObject
     class UMaterialInterface* DefaultMaterial;                                        // 0x0040 (size: 0x8)
     TEnumAsByte<EFlipbookCollisionMode::Type> CollisionSource;                        // 0x0048 (size: 0x1)
 
-    bool IsValidKeyFrameIndex(int32 Index);
-    float GetTotalDuration();
-    class UPaperSprite* GetSpriteAtTime(float Time, bool bClampToEnds);
-    class UPaperSprite* GetSpriteAtFrame(int32 FrameIndex);
-    int32 GetNumKeyFrames();
-    int32 GetNumFrames();
-    int32 GetKeyFrameIndexAtTime(float Time, bool bClampToEnds);
+    void IsValidKeyFrameIndex(int32 Index);
+    void GetTotalDuration();
+    void GetSpriteAtTime(float Time, bool bClampToEnds);
+    void GetSpriteAtFrame(int32 FrameIndex);
+    void GetNumKeyFrames();
+    void GetNumFrames();
+    void GetKeyFrameIndexAtTime(float Time, bool bClampToEnds);
 }; // Size: 0x50
 
 class UPaperFlipbookComponent : public UMeshComponent
@@ -201,38 +201,38 @@ class UPaperFlipbookComponent : public UMeshComponent
     void SetPlaybackPosition(float NewPosition, bool bFireEvents);
     void SetNewTime(float NewTime);
     void SetLooping(bool bNewLooping);
-    bool SetFlipbook(class UPaperFlipbook* NewFlipbook);
+    void SetFlipbook(class UPaperFlipbook* NewFlipbook);
     void ReverseFromEnd();
     void Reverse();
     void PlayFromStart();
     void Play();
     void OnRep_SourceFlipbook(class UPaperFlipbook* OldFlipbook);
-    bool IsReversing();
-    bool IsPlaying();
-    bool IsLooping();
-    FLinearColor GetSpriteColor();
-    float GetPlayRate();
-    int32 GetPlaybackPositionInFrames();
-    float GetPlaybackPosition();
-    int32 GetFlipbookLengthInFrames();
-    float GetFlipbookLength();
-    float GetFlipbookFramerate();
-    class UPaperFlipbook* GetFlipbook();
+    void IsReversing();
+    void IsPlaying();
+    void IsLooping();
+    void GetSpriteColor();
+    void GetPlayRate();
+    void GetPlaybackPositionInFrames();
+    void GetPlaybackPosition();
+    void GetFlipbookLengthInFrames();
+    void GetFlipbookLength();
+    void GetFlipbookFramerate();
+    void GetFlipbook();
 }; // Size: 0x5A0
 
 class UPaperGroupedSpriteComponent : public UMeshComponent
 {
-    TArray<class UMaterialInterface*> InstanceMaterials;                              // 0x0558 (size: 0x10)
+    TArray<UMaterialInterface*> InstanceMaterials;                                    // 0x0558 (size: 0x10)
     TArray<FSpriteInstanceData> PerInstanceSpriteData;                                // 0x0568 (size: 0x10)
 
-    bool UpdateInstanceTransform(int32 InstanceIndex, const FTransform& NewInstanceTransform, bool bWorldSpace, bool bMarkRenderStateDirty, bool bTeleport);
-    bool UpdateInstanceColor(int32 InstanceIndex, FLinearColor NewInstanceColor, bool bMarkRenderStateDirty);
+    void UpdateInstanceTransform(int32 InstanceIndex, const FTransform& NewInstanceTransform, bool bWorldSpace, bool bMarkRenderStateDirty, bool bTeleport);
+    void UpdateInstanceColor(int32 InstanceIndex, FLinearColor NewInstanceColor, bool bMarkRenderStateDirty);
     void SortInstancesAlongAxis(FVector WorldSpaceSortAxis);
-    bool RemoveInstance(int32 InstanceIndex);
-    bool GetInstanceTransform(int32 InstanceIndex, FTransform& OutInstanceTransform, bool bWorldSpace);
-    int32 GetInstanceCount();
+    void RemoveInstance(int32 InstanceIndex);
+    void GetInstanceTransform(int32 InstanceIndex, FTransform& OutInstanceTransform, bool bWorldSpace);
+    void GetInstanceCount();
     void ClearInstances();
-    int32 AddInstance(const FTransform& Transform, class UPaperSprite* Sprite, bool bWorldSpace, FLinearColor Color);
+    void AddInstance(const FTransform& Transform, class UPaperSprite* Sprite, bool bWorldSpace, FLinearColor Color);
 }; // Size: 0x590
 
 class UPaperRuntimeSettings : public UObject
@@ -245,7 +245,7 @@ class UPaperRuntimeSettings : public UObject
 
 class UPaperSprite : public UObject
 {
-    TArray<class UTexture*> AdditionalSourceTextures;                                 // 0x0038 (size: 0x10)
+    TArray<UTexture*> AdditionalSourceTextures;                                       // 0x0038 (size: 0x10)
     FVector2D BakedSourceUV;                                                          // 0x0048 (size: 0x10)
     FVector2D BakedSourceDimension;                                                   // 0x0058 (size: 0x10)
     class UTexture2D* BakedSourceTexture;                                             // 0x0068 (size: 0x8)
@@ -267,7 +267,7 @@ class UPaperSpriteAtlas : public UObject
 class UPaperSpriteBlueprintLibrary : public UBlueprintFunctionLibrary
 {
 
-    FSlateBrush MakeBrushFromSprite(class UPaperSprite* Sprite, int32 Width, int32 Height);
+    void MakeBrushFromSprite(class UPaperSprite* Sprite, int32 Width, int32 Height);
 }; // Size: 0x28
 
 class UPaperSpriteComponent : public UMeshComponent
@@ -277,8 +277,8 @@ class UPaperSpriteComponent : public UMeshComponent
     FLinearColor SpriteColor;                                                         // 0x0568 (size: 0x10)
 
     void SetSpriteColor(FLinearColor NewColor);
-    bool SetSprite(class UPaperSprite* NewSprite);
-    class UPaperSprite* GetSprite();
+    void SetSprite(class UPaperSprite* NewSprite);
+    void GetSprite();
 }; // Size: 0x580
 
 class UPaperTerrainComponent : public UPrimitiveComponent
@@ -339,9 +339,9 @@ class UPaperTileMap : public UObject
     float SeparationPerTileX;                                                         // 0x003C (size: 0x4)
     float SeparationPerTileY;                                                         // 0x0040 (size: 0x4)
     float SeparationPerLayer;                                                         // 0x0044 (size: 0x4)
-    TSoftObjectPtr<UPaperTileSet> SelectedTileSet;                                    // 0x0048 (size: 0x28)
+    TSoftObjectPtr<class UPaperTileSet> SelectedTileSet;                              // 0x0048 (size: 0x28)
     class UMaterialInterface* Material;                                               // 0x0070 (size: 0x8)
-    TArray<class UPaperTileLayer*> TileLayers;                                        // 0x0078 (size: 0x10)
+    TArray<UPaperTileLayer*> TileLayers;                                              // 0x0078 (size: 0x10)
     float CollisionThickness;                                                         // 0x0088 (size: 0x4)
     TEnumAsByte<ESpriteCollisionMode::Type> SpriteCollisionDomain;                    // 0x008C (size: 0x1)
     TEnumAsByte<ETileMapProjectionMode::Type> ProjectionMode;                         // 0x008D (size: 0x1)
@@ -359,38 +359,38 @@ class UPaperTileMapComponent : public UMeshComponent
     int32 TileHeight;                                                                 // 0x0564 (size: 0x4)
     class UPaperTileSet* DefaultLayerTileSet;                                         // 0x0568 (size: 0x8)
     class UMaterialInterface* Material;                                               // 0x0570 (size: 0x8)
-    TArray<class UPaperTileLayer*> TileLayers;                                        // 0x0578 (size: 0x10)
+    TArray<UPaperTileLayer*> TileLayers;                                              // 0x0578 (size: 0x10)
     FLinearColor TileMapColor;                                                        // 0x0588 (size: 0x10)
     int32 UseSingleLayerIndex;                                                        // 0x0598 (size: 0x4)
     bool bUseSingleLayer;                                                             // 0x059C (size: 0x1)
     class UPaperTileMap* TileMap;                                                     // 0x05A0 (size: 0x8)
 
     void SetTileMapColor(FLinearColor NewColor);
-    bool SetTileMap(class UPaperTileMap* NewTileMap);
+    void SetTileMap(class UPaperTileMap* NewTileMap);
     void SetTile(int32 X, int32 Y, int32 Layer, FPaperTileInfo NewValue);
     void SetLayerColor(FLinearColor NewColor, int32 Layer);
     void SetLayerCollision(int32 Layer, bool bHasCollision, bool bOverrideThickness, float CustomThickness, bool bOverrideOffset, float CustomOffset, bool bRebuildCollision);
     void SetDefaultCollisionThickness(float Thickness, bool bRebuildCollision);
     void ResizeMap(int32 NewWidthInTiles, int32 NewHeightInTiles);
     void RebuildCollision();
-    bool OwnsTileMap();
+    void OwnsTileMap();
     void MakeTileMapEditable();
     void GetTilePolygon(int32 TileX, int32 TileY, TArray<FVector>& Points, int32 LayerIndex, bool bWorldSpace);
-    FLinearColor GetTileMapColor();
-    FVector GetTileCornerPosition(int32 TileX, int32 TileY, int32 LayerIndex, bool bWorldSpace);
-    FVector GetTileCenterPosition(int32 TileX, int32 TileY, int32 LayerIndex, bool bWorldSpace);
-    FPaperTileInfo GetTile(int32 X, int32 Y, int32 Layer);
+    void GetTileMapColor();
+    void GetTileCornerPosition(int32 TileX, int32 TileY, int32 LayerIndex, bool bWorldSpace);
+    void GetTileCenterPosition(int32 TileX, int32 TileY, int32 LayerIndex, bool bWorldSpace);
+    void GetTile(int32 X, int32 Y, int32 Layer);
     void GetMapSize(int32& MapWidth, int32& MapHeight, int32& NumLayers);
-    FLinearColor GetLayerColor(int32 Layer);
+    void GetLayerColor(int32 Layer);
     void CreateNewTileMap(int32 MapWidth, int32 MapHeight, int32 TileWidth, int32 TileHeight, float PixelsPerUnrealUnit, bool bCreateLayer);
-    class UPaperTileLayer* AddNewLayer();
+    void AddNewLayer();
 }; // Size: 0x5B0
 
 class UPaperTileSet : public UObject
 {
     FIntPoint TileSize;                                                               // 0x0028 (size: 0x8)
     class UTexture2D* TileSheet;                                                      // 0x0030 (size: 0x8)
-    TArray<class UTexture*> AdditionalSourceTextures;                                 // 0x0038 (size: 0x10)
+    TArray<UTexture*> AdditionalSourceTextures;                                       // 0x0038 (size: 0x10)
     FIntMargin BorderMargin;                                                          // 0x0048 (size: 0x10)
     FIntPoint PerTileSpacing;                                                         // 0x0058 (size: 0x8)
     FIntPoint DrawingOffset;                                                          // 0x0060 (size: 0x8)
@@ -410,9 +410,9 @@ class UPaperTileSet : public UObject
 class UTileMapBlueprintLibrary : public UBlueprintFunctionLibrary
 {
 
-    FPaperTileInfo MakeTile(int32 TileIndex, class UPaperTileSet* TileSet, bool bFlipH, bool bFlipV, bool bFlipD);
-    FName GetTileUserData(FPaperTileInfo Tile);
-    FTransform GetTileTransform(FPaperTileInfo Tile);
+    void MakeTile(int32 TileIndex, class UPaperTileSet* TileSet, bool bFlipH, bool bFlipV, bool bFlipD);
+    void GetTileUserData(FPaperTileInfo Tile);
+    void GetTileTransform(FPaperTileInfo Tile);
     void BreakTile(FPaperTileInfo Tile, int32& TileIndex, class UPaperTileSet*& TileSet, bool& bFlipH, bool& bFlipV, bool& bFlipD);
 }; // Size: 0x28
 

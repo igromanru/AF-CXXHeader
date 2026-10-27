@@ -7,7 +7,7 @@ class ARadioactiveZone_Neutrino_C : public ARadioactiveZone_ParentBP_C
     bool Powered;                                                                     // 0x02B8 (size: 0x1)
 
     void GetZoneRadiation(double& RadiationPerTick);
-    class UPrimitiveComponent* GetOverlapVolume();
+    void GetOverlapVolume();
 }; // Size: 0x2B9
 
 #endif

@@ -4,7 +4,7 @@
 class UBTD_LeyakNotSeen_C : public UBTDecorator_BlueprintBase
 {
 
-    bool PerformConditionCheckAI(class AAIController* OwnerController, class APawn* ControlledPawn);
+    void PerformConditionCheckAI(class AAIController* OwnerController, class APawn* ControlledPawn);
 }; // Size: 0xA0
 
 #endif

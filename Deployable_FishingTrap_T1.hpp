@@ -3,10 +3,10 @@
 
 class ADeployable_FishingTrap_T1_C : public AContainer_Aquarium_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0978 (size: 0x8)
-    class UBP_FishTankMesh_C* TrappedFish;                                            // 0x0980 (size: 0x8)
-    FFishingZoneRowHandle PossibleFishingZone;                                        // 0x0988 (size: 0x20)
-    class ADayNightManager_C* DayNightManager;                                        // 0x09A8 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0968 (size: 0x8)
+    class UBP_FishTankMesh_C* TrappedFish;                                            // 0x0970 (size: 0x8)
+    FFishingZoneRowHandle PossibleFishingZone;                                        // 0x0978 (size: 0x10)
+    class ADayNightManager_C* DayNightManager;                                        // 0x0988 (size: 0x8)
 
     void TargetableByTurrets(bool& Targetable);
     void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
@@ -15,8 +15,8 @@ class ADeployable_FishingTrap_T1_C : public AContainer_Aquarium_ParentBP_C
     void UpdateInventoryFish();
     void SetupFishingZoneForTrap(bool& Can Trap Fish);
     void Trap Fish(int32 DayNumber, bool& Success);
-    void GetBaitTags(FGameplayTagContainer& BaitData, FAbiotic_InventoryItemSlotStruct& SlotData);
-    void DetermineFishingReward(FFishRowHandle& Reward, FDataTableRowHandle& BaitToConsume);
+    void GetBaitTags(FGameplayTagContainer& BaitData, FAbioticInventoryItemSlot& SlotData);
+    void DetermineFishingReward(FFishRowHandle& Reward, FGlobalItemRowHandle& BaitToConsume);
     void InitFishSplines();
     void ReceiveBeginPlay();
     void TryTrapFish(int32 DayNumber);
@@ -25,6 +25,6 @@ class ADeployable_FishingTrap_T1_C : public AContainer_Aquarium_ParentBP_C
     void DamagingLiquid_SelfDestruct();
     void Broadcast_DestroyedByLiquid();
     void ExecuteUbergraph_Deployable_FishingTrap_T1(int32 EntryPoint);
-}; // Size: 0x9B0
+}; // Size: 0x990
 
 #endif

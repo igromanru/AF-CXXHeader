@@ -33,12 +33,12 @@ class ATram_Default_C : public ATram_ParentBP_C
     FTransform Transform_DoorRight_Closed;                                            // 0x0610 (size: 0x60)
 
     void OnRep_DoorState();
-    void GetTramContainers(TArray<class UAbiotic_InventoryComponent_C*>& Array);
+    void GetTramContainers(TArray<UAbiotic_InventoryComponent_C*>& Array);
     void DoorTimeLine__FinishedFunc();
     void DoorTimeLine__UpdateFunc();
     void UpdateStationState();
     void ReceiveBeginPlay();
-    void OnInventorySaveLoaded(const TArray<FSaveData_Inventories_Struct>& SaveData);
+    void OnInventorySaveLoaded(const TArray<FAbioticInventorySave>& SaveData);
     void OnStorageRequestedSave();
     void ExecuteUbergraph_Tram_Default(int32 EntryPoint);
 }; // Size: 0x670

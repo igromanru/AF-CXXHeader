@@ -8,6 +8,7 @@ class UW_ButtonPromptHelper_TextLine_C : public UUserWidget
     FText Text;                                                                       // 0x02F0 (size: 0x10)
 
     void Construct();
+    void PreConstruct(bool IsDesignTime);
     void ExecuteUbergraph_W_ButtonPromptHelper_TextLine(int32 EntryPoint);
 }; // Size: 0x300
 

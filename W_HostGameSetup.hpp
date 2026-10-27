@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_HostGameSetup_HPP
 #define UE4SS_SDK_W_HostGameSetup_HPP
 
-class UW_HostGameSetup_C : public UAbioticWidget
+class UW_HostGameSetup_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UTextBlock* BigTitle;                                                       // 0x02E8 (size: 0x8)
@@ -14,27 +14,32 @@ class UW_HostGameSetup_C : public UAbioticWidget
     class UW_MenuTitleBig_C* BigTitle_Multiplayer;                                    // 0x0320 (size: 0x8)
     class UW_Settings_Boolean_C* Boolean_LANServer;                                   // 0x0328 (size: 0x8)
     class UW_Settings_Boolean_C* Boolean_SingleplayerOnly;                            // 0x0330 (size: 0x8)
-    class UW_MainMenuButton_C* Button_SandboxSettings;                                // 0x0338 (size: 0x8)
-    class UButton* Button_ShowPassword;                                               // 0x0340 (size: 0x8)
-    class UImage* Image_275;                                                          // 0x0348 (size: 0x8)
-    class UHorizontalBox* MP_HBox_1;                                                  // 0x0350 (size: 0x8)
-    class UHorizontalBox* MP_HBox_2;                                                  // 0x0358 (size: 0x8)
-    class UHorizontalBox* MP_HBox_LAN;                                                // 0x0360 (size: 0x8)
-    class USettingRow_C* SettingRow_Difficulty;                                       // 0x0368 (size: 0x8)
-    class USettingRow_C* SettingRow_Hardcore;                                         // 0x0370 (size: 0x8)
-    class UW_Settings_SliderBar_C* Slider_MaxPlayers;                                 // 0x0378 (size: 0x8)
-    class UEditableTextBox* TextInput_Password;                                       // 0x0380 (size: 0x8)
-    class UEditableTextBox* TextInput_ServerName;                                     // 0x0388 (size: 0x8)
-    class UEditableTextBox* TextInput_WorldName;                                      // 0x0390 (size: 0x8)
-    int32 Character_Limit;                                                            // 0x0398 (size: 0x4)
-    int32 Character_Limit_Password;                                                   // 0x039C (size: 0x4)
-    class UW_MenuPopup_YesNo_C* CurrentPopup;                                         // 0x03A0 (size: 0x8)
-    FW_HostGameSetup_CSandboxSettingsPressed SandboxSettingsPressed;                  // 0x03A8 (size: 0x10)
+    class UW_MainMenuButton_C* Button_ModsSettings;                                   // 0x0338 (size: 0x8)
+    class UW_MainMenuButton_C* Button_SandboxSettings;                                // 0x0340 (size: 0x8)
+    class UButton* Button_ShowPassword;                                               // 0x0348 (size: 0x8)
+    class UHorizontalBox* HorizontalBox_LocalOnlyMods;                                // 0x0350 (size: 0x8)
+    class UImage* Image_275;                                                          // 0x0358 (size: 0x8)
+    class UHorizontalBox* MP_HBox_1;                                                  // 0x0360 (size: 0x8)
+    class UHorizontalBox* MP_HBox_2;                                                  // 0x0368 (size: 0x8)
+    class UHorizontalBox* MP_HBox_LAN;                                                // 0x0370 (size: 0x8)
+    class USettingRow_C* SettingRow_Difficulty;                                       // 0x0378 (size: 0x8)
+    class USettingRow_C* SettingRow_Hardcore;                                         // 0x0380 (size: 0x8)
+    class USettingRow_C* SettingRow_LocalOnlyMods;                                    // 0x0388 (size: 0x8)
+    class UW_Settings_SliderBar_C* Slider_MaxPlayers;                                 // 0x0390 (size: 0x8)
+    class UEditableTextBox* TextInput_Password;                                       // 0x0398 (size: 0x8)
+    class UEditableTextBox* TextInput_ServerName;                                     // 0x03A0 (size: 0x8)
+    class UEditableTextBox* TextInput_WorldName;                                      // 0x03A8 (size: 0x8)
+    int32 Character_Limit;                                                            // 0x03B0 (size: 0x4)
+    int32 Character_Limit_Password;                                                   // 0x03B4 (size: 0x4)
+    class UW_MenuPopup_YesNo_C* CurrentPopup;                                         // 0x03B8 (size: 0x8)
+    FW_HostGameSetup_CSandboxSettingsPressed SandboxSettingsPressed;                  // 0x03C0 (size: 0x10)
     void SandboxSettingsPressed();
-    TArray<FString> ABC_Strings;                                                      // 0x03B8 (size: 0x10)
-    TArray<FString> ABC_Strings_NoSpace;                                              // 0x03C8 (size: 0x10)
-    class UStyledComboBoxSetting_C* DifficultySetting;                                // 0x03D8 (size: 0x8)
-    int32 PreviousDifficultyIndex;                                                    // 0x03E0 (size: 0x4)
+    TArray<FString> ABC_Strings;                                                      // 0x03D0 (size: 0x10)
+    TArray<FString> ABC_Strings_NoSpace;                                              // 0x03E0 (size: 0x10)
+    class UStyledComboBoxSetting_C* DifficultySetting;                                // 0x03F0 (size: 0x8)
+    int32 PreviousDifficultyIndex;                                                    // 0x03F8 (size: 0x4)
+    FW_HostGameSetup_CModSettingsPressed ModSettingsPressed;                          // 0x0400 (size: 0x10)
+    void ModSettingsPressed();
 
     void OnHardcoreCheckedStateChanged(bool bIsChecked);
     void SetupSoloOrLanOnly();
@@ -52,8 +57,10 @@ class UW_HostGameSetup_C : public UAbioticWidget
     void HostWarning_Sandbox_Continue();
     void Construct();
     void BndEvt__W_HostGameSetup_TextInput_Password_K2Node_ComponentBoundEvent_4_OnEditableTextBoxChangedEvent__DelegateSignature(const FText& Text);
+    void BndEvt__W_HostGameSetup_Button_ModsSettings_K2Node_ComponentBoundEvent_5_ButtonPressed__DelegateSignature();
     void ExecuteUbergraph_W_HostGameSetup(int32 EntryPoint);
+    void ModSettingsPressed__DelegateSignature();
     void SandboxSettingsPressed__DelegateSignature();
-}; // Size: 0x3E4
+}; // Size: 0x410
 
 #endif

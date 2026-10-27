@@ -3,17 +3,17 @@
 
 class APlatformCart_Storage_ParentBP_C : public ADeployed_Container_Cargo_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0948 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0938 (size: 0x8)
 
-    FText GetItemNameText();
+    void GetItemNameText();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void RefreshContainerVisuals();
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
+    void GetHighlightComponents(TArray<UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void BndEvt__Deployed_StorageCrate_MoveableCart_ContainerInventory_K2Node_ComponentBoundEvent_0_InventoryUpdated__DelegateSignature(class UAbiotic_InventoryComponent_C* Inventory);
     void ReceiveBeginPlay();
     void LongInteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void ExecuteUbergraph_PlatformCart_Storage_ParentBP(int32 EntryPoint);
-}; // Size: 0x950
+}; // Size: 0x940
 
 #endif

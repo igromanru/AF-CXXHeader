@@ -7,7 +7,7 @@ class UDrinkableComponent_C : public UActorComponent
     double WaterSwigThirstFill;                                                       // 0x00B0 (size: 0x8)
     int32 LastReductionAmount;                                                        // 0x00B8 (size: 0x4)
 
-    void Take Swig from Parent Liquid Container(int32 CurrentLiquidLevel, TEnumAsByte<E_LiquidType::Type> CurrentLiquidType, double& ThirstGain, bool& TaintedWater);
+    void Take Swig from Parent Liquid Container(int32 CurrentLiquidLevel, ELiquidType CurrentLiquidType, double& ThirstGain, bool& TaintedWater);
 }; // Size: 0xBC
 
 #endif

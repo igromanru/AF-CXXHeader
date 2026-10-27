@@ -12,7 +12,7 @@ class ATramSystem_Rail_C : public AActor
     class ATramSystem_Station_C* Station2;                                            // 0x02C8 (size: 0x8)
     class ATramSystem_Station_C* Trigger;                                             // 0x02D0 (size: 0x8)
     TMap<ATramSystem_StopPoint_C*, double> StopPoints;                                // 0x02D8 (size: 0x50)
-    TMap<class ATramSystem_StopPoint_C*, class ATramSystem_Rail_C*> NextRails;        // 0x0328 (size: 0x50)
+    TMap<ATramSystem_StopPoint_C*, ATramSystem_Rail_C*> NextRails;                    // 0x0328 (size: 0x50)
     bool AutoGenerateSplineMesh;                                                      // 0x0378 (size: 0x1)
     bool GenerateConstructionScript;                                                  // 0x0379 (size: 0x1)
     double SplineMeshSectionLength;                                                   // 0x0380 (size: 0x8)
@@ -24,16 +24,16 @@ class ATramSystem_Rail_C : public AActor
     TArray<FVector> ManualPillarLocations;                                            // 0x03B0 (size: 0x10)
     class UStaticMesh* PillarStaticMesh;                                              // 0x03C0 (size: 0x8)
     FVector PillarOffset;                                                             // 0x03C8 (size: 0x18)
-    TArray<class UPrimitiveComponent*> PillarBlockingVolumes;                         // 0x03E0 (size: 0x10)
-    TArray<class UPrimitiveComponent*> SplineMeshBlockingVolumes;                     // 0x03F0 (size: 0x10)
+    TArray<UPrimitiveComponent*> PillarBlockingVolumes;                               // 0x03E0 (size: 0x10)
+    TArray<UPrimitiveComponent*> SplineMeshBlockingVolumes;                           // 0x03F0 (size: 0x10)
     float MaxDrawDistance;                                                            // 0x0400 (size: 0x4)
     double PillarWidth;                                                               // 0x0408 (size: 0x8)
 
     void GetSplineInternal(class USplineComponent*& Spline);
-    bool LocationIsClear(const FVector& Point, TArray<class UPrimitiveComponent*>& BlockingVolumes);
-    int32 AddPillarTransform(const TArray<FTransform>& TargetArray, const FTransform InTransform, double Distance);
-    FTransform OffsetSplineTransformForPitch(FTransform LocalTransform);
-    FTransform GetCorrectedTransformAtDistanceAlongSpline(float Distance, TEnumAsByte<ESplineCoordinateSpace::Type> CoordinateSpace);
+    void LocationIsClear(const FVector& Point, TArray<UPrimitiveComponent*>& BlockingVolumes);
+    void AddPillarTransform(const TArray<FTransform>& TargetArray, const FTransform InTransform, double Distance);
+    void OffsetSplineTransformForPitch(FTransform LocalTransform);
+    void GetCorrectedTransformAtDistanceAlongSpline(float Distance, TEnumAsByte<ESplineCoordinateSpace::Type> CoordinateSpace);
     void CalculateSplineMeshes(bool ConstructionScript);
     void GetDirectionFromStation(class ATramSystem_StopPoint_C* Station, bool& Positive);
     void GetNextStopPoint(class ATramSystem_StopPoint_C* CurrentPoint, bool PositiveDirection, class ATramSystem_Rail_C*& NextRail, class ATramSystem_StopPoint_C*& NextStopPoint, class ATramSystem_Station_C*& NextStation, double& CurrentStopDistance, double& NextStopDistance, bool& Positive);

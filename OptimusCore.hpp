@@ -158,7 +158,7 @@ struct FOptimusExecutionDomain
 
 struct FOptimusFunctionNodeGraphHeader
 {
-    TSoftObjectPtr<UOptimusFunctionNodeGraph> GraphPath;                              // 0x0000 (size: 0x28)
+    TSoftObjectPtr<class UOptimusFunctionNodeGraph> GraphPath;                        // 0x0000 (size: 0x28)
     FName FunctionName;                                                               // 0x0028 (size: 0x8)
     FName Category;                                                                   // 0x0030 (size: 0x8)
 
@@ -172,13 +172,13 @@ struct FOptimusFunctionNodeGraphHeaderArray
 
 struct FOptimusFunctionReferenceData
 {
-    TMap<class FSoftObjectPath, class FOptimusFunctionReferenceNodeSet> FunctionReferences; // 0x0000 (size: 0x50)
+    TMap<FSoftObjectPath, FOptimusFunctionReferenceNodeSet> FunctionReferences;       // 0x0000 (size: 0x50)
 
 }; // Size: 0x50
 
 struct FOptimusFunctionReferenceNodeSet
 {
-    TSet<TSoftObjectPtr<UOptimusNode_FunctionReference>> Nodes;                       // 0x0000 (size: 0x50)
+    TSet<TSoftObjectPtr<class UOptimusNode_FunctionReference>> Nodes;                 // 0x0000 (size: 0x50)
 
 }; // Size: 0x50
 
@@ -188,7 +188,7 @@ struct FOptimusGraphVariableDescription
     FShaderValueTypeHandle ValueType;                                                 // 0x0010 (size: 0x8)
     TArray<uint8> Value;                                                              // 0x0018 (size: 0x10)
     int32 Offset;                                                                     // 0x0028 (size: 0x4)
-    TSoftObjectPtr<UObject> SourceObject;                                             // 0x0030 (size: 0x28)
+    TSoftObjectPtr<class UObject> SourceObject;                                       // 0x0030 (size: 0x28)
 
 }; // Size: 0x68
 
@@ -586,7 +586,7 @@ class UOptimusComponentSourceBinding : public UObject
 
 class UOptimusComponentSourceBindingContainer : public UObject
 {
-    TArray<class UOptimusComponentSourceBinding*> Bindings;                           // 0x0028 (size: 0x10)
+    TArray<UOptimusComponentSourceBinding*> Bindings;                                 // 0x0028 (size: 0x10)
 
 }; // Size: 0x38
 
@@ -596,7 +596,7 @@ class UOptimusComputeDataInterface : public UComputeDataInterface
 
 class UOptimusComputeGraph : public UComputeGraph
 {
-    TArray<TWeakObjectPtr<UOptimusNode>> KernelToNode;                                // 0x00E0 (size: 0x10)
+    TArray<TWeakObjectPtr<class UOptimusNode>> KernelToNode;                          // 0x00E0 (size: 0x10)
 
 }; // Size: 0xF0
 
@@ -653,15 +653,15 @@ class UOptimusDeformer : public UMeshDeformer
     TArray<FOptimusComputeGraphInfo> ComputeGraphs;                                   // 0x0050 (size: 0x10)
     class UOptimusActionStack* ActionStack;                                           // 0x0060 (size: 0x8)
     EOptimusDeformerStatus Status;                                                    // 0x0068 (size: 0x4)
-    TArray<class UOptimusNodeGraph*> Graphs;                                          // 0x0070 (size: 0x10)
+    TArray<UOptimusNodeGraph*> Graphs;                                                // 0x0070 (size: 0x10)
     class UOptimusComponentSourceBindingContainer* Bindings;                          // 0x0080 (size: 0x8)
     class UOptimusVariableContainer* Variables;                                       // 0x0088 (size: 0x8)
     class UOptimusResourceContainer* Resources;                                       // 0x0090 (size: 0x8)
 
-    TArray<class UOptimusVariableDescription*> GetVariables();
-    TArray<class UOptimusResourceDescription*> GetResources();
-    class UOptimusComponentSourceBinding* GetPrimaryComponentBinding();
-    TArray<class UOptimusComponentSourceBinding*> GetComponentBindings();
+    void GetVariables();
+    void GetResources();
+    void GetPrimaryComponentBinding();
+    void GetComponentBindings();
 }; // Size: 0x128
 
 class UOptimusDeformerInstance : public UMeshDeformerInstance
@@ -670,17 +670,17 @@ class UOptimusDeformerInstance : public UMeshDeformerInstance
     TWeakObjectPtr<class UOptimusDeformerInstanceSettings> InstanceSettings;          // 0x0030 (size: 0x8)
     TArray<FOptimusDeformerInstanceExecInfo> ComputeGraphExecInfos;                   // 0x0038 (size: 0x10)
     class UOptimusVariableContainer* Variables;                                       // 0x0048 (size: 0x8)
-    TArray<TWeakObjectPtr<UActorComponent>> WeakBoundComponents;                      // 0x0050 (size: 0x10)
-    TArray<TWeakObjectPtr<UOptimusComponentSource>> WeakComponentSources;             // 0x0060 (size: 0x10)
+    TArray<TWeakObjectPtr<class UActorComponent>> WeakBoundComponents;                // 0x0050 (size: 0x10)
+    TArray<TWeakObjectPtr<class UOptimusComponentSource>> WeakComponentSources;       // 0x0060 (size: 0x10)
 
-    bool SetVectorVariable(FName InVariableName, const FVector& InValue);
-    bool SetVector4Variable(FName InVariableName, const FVector4& InValue);
-    bool SetTransformVariable(FName InVariableName, const FTransform& InValue);
-    bool SetIntVariable(FName InVariableName, int32 InValue);
-    bool SetFloatVariable(FName InVariableName, double InValue);
-    bool SetBoolVariable(FName InVariableName, bool InValue);
-    TArray<class UOptimusVariableDescription*> GetVariables();
-    bool EnqueueTriggerGraph(FName InTriggerGraphName);
+    void SetVectorVariable(FName InVariableName, const FVector& InValue);
+    void SetVector4Variable(FName InVariableName, const FVector4& InValue);
+    void SetTransformVariable(FName InVariableName, const FTransform& InValue);
+    void SetIntVariable(FName InVariableName, int32 InValue);
+    void SetFloatVariable(FName InVariableName, double InValue);
+    void SetBoolVariable(FName InVariableName, bool InValue);
+    void GetVariables();
+    void EnqueueTriggerGraph(FName InTriggerGraphName);
 }; // Size: 0x108
 
 class UOptimusDeformerInstanceSettings : public UMeshDeformerInstanceSettings
@@ -705,7 +705,7 @@ class UOptimusFunctionNodeGraph : public UOptimusNodeSubGraph
     FName Category;                                                                   // 0x0148 (size: 0x8)
     FName AccessSpecifier;                                                            // 0x0150 (size: 0x8)
 
-    TArray<FName> GetAccessSpecifierOptions();
+    void GetAccessSpecifierOptions();
 }; // Size: 0x158
 
 class UOptimusGraphDataInterface : public UComputeDataInterface
@@ -774,61 +774,61 @@ class UOptimusNode : public UObject
 {
     FText DisplayName;                                                                // 0x0030 (size: 0x10)
     FVector2D GraphPosition;                                                          // 0x0040 (size: 0x10)
-    TArray<class UOptimusNodePin*> Pins;                                              // 0x0050 (size: 0x10)
+    TArray<UOptimusNodePin*> Pins;                                                    // 0x0050 (size: 0x10)
     TSet<FName> ExpandedPins;                                                         // 0x0060 (size: 0x50)
     EOptimusDiagnosticLevel DiagnosticLevel;                                          // 0x00B0 (size: 0x1)
 
-    bool SetGraphPosition(const FVector2D& InPosition);
-    FName GetNodeName();
-    FName GetNodeCategory();
-    FVector2D GetGraphPosition();
-    FText GetDisplayName();
+    void SetGraphPosition(const FVector2D& InPosition);
+    void GetNodeName();
+    void GetNodeCategory();
+    void GetGraphPosition();
+    void GetDisplayName();
 }; // Size: 0x108
 
 class UOptimusNodeGraph : public UObject
 {
     EOptimusNodeGraphType GraphType;                                                  // 0x0030 (size: 0x4)
-    TArray<class UOptimusNode*> Nodes;                                                // 0x0038 (size: 0x10)
-    TArray<class UOptimusNodeLink*> Links;                                            // 0x0048 (size: 0x10)
-    TArray<class UOptimusNodePair*> NodePairs;                                        // 0x0058 (size: 0x10)
-    TArray<class UOptimusNodeGraph*> Subgraphs;                                       // 0x0068 (size: 0x10)
+    TArray<UOptimusNode*> Nodes;                                                      // 0x0038 (size: 0x10)
+    TArray<UOptimusNodeLink*> Links;                                                  // 0x0048 (size: 0x10)
+    TArray<UOptimusNodePair*> NodePairs;                                              // 0x0058 (size: 0x10)
+    TArray<UOptimusNodeGraph*> Subgraphs;                                             // 0x0068 (size: 0x10)
 
-    bool RenameGraphDirect(class UOptimusNodeGraph* InGraph, FString InNewName);
-    bool RenameGraph(class UOptimusNodeGraph* InGraph, FString InNewName);
-    bool RemoveNodes(const TArray<class UOptimusNode*>& InNodes);
-    bool RemoveNode(class UOptimusNode* InNode);
-    bool RemoveLink(class UOptimusNodePin* InNodeOutputPin, class UOptimusNodePin* InNodeInputPin);
-    bool RemoveAllLinks(class UOptimusNodePin* InNodePin);
-    bool MoveGraphDirect(class UOptimusNodeGraph* InGraph, int32 InInsertBefore);
-    bool IsSubGraphReference(class UOptimusNode* InNode);
-    bool IsKernelFunction(class UOptimusNode* InNode);
-    bool IsFunctionReference(class UOptimusNode* InNode);
-    bool IsFunctionGraph();
-    bool IsExecutionGraph();
-    bool IsCustomKernel(class UOptimusNode* InNode);
-    EOptimusNodeGraphType GetGraphType();
-    TArray<class UOptimusNodeGraph*> GetGraphs();
-    int32 GetGraphIndex();
-    TArray<class UOptimusNode*> ExpandCollapsedNodes(class UOptimusNode* InGraphReferenceNode);
-    bool DuplicateNodes(const TArray<class UOptimusNode*>& InNodes, const FVector2D& InPosition);
-    class UOptimusNode* DuplicateNode(class UOptimusNode* InNode, const FVector2D& InPosition);
-    bool ConvertToSubGraph(class UOptimusNode* InFunctionNode);
-    bool ConvertToFunction(class UOptimusNode* InSubGraphNode);
-    class UOptimusNode* ConvertFunctionToCustomKernel(class UOptimusNode* InKernelFunction);
-    class UOptimusNode* ConvertCustomKernelToFunction(class UOptimusNode* InCustomKernel);
-    class UOptimusNode* CollapseNodesToSubGraph(const TArray<class UOptimusNode*>& InNodes);
-    class UOptimusNode* CollapseNodesToFunction(const TArray<class UOptimusNode*>& InNodes);
-    class UOptimusNode* AddVariableGetNode(class UOptimusVariableDescription* InVariableDesc, const FVector2D& InPosition);
-    class UOptimusNode* AddValueNode(FOptimusDataTypeRef InDataTypeRef, const FVector2D& InPosition);
-    class UOptimusNode* AddResourceSetNode(class UOptimusResourceDescription* InResourceDesc, const FVector2D& InPosition);
-    class UOptimusNode* AddResourceNode(class UOptimusResourceDescription* InResourceDesc, const FVector2D& InPosition);
-    class UOptimusNode* AddResourceGetNode(class UOptimusResourceDescription* InResourceDesc, const FVector2D& InPosition);
-    class UOptimusNode* AddNode(const TSubclassOf<class UOptimusNode> InNodeClass, const FVector2D& InPosition);
-    TArray<class UOptimusNode*> AddLoopTerminalNodes(const FVector2D& InPosition);
-    bool AddLink(class UOptimusNodePin* InNodeOutputPin, class UOptimusNodePin* InNodeInputPin);
-    class UOptimusNode* AddFunctionReferenceNode(TSoftObjectPtr<UOptimusFunctionNodeGraph> InFunctionGraph, const FVector2D& InPosition);
-    class UOptimusNode* AddDataInterfaceNode(const TSubclassOf<class UOptimusComputeDataInterface> InDataInterfaceClass, const FVector2D& InPosition);
-    class UOptimusNode* AddComponentBindingGetNode(class UOptimusComponentSourceBinding* InComponentBinding, const FVector2D& InPosition);
+    void RenameGraphDirect(class UOptimusNodeGraph* InGraph, FString InNewName);
+    void RenameGraph(class UOptimusNodeGraph* InGraph, FString InNewName);
+    void RemoveNodes(const TArray<UOptimusNode*>& InNodes);
+    void RemoveNode(class UOptimusNode* InNode);
+    void RemoveLink(class UOptimusNodePin* InNodeOutputPin, class UOptimusNodePin* InNodeInputPin);
+    void RemoveAllLinks(class UOptimusNodePin* InNodePin);
+    void MoveGraphDirect(class UOptimusNodeGraph* InGraph, int32 InInsertBefore);
+    void IsSubGraphReference(class UOptimusNode* InNode);
+    void IsKernelFunction(class UOptimusNode* InNode);
+    void IsFunctionReference(class UOptimusNode* InNode);
+    void IsFunctionGraph();
+    void IsExecutionGraph();
+    void IsCustomKernel(class UOptimusNode* InNode);
+    void GetGraphType();
+    void GetGraphs();
+    void GetGraphIndex();
+    void ExpandCollapsedNodes(class UOptimusNode* InGraphReferenceNode);
+    void DuplicateNodes(const TArray<UOptimusNode*>& InNodes, const FVector2D& InPosition);
+    void DuplicateNode(class UOptimusNode* InNode, const FVector2D& InPosition);
+    void ConvertToSubGraph(class UOptimusNode* InFunctionNode);
+    void ConvertToFunction(class UOptimusNode* InSubGraphNode);
+    void ConvertFunctionToCustomKernel(class UOptimusNode* InKernelFunction);
+    void ConvertCustomKernelToFunction(class UOptimusNode* InCustomKernel);
+    void CollapseNodesToSubGraph(const TArray<UOptimusNode*>& InNodes);
+    void CollapseNodesToFunction(const TArray<UOptimusNode*>& InNodes);
+    void AddVariableGetNode(class UOptimusVariableDescription* InVariableDesc, const FVector2D& InPosition);
+    void AddValueNode(FOptimusDataTypeRef InDataTypeRef, const FVector2D& InPosition);
+    void AddResourceSetNode(class UOptimusResourceDescription* InResourceDesc, const FVector2D& InPosition);
+    void AddResourceNode(class UOptimusResourceDescription* InResourceDesc, const FVector2D& InPosition);
+    void AddResourceGetNode(class UOptimusResourceDescription* InResourceDesc, const FVector2D& InPosition);
+    void AddNode(const TSubclassOf<class UOptimusNode> InNodeClass, const FVector2D& InPosition);
+    void AddLoopTerminalNodes(const FVector2D& InPosition);
+    void AddLink(class UOptimusNodePin* InNodeOutputPin, class UOptimusNodePin* InNodeInputPin);
+    void AddFunctionReferenceNode(TSoftObjectPtr<class UOptimusFunctionNodeGraph> InFunctionGraph, const FVector2D& InPosition);
+    void AddDataInterfaceNode(const TSubclassOf<class UOptimusComputeDataInterface> InDataInterfaceClass, const FVector2D& InPosition);
+    void AddComponentBindingGetNode(class UOptimusComponentSourceBinding* InComponentBinding, const FVector2D& InPosition);
 }; // Size: 0x90
 
 class UOptimusNodeLink : public UObject
@@ -852,7 +852,7 @@ class UOptimusNodePin : public UObject
     EOptimusNodePinStorageType StorageType;                                           // 0x002A (size: 0x1)
     FOptimusDataDomain DataDomain;                                                    // 0x0030 (size: 0x40)
     FOptimusDataTypeRef DataType;                                                     // 0x0070 (size: 0x10)
-    TArray<class UOptimusNodePin*> SubPins;                                           // 0x0080 (size: 0x10)
+    TArray<UOptimusNodePin*> SubPins;                                                 // 0x0080 (size: 0x10)
 
 }; // Size: 0x90
 
@@ -916,7 +916,7 @@ class UOptimusNode_CustomComputeKernel : public UOptimusNode_ComputeKernelBase
     FOptimusParameterBindingArray InputBindingArray;                                  // 0x01A0 (size: 0x10)
     FOptimusParameterBindingArray OutputBindingArray;                                 // 0x01B0 (size: 0x10)
     TArray<FOptimusSecondaryInputBindingsGroup> SecondaryInputBindingGroups;          // 0x01C0 (size: 0x10)
-    TArray<class UComputeSource*> AdditionalSources;                                  // 0x01D0 (size: 0x10)
+    TArray<UComputeSource*> AdditionalSources;                                        // 0x01D0 (size: 0x10)
     FOptimusShaderText ShaderSource;                                                  // 0x01E0 (size: 0x20)
 
 }; // Size: 0x200
@@ -930,7 +930,7 @@ class UOptimusNode_DataInterface : public UOptimusNode
 
 class UOptimusNode_FunctionReference : public UOptimusNode
 {
-    TSoftObjectPtr<UOptimusFunctionNodeGraph> FunctionGraph;                          // 0x0120 (size: 0x28)
+    TSoftObjectPtr<class UOptimusFunctionNodeGraph> FunctionGraph;                    // 0x0120 (size: 0x28)
     TWeakObjectPtr<class UOptimusNodePin> DefaultComponentPin;                        // 0x0148 (size: 0x8)
 
 }; // Size: 0x150
@@ -1011,7 +1011,7 @@ class UOptimusRawBufferDataProvider : public UComputeDataProvider
 
 class UOptimusResourceContainer : public UObject
 {
-    TArray<class UOptimusResourceDescription*> Descriptions;                          // 0x0028 (size: 0x10)
+    TArray<UOptimusResourceDescription*> Descriptions;                                // 0x0028 (size: 0x10)
 
 }; // Size: 0x38
 
@@ -1131,7 +1131,7 @@ class UOptimusValueContainerGeneratorClass : public UClass
 
 class UOptimusVariableContainer : public UObject
 {
-    TArray<class UOptimusVariableDescription*> Descriptions;                          // 0x0028 (size: 0x10)
+    TArray<UOptimusVariableDescription*> Descriptions;                                // 0x0028 (size: 0x10)
 
 }; // Size: 0x38
 

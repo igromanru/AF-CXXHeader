@@ -45,8 +45,8 @@ struct FCreateMeshObjectParams
     class UWorld* TargetWorld;                                                        // 0x0020 (size: 0x8)
     FTransform Transform;                                                             // 0x0030 (size: 0x60)
     FString BaseName;                                                                 // 0x0090 (size: 0x10)
-    TArray<class UMaterialInterface*> Materials;                                      // 0x00A0 (size: 0x10)
-    TArray<class UMaterialInterface*> AssetMaterials;                                 // 0x00B0 (size: 0x10)
+    TArray<UMaterialInterface*> Materials;                                            // 0x00A0 (size: 0x10)
+    TArray<UMaterialInterface*> AssetMaterials;                                       // 0x00B0 (size: 0x10)
     bool bEnableCollision;                                                            // 0x00C0 (size: 0x1)
     TEnumAsByte<ECollisionTraceFlag> CollisionMode;                                   // 0x00C1 (size: 0x1)
     bool bEnableRaytracingSupport;                                                    // 0x0120 (size: 0x1)
@@ -169,8 +169,8 @@ class UBaseCreateFromSelectedTool : public UMultiSelectionMeshEditingTool
     class UBaseCreateFromSelectedHandleSourceProperties* HandleSourcesProperties;     // 0x00D0 (size: 0x8)
     class UBaseCreateFromSelectedCollisionProperties* CollisionProperties;            // 0x00D8 (size: 0x8)
     class UMeshOpPreviewWithBackgroundCompute* Preview;                               // 0x00E0 (size: 0x8)
-    TArray<class UTransformProxy*> TransformProxies;                                  // 0x00E8 (size: 0x10)
-    TArray<class UCombinedTransformGizmo*> TransformGizmos;                           // 0x00F8 (size: 0x10)
+    TArray<UTransformProxy*> TransformProxies;                                        // 0x00E8 (size: 0x10)
+    TArray<UCombinedTransformGizmo*> TransformGizmos;                                 // 0x00F8 (size: 0x10)
 
 }; // Size: 0x108
 
@@ -237,9 +237,9 @@ class UCreateMeshObjectTypeProperties : public UInteractiveToolPropertySet
     TArray<FString> OutputTypeNamesList;                                              // 0x00C0 (size: 0x10)
     bool bShowVolumeList;                                                             // 0x00D0 (size: 0x1)
 
-    bool ShouldShowPropertySet();
-    TArray<FString> GetOutputTypeNamesFunc();
-    ECreateObjectTypeHint GetCurrentCreateMeshType();
+    void ShouldShowPropertySet();
+    void GetOutputTypeNamesFunc();
+    void GetCurrentCreateMeshType();
 }; // Size: 0xD8
 
 class UCurveControlPointsMechanic : public UInteractionMechanic
@@ -371,7 +371,7 @@ class UMeshElementsVisualizerProperties : public UInteractiveToolPropertySet
 class UMeshOpPreviewWithBackgroundCompute : public UObject
 {
     class UPreviewMesh* PreviewMesh;                                                  // 0x0058 (size: 0x8)
-    TArray<class UMaterialInterface*> StandardMaterials;                              // 0x0060 (size: 0x10)
+    TArray<UMaterialInterface*> StandardMaterials;                                    // 0x0060 (size: 0x10)
     class UMaterialInterface* OverrideMaterial;                                       // 0x0070 (size: 0x8)
     class UMaterialInterface* WorkingMaterial;                                        // 0x0078 (size: 0x8)
     class UMaterialInterface* SecondaryMaterial;                                      // 0x0080 (size: 0x8)
@@ -465,10 +465,10 @@ class UModelingComponentsSettings : public UDeveloperSettings
 class UModelingObjectsCreationAPI : public UObject
 {
 
-    FCreateTextureObjectResult CreateTextureObject(const FCreateTextureObjectParams& CreateTexParams);
-    FCreateActorResult CreateNewActor(const FCreateActorParams& CreateActorParams);
-    FCreateMeshObjectResult CreateMeshObject(const FCreateMeshObjectParams& CreateMeshParams);
-    FCreateMaterialObjectResult CreateMaterialObject(const FCreateMaterialObjectParams& CreateMaterialParams);
+    void CreateTextureObject(const FCreateTextureObjectParams& CreateTexParams);
+    void CreateNewActor(const FCreateActorParams& CreateActorParams);
+    void CreateMeshObject(const FCreateMeshObjectParams& CreateMeshParams);
+    void CreateMaterialObject(const FCreateMaterialObjectParams& CreateMaterialParams);
 }; // Size: 0x28
 
 class UModelingSceneSnappingManager : public USceneSnappingManager
@@ -557,37 +557,37 @@ class UPolygroupLayersProperties : public UInteractiveToolPropertySet
     FName ActiveGroupLayer;                                                           // 0x00A8 (size: 0x8)
     TArray<FString> GroupLayersList;                                                  // 0x00B0 (size: 0x10)
 
-    TArray<FString> GetGroupLayersFunc();
+    void GetGroupLayersFunc();
 }; // Size: 0xC0
 
 class UPreviewGeometry : public UObject
 {
     class APreviewGeometryActor* ParentActor;                                         // 0x0028 (size: 0x8)
-    TMap<class FString, class UTriangleSetComponent*> TriangleSets;                   // 0x0030 (size: 0x50)
-    TMap<class FString, class ULineSetComponent*> LineSets;                           // 0x0080 (size: 0x50)
-    TMap<class FString, class UPointSetComponent*> PointSets;                         // 0x00D0 (size: 0x50)
+    TMap<FString, UTriangleSetComponent*> TriangleSets;                               // 0x0030 (size: 0x50)
+    TMap<FString, ULineSetComponent*> LineSets;                                       // 0x0080 (size: 0x50)
+    TMap<FString, UPointSetComponent*> PointSets;                                     // 0x00D0 (size: 0x50)
 
-    bool SetPointSetVisibility(FString PointSetIdentifier, bool bVisible);
-    bool SetPointSetMaterial(FString PointSetIdentifier, class UMaterialInterface* NewMaterial);
-    bool SetLineSetVisibility(FString LineSetIdentifier, bool bVisible);
-    bool SetLineSetMaterial(FString LineSetIdentifier, class UMaterialInterface* NewMaterial);
+    void SetPointSetVisibility(FString PointSetIdentifier, bool bVisible);
+    void SetPointSetMaterial(FString PointSetIdentifier, class UMaterialInterface* NewMaterial);
+    void SetLineSetVisibility(FString LineSetIdentifier, bool bVisible);
+    void SetLineSetMaterial(FString LineSetIdentifier, class UMaterialInterface* NewMaterial);
     void SetAllPointSetsMaterial(class UMaterialInterface* Material);
     void SetAllLineSetsMaterial(class UMaterialInterface* Material);
-    bool RemoveTriangleSet(FString TriangleSetIdentifier, bool bDestroy);
-    bool RemovePointSet(FString PointSetIdentifier, bool bDestroy);
-    bool RemoveLineSet(FString LineSetIdentifier, bool bDestroy);
+    void RemoveTriangleSet(FString TriangleSetIdentifier, bool bDestroy);
+    void RemovePointSet(FString PointSetIdentifier, bool bDestroy);
+    void RemoveLineSet(FString LineSetIdentifier, bool bDestroy);
     void RemoveAllTriangleSets(bool bDestroy);
     void RemoveAllPointSets(bool bDestroy);
     void RemoveAllLineSets(bool bDestroy);
-    class APreviewGeometryActor* GetActor();
-    class UTriangleSetComponent* FindTriangleSet(FString TriangleSetIdentifier);
-    class UPointSetComponent* FindPointSet(FString PointSetIdentifier);
-    class ULineSetComponent* FindLineSet(FString LineSetIdentifier);
+    void GetActor();
+    void FindTriangleSet(FString TriangleSetIdentifier);
+    void FindPointSet(FString PointSetIdentifier);
+    void FindLineSet(FString LineSetIdentifier);
     void Disconnect();
     void CreateInWorld(class UWorld* World, const FTransform& WithTransform);
-    class UTriangleSetComponent* AddTriangleSet(FString TriangleSetIdentifier);
-    class UPointSetComponent* AddPointSet(FString PointSetIdentifier);
-    class ULineSetComponent* AddLineSet(FString LineSetIdentifier);
+    void AddTriangleSet(FString TriangleSetIdentifier);
+    void AddPointSet(FString PointSetIdentifier);
+    void AddLineSet(FString LineSetIdentifier);
 }; // Size: 0x120
 
 class UPreviewMesh : public UObject
@@ -708,7 +708,7 @@ class UWeightMapSetProperties : public UInteractiveToolPropertySet
     TArray<FString> WeightMapsList;                                                   // 0x00B0 (size: 0x10)
     bool bInvertWeightMap;                                                            // 0x00C0 (size: 0x1)
 
-    TArray<FString> GetWeightMapsFunc();
+    void GetWeightMapsFunc();
 }; // Size: 0xC8
 
 #endif

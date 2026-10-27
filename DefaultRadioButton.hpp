@@ -9,7 +9,7 @@ class UDefaultRadioButton_C : public URadioButton
     FDefaultRadioButton_CClicked Clicked;                                             // 0x0330 (size: 0x10)
     void Clicked(int32 Value);
 
-    FSlateColor GetTextColor();
+    void GetTextColor();
     void BndEvt__MainButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void ExecuteUbergraph_DefaultRadioButton(int32 EntryPoint);
     void Clicked__DelegateSignature(int32 Value);

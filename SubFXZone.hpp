@@ -7,7 +7,7 @@ class ASubFXZone_C : public AActor
     class UBillboardComponent* Billboard;                                             // 0x02A0 (size: 0x8)
     class UBoxComponent* FXVolume;                                                    // 0x02A8 (size: 0x8)
     FVector FXZoneSize;                                                               // 0x02B0 (size: 0x18)
-    FDataTableRowHandle FXRow;                                                        // 0x02C8 (size: 0x10)
+    FLevelFXRowHandle FXRow;                                                          // 0x02C8 (size: 0x10)
     int32 Priority;                                                                   // 0x02D8 (size: 0x4)
 
     void SubFXLocallyUpdated();

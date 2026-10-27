@@ -4,7 +4,7 @@
 class AAbiotic_WaypointActor_C : public ATargetPoint
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0298 (size: 0x8)
-    FDataTableRowHandle WaypointRow;                                                  // 0x02A0 (size: 0x10)
+    FWaypointRowHandle WaypointRow;                                                   // 0x02A0 (size: 0x10)
     double Duration;                                                                  // 0x02B0 (size: 0x8)
 
     void ReceiveBeginPlay();

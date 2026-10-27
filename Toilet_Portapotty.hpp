@@ -4,7 +4,7 @@
 class AToilet_Portapotty_C : public AToilet_ParentBP_C
 {
 
-    bool IsSeatLocationBlocked(int32 SeatIndex, class AAbioticCharacter* Character, bool Debug);
-}; // Size: 0x891
+    void IsSeatLocationBlocked(int32 SeatIndex, class AAbioticCharacter* Character, bool Debug);
+}; // Size: 0x881
 
 #endif

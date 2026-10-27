@@ -64,7 +64,7 @@ class AAbiotic_AI_Controller_ParentBP_C : public AAbioticAIController
     double StaggerQuipFrequency;                                                      // 0x0658 (size: 0x8)
     int32 ControllerFailCounter;                                                      // 0x0660 (size: 0x4)
     class AActor* LastObjectBlockingPath;                                             // 0x0668 (size: 0x8)
-    TSoftObjectPtr<AAI_PatrolPath_C> PatrolPathSoftRef;                               // 0x0670 (size: 0x28)
+    TSoftObjectPtr<class AAI_PatrolPath_C> PatrolPathSoftRef;                         // 0x0670 (size: 0x28)
     FVector TargetFlightLocation;                                                     // 0x0698 (size: 0x18)
     TArray<FVector> LastSpottablePointsSeen;                                          // 0x06B0 (size: 0x10)
     class UBehaviorTree* BehaviorTree;                                                // 0x06C0 (size: 0x8)
@@ -88,44 +88,45 @@ class AAbiotic_AI_Controller_ParentBP_C : public AAbioticAIController
     FAbiotic_AI_Controller_ParentBP_COnDespawnStarted OnDespawnStarted;               // 0x0790 (size: 0x10)
     void OnDespawnStarted();
     double TimeOfLastPainLine;                                                        // 0x07A0 (size: 0x8)
-    FBuffDebuffRowHandle CombatDebuff;                                                // 0x07A8 (size: 0x20)
-    FGameplayTag CombatTagCheck;                                                      // 0x07C8 (size: 0x8)
-    TSoftObjectPtr<AAI_PatrolPath_C> PotentialPatrolPath;                             // 0x07D0 (size: 0x28)
-    bool UseLegacyVoiceLines;                                                         // 0x07F8 (size: 0x1)
-    double BackstepTraceDistance;                                                     // 0x0800 (size: 0x8)
-    bool NoBenchWander;                                                               // 0x0808 (size: 0x1)
-    bool TurnToFaceSounds;                                                            // 0x0809 (size: 0x1)
-    int32 LastKnownDifficulty;                                                        // 0x080C (size: 0x4)
-    bool IsPendingDespawn;                                                            // 0x0810 (size: 0x1)
-    double TimeOfLastFlankingQuip;                                                    // 0x0818 (size: 0x8)
-    double FlankingQuipFrequency;                                                     // 0x0820 (size: 0x8)
-    TArray<TEnumAsByte<E_DialogLines::Type>> UsedQuipTypes;                           // 0x0828 (size: 0x10)
-    double AllyDeathQuipFrequency;                                                    // 0x0838 (size: 0x8)
-    double TimeOfLastAllyDeathQuip;                                                   // 0x0840 (size: 0x8)
-    TMap<TEnumAsByte<E_DialogLines::Type>, TEnumAsByte<E_AudioImportance::Type>> DialogImportanceMap; // 0x0848 (size: 0x50)
-    double AggroQuipFrequency;                                                        // 0x0898 (size: 0x8)
-    double TimeOfLastAggroQuip;                                                       // 0x08A0 (size: 0x8)
-    double ExitCombatQuipFrequency;                                                   // 0x08A8 (size: 0x8)
-    double TimeOfLastExitCombatQuip;                                                  // 0x08B0 (size: 0x8)
+    FBuffDebuffRowHandle CombatDebuff;                                                // 0x07A8 (size: 0x10)
+    FGameplayTag CombatTagCheck;                                                      // 0x07B8 (size: 0x8)
+    TSoftObjectPtr<class AAI_PatrolPath_C> PotentialPatrolPath;                       // 0x07C0 (size: 0x28)
+    bool UseLegacyVoiceLines;                                                         // 0x07E8 (size: 0x1)
+    double BackstepTraceDistance;                                                     // 0x07F0 (size: 0x8)
+    bool NoBenchWander;                                                               // 0x07F8 (size: 0x1)
+    bool TurnToFaceSounds;                                                            // 0x07F9 (size: 0x1)
+    int32 LastKnownDifficulty;                                                        // 0x07FC (size: 0x4)
+    bool IsPendingDespawn;                                                            // 0x0800 (size: 0x1)
+    double TimeOfLastFlankingQuip;                                                    // 0x0808 (size: 0x8)
+    double FlankingQuipFrequency;                                                     // 0x0810 (size: 0x8)
+    TArray<TEnumAsByte<E_DialogLines::Type>> UsedQuipTypes;                           // 0x0818 (size: 0x10)
+    double AllyDeathQuipFrequency;                                                    // 0x0828 (size: 0x8)
+    double TimeOfLastAllyDeathQuip;                                                   // 0x0830 (size: 0x8)
+    TMap<TEnumAsByte<E_DialogLines::Type>, TEnumAsByte<E_AudioImportance::Type>> DialogImportanceMap; // 0x0838 (size: 0x50)
+    double AggroQuipFrequency;                                                        // 0x0888 (size: 0x8)
+    double TimeOfLastAggroQuip;                                                       // 0x0890 (size: 0x8)
+    double ExitCombatQuipFrequency;                                                   // 0x0898 (size: 0x8)
+    double TimeOfLastExitCombatQuip;                                                  // 0x08A0 (size: 0x8)
 
     void GetFriendlyFireDamageMultiplier(bool& Return, double& DamageMultiplier);
     void TargetableByTurrets(bool& Targetable);
     void GetWandererNPC(class ANPC_Base_ParentBP_C*& Wanderer);
-    bool GetTargetPriority(TEnumAsByte<E_TargetPriority::Type>& Priority);
+    void GetTargetPriority(TEnumAsByte<E_TargetPriority::Type>& Priority);
     void Targetable By Triggers(bool& Targetable);
-    bool GetSpottability(double& Spottability, bool& Crouched);
-    bool GetCurrentLightLevel(double& LightLevel);
-    void GetBuffOverlayMeshes(TArray<class UMeshComponent*>& Meshes);
+    void GetSpottability(double& Spottability, bool& Crouched);
+    void GetCurrentLightLevel(double& LightLevel);
+    void GetBuffOverlayMeshes(TArray<UMeshComponent*>& Meshes);
     void IsStompable(class AAbiotic_Character_ParentBP_C* AskingCharacter, bool& IsStompable);
     void DoesAwardSkillXPWhenHit(bool& MeleeXP, bool& RangedXP, double& XPMultiplier);
     void RequiresRangedWeaponToEngage(bool& RequiresRanged);
     void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
     void GetSpottablePoints(TArray<FVector>& SpottablePoints);
-    void GetFactionTeam(TEnumAsByte<E_Factions::Type>& Faction);
-    bool IsTargetInvisible(class AActor* CombatTarget);
+    void GetFactionTeam(EFactions& Faction);
+    void InitBehaviourTree();
+    void IsTargetInvisible(class AActor* CombatTarget);
     void OnUniqueIdleAbilityAborted();
     void GetCurrentLightLevelFromTarget(class AActor* InTarget, double& OutLightLevel);
-    bool HasTouchedTarget(class AActor* TargetActor);
+    void HasTouchedTarget(class AActor* TargetActor);
     void AI_PerformBackstep(FVector HitOrigin, bool Random, bool ForceBackwards);
     void AI_PerformStagger(FVector HitOrigin, bool SkipAnim);
     void AdditionalAbilityCheck(TEnumAsByte<E_NPC_AbilityTypes::Type> Ability, bool& Result);
@@ -133,14 +134,14 @@ class AAbiotic_AI_Controller_ParentBP_C : public AAbioticAIController
     void DetermineDodgeDirection(FVector& Origin, bool& Random, bool& ForceBackwards, TEnumAsByte<EStaggerDirection::Type>& Direction);
     void TrySpeakFromType(TEnumAsByte<E_DialogLines::Type> Type, TEnumAsByte<E_AudioImportance::Type> Importance, bool& Success);
     void PerformCombatEngage();
-    void GetSquadMemberAI(TArray<class AAbiotic_AI_Controller_ParentBP_C*>& AIControllers);
+    void GetSquadMemberAI(TArray<AAbiotic_AI_Controller_ParentBP_C*>& AIControllers);
     void TrySpeakAggroLine(bool PlayerCharacterIsTarget);
     void ForgetTarget(const class AActor*& Target);
-    bool ExtraFocusCheck();
+    void ExtraFocusCheck();
     void DisableAllPerception();
-    FVector GetObstructionDirection();
+    void GetObstructionDirection();
     void CheckForCombatBuffs();
-    bool IsCharacter(class AActor* Target);
+    void IsCharacter(class AActor* Target);
     void BT_CheckObstruction();
     void MoveToLocationOfInterest();
     void PerformCombatAlert(FVector Location, class AActor* Target);
@@ -151,16 +152,16 @@ class AAbiotic_AI_Controller_ParentBP_C : public AAbioticAIController
     void BT_SetStunned(bool Stunned);
     void BT_SetPatrolIndex(int32 Index);
     void BT_ResolveCurrentPatrolPath();
-    bool BT_UpdateLastKnownLocation();
+    void BT_UpdateLastKnownLocation();
     void BT_SetCanSeeTarget(class UObject* TargetActor);
     void SetCurrentCombatTarget(class AActor* CombatTarget);
-    class AActor* GetCurrentCombatTarget();
+    void GetCurrentCombatTarget();
     void BT_SetCombatState(bool State, bool SkipAggroAnimation, bool& Success);
     void BT_SetTargetActor(class UObject* TargetActor);
     void BT_HeardNewSound(class AActor* Actor, FAIStimulus Stimulus);
     void BT_SetLastKnownLocation(FVector Location, bool Target, bool Cheating);
     void BT_SetAbilityCooldown(bool OnCooldown);
-    bool BT_ChooseBestTarget(bool Initial);
+    void BT_ChooseBestTarget(bool Initial);
     void UpdateBehaviorTreeValues();
     void ReFindPatrolPath();
     void TrySpeakPainLine(bool ForceLine);
@@ -194,9 +195,9 @@ class AAbiotic_AI_Controller_ParentBP_C : public AAbioticAIController
     void ClearStuckState();
     void Check if Stuck();
     void GetHostilityTowardsTarget(class AActor* Target, bool& Hostile);
-    void GetNPCData(FAbiotic_NPCStruct& NPCData);
+    void GetNPCData(FAbioticNPC& NPCData);
     void JustTookDamage(class AAbiotic_Character_ParentBP_C* FromCharacter, FVector FromLocation, double Damage, bool FriendlyFire, bool SkipPainLine);
-    bool RollChance(int32 1 in N Chance);
+    void RollChance(int32 1 in N Chance);
     void CheckLineOfSightToLocations(TArray<FVector>& LocationsMustSee, class AActor* OwningTarget, int32 RequiredLocationsToCount, bool QueryOnly, bool& Can See);
     void CheckForNewBestTarget(bool& Found, bool& SameTargetAsBefore);
     void AddOrUpdatePotentialTarget(const class AActor*& PotentialTarget, bool ForceSpotTargetImmediately);
@@ -205,8 +206,8 @@ class AAbiotic_AI_Controller_ParentBP_C : public AAbioticAIController
     void ForgetCurrentTarget();
     void CheckCombatTargetValidity(class AActor* TargetToCheck, bool Maintain, bool& Valid);
     void PrintAIDebug(double Duration, FString String, FLinearColor TextColor);
-    void TrySpeakDialogLegacy(TSoftObjectPtr<USoundBase> Legacy CueToPlay, TEnumAsByte<E_AudioImportance::Type> Importance);
-    void TrySpeakDialog(TSoftObjectPtr<UDialogueWave> CueToPlay, TEnumAsByte<E_AudioImportance::Type> Importance);
+    void TrySpeakDialogLegacy(TSoftObjectPtr<class USoundBase> Legacy CueToPlay, TEnumAsByte<E_AudioImportance::Type> Importance);
+    void TrySpeakDialog(TSoftObjectPtr<class UDialogueWave> CueToPlay, TEnumAsByte<E_AudioImportance::Type> Importance);
     void TurnToFaceTimeline__FinishedFunc();
     void TurnToFaceTimeline__UpdateFunc();
     void DoActionToSensedTarget(bool SuccessfullySensed);
@@ -225,6 +226,6 @@ class AAbiotic_AI_Controller_ParentBP_C : public AAbioticAIController
     void UniqueIdleReset__DelegateSignature(bool Success);
     void PatrolPath_ReachedEndPoint__DelegateSignature();
     void PatrolPath_ReturnedHome__DelegateSignature();
-}; // Size: 0x8B8
+}; // Size: 0x8A8
 
 #endif

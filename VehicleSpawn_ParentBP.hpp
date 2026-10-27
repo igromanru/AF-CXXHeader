@@ -14,7 +14,7 @@ class AVehicleSpawn_ParentBP_C : public AActor
 
     void ApplyRecallSave(class AABF_Vehicle_ParentBP_C* Vehicle);
     void AttemptRecall(class AAbiotic_PlayerCharacter_C* InteractingPlayer);
-    FString GetVehicleID();
+    void GetVehicleID();
     void OnLoaded_A1C1702B413FA8732D3D70854653154D(UClass* Loaded);
     void OnVehicleDestroyed(class AActor* DestroyedActor);
     void CheckVehicleSpawn();

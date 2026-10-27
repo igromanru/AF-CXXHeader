@@ -7,7 +7,7 @@ class UCsvActorCountMetric : public UWorldMetricInterface
 
 class UCsvMetricsSubsystem : public UWorldSubsystem
 {
-    TArray<class TSubclassOf<UWorldMetricInterface>> MetricClasses;                   // 0x0030 (size: 0x10)
+    TArray<TSubclassOf<class UWorldMetricInterface>> MetricClasses;                   // 0x0030 (size: 0x10)
 
 }; // Size: 0x60
 

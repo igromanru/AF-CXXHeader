@@ -3,32 +3,34 @@
 
 class ANPC_Coworker_C : public ANPC_Base_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x21B8 (size: 0x8)
-    class UStaticMeshComponent* IDCardMesh;                                           // 0x21C0 (size: 0x8)
-    class USkeletalMeshComponent* hair;                                               // 0x21C8 (size: 0x8)
-    class USkeletalMeshComponent* Legs;                                               // 0x21D0 (size: 0x8)
-    class USkeletalMeshComponent* Chest;                                              // 0x21D8 (size: 0x8)
-    bool Eating;                                                                      // 0x21E0 (size: 0x1)
-    class UAudioComponent* EatingAudio;                                               // 0x21E8 (size: 0x8)
-    int32 FedCount;                                                                   // 0x21F0 (size: 0x4)
-    TArray<FName> FoodEaten;                                                          // 0x21F8 (size: 0x10)
-    bool DroppedStapler;                                                              // 0x2208 (size: 0x1)
-    bool CoworkerDayTime;                                                             // 0x2209 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x21C8 (size: 0x8)
+    class UStaticMeshComponent* IDCardMesh;                                           // 0x21D0 (size: 0x8)
+    class USkeletalMeshComponent* Hair;                                               // 0x21D8 (size: 0x8)
+    class USkeletalMeshComponent* Legs;                                               // 0x21E0 (size: 0x8)
+    class USkeletalMeshComponent* Chest;                                              // 0x21E8 (size: 0x8)
+    bool Eating;                                                                      // 0x21F0 (size: 0x1)
+    class UAudioComponent* EatingAudio;                                               // 0x21F8 (size: 0x8)
+    int32 FedCount;                                                                   // 0x2200 (size: 0x4)
+    TArray<FName> FoodEaten;                                                          // 0x2208 (size: 0x10)
+    bool DroppedStapler;                                                              // 0x2218 (size: 0x1)
+    bool CoworkerDayTime;                                                             // 0x2219 (size: 0x1)
 
+    void CanConsumeItem(const FAbioticInventoryItemSlot& ItemSlotInfo, bool& CanConsume, bool& Killer, FName& FoodToTrack);
+    void ConsumeItemFromPlayer(class AAbiotic_PlayerCharacter_C* PlayerCharacter, class AAbiotic_Item_ParentBP_C* ItemBlueprint);
     void Does Award Sneaking XP to Player(bool& Return, double& XP Gained);
-    bool VisibleToPlayers();
+    void VisibleToPlayers();
     void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
-    FText GetItemNameText();
+    void GetItemNameText();
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void FindBestMeleeAttack(class AActor* SwingAtActor, FVector SwingAtTarget, bool& TurnToFaceTarget);
-    void GetBuffOverlayMeshes(TArray<class UMeshComponent*>& Meshes);
+    void GetBuffOverlayMeshes(TArray<UMeshComponent*>& Meshes);
     void UserConstructionScript();
-    void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void ReceiveBeginPlay();
     void Morning_Event();
+    void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void ProcessDamage(double Damage, const class UDamageType* DamageType, FVector HitLocation, FVector HitNormal, class UPrimitiveComponent* HitComponent, FName BoneHitName, FVector DirectionOfSource, class AActor* Instigator, class AActor* DamageCauser, FHitResult HitInfo);
     void ExecuteUbergraph_NPC_Coworker(int32 EntryPoint);
-}; // Size: 0x220A
+}; // Size: 0x221A
 
 #endif

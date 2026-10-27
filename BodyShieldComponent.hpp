@@ -4,8 +4,8 @@
 class UBodyShieldComponent_C : public UActorComponent
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x00A8 (size: 0x8)
-    TArray<class UMeshComponent*> ShieldMeshes;                                       // 0x00B0 (size: 0x10)
-    TArray<class UMaterialInstanceDynamic*> ShieldMaterials;                          // 0x00C0 (size: 0x10)
+    TArray<UMeshComponent*> ShieldMeshes;                                             // 0x00B0 (size: 0x10)
+    TArray<UMaterialInstanceDynamic*> ShieldMaterials;                                // 0x00C0 (size: 0x10)
     double ShieldRegenTime;                                                           // 0x00D0 (size: 0x8)
     double ShieldRegenPerSecond;                                                      // 0x00D8 (size: 0x8)
     double ShieldRegenTimeWhenZeroHP;                                                 // 0x00E0 (size: 0x8)
@@ -45,17 +45,17 @@ class UBodyShieldComponent_C : public UActorComponent
     void Server_DoDifficultyCheck();
     void OnRep_IsShieldComponentEnabled();
     void ForceBreakShield();
-    bool CanShowBrokenLoop();
-    bool CanApplyDamageObjectToShield(const class UAbiotic_DamageType_ParentBP_C* DamageType);
-    bool CanApplyDamageToShield(TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType);
+    void CanShowBrokenLoop();
+    void CanApplyDamageObjectToShield(const class UAbioticDamageType* DamageType);
+    void CanApplyDamageToShield(TSubclassOf<class UAbioticDamageType> DamageType);
     void OnRep_ShouldShowFX();
     void SetImmuneToNetted(bool ImmuneToNetted);
     void CacheBuffDebuffs();
-    double GetShieldRegenTime();
+    void GetShieldRegenTime();
     void DeactivateBodyShieldComponent();
     void OnRep_ShieldBroken();
     void RestartShieldRegenWaitTime();
-    void Server_TryApplyDamageToShield(double Damage, const class UAbiotic_DamageType_ParentBP_C* DamageType, EBodyLimbs Limb, bool& AppliedAnyDamage, double& LeftoverDamage);
+    void Server_TryApplyDamageToShield(double Damage, const class UAbioticDamageType* DamageType, EBodyLimbs Limb, bool& AppliedAnyDamage, double& LeftoverDamage);
     void ToggleShieldTick(bool On);
     void OnRep_CurrentShieldHitPoints();
     void ReceiveBeginPlay();

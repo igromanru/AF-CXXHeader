@@ -9,7 +9,7 @@ class ARadioactiveZone_Box_C : public ARadioactiveZone_ParentBP_C
     TEnumAsByte<ETimesOfDay::Type> ActivePeriod;                                      // 0x02D8 (size: 0x1)
     class ADayNightManager_C* DayNightManager;                                        // 0x02E0 (size: 0x8)
 
-    class UPrimitiveComponent* GetOverlapVolume();
+    void GetOverlapVolume();
     void UserConstructionScript();
     void ReceiveBeginPlay();
     void UpdateStatus();

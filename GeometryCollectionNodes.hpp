@@ -33,7 +33,7 @@ struct FAddMaterialToCollectionDataflowNode : public FDataflowNode
 {
     FManagedArrayCollection Collection;                                               // 0x00E8 (size: 0xB0)
     FDataflowFaceSelection FaceSelection;                                             // 0x0198 (size: 0x20)
-    TArray<class UMaterial*> Materials;                                               // 0x01B8 (size: 0x10)
+    TArray<UMaterial*> Materials;                                                     // 0x01B8 (size: 0x10)
     class UMaterial* OutsideMaterial;                                                 // 0x01C8 (size: 0x8)
     class UMaterial* InsideMaterial;                                                  // 0x01D0 (size: 0x8)
     bool bAssignOutsideMaterial;                                                      // 0x01D8 (size: 0x1)
@@ -588,7 +588,7 @@ struct FCreateGeometryCollectionFromSourcesDataflowNode : public FDataflowNode
 {
     TArray<FGeometryCollectionSource> Sources;                                        // 0x00E8 (size: 0x10)
     FManagedArrayCollection Collection;                                               // 0x00F8 (size: 0xB0)
-    TArray<class UMaterial*> Materials;                                               // 0x01A8 (size: 0x10)
+    TArray<UMaterial*> Materials;                                                     // 0x01A8 (size: 0x10)
     TArray<FGeometryCollectionAutoInstanceMesh> InstancedMeshes;                      // 0x01B8 (size: 0x10)
 
 }; // Size: 0x1C8
@@ -865,7 +865,7 @@ struct FGenerateClusterConvexHullsFromLeafHullsDataflowNode : public FDataflowNo
 struct FGeometryCollectionTerminalDataflowNode : public FDataflowTerminalNode
 {
     FManagedArrayCollection Collection;                                               // 0x00E8 (size: 0xB0)
-    TArray<class UMaterial*> Materials;                                               // 0x0198 (size: 0x10)
+    TArray<UMaterial*> Materials;                                                     // 0x0198 (size: 0x10)
     TArray<FGeometryCollectionAutoInstanceMesh> InstancedMeshes;                      // 0x01A8 (size: 0x10)
 
 }; // Size: 0x1B8
@@ -988,7 +988,7 @@ struct FGetIntOverrideFromAssetDataflowNode : public FDataflowOverrideNode
 
 struct FGetMaterialFromMaterialsArrayDataflowNode : public FDataflowNode
 {
-    TArray<class UMaterial*> Materials;                                               // 0x00E8 (size: 0x10)
+    TArray<UMaterial*> Materials;                                                     // 0x00E8 (size: 0x10)
     class UMaterial* Material;                                                        // 0x00F8 (size: 0x8)
     int32 MaterialIdx;                                                                // 0x0100 (size: 0x4)
 
@@ -1213,7 +1213,7 @@ struct FMakeMaterialDataflowNode : public FDataflowNode
 
 struct FMakeMaterialsArrayDataflowNode : public FDataflowNode
 {
-    TArray<class UMaterial*> Materials;                                               // 0x00E8 (size: 0x10)
+    TArray<UMaterial*> Materials;                                                     // 0x00E8 (size: 0x10)
 
 }; // Size: 0xF8
 
@@ -1253,7 +1253,7 @@ struct FMakeTransformDataflowNode : public FDataflowNode
 
 struct FMaterialsInfoDataflowNode : public FDataflowNode
 {
-    TArray<class UMaterial*> Materials;                                               // 0x00E8 (size: 0x10)
+    TArray<UMaterial*> Materials;                                                     // 0x00E8 (size: 0x10)
     FString String;                                                                   // 0x00F8 (size: 0x10)
 
 }; // Size: 0x108
@@ -1635,7 +1635,7 @@ struct FReAssignMaterialInCollectionDataflowNode : public FDataflowNode
 {
     FManagedArrayCollection Collection;                                               // 0x00E8 (size: 0xB0)
     FDataflowFaceSelection FaceSelection;                                             // 0x0198 (size: 0x20)
-    TArray<class UMaterial*> Materials;                                               // 0x01B8 (size: 0x10)
+    TArray<UMaterial*> Materials;                                                     // 0x01B8 (size: 0x10)
     int32 OutsideMaterialIdx;                                                         // 0x01C8 (size: 0x4)
     int32 InsideMaterialIdx;                                                          // 0x01CC (size: 0x4)
     bool bAssignOutsideMaterial;                                                      // 0x01D0 (size: 0x1)
@@ -1737,7 +1737,7 @@ struct FSetCollectionAttributeDataTypedDataflowNode : public FDataflowNode
 
 struct FSetMaterialInMaterialsArrayDataflowNode : public FDataflowNode
 {
-    TArray<class UMaterial*> Materials;                                               // 0x00E8 (size: 0x10)
+    TArray<UMaterial*> Materials;                                                     // 0x00E8 (size: 0x10)
     class UMaterial* Material;                                                        // 0x00F8 (size: 0x8)
     ESetMaterialOperationTypeEnum Operation;                                          // 0x0100 (size: 0x1)
     int32 MaterialIdx;                                                                // 0x0104 (size: 0x4)
@@ -1838,7 +1838,7 @@ struct FStaticMeshToCollectionDataflowNode : public FDataflowNode
     bool bSetInternalFromMaterialIndex;                                               // 0x00F0 (size: 0x1)
     bool bSplitComponents;                                                            // 0x00F1 (size: 0x1)
     FManagedArrayCollection Collection;                                               // 0x00F8 (size: 0xB0)
-    TArray<class UMaterial*> Materials;                                               // 0x01A8 (size: 0x10)
+    TArray<UMaterial*> Materials;                                                     // 0x01A8 (size: 0x10)
     TArray<FGeometryCollectionAutoInstanceMesh> InstancedMeshes;                      // 0x01B8 (size: 0x10)
 
 }; // Size: 0x1C8
@@ -2051,7 +2051,7 @@ struct FWaveScalarFieldDataflowNode : public FDataflowNode
     float Magnitude;                                                                  // 0x0118 (size: 0x4)
     FVector position;                                                                 // 0x0120 (size: 0x18)
     FVector Translation;                                                              // 0x0138 (size: 0x18)
-    float Wavelength;                                                                 // 0x0150 (size: 0x4)
+    float WaveLength;                                                                 // 0x0150 (size: 0x4)
     float Period;                                                                     // 0x0154 (size: 0x4)
     EDataflowWaveFunctionType FunctionType;                                           // 0x0158 (size: 0x1)
     EDataflowFieldFalloffType FalloffType;                                            // 0x0159 (size: 0x1)

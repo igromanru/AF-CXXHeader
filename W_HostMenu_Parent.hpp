@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_HostMenu_Parent_HPP
 #define UE4SS_SDK_W_HostMenu_Parent_HPP
 
-class UW_HostMenu_Parent_C : public UUserWidget
+class UW_HostMenu_Parent_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
 

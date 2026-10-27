@@ -17,7 +17,7 @@ class UW_Player_Emails_Main_C : public UUserWidget
     class UTextBlock* NoAttachmentsText;                                              // 0x0338 (size: 0x8)
     class UScrollBox* ScrollBox_EmailEntries;                                         // 0x0340 (size: 0x8)
 
-    void PopulateAttachments(TArray<FEmailAttachment_Struct>& AttachmentsArray);
+    void PopulateAttachments(TArray<FEmailAttachment>& AttachmentsArray);
     void RefreshEmailList();
     void Construct();
     void DelayShowAttachmentPopup();

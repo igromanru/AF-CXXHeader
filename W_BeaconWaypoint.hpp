@@ -8,7 +8,7 @@ class UW_BeaconWaypoint_C : public UW_Waypoint_ParentBP_C
     class AActor* LinkedActor;                                                        // 0x0368 (size: 0x8)
 
     void GetWaypointLocation(FVector& Location);
-    bool ShouldBeVisible();
+    void ShouldBeVisible();
     void OnFailure_D26D26F4456DADB9F8B0FFB121B1B968(bool bSuccess, const TArray<FString>& SanitizedMessages);
     void OnSuccess_D26D26F4456DADB9F8B0FFB121B1B968(bool bSuccess, const TArray<FString>& SanitizedMessages);
     void Tick(FGeometry MyGeometry, float InDeltaTime);

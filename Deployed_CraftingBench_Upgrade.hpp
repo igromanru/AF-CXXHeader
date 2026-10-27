@@ -9,12 +9,12 @@ class ADeployed_CraftingBench_Upgrade_C : public AAbioticDeployed_CraftingBench_
     class UAbiotic_InventoryComponent_C* UpgradeItemInventory;                        // 0x0918 (size: 0x8)
     class UPointLightComponent* PointLight;                                           // 0x0920 (size: 0x8)
     bool IsContainerBeingUsed;                                                        // 0x0928 (size: 0x1)
-    TSoftObjectPtr<USoundBase> OpenCue;                                               // 0x0930 (size: 0x28)
-    TSoftObjectPtr<USoundBase> CloseCue;                                              // 0x0958 (size: 0x28)
+    TSoftObjectPtr<class USoundBase> OpenCue;                                         // 0x0930 (size: 0x28)
+    TSoftObjectPtr<class USoundBase> CloseCue;                                        // 0x0958 (size: 0x28)
     double LastContainerUpdate;                                                       // 0x0980 (size: 0x8)
     double DistanceForSubtitles;                                                      // 0x0988 (size: 0x8)
 
-    void ReturnOriginalItemChangeableDataToPlayer(double CurrentLiquidPercentage, class AAbiotic_PlayerCharacter_C* CraftingPlayer, FAbiotic_InventoryChangeableDataStruct& CarryoverChangeableData, double& LiquidPercentageRemains, double& DurabilityPercentage);
+    void ReturnOriginalItemChangeableDataToPlayer(double CurrentLiquidPercentage, class AAbiotic_PlayerCharacter_C* CraftingPlayer, FAbioticInventoryChangeableData& CarryoverChangeableData, double& LiquidPercentageRemains, double& DurabilityPercentage);
     void UpdateOverlappingContainers();
     void Server_TryCraftUpgrade(class AAbioticCharacter* Player, FItemUpgradeRowHandle UpgradeRow, int32 UpgradeIndex, double UpgradeDuration);
     void OnRep_IsContainerBeingUsed();
@@ -23,11 +23,11 @@ class ADeployed_CraftingBench_Upgrade_C : public AAbioticDeployed_CraftingBench_
     void TogglePowerFX();
     void OnLoadedFromSave(double NewLifespan);
     void ToggleOpenFX(bool Open);
-    void PlayOpenCloseSound(TSoftObjectPtr<UObject> Asset);
+    void PlayOpenCloseSound(TSoftObjectPtr<class UObject> Asset);
     void OnContainerInventoryUpdated(class UAbiotic_InventoryComponent_C* Inventory);
     void ReceiveBeginPlay();
-    void Broadcast_PlayCraftSoundToAll(TSoftObjectPtr<UObject> CraftSoundToPlay, const FText& CraftedItemName);
-    void Server_CheckCraftSoundEffect(TSoftObjectPtr<UObject> CraftSoundToPlay, double InitialStartDelay, const FText& CraftedItemName);
+    void Broadcast_PlayCraftSoundToAll(TSoftObjectPtr<class UObject> CraftSoundToPlay, const FText& CraftedItemName);
+    void Server_CheckCraftSoundEffect(TSoftObjectPtr<class UObject> CraftSoundToPlay, double InitialStartDelay, const FText& CraftedItemName);
     void InteractWith_A_LocalFX(bool Hold);
     void ExecuteUbergraph_Deployed_CraftingBench_Upgrade(int32 EntryPoint);
 }; // Size: 0x990

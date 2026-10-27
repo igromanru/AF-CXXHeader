@@ -106,7 +106,7 @@ struct FParticleTransformTrack
 struct FPerParticleCacheData
 {
     FParticleTransformTrack TransformData;                                            // 0x0000 (size: 0x48)
-    TMap<class FName, class FRichCurve> CurveData;                                    // 0x0048 (size: 0x50)
+    TMap<FName, FRichCurve> CurveData;                                                // 0x0048 (size: 0x50)
 
 }; // Size: 0x98
 
@@ -158,14 +158,14 @@ class UChaosCache : public UObject
     TArray<int32> TrackToParticle;                                                    // 0x0030 (size: 0x10)
     TArray<FPerParticleCacheData> ParticleTracks;                                     // 0x0040 (size: 0x10)
     TArray<int32> ChannelCurveToParticle;                                             // 0x0050 (size: 0x10)
-    TMap<class FName, class FRichCurves> ChannelsTracks;                              // 0x0060 (size: 0x50)
-    TMap<class FName, class FCompressedRichCurves> CompressedChannelsTracks;          // 0x00B0 (size: 0x50)
-    TMap<class FName, class FRichCurve> CurveData;                                    // 0x0100 (size: 0x50)
-    TMap<class FName, class FParticleTransformTrack> NamedTransformTracks;            // 0x0150 (size: 0x50)
+    TMap<FName, FRichCurves> ChannelsTracks;                                          // 0x0060 (size: 0x50)
+    TMap<FName, FCompressedRichCurves> CompressedChannelsTracks;                      // 0x00B0 (size: 0x50)
+    TMap<FName, FRichCurve> CurveData;                                                // 0x0100 (size: 0x50)
+    TMap<FName, FParticleTransformTrack> NamedTransformTracks;                        // 0x0150 (size: 0x50)
     bool bCompressChannels;                                                           // 0x01A0 (size: 0x1)
     float ChannelsCompressionErrorThreshold;                                          // 0x01A4 (size: 0x4)
     float ChannelsCompressionSampleRate;                                              // 0x01A8 (size: 0x4)
-    TMap<class FName, class FCacheEventTrack> EventTracks;                            // 0x01B0 (size: 0x50)
+    TMap<FName, FCacheEventTrack> EventTracks;                                        // 0x01B0 (size: 0x50)
     FCacheSpawnableTemplate Spawnable;                                                // 0x0200 (size: 0xD0)
     FGuid AdapterGuid;                                                                // 0x02D0 (size: 0x10)
     int32 Version;                                                                    // 0x02E0 (size: 0x4)
@@ -174,7 +174,7 @@ class UChaosCache : public UObject
 
 class UChaosCacheCollection : public UObject
 {
-    TArray<class UChaosCache*> Caches;                                                // 0x0028 (size: 0x10)
+    TArray<UChaosCache*> Caches;                                                      // 0x0028 (size: 0x10)
 
 }; // Size: 0x38
 
@@ -186,7 +186,7 @@ class UMovieSceneChaosCacheSection : public UMovieSceneBaseCacheSection
 
 class UMovieSceneChaosCacheTrack : public UMovieSceneNameableTrack
 {
-    TArray<class UMovieSceneSection*> AnimationSections;                              // 0x00A0 (size: 0x10)
+    TArray<UMovieSceneSection*> AnimationSections;                                    // 0x00A0 (size: 0x10)
 
 }; // Size: 0xB0
 

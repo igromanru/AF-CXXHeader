@@ -3,11 +3,11 @@
 
 class ADeployed_WallClock_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0870 (size: 0x8)
-    class UStaticMeshComponent* MinuteNeedle;                                         // 0x0878 (size: 0x8)
-    class UStaticMeshComponent* HourNeedle;                                           // 0x0880 (size: 0x8)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0860 (size: 0x8)
+    class UStaticMeshComponent* MinuteNeedle;                                         // 0x0868 (size: 0x8)
+    class UStaticMeshComponent* HourNeedle;                                           // 0x0870 (size: 0x8)
 
-    bool CheckScrambledTime();
+    void CheckScrambledTime();
     void TargetableByTurrets(bool& Targetable);
     void Targetable By Triggers(bool& Targetable);
     void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
@@ -16,6 +16,6 @@ class ADeployed_WallClock_C : public AAbioticDeployed_Furniture_ParentBP_C
     void UpdateClockNeedles(double TimeInSeconds);
     void OnLevelLoaded(class ULevelStreaming* Level);
     void ExecuteUbergraph_Deployed_WallClock(int32 EntryPoint);
-}; // Size: 0x888
+}; // Size: 0x878
 
 #endif

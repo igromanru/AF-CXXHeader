@@ -17,6 +17,7 @@ class UW_RadialWheel_Rechargeables_C : public UW_RadialWheel_ParentBP_C
     void Tick(FGeometry MyGeometry, float InDeltaTime);
     void BndEvt__W_RadialWheel_Medical_SelectionWheel_K2Node_ComponentBoundEvent_0_SelectionChanged__DelegateSignature(int32 NewSelection, int32 OldSelection);
     void SelectionChanged(int32 NewSelection, int32 OldSelection);
+    void Construct();
     void ExecuteUbergraph_W_RadialWheel_Rechargeables(int32 EntryPoint);
 }; // Size: 0x388
 

@@ -198,7 +198,7 @@ struct FMetasoundFrontendLiteral
     TArray<int32> AsInteger;                                                          // 0x0018 (size: 0x10)
     TArray<float> AsFloat;                                                            // 0x0028 (size: 0x10)
     TArray<FString> AsString;                                                         // 0x0038 (size: 0x10)
-    TArray<class UObject*> AsUObject;                                                 // 0x0048 (size: 0x10)
+    TArray<UObject*> AsUObject;                                                       // 0x0048 (size: 0x10)
 
 }; // Size: 0x58
 
@@ -295,22 +295,22 @@ class UMetaSoundBuilderDocument : public UObject
 class UMetasoundParameterPack : public UObject
 {
 
-    ESetParamResult SetTrigger(FName ParameterName, bool OnlyIfExists);
-    ESetParamResult SetString(FName ParameterName, FString InValue, bool OnlyIfExists);
-    ESetParamResult SetInt(FName ParameterName, int32 InValue, bool OnlyIfExists);
-    ESetParamResult SetFloat(FName ParameterName, float InValue, bool OnlyIfExists);
-    ESetParamResult SetBool(FName ParameterName, bool InValue, bool OnlyIfExists);
-    class UMetasoundParameterPack* MakeMetasoundParameterPack();
-    bool HasTrigger(FName ParameterName);
-    bool HasString(FName ParameterName);
-    bool HasInt(FName ParameterName);
-    bool HasFloat(FName ParameterName);
-    bool HasBool(FName ParameterName);
-    bool GetTrigger(FName ParameterName, ESetParamResult& Result);
-    FString GetString(FName ParameterName, ESetParamResult& Result);
-    int32 GetInt(FName ParameterName, ESetParamResult& Result);
-    float GetFloat(FName ParameterName, ESetParamResult& Result);
-    bool GetBool(FName ParameterName, ESetParamResult& Result);
+    void SetTrigger(FName ParameterName, bool OnlyIfExists);
+    void SetString(FName ParameterName, FString InValue, bool OnlyIfExists);
+    void SetInt(FName ParameterName, int32 InValue, bool OnlyIfExists);
+    void SetFloat(FName ParameterName, float InValue, bool OnlyIfExists);
+    void SetBool(FName ParameterName, bool InValue, bool OnlyIfExists);
+    void MakeMetasoundParameterPack();
+    void HasTrigger(FName ParameterName);
+    void HasString(FName ParameterName);
+    void HasInt(FName ParameterName);
+    void HasFloat(FName ParameterName);
+    void HasBool(FName ParameterName);
+    void GetTrigger(FName ParameterName, ESetParamResult& Result);
+    void GetString(FName ParameterName, ESetParamResult& Result);
+    void GetInt(FName ParameterName, ESetParamResult& Result);
+    void GetFloat(FName ParameterName, ESetParamResult& Result);
+    void GetBool(FName ParameterName, ESetParamResult& Result);
 }; // Size: 0x40
 
 #endif

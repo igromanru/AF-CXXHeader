@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_MainMenu_Master_HPP
 #define UE4SS_SDK_W_MainMenu_Master_HPP
 
-class UW_MainMenu_Master_C : public UAbioticWidget
+class UW_MainMenu_Master_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UWidgetAnimation* PulsePressAnything;                                       // 0x02E8 (size: 0x8)
@@ -31,14 +31,18 @@ class UW_MainMenu_Master_C : public UAbioticWidget
     class UW_MainMenu_CustomizeCharacter_C* W_MainMenu_CustomizeCharacter;            // 0x03A8 (size: 0x8)
     class UW_MainMenu_HostGame_C* W_MainMenu_HostGame;                                // 0x03B0 (size: 0x8)
     class UW_MainMenu_Initial_C* W_MainMenu_Initial;                                  // 0x03B8 (size: 0x8)
-    class UW_MainMenu_Play_C* W_MainMenu_Play;                                        // 0x03C0 (size: 0x8)
-    class UW_ServerBrowser_C* W_ServerBrowser;                                        // 0x03C8 (size: 0x8)
-    class UW_SettingsMenu_C* W_SettingsMenu;                                          // 0x03D0 (size: 0x8)
-    class UW_SettingsPage_FirstTime_C* W_SettingsPage_FirstTime;                      // 0x03D8 (size: 0x8)
-    class ACharacterCustomization_BP_C* CharacterCustomizationRef;                    // 0x03E0 (size: 0x8)
-    bool HasStartedSplashFade;                                                        // 0x03E8 (size: 0x1)
-    bool DisplayedCrossplayPrompt;                                                    // 0x03E9 (size: 0x1)
-    bool bWaitingOnShaders;                                                           // 0x03EA (size: 0x1)
+    class UW_MainMenu_LocalMods_C* W_MainMenu_LocalMods;                              // 0x03C0 (size: 0x8)
+    class UW_MainMenu_Mods_C* W_MainMenu_Mods;                                        // 0x03C8 (size: 0x8)
+    class UW_MainMenu_Mods_Browse_C* W_MainMenu_Mods_Browse;                          // 0x03D0 (size: 0x8)
+    class UW_MainMenu_Mods_Installed_C* W_MainMenu_Mods_Installed;                    // 0x03D8 (size: 0x8)
+    class UW_MainMenu_Play_C* W_MainMenu_Play;                                        // 0x03E0 (size: 0x8)
+    class UW_ServerBrowser_C* W_ServerBrowser;                                        // 0x03E8 (size: 0x8)
+    class UW_SettingsMenu_C* W_SettingsMenu;                                          // 0x03F0 (size: 0x8)
+    class UW_SettingsPage_FirstTime_C* W_SettingsPage_FirstTime;                      // 0x03F8 (size: 0x8)
+    class ACharacterCustomization_BP_C* CharacterCustomizationRef;                    // 0x0400 (size: 0x8)
+    bool HasStartedSplashFade;                                                        // 0x0408 (size: 0x1)
+    bool DisplayedCrossplayPrompt;                                                    // 0x0409 (size: 0x1)
+    bool bWaitingOnShaders;                                                           // 0x040A (size: 0x1)
 
     void WidgetAction_DPadDirection(TEnumAsByte<E_NavigationDirection::Type> Direction, bool& Handled);
     void WidgetAction_FaceTop(bool& Handled);
@@ -47,9 +51,9 @@ class UW_MainMenu_Master_C : public UAbioticWidget
     void WidgetAction_CycleMenu(bool Next, bool& Handled);
     void SplashKeyDown();
     void CheckNotices();
-    FEventReply OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
-    FEventReply On_SplashBGCover_MouseButtonDown_0(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
-    FEventReply OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnKeyUp(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void On_SplashBGCover_MouseButtonDown_0(FGeometry MyGeometry, const FPointerEvent& MouseEvent);
+    void OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
     void SetMainMenuDemoMode();
     void OnFailure_E8952CF74CB5ADEDE9BD26B826E4E6D2();
     void OnSuccess_E8952CF74CB5ADEDE9BD26B826E4E6D2();
@@ -75,7 +79,8 @@ class UW_MainMenu_Master_C : public UAbioticWidget
     void CrossplayEnable_No();
     void Tick(FGeometry MyGeometry, float InDeltaTime);
     void SessionInviteFailed_Yes();
+    void CheckModAllowState();
     void ExecuteUbergraph_W_MainMenu_Master(int32 EntryPoint);
-}; // Size: 0x3EB
+}; // Size: 0x40B
 
 #endif

@@ -34,13 +34,13 @@ class UW_Inventory_Container_C : public UUserWidget
     class UImage* TemperatureIcon;                                                    // 0x03C0 (size: 0x8)
     class UW_InventoryGrid_C* W_InventoryGrid;                                        // 0x03C8 (size: 0x8)
     bool IsDefaultDisplayName;                                                        // 0x03D0 (size: 0x1)
-    TArray<FAbiotic_InventoryItemSlotStruct> ItemsToBeAdd;                            // 0x03D8 (size: 0x10)
+    TArray<FAbioticInventoryItemSlot> ItemsToBeAdd;                                   // 0x03D8 (size: 0x10)
     int32 Leftover;                                                                   // 0x03E8 (size: 0x4)
-    FAbiotic_InventoryItemSlotStruct Current Item;                                    // 0x03F0 (size: 0x98)
+    FAbioticInventoryItemSlot Current Item;                                           // 0x03F0 (size: 0x98)
     class UAbiotic_InventoryComponent_C* Inventory;                                   // 0x0488 (size: 0x8)
     TArray<FDataTableRowHandle> ItemData;                                             // 0x0490 (size: 0x10)
     int32 Count Found;                                                                // 0x04A0 (size: 0x4)
-    TArray<class UAbiotic_InventoryComponent_C*> Inventory List;                      // 0x04A8 (size: 0x10)
+    TArray<UAbiotic_InventoryComponent_C*> Inventory List;                            // 0x04A8 (size: 0x10)
     TArray<FName> Item Name;                                                          // 0x04B8 (size: 0x10)
 
     void TrashCanCheck(class UObject* ContainerOwner);
@@ -57,9 +57,9 @@ class UW_Inventory_Container_C : public UUserWidget
     void OnTextChanged(const FText& Text);
     void BndEvt__W_Inventory_Container_Button_EditContainerName_K2Node_ComponentBoundEvent_3_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__W_Inventory_Container_Button_StoreAllOfType_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature();
-    void RefreshContainerInfoAndGrid();
     void Construct();
     void StoreAllOfType();
+    void RefreshContainerInfoAndGrid();
     void BndEvt__W_Inventory_Container_Button_SortContainer_K2Node_ComponentBoundEvent_2_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__W_Inventory_Container_Button_DeleteItems_K2Node_ComponentBoundEvent_4_OnButtonClickedEvent__DelegateSignature();
     void CloseInitialPopup();

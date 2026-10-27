@@ -14,7 +14,7 @@ class UW_Compendium_ChemistryRecipes_C : public UAbioticWidget
     int32 CurrentColumn;                                                              // 0x031C (size: 0x4)
     int32 MaxColumn;                                                                  // 0x0320 (size: 0x4)
 
-    void GetAlphabetChemistry(TArray<FName>& Array, TArray<FName>& AlphabetizedArray);
+    void GetAlphabetChemistry(TArray<FChemistryRecipeRowHandle>& Array, TArray<FChemistryRecipeRowHandle>& AlphabetizedArray);
     void RefreshChemistryRecipeList();
     void Construct();
     void ExecuteUbergraph_W_Compendium_ChemistryRecipes(int32 EntryPoint);

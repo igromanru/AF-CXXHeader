@@ -21,17 +21,17 @@ class UMRMeshComponent : public UPrimitiveComponent
     bool bCreateMeshProxySections;                                                    // 0x0538 (size: 0x1)
     bool bUpdateNavMeshOnMeshUpdate;                                                  // 0x0539 (size: 0x1)
     bool bNeverCreateCollisionMesh;                                                   // 0x053B (size: 0x1)
-    TArray<class UMRMeshBodyHolder*> BodyHolders;                                     // 0x0580 (size: 0x10)
+    TArray<UMRMeshBodyHolder*> BodyHolders;                                           // 0x0580 (size: 0x10)
 
     void SetWireframeMaterial(class UMaterialInterface* InMaterial);
     void SetWireframeColor(const FLinearColor& InColor);
     void SetUseWireframe(bool bUseWireframe);
     void SetEnableMeshOcclusion(bool bEnable);
     void RequestNavMeshUpdate();
-    bool IsConnected();
-    FLinearColor GetWireframeColor();
-    bool GetUseWireframe();
-    bool GetEnableMeshOcclusion();
+    void IsConnected();
+    void GetWireframeColor();
+    void GetUseWireframe();
+    void GetEnableMeshOcclusion();
     void ForceNavMeshUpdate();
     void Clear();
 }; // Size: 0x5A0
@@ -42,8 +42,8 @@ class UMeshReconstructorBase : public UObject
     void StopReconstruction();
     void StartReconstruction();
     void PauseReconstruction();
-    bool IsReconstructionStarted();
-    bool IsReconstructionPaused();
+    void IsReconstructionStarted();
+    void IsReconstructionPaused();
     void DisconnectMRMesh();
     void ConnectMRMesh(class UMRMeshComponent* Mesh);
 }; // Size: 0x28

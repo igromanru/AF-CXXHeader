@@ -5,7 +5,7 @@ struct FSkeletalMeshMergeParams
 {
     TArray<FSkelMeshMergeSectionMapping> MeshSectionMappings;                         // 0x0000 (size: 0x10)
     TArray<FSkelMeshMergeMeshUVTransforms> UVTransformsPerMesh;                       // 0x0010 (size: 0x10)
-    TArray<class USkeletalMesh*> MeshesToMerge;                                       // 0x0020 (size: 0x10)
+    TArray<USkeletalMesh*> MeshesToMerge;                                             // 0x0020 (size: 0x10)
     int32 StripTopLODS;                                                               // 0x0030 (size: 0x4)
     uint8 bNeedsCpuAccess;                                                            // 0x0034 (size: 0x1)
     uint8 bSkeletonBefore;                                                            // 0x0034 (size: 0x1)
@@ -15,7 +15,7 @@ struct FSkeletalMeshMergeParams
 
 struct FSkeletonMergeParams
 {
-    TArray<class USkeleton*> SkeletonsToMerge;                                        // 0x0000 (size: 0x10)
+    TArray<USkeleton*> SkeletonsToMerge;                                              // 0x0000 (size: 0x10)
     bool bMergeSockets;                                                               // 0x0010 (size: 0x1)
     bool bMergeVirtualBones;                                                          // 0x0011 (size: 0x1)
     bool bMergeCurveNames;                                                            // 0x0012 (size: 0x1)
@@ -28,8 +28,8 @@ struct FSkeletonMergeParams
 class USkeletalMergingLibrary : public UBlueprintFunctionLibrary
 {
 
-    class USkeleton* MergeSkeletons(const FSkeletonMergeParams& Params);
-    class USkeletalMesh* MergeMeshes(const FSkeletalMeshMergeParams& Params);
+    void MergeSkeletons(const FSkeletonMergeParams& Params);
+    void MergeMeshes(const FSkeletalMeshMergeParams& Params);
 }; // Size: 0x28
 
 #endif

@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_WorldSelectMenu_HPP
 #define UE4SS_SDK_W_WorldSelectMenu_HPP
 
-class UW_WorldSelectMenu_C : public UUserWidget
+class UW_WorldSelectMenu_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UWidgetAnimation* HostPanelPopIn;                                           // 0x02E8 (size: 0x8)
@@ -32,25 +32,28 @@ class UW_WorldSelectMenu_C : public UUserWidget
     class UW_MainMenuButton_Strict_C* W_MainMenuButton_RemoveFromCloudNew;            // 0x03B0 (size: 0x8)
     class UW_MainMenuButton_Strict_C* W_MainMenuButton_RestoreSave;                   // 0x03B8 (size: 0x8)
     class UW_MainMenuButton_Strict_C* W_MainMenuButton_SaveDirNew;                    // 0x03C0 (size: 0x8)
-    class UW_MainMenuButton_Strict_C* W_MainMenuButton_WorldSettingsNew;              // 0x03C8 (size: 0x8)
-    class UScrollBox* WorldListScrollBox;                                             // 0x03D0 (size: 0x8)
-    class UListView* WorldListView;                                                   // 0x03D8 (size: 0x8)
-    class UTextBlock* WorldNameText;                                                  // 0x03E0 (size: 0x8)
-    class UTextBlock* WorldUptimeText;                                                // 0x03E8 (size: 0x8)
-    class UWorldEntryItem* SelectedWorld;                                             // 0x03F0 (size: 0x8)
-    class UWidget* LastPopupWidget;                                                   // 0x03F8 (size: 0x8)
-    bool HostLAN;                                                                     // 0x0400 (size: 0x1)
-    int32 MaxPlayers;                                                                 // 0x0404 (size: 0x4)
-    bool SingleplayerOnly;                                                            // 0x0408 (size: 0x1)
-    FW_WorldSelectMenu_CSandboxSettingsPressed SandboxSettingsPressed;                // 0x0410 (size: 0x10)
+    class UW_MainMenuButton_Strict_C* W_MainMenuButton_WorldMods;                     // 0x03C8 (size: 0x8)
+    class UW_MainMenuButton_Strict_C* W_MainMenuButton_WorldSettingsNew;              // 0x03D0 (size: 0x8)
+    class UScrollBox* WorldListScrollBox;                                             // 0x03D8 (size: 0x8)
+    class UListView* WorldListView;                                                   // 0x03E0 (size: 0x8)
+    class UTextBlock* WorldNameText;                                                  // 0x03E8 (size: 0x8)
+    class UTextBlock* WorldUptimeText;                                                // 0x03F0 (size: 0x8)
+    class UWorldEntryItem* SelectedWorld;                                             // 0x03F8 (size: 0x8)
+    class UWidget* LastPopupWidget;                                                   // 0x0400 (size: 0x8)
+    bool HostLAN;                                                                     // 0x0408 (size: 0x1)
+    int32 MaxPlayers;                                                                 // 0x040C (size: 0x4)
+    bool SingleplayerOnly;                                                            // 0x0410 (size: 0x1)
+    FW_WorldSelectMenu_CSandboxSettingsPressed SandboxSettingsPressed;                // 0x0418 (size: 0x10)
     void SandboxSettingsPressed(FString FolderName);
-    int32 Character_Limit;                                                            // 0x0420 (size: 0x4)
-    TArray<FString> ABC_Strings;                                                      // 0x0428 (size: 0x10)
-    FW_WorldSelectMenu_CWorldEntriesUpdated WorldEntriesUpdated;                      // 0x0438 (size: 0x10)
+    int32 Character_Limit;                                                            // 0x0428 (size: 0x4)
+    TArray<FString> ABC_Strings;                                                      // 0x0430 (size: 0x10)
+    FW_WorldSelectMenu_CWorldEntriesUpdated WorldEntriesUpdated;                      // 0x0440 (size: 0x10)
     void WorldEntriesUpdated();
+    FW_WorldSelectMenu_CModSettingsPressed ModSettingsPressed;                        // 0x0450 (size: 0x10)
+    void ModSettingsPressed(FString FolderName);
 
     void SetupSoloOrLanOnly();
-    void ApplyDateTimeToWorldEntries(TArray<class UWorldEntryItem*>& WorldEntries);
+    void ApplyDateTimeToWorldEntries(TArray<UWorldEntryItem*>& WorldEntries);
     void AttemptSaveRestore(bool& Success, FString& ErrorMessage);
     void SavePreferences();
     void LoadPreferences();
@@ -79,9 +82,11 @@ class UW_WorldSelectMenu_C : public UUserWidget
     void BndEvt__W_WorldSelectMenu_TextInput_Password_K2Node_ComponentBoundEvent_7_OnEditableTextBoxChangedEvent__DelegateSignature(const FText& Text);
     void LoadStoryProgressImage(FName StoryProgressionRow);
     void Construct();
+    void BndEvt__W_WorldSelectMenu_W_MainMenuButton_WorldMods_K2Node_ComponentBoundEvent_8_ButtonPressed__DelegateSignature();
     void ExecuteUbergraph_W_WorldSelectMenu(int32 EntryPoint);
+    void ModSettingsPressed__DelegateSignature(FString FolderName);
     void WorldEntriesUpdated__DelegateSignature();
     void SandboxSettingsPressed__DelegateSignature(FString FolderName);
-}; // Size: 0x448
+}; // Size: 0x460
 
 #endif

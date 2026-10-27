@@ -16,7 +16,7 @@ struct FCapturedPixels
 
 struct FCapturedPixelsID
 {
-    TMap<class FName, class FName> Identifiers;                                       // 0x0000 (size: 0x50)
+    TMap<FName, FName> Identifiers;                                                   // 0x0000 (size: 0x50)
 
 }; // Size: 0x50
 
@@ -141,26 +141,26 @@ class UMovieSceneCapture : public UObject
 
     void SetImageCaptureProtocolType(TSubclassOf<class UMovieSceneCaptureProtocolBase> ProtocolType);
     void SetAudioCaptureProtocolType(TSubclassOf<class UMovieSceneCaptureProtocolBase> ProtocolType);
-    class UMovieSceneCaptureProtocolBase* GetImageCaptureProtocol();
-    class UMovieSceneCaptureProtocolBase* GetAudioCaptureProtocol();
+    void GetImageCaptureProtocol();
+    void GetAudioCaptureProtocol();
 }; // Size: 0x240
 
 class UMovieSceneCaptureEnvironment : public UObject
 {
 
-    bool IsCaptureInProgress();
-    int32 GetCaptureFrameNumber();
-    float GetCaptureElapsedTime();
-    class UMovieSceneImageCaptureProtocolBase* FindImageCaptureProtocol();
-    class UMovieSceneAudioCaptureProtocolBase* FindAudioCaptureProtocol();
+    void IsCaptureInProgress();
+    void GetCaptureFrameNumber();
+    void GetCaptureElapsedTime();
+    void FindImageCaptureProtocol();
+    void FindAudioCaptureProtocol();
 }; // Size: 0x28
 
 class UMovieSceneCaptureProtocolBase : public UObject
 {
     EMovieSceneCaptureProtocolState State;                                            // 0x0050 (size: 0x1)
 
-    bool IsCapturing();
-    EMovieSceneCaptureProtocolState GetState();
+    void IsCapturing();
+    void GetState();
 }; // Size: 0x58
 
 class UMovieSceneImageCaptureProtocolBase : public UMovieSceneCaptureProtocolBase
@@ -176,21 +176,21 @@ class UUserDefinedCaptureProtocol : public UMovieSceneImageCaptureProtocolBase
     class UWorld* World;                                                              // 0x0058 (size: 0x8)
 
     void StopCapturingFinalPixels();
-    void StartCapturingFinalPixels(const FCapturedPixelsID& StreamId);
+    void StartCapturingFinalPixels(const FCapturedPixelsID& StreamID);
     void ResolveBuffer(class UTexture* Buffer, const FCapturedPixelsID& BufferID);
     void OnWarmUp();
     void OnTick();
     void OnStartCapture();
-    bool OnSetup();
+    void OnSetup();
     void OnPreTick();
     void OnPixelsReceived(const FCapturedPixels& Pixels, const FCapturedPixelsID& ID, FFrameMetrics FrameMetrics);
     void OnPauseCapture();
     void OnFinalize();
     void OnCaptureFrame();
-    bool OnCanFinalize();
+    void OnCanFinalize();
     void OnBeginFinalize();
-    FFrameMetrics GetCurrentFrameMetrics();
-    FString GenerateFilename(const FFrameMetrics& InFrameMetrics);
+    void GetCurrentFrameMetrics();
+    void GenerateFilename(const FFrameMetrics& InFrameMetrics);
 }; // Size: 0xD8
 
 class UUserDefinedImageCaptureProtocol : public UUserDefinedCaptureProtocol
@@ -199,9 +199,9 @@ class UUserDefinedImageCaptureProtocol : public UUserDefinedCaptureProtocol
     bool bEnableCompression;                                                          // 0x00D9 (size: 0x1)
     int32 CompressionQuality;                                                         // 0x00DC (size: 0x4)
 
-    void WriteImageToDisk(const FCapturedPixels& PixelData, const FCapturedPixelsID& StreamId, const FFrameMetrics& FrameMetrics, bool bCopyImageData);
-    FString GenerateFilenameForCurrentFrame();
-    FString GenerateFilenameForBuffer(class UTexture* Buffer, const FCapturedPixelsID& StreamId);
+    void WriteImageToDisk(const FCapturedPixels& PixelData, const FCapturedPixelsID& StreamID, const FFrameMetrics& FrameMetrics, bool bCopyImageData);
+    void GenerateFilenameForCurrentFrame();
+    void GenerateFilenameForBuffer(class UTexture* Buffer, const FCapturedPixelsID& StreamID);
 }; // Size: 0xE0
 
 class UVideoCaptureProtocol : public UFrameGrabberProtocol

@@ -23,46 +23,46 @@ class AMoveableCart_ParentBP_C : public ACharacter
     FVector LastSaveLocation;                                                         // 0x0710 (size: 0x18)
     double CartSpeed;                                                                 // 0x0728 (size: 0x8)
     double CurrentCartSpeed;                                                          // 0x0730 (size: 0x8)
-    FName ItemRow;                                                                    // 0x0738 (size: 0x8)
-    bool HasBeenPackagedUp;                                                           // 0x0740 (size: 0x1)
-    bool SoundFadingOut;                                                              // 0x0741 (size: 0x1)
-    double TimeOfLastWheelSqueak;                                                     // 0x0748 (size: 0x8)
-    class UAudioComponent* LastSqueakSound;                                           // 0x0750 (size: 0x8)
-    bool MovementAudioAllowed;                                                        // 0x0758 (size: 0x1)
-    float MoveForwardRate;                                                            // 0x075C (size: 0x4)
-    float MoveRightRate;                                                              // 0x0760 (size: 0x4)
-    class UAbioticPhysicalMaterial* FloorMaterial;                                    // 0x0768 (size: 0x8)
+    FGlobalItemRowHandle ItemRow;                                                     // 0x0738 (size: 0x10)
+    bool HasBeenPackagedUp;                                                           // 0x0748 (size: 0x1)
+    bool SoundFadingOut;                                                              // 0x0749 (size: 0x1)
+    double TimeOfLastWheelSqueak;                                                     // 0x0750 (size: 0x8)
+    class UAudioComponent* LastSqueakSound;                                           // 0x0758 (size: 0x8)
+    bool MovementAudioAllowed;                                                        // 0x0760 (size: 0x1)
+    float MoveForwardRate;                                                            // 0x0764 (size: 0x4)
+    float MoveRightRate;                                                              // 0x0768 (size: 0x4)
+    class UAbioticPhysicalMaterial* FloorMaterial;                                    // 0x0770 (size: 0x8)
 
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
-    void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
+    void GetAttachedPowerCord(TArray<UCableComponent*>& Power Cord Found);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanLongInteractWith_A(bool& Success);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
+    void GetHighlightComponents(TArray<UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);
     void HasSitLocations(bool& IsSittable);
     void SitLocationParent(class USceneComponent*& ParentComponent);
-    void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
+    void GetItemChangeableData(FAbioticInventoryChangeableData& ChangeableData);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void RequiresToolToDismantle(bool& Tool Required);
     void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void GetStoredString(FString& String);
-    FText GetItemNameText();
+    void GetItemNameText();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void Landing Damage Multiplier(double Damage, double& DamageMultiplier);
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
-    bool IsRadioactive();
-    void HasOccupants?(TArray<class AActor*>& Occupants);
-    bool SupportsRecall?();
-    bool IsVehicleDriveable();
-    TArray<class UAbiotic_InventoryComponent_C*> GetVehicleContainers();
-    FString GetVehicleID();
+    void IsRadioactive();
+    void HasOccupants?(TArray<AActor*>& Occupants);
+    void SupportsRecall?();
+    void IsVehicleDriveable();
+    void GetVehicleContainers();
+    void GetVehicleID();
     void GetDriver(bool& Success, class AAbiotic_Character_ParentBP_C*& Character);
-    bool CheckVehicleFreezeState();
+    void CheckVehicleFreezeState();
     void UpdateFloorType();
     void ApplyFloorDamage();
     void StorageActorSetup(class ADeployed_Container_ParentBP_C* Storage);
@@ -71,7 +71,7 @@ class AMoveableCart_ParentBP_C : public ACharacter
     void GetLocalDriver(bool& Success, class AAbiotic_PlayerCharacter_C*& Character);
     void HasDriver(bool& Return);
     void DropPackagedItem();
-    bool ValidateMove();
+    void ValidateMove();
     void OnRep_CurrentCartSpeed();
     void UpdateCartSpeed();
     void AutosaveCheck();
@@ -97,8 +97,8 @@ class AMoveableCart_ParentBP_C : public ACharacter
     void DeliverInt(bool FromSave, const int32 New Int);
     void OnInteractHighlightEnd(class UActorComponent* Component);
     void OnInteractHighlightStart(class UActorComponent* Component);
-    void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbiotic_InventoryItemSlotStruct SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
-    void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbiotic_InventoryItemSlotStruct SlotData);
+    void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbioticInventoryItemSlot SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
+    void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbioticInventoryItemSlot SlotData);
     void DeliverString(FString String, bool FromSave);
     void DamageVehicleOccupants(double Damage, class AController* EventInstigator, class AActor* DamageCauser, TSubclassOf<class UDamageType> DamageTypeClass, const FHitResult& HitInfo, const FVector& HitFromDirection);
     void ReceiveDestroyed();
@@ -112,7 +112,7 @@ class AMoveableCart_ParentBP_C : public ACharacter
     void DriverWasGrabbed(class AAbiotic_Character_ParentBP_C* Character);
     void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
-    void OnInventoriesLoadedFromSave(const TArray<FSaveData_Inventories_Struct>& SaveData);
+    void OnInventoriesLoadedFromSave(const TArray<FAbioticInventorySave>& SaveData);
     void InpAxisEvt_Turn_K2Node_InputAxisEvent_157(float AxisValue);
     void InpAxisEvt_LookUp_K2Node_InputAxisEvent_172(float AxisValue);
     void InpAxisEvt_TurnRate_K2Node_InputAxisEvent_34(float AxisValue);
@@ -121,6 +121,6 @@ class AMoveableCart_ParentBP_C : public ACharacter
     void InpAxisEvt_MoveRightRate_K2Node_InputAxisEvent_3(float AxisValue);
     void K2_OnMovementModeChanged(TEnumAsByte<EMovementMode> PrevMovementMode, TEnumAsByte<EMovementMode> NewMovementMode, uint8 PrevCustomMode, uint8 NewCustomMode);
     void ExecuteUbergraph_MoveableCart_ParentBP(int32 EntryPoint);
-}; // Size: 0x770
+}; // Size: 0x778
 
 #endif

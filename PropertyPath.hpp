@@ -78,10 +78,10 @@ class UPropertyPathTestObject : public UObject
     void SetStructConstRef(FPropertyPathTestStruct InStruct);
     void SetStruct(FPropertyPathTestStruct InStruct);
     void SetFloat(float InFloat);
-    FPropertyPathTestStruct GetStructRef();
-    FPropertyPathTestStruct GetStructConstRef();
-    FPropertyPathTestStruct GetStruct();
-    float GetFloat();
+    void GetStructRef();
+    void GetStructConstRef();
+    void GetStruct();
+    void GetFloat();
 }; // Size: 0x180
 
 #endif

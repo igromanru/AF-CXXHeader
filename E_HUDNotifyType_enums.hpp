@@ -8,7 +8,8 @@ namespace E_HUDNotifyType {
         NewEnumerator6 = 5,
         NewEnumerator7 = 6,
         NewEnumerator8 = 7,
-        E_MAX = 8,
+        NewEnumerator9 = 8,
+        E_MAX = 9,
     };
 }
 

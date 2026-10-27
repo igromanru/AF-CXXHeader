@@ -3,6 +3,6 @@
 
 class ACoffeeMachine_BP_C : public AVendingMachine_BP_C
 {
-}; // Size: 0xA6C
+}; // Size: 0xA68
 
 #endif

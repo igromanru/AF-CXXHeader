@@ -15,9 +15,9 @@ class UW_SettingsPage_Video_C : public UW_SettingsPage_C
     bool AutoApply;                                                                   // 0x0359 (size: 0x1)
 
     void GetSettingsFromTable();
-    bool Get_AutoApplyCheckbox_bIsEnabled_0();
-    bool Get_ApplyButton_bIsEnabled_0();
-    bool Get_SaveButton_bIsEnabled_0();
+    void Get_AutoApplyCheckbox_bIsEnabled_0();
+    void Get_ApplyButton_bIsEnabled_0();
+    void Get_SaveButton_bIsEnabled_0();
     void BndEvt__AutoDetectButton_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__AutoSaveCheckbox_K2Node_ComponentBoundEvent_40_OnCheckBoxComponentStateChanged__DelegateSignature(bool bIsChecked);
     void BndEvt__AutoApplyCheckbox_K2Node_ComponentBoundEvent_336_OnCheckBoxComponentStateChanged__DelegateSignature(bool bIsChecked);

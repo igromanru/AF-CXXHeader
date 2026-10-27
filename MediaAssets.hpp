@@ -74,8 +74,8 @@ class UMediaComponent : public UActorComponent
     class UMediaTexture* MediaTexture;                                                // 0x00A8 (size: 0x8)
     class UMediaPlayer* MediaPlayer;                                                  // 0x00B0 (size: 0x8)
 
-    class UMediaTexture* GetMediaTexture();
-    class UMediaPlayer* GetMediaPlayer();
+    void GetMediaTexture();
+    void GetMediaPlayer();
 }; // Size: 0xB8
 
 class UMediaPlayer : public UObject
@@ -113,102 +113,102 @@ class UMediaPlayer : public UObject
     FRotator ViewRotation;                                                            // 0x0100 (size: 0x18)
     FGuid PlayerGuid;                                                                 // 0x0140 (size: 0x10)
 
-    bool SupportsSeeking();
-    bool SupportsScrubbing();
-    bool SupportsRate(float Rate, bool Unthinned);
-    bool SupportsPlaybackTimeRange();
-    bool SetViewRotation(const FRotator& Rotation, bool Absolute);
-    bool SetViewField(float Horizontal, float Vertical, bool Absolute);
-    bool SetVideoTrackFrameRate(int32 TrackIndex, int32 FormatIndex, float FrameRate);
-    bool SetTrackFormat(EMediaPlayerTrack TrackType, int32 TrackIndex, int32 FormatIndex);
+    void SupportsSeeking();
+    void SupportsScrubbing();
+    void SupportsRate(float Rate, bool Unthinned);
+    void SupportsPlaybackTimeRange();
+    void SetViewRotation(const FRotator& Rotation, bool Absolute);
+    void SetViewField(float Horizontal, float Vertical, bool Absolute);
+    void SetVideoTrackFrameRate(int32 TrackIndex, int32 FormatIndex, float FrameRate);
+    void SetTrackFormat(EMediaPlayerTrack TrackType, int32 TrackIndex, int32 FormatIndex);
     void SetTimeDelay(FTimespan TimeDelay);
-    bool SetRate(float Rate);
-    bool SetPlaybackTimeRange(FFloatInterval InTimeRange);
-    bool SetNativeVolume(float Volume);
+    void SetRate(float Rate);
+    void SetPlaybackTimeRange(FFloatInterval InTimeRange);
+    void SetNativeVolume(float Volume);
     void SetMediaOptions(const class UMediaSource* Options);
-    bool SetLooping(bool Looping);
+    void SetLooping(bool Looping);
     void SetDesiredPlayerName(FName playerName);
     void SetBlockOnTime(const FTimespan& Time);
-    bool SelectTrack(EMediaPlayerTrack TrackType, int32 TrackIndex);
-    bool Seek(const FTimespan& Time);
-    bool Rewind();
-    bool Reopen();
-    bool Previous();
+    void SelectTrack(EMediaPlayerTrack TrackType, int32 TrackIndex);
+    void Seek(const FTimespan& Time);
+    void Rewind();
+    void Reopen();
+    void Previous();
     void PlayAndSeek();
-    bool Play();
-    bool Pause();
-    bool OpenUrl(FString URL);
-    bool OpenSourceWithOptions(class UMediaSource* MediaSource, const FMediaPlayerOptions& Options);
+    void Play();
+    void Pause();
+    void OpenUrl(FString URL);
+    void OpenSourceWithOptions(class UMediaSource* MediaSource, const FMediaPlayerOptions& Options);
     void OpenSourceLatent(const class UObject* WorldContextObject, FLatentActionInfo LatentInfo, class UMediaSource* MediaSource, const FMediaPlayerOptions& Options, bool& bSuccess);
-    bool OpenSource(class UMediaSource* MediaSource);
-    bool OpenPlaylistIndex(class UMediaPlaylist* InPlaylist, int32 Index);
-    bool OpenPlaylist(class UMediaPlaylist* InPlaylist);
-    bool OpenFile(FString FilePath);
-    bool Next();
-    bool IsReady();
-    bool IsPreparing();
-    bool IsPlaying();
-    bool IsPaused();
-    bool IsLooping();
-    bool IsConnecting();
-    bool IsClosed();
-    bool IsBuffering();
-    bool HasError();
-    FRotator GetViewRotation();
-    FString GetVideoTrackType(int32 TrackIndex, int32 FormatIndex);
-    FFloatRange GetVideoTrackFrameRates(int32 TrackIndex, int32 FormatIndex);
-    float GetVideoTrackFrameRate(int32 TrackIndex, int32 FormatIndex);
-    FIntPoint GetVideoTrackDimensions(int32 TrackIndex, int32 FormatIndex);
-    float GetVideoTrackAspectRatio(int32 TrackIndex, int32 FormatIndex);
-    float GetVerticalFieldOfView();
-    FString GetUrl();
-    FString GetTrackLanguage(EMediaPlayerTrack TrackType, int32 TrackIndex);
-    int32 GetTrackFormat(EMediaPlayerTrack TrackType, int32 TrackIndex);
-    FText GetTrackDisplayName(EMediaPlayerTrack TrackType, int32 TrackIndex);
-    class UMediaTimeStampInfo* GetTimeStamp();
-    FTimespan GetTimeDelay();
-    FTimespan GetTime();
+    void OpenSource(class UMediaSource* MediaSource);
+    void OpenPlaylistIndex(class UMediaPlaylist* InPlaylist, int32 Index);
+    void OpenPlaylist(class UMediaPlaylist* InPlaylist);
+    void OpenFile(FString FilePath);
+    void Next();
+    void IsReady();
+    void IsPreparing();
+    void IsPlaying();
+    void IsPaused();
+    void IsLooping();
+    void IsConnecting();
+    void IsClosed();
+    void IsBuffering();
+    void HasError();
+    void GetViewRotation();
+    void GetVideoTrackType(int32 TrackIndex, int32 FormatIndex);
+    void GetVideoTrackFrameRates(int32 TrackIndex, int32 FormatIndex);
+    void GetVideoTrackFrameRate(int32 TrackIndex, int32 FormatIndex);
+    void GetVideoTrackDimensions(int32 TrackIndex, int32 FormatIndex);
+    void GetVideoTrackAspectRatio(int32 TrackIndex, int32 FormatIndex);
+    void GetVerticalFieldOfView();
+    void GetUrl();
+    void GetTrackLanguage(EMediaPlayerTrack TrackType, int32 TrackIndex);
+    void GetTrackFormat(EMediaPlayerTrack TrackType, int32 TrackIndex);
+    void GetTrackDisplayName(EMediaPlayerTrack TrackType, int32 TrackIndex);
+    void GetTimeStamp();
+    void GetTimeDelay();
+    void GetTime();
     void GetSupportedRates(TArray<FFloatRange>& OutRates, bool Unthinned);
-    int32 GetSelectedTrack(EMediaPlayerTrack TrackType);
-    float GetRate();
-    int32 GetPlaylistIndex();
-    class UMediaPlaylist* GetPlaylist();
-    FName GetPlayerName();
-    FFloatInterval GetPlaybackTimeRange(EMediaTimeRangeBPType InRangeToGet);
-    int32 GetNumTracks(EMediaPlayerTrack TrackType);
-    int32 GetNumTrackFormats(EMediaPlayerTrack TrackType, int32 TrackIndex);
-    FText GetMediaName();
-    TMap<class FString, class FMediaMetadataItemsBPT> GetMediaMetadataItems();
-    float GetHorizontalFieldOfView();
-    FTimespan GetDuration();
-    class UMediaTimeStampInfo* GetDisplayTimeStamp();
-    FTimespan GetDisplayTime();
-    FName GetDesiredPlayerName();
-    FString GetAudioTrackType(int32 TrackIndex, int32 FormatIndex);
-    int32 GetAudioTrackSampleRate(int32 TrackIndex, int32 FormatIndex);
-    int32 GetAudioTrackChannels(int32 TrackIndex, int32 FormatIndex);
+    void GetSelectedTrack(EMediaPlayerTrack TrackType);
+    void GetRate();
+    void GetPlaylistIndex();
+    void GetPlaylist();
+    void GetPlayerName();
+    void GetPlaybackTimeRange(EMediaTimeRangeBPType InRangeToGet);
+    void GetNumTracks(EMediaPlayerTrack TrackType);
+    void GetNumTrackFormats(EMediaPlayerTrack TrackType, int32 TrackIndex);
+    void GetMediaName();
+    void GetMediaMetadataItems();
+    void GetHorizontalFieldOfView();
+    void GetDuration();
+    void GetDisplayTimeStamp();
+    void GetDisplayTime();
+    void GetDesiredPlayerName();
+    void GetAudioTrackType(int32 TrackIndex, int32 FormatIndex);
+    void GetAudioTrackSampleRate(int32 TrackIndex, int32 FormatIndex);
+    void GetAudioTrackChannels(int32 TrackIndex, int32 FormatIndex);
     void Close();
-    bool CanPlayUrl(FString URL);
-    bool CanPlaySource(class UMediaSource* MediaSource);
-    bool CanPause();
+    void CanPlayUrl(FString URL);
+    void CanPlaySource(class UMediaSource* MediaSource);
+    void CanPause();
 }; // Size: 0x168
 
 class UMediaPlaylist : public UObject
 {
-    TArray<class UMediaSource*> Items;                                                // 0x0028 (size: 0x10)
+    TArray<UMediaSource*> Items;                                                      // 0x0028 (size: 0x10)
 
-    bool Replace(int32 Index, class UMediaSource* Replacement);
-    bool RemoveAt(int32 Index);
-    bool Remove(class UMediaSource* MediaSource);
-    int32 Num();
+    void Replace(int32 Index, class UMediaSource* Replacement);
+    void RemoveAt(int32 Index);
+    void Remove(class UMediaSource* MediaSource);
+    void Num();
     void Insert(class UMediaSource* MediaSource, int32 Index);
-    class UMediaSource* GetRandom(int32& OutIndex);
-    class UMediaSource* GetPrevious(int32& InOutIndex);
-    class UMediaSource* GetNext(int32& InOutIndex);
-    class UMediaSource* Get(int32 Index);
-    bool AddUrl(FString URL);
-    bool AddFile(FString FilePath);
-    bool Add(class UMediaSource* MediaSource);
+    void GetRandom(int32& OutIndex);
+    void GetPrevious(int32& InOutIndex);
+    void GetNext(int32& InOutIndex);
+    void Get(int32 Index);
+    void AddUrl(FString URL);
+    void AddFile(FString FilePath);
+    void Add(class UMediaSource* MediaSource);
 }; // Size: 0x38
 
 class UMediaSoundComponent : public USynthComponent
@@ -224,22 +224,22 @@ class UMediaSoundComponent : public USynthComponent
     void SetEnvelopeFollowingsettings(int32 AttackTimeMsec, int32 ReleaseTimeMsec);
     void SetEnableSpectralAnalysis(bool bInSpectralAnalysisEnabled);
     void SetEnableEnvelopeFollowing(bool bInEnvelopeFollowing);
-    TArray<FMediaSoundComponentSpectralData> GetSpectralData();
-    TArray<FMediaSoundComponentSpectralData> GetNormalizedSpectralData();
-    class UMediaPlayer* GetMediaPlayer();
-    float GetEnvelopeValue();
-    bool BP_GetAttenuationSettingsToApply(FSoundAttenuationSettings& OutAttenuationSettings);
+    void GetSpectralData();
+    void GetNormalizedSpectralData();
+    void GetMediaPlayer();
+    void GetEnvelopeValue();
+    void BP_GetAttenuationSettingsToApply(FSoundAttenuationSettings& OutAttenuationSettings);
 }; // Size: 0x980
 
 class UMediaSource : public UObject
 {
 
-    bool Validate();
+    void Validate();
     void SetMediaOptionString(const FName& Key, FString Value);
     void SetMediaOptionInt64(const FName& Key, int64 Value);
     void SetMediaOptionFloat(const FName& Key, float Value);
     void SetMediaOptionBool(const FName& Key, bool Value);
-    FString GetUrl();
+    void GetUrl();
 }; // Size: 0x80
 
 class UMediaTexture : public UTexture
@@ -257,11 +257,11 @@ class UMediaTexture : public UTexture
 
     void UpdateResource();
     void SetMediaPlayer(class UMediaPlayer* NewMediaPlayer);
-    int32 GetWidth();
-    int32 GetTextureNumMips();
-    class UMediaPlayer* GetMediaPlayer();
-    int32 GetHeight();
-    float GetAspectRatio();
+    void GetWidth();
+    void GetTextureNumMips();
+    void GetMediaPlayer();
+    void GetHeight();
+    void GetAspectRatio();
 }; // Size: 0x218
 
 class UMediaTimeStampInfo : public UObject

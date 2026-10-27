@@ -3,6 +3,6 @@
 
 class AResource_Micronode_LeyakEssence_TWO_C : public AResource_Micronode_LeyakEssence_C
 {
-}; // Size: 0x520
+}; // Size: 0x528
 
 #endif

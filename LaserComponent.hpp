@@ -17,7 +17,7 @@ class ULaserComponent_C : public USceneComponent
     double LaserTimestamp;                                                            // 0x02A8 (size: 0x8)
     float LaserDamage;                                                                // 0x02B0 (size: 0x4)
     int32 MaxLaserBounces;                                                            // 0x02B4 (size: 0x4)
-    TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType;                     // 0x02B8 (size: 0x8)
+    TSubclassOf<class UAbioticDamageType> DamageType;                                 // 0x02B8 (size: 0x8)
     EPaintColor LaserColor;                                                           // 0x02C0 (size: 0x1)
     bool OverridePaintedColor;                                                        // 0x02C1 (size: 0x1)
     FLinearColor LaserColor_White;                                                    // 0x02C4 (size: 0x10)
@@ -47,10 +47,12 @@ class ULaserComponent_C : public USceneComponent
     void LaserFX_End();
     bool FriendlyFireEnabled;                                                         // 0x0400 (size: 0x1)
     FLaserComponent_COnLaserDealDamage OnLaserDealDamage;                             // 0x0408 (size: 0x10)
-    void OnLaserDealDamage(class ULaserComponent_C* LaserComponent, FHitResult HitResult, double BaseDamage, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType);
+    void OnLaserDealDamage(class ULaserComponent_C* LaserComponent, FHitResult HitResult, double BaseDamage, TSubclassOf<class UAbioticDamageType> DamageType);
     bool DamageFollowers;                                                             // 0x0418 (size: 0x1)
     class UBoxNavAreaComponent* NavDangerComponent;                                   // 0x0420 (size: 0x8)
     bool CreateDangerNavArea;                                                         // 0x0428 (size: 0x1)
+    class USoundBase* EmitterSound;                                                   // 0x0430 (size: 0x8)
+    class USoundBase* HitSound;                                                       // 0x0438 (size: 0x8)
 
     void TryTriggerPetMovement(class ANPC_Base_ParentBP_C* NPC);
     void UpdateDangerNavArea();
@@ -58,12 +60,12 @@ class ULaserComponent_C : public USceneComponent
     void ReflectLaser(class AActor* TargetActor, FHitResult& Hit, int32 MaxSimultaneousReflects, FVector DirectionOverride);
     void OnRep_LaserEndHandled();
     void ToggleSounds(bool On);
-    int32 GetLaserIntensity();
+    void GetLaserIntensity();
     void Local_ChangeLaserColor(class UNiagaraComponent* ParticleBeam, EPaintColor NewColor);
-    TArray<class AActor*> GetActorsToIgnore();
+    void GetActorsToIgnore();
     void TickLaserTrace();
-    double GetLaserDamage();
-    bool CanLaserTrace();
+    void GetLaserDamage();
+    void CanLaserTrace();
     void ProcessLaserHit(FHitResult& HitResult, bool& Handled);
     void LaserTrace(bool OverrideLocation, FVector InLocation, FVector InDirection);
     void InitParticleComponent();
@@ -75,9 +77,9 @@ class ULaserComponent_C : public USceneComponent
     void ReceiveBeginPlay();
     void ReceiveEndPlay(TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
     void ExecuteUbergraph_LaserComponent(int32 EntryPoint);
-    void OnLaserDealDamage__DelegateSignature(class ULaserComponent_C* LaserComponent, FHitResult HitResult, double BaseDamage, TSubclassOf<class UAbiotic_DamageType_ParentBP_C> DamageType);
+    void OnLaserDealDamage__DelegateSignature(class ULaserComponent_C* LaserComponent, FHitResult HitResult, double BaseDamage, TSubclassOf<class UAbioticDamageType> DamageType);
     void LaserFX_End__DelegateSignature();
     void LaserFX_Start__DelegateSignature();
-}; // Size: 0x429
+}; // Size: 0x440
 
 #endif

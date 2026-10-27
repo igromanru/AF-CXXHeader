@@ -21,21 +21,21 @@ class UW_Inventory_UpgradeBench_C : public UUserWidget
     TEnumAsByte<E_CursorMode::Type> SalvageCursorMode;                                // 0x0351 (size: 0x1)
     int32 MaxColumns;                                                                 // 0x0354 (size: 0x4)
     int32 SelectedUpgradeIndex;                                                       // 0x0358 (size: 0x4)
-    FItemUpgradeRowHandle SelectedUpgrade;                                            // 0x0360 (size: 0x20)
-    bool HasUpgradedAnItem;                                                           // 0x0380 (size: 0x1)
+    FItemUpgradeRowHandle SelectedUpgrade;                                            // 0x0360 (size: 0x10)
+    bool HasUpgradedAnItem;                                                           // 0x0370 (size: 0x1)
 
     void OnUpgradeSelectionChanged(int32 Index);
     void RefreshItemUpgradeSlot();
-    void HighlightItemUpgradeSlot(TEnumAsByte<E_InventorySlotType::Type> SlotType, bool StopHighlight);
+    void HighlightItemUpgradeSlot(EInventorySlotType SlotType, bool StopHighlight);
     void SetupItemUpgradeSlots(class UAbiotic_InventoryComponent_C* MainInventoryComponent);
-    void DoesLocalPlayerHaveItem?(FDataTableRowHandle Item, int32 Count, bool& Found);
+    void Does Local Player Have Item?(FGlobalItemRowHandle Item, int32 Count, bool& Found);
     void ItemUpgradeSlotUpdated(class UAbiotic_InventoryComponent_C* Inventory);
-    void OnItemDragStarted(TEnumAsByte<E_InventorySlotType::Type> Item Type);
+    void OnItemDragStarted(EInventorySlotType Item Type);
     void OnItemDragFinished();
     void BndEvt__W_Inventory_UpgradeBench_Button_UpgradeItem_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void Construct();
     void ItemInSlotHasChanged();
     void ExecuteUbergraph_W_Inventory_UpgradeBench(int32 EntryPoint);
-}; // Size: 0x381
+}; // Size: 0x371
 
 #endif

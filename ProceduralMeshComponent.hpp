@@ -56,13 +56,13 @@ class UProceduralMeshComponent : public UMeshComponent
     TArray<FProcMeshSection> ProcMeshSections;                                        // 0x0570 (size: 0x10)
     TArray<FKConvexElem> CollisionConvexElems;                                        // 0x0580 (size: 0x10)
     FBoxSphereBounds LocalBounds;                                                     // 0x0590 (size: 0x38)
-    TArray<class UBodySetup*> AsyncBodySetupQueue;                                    // 0x05C8 (size: 0x10)
+    TArray<UBodySetup*> AsyncBodySetupQueue;                                          // 0x05C8 (size: 0x10)
 
     void UpdateMeshSection_LinearColor(int32 SectionIndex, const TArray<FVector>& Vertices, const TArray<FVector>& Normals, const TArray<FVector2D>& UV0, const TArray<FVector2D>& UV1, const TArray<FVector2D>& UV2, const TArray<FVector2D>& UV3, const TArray<FLinearColor>& VertexColors, const TArray<FProcMeshTangent>& Tangents, bool bSRGBConversion);
     void UpdateMeshSection(int32 SectionIndex, const TArray<FVector>& Vertices, const TArray<FVector>& Normals, const TArray<FVector2D>& UV0, const TArray<FColor>& VertexColors, const TArray<FProcMeshTangent>& Tangents);
     void SetMeshSectionVisible(int32 SectionIndex, bool bNewVisibility);
-    bool IsMeshSectionVisible(int32 SectionIndex);
-    int32 GetNumSections();
+    void IsMeshSectionVisible(int32 SectionIndex);
+    void GetNumSections();
     void CreateMeshSection_LinearColor(int32 SectionIndex, const TArray<FVector>& Vertices, const TArray<int32>& Triangles, const TArray<FVector>& Normals, const TArray<FVector2D>& UV0, const TArray<FVector2D>& UV1, const TArray<FVector2D>& UV2, const TArray<FVector2D>& UV3, const TArray<FLinearColor>& VertexColors, const TArray<FProcMeshTangent>& Tangents, bool bCreateCollision, bool bSRGBConversion);
     void CreateMeshSection(int32 SectionIndex, const TArray<FVector>& Vertices, const TArray<int32>& Triangles, const TArray<FVector>& Normals, const TArray<FVector2D>& UV0, const TArray<FColor>& VertexColors, const TArray<FProcMeshTangent>& Tangents, bool bCreateCollision);
     void ClearMeshSection(int32 SectionIndex);

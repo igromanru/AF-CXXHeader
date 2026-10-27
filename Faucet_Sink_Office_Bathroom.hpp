@@ -3,6 +3,6 @@
 
 class AFaucet_Sink_Office_Bathroom_C : public AFaucet_ParentBP_C
 {
-}; // Size: 0xAE1
+}; // Size: 0xAD1
 
 #endif

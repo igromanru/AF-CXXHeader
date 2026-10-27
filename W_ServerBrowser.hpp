@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_ServerBrowser_HPP
 #define UE4SS_SDK_W_ServerBrowser_HPP
 
-class UW_ServerBrowser_C : public UUserWidget
+class UW_ServerBrowser_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UWidgetAnimation* PopJoinButton;                                            // 0x02E8 (size: 0x8)
@@ -47,11 +47,14 @@ class UW_ServerBrowser_C : public UUserWidget
     FString PasswordEntered;                                                          // 0x0540 (size: 0x10)
     bool JoiningInProgress;                                                           // 0x0550 (size: 0x1)
     class UW_PopupPleaseWait_C* PleaseWaitPopup;                                      // 0x0558 (size: 0x8)
-    TArray<class USessionResultItem*> SessionResults;                                 // 0x0560 (size: 0x10)
+    TArray<USessionResultItem*> SessionResults;                                       // 0x0560 (size: 0x10)
     FString FilterString;                                                             // 0x0570 (size: 0x10)
     TArray<FSessionsSearchSetting> CachedServerFilters;                               // 0x0580 (size: 0x10)
     TArray<FSessionsSearchSetting> CachedServerFilters_OR;                            // 0x0590 (size: 0x10)
     bool JoiningServerIsRecent;                                                       // 0x05A0 (size: 0x1)
+    FText ModsWarningPopup;                                                           // 0x05A8 (size: 0x10)
+    bool IncompatibleMods;                                                            // 0x05B8 (size: 0x1)
+    bool RelevantModListIsDownload;                                                   // 0x05B9 (size: 0x1)
 
     void AddSessionToJoinToRecent();
     void CheckSessionToJoinForRecent(bool& IsRecent);
@@ -59,11 +62,9 @@ class UW_ServerBrowser_C : public UUserWidget
     void BuildSessionFilters();
     void ForceJoinSession(FBlueprintSessionResult Session);
     void ToggleRefreshButtons(bool Enabled);
-    void UpdateStatusText(FText Text, TEnumAsByte<ECriticalityLevels::Type> CriticalityLevel);
+    void UpdateStatusText(FText Text, ECriticalityLevels CriticalityLevel);
     void UpdateSelectedServerInfo(FBlueprintSessionResult Session, FName StoryProgressRowName, bool Hardcore);
     void ToggleSearchStatus(bool ShowText, FText Text, bool ShowThrobber);
-    void OnFailure_06683391485E0CE7EB05878C8E49BF7B(const TArray<FBlueprintSessionResult>& Results);
-    void OnSuccess_06683391485E0CE7EB05878C8E49BF7B(const TArray<FBlueprintSessionResult>& Results);
     void OnFailure_0ECF2DE64CC1E5251500798EE4EE3C73(const TArray<FBlueprintSessionResult>& Results);
     void OnSuccess_0ECF2DE64CC1E5251500798EE4EE3C73(const TArray<FBlueprintSessionResult>& Results);
     void OnCrossplayIncompatibility_FD40E65F446311C0A99518977DC70CA3();
@@ -78,12 +79,22 @@ class UW_ServerBrowser_C : public UUserWidget
     void OnSuccess_EA8769C44BD720E9AC4418806CFD8DA3(bool bSuccess, const TArray<FBlueprintSessionResult>& OutSessionResults);
     void OnFailure_65B28D1242408F48291695835C95CCA0(bool bSuccess, const TArray<FBlueprintSessionResult>& OutSessionResults);
     void OnSuccess_65B28D1242408F48291695835C95CCA0(bool bSuccess, const TArray<FBlueprintSessionResult>& OutSessionResults);
+    void OnFailure_06683391485E0CE7EB05878C8E49BF7B(const TArray<FBlueprintSessionResult>& Results);
+    void OnSuccess_06683391485E0CE7EB05878C8E49BF7B(const TArray<FBlueprintSessionResult>& Results);
+    void OnFailure_E4DF46C9436DA7B6A1BBA9908471C7FC(const TArray<FModioModID>& ExtraMods, const TArray<FModioModID>& MissingMods, const TArray<int64>& ServerLoadOrder);
+    void OnLocalOnlyModsNotAllowed_E4DF46C9436DA7B6A1BBA9908471C7FC(const TArray<FModioModID>& ExtraMods, const TArray<FModioModID>& MissingMods, const TArray<int64>& ServerLoadOrder);
+    void OnIncompatibleMods_E4DF46C9436DA7B6A1BBA9908471C7FC(const TArray<FModioModID>& ExtraMods, const TArray<FModioModID>& MissingMods, const TArray<int64>& ServerLoadOrder);
+    void OnExtraAndMissingMods_E4DF46C9436DA7B6A1BBA9908471C7FC(const TArray<FModioModID>& ExtraMods, const TArray<FModioModID>& MissingMods, const TArray<int64>& ServerLoadOrder);
+    void OnExtraMods_E4DF46C9436DA7B6A1BBA9908471C7FC(const TArray<FModioModID>& ExtraMods, const TArray<FModioModID>& MissingMods, const TArray<int64>& ServerLoadOrder);
+    void OnMissingMods_E4DF46C9436DA7B6A1BBA9908471C7FC(const TArray<FModioModID>& ExtraMods, const TArray<FModioModID>& MissingMods, const TArray<int64>& ServerLoadOrder);
+    void OnModsNotAllowed_E4DF46C9436DA7B6A1BBA9908471C7FC(const TArray<FModioModID>& ExtraMods, const TArray<FModioModID>& MissingMods, const TArray<int64>& ServerLoadOrder);
+    void OnSuccess_E4DF46C9436DA7B6A1BBA9908471C7FC(const TArray<FModioModID>& ExtraMods, const TArray<FModioModID>& MissingMods, const TArray<int64>& ServerLoadOrder);
     void OnCrossplayIncompatibility_511C492E423F047E9329F9A576EFA5A5();
     void OnBlockedPlayer_511C492E423F047E9329F9A576EFA5A5();
     void OnFailure_511C492E423F047E9329F9A576EFA5A5();
     void OnSuccess_511C492E423F047E9329F9A576EFA5A5();
-    void Construct();
     void BndEvt__W_ServerBrowser_W_MainMenuButton_Join_K2Node_ComponentBoundEvent_0_ButtonPressed__DelegateSignature();
+    void Construct();
     void ContinueJoin();
     void TestPassword();
     void ClosePopup();
@@ -91,8 +102,8 @@ class UW_ServerBrowser_C : public UUserWidget
     void ModJoin_Yes();
     void ModJoin_No();
     void FilterSessions();
-    void RefreshSessionList();
     void BndEvt__W_ServerBrowser_EditableTextBox_K2Node_ComponentBoundEvent_2_OnEditableTextBoxChangedEvent__DelegateSignature(const FText& Text);
+    void RefreshSessionList();
     void BndEvt__W_ServerBrowser_W_MainMenuButton_Back_K2Node_ComponentBoundEvent_4_ButtonPressed__DelegateSignature();
     void BndEvt__W_ServerBrowser_W_MainMenuButton_Back_1_K2Node_ComponentBoundEvent_3_ButtonPressed__DelegateSignature();
     void BndEvt__W_ServerBrowser_CheckBox_ShowDedicated_K2Node_ComponentBoundEvent_5_OnCheckBoxComponentStateChanged__DelegateSignature(bool bIsChecked);
@@ -102,16 +113,19 @@ class UW_ServerBrowser_C : public UUserWidget
     void BndEvt__W_ServerBrowser_W_MainMenuButton_DirectConnect_K2Node_ComponentBoundEvent_9_ButtonPressed__DelegateSignature();
     void DirectConnect_No();
     void DirectConnect_Yes();
-    void BndEvt__W_ServerBrowser_W_MainMenuButton_LANSwitch_K2Node_ComponentBoundEvent_1_ButtonPressed__DelegateSignature();
     void RefreshSessionListForJoinCode();
     void BndEvt__W_ServerBrowser_W_MainMenuButton_FilterApply_K2Node_ComponentBoundEvent_10_ButtonPressed__DelegateSignature();
     void BlockedPlayer_Yes();
     void BlockedPlayer_No();
+    void BndEvt__W_ServerBrowser_W_MainMenuButton_LANSwitch_K2Node_ComponentBoundEvent_1_ButtonPressed__DelegateSignature();
     void CrossplayIncompatibility();
     void HardcoreJoin_Yes();
     void HardcoreJoin_No();
     void SkipToPasswordCheck();
+    void ModsDiff_No();
+    void OpenDirectConnect();
+    void ModDownloadsSuccess_Event(TArray<int64>& LoadOrder);
     void ExecuteUbergraph_W_ServerBrowser(int32 EntryPoint);
-}; // Size: 0x5A1
+}; // Size: 0x5BA
 
 #endif

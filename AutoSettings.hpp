@@ -35,9 +35,9 @@ class UAutoSettingWidget : public UUserWidget
     void UpdateSelection(FString Value);
     void Save();
     void SandboxSettingsUpdated();
-    bool HasUnsavedChange();
-    bool HasUnappliedChange();
-    FString GetCurrentValue();
+    void HasUnsavedChange();
+    void HasUnappliedChange();
+    void GetCurrentValue();
     void Cancel(bool bResetToDefaultValue);
     void ApplySettingValue(FString Value, bool bSaveIfPossible);
     void Apply();
@@ -56,7 +56,7 @@ class UCVarChangeListener : public UObject
 
 class UCVarChangeListenerManager : public UObject
 {
-    TMap<class FName, class UCVarChangeListener*> Listeners;                          // 0x0028 (size: 0x50)
+    TMap<FName, UCVarChangeListener*> Listeners;                                      // 0x0028 (size: 0x50)
 
     void AddStringCVarCallbackStatic(FName Name, FAddStringCVarCallbackStaticChangedCallback ChangedCallback, bool CallbackImmediately);
     void AddIntCVarCallbackStatic(FName Name, FAddIntCVarCallbackStaticChangedCallback ChangedCallback, bool CallbackImmediately);
@@ -85,11 +85,11 @@ class UConsoleUtils : public UBlueprintFunctionLibrary
     void SetIntCVar(FName Name, int32 Value);
     void SetFloatCVar(FName Name, float Value);
     void SetBoolCVar(FName Name, bool Value);
-    bool IsCVarRegistered(FName Name);
-    FString GetStringCVar(FName Name);
-    int32 GetIntCVar(FName Name);
-    float GetFloatCVar(FName Name);
-    bool GetBoolCVar(FName Name);
+    void IsCVarRegistered(FName Name);
+    void GetStringCVar(FName Name);
+    void GetIntCVar(FName Name);
+    void GetFloatCVar(FName Name);
+    void GetBoolCVar(FName Name);
 }; // Size: 0x28
 
 class UNativeSliderSetting : public USliderSetting
@@ -116,9 +116,9 @@ class URadioButton : public UUserWidget
     void SetValue(FString InValue);
     void SetSelected(bool InSelected);
     void SetLabel(FText InLabel);
-    FString GetValue();
-    bool GetSelected();
-    FText GetLabel();
+    void GetValue();
+    void GetSelected();
+    void GetLabel();
 }; // Size: 0x318
 
 class URadioSelect : public UUserWidget
@@ -128,13 +128,13 @@ class URadioSelect : public UUserWidget
     FRadioSelectSelectionChangedEvent SelectionChangedEvent;                          // 0x02F8 (size: 0x10)
     void RadioSelectedSignature(FString Value);
     class UPanelWidget* ButtonContainer;                                              // 0x0308 (size: 0x8)
-    TArray<class URadioButton*> RadioButtons;                                         // 0x0310 (size: 0x10)
+    TArray<URadioButton*> RadioButtons;                                               // 0x0310 (size: 0x10)
 
     void SetOptions(TArray<FSettingOption> InOptions);
     void Select(FString Value);
     void OnButtonCreated(class URadioButton* Button, class UPanelSlot* NewSlot);
-    TArray<class URadioButton*> GetRadioButtonWidgets();
-    TArray<FSettingOption> GetOptions();
+    void GetRadioButtonWidgets();
+    void GetOptions();
     void ButtonSelected(FString Value);
 }; // Size: 0x320
 
@@ -162,15 +162,15 @@ class USandboxPreviewSubsystem : public UGameInstanceSubsystem
 {
     FSandboxPreviewSubsystemOnSettingUpdated OnSettingUpdated;                        // 0x0030 (size: 0x10)
     void SettingUpdatedDelegate();
-    TMap<class FName, class FString> SandboxPreviewSettings;                          // 0x0040 (size: 0x50)
-    TMap<class FName, class FString> SandboxPreviewDefaultSettings;                   // 0x0090 (size: 0x50)
+    TMap<FName, FString> SandboxPreviewSettings;                                      // 0x0040 (size: 0x50)
+    TMap<FName, FString> SandboxPreviewDefaultSettings;                               // 0x0090 (size: 0x50)
 
-    void SetSandboxPreviewSettings(const TMap<class FName, class FString>& Settings, const TMap<class FName, class FString>& DefaultSettings);
+    void SetSandboxPreviewSettings(const TMap<FName, FString>& Settings, const TMap<FName, FString>& DefaultSettings);
     void SetPreviewSetting(FName SettingName, FString Value);
-    bool IsPreviewSettingModified(FName SettingName);
-    FString GetPreviewSetting(FName SettingName);
-    FString GetPreviewDefaultSetting(FName SettingName);
-    TMap<class FName, class FString> GetModifiedPreviewSettings();
+    void IsPreviewSettingModified(FName SettingName);
+    void GetPreviewSetting(FName SettingName);
+    void GetPreviewDefaultSetting(FName SettingName);
+    void GetModifiedPreviewSettings();
 }; // Size: 0xE0
 
 class USelectSetting : public UAutoSettingWidget
@@ -187,9 +187,9 @@ class USettingContainerUtils : public UBlueprintFunctionLibrary
 {
 
     void SaveChildSettings(class UUserWidget* UserWidget, class UWidget* Parent);
-    TArray<class UAutoSettingWidget*> GetChildSettings(class UUserWidget* UserWidget, class UWidget* Parent);
-    bool DoesAnyChildSettingHaveUnsavedChange(class UUserWidget* UserWidget, class UWidget* Parent);
-    bool DoesAnyChildSettingHaveUnappliedChange(class UUserWidget* UserWidget, class UWidget* Parent);
+    void GetChildSettings(class UUserWidget* UserWidget, class UWidget* Parent);
+    void DoesAnyChildSettingHaveUnsavedChange(class UUserWidget* UserWidget, class UWidget* Parent);
+    void DoesAnyChildSettingHaveUnappliedChange(class UUserWidget* UserWidget, class UWidget* Parent);
     void CancelChildSettings(class UUserWidget* UserWidget, class UWidget* Parent);
     void ApplyChildSettings(class UUserWidget* UserWidget, class UWidget* Parent);
 }; // Size: 0x28
@@ -197,14 +197,14 @@ class USettingContainerUtils : public UBlueprintFunctionLibrary
 class USettingOptionFactory : public UObject
 {
 
-    TArray<FSettingOption> ConstructOptions();
+    void ConstructOptions();
 }; // Size: 0x28
 
 class USettingValueMask : public UObject
 {
 
-    FString RecombineValues(FString SettingValue, FString ConsoleValue);
-    FString MaskValue(FString ConsoleValue);
+    void RecombineValues(FString SettingValue, FString ConsoleValue);
+    void MaskValue(FString ConsoleValue);
 }; // Size: 0x28
 
 class USettingsManager : public UEngineSubsystem
@@ -229,11 +229,11 @@ class USliderSetting : public UAutoSettingWidget
 
     void UpdateSliderValue(float NormalizedValue, float RawValue);
     void SliderValueUpdated(float NormalizedValue);
-    bool ShouldSaveCurrentValue();
-    float RawValueToNormalized(float RawValue);
+    void ShouldSaveCurrentValue();
+    void RawValueToNormalized(float RawValue);
     void OnSliderValueUpdated(float NormalizedValue, float RawValue);
-    float NormalizedValueToRaw(float NormalizedValue);
-    float ClampRawValue(float RawValue);
+    void NormalizedValueToRaw(float NormalizedValue);
+    void ClampRawValue(float RawValue);
 }; // Size: 0x360
 
 class USpinner : public UUserWidget
@@ -248,10 +248,10 @@ class USpinner : public UUserWidget
     void Previous();
     void OnSelectionChanged(FSettingOption SelectedOption);
     void Next();
-    bool HasValidPrevious();
-    bool HasValidNext();
-    FSettingOption GetCurrentOption();
-    int32 GetCurrentIndex();
+    void HasValidPrevious();
+    void HasValidNext();
+    void GetCurrentOption();
+    void GetCurrentIndex();
 }; // Size: 0x310
 
 class USpinnerSetting : public USelectSetting

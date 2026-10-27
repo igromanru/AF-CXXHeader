@@ -65,7 +65,7 @@ struct FSessionsSearchSetting
 
 class AAdvancedGameSession : public AGameSession
 {
-    TMap<class FUniqueNetIdRepl, class FText> BanList;                                // 0x02C0 (size: 0x50)
+    TMap<FUniqueNetIdRepl, FText> BanList;                                            // 0x02C0 (size: 0x50)
 
 }; // Size: 0x310
 
@@ -138,27 +138,27 @@ class UAdvancedSessionsLibrary : public UBlueprintFunctionLibrary
 {
 
     void UniqueNetIdToString(const FBPUniqueNetId& UniqueNetId, FString& String);
-    TArray<FString> SplitServerNameForSearch(class UObject* WorldContextObject, FString InServerName);
+    void SplitServerNameForSearch(class UObject* WorldContextObject, FString InServerName);
     void SetPlayerName(class APlayerController* PlayerController, FString playerName);
-    bool ServerTravel(class UObject* WorldContextObject, FString InURL, bool bAbsolute, bool bShouldSkipGameNotify);
-    FSessionsSearchSetting MakeLiteralSessionSearchProperty(FSessionPropertyKeyPair SessionSearchProperty, EOnlineComparisonOpRedux ComparisonOp);
-    FSessionPropertyKeyPair MakeLiteralSessionPropertyString(FName Key, FString Value);
-    FSessionPropertyKeyPair MakeLiteralSessionPropertyInt(FName Key, int32 Value);
-    FSessionPropertyKeyPair MakeLiteralSessionPropertyFloat(FName Key, float Value);
-    FSessionPropertyKeyPair MakeLiteralSessionPropertyByte(FName Key, uint8 Value);
-    FSessionPropertyKeyPair MakeLiteralSessionPropertyBool(FName Key, bool Value);
-    bool KickPlayer(class UObject* WorldContextObject, class APlayerController* PlayerToKick, FText KickReason);
-    bool IsValidUniqueNetID(const FBPUniqueNetId& UniqueNetId);
-    bool IsValidSession(const FBlueprintSessionResult& SessionResult);
+    void ServerTravel(class UObject* WorldContextObject, FString InURL, bool bAbsolute, bool bShouldSkipGameNotify);
+    void MakeLiteralSessionSearchProperty(FSessionPropertyKeyPair SessionSearchProperty, EOnlineComparisonOpRedux ComparisonOp);
+    void MakeLiteralSessionPropertyString(FName Key, FString Value);
+    void MakeLiteralSessionPropertyInt(FName Key, int32 Value);
+    void MakeLiteralSessionPropertyFloat(FName Key, float Value);
+    void MakeLiteralSessionPropertyByte(FName Key, uint8 Value);
+    void MakeLiteralSessionPropertyBool(FName Key, bool Value);
+    void KickPlayer(class UObject* WorldContextObject, class APlayerController* PlayerToKick, FText KickReason);
+    void IsValidUniqueNetID(const FBPUniqueNetId& UniqueNetId);
+    void IsValidSession(const FBlueprintSessionResult& SessionResult);
     void IsPlayerInSession(class UObject* WorldContextObject, const FBPUniqueNetId& PlayerToCheck, bool& bIsInSession);
-    bool HasOnlineSubsystem(FName SubSystemName);
+    void HasOnlineSubsystem(FName SubSystemName);
     void GetUniqueNetIDFromPlayerState(class APlayerState* PlayerState, FBPUniqueNetId& UniqueNetId);
     void GetUniqueNetID(class APlayerController* PlayerController, FBPUniqueNetId& UniqueNetId);
     void GetUniqueBuildID(FBlueprintSessionResult SessionResult, int32& UniqueBuildId);
     void GetSessionState(class UObject* WorldContextObject, EBPOnlineSessionState& SessionState);
     void GetSessionSettings(class UObject* WorldContextObject, int32& NumConnections, int32& NumPrivateConnections, bool& bIsLAN, bool& bIsDedicated, bool& bAllowInvites, bool& bAllowJoinInProgress, bool& bIsAnticheatEnabled, int32& BuildUniqueID, TArray<FSessionPropertyKeyPair>& ExtraSettings, EBlueprintResultSwitch& Result);
     void GetSessionPropertyString(const TArray<FSessionPropertyKeyPair>& ExtraSettings, FName SettingName, ESessionSettingSearchResult& SearchResult, FString& SettingValue);
-    FName GetSessionPropertyKey(const FSessionPropertyKeyPair& SessionProperty);
+    void GetSessionPropertyKey(const FSessionPropertyKeyPair& SessionProperty);
     void GetSessionPropertyInt(const TArray<FSessionPropertyKeyPair>& ExtraSettings, FName SettingName, ESessionSettingSearchResult& SearchResult, int32& SettingValue);
     void GetSessionPropertyFloat(const TArray<FSessionPropertyKeyPair>& ExtraSettings, FName SettingName, ESessionSettingSearchResult& SearchResult, float& SettingValue);
     void GetSessionPropertyByte(const TArray<FSessionPropertyKeyPair>& ExtraSettings, FName SettingName, ESessionSettingSearchResult& SearchResult, uint8& SettingValue);
@@ -172,30 +172,30 @@ class UAdvancedSessionsLibrary : public UBlueprintFunctionLibrary
     void GetCurrentSessionID_AsString(class UObject* WorldContextObject, FString& SessionId);
     void FindSessionPropertyIndexByName(const TArray<FSessionPropertyKeyPair>& ExtraSettings, FName SettingName, EBlueprintResultSwitch& Result, int32& OutIndex);
     void FindSessionPropertyByName(const TArray<FSessionPropertyKeyPair>& ExtraSettings, FName SettingsName, EBlueprintResultSwitch& Result, FSessionPropertyKeyPair& OutProperty);
-    bool EqualEqual_UNetIDUnetID(const FBPUniqueNetId& A, const FBPUniqueNetId& B);
-    FUniqueNetIdRepl Conv_BPUniqueIDToUniqueNetIDRepl(const FBPUniqueNetId& InUniqueID);
-    FSessionSearchSettingMulti BuildSessionSearchForServerName(class UObject* WorldContextObject, FString InServerName);
-    bool BanPlayer(class UObject* WorldContextObject, class APlayerController* PlayerToBan, FText BanReason);
+    void EqualEqual_UNetIDUnetID(const FBPUniqueNetId& A, const FBPUniqueNetId& B);
+    void Conv_BPUniqueIDToUniqueNetIDRepl(const FBPUniqueNetId& InUniqueID);
+    void BuildSessionSearchForServerName(class UObject* WorldContextObject, FString InServerName);
+    void BanPlayer(class UObject* WorldContextObject, class APlayerController* PlayerToBan, FText BanReason);
     void AddOrModifyExtraSettings(TArray<FSessionPropertyKeyPair>& SettingsArray, TArray<FSessionPropertyKeyPair>& NewOrChangedSettings, TArray<FSessionPropertyKeyPair>& ModifiedSettingsArray);
 }; // Size: 0x28
 
 class UAdvancedVoiceLibrary : public UBlueprintFunctionLibrary
 {
 
-    bool UnRegisterRemoteTalker(class UObject* WorldContextObject, const FBPUniqueNetId& UniqueNetId);
+    void UnRegisterRemoteTalker(class UObject* WorldContextObject, const FBPUniqueNetId& UniqueNetId);
     void UnRegisterLocalTalker(class UObject* WorldContextObject, uint8 LocalPlayerNum);
     void UnRegisterAllLocalTalkers(class UObject* WorldContextObject);
-    bool UnMuteRemoteTalker(class UObject* WorldContextObject, uint8 LocalUserNum, const FBPUniqueNetId& UniqueNetId, bool bIsSystemWide);
+    void UnMuteRemoteTalker(class UObject* WorldContextObject, uint8 LocalUserNum, const FBPUniqueNetId& UniqueNetId, bool bIsSystemWide);
     void StopNetworkedVoice(class UObject* WorldContextObject, uint8 LocalPlayerNum);
     void StartNetworkedVoice(class UObject* WorldContextObject, uint8 LocalPlayerNum);
     void RemoveAllRemoteTalkers(class UObject* WorldContextObject);
-    bool RegisterRemoteTalker(class UObject* WorldContextObject, const FBPUniqueNetId& UniqueNetId);
-    bool RegisterLocalTalker(class UObject* WorldContextObject, uint8 LocalPlayerNum);
+    void RegisterRemoteTalker(class UObject* WorldContextObject, const FBPUniqueNetId& UniqueNetId);
+    void RegisterLocalTalker(class UObject* WorldContextObject, uint8 LocalPlayerNum);
     void RegisterAllLocalTalkers(class UObject* WorldContextObject);
-    bool MuteRemoteTalker(class UObject* WorldContextObject, uint8 LocalUserNum, const FBPUniqueNetId& UniqueNetId, bool bIsSystemWide);
-    bool IsRemotePlayerTalking(class UObject* WorldContextObject, const FBPUniqueNetId& UniqueNetId);
-    bool IsPlayerMuted(class UObject* WorldContextObject, uint8 LocalUserNumChecking, const FBPUniqueNetId& UniqueNetId);
-    bool IsLocalPlayerTalking(class UObject* WorldContextObject, uint8 LocalPlayerNum);
+    void MuteRemoteTalker(class UObject* WorldContextObject, uint8 LocalUserNum, const FBPUniqueNetId& UniqueNetId, bool bIsSystemWide);
+    void IsRemotePlayerTalking(class UObject* WorldContextObject, const FBPUniqueNetId& UniqueNetId);
+    void IsPlayerMuted(class UObject* WorldContextObject, uint8 LocalUserNumChecking, const FBPUniqueNetId& UniqueNetId);
+    void IsLocalPlayerTalking(class UObject* WorldContextObject, uint8 LocalPlayerNum);
     void IsHeadsetPresent(class UObject* WorldContextObject, bool& bHasHeadset, uint8 LocalPlayerNum);
     void GetNumLocalTalkers(class UObject* WorldContextObject, int32& NumLocalTalkers);
 }; // Size: 0x28
@@ -207,7 +207,7 @@ class UAutoLoginUserCallbackProxy : public UOnlineBlueprintCallProxyBase
     FAutoLoginUserCallbackProxyOnFailure OnFailure;                                   // 0x0040 (size: 0x10)
     void EmptyOnlineDelegate();
 
-    class UAutoLoginUserCallbackProxy* AutoLoginUser(class UObject* WorldContextObject, int32 LocalUserNum);
+    void AutoLoginUser(class UObject* WorldContextObject, int32 LocalUserNum);
 }; // Size: 0x78
 
 class UCancelFindSessionsCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -217,7 +217,7 @@ class UCancelFindSessionsCallbackProxy : public UOnlineBlueprintCallProxyBase
     FCancelFindSessionsCallbackProxyOnFailure OnFailure;                              // 0x0040 (size: 0x10)
     void EmptyOnlineDelegate();
 
-    class UCancelFindSessionsCallbackProxy* CancelFindSessions(class UObject* WorldContextObject, class APlayerController* PlayerController);
+    void CancelFindSessions(class UObject* WorldContextObject, class APlayerController* PlayerController);
 }; // Size: 0x78
 
 class UCreateSessionCallbackProxyAdvanced : public UOnlineBlueprintCallProxyBase
@@ -227,7 +227,7 @@ class UCreateSessionCallbackProxyAdvanced : public UOnlineBlueprintCallProxyBase
     FCreateSessionCallbackProxyAdvancedOnFailure OnFailure;                           // 0x0040 (size: 0x10)
     void EmptyOnlineDelegate();
 
-    class UCreateSessionCallbackProxyAdvanced* CreateAdvancedSession(class UObject* WorldContextObject, const TArray<FSessionPropertyKeyPair>& ExtraSettings, class APlayerController* PlayerController, int32 PublicConnections, int32 PrivateConnections, bool bUseLAN, bool bAllowInvites, bool bIsDedicatedServer, bool bUsePresence, bool bUseLobbiesIfAvailable, bool bAllowJoinViaPresence, bool bAllowJoinViaPresenceFriendsOnly, bool bAntiCheatProtected, bool bUsesStats, bool bShouldAdvertise, bool bUseLobbiesVoiceChatIfAvailable, bool bStartAfterCreate);
+    void CreateAdvancedSession(class UObject* WorldContextObject, const TArray<FSessionPropertyKeyPair>& ExtraSettings, class APlayerController* PlayerController, int32 PublicConnections, int32 PrivateConnections, bool bUseLAN, bool bAllowInvites, bool bIsDedicatedServer, bool bUsePresence, bool bUseLobbiesIfAvailable, bool bAllowJoinViaPresence, bool bAllowJoinViaPresenceFriendsOnly, bool bAntiCheatProtected, bool bUsesStats, bool bShouldAdvertise, bool bUseLobbiesVoiceChatIfAvailable, bool bStartAfterCreate);
 }; // Size: 0xB8
 
 class UEndSessionCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -237,7 +237,7 @@ class UEndSessionCallbackProxy : public UOnlineBlueprintCallProxyBase
     FEndSessionCallbackProxyOnFailure OnFailure;                                      // 0x0040 (size: 0x10)
     void EmptyOnlineDelegate();
 
-    class UEndSessionCallbackProxy* EndSession(class UObject* WorldContextObject, class APlayerController* PlayerController);
+    void EndSession(class UObject* WorldContextObject, class APlayerController* PlayerController);
 }; // Size: 0x78
 
 class UFindFriendSessionCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -247,7 +247,7 @@ class UFindFriendSessionCallbackProxy : public UOnlineBlueprintCallProxyBase
     FFindFriendSessionCallbackProxyOnFailure OnFailure;                               // 0x0040 (size: 0x10)
     void BlueprintFindFriendSessionDelegate(const TArray<FBlueprintSessionResult>& SessionInfo);
 
-    class UFindFriendSessionCallbackProxy* FindFriendSession(class UObject* WorldContextObject, class APlayerController* PlayerController, const FBPUniqueNetId& FriendUniqueNetId);
+    void FindFriendSession(class UObject* WorldContextObject, class APlayerController* PlayerController, const FBPUniqueNetId& FriendUniqueNetId);
 }; // Size: 0x98
 
 class UFindSessionsCallbackProxyAdvanced : public UOnlineBlueprintCallProxyBase
@@ -257,7 +257,7 @@ class UFindSessionsCallbackProxyAdvanced : public UOnlineBlueprintCallProxyBase
     FFindSessionsCallbackProxyAdvancedOnFailure OnFailure;                            // 0x0040 (size: 0x10)
     void BlueprintFindSessionsResultDelegate(const TArray<FBlueprintSessionResult>& Results);
 
-    class UFindSessionsCallbackProxyAdvanced* FindSessionsAdvanced(class UObject* WorldContextObject, class APlayerController* PlayerController, int32 MaxResults, bool bUseLAN, EBPServerPresenceSearchType ServerTypeToSearch, const TArray<FSessionsSearchSetting>& Filters, const TArray<FSessionsSearchSetting>& ORFilters, bool bEmptyServersOnly, bool bNonEmptyServersOnly, bool bSecureServersOnly, bool bSearchLobbies, int32 MinSlotsAvailable);
+    void FindSessionsAdvanced(class UObject* WorldContextObject, class APlayerController* PlayerController, int32 MaxResults, bool bUseLAN, EBPServerPresenceSearchType ServerTypeToSearch, const TArray<FSessionsSearchSetting>& Filters, const TArray<FSessionsSearchSetting>& ORFilters, bool bEmptyServersOnly, bool bNonEmptyServersOnly, bool bSecureServersOnly, bool bSearchLobbies, int32 MinSlotsAvailable);
     void FilterSessionResults(const TArray<FBlueprintSessionResult>& SessionResults, const TArray<FSessionsSearchSetting>& Filters, TArray<FBlueprintSessionResult>& FilteredResults);
 }; // Size: 0x130
 
@@ -268,7 +268,7 @@ class UGetFriendsCallbackProxy : public UOnlineBlueprintCallProxyBase
     FGetFriendsCallbackProxyOnFailure OnFailure;                                      // 0x0040 (size: 0x10)
     void BlueprintGetFriendsListDelegate(const TArray<FBPFriendInfo>& Results);
 
-    class UGetFriendsCallbackProxy* GetAndStoreFriendsList(class UObject* WorldContextObject, class APlayerController* PlayerController);
+    void GetAndStoreFriendsList(class UObject* WorldContextObject, class APlayerController* PlayerController);
 }; // Size: 0x70
 
 class UGetRecentPlayersCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -278,7 +278,7 @@ class UGetRecentPlayersCallbackProxy : public UOnlineBlueprintCallProxyBase
     FGetRecentPlayersCallbackProxyOnFailure OnFailure;                                // 0x0040 (size: 0x10)
     void BlueprintGetRecentPlayersDelegate(const TArray<FBPOnlineRecentPlayer>& Results);
 
-    class UGetRecentPlayersCallbackProxy* GetAndStoreRecentPlayersList(class UObject* WorldContextObject, const FBPUniqueNetId& UniqueNetId);
+    void GetAndStoreRecentPlayersList(class UObject* WorldContextObject, const FBPUniqueNetId& UniqueNetId);
 }; // Size: 0x90
 
 class UGetUserPrivilegeCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -288,7 +288,7 @@ class UGetUserPrivilegeCallbackProxy : public UOnlineBlueprintCallProxyBase
     FGetUserPrivilegeCallbackProxyOnFailure OnFailure;                                // 0x0040 (size: 0x10)
     void EmptyOnlineDelegate();
 
-    class UGetUserPrivilegeCallbackProxy* GetUserPrivilege(class UObject* WorldContextObject, const EBPUserPrivileges& PrivilegeToCheck, const FBPUniqueNetId& PlayerUniqueNetID);
+    void GetUserPrivilege(class UObject* WorldContextObject, const EBPUserPrivileges& PrivilegeToCheck, const FBPUniqueNetId& PlayerUniqueNetID);
 }; // Size: 0x80
 
 class ULoginUserCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -298,7 +298,7 @@ class ULoginUserCallbackProxy : public UOnlineBlueprintCallProxyBase
     FLoginUserCallbackProxyOnFailure OnFailure;                                       // 0x0040 (size: 0x10)
     void EmptyOnlineDelegate();
 
-    class ULoginUserCallbackProxy* LoginUser(class UObject* WorldContextObject, class APlayerController* PlayerController, FString UserId, FString UserToken, FString AuthType);
+    void LoginUser(class UObject* WorldContextObject, class APlayerController* PlayerController, FString UserId, FString UserToken, FString AuthType);
 }; // Size: 0xA8
 
 class ULogoutUserCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -308,7 +308,7 @@ class ULogoutUserCallbackProxy : public UOnlineBlueprintCallProxyBase
     FLogoutUserCallbackProxyOnFailure OnFailure;                                      // 0x0040 (size: 0x10)
     void EmptyOnlineDelegate();
 
-    class ULogoutUserCallbackProxy* LogoutUser(class UObject* WorldContextObject, class APlayerController* PlayerController);
+    void LogoutUser(class UObject* WorldContextObject, class APlayerController* PlayerController);
 }; // Size: 0x78
 
 class UProfanityFilterCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -319,7 +319,7 @@ class UProfanityFilterCallbackProxy : public UOnlineBlueprintCallProxyBase
     void ProfanityFilterResult(bool bSuccess, const TArray<FString>& SanitizedMessages);
     class UObject* WorldContextObject;                                                // 0x0050 (size: 0x8)
 
-    class UProfanityFilterCallbackProxy* ProfanityFilterDisplayNames(class UObject* WorldContextObject, const TArray<FString>& ThingsToSanitize);
+    void ProfanityFilterDisplayNames(class UObject* WorldContextObject, const TArray<FString>& ThingsToSanitize);
 }; // Size: 0x68
 
 class USendFriendInviteCallbackProxy : public UOnlineBlueprintCallProxyBase
@@ -329,7 +329,7 @@ class USendFriendInviteCallbackProxy : public UOnlineBlueprintCallProxyBase
     FSendFriendInviteCallbackProxyOnFailure OnFailure;                                // 0x0040 (size: 0x10)
     void BlueprintSendFriendInviteDelegate();
 
-    class USendFriendInviteCallbackProxy* SendFriendInvite(class UObject* WorldContextObject, class APlayerController* PlayerController, const FBPUniqueNetId& UniqueNetIDInvited);
+    void SendFriendInvite(class UObject* WorldContextObject, class APlayerController* PlayerController, const FBPUniqueNetId& UniqueNetIDInvited);
 }; // Size: 0x90
 
 class UStartSessionCallbackProxyAdvanced : public UOnlineBlueprintCallProxyBase
@@ -339,7 +339,7 @@ class UStartSessionCallbackProxyAdvanced : public UOnlineBlueprintCallProxyBase
     FStartSessionCallbackProxyAdvancedOnFailure OnFailure;                            // 0x0040 (size: 0x10)
     void EmptyOnlineDelegate();
 
-    class UStartSessionCallbackProxyAdvanced* StartAdvancedSession(class UObject* WorldContextObject);
+    void StartAdvancedSession(class UObject* WorldContextObject);
 }; // Size: 0x70
 
 class UUpdateSessionCallbackProxyAdvanced : public UOnlineBlueprintCallProxyBase
@@ -349,7 +349,7 @@ class UUpdateSessionCallbackProxyAdvanced : public UOnlineBlueprintCallProxyBase
     FUpdateSessionCallbackProxyAdvancedOnFailure OnFailure;                           // 0x0040 (size: 0x10)
     void EmptyOnlineDelegate();
 
-    class UUpdateSessionCallbackProxyAdvanced* UpdateSession(class UObject* WorldContextObject, const TArray<FSessionPropertyKeyPair>& ExtraSettings, int32 PublicConnections, int32 PrivateConnections, bool bUseLAN, bool bAllowInvites, bool bAllowJoinInProgress, bool bRefreshOnlineData, bool bIsDedicatedServer, bool bShouldAdvertise);
+    void UpdateSession(class UObject* WorldContextObject, const TArray<FSessionPropertyKeyPair>& ExtraSettings, int32 PublicConnections, int32 PrivateConnections, bool bUseLAN, bool bAllowInvites, bool bAllowJoinInProgress, bool bRefreshOnlineData, bool bIsDedicatedServer, bool bShouldAdvertise);
 }; // Size: 0x98
 
 #endif

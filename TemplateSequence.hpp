@@ -28,9 +28,9 @@ class ATemplateSequenceActor : public AActor
 
     void SetSequence(class UTemplateSequence* InSequence);
     void SetBinding(class AActor* Actor, bool bOverridesDefault);
-    class UTemplateSequence* LoadSequence();
-    class UTemplateSequencePlayer* GetSequencePlayer();
-    class UTemplateSequence* GetSequence();
+    void LoadSequence();
+    void GetSequencePlayer();
+    void GetSequence();
 }; // Size: 0x300
 
 class UCameraAnimationBoundObjectInstantiator : public UMovieSceneEntityInstantiatorSystem
@@ -96,23 +96,23 @@ class USequenceCameraShakePattern : public UCameraShakePattern
 class USequenceCameraShakeTestUtil : public UBlueprintFunctionLibrary
 {
 
-    bool GetPostProcessBlendCache(class APlayerController* PlayerController, int32 PPIndex, FPostProcessSettings& OutPPSettings, float& OutPPBlendWeight);
-    FMinimalViewInfo GetLastFrameCameraCachePOV(class APlayerController* PlayerController);
-    FMinimalViewInfo GetCameraCachePOV(class APlayerController* PlayerController);
+    void GetPostProcessBlendCache(class APlayerController* PlayerController, int32 PPIndex, FPostProcessSettings& OutPPSettings, float& OutPPBlendWeight);
+    void GetLastFrameCameraCachePOV(class APlayerController* PlayerController);
+    void GetCameraCachePOV(class APlayerController* PlayerController);
 }; // Size: 0x28
 
 class UTemplateSequence : public UMovieSceneSequence
 {
     class UMovieScene* MovieScene;                                                    // 0x0068 (size: 0x8)
     TSoftClassPtr<AActor> BoundActorClass;                                            // 0x0070 (size: 0x28)
-    TMap<class FGuid, class FName> BoundActorComponents;                              // 0x0098 (size: 0x50)
+    TMap<FGuid, FName> BoundActorComponents;                                          // 0x0098 (size: 0x50)
 
 }; // Size: 0xE8
 
 class UTemplateSequencePlayer : public UMovieSceneSequencePlayer
 {
 
-    class UTemplateSequencePlayer* CreateTemplateSequencePlayer(class UObject* WorldContextObject, class UTemplateSequence* TemplateSequence, FMovieSceneSequencePlaybackSettings Settings, class ATemplateSequenceActor*& OutActor);
+    void CreateTemplateSequencePlayer(class UObject* WorldContextObject, class UTemplateSequence* TemplateSequence, FMovieSceneSequencePlaybackSettings Settings, class ATemplateSequenceActor*& OutActor);
 }; // Size: 0x470
 
 class UTemplateSequencePropertyScalingEvaluatorSystem : public UMovieSceneEntitySystem

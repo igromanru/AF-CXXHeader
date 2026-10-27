@@ -5,7 +5,7 @@ class UW_VoiceChat_PlayerList_C : public UUserWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UVerticalBox* PlayerBox;                                                    // 0x02E8 (size: 0x8)
-    TMap<class TSoftObjectPtr<APlayerState>, class UW_VoiceChat_Player_C*> WidgetList; // 0x02F0 (size: 0x50)
+    TMap<TSoftObjectPtr<class APlayerState>, UW_VoiceChat_Player_C*> WidgetList;      // 0x02F0 (size: 0x50)
 
     void ShouldShowVoiceChatList(bool& bShowList);
     void RemovePlayer(class APlayerState* PlayerState);

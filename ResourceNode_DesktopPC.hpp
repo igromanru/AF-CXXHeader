@@ -3,8 +3,8 @@
 
 class AResourceNode_DesktopPC_C : public AResourceNode_ParentBP_C
 {
-    class UStaticMeshComponent* DiskDrive;                                            // 0x04E8 (size: 0x8)
+    class UStaticMeshComponent* DiskDrive;                                            // 0x04F0 (size: 0x8)
 
-}; // Size: 0x4F0
+}; // Size: 0x4F8
 
 #endif

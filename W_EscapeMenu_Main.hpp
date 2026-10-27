@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_EscapeMenu_Main_HPP
 #define UE4SS_SDK_W_EscapeMenu_Main_HPP
 
-class UW_EscapeMenu_Main_C : public UAbioticWidget
+class UW_EscapeMenu_Main_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UImage* BG_Image;                                                           // 0x02E8 (size: 0x8)
@@ -41,7 +41,7 @@ class UW_EscapeMenu_Main_C : public UAbioticWidget
     void WidgetAction_CycleCrafting(bool Next, bool& Handled);
     void WidgetAction_CycleMenu(bool Next, bool& Handled);
     void WidgetAction_CloseMenu(bool& Handled);
-    FEventReply OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
+    void OnKeyDown(FGeometry MyGeometry, FKeyEvent InKeyEvent);
     void SaveWorld_3F292E7E47556980960F7FBBC9510C2F(bool bSuccess);
     void OnFailure_E43A5518460F721F7524759598770986();
     void OnSuccess_E43A5518460F721F7524759598770986();

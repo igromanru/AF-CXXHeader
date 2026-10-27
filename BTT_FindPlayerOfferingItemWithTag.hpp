@@ -8,7 +8,7 @@ class UBTT_FindPlayerOfferingItemWithTag_C : public UBTTask_BlueprintBase
     FBlackboardName Key;                                                              // 0x00D0 (size: 0x8)
 
     void ReceiveExecuteAI(class AAIController* OwnerController, class APawn* ControlledPawn);
-    bool IsPlayerOfferingValidItem(class ANPC_Base_ParentBP_C* OwningNPC, class AAbiotic_PlayerCharacter_C* Player);
+    void IsPlayerOfferingValidItem(class ANPC_Base_ParentBP_C* OwningNPC, class AAbiotic_PlayerCharacter_C* Player);
 }; // Size: 0xD8
 
 #endif

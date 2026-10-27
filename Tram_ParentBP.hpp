@@ -49,7 +49,7 @@ class ATram_ParentBP_C : public AActor
     class USoundBase* TramBrakesSound;                                                // 0x0428 (size: 0x8)
 
     void OnRep_TramDoorState();
-    void GetTramContainers(TArray<class UAbiotic_InventoryComponent_C*>& Array);
+    void GetTramContainers(TArray<UAbiotic_InventoryComponent_C*>& Array);
     void UpdateStationState();
     void OnRep_PreviousStation();
     void UpdatePassengerCount();
@@ -70,7 +70,7 @@ class ATram_ParentBP_C : public AActor
     void NegativeButtonPressed(bool Activated);
     void UpdateExternalStations();
     void OnFurnitureDestroyOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-    void OnInventorySaveLoaded(const TArray<FSaveData_Inventories_Struct>& SaveData);
+    void OnInventorySaveLoaded(const TArray<FAbioticInventorySave>& SaveData);
     void SaveTram();
     void DebugMove();
     void ReceiveTick(float DeltaSeconds);

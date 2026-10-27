@@ -303,7 +303,7 @@ class ARecastNavMesh : public ANavigationData
     float HeuristicScale;                                                             // 0x0598 (size: 0x4)
     float VerticalDeviationFromGroundCompensation;                                    // 0x059C (size: 0x4)
 
-    bool K2_ReplaceAreaInTileBounds(FBox Bounds, TSubclassOf<class UNavArea> OldArea, TSubclassOf<class UNavArea> NewArea, bool ReplaceLinks);
+    void K2_ReplaceAreaInTileBounds(FBox Bounds, TSubclassOf<class UNavArea> OldArea, TSubclassOf<class UNavArea> NewArea, bool ReplaceLinks);
 }; // Size: 0x690
 
 class INavLinkCustomInterface : public IInterface
@@ -490,12 +490,12 @@ class UNavigationPath : public UObject
     TArray<FVector> PathPoints;                                                       // 0x0038 (size: 0x10)
     TEnumAsByte<ENavigationOptionFlag::Type> RecalculateOnInvalidation;               // 0x0048 (size: 0x1)
 
-    bool IsValid();
-    bool IsStringPulled();
-    bool IsPartial();
-    double GetPathLength();
-    double GetPathCost();
-    FString GetDebugString();
+    void IsValid();
+    void IsStringPulled();
+    void IsPartial();
+    void GetPathLength();
+    void GetPathCost();
+    void GetDebugString();
     void EnableRecalculationOnInvalidation(TEnumAsByte<ENavigationOptionFlag::Type> DoRecalculation);
     void EnableDebugDrawing(bool bShouldDrawDebugData, FLinearColor PathColor);
 }; // Size: 0x88
@@ -541,8 +541,8 @@ class UNavigationSystemV1 : public UNavigationSystemBase
     TArray<FNavDataConfig> SupportedAgents;                                           // 0x0090 (size: 0x10)
     FNavAgentSelector SupportedAgentsMask;                                            // 0x00A0 (size: 0x4)
     FBox BuildBounds;                                                                 // 0x00A8 (size: 0x38)
-    TArray<class ANavigationData*> NavDataSet;                                        // 0x00E0 (size: 0x10)
-    TArray<class ANavigationData*> NavDataRegistrationQueue;                          // 0x00F0 (size: 0x10)
+    TArray<ANavigationData*> NavDataSet;                                              // 0x00E0 (size: 0x10)
+    TArray<ANavigationData*> NavDataRegistrationQueue;                                // 0x00F0 (size: 0x10)
     FNavigationSystemV1OnNavDataRegisteredEvent OnNavDataRegisteredEvent;             // 0x0110 (size: 0x10)
     void OnNavDataGenericEvent(class ANavigationData* NavData);
     FNavigationSystemV1OnNavigationGenerationFinishedDelegate OnNavigationGenerationFinishedDelegate; // 0x0120 (size: 0x10)
@@ -555,19 +555,19 @@ class UNavigationSystemV1 : public UNavigationSystemBase
     void ResetMaxSimultaneousTileGenerationJobsCount();
     void RegisterNavigationInvoker(class AActor* Invoker, float TileGenerationRadius, float TileRemovalRadius);
     void OnNavigationBoundsUpdated(class ANavMeshBoundsVolume* NavVolume);
-    bool NavigationRaycast(class UObject* WorldContextObject, const FVector& RayStart, const FVector& RayEnd, FVector& HitLocation, TSubclassOf<class UNavigationQueryFilter> FilterClass, class AController* Querier);
-    bool K2_ReplaceAreaInOctreeData(const class UObject* Object, TSubclassOf<class UNavArea> OldArea, TSubclassOf<class UNavArea> NewArea);
-    bool K2_ProjectPointToNavigation(class UObject* WorldContextObject, const FVector& Point, FVector& ProjectedLocation, class ANavigationData* NavData, TSubclassOf<class UNavigationQueryFilter> FilterClass, const FVector QueryExtent);
-    bool K2_GetRandomReachablePointInRadius(class UObject* WorldContextObject, const FVector& Origin, FVector& RandomLocation, float Radius, class ANavigationData* NavData, TSubclassOf<class UNavigationQueryFilter> FilterClass);
-    bool K2_GetRandomPointInNavigableRadius(class UObject* WorldContextObject, const FVector& Origin, FVector& RandomLocation, float Radius, class ANavigationData* NavData, TSubclassOf<class UNavigationQueryFilter> FilterClass);
-    bool K2_GetRandomLocationInNavigableRadius(class UObject* WorldContextObject, const FVector& Origin, FVector& RandomLocation, float Radius, class ANavigationData* NavData, TSubclassOf<class UNavigationQueryFilter> FilterClass);
-    bool IsNavigationBeingBuiltOrLocked(class UObject* WorldContextObject);
-    bool IsNavigationBeingBuilt(class UObject* WorldContextObject);
-    TEnumAsByte<ENavigationQueryResult::Type> GetPathLength(class UObject* WorldContextObject, const FVector& PathStart, const FVector& PathEnd, double& PathLength, class ANavigationData* NavData, TSubclassOf<class UNavigationQueryFilter> FilterClass);
-    TEnumAsByte<ENavigationQueryResult::Type> GetPathCost(class UObject* WorldContextObject, const FVector& PathStart, const FVector& PathEnd, double& PathCost, class ANavigationData* NavData, TSubclassOf<class UNavigationQueryFilter> FilterClass);
-    class UNavigationSystemV1* GetNavigationSystem(class UObject* WorldContextObject);
-    class UNavigationPath* FindPathToLocationSynchronously(class UObject* WorldContextObject, const FVector& PathStart, const FVector& PathEnd, class AActor* PathfindingContext, TSubclassOf<class UNavigationQueryFilter> FilterClass);
-    class UNavigationPath* FindPathToActorSynchronously(class UObject* WorldContextObject, const FVector& PathStart, class AActor* GoalActor, float TetherDistance, class AActor* PathfindingContext, TSubclassOf<class UNavigationQueryFilter> FilterClass);
+    void NavigationRaycast(class UObject* WorldContextObject, const FVector& RayStart, const FVector& RayEnd, FVector& HitLocation, TSubclassOf<class UNavigationQueryFilter> FilterClass, class AController* Querier);
+    void K2_ReplaceAreaInOctreeData(const class UObject* Object, TSubclassOf<class UNavArea> OldArea, TSubclassOf<class UNavArea> NewArea);
+    void K2_ProjectPointToNavigation(class UObject* WorldContextObject, const FVector& Point, FVector& ProjectedLocation, class ANavigationData* NavData, TSubclassOf<class UNavigationQueryFilter> FilterClass, const FVector QueryExtent);
+    void K2_GetRandomReachablePointInRadius(class UObject* WorldContextObject, const FVector& Origin, FVector& RandomLocation, float Radius, class ANavigationData* NavData, TSubclassOf<class UNavigationQueryFilter> FilterClass);
+    void K2_GetRandomPointInNavigableRadius(class UObject* WorldContextObject, const FVector& Origin, FVector& RandomLocation, float Radius, class ANavigationData* NavData, TSubclassOf<class UNavigationQueryFilter> FilterClass);
+    void K2_GetRandomLocationInNavigableRadius(class UObject* WorldContextObject, const FVector& Origin, FVector& RandomLocation, float Radius, class ANavigationData* NavData, TSubclassOf<class UNavigationQueryFilter> FilterClass);
+    void IsNavigationBeingBuiltOrLocked(class UObject* WorldContextObject);
+    void IsNavigationBeingBuilt(class UObject* WorldContextObject);
+    void GetPathLength(class UObject* WorldContextObject, const FVector& PathStart, const FVector& PathEnd, double& PathLength, class ANavigationData* NavData, TSubclassOf<class UNavigationQueryFilter> FilterClass);
+    void GetPathCost(class UObject* WorldContextObject, const FVector& PathStart, const FVector& PathEnd, double& PathCost, class ANavigationData* NavData, TSubclassOf<class UNavigationQueryFilter> FilterClass);
+    void GetNavigationSystem(class UObject* WorldContextObject);
+    void FindPathToLocationSynchronously(class UObject* WorldContextObject, const FVector& PathStart, const FVector& PathEnd, class AActor* PathfindingContext, TSubclassOf<class UNavigationQueryFilter> FilterClass);
+    void FindPathToActorSynchronously(class UObject* WorldContextObject, const FVector& PathStart, class AActor* GoalActor, float TetherDistance, class AActor* PathfindingContext, TSubclassOf<class UNavigationQueryFilter> FilterClass);
 }; // Size: 0x15B8
 
 class URecastFilter_UseDefaultArea : public UNavigationQueryFilter

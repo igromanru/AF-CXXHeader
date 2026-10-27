@@ -115,12 +115,12 @@ class UActiveSoundscapeColor : public UObject
     FSoundscapeColorModulationSettings ModulationBehavior;                            // 0x0038 (size: 0x30)
     FSoundscapeColorPlaybackSettings PlaybackBehavior;                                // 0x0068 (size: 0xC)
     FSoundscapeColorSpawnSettings SpawnBehavior;                                      // 0x0078 (size: 0x88)
-    TArray<class UActiveSoundscapeColorVoice*> SoundscapeColorVoicePool;              // 0x0178 (size: 0x10)
+    TArray<UActiveSoundscapeColorVoice*> SoundscapeColorVoicePool;                    // 0x0178 (size: 0x10)
 
     void UpdateSoundscapeColor();
     void Stop(float ColorFadeOutTime);
     void Play(float ColorVolume, float ColorPitch, float ColorFadeInTime);
-    bool IsPlaying();
+    void IsPlaying();
 }; // Size: 0x190
 
 class UActiveSoundscapeColorVoice : public UObject
@@ -135,7 +135,7 @@ class UActiveSoundscapeColorVoice : public UObject
 class UActiveSoundscapePalette : public UObject
 {
     class UWorld* World;                                                              // 0x0028 (size: 0x8)
-    TArray<class UActiveSoundscapeColor*> ActiveSoundscapeColors;                     // 0x0030 (size: 0x10)
+    TArray<UActiveSoundscapeColor*> ActiveSoundscapeColors;                           // 0x0030 (size: 0x10)
 
     void Stop();
     void Play();
@@ -144,8 +144,8 @@ class UActiveSoundscapePalette : public UObject
 class USoundscapeBPFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
-    bool SpawnSoundscapePalette(class UObject* WorldContextObject, class USoundscapePalette* SoundscapePaletteIn, class UActiveSoundscapePalette*& SoundscapePaletteAgentsOut);
-    bool SpawnSoundscapeColor(class UObject* WorldContextObject, class USoundscapeColor* SoundscapeColorIn, class UActiveSoundscapeColor*& ActiveSoundscapeColor);
+    void SpawnSoundscapePalette(class UObject* WorldContextObject, class USoundscapePalette* SoundscapePaletteIn, class UActiveSoundscapePalette*& SoundscapePaletteAgentsOut);
+    void SpawnSoundscapeColor(class UObject* WorldContextObject, class USoundscapeColor* SoundscapeColorIn, class UActiveSoundscapeColor*& ActiveSoundscapeColor);
 }; // Size: 0x28
 
 class USoundscapeColor : public UObject
@@ -173,7 +173,7 @@ class USoundscapeColorPointHashCellDensity : public UObject
 
 class USoundscapeColorPointHashMap : public UObject
 {
-    TMap<class FGameplayTag, class USoundscapeColorPointHashCellDensity*> ColorPointHashMap; // 0x0028 (size: 0x50)
+    TMap<FGameplayTag, USoundscapeColorPointHashCellDensity*> ColorPointHashMap;      // 0x0028 (size: 0x50)
     float HashCellSize;                                                               // 0x0078 (size: 0x4)
     int32 GridWidth;                                                                  // 0x007C (size: 0x4)
     int64 NumCells;                                                                   // 0x0080 (size: 0x8)
@@ -182,11 +182,11 @@ class USoundscapeColorPointHashMap : public UObject
     FVector GridOriginOffset;                                                         // 0x00A8 (size: 0x18)
 
     void SetGridCenterpoint(const FVector& Location);
-    int32 NumColorPointsInCell(const FVector& Location, const FGameplayTag ColorPoint);
+    void NumColorPointsInCell(const FVector& Location, const FGameplayTag ColorPoint);
     void InitializeHash(float HashCellSizeIn, FVector GridCenterIn);
     void ClearHash();
-    uint64 CalculateHashIndex(const FVector& Location);
-    bool AddColorPointToHash(const FVector& Location, const FGameplayTag ColorPoint);
+    void CalculateHashIndex(const FVector& Location);
+    void AddColorPointToHash(const FVector& Location, const FGameplayTag ColorPoint);
     void AddColorPointArrayToHash(const TArray<FVector>& Locations, const FGameplayTag ColorPoint);
 }; // Size: 0xC0
 
@@ -227,9 +227,9 @@ class USoundscapeSettings : public UDeveloperSettings
 class USoundscapeSubsystem : public UGameInstanceSubsystem
 {
     TSet<USoundscapePalette*> LoadedPaletteCollectionSet;                             // 0x0038 (size: 0x50)
-    TMap<class FName, class FSoundscapePaletteCollection> UnloadedPaletteCollections; // 0x0088 (size: 0x50)
-    TMap<class USoundscapePalette*, class UActiveSoundscapePalette*> ActivePalettes;  // 0x00F8 (size: 0x50)
-    TArray<class USoundscapeColorPointHashMapCollection*> ColorPointHashMapCollections; // 0x0150 (size: 0x10)
+    TMap<FName, FSoundscapePaletteCollection> UnloadedPaletteCollections;             // 0x0088 (size: 0x50)
+    TMap<USoundscapePalette*, UActiveSoundscapePalette*> ActivePalettes;              // 0x00F8 (size: 0x50)
+    TArray<USoundscapeColorPointHashMapCollection*> ColorPointHashMapCollections;     // 0x0150 (size: 0x10)
     class USoundscapeColorPointHashMap* ColorPointHashMapLOD1;                        // 0x01C0 (size: 0x8)
     class USoundscapeColorPointHashMap* ColorPointHashMapLOD2;                        // 0x01C8 (size: 0x8)
     class USoundscapeColorPointHashMap* ColorPointHashMapLOD3;                        // 0x01D0 (size: 0x8)
@@ -237,11 +237,11 @@ class USoundscapeSubsystem : public UGameInstanceSubsystem
 
     void SetState(FGameplayTag SoundscapeState);
     void RestartSoundscape();
-    bool RemovePaletteCollection(FName PaletteCollectionName);
-    bool RemoveColorPointCollection(FName ColorPointCollectionName);
+    void RemovePaletteCollection(FName PaletteCollectionName);
+    void RemoveColorPointCollection(FName ColorPointCollectionName);
     void ClearState(FGameplayTag SoundscapeState);
-    int32 CheckColorPointDensity(FVector Location, FGameplayTag ColorPoint);
-    bool AddPaletteCollection(FName PaletteCollectionName, FSoundscapePaletteCollection PaletteCollection);
+    void CheckColorPointDensity(FVector Location, FGameplayTag ColorPoint);
+    void AddPaletteCollection(FName PaletteCollectionName, FSoundscapePaletteCollection PaletteCollection);
     void AddColorPointCollection(FName ColorPointCollectionName, FSoundscapeColorPointCollection ColorPointCollection);
 }; // Size: 0x218
 

@@ -3,11 +3,11 @@
 
 class ATrigger_UnlockSimpleDoor_C : public AAbiotic_TriggerVolume_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0368 (size: 0x8)
-    TArray<class ASimpleDoor_ParentBP_C*> DoorToUnlock;                               // 0x0370 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0358 (size: 0x8)
+    TArray<ASimpleDoor_ParentBP_C*> DoorToUnlock;                                     // 0x0360 (size: 0x10)
 
     void OnTrigger();
     void ExecuteUbergraph_Trigger_UnlockSimpleDoor(int32 EntryPoint);
-}; // Size: 0x380
+}; // Size: 0x370
 
 #endif

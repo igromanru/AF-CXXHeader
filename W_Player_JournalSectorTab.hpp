@@ -9,24 +9,24 @@ class UW_Player_JournalSectorTab_C : public UUserWidget
     class UImage* IconImage;                                                          // 0x02F8 (size: 0x8)
     class UCheckBox* PageCheckbox;                                                    // 0x0300 (size: 0x8)
     class UTexture2D* Icon_Texture;                                                   // 0x0308 (size: 0x8)
-    TEnumAsByte<E_JournalEntryCategories::Type> PageCategory;                         // 0x0310 (size: 0x1)
+    EJournalEntryCategories PageCategory;                                             // 0x0310 (size: 0x1)
     FName Journal Entry;                                                              // 0x0314 (size: 0x8)
-    FWorldFlagRowHandle WorldFlagToShowAsUnknown;                                     // 0x0320 (size: 0x20)
-    FWorldFlagRowHandle WorldFlagToRevealIcon;                                        // 0x0340 (size: 0x20)
-    FW_Player_JournalSectorTab_CClickJournalTab ClickJournalTab;                      // 0x0360 (size: 0x10)
+    FWorldFlagRowHandle WorldFlagToShowAsUnknown;                                     // 0x0320 (size: 0x10)
+    FWorldFlagRowHandle WorldFlagToRevealIcon;                                        // 0x0330 (size: 0x10)
+    FW_Player_JournalSectorTab_CClickJournalTab ClickJournalTab;                      // 0x0340 (size: 0x10)
     void ClickJournalTab(bool IsChecked, class UW_Player_JournalSectorTab_C* Tab);
-    FWorldFlagRowHandle WorldFlagToRevealResources;                                   // 0x0370 (size: 0x20)
-    bool AvailableInBuild;                                                            // 0x0390 (size: 0x1)
-    FText DisplayName;                                                                // 0x0398 (size: 0x10)
-    bool NotPressableButton;                                                          // 0x03A8 (size: 0x1)
-    bool ShowLocationName;                                                            // 0x03A9 (size: 0x1)
-    int32 CurrentNumberOfEntries;                                                     // 0x03AC (size: 0x4)
-    FDataTableRowHandle ResourceDataTable;                                            // 0x03B0 (size: 0x10)
-    bool CanShowResources;                                                            // 0x03C0 (size: 0x1)
+    FWorldFlagRowHandle WorldFlagToRevealResources;                                   // 0x0350 (size: 0x10)
+    bool AvailableInBuild;                                                            // 0x0360 (size: 0x1)
+    FText DisplayName;                                                                // 0x0368 (size: 0x10)
+    bool NotPressableButton;                                                          // 0x0378 (size: 0x1)
+    bool ShowLocationName;                                                            // 0x0379 (size: 0x1)
+    int32 CurrentNumberOfEntries;                                                     // 0x037C (size: 0x4)
+    FMapResourceRowHandle ResourceDataTable;                                          // 0x0380 (size: 0x18)
+    bool CanShowResources;                                                            // 0x0398 (size: 0x1)
 
     void CreateJournalNoteTooltip(FText Text, FText Text_Additional, FText Text_Negative, bool ShowResources);
     void AreWorldFlagsReady(bool& Ready);
-    void Check Current Viewed Page(TEnumAsByte<E_JournalEntryCategories::Type> CurrentViewedPage, bool& Same Page);
+    void Check Current Viewed Page(EJournalEntryCategories CurrentViewedPage, bool& Same Page);
     void PreConstruct(bool IsDesignTime);
     void StartHighlightUnreadIconPage();
     void Construct();
@@ -37,6 +37,6 @@ class UW_Player_JournalSectorTab_C : public UUserWidget
     void ResetTooltip();
     void ExecuteUbergraph_W_Player_JournalSectorTab(int32 EntryPoint);
     void ClickJournalTab__DelegateSignature(bool IsChecked, class UW_Player_JournalSectorTab_C* Tab);
-}; // Size: 0x3C1
+}; // Size: 0x399
 
 #endif

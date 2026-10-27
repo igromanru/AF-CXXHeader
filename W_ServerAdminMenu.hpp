@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_ServerAdminMenu_HPP
 #define UE4SS_SDK_W_ServerAdminMenu_HPP
 
-class UW_ServerAdminMenu_C : public UUserWidget
+class UW_ServerAdminMenu_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UCanvasPanel* AdminMenu;                                                    // 0x02E8 (size: 0x8)
@@ -33,7 +33,7 @@ class UW_ServerAdminMenu_C : public UUserWidget
     class UW_NPCDebugInfo_C* W_NPCDebugInfo;                                          // 0x03B8 (size: 0x8)
     class UW_PlayerList_C* W_PlayerList;                                              // 0x03C0 (size: 0x8)
     class UW_PlayerList_C* W_PlayerList_Banned;                                       // 0x03C8 (size: 0x8)
-    TArray<class UW_SettingsPanel_C*> SettingsPanels;                                 // 0x03D0 (size: 0x10)
+    TArray<UW_SettingsPanel_C*> SettingsPanels;                                       // 0x03D0 (size: 0x10)
 
     void RefreshEntireUI_State();
     void GetGameInst(class UAbiotic_GameInstance_C*& ABF_Game_Instance);

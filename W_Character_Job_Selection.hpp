@@ -22,10 +22,10 @@ class UW_Character_Job_Selection_C : public UUserWidget
     class UW_MainMenuButton_Strict_C* W_MainMenuButton_Strict;                        // 0x0360 (size: 0x8)
     class UW_UIPopup_Generic_C* W_UIPopup_Generic;                                    // 0x0368 (size: 0x8)
     class UW_Character_Trait_Selection_C* ParentTraitSelectMenu;                      // 0x0370 (size: 0x8)
-    FName LastSelectedJob;                                                            // 0x0378 (size: 0x8)
-    bool InitialJobSelect;                                                            // 0x0380 (size: 0x1)
+    FPhDRowHandle LastSelectedJob;                                                    // 0x0378 (size: 0x10)
+    bool InitialJobSelect;                                                            // 0x0388 (size: 0x1)
 
-    void UpdateSelectedJobInfo(FTrait_Struct JobData, FString AttributeInfo);
+    void UpdateSelectedJobInfo(FTrait JobData, FString AttributeInfo);
     void SaveWorld_BB5507364C3F00F0785F918A0BF20768(bool bSuccess);
     void OnLoaded_9C92B12048D674D15D2C58B8197D9478(class UObject* Loaded);
     void OnFailure_7DF898154AE5F18278CA8BA82AAF0D8B();
@@ -33,8 +33,8 @@ class UW_Character_Job_Selection_C : public UUserWidget
     void Construct();
     void BndEvt__W_Character_Job_Selection_W_MainMenuButton_K2Node_ComponentBoundEvent_0_ButtonPressed__DelegateSignature();
     void BndEvt__W_Character_Job_Selection_Button_Finish_K2Node_ComponentBoundEvent_1_ButtonPressed__DelegateSignature();
-    void LoadAndDisplayJobBanner(FSimpleTexture2D_Struct JobBanner);
+    void LoadAndDisplayJobBanner(FSimpleTexture2D JobBanner);
     void ExecuteUbergraph_W_Character_Job_Selection(int32 EntryPoint);
-}; // Size: 0x381
+}; // Size: 0x389
 
 #endif

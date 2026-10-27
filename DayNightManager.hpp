@@ -31,13 +31,13 @@ class ADayNightManager_C : public AAbioticActor_C
     FDayNightManager_CHourChanged HourChanged;                                        // 0x0380 (size: 0x10)
     void HourChanged(int32 NewHour, int32 PreviousHour);
     double SecondsPerRealSecond_Night;                                                // 0x0390 (size: 0x8)
-    TArray<TSoftObjectPtr<UDialogueWave>> Announcement Sounds in Order;               // 0x0398 (size: 0x10)
+    TArray<TSoftObjectPtr<class UDialogueWave>> Announcement Sounds in Order;         // 0x0398 (size: 0x10)
     int32 CurrentAnnouncementIndex;                                                   // 0x03A8 (size: 0x4)
     FTimerHandle NextAnnouncementLineTimer;                                           // 0x03B0 (size: 0x8)
     int32 AmbientTemperature_Day;                                                     // 0x03B8 (size: 0x4)
     int32 AmbientTemperature_Night;                                                   // 0x03BC (size: 0x4)
     FVector AnnouncementLocationOffset;                                               // 0x03C0 (size: 0x18)
-    TArray<FDataTableRowHandle> CurrentAnnouncementJournals;                          // 0x03D8 (size: 0x10)
+    TArray<FJournalEntryRowHandle> CurrentAnnouncementJournals;                       // 0x03D8 (size: 0x10)
     FTimerHandle AutosaveTimer;                                                       // 0x03E8 (size: 0x8)
     class UAudioComponent* LastAnnouncementSound;                                     // 0x03F0 (size: 0x8)
     bool HavePlayersLeftStartingZone;                                                 // 0x03F8 (size: 0x1)
@@ -60,17 +60,17 @@ class ADayNightManager_C : public AAbioticActor_C
     class AWeatherDirector* ActiveWeatherDirector;                                    // 0x0470 (size: 0x8)
     double ActiveAmbientRadiation;                                                    // 0x0478 (size: 0x8)
     TArray<FCompendiumEntryRowHandle> CurrentAnnouncementCompendium;                  // 0x0480 (size: 0x10)
-    FWeatherEventRowHandle Weather_RequestByPlayer;                                   // 0x0490 (size: 0x20)
-    FText CurrentAnnouncerName;                                                       // 0x04B0 (size: 0x10)
-    bool DayNightManuallyPaused;                                                      // 0x04C0 (size: 0x1)
-    bool BlackoutActive;                                                              // 0x04C1 (size: 0x1)
-    FDayNightManager_CBlackoutUpdated BlackoutUpdated;                                // 0x04C8 (size: 0x10)
+    FWeatherEventRowHandle Weather_RequestByPlayer;                                   // 0x0490 (size: 0x10)
+    FText CurrentAnnouncerName;                                                       // 0x04A0 (size: 0x10)
+    bool DayNightManuallyPaused;                                                      // 0x04B0 (size: 0x1)
+    bool BlackoutActive;                                                              // 0x04B1 (size: 0x1)
+    FDayNightManager_CBlackoutUpdated BlackoutUpdated;                                // 0x04B8 (size: 0x10)
     void BlackoutUpdated();
-    int32 LastPowerLeechDay;                                                          // 0x04D8 (size: 0x4)
-    double TimeProgressSeconds;                                                       // 0x04E0 (size: 0x8)
-    TSet<EDayOfTheWeek> PortalResetDays;                                              // 0x04E8 (size: 0x50)
+    int32 LastPowerLeechDay;                                                          // 0x04C8 (size: 0x4)
+    double TimeProgressSeconds;                                                       // 0x04D0 (size: 0x8)
+    TSet<EDayOfTheWeek> PortalResetDays;                                              // 0x04D8 (size: 0x50)
 
-    int32 GetTotalInGameMinutes();
+    void GetTotalInGameMinutes();
     void ProgressTimeSeconds_Internal();
     void OnRep_BlackoutActive();
     void ServerCalculateNewSleepingPlayersCount(class AAbiotic_Character_ParentBP_C* SleepingCharacter);
@@ -84,16 +84,16 @@ class ADayNightManager_C : public AAbioticActor_C
     void TriggerWeatherEvent(FWeatherEventRowHandle EventRow);
     void OnRep_CurrentWeatherEvent();
     void OnRep_SleepingPlayers();
-    float GetClockSpeed();
-    double Get in Game Time Dilation Factor();
+    void GetClockSpeed();
+    void Get in Game Time Dilation Factor();
     void UpdateLastAssaultDay(bool AssaultFinished);
     void CheckForVignetteResets();
     void CheckPlayersLeftStartingZone(bool& LeftZone);
     void Toggle Day Night Cycle(bool Pause);
     void SetFacilityWideAmbientTemperature();
     void GetCurrentAmbientTemperature(int32& Temperature);
-    bool TimeForMorningAnnouncement(int32 Hour, int32 Minute);
-    bool TimeForEveningAnnouncement(int32 Hour, int32 Minute);
+    void TimeForMorningAnnouncement(int32 Hour, int32 Minute);
+    void TimeForEveningAnnouncement(int32 Hour, int32 Minute);
     void OnRep_IsNight();
     void OnRep_LastKnownHour();
     void OnRep_CurrentDay();
@@ -101,7 +101,7 @@ class ADayNightManager_C : public AAbioticActor_C
     void OnLoaded_AE9F8DCF4F024AF74FCA2EB76E56351A(class UObject* Loaded);
     void ReceiveBeginPlay();
     void ProgressClock();
-    void Broadcast_BeginPlayAnnouncement(TEnumAsByte<E_AnnouncementType::Type> AnnounceType, FName CustomOverrideRow);
+    void Broadcast_BeginPlayAnnouncement(EAnnouncementType AnnounceType, FName CustomOverrideRow);
     void PlayNextAnnouncementLine();
     void InitDayNightTimer();
     void TryWorldAutosave();
@@ -120,6 +120,6 @@ class ADayNightManager_C : public AAbioticActor_C
     void Morning__DelegateSignature();
     void NewDay__DelegateSignature(int32 DayNumber);
     void Nightfall__DelegateSignature();
-}; // Size: 0x538
+}; // Size: 0x528
 
 #endif

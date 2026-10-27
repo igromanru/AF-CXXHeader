@@ -12,7 +12,7 @@ class UUMG_RadialMenu_C : public UUserWidget
     double IndexRaw;                                                                  // 0x0310 (size: 0x8)
     int32 Index;                                                                      // 0x0318 (size: 0x4)
     class UMaterialInstanceDynamic* dynaMat;                                          // 0x0320 (size: 0x8)
-    TArray<class UUserWidget*> Children;                                              // 0x0328 (size: 0x10)
+    TArray<UUserWidget*> Children;                                                    // 0x0328 (size: 0x10)
     bool AllowResizing;                                                               // 0x0338 (size: 0x1)
     double ItemOffsetRadius;                                                          // 0x0340 (size: 0x8)
     FUMG_RadialMenu_CSelectionChanged SelectionChanged;                               // 0x0348 (size: 0x10)
@@ -47,6 +47,7 @@ class UUMG_RadialMenu_C : public UUserWidget
     double MouseTetherThreshhold;                                                     // 0x0458 (size: 0x8)
     FVector2D RawInput;                                                               // 0x0460 (size: 0x10)
     bool InvertY;                                                                     // 0x0470 (size: 0x1)
+    bool CanBeInteractionRadialWheel;                                                 // 0x0471 (size: 0x1)
 
     void UpdateMaterialVisuals();
     void GetCustomInput(FVector2D& Input, bool& Valid);
@@ -54,8 +55,8 @@ class UUMG_RadialMenu_C : public UUserWidget
     void UpdateDirectionWithCustomInput();
     void RemoveChildIndexFromRadialMenu(int32 IndexToRemove);
     void RemoveChildWidgetFromRadialMenu(const class UUserWidget*& ItemToFind);
-    FText DebugIndex();
-    FVector2D FixInputRotation(FVector2D Input);
+    void DebugIndex();
+    void FixInputRotation(FVector2D Input);
     void FixMainRotation();
     void AutoRegisterToInput();
     void UpdateInput();
@@ -70,17 +71,18 @@ class UUMG_RadialMenu_C : public UUserWidget
     void GetSelectedWidget(class UUserWidget*& Output);
     void AddChildToRadialMenu(class UUserWidget* Content, bool& Success);
     void UpdateDirectionWithMouseCursor();
-    double GetSectionDegreeSize();
+    void GetSectionDegreeSize();
     void SetInputDirection(FVector2D Direction);
     void Construct();
     void UpdateSegments(int32 Segments);
     void InDeadZone(bool InDeadZone);
     void UpdateMaterials();
     void PreConstruct(bool IsDesignTime);
+    void OnInitialized();
     void ExecuteUbergraph_UMG_RadialMenu(int32 EntryPoint);
     void ExitedDeadzone__DelegateSignature();
     void EnteredDeadzone__DelegateSignature();
     void SelectionChanged__DelegateSignature(int32 NewSelection, int32 OldSelection);
-}; // Size: 0x471
+}; // Size: 0x472
 
 #endif

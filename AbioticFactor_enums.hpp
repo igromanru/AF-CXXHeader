@@ -7,6 +7,15 @@ enum EABFGamepadType {
     ABFGT_MAX = 5,
 };
 
+namespace EAbioticAllowModsSetting {
+    enum Type {
+        Initial = 0,
+        NoMods = 1,
+        AllowMods = 2,
+        EAbioticAllowModsSetting_MAX = 3,
+    };
+}
+
 namespace EAbioticCrossplaySetting {
     enum Type {
         Initial = 0,
@@ -15,6 +24,41 @@ namespace EAbioticCrossplaySetting {
         EAbioticCrossplaySetting_MAX = 3,
     };
 }
+
+enum class EAbioticItemType {
+    Generic = 0,
+    Weapon = 1,
+    Equippable = 2,
+    Consumable = 3,
+    Deployable = 4,
+    EAbioticItemType_MAX = 5,
+};
+
+enum class EAbioticModKickReason {
+    None = 0,
+    ModsNotAllowed = 1,
+    MissingMods = 2,
+    ExtraMods = 3,
+    ExtraAndMissingMods = 4,
+    OrderMismatch = 5,
+    LocalOnlyModsNotAllowed = 6,
+    EAbioticModKickReason_MAX = 7,
+};
+
+enum class EAbioticModListIssue {
+    None = 0,
+    NotEnabled = 1,
+    NotInstalled = 2,
+    Refused = 3,
+    FailedToLoad = 4,
+    EAbioticModListIssue_MAX = 5,
+};
+
+enum class EAbioticModOrderIssue {
+    MissingDependency = 0,
+    CircularDependency = 1,
+    EAbioticModOrderIssue_MAX = 2,
+};
 
 enum EAbioticPlatform {
     Platform_Unknown = 0,
@@ -38,6 +82,59 @@ enum class EAnalyticTraitType {
     Positive = 1,
     Negative = 2,
     EAnalyticTraitType_MAX = 3,
+};
+
+enum class EAnnouncementType {
+    Morning = 0,
+    Evening = 1,
+    PortalWorldReset = 2,
+    AssaultBiological = 3,
+    AssaultEntities = 4,
+    AssaultTrespassers = 5,
+    AssaultCompromised = 6,
+    CustomOverride = 7,
+    EAnnouncementType_MAX = 8,
+};
+
+enum class EAnyCustomizationTable {
+    CustomizationBeard = 0,
+    CustomizationBelt = 1,
+    CustomizationFannyPack = 2,
+    CustomizationHairColor = 3,
+    CustomizationHairStyle = 4,
+    CustomizationHead = 5,
+    CustomizationHeadAccessory = 6,
+    CustomizationIDCard = 7,
+    CustomizationLabcoat = 8,
+    CustomizationLowerBody = 9,
+    CustomizationMakeup = 10,
+    CustomizationShirtColor = 11,
+    CustomizationShoes = 12,
+    CustomizationTie = 13,
+    CustomizationUpperBody = 14,
+    CustomizationWatch = 15,
+    EAnyCustomizationTable_MAX = 16,
+};
+
+enum class EAnyItemTable {
+    GlobalItem = 0,
+    RecipeSubstitute = 1,
+    EAnyItemTable_MAX = 2,
+};
+
+enum class EAnyRecipeTable {
+    Recipe = 0,
+    SoupRecipe = 1,
+    ChemistryRecipe = 2,
+    EAnyRecipeTable_MAX = 3,
+};
+
+enum class EAssaultSpawnMethod {
+    Undefined = 0,
+    PortalStormRandom = 1,
+    GroupPatrolToTarget = 2,
+    ComeFromEveryDirection = 3,
+    EAssaultSpawnMethod_MAX = 4,
 };
 
 enum class EBPLogVerbosity {
@@ -151,6 +248,24 @@ enum class ECookingState {
     ECookingState_MAX = 8,
 };
 
+enum class ECriticalityLevels {
+    Good = 0,
+    Moderate = 1,
+    Warning = 2,
+    Severe = 3,
+    Custom = 4,
+    ECriticalityLevels_MAX = 5,
+};
+
+enum class EDamageFeedbackType {
+    YellOrGruntRandom = 0,
+    AlwaysYell = 1,
+    AlwaysGrunt = 2,
+    PlaceholderTypeTBA = 3,
+    NoAudbilePain = 4,
+    EDamageFeedbackType_MAX = 5,
+};
+
 enum class EDayOfTheWeek {
     Monday = 0,
     Tuesday = 1,
@@ -171,6 +286,36 @@ enum class EDayOfWeekFlags {
     Saturday = 32,
     Sunday = 64,
     EDayOfWeekFlags_MAX = 65,
+};
+
+enum class EDeathYellType {
+    RegularDeath = 0,
+    SoftSighExpiration = 1,
+    ExplosiveDeathScream = 2,
+    FallPitDeathScream = 3,
+    NoAudbilePain = 4,
+    FireDeathScream = 5,
+    DrowningDeath = 6,
+    EDeathYellType_MAX = 7,
+};
+
+enum class EDeployableOrientations {
+    GroundOnly = 0,
+    WallAllowed = 1,
+    WallOnly = 2,
+    AnyOrientation = 3,
+    EDeployableOrientations_MAX = 4,
+};
+
+enum class EDoorState {
+    Closed = 0,
+    OpenInwards = 1,
+    OpenOutwards = 2,
+    Destroyed = 3,
+    SmashInwards = 4,
+    SmashOutwards = 5,
+    SlammedClosed = 6,
+    EDoorState_MAX = 7,
 };
 
 enum class EDynamicProperty {
@@ -210,6 +355,27 @@ enum class EFPAnimState {
     CrouchWalk = 3,
     Sprint = 4,
     EFPAnimState_MAX = 5,
+};
+
+enum class EFactions {
+    HostileToAllExceptSameType = 0,
+    HostileToAll = 1,
+    Scientists = 2,
+    Military = 3,
+    EvilScientists = 4,
+    PlanetX = 5,
+    Keystone = 6,
+    WeirdScientists = 7,
+    MadScientists = 8,
+    Undead = 9,
+    Puppeteer = 10,
+    Pillager = 11,
+    Maggots = 12,
+    FleshFauna = 13,
+    Mother = 14,
+    HostileVogoth = 15,
+    Sangur = 16,
+    EFactions_MAX = 17,
 };
 
 enum class EFilterState {
@@ -262,6 +428,14 @@ enum class EGravityCameraBehavior {
     EGravityCameraBehavior_MAX = 3,
 };
 
+enum class EInternalTemperature {
+    Hot = 0,
+    Regular = 1,
+    Cold = 2,
+    VeryCold = 3,
+    EInternalTemperature_MAX = 4,
+};
+
 enum class EInventoryMode {
     Default = 0,
     ContainerView = 1,
@@ -280,6 +454,32 @@ enum class EInventoryMode {
     EInventoryMode_MAX = 14,
 };
 
+enum class EInventorySlotType {
+    Hotbar = 0,
+    InventoryBackpack = 1,
+    EquipmentSlots_All = 2,
+    EquipmentSlot_Torso = 3,
+    EquipmentSlot_Head = 4,
+    EquipmentSlot_Legs = 5,
+    EquipmentSlot_Backpack = 6,
+    EquipmentSlot_Arms = 7,
+    EquipmentSlot_Suit = 8,
+    EquipmentSlot_Headlamp = 9,
+    EquipmentSlot_Trinket = 10,
+    EquipmentSlot_Wristwatch = 11,
+    EquipmentSlot_Hacker = 12,
+    EquipmentSlot_Shield = 13,
+    EquipmentSlot_Trinket2 = 14,
+    EquipmentSlot_Companion = 15,
+    EInventorySlotType_MAX = 16,
+};
+
+enum class EItemRewardTable {
+    GlobalItem = 0,
+    Salvage = 1,
+    EItemRewardTable_MAX = 2,
+};
+
 enum class EItemSortMethod {
     Weight = 0,
     Name = 1,
@@ -287,10 +487,81 @@ enum class EItemSortMethod {
     EItemSortMethod_MAX = 3,
 };
 
+enum class EJournalEntryCategories {
+    unknown = 0,
+    office = 1,
+    mf = 2,
+    labs = 3,
+    security = 4,
+    dam = 5,
+    reactors = 6,
+    home = 7,
+    fog = 8,
+    train = 9,
+    boston = 10,
+    anteverse_a = 11,
+    anteverse_b = 12,
+    anteverse_c = 13,
+    intro = 14,
+    alps = 15,
+    mirror = 16,
+    wall = 17,
+    island = 18,
+    shore = 19,
+    suomi = 20,
+    theatre = 21,
+    salem = 22,
+    motherboard = 23,
+    ladderworld = 24,
+    sleepdimension = 25,
+    syn_labs = 26,
+    ordo_storage = 27,
+    tile = 28,
+    arcade = 29,
+    rise = 30,
+    nightrealm = 31,
+    inquisition = 32,
+    protein = 33,
+    luca = 34,
+    signal = 35,
+    EJournalEntryCategories_MAX = 36,
+};
+
 enum class EKeybindType {
     Action = 0,
     Axis = 1,
     EKeybindType_MAX = 2,
+};
+
+enum class ELiquidType {
+    Empty = 0,
+    Water = 1,
+    Feces = 2,
+    RadioactiveWaste = 3,
+    MoltenMaterial = 4,
+    Fuel = 5,
+    Vomit = 6,
+    Battery = 7,
+    Blood = 8,
+    Antejuice = 9,
+    TaintedWater = 10,
+    Soup = 11,
+    Laser = 12,
+    Ink = 13,
+    ELiquidType_MAX = 14,
+};
+
+enum class EMapResourceTable {
+    Resource = 0,
+    NPCTraderItem = 1,
+    EMapResourceTable_MAX = 2,
+};
+
+enum class EMinigameDifficulty {
+    Easy = 0,
+    Medium = 1,
+    Hard = 2,
+    EMinigameDifficulty_MAX = 3,
 };
 
 enum class EModifiedRuleset {
@@ -315,6 +586,24 @@ enum class EMonthOfTheYear {
     November = 10,
     December = 11,
     EMonthOfTheYear_MAX = 12,
+};
+
+enum class ENarrativeNPCState {
+    NoContactYet = 0,
+    SpottedPlayer = 1,
+    FirstContactMade = 2,
+    ReturnMessagesOnly = 3,
+    CompletionMessage = 4,
+    Farewell = 5,
+    ENarrativeNPCState_MAX = 6,
+};
+
+enum class EOSThemes {
+    GATE_OS = 0,
+    Order_OS = 1,
+    Signal_OS = 2,
+    NONE_DONOTDELETE = 3,
+    EOSThemes_MAX = 4,
 };
 
 enum class EPaintColor {
@@ -347,21 +636,54 @@ enum class EPlantGrowthStage {
     EPlantGrowthStage_MAX = 8,
 };
 
+enum class EPowerTimerMode {
+    AlwaysOn = 0,
+    DayOnly = 1,
+    NightOnly = 2,
+    FiveSeconds = 3,
+    TenSeconds = 4,
+    ThirtySeconds = 5,
+    SixtySeconds = 6,
+    FiveMinutes = 7,
+    AlwaysOff = 8,
+    EPowerTimerMode_MAX = 9,
+};
+
 enum class EProjectileHomingType {
     Default = 0,
     MaintainForwardMomentum = 1,
     EProjectileHomingType_MAX = 2,
 };
 
+enum class ERecipeCategory {
+    Uncategorized = 0,
+    Resource = 1,
+    Health = 2,
+    Food = 3,
+    Weapon = 4,
+    Gear = 5,
+    Electricity = 6,
+    Construction = 7,
+    Farming = 8,
+    Travel = 9,
+    Defense = 10,
+    Tools = 11,
+    ERecipeCategory_MAX = 12,
+};
+
 enum class EReleaseGroup {
     Core = 0,
     MOXY = 1,
     CAKE = 2,
-    LUCA = 3,
-    AXON = 4,
-    Future = 5,
-    Development = 6,
-    EReleaseGroup_MAX = 7,
+    RENO = 3,
+    XMAS26 = 4,
+    LUCA = 5,
+    AXON = 6,
+    Future = 7,
+    Development = 8,
+    Tool = 9,
+    GameOnly = 10,
+    EReleaseGroup_MAX = 11,
 };
 
 enum class ERowValid {
@@ -393,6 +715,25 @@ enum ESaveType {
     EST_MAX = 9,
 };
 
+enum class ESecondaryAttackTypes {
+    NoSecondaryAttack = 0,
+    WindUpSwing = 1,
+    Block = 2,
+    AimDownSights = 3,
+    OtherSecondaryAttack = 4,
+    ThrowWeapon = 5,
+    ESecondaryAttackTypes_MAX = 6,
+};
+
+enum class ESkinTones {
+    Undefined = 0,
+    Light = 1,
+    Olive = 2,
+    Brown = 3,
+    Black = 4,
+    ESkinTones_MAX = 5,
+};
+
 enum ESortDatabaseTerminalList {
     Name = 0,
     Amount = 1,
@@ -414,6 +755,17 @@ enum class EStatModifierApplyType {
     EStatModifierApplyType_MAX = 2,
 };
 
+enum class ESwingDirections {
+    Horizontal_RightToLeft = 0,
+    Horizontal_LeftToRight = 1,
+    Vertical_BottomToTop = 2,
+    Vertical_TopToBottom = 3,
+    Diagonal_TopRightToBottomLeft = 4,
+    Diagonal_TopLeftToBottomRight = 5,
+    Forward_Thrust = 6,
+    ESwingDirections_MAX = 7,
+};
+
 enum ETargetingCategory {
     ETC_Default = 0,
     ETC_AimAssist = 1,
@@ -428,6 +780,13 @@ enum class ETimeOfDay {
     Noon = 2,
     Dusk = 3,
     ETimeOfDay_MAX = 4,
+};
+
+enum class EUnderwaterUsage {
+    Allowed = 0,
+    Blocked = 1,
+    Electrocution = 2,
+    EUnderwaterUsage_MAX = 3,
 };
 
 enum class EVoiceLineType {
@@ -485,4 +844,64 @@ enum class EVoiceLineType {
     DeathExplosion = 51,
     EVoiceLineType_MAX = 52,
 };
+
+namespace E_DoorStates {
+    enum Type {
+        NewEnumerator0 = 0,
+        NewEnumerator1 = 1,
+        NewEnumerator2 = 2,
+        NewEnumerator3 = 3,
+        NewEnumerator4 = 4,
+        NewEnumerator5 = 5,
+        NewEnumerator6 = 6,
+        E_MAX = 7,
+    };
+}
+
+namespace E_LiquidType {
+    enum Type {
+        NewEnumerator0 = 0,
+        NewEnumerator1 = 1,
+        NewEnumerator2 = 2,
+        NewEnumerator3 = 3,
+        NewEnumerator4 = 4,
+        NewEnumerator6 = 5,
+        NewEnumerator7 = 6,
+        NewEnumerator8 = 7,
+        NewEnumerator9 = 8,
+        NewEnumerator11 = 9,
+        NewEnumerator13 = 10,
+        NewEnumerator14 = 11,
+        NewEnumerator15 = 12,
+        NewEnumerator16 = 13,
+        E_MAX = 14,
+    };
+}
+
+namespace E_NarrativeNPCStates {
+    enum Type {
+        NewEnumerator0 = 0,
+        NewEnumerator1 = 1,
+        NewEnumerator2 = 2,
+        NewEnumerator3 = 3,
+        NewEnumerator4 = 4,
+        NewEnumerator5 = 5,
+        E_MAX = 6,
+    };
+}
+
+namespace E_PowerTimerModes {
+    enum Type {
+        NewEnumerator0 = 0,
+        NewEnumerator1 = 1,
+        NewEnumerator2 = 2,
+        NewEnumerator3 = 3,
+        NewEnumerator4 = 4,
+        NewEnumerator5 = 5,
+        NewEnumerator7 = 6,
+        NewEnumerator8 = 7,
+        NewEnumerator6 = 8,
+        E_MAX = 9,
+    };
+}
 

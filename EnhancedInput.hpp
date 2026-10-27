@@ -22,7 +22,7 @@ struct FBlueprintInputDebugKeyDelegateBinding
 
 struct FDefaultContextSetting
 {
-    TSoftObjectPtr<UInputMappingContext> InputMappingContext;                         // 0x0000 (size: 0x28)
+    TSoftObjectPtr<class UInputMappingContext> InputMappingContext;                   // 0x0000 (size: 0x28)
     int32 Priority;                                                                   // 0x0028 (size: 0x4)
     bool bAddImmediately;                                                             // 0x002C (size: 0x1)
     bool bRegisterWithUserSettings;                                                   // 0x002D (size: 0x1)
@@ -31,8 +31,8 @@ struct FDefaultContextSetting
 
 struct FEnhancedActionKeyMapping
 {
-    TArray<class UInputTrigger*> Triggers;                                            // 0x0000 (size: 0x10)
-    TArray<class UInputModifier*> Modifiers;                                          // 0x0010 (size: 0x10)
+    TArray<UInputTrigger*> Triggers;                                                  // 0x0000 (size: 0x10)
+    TArray<UInputModifier*> Modifiers;                                                // 0x0010 (size: 0x10)
     class UInputAction* Action;                                                       // 0x0020 (size: 0x8)
     FKey Key;                                                                         // 0x0028 (size: 0x18)
     uint8 bShouldBeIgnored;                                                           // 0x0040 (size: 0x1)
@@ -43,8 +43,8 @@ struct FEnhancedActionKeyMapping
 
 struct FInjectedInput
 {
-    TArray<class UInputTrigger*> Triggers;                                            // 0x0020 (size: 0x10)
-    TArray<class UInputModifier*> Modifiers;                                          // 0x0030 (size: 0x10)
+    TArray<UInputTrigger*> Triggers;                                                  // 0x0020 (size: 0x10)
+    TArray<UInputModifier*> Modifiers;                                                // 0x0030 (size: 0x10)
 
 }; // Size: 0x40
 
@@ -59,8 +59,8 @@ struct FInputActionInstance
     class UInputAction* SourceAction;                                                 // 0x0000 (size: 0x8)
     ETriggerEvent TriggerEvent;                                                       // 0x0013 (size: 0x1)
     float LastTriggeredWorldTime;                                                     // 0x0014 (size: 0x4)
-    TArray<class UInputTrigger*> Triggers;                                            // 0x0018 (size: 0x10)
-    TArray<class UInputModifier*> Modifiers;                                          // 0x0028 (size: 0x10)
+    TArray<UInputTrigger*> Triggers;                                                  // 0x0018 (size: 0x10)
+    TArray<UInputModifier*> Modifiers;                                                // 0x0028 (size: 0x10)
     float ElapsedProcessedTime;                                                       // 0x0058 (size: 0x4)
     float ElapsedTriggeredTime;                                                       // 0x005C (size: 0x4)
 
@@ -181,29 +181,29 @@ class IEnhancedInputSubsystemInterface : public IInterface
     void UpdateValueOfContinuousInputInjectionForAction(const class UInputAction* Action, FInputActionValue RawValue);
     void StopContinuousInputInjectionForPlayerMapping(const FName MappingName);
     void StopContinuousInputInjectionForAction(const class UInputAction* Action);
-    void StartContinuousInputInjectionForPlayerMapping(const FName MappingName, FInputActionValue RawValue, const TArray<class UInputModifier*>& Modifiers, const TArray<class UInputTrigger*>& Triggers);
-    void StartContinuousInputInjectionForAction(const class UInputAction* Action, FInputActionValue RawValue, const TArray<class UInputModifier*>& Modifiers, const TArray<class UInputTrigger*>& Triggers);
+    void StartContinuousInputInjectionForPlayerMapping(const FName MappingName, FInputActionValue RawValue, const TArray<UInputModifier*>& Modifiers, const TArray<UInputTrigger*>& Triggers);
+    void StartContinuousInputInjectionForAction(const class UInputAction* Action, FInputActionValue RawValue, const TArray<UInputModifier*>& Modifiers, const TArray<UInputTrigger*>& Triggers);
     void RequestRebuildControlMappings(const FModifyContextOptions& Options, EInputMappingRebuildType RebuildType);
     void RemovePlayerMappableConfig(const class UPlayerMappableInputConfig* Config, const FModifyContextOptions& Options);
     void RemoveMappingContext(const class UInputMappingContext* MappingContext, const FModifyContextOptions& Options);
-    int32 RemoveAllPlayerMappedKeysForMapping(const FName MappingName, const FModifyContextOptions& Options);
+    void RemoveAllPlayerMappedKeysForMapping(const FName MappingName, const FModifyContextOptions& Options);
     void RemoveAllPlayerMappedKeys(const FModifyContextOptions& Options);
-    EMappingQueryResult QueryMapKeyInContextSet(const TArray<class UInputMappingContext*>& PrioritizedActiveContexts, const class UInputMappingContext* InputContext, const class UInputAction* Action, FKey Key, TArray<FMappingQueryIssue>& OutIssues, EMappingQueryIssue BlockingIssues);
-    EMappingQueryResult QueryMapKeyInActiveContextSet(const class UInputMappingContext* InputContext, const class UInputAction* Action, FKey Key, TArray<FMappingQueryIssue>& OutIssues, EMappingQueryIssue BlockingIssues);
-    TArray<FKey> QueryKeysMappedToAction(const class UInputAction* Action);
+    void QueryMapKeyInContextSet(const TArray<UInputMappingContext*>& PrioritizedActiveContexts, const class UInputMappingContext* InputContext, const class UInputAction* Action, FKey Key, TArray<FMappingQueryIssue>& OutIssues, EMappingQueryIssue BlockingIssues);
+    void QueryMapKeyInActiveContextSet(const class UInputMappingContext* InputContext, const class UInputAction* Action, FKey Key, TArray<FMappingQueryIssue>& OutIssues, EMappingQueryIssue BlockingIssues);
+    void QueryKeysMappedToAction(const class UInputAction* Action);
     void OnUserSettingsChanged(class UEnhancedInputUserSettings* Settings);
     void OnUserKeyProfileChanged(const class UEnhancedPlayerMappableKeyProfile* InNewProfile);
-    int32 K2_RemovePlayerMappedKeyInSlot(const FName MappingName, const FPlayerMappableKeySlot& KeySlot, const FModifyContextOptions& Options);
-    FKey K2_GetPlayerMappedKeyInSlot(const FName MappingName, const FPlayerMappableKeySlot& KeySlot);
-    int32 K2_AddPlayerMappedKeyInSlot(const FName MappingName, const FKey NewKey, const FPlayerMappableKeySlot& KeySlot, const FModifyContextOptions& Options);
-    void InjectInputVectorForPlayerMapping(const FName MappingName, FVector Value, const TArray<class UInputModifier*>& Modifiers, const TArray<class UInputTrigger*>& Triggers);
-    void InjectInputVectorForAction(const class UInputAction* Action, FVector Value, const TArray<class UInputModifier*>& Modifiers, const TArray<class UInputTrigger*>& Triggers);
-    void InjectInputForPlayerMapping(const FName MappingName, FInputActionValue RawValue, const TArray<class UInputModifier*>& Modifiers, const TArray<class UInputTrigger*>& Triggers);
-    void InjectInputForAction(const class UInputAction* Action, FInputActionValue RawValue, const TArray<class UInputModifier*>& Modifiers, const TArray<class UInputTrigger*>& Triggers);
-    bool HasMappingContext(const class UInputMappingContext* MappingContext, int32& OutFoundPriority);
-    class UEnhancedInputUserSettings* GetUserSettings();
-    TArray<FKey> GetAllPlayerMappedKeys(const FName MappingName);
-    TArray<FEnhancedActionKeyMapping> GetAllPlayerMappableActionKeyMappings();
+    void K2_RemovePlayerMappedKeyInSlot(const FName MappingName, const FPlayerMappableKeySlot& KeySlot, const FModifyContextOptions& Options);
+    void K2_GetPlayerMappedKeyInSlot(const FName MappingName, const FPlayerMappableKeySlot& KeySlot);
+    void K2_AddPlayerMappedKeyInSlot(const FName MappingName, const FKey NewKey, const FPlayerMappableKeySlot& KeySlot, const FModifyContextOptions& Options);
+    void InjectInputVectorForPlayerMapping(const FName MappingName, FVector Value, const TArray<UInputModifier*>& Modifiers, const TArray<UInputTrigger*>& Triggers);
+    void InjectInputVectorForAction(const class UInputAction* Action, FVector Value, const TArray<UInputModifier*>& Modifiers, const TArray<UInputTrigger*>& Triggers);
+    void InjectInputForPlayerMapping(const FName MappingName, FInputActionValue RawValue, const TArray<UInputModifier*>& Modifiers, const TArray<UInputTrigger*>& Triggers);
+    void InjectInputForAction(const class UInputAction* Action, FInputActionValue RawValue, const TArray<UInputModifier*>& Modifiers, const TArray<UInputTrigger*>& Triggers);
+    void HasMappingContext(const class UInputMappingContext* MappingContext, int32& OutFoundPriority);
+    void GetUserSettings();
+    void GetAllPlayerMappedKeys(const FName MappingName);
+    void GetAllPlayerMappableActionKeyMappings();
     void ClearAllMappings();
     void AddPlayerMappableConfig(const class UPlayerMappableInputConfig* Config, const FModifyContextOptions& Options);
     void AddMappingContext(const class UInputMappingContext* MappingContext, int32 Priority, const FModifyContextOptions& Options);
@@ -224,7 +224,7 @@ class UEnhancedInputActionValueBinding : public UInputDelegateBinding
 class UEnhancedInputComponent : public UInputComponent
 {
 
-    FInputActionValue GetBoundActionValue(const class UInputAction* Action);
+    void GetBoundActionValue(const class UInputAction* Action);
 }; // Size: 0x168
 
 class UEnhancedInputDeveloperSettings : public UDeveloperSettingsBackedByCVars
@@ -249,21 +249,21 @@ class UEnhancedInputLibrary : public UBlueprintFunctionLibrary
 {
 
     void RequestRebuildControlMappingsUsingContext(const class UInputMappingContext* Context, bool bForceImmediately);
-    FInputActionValue MakeInputActionValueOfType(double X, double Y, double Z, const EInputActionValueType ValueType);
-    FInputActionValue MakeInputActionValue(double X, double Y, double Z, const FInputActionValue& MatchValueType);
-    bool IsActionKeyMappingPlayerMappable(const FEnhancedActionKeyMapping& ActionKeyMapping);
-    FPlayerMappableKeySlot GetThirdPlayerMappableKeySlot();
-    FPlayerMappableKeySlot GetSecondPlayerMappableKeySlot();
-    class UPlayerMappableKeySettings* GetPlayerMappableKeySettings(const FEnhancedActionKeyMapping& ActionKeyMapping);
-    FName GetMappingName(const FEnhancedActionKeyMapping& ActionKeyMapping);
-    FPlayerMappableKeySlot GetFourthPlayerMappableKeySlot();
-    FPlayerMappableKeySlot GetFirstPlayerMappableKeySlot();
-    FInputActionValue GetBoundActionValue(class AActor* Actor, const class UInputAction* Action);
-    FString Conv_InputActionValueToString(FInputActionValue ActionValue);
-    bool Conv_InputActionValueToBool(FInputActionValue InValue);
-    FVector Conv_InputActionValueToAxis3D(FInputActionValue ActionValue);
-    FVector2D Conv_InputActionValueToAxis2D(FInputActionValue InValue);
-    double Conv_InputActionValueToAxis1D(FInputActionValue InValue);
+    void MakeInputActionValueOfType(double X, double Y, double Z, const EInputActionValueType ValueType);
+    void MakeInputActionValue(double X, double Y, double Z, const FInputActionValue& MatchValueType);
+    void IsActionKeyMappingPlayerMappable(const FEnhancedActionKeyMapping& ActionKeyMapping);
+    void GetThirdPlayerMappableKeySlot();
+    void GetSecondPlayerMappableKeySlot();
+    void GetPlayerMappableKeySettings(const FEnhancedActionKeyMapping& ActionKeyMapping);
+    void GetMappingName(const FEnhancedActionKeyMapping& ActionKeyMapping);
+    void GetFourthPlayerMappableKeySlot();
+    void GetFirstPlayerMappableKeySlot();
+    void GetBoundActionValue(class AActor* Actor, const class UInputAction* Action);
+    void Conv_InputActionValueToString(FInputActionValue ActionValue);
+    void Conv_InputActionValueToBool(FInputActionValue InValue);
+    void Conv_InputActionValueToAxis3D(FInputActionValue ActionValue);
+    void Conv_InputActionValueToAxis2D(FInputActionValue InValue);
+    void Conv_InputActionValueToAxis1D(FInputActionValue InValue);
     void BreakInputActionValue(FInputActionValue InActionValue, double& X, double& Y, double& Z, EInputActionValueType& Type);
 }; // Size: 0x28
 
@@ -272,22 +272,22 @@ class UEnhancedInputLocalPlayerSubsystem : public ULocalPlayerSubsystem
     FEnhancedInputLocalPlayerSubsystemControlMappingsRebuiltDelegate ControlMappingsRebuiltDelegate; // 0x0180 (size: 0x10)
     void OnControlMappingsRebuilt();
     class UEnhancedInputUserSettings* UserSettings;                                   // 0x0190 (size: 0x8)
-    TMap<class UInputAction*, class FInjectedInput> ContinuouslyInjectedInputs;       // 0x0198 (size: 0x50)
+    TMap<UInputAction*, FInjectedInput> ContinuouslyInjectedInputs;                   // 0x0198 (size: 0x50)
 
     void OnControlMappingsRebuilt__DelegateSignature();
 }; // Size: 0x1E8
 
 class UEnhancedInputPlatformData : public UObject
 {
-    TMap<class UInputMappingContext*, class UInputMappingContext*> MappingContextRedirects; // 0x0028 (size: 0x50)
+    TMap<UInputMappingContext*, UInputMappingContext*> MappingContextRedirects;       // 0x0028 (size: 0x50)
 
-    class UInputMappingContext* GetContextRedirect(class UInputMappingContext* InContext);
+    void GetContextRedirect(class UInputMappingContext* InContext);
 }; // Size: 0x78
 
 class UEnhancedInputPlatformSettings : public UPlatformSettings
 {
     TArray<TSoftClassPtr<UEnhancedInputPlatformData>> InputData;                      // 0x0040 (size: 0x10)
-    TArray<class TSubclassOf<UEnhancedInputPlatformData>> InputDataClasses;           // 0x0050 (size: 0x10)
+    TArray<TSubclassOf<class UEnhancedInputPlatformData>> InputDataClasses;           // 0x0050 (size: 0x10)
     bool bShouldLogMappingContextRedirects;                                           // 0x0060 (size: 0x1)
 
 }; // Size: 0x68
@@ -299,30 +299,30 @@ class UEnhancedInputUserSettings : public USaveGame
     FEnhancedInputUserSettingsOnSettingsApplied OnSettingsApplied;                    // 0x0040 (size: 0x10)
     void EnhancedInputUserSettingsApplied();
     FGameplayTag CurrentProfileIdentifier;                                            // 0x0070 (size: 0x8)
-    TMap<class FGameplayTag, class UEnhancedPlayerMappableKeyProfile*> SavedKeyProfiles; // 0x0078 (size: 0x50)
+    TMap<FGameplayTag, UEnhancedPlayerMappableKeyProfile*> SavedKeyProfiles;          // 0x0078 (size: 0x50)
     TWeakObjectPtr<class ULocalPlayer> OwningLocalPlayer;                             // 0x00C8 (size: 0x8)
     TSet<UInputMappingContext*> RegisteredMappingContexts;                            // 0x00D0 (size: 0x50)
 
-    bool UnregisterInputMappingContexts(const TSet<UInputMappingContext*>& MappingContexts);
-    bool UnregisterInputMappingContext(const class UInputMappingContext* IMC);
+    void UnregisterInputMappingContexts(const TSet<UInputMappingContext*>& MappingContexts);
+    void UnregisterInputMappingContext(const class UInputMappingContext* IMC);
     void UnMapPlayerKey(const FMapPlayerKeyArgs& InArgs, FGameplayTagContainer& FailureReason);
-    bool SetKeyProfile(const FGameplayTag& InProfileId);
+    void SetKeyProfile(const FGameplayTag& InProfileId);
     void SaveSettings();
     void ResetKeyProfileToDefault(const FGameplayTag& ProfileId, FGameplayTagContainer& FailureReason);
     void ResetAllPlayerKeysInRow(const FMapPlayerKeyArgs& InArgs, FGameplayTagContainer& FailureReason);
-    bool RegisterInputMappingContexts(const TSet<UInputMappingContext*>& MappingContexts);
-    bool RegisterInputMappingContext(const class UInputMappingContext* IMC);
+    void RegisterInputMappingContexts(const TSet<UInputMappingContext*>& MappingContexts);
+    void RegisterInputMappingContext(const class UInputMappingContext* IMC);
     void MapPlayerKey(const FMapPlayerKeyArgs& InArgs, FGameplayTagContainer& FailureReason);
     void MappingContextRegisteredWithSettings__DelegateSignature(const class UInputMappingContext* IMC);
     void MappableKeyProfileChanged__DelegateSignature(const class UEnhancedPlayerMappableKeyProfile* NewProfile);
-    bool IsMappingContextRegistered(const class UInputMappingContext* IMC);
-    class UEnhancedPlayerMappableKeyProfile* GetKeyProfileWithIdentifier(const FGameplayTag& ProfileId);
-    FGameplayTag GetCurrentKeyProfileIdentifier();
-    class UEnhancedPlayerMappableKeyProfile* GetCurrentKeyProfile();
-    TSet<FPlayerKeyMapping> FindMappingsInRow(const FName MappingName);
+    void IsMappingContextRegistered(const class UInputMappingContext* IMC);
+    void GetKeyProfileWithIdentifier(const FGameplayTag& ProfileId);
+    void GetCurrentKeyProfileIdentifier();
+    void GetCurrentKeyProfile();
+    void FindMappingsInRow(const FName MappingName);
     void EnhancedInputUserSettingsChanged__DelegateSignature(class UEnhancedInputUserSettings* Settings);
     void EnhancedInputUserSettingsApplied__DelegateSignature();
-    class UEnhancedPlayerMappableKeyProfile* CreateNewKeyProfile(const FPlayerMappableKeyProfileCreationArgs& InArgs);
+    void CreateNewKeyProfile(const FPlayerMappableKeyProfileCreationArgs& InArgs);
     void AsyncSaveSettings();
     void ApplySettings();
 }; // Size: 0x120
@@ -330,21 +330,21 @@ class UEnhancedInputUserSettings : public USaveGame
 class UEnhancedInputWorldSubsystem : public UWorldSubsystem
 {
     class UEnhancedPlayerInput* PlayerInput;                                          // 0x0180 (size: 0x8)
-    TArray<TWeakObjectPtr<UInputComponent>> CurrentInputStack;                        // 0x0198 (size: 0x10)
-    TMap<class UInputAction*, class FInjectedInput> ContinuouslyInjectedInputs;       // 0x01A8 (size: 0x50)
+    TArray<TWeakObjectPtr<class UInputComponent>> CurrentInputStack;                  // 0x0198 (size: 0x10)
+    TMap<UInputAction*, FInjectedInput> ContinuouslyInjectedInputs;                   // 0x01A8 (size: 0x50)
 
-    bool RemoveActorInputComponent(class AActor* Actor);
+    void RemoveActorInputComponent(class AActor* Actor);
     void AddActorInputComponent(class AActor* Actor);
 }; // Size: 0x1F8
 
 class UEnhancedPlayerInput : public UPlayerInput
 {
-    TMap<class UInputAction*, class FKeyConsumptionOptions> KeyConsumptionData;       // 0x0498 (size: 0x50)
+    TMap<UInputAction*, FKeyConsumptionOptions> KeyConsumptionData;                   // 0x0498 (size: 0x50)
     TMap<UInputMappingContext*, int32> AppliedInputContexts;                          // 0x04E8 (size: 0x50)
     TArray<FEnhancedActionKeyMapping> EnhancedActionMappings;                         // 0x0538 (size: 0x10)
-    TMap<class UInputAction*, class FInputActionInstance> ActionInstanceData;         // 0x0598 (size: 0x50)
-    TMap<class FKey, class FVector> KeysPressedThisTick;                              // 0x0688 (size: 0x50)
-    TMap<class UInputAction*, class FInjectedInputArray> InputsInjectedThisTick;      // 0x06D8 (size: 0x50)
+    TMap<UInputAction*, FInputActionInstance> ActionInstanceData;                     // 0x0598 (size: 0x50)
+    TMap<FKey, FVector> KeysPressedThisTick;                                          // 0x0688 (size: 0x50)
+    TMap<UInputAction*, FInjectedInputArray> InputsInjectedThisTick;                  // 0x06D8 (size: 0x50)
     TSet<UInputAction*> LastInjectedActions;                                          // 0x0728 (size: 0x50)
 
 }; // Size: 0x7F0
@@ -354,21 +354,21 @@ class UEnhancedPlayerMappableKeyProfile : public UObject
     FGameplayTag ProfileIdentifier;                                                   // 0x0028 (size: 0x8)
     FPlatformUserId OwningUserId;                                                     // 0x0030 (size: 0x4)
     FText DisplayName;                                                                // 0x0038 (size: 0x10)
-    TMap<class FName, class FKeyMappingRow> PlayerMappedKeys;                         // 0x0048 (size: 0x50)
+    TMap<FName, FKeyMappingRow> PlayerMappedKeys;                                     // 0x0048 (size: 0x50)
 
-    FString ToString();
+    void ToString();
     void SetDisplayName(const FText& NewDisplayName);
     void ResetToDefault();
     void ResetMappingToDefault(const FName InMappingName);
-    int32 QueryPlayerMappedKeys(const FPlayerMappableKeyQueryOptions& Options, TArray<FKey>& OutKeys);
+    void QueryPlayerMappedKeys(const FPlayerMappableKeyQueryOptions& Options, TArray<FKey>& OutKeys);
     void K2_FindKeyMapping(FPlayerKeyMapping& OutKeyMapping, const FMapPlayerKeyArgs& InArgs);
-    FGameplayTag GetProfileIdentifer();
-    FText GetProfileDisplayName();
-    TMap<class FName, class FKeyMappingRow> GetPlayerMappingRows();
-    int32 GetMappingNamesForKey(const FKey& InKey, TArray<FName>& OutMappingNames);
-    int32 GetMappedKeysInRow(const FName MappingName, TArray<FKey>& OutKeys);
+    void GetProfileIdentifer();
+    void GetProfileDisplayName();
+    void GetPlayerMappingRows();
+    void GetMappingNamesForKey(const FKey& InKey, TArray<FName>& OutMappingNames);
+    void GetMappedKeysInRow(const FName MappingName, TArray<FKey>& OutKeys);
     void DumpProfileToLog();
-    bool DoesMappingPassQueryOptions(const FPlayerKeyMapping& PlayerMapping, const FPlayerMappableKeyQueryOptions& Options);
+    void DoesMappingPassQueryOptions(const FPlayerKeyMapping& PlayerMapping, const FPlayerMappableKeyQueryOptions& Options);
 }; // Size: 0x98
 
 class UInputAction : public UDataAsset
@@ -381,8 +381,8 @@ class UInputAction : public UDataAsset
     int32 TriggerEventsThatConsumeLegacyKeys;                                         // 0x0044 (size: 0x4)
     EInputActionValueType ValueType;                                                  // 0x0048 (size: 0x1)
     EInputActionAccumulationBehavior AccumulationBehavior;                            // 0x0049 (size: 0x1)
-    TArray<class UInputTrigger*> Triggers;                                            // 0x0050 (size: 0x10)
-    TArray<class UInputModifier*> Modifiers;                                          // 0x0060 (size: 0x10)
+    TArray<UInputTrigger*> Triggers;                                                  // 0x0050 (size: 0x10)
+    TArray<UInputModifier*> Modifiers;                                                // 0x0060 (size: 0x10)
     class UPlayerMappableKeySettings* PlayerMappableKeySettings;                      // 0x0070 (size: 0x8)
 
 }; // Size: 0x78
@@ -402,14 +402,14 @@ class UInputMappingContext : public UDataAsset
     void UnmapAllKeysFromAction(const class UInputAction* Action);
     void UnmapAll();
     void UnmapAction(const class UInputAction* Action);
-    FEnhancedActionKeyMapping MapKey(const class UInputAction* Action, FKey ToKey);
+    void MapKey(const class UInputAction* Action, FKey ToKey);
 }; // Size: 0x50
 
 class UInputModifier : public UObject
 {
 
-    FInputActionValue ModifyRaw(const class UEnhancedPlayerInput* PlayerInput, FInputActionValue CurrentValue, float DeltaTime);
-    FLinearColor GetVisualizationColor(FInputActionValue SampleValue, FInputActionValue FinalValue);
+    void ModifyRaw(const class UEnhancedPlayerInput* PlayerInput, FInputActionValue CurrentValue, float DeltaTime);
+    void GetVisualizationColor(FInputActionValue SampleValue, FInputActionValue FinalValue);
 }; // Size: 0x28
 
 class UInputModifierDeadZone : public UInputModifier
@@ -487,9 +487,9 @@ class UInputTrigger : public UObject
     bool bShouldAlwaysTick;                                                           // 0x002C (size: 0x1)
     FInputActionValue LastValue;                                                      // 0x0030 (size: 0x20)
 
-    ETriggerState UpdateState(const class UEnhancedPlayerInput* PlayerInput, FInputActionValue ModifiedValue, float DeltaTime);
-    bool IsActuated(const FInputActionValue& ForValue);
-    ETriggerType GetTriggerType();
+    void UpdateState(const class UEnhancedPlayerInput* PlayerInput, FInputActionValue ModifiedValue, float DeltaTime);
+    void IsActuated(const FInputActionValue& ForValue);
+    void GetTriggerType();
 }; // Size: 0x50
 
 class UInputTriggerChordAction : public UInputTrigger
@@ -566,14 +566,14 @@ class UPlayerMappableInputConfig : public UPrimaryDataAsset
     TMap<UInputMappingContext*, int32> Contexts;                                      // 0x0058 (size: 0x50)
 
     void ResetToDefault();
-    bool IsDeprecated();
-    TArray<FEnhancedActionKeyMapping> GetPlayerMappableKeys();
-    class UObject* GetMetadata();
-    TMap<UInputMappingContext*, int32> GetMappingContexts();
-    FEnhancedActionKeyMapping GetMappingByName(const FName MappingName);
-    TArray<FEnhancedActionKeyMapping> GetKeysBoundToAction(const class UInputAction* InAction);
-    FText GetDisplayName();
-    FName GetConfigName();
+    void IsDeprecated();
+    void GetPlayerMappableKeys();
+    void GetMetadata();
+    void GetMappingContexts();
+    void GetMappingByName(const FName MappingName);
+    void GetKeysBoundToAction(const class UInputAction* InAction);
+    void GetDisplayName();
+    void GetConfigName();
 }; // Size: 0xA8
 
 class UPlayerMappableKeySettings : public UObject

@@ -10,7 +10,7 @@ class UW_RecipeFilterTab_C : public UUserWidget
     class UImage* Icon;                                                               // 0x0300 (size: 0x8)
     class UImage* NewItem_Icon;                                                       // 0x0308 (size: 0x8)
     class UImage* ResearchableItem_Icon;                                              // 0x0310 (size: 0x8)
-    TEnumAsByte<E_RecipeCategory::Type> Recipe Category;                              // 0x0318 (size: 0x1)
+    ERecipeCategory Recipe Category;                                                  // 0x0318 (size: 0x1)
     class UTexture2D* Icon_Texture;                                                   // 0x0320 (size: 0x8)
     FLinearColor Icon_UncheckedColor;                                                 // 0x0328 (size: 0x10)
     FLinearColor Icon_CheckedColor;                                                   // 0x0338 (size: 0x10)

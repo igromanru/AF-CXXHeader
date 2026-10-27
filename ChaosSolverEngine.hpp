@@ -85,10 +85,10 @@ class UChaosEventListenerComponent : public UActorComponent
 
 class UChaosGameplayEventDispatcher : public UChaosEventListenerComponent
 {
-    TMap<class UPrimitiveComponent*, class FChaosHandlerSet> CollisionEventRegistrations; // 0x0170 (size: 0x50)
-    TMap<class UPrimitiveComponent*, class FBreakEventCallbackWrapper> BreakEventRegistrations; // 0x01C0 (size: 0x50)
-    TMap<class UPrimitiveComponent*, class FRemovalEventCallbackWrapper> RemovalEventRegistrations; // 0x0210 (size: 0x50)
-    TMap<class UPrimitiveComponent*, class FCrumblingEventCallbackWrapper> CrumblingEventRegistrations; // 0x0260 (size: 0x50)
+    TMap<UPrimitiveComponent*, FChaosHandlerSet> CollisionEventRegistrations;         // 0x0170 (size: 0x50)
+    TMap<UPrimitiveComponent*, FBreakEventCallbackWrapper> BreakEventRegistrations;   // 0x01C0 (size: 0x50)
+    TMap<UPrimitiveComponent*, FRemovalEventCallbackWrapper> RemovalEventRegistrations; // 0x0210 (size: 0x50)
+    TMap<UPrimitiveComponent*, FCrumblingEventCallbackWrapper> CrumblingEventRegistrations; // 0x0260 (size: 0x50)
 
 }; // Size: 0x2C0
 
@@ -99,7 +99,7 @@ class UChaosSolver : public UObject
 class UChaosSolverEngineBlueprintLibrary : public UBlueprintFunctionLibrary
 {
 
-    FHitResult ConvertPhysicsCollisionToHitResult(const FChaosPhysicsCollisionInfo& PhysicsCollision);
+    void ConvertPhysicsCollisionToHitResult(const FChaosPhysicsCollisionInfo& PhysicsCollision);
 }; // Size: 0x28
 
 class UChaosSolverSettings : public UDeveloperSettings

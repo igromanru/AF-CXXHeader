@@ -3,42 +3,42 @@
 
 class ATraderDepositBox_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0870 (size: 0x8)
-    class UStaticMeshComponent* Storage;                                              // 0x0878 (size: 0x8)
-    class UStaticMeshComponent* Row3Arrow;                                            // 0x0880 (size: 0x8)
-    class UStaticMeshComponent* Row2Arrow;                                            // 0x0888 (size: 0x8)
-    class UStaticMeshComponent* Row3_RScreen;                                         // 0x0890 (size: 0x8)
-    class UStaticMeshComponent* Row3_LScreen;                                         // 0x0898 (size: 0x8)
-    class UStaticMeshComponent* Row1_RScreen;                                         // 0x08A0 (size: 0x8)
-    class UStaticMeshComponent* Row2_LScreen;                                         // 0x08A8 (size: 0x8)
-    class UStaticMeshComponent* Row1_LScreen;                                         // 0x08B0 (size: 0x8)
-    class UStaticMeshComponent* Row1Arrow;                                            // 0x08B8 (size: 0x8)
-    class UStaticMeshComponent* Row2_RScreen;                                         // 0x08C0 (size: 0x8)
-    class UTextRenderComponent* DebugMenuText;                                        // 0x08C8 (size: 0x8)
-    class UChildActorComponent* StorageContainer;                                     // 0x08D0 (size: 0x8)
-    class USceneComponent* Output;                                                    // 0x08D8 (size: 0x8)
-    class UBoxComponent* InputBox;                                                    // 0x08E0 (size: 0x8)
-    FDataTableRowHandle TradeRow;                                                     // 0x08E8 (size: 0x10)
-    TArray<FTraderItemWF_Struct> Buyable Items;                                       // 0x08F8 (size: 0x10)
-    TArray<FAbioticItemCount_Struct> Tradeable Items;                                 // 0x0908 (size: 0x10)
-    FTraderDepositBox_ParentBP_CProducedItem ProducedItem;                            // 0x0918 (size: 0x10)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x0860 (size: 0x8)
+    class UStaticMeshComponent* Storage;                                              // 0x0868 (size: 0x8)
+    class UStaticMeshComponent* Row3Arrow;                                            // 0x0870 (size: 0x8)
+    class UStaticMeshComponent* Row2Arrow;                                            // 0x0878 (size: 0x8)
+    class UStaticMeshComponent* Row3_RScreen;                                         // 0x0880 (size: 0x8)
+    class UStaticMeshComponent* Row3_LScreen;                                         // 0x0888 (size: 0x8)
+    class UStaticMeshComponent* Row1_RScreen;                                         // 0x0890 (size: 0x8)
+    class UStaticMeshComponent* Row2_LScreen;                                         // 0x0898 (size: 0x8)
+    class UStaticMeshComponent* Row1_LScreen;                                         // 0x08A0 (size: 0x8)
+    class UStaticMeshComponent* Row1Arrow;                                            // 0x08A8 (size: 0x8)
+    class UStaticMeshComponent* Row2_RScreen;                                         // 0x08B0 (size: 0x8)
+    class UTextRenderComponent* DebugMenuText;                                        // 0x08B8 (size: 0x8)
+    class UChildActorComponent* StorageContainer;                                     // 0x08C0 (size: 0x8)
+    class USceneComponent* Output;                                                    // 0x08C8 (size: 0x8)
+    class UBoxComponent* InputBox;                                                    // 0x08D0 (size: 0x8)
+    FNPCTraderItemRowHandle TradeRow;                                                 // 0x08D8 (size: 0x10)
+    TArray<FTraderItemWF> Buyable Items;                                              // 0x08E8 (size: 0x10)
+    TArray<FAbioticItemCount> Tradeable Items;                                        // 0x08F8 (size: 0x10)
+    FTraderDepositBox_ParentBP_CProducedItem ProducedItem;                            // 0x0908 (size: 0x10)
     void ProducedItem();
-    FString MenuTextTemp;                                                             // 0x0928 (size: 0x10)
-    class USoundBase* DispensedItemSound;                                             // 0x0938 (size: 0x8)
-    bool CycleRecipesOnScreens;                                                       // 0x0940 (size: 0x1)
-    FTimerHandle CycleRecipesTimer;                                                   // 0x0948 (size: 0x8)
-    int32 CurrentScreenIndex;                                                         // 0x0950 (size: 0x4)
-    int32 CurrentBatchIndex;                                                          // 0x0954 (size: 0x4)
-    float RecipeScreenCycleRate;                                                      // 0x0958 (size: 0x4)
-    TArray<FSaveData_Inventories_Struct> PendingInventoryData;                        // 0x0960 (size: 0x10)
+    FString MenuTextTemp;                                                             // 0x0918 (size: 0x10)
+    class USoundBase* DispensedItemSound;                                             // 0x0928 (size: 0x8)
+    bool CycleRecipesOnScreens;                                                       // 0x0930 (size: 0x1)
+    FTimerHandle CycleRecipesTimer;                                                   // 0x0938 (size: 0x8)
+    int32 CurrentScreenIndex;                                                         // 0x0940 (size: 0x4)
+    int32 CurrentBatchIndex;                                                          // 0x0944 (size: 0x4)
+    float RecipeScreenCycleRate;                                                      // 0x0948 (size: 0x4)
+    TArray<FAbioticInventorySave> PendingInventoryData;                               // 0x0950 (size: 0x10)
 
-    void OnInventoriesLoadedFromSave(TArray<FSaveData_Inventories_Struct>& Data);
-    void GetInventoriesToSave(TArray<class UAbiotic_InventoryComponent_C*>& Inventories);
+    void OnInventoriesLoadedFromSave(TArray<FAbioticInventorySave>& Data);
+    void GetInventoriesToSave(TArray<UAbiotic_InventoryComponent_C*>& Inventories);
     void RefreshScreens();
     void OnRep_Tradeable Items();
     void OnRep_Buyable Items();
-    FText GetItemNameText();
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
+    void GetItemNameText();
+    void GetHighlightComponents(TArray<UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void Add Item Into Trade Container(class AActor* Item, int32 Index, int32 Stack);
     void GetTradeContainer(class UAbiotic_InventoryComponent_C*& ContainerInventory);
     void BlankAllScreens();
@@ -58,6 +58,6 @@ class ATraderDepositBox_ParentBP_C : public AAbioticDeployed_Furniture_ParentBP_
     void ContainerIsSaving_Event();
     void ExecuteUbergraph_TraderDepositBox_ParentBP(int32 EntryPoint);
     void ProducedItem__DelegateSignature();
-}; // Size: 0x970
+}; // Size: 0x960
 
 #endif

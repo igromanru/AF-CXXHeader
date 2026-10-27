@@ -45,8 +45,8 @@ class UW_PlayerHUD_InteractionPrompt_C : public UUserWidget
     void UpdateCookingPrompt(class ACookingProxy_BP_C* Proxy);
     void UpdateItemDurability(double CurrentDurability, double MaxDurability);
     void Check Actor in Pinned Recipe(class AActor*& ActorToCheck, class AAbiotic_PlayerCharacter_C*& InteractingCharacter, bool& Exist);
-    FAbiotic_InventoryItemStruct GetItemDataFromActor(class UObject* Object);
-    void GetInteractTexts(class AActor* HitActor, const FAbiotic_InventoryItemStruct& ItemData, FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
+    void GetItemDataFromActor(class UObject* Object);
+    void GetInteractTexts(class AActor* HitActor, const FAbioticInventoryItem& ItemData, FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void DoesLineAlreadyExist(FText Line, bool& Exists);
     void UpdateJumpPromptLine(bool ShowFlag, FText Action, FText Item Name);
     void UpdatePrimaryPromptLine(bool ShowFlag, FText Action, FText Item Name);

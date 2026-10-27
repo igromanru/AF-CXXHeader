@@ -4,25 +4,25 @@
 class AFixit_ParentBP_C : public AAbioticActor_C
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02D0 (size: 0x8)
-    class UNiagaraComponent* Sparks;                                                  // 0x02D8 (size: 0x8)
+    class UNiagaraComponent* sparks;                                                  // 0x02D8 (size: 0x8)
     class UBoxComponent* InteractBox;                                                 // 0x02E0 (size: 0x8)
     class URectLightComponent* RectLight;                                             // 0x02E8 (size: 0x8)
     class UStaticMeshComponent* PartMesh;                                             // 0x02F0 (size: 0x8)
     class UStaticMeshComponent* BaseMesh;                                             // 0x02F8 (size: 0x8)
     bool Fixed;                                                                       // 0x0300 (size: 0x1)
-    FDataTableRowHandle RequiredFixItItem;                                            // 0x0308 (size: 0x10)
+    FGlobalItemRowHandle RequiredFixItItem;                                           // 0x0308 (size: 0x10)
     FLinearColor LightColor_Broken;                                                   // 0x0318 (size: 0x10)
     FLinearColor LightColor_Fixed;                                                    // 0x0328 (size: 0x10)
     FString RequiredItemName;                                                         // 0x0338 (size: 0x10)
     FText Item Name;                                                                  // 0x0348 (size: 0x10)
     bool ShowExtraInfo;                                                               // 0x0358 (size: 0x1)
     class AAbiotic_TriggerVolume_ParentBP_C* TriggerWhenFixed;                        // 0x0360 (size: 0x8)
-    FWorldFlagRowHandle WorldFlag;                                                    // 0x0368 (size: 0x20)
-    TArray<class ASecurityDoor_C*> BlastDoorsToOpen;                                  // 0x0388 (size: 0x10)
-    bool EarthquakeOnCompletion;                                                      // 0x0398 (size: 0x1)
+    FWorldFlagRowHandle WorldFlag;                                                    // 0x0368 (size: 0x10)
+    TArray<ASecurityDoor_C*> BlastDoorsToOpen;                                        // 0x0378 (size: 0x10)
+    bool EarthquakeOnCompletion;                                                      // 0x0388 (size: 0x1)
 
     void GetPluggedInDeviceCount(int32& Count);
-    bool HasBatteryInParentChain();
+    void HasBatteryInParentChain();
     void IsPowered(bool& PowerOn);
     void GetPowerParentIndex(int32& Index);
     void RequiresPowerSocket(bool& MustBePluggedIn);
@@ -32,24 +32,24 @@ class AFixit_ParentBP_C : public AAbioticActor_C
     void RestoresSanityNearbyWhenPowered(bool& RestoresSanity);
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
-    void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
-    bool IsRadioactive();
+    void GetAttachedPowerCord(TArray<UCableComponent*>& Power Cord Found);
+    void IsRadioactive();
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
     void Landing Damage Multiplier(double Damage, double& DamageMultiplier);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
-    FText GetItemNameText();
+    void GetItemNameText();
     void GetStoredString(FString& String);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
     void CanInteractWith_B(class UActorComponent* HitComponent, bool& Success);
     void CanLongInteractWith_A(bool& Success);
     void CanLongInteractWith_B(class UActorComponent* HitComponent, bool& Success);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
+    void GetHighlightComponents(TArray<UActorComponent*>& Components, bool& DontHighlightPowerCord);
     void NPC_CanInteractWith(bool& Success);
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void SitLocations(TArray<FVector>& Locations);
     void HasSitLocations(bool& IsSittable);
     void SitLocationParent(class USceneComponent*& ParentComponent);
-    void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
+    void GetItemChangeableData(FAbioticInventoryChangeableData& ChangeableData);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
     void RequiresToolToDismantle(bool& Tool Required);
     void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
@@ -64,8 +64,8 @@ class AFixit_ParentBP_C : public AAbioticActor_C
     void InteractWith_B_LocalFX(bool Hold);
     void NPC_InteractWith(class AAbiotic_Character_ParentBP_C* InteractingCharacter);
     void DeliverString(FString String, bool FromSave);
-    void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbiotic_InventoryItemSlotStruct SlotData);
-    void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbiotic_InventoryItemSlotStruct SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
+    void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbioticInventoryItemSlot SlotData);
+    void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbioticInventoryItemSlot SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
     void OnInteractHighlightStart(class UActorComponent* Component);
     void OnInteractHighlightEnd(class UActorComponent* Component);
     void DeliverInt(bool FromSave, const int32 New Int);
@@ -79,6 +79,6 @@ class AFixit_ParentBP_C : public AAbioticActor_C
     void OnWorldFlagsLoaded();
     void Server_Force_SetStateToFixed();
     void ExecuteUbergraph_Fixit_ParentBP(int32 EntryPoint);
-}; // Size: 0x399
+}; // Size: 0x389
 
 #endif

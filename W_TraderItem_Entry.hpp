@@ -20,26 +20,25 @@ class UW_TraderItem_Entry_C : public UUserWidget
     class UCraftingEntryItem* CraftingEntry;                                          // 0x0378 (size: 0x8)
     FLinearColor DefaultBG;                                                           // 0x0380 (size: 0x10)
     FSlateColor DefaultTextColor;                                                     // 0x0390 (size: 0x14)
-    FAbioticItemCount_Struct BuyableItem;                                             // 0x03A8 (size: 0x18)
-    FAbioticItemCount_Struct TradeableItem;                                           // 0x03C0 (size: 0x18)
-    int32 BuyableStockAvailable;                                                      // 0x03D8 (size: 0x4)
-    FW_TraderItem_Entry_CSelectionStateChanged SelectionStateChanged;                 // 0x03E0 (size: 0x10)
+    FTraderItemWF BuyableItem;                                                        // 0x03A8 (size: 0x28)
+    FAbioticItemInput TradeableItem;                                                  // 0x03D0 (size: 0x20)
+    int32 BuyableStockAvailable;                                                      // 0x03F0 (size: 0x4)
+    FW_TraderItem_Entry_CSelectionStateChanged SelectionStateChanged;                 // 0x03F8 (size: 0x10)
     void SelectionStateChanged(class UW_TraderItem_Entry_C* Item, bool Selected);
-    FAbiotic_InventoryItemStruct ItemDataTemp;                                        // 0x03F0 (size: 0x650)
-    int32 TraderItemIndex;                                                            // 0x0A40 (size: 0x4)
-    bool HasDiscoveredTradeItem;                                                      // 0x0A44 (size: 0x1)
+    FAbioticInventoryItem ItemDataTemp;                                               // 0x0408 (size: 0x698)
+    int32 TraderItemIndex;                                                            // 0x0AA0 (size: 0x4)
+    bool HasDiscoveredTradeItem;                                                      // 0x0AA4 (size: 0x1)
 
-    void GetCosmeticCategoryFromTable(class UDataTable* Table, FText& CategoryText);
     void SetItemSelected(bool Selected);
-    void OnListItemObjectSet(class UObject* ListItemObject);
     void Construct();
     void BndEvt__W_TraderItem_Entry_RecipeCheckbox_K2Node_ComponentBoundEvent_0_OnCheckBoxComponentStateChanged__DelegateSignature(bool bIsChecked);
     void CheckboxClicked(bool Clicked);
+    void OnListItemObjectSet(class UObject* ListItemObject);
     void BP_OnItemSelectionChanged(bool bIsSelected);
     void BP_OnItemExpansionChanged(bool bIsExpanded);
     void BP_OnEntryReleased();
     void ExecuteUbergraph_W_TraderItem_Entry(int32 EntryPoint);
     void SelectionStateChanged__DelegateSignature(class UW_TraderItem_Entry_C* Item, bool Selected);
-}; // Size: 0xA45
+}; // Size: 0xAA5
 
 #endif

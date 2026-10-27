@@ -23,7 +23,7 @@ class UW_Inventory_NavBar_C : public UUserWidget
     class UCheckBox* Tab_Health;                                                      // 0x0368 (size: 0x8)
     class UCheckBox* Tab_Journal;                                                     // 0x0370 (size: 0x8)
     class UCheckBox* Tab_Skills;                                                      // 0x0378 (size: 0x8)
-    TArray<class UCheckBox*> NavTabs;                                                 // 0x0380 (size: 0x10)
+    TArray<UCheckBox*> NavTabs;                                                       // 0x0380 (size: 0x10)
     FW_Inventory_NavBar_CJournal_EntryBloom Journal_EntryBloom;                       // 0x0390 (size: 0x10)
     void Journal_EntryBloom();
     FW_Inventory_NavBar_CCycleNavTab CycleNavTab;                                     // 0x03A0 (size: 0x10)

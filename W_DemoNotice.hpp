@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_DemoNotice_HPP
 #define UE4SS_SDK_W_DemoNotice_HPP
 
-class UW_DemoNotice_C : public UUserWidget
+class UW_DemoNotice_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UWidgetAnimation* EnterButtonActivate;                                      // 0x02E8 (size: 0x8)
@@ -15,7 +15,7 @@ class UW_DemoNotice_C : public UUserWidget
     class UImage* Logo;                                                               // 0x0328 (size: 0x8)
     class UImage* Logo_1;                                                             // 0x0330 (size: 0x8)
     class UVerticalBox* SettingsList;                                                 // 0x0338 (size: 0x8)
-    TArray<class UW_SettingSubCategory_C*> SubCategories;                             // 0x0340 (size: 0x10)
+    TArray<UW_SettingSubCategory_C*> SubCategories;                                   // 0x0340 (size: 0x10)
 
     void PopulateSettingsList(FGameSetting& SettingArray, class UVerticalBox* VerticleBox);
     void BndEvt__W_BetaNotice_CheckBox_Agree_K2Node_ComponentBoundEvent_1_OnCheckBoxComponentStateChanged__DelegateSignature(bool bIsChecked);

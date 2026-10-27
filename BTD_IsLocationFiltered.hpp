@@ -7,7 +7,7 @@ class UBTD_IsLocationFiltered_C : public UBTDecorator_BlueprintBase
     TSubclassOf<class UNavigationQueryFilter> Filter;                                 // 0x00C8 (size: 0x8)
     FVector QueryExtent;                                                              // 0x00D0 (size: 0x18)
 
-    bool PerformConditionCheckAI(class AAIController* OwnerController, class APawn* ControlledPawn);
+    void PerformConditionCheckAI(class AAIController* OwnerController, class APawn* ControlledPawn);
 }; // Size: 0xE8
 
 #endif

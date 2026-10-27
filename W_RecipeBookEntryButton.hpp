@@ -23,19 +23,19 @@ class UW_RecipeBookEntryButton_C : public UUserWidget
     FLinearColor DefaultBG;                                                           // 0x0390 (size: 0x10)
     FSlateColor DefaultTextColor;                                                     // 0x03A0 (size: 0x14)
 
-    FEventReply OnFocusReceived(FGeometry MyGeometry, FFocusEvent InFocusEvent);
+    void OnFocusReceived(FGeometry MyGeometry, FFocusEvent InFocusEvent);
     void CheckHighlightColor();
     void CheckRecipeHighlight();
     void CheckResearchedState();
     void CheckNeverCraftedState();
     void SetCheckboxBackgroundColor(FLinearColor Specified Color);
-    void Possible Quantity Can be Crafted(TArray<class UAbiotic_InventoryComponent_C*>& AdditionalInventories, int32& FinalCost);
-    void Construct();
+    void Possible Quantity Can be Crafted(TArray<UAbiotic_InventoryComponent_C*>& AdditionalInventories, int32& FinalCost);
     void BP_OnItemExpansionChanged(bool bIsExpanded);
+    void Construct();
     void OnListItemObjectSet(class UObject* ListItemObject);
     void BP_OnItemSelectionChanged(bool bIsSelected);
     void CheckSelectionState(bool State);
-    void SetItemCountVisibility(TArray<class UAbiotic_InventoryComponent_C*>& AdditionalInventories);
+    void SetItemCountVisibility(TArray<UAbiotic_InventoryComponent_C*>& AdditionalInventories);
     void BP_OnEntryReleased();
     void ExecuteUbergraph_W_RecipeBookEntryButton(int32 EntryPoint);
     void NeverCraftedStatusUpdate__DelegateSignature();

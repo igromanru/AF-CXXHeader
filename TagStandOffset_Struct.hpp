@@ -4,7 +4,7 @@
 struct FTagStandOffset_Struct
 {
     FGameplayTag Tag_18_FAC7035F4AE50D17B5EDAD93BD972050;                             // 0x0000 (size: 0x8)
-    FItemStandOffset_Struct ItemStand_21_BBDEC8204222CD0B38359EBEAF39B44E;            // 0x0008 (size: 0x60)
+    FItemStandOffset ItemStand_21_BBDEC8204222CD0B38359EBEAF39B44E;                   // 0x0008 (size: 0x60)
 
 }; // Size: 0x68
 

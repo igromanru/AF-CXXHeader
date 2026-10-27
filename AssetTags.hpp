@@ -6,13 +6,13 @@
 class UAssetTagsSubsystem : public UEngineSubsystem
 {
 
-    TArray<FName> K2_GetCollectionsContainingAsset(const FSoftObjectPath& AssetPath);
-    TArray<FName> GetCollectionsContainingAssetPtr(const class UObject* AssetPtr);
-    TArray<FName> GetCollectionsContainingAssetData(const FAssetData& AssetData);
-    TArray<FName> GetCollectionsContainingAsset(const FName AssetPathName);
-    TArray<FName> GetCollections();
-    TArray<FAssetData> GetAssetsInCollection(const FName Name);
-    bool CollectionExists(const FName Name);
+    void K2_GetCollectionsContainingAsset(const FSoftObjectPath& AssetPath);
+    void GetCollectionsContainingAssetPtr(const class UObject* AssetPtr);
+    void GetCollectionsContainingAssetData(const FAssetData& AssetData);
+    void GetCollectionsContainingAsset(const FName AssetPathName);
+    void GetCollections();
+    void GetAssetsInCollection(const FName Name);
+    void CollectionExists(const FName Name);
 }; // Size: 0x30
 
 #endif

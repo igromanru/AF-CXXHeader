@@ -9,15 +9,15 @@ class AWorldFlagFX_BP_C : public AAbioticActor_C
     class UArrowComponent* Arrow;                                                     // 0x02E8 (size: 0x8)
     class UAudioComponent* Audio;                                                     // 0x02F0 (size: 0x8)
     class UNiagaraComponent* Niagara;                                                 // 0x02F8 (size: 0x8)
-    FWorldFlagRowHandle ActivationFlag;                                               // 0x0300 (size: 0x20)
-    FWorldFlagRowHandle DeactivationFlag;                                             // 0x0320 (size: 0x20)
-    double SoundFadeInTime;                                                           // 0x0340 (size: 0x8)
+    FWorldFlagRowHandle ActivationFlag;                                               // 0x0300 (size: 0x10)
+    FWorldFlagRowHandle DeactivationFlag;                                             // 0x0310 (size: 0x10)
+    double SoundFadeInTime;                                                           // 0x0320 (size: 0x8)
 
     void RefreshWorldEffect();
     void Local_ToggleFX(bool Activated);
     void UserConstructionScript();
     void ReceiveBeginPlay();
     void ExecuteUbergraph_WorldFlagFX_BP(int32 EntryPoint);
-}; // Size: 0x348
+}; // Size: 0x328
 
 #endif

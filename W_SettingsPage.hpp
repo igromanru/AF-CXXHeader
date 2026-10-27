@@ -1,10 +1,10 @@
 #ifndef UE4SS_SDK_W_SettingsPage_HPP
 #define UE4SS_SDK_W_SettingsPage_HPP
 
-class UW_SettingsPage_C : public UUserWidget
+class UW_SettingsPage_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
-    TArray<class UW_SettingSubCategory_C*> SubCategories;                             // 0x02E8 (size: 0x10)
+    TArray<UW_SettingSubCategory_C*> SubCategories;                                   // 0x02E8 (size: 0x10)
     FW_SettingsPage_CDisplayDescrChanged DisplayDescrChanged;                         // 0x02F8 (size: 0x10)
     void DisplayDescrChanged(FGameSetting NewSetting, bool Close);
     FW_SettingsPage_CSettingHovered SettingHovered;                                   // 0x0308 (size: 0x10)

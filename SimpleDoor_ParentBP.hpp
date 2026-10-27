@@ -24,7 +24,7 @@ class ASimpleDoor_ParentBP_C : public AAbioticActor_C
     float ChangeDoorState_NewTrack_0_99922EB94C1739893298C0AB4B22DF23;                // 0x0360 (size: 0x4)
     TEnumAsByte<ETimelineDirection::Type> ChangeDoorState__Direction_99922EB94C1739893298C0AB4B22DF23; // 0x0364 (size: 0x1)
     class UTimelineComponent* ChangeDoorState;                                        // 0x0368 (size: 0x8)
-    TEnumAsByte<E_DoorStates::Type> DoorState;                                        // 0x0370 (size: 0x1)
+    EDoorState DoorState;                                                             // 0x0370 (size: 0x1)
     FRotator BeginTimelineRotation;                                                   // 0x0378 (size: 0x18)
     TEnumAsByte<E_DoorSwingAllowance::Type> DoorSwingAllowance;                       // 0x0390 (size: 0x1)
     FRotator ClosedRotation;                                                          // 0x0398 (size: 0x18)
@@ -32,25 +32,25 @@ class ASimpleDoor_ParentBP_C : public AAbioticActor_C
     FRotator OpenInwardRotation;                                                      // 0x03C8 (size: 0x18)
     int32 DoorStyle;                                                                  // 0x03E0 (size: 0x4)
     int32 DoorTexture;                                                                // 0x03E4 (size: 0x4)
-    TSoftObjectPtr<UMaterialInterface> DoorSignTexture;                               // 0x03E8 (size: 0x28)
+    TSoftObjectPtr<class UMaterialInterface> DoorSignTexture;                         // 0x03E8 (size: 0x28)
     double MaxOutwardDegrees;                                                         // 0x0410 (size: 0x8)
     double MaxInwardDegrees;                                                          // 0x0418 (size: 0x8)
     bool Flipped;                                                                     // 0x0420 (size: 0x1)
-    TEnumAsByte<E_DoorStates::Type> LastSideInteractedFrom;                           // 0x0421 (size: 0x1)
+    EDoorState LastSideInteractedFrom;                                                // 0x0421 (size: 0x1)
     bool OneWayDoor;                                                                  // 0x0422 (size: 0x1)
     bool OneWayDoor_HasBeenUnlocked;                                                  // 0x0423 (size: 0x1)
     class ASimpleDoor_ParentBP_C* LinkedDoor;                                         // 0x0428 (size: 0x8)
     bool ShareDoorStateWithLinkedDoor;                                                // 0x0430 (size: 0x1)
-    TArray<class AActor*> IgnoreActorsWhenSwinging;                                   // 0x0438 (size: 0x10)
-    FSaveData_Door_Struct DoorSaveData;                                               // 0x0448 (size: 0x38)
+    TArray<AActor*> IgnoreActorsWhenSwinging;                                         // 0x0438 (size: 0x10)
+    FAbioticDoorSave DoorSaveData;                                                    // 0x0448 (size: 0x38)
     class AButton_Generic_C* ButtonTiedToLockMechanism;                               // 0x0480 (size: 0x8)
     double LastDoorTime;                                                              // 0x0488 (size: 0x8)
     bool ToiletLocked;                                                                // 0x0490 (size: 0x1)
     class AActor* LastInteractor;                                                     // 0x0498 (size: 0x8)
-    TEnumAsByte<E_DoorStates::Type> PreviousDoorState;                                // 0x04A0 (size: 0x1)
-    TArray<class AActor*> StoppedByActors;                                            // 0x04A8 (size: 0x10)
+    EDoorState PreviousDoorState;                                                     // 0x04A0 (size: 0x1)
+    TArray<AActor*> StoppedByActors;                                                  // 0x04A8 (size: 0x10)
     class AToilet_ParentBP_C* LinkedToilet;                                           // 0x04B8 (size: 0x8)
-    TArray<class AActor*> DoorSwingIgnoreActors;                                      // 0x04C0 (size: 0x10)
+    TArray<AActor*> DoorSwingIgnoreActors;                                            // 0x04C0 (size: 0x10)
     double TimeNPCLastInteractedWith;                                                 // 0x04D0 (size: 0x8)
     bool FakeDoor;                                                                    // 0x04D8 (size: 0x1)
     double DoorYawRot;                                                                // 0x04E0 (size: 0x8)
@@ -60,25 +60,25 @@ class ASimpleDoor_ParentBP_C : public AAbioticActor_C
     bool DoorDisabled;                                                                // 0x0500 (size: 0x1)
     class USoundBase* DoorSFX;                                                        // 0x0508 (size: 0x8)
     bool NoVignetteReset;                                                             // 0x0510 (size: 0x1)
-    FWorldFlagRowHandle WorldFlagToUnlock;                                            // 0x0518 (size: 0x20)
-    double DoorSwingRateDefault;                                                      // 0x0538 (size: 0x8)
-    bool NeverBeBlocked;                                                              // 0x0540 (size: 0x1)
-    bool CanAutoClose;                                                                // 0x0541 (size: 0x1)
-    bool IgnoreForcedDoorTexture;                                                     // 0x0542 (size: 0x1)
+    FWorldFlagRowHandle WorldFlagToUnlock;                                            // 0x0518 (size: 0x10)
+    double DoorSwingRateDefault;                                                      // 0x0528 (size: 0x8)
+    bool NeverBeBlocked;                                                              // 0x0530 (size: 0x1)
+    bool CanAutoClose;                                                                // 0x0531 (size: 0x1)
+    bool IgnoreForcedDoorTexture;                                                     // 0x0532 (size: 0x1)
 
     void CanUseSharedInteraction(bool& Can Use);
     void IsPowerCord(class UActorComponent*& Cable, bool& Return, TEnumAsByte<E_OutlineMode::Type>& CableInteractionType);
-    void GetAttachedPowerCord(TArray<class UCableComponent*>& Power Cord Found);
-    bool IsRadioactive();
+    void GetAttachedPowerCord(TArray<UCableComponent*>& Power Cord Found);
+    void IsRadioactive();
     void GetInteractionBlocker(class UBoxComponent*& Blocker);
     void Landing Damage Multiplier(double Damage, double& DamageMultiplier);
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
-    FText GetItemNameText();
+    void GetItemNameText();
     void GetStoredString(FString& String);
     void ShowPotentialInteraction(class UActorComponent*& AlternateHitComponent, bool& Show);
     void RequiresToolToDismantle(bool& Tool Required);
     void GetConstructionState(bool& UnderConstruction, double& PercentComplete);
-    void GetItemChangeableData(FAbiotic_InventoryChangeableDataStruct& ChangeableData);
+    void GetItemChangeableData(FAbioticInventoryChangeableData& ChangeableData);
     void SitLocationParent(class USceneComponent*& ParentComponent);
     void HasSitLocations(bool& IsSittable);
     void SitLocations(TArray<FVector>& Locations);
@@ -88,10 +88,10 @@ class ASimpleDoor_ParentBP_C : public AAbioticActor_C
     void PlayerExitLocations(int32 CurrentSeatIndex, TArray<FVector>& Locations);
     void NPC_CanInteractWith(bool& Success);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
-    void GetHighlightComponents(TArray<class UActorComponent*>& Components, bool& DontHighlightPowerCord);
-    class USoundBase* GetDoorBashSound();
+    void GetHighlightComponents(TArray<UActorComponent*>& Components, bool& DontHighlightPowerCord);
+    void GetDoorBashSound();
     void UpdateDoorObstacle();
-    class USoundBase* GetDoorSwingSound(TEnumAsByte<E_DoorStates::Type> PreviousDoorState);
+    void GetDoorSwingSound(EDoorState PreviousDoorState);
     void SetupInwardOutwardDegrees();
     void SetBeginTimelineRotation();
     void SetDebugHologramState();
@@ -100,14 +100,14 @@ class ASimpleDoor_ParentBP_C : public AAbioticActor_C
     void SaveDoorStateToWorldSave();
     void IsObjectLinkedToiletActor?(class UObject* Object, bool& TRUE);
     void SetupDoorVisuals();
-    void CheckForNewStopActors(TArray<class AActor*>& NewCollisions, bool& NewActorPresent);
+    void CheckForNewStopActors(TArray<AActor*>& NewCollisions, bool& NewActorPresent);
     void IsDoorLocked(bool& ToiletLocked, bool& OneWayLocked);
     void IsDoorClosed(bool& Closed);
     void OnRep_ToiletLocked();
     void TryKnockbackPawnsInKickZone();
-    bool HasDoorJustBeenKicked();
+    void HasDoorJustBeenKicked();
     void MarkOneWayDoorAsUnlocked(bool SkipSave);
-    void TryOpenOrUnlockDoor(class AActor* CharacterToTest, bool DoorKick, bool ForceDoor, TEnumAsByte<E_DoorStates::Type> ForceDoorState);
+    void TryOpenOrUnlockDoor(class AActor* CharacterToTest, bool DoorKick, bool ForceDoor, EDoorState ForceDoorState);
     void SetupDoor_CheckFlipped();
     void FindSideOfDoor(class AActor* CharacterToTest, bool& Front);
     void OnRep_DoorState();
@@ -131,9 +131,9 @@ class ASimpleDoor_ParentBP_C : public AAbioticActor_C
     void DeliverInt(bool FromSave, const int32 New Int);
     void OnInteractHighlightEnd(class UActorComponent* Component);
     void OnInteractHighlightStart(class UActorComponent* Component);
-    void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbiotic_InventoryItemSlotStruct SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
+    void Actor_RemoveFromCage(class AAbiotic_Character_ParentBP_C* OwningCharacter, FAbioticInventoryItemSlot SlotData, FTransform ShootProjectileTransform, FTransform AttachedSocketTransform);
     void SetNewDoorYawRotation();
-    void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbiotic_InventoryItemSlotStruct SlotData);
+    void Actor Add to Cage(class AAbiotic_Character_ParentBP_C* OwningCharacter, class AActor* ActorToInteractWith, FAbioticInventoryItemSlot SlotData);
     void ForceDoorOpenViaButton(bool Activated);
     void Server_TryForceDoorOpen();
     void DeliverString(FString String, bool FromSave);
@@ -146,6 +146,6 @@ class ASimpleDoor_ParentBP_C : public AAbioticActor_C
     void InteractWith_B(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void ExecuteUbergraph_SimpleDoor_ParentBP(int32 EntryPoint);
     void DoorStateChanged__DelegateSignature();
-}; // Size: 0x543
+}; // Size: 0x533
 
 #endif

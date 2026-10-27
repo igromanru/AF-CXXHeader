@@ -3,23 +3,23 @@
 
 class ANPC_Boxy_C : public ANPC_Base_ParentBP_C
 {
-    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x21B8 (size: 0x8)
-    class UChildActorComponent* ChildActor;                                           // 0x21C0 (size: 0x8)
-    class UAudioComponent* EatingAudio;                                               // 0x21C8 (size: 0x8)
-    float BoxyLifespan;                                                               // 0x21D0 (size: 0x4)
-    float BoxyDespawnDistance;                                                        // 0x21D4 (size: 0x4)
-    class ADayNightManager_C* DayNightManager;                                        // 0x21D8 (size: 0x8)
-    bool BoxyIsAsleep;                                                                // 0x21E0 (size: 0x1)
+    FPointerToUberGraphFrame UberGraphFrame;                                          // 0x21C8 (size: 0x8)
+    class UChildActorComponent* ChildActor;                                           // 0x21D0 (size: 0x8)
+    class UAudioComponent* EatingAudio;                                               // 0x21D8 (size: 0x8)
+    float BoxyLifespan;                                                               // 0x21E0 (size: 0x4)
+    float BoxyDespawnDistance;                                                        // 0x21E4 (size: 0x4)
+    class ADayNightManager_C* DayNightManager;                                        // 0x21E8 (size: 0x8)
+    bool BoxyIsAsleep;                                                                // 0x21F0 (size: 0x1)
 
     void CanBePushed(class AAbiotic_Character_ParentBP_C* PushingCharacter, bool& Pushable);
     void CanInteractWith_A(class UActorComponent* HitComponent, bool& Success, class UTexture2D*& OptionalCrosshairIcon, TArray<FText>& OptionalTextLines);
-    bool IsNPCBusy();
+    void IsNPCBusy();
     void Does Award Sneaking XP to Player(bool& Return, double& XP Gained);
     void TargetableByNPCs(bool Maintain, class AActor* TargetingNPC, bool& Targetable);
-    FText GetItemNameText();
+    void GetItemNameText();
     void GetInteractText(FText& InteractText, FText& LongInteractText, FText& PackageText, FText& LongPackageText);
     void FindBestMeleeAttack(class AActor* SwingAtActor, FVector SwingAtTarget, bool& TurnToFaceTarget);
-    void GetBuffOverlayMeshes(TArray<class UMeshComponent*>& Meshes);
+    void GetBuffOverlayMeshes(TArray<UMeshComponent*>& Meshes);
     void TryToDespawn();
     void UpdateDisabledState();
     void OnContainerOpened_Event();
@@ -28,6 +28,6 @@ class ANPC_Boxy_C : public ANPC_Base_ParentBP_C
     void InteractWith_A(class AAbiotic_Character_ParentBP_C* InteractingCharacter, class UActorComponent* ComponentUsed);
     void InteractWith_A_LocalFX(bool Hold);
     void ExecuteUbergraph_NPC_Boxy(int32 EntryPoint);
-}; // Size: 0x21E1
+}; // Size: 0x21F1
 
 #endif

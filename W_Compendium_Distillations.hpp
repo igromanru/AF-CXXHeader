@@ -14,7 +14,6 @@ class UW_Compendium_Distillations_C : public UAbioticWidget
     int32 MaxColumn;                                                                  // 0x0318 (size: 0x4)
 
     void RefreshFoundItems();
-    void GetAlphabetChemistry(TArray<FName>& Array, TArray<FName>& AlphabetizedArray);
     void InitDistillationList();
     void Construct();
     void ExecuteUbergraph_W_Compendium_Distillations(int32 EntryPoint);

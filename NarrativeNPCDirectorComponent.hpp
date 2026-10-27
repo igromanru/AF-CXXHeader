@@ -4,7 +4,7 @@
 class UNarrativeNPCDirectorComponent_C : public UActorComponent
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x00A8 (size: 0x8)
-    TMap<class FName, class FNarrativeNPCSpawns_Struct> NarrativeSpawns;              // 0x00B0 (size: 0x50)
+    TMap<FName, FNarrativeNPCSpawns_Struct> NarrativeSpawns;                          // 0x00B0 (size: 0x50)
     class ADayNightManager_C* DayNightManager;                                        // 0x0100 (size: 0x8)
     float DefaultChanceToSpawn;                                                       // 0x0108 (size: 0x4)
     bool HasLoaded;                                                                   // 0x010C (size: 0x1)
@@ -12,15 +12,15 @@ class UNarrativeNPCDirectorComponent_C : public UActorComponent
     FNarrativeNPCDirectorComponent_COnTraderSpawn OnTraderSpawn;                      // 0x0118 (size: 0x10)
     void OnTraderSpawn(class ANarrativeNPC_ParentBP_C* NPC, FVector SpawnLocation, bool AtLure);
 
-    bool DoesTraderHavePreferredSpawn(FNarrativeNPCSpawns_Struct TraderData);
+    void DoesTraderHavePreferredSpawn(FNarrativeNPCSpawns_Struct TraderData);
     void UnregisterNarrativeSpawnLocation(class ANPCSpawn_Narrative_C* SpawnPoint);
-    bool ForceSpawnClosestInArray(const FNarrativeNPCSpawns_Struct& NarrativeNPCSpawnData, const FVector& Origin, const TArray<class AActor*>& Actors);
-    bool ForceSpawnClosestByRowName(FName TraderRowName, const FVector& Origin);
+    void ForceSpawnClosestInArray(const FNarrativeNPCSpawns_Struct& NarrativeNPCSpawnData, const FVector& Origin, const TArray<AActor*>& Actors);
+    void ForceSpawnClosestByRowName(FName TraderRowName, const FVector& Origin);
     void OnHourChanged(int32 NewHour, int32 PreviousHour);
-    bool HasAnyRequiredWorldFlag(TArray<FWorldFlagRowHandle>& FlagsArray);
+    void HasAnyRequiredWorldFlag(TArray<FWorldFlagRowHandle>& FlagsArray);
     void ApplyNarrativeNPCData(class UAbiotic_WorldSave_C* Save);
     void SaveNarrativeNPCData(class UAbiotic_WorldSave_C* Save);
-    double GetChanceToSpawn(const FNPCTrader& NPCTrader);
+    void GetChanceToSpawn(const FNPCTrader& NPCTrader);
     void RegisterTraderLure(class UNarrativeNPCLureComponent_C* NewTraderLure);
     void RefreshNarrativeSpawns();
     void RegisterNarrativeSpawnLocation(class ANPCSpawn_Narrative_C* SpawnPoint);

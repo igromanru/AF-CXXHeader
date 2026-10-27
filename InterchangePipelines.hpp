@@ -5,7 +5,7 @@
 
 struct FInterchangeLodSceneNodeContainer
 {
-    TArray<class UInterchangeSceneNode*> SceneNodes;                                  // 0x0000 (size: 0x10)
+    TArray<UInterchangeSceneNode*> SceneNodes;                                        // 0x0000 (size: 0x10)
 
 }; // Size: 0x10
 
@@ -42,7 +42,7 @@ struct FInterchangePipelineMeshesUtilitiesContext
 
 class UGLTFPipelineSettings : public UDeveloperSettings
 {
-    TMap<class FString, class FSoftObjectPath> MaterialParents;                       // 0x0038 (size: 0x50)
+    TMap<FString, FSoftObjectPath> MaterialParents;                                   // 0x0038 (size: 0x50)
 
 }; // Size: 0x90
 
@@ -207,12 +207,12 @@ class UInterchangePipelineMeshesUtilities : public UObject
 {
 
     void SetContext(const FInterchangePipelineMeshesUtilitiesContext& Context);
-    bool IsValidMeshInstanceUid(FString MeshInstanceUid);
-    bool IsValidMeshGeometryUid(FString MeshGeometryUid);
-    FString GetMeshInstanceSkeletonRootUid(FString MeshInstanceUid);
-    FInterchangeMeshInstance GetMeshInstanceByUid(FString MeshInstanceUid);
-    FString GetMeshGeometrySkeletonRootUid(FString MeshGeometryUid);
-    FInterchangeMeshGeometry GetMeshGeometryByUid(FString MeshGeometryUid);
+    void IsValidMeshInstanceUid(FString MeshInstanceUid);
+    void IsValidMeshGeometryUid(FString MeshGeometryUid);
+    void GetMeshInstanceSkeletonRootUid(FString MeshInstanceUid);
+    void GetMeshInstanceByUid(FString MeshInstanceUid);
+    void GetMeshGeometrySkeletonRootUid(FString MeshGeometryUid);
+    void GetMeshGeometryByUid(FString MeshGeometryUid);
     void GetAllStaticMeshInstance(TArray<FString>& MeshInstanceUids);
     void GetAllStaticMeshGeometry(TArray<FString>& MeshGeometryUids);
     void GetAllSkinnedMeshInstance(TArray<FString>& MeshInstanceUids);
@@ -221,15 +221,15 @@ class UInterchangePipelineMeshesUtilities : public UObject
     void GetAllMeshInstanceUids(TArray<FString>& MeshInstanceUids);
     void GetAllMeshGeometryNotInstanced(TArray<FString>& MeshGeometryUids);
     void GetAllMeshGeometry(TArray<FString>& MeshGeometryUids);
-    class UInterchangePipelineMeshesUtilities* CreateInterchangePipelineMeshesUtilities(class UInterchangeBaseNodeContainer* BaseNodeContainer);
+    void CreateInterchangePipelineMeshesUtilities(class UInterchangeBaseNodeContainer* BaseNodeContainer);
 }; // Size: 0x128
 
 class UMaterialXPipelineSettings : public UDeveloperSettings
 {
-    TMap<class EInterchangeMaterialXShaders, class FSoftObjectPath> PredefinedSurfaceShaders; // 0x0038 (size: 0x50)
-    TMap<class EInterchangeMaterialXBSDF, class FSoftObjectPath> PredefinedBSDF;      // 0x0088 (size: 0x50)
-    TMap<class EInterchangeMaterialXEDF, class FSoftObjectPath> PredefinedEDF;        // 0x00D8 (size: 0x50)
-    TMap<class EInterchangeMaterialXVDF, class FSoftObjectPath> PredefinedVDF;        // 0x0128 (size: 0x50)
+    TMap<EInterchangeMaterialXShaders, FSoftObjectPath> PredefinedSurfaceShaders;     // 0x0038 (size: 0x50)
+    TMap<EInterchangeMaterialXBSDF, FSoftObjectPath> PredefinedBSDF;                  // 0x0088 (size: 0x50)
+    TMap<EInterchangeMaterialXEDF, FSoftObjectPath> PredefinedEDF;                    // 0x00D8 (size: 0x50)
+    TMap<EInterchangeMaterialXVDF, FSoftObjectPath> PredefinedVDF;                    // 0x0128 (size: 0x50)
 
 }; // Size: 0x178
 

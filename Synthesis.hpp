@@ -260,7 +260,7 @@ struct FSourceEffectMotionFilterSettings
     float MotionFilterMix;                                                            // 0x0004 (size: 0x4)
     FSourceEffectIndividualFilterSettings FilterASettings;                            // 0x0008 (size: 0xC)
     FSourceEffectIndividualFilterSettings FilterBSettings;                            // 0x0014 (size: 0xC)
-    TMap<class ESourceEffectMotionFilterModDestination, class FSourceEffectMotionFilterModulationSettings> ModulationMappings; // 0x0020 (size: 0x50)
+    TMap<ESourceEffectMotionFilterModDestination, FSourceEffectMotionFilterModulationSettings> ModulationMappings; // 0x0020 (size: 0x50)
     float DryVolumeDb;                                                                // 0x0070 (size: 0x4)
 
 }; // Size: 0x78
@@ -505,9 +505,9 @@ class UGranularSynth : public USynthComponent
     void SetAttackTime(const float AttackTimeMsec);
     void NoteOn(const float Note, const int32 Velocity, const float Duration);
     void NoteOff(const float Note, const bool bKill);
-    bool IsLoaded();
-    float GetSampleDuration();
-    float GetCurrentPlayheadTime();
+    void IsLoaded();
+    void GetSampleDuration();
+    void GetCurrentPlayheadTime();
 }; // Size: 0xC90
 
 class UModularSynthComponent : public USynthComponent
@@ -562,7 +562,7 @@ class UModularSynthComponent : public USynthComponent
     void SetEnableUnison(bool EnableUnison);
     void SetEnableRetrigger(bool RetriggerEnabled);
     void SetEnablePolyphony(bool bEnablePolyphony);
-    bool SetEnablePatch(const FPatchId PatchId, const bool bIsEnabled);
+    void SetEnablePatch(const FPatchId PatchId, const bool bIsEnabled);
     void SetEnableLegato(bool LegatoEnabled);
     void SetDecayTime(float DecayTimeMsec);
     void SetChorusFrequency(float Frequency);
@@ -572,7 +572,7 @@ class UModularSynthComponent : public USynthComponent
     void SetAttackTime(float AttackTimeMsec);
     void NoteOn(const float Note, const int32 Velocity, const float Duration);
     void NoteOff(const float Note, const bool bAllNotesOff, const bool bKillAllNotes);
-    FPatchId CreatePatch(const ESynth1PatchSource PatchSource, const TArray<FSynth1PatchCable>& PatchCables, const bool bEnableByDefault);
+    void CreatePatch(const ESynth1PatchSource PatchSource, const TArray<FSynth1PatchCable>& PatchCables, const bool bEnableByDefault);
 }; // Size: 0xF90
 
 class UModularSynthLibrary : public UBlueprintFunctionLibrary
@@ -762,15 +762,15 @@ class USubmixEffectDelayPreset : public USoundEffectSubmixPreset
     void SetInterpolationTime(float Time);
     void SetDelay(float Length);
     void SetDefaultSettings(const FSubmixEffectDelaySettings& InSettings);
-    float GetMaxDelayInMilliseconds();
+    void GetMaxDelayInMilliseconds();
 }; // Size: 0xB8
 
 class USubmixEffectDelayStatics : public UBlueprintFunctionLibrary
 {
 
-    FSubmixEffectDelaySettings SetMaximumDelayLength(FSubmixEffectDelaySettings& DelaySettings, float MaximumDelayLength);
-    FSubmixEffectDelaySettings SetInterpolationTime(FSubmixEffectDelaySettings& DelaySettings, float InterpolationTime);
-    FSubmixEffectDelaySettings SetDelayLength(FSubmixEffectDelaySettings& DelaySettings, float DelayLength);
+    void SetMaximumDelayLength(FSubmixEffectDelaySettings& DelaySettings, float MaximumDelayLength);
+    void SetInterpolationTime(FSubmixEffectDelaySettings& DelaySettings, float InterpolationTime);
+    void SetDelayLength(FSubmixEffectDelaySettings& DelaySettings, float DelayLength);
 }; // Size: 0x28
 
 class USubmixEffectFilterPreset : public USoundEffectSubmixPreset
@@ -827,7 +827,7 @@ class USubmixEffectTapDelayPreset : public USoundEffectSubmixPreset
     void RemoveTap(int32 TapId);
     void GetTapIds(TArray<int32>& TapIds);
     void GetTap(int32 TapId, FTapDelayInfo& TapInfo);
-    float GetMaxDelayInMilliseconds();
+    void GetMaxDelayInMilliseconds();
     void AddTap(int32& TapId);
 }; // Size: 0xD8
 
@@ -836,9 +836,9 @@ class USynth2DSlider : public UWidget
     float ValueX;                                                                     // 0x0178 (size: 0x4)
     float ValueY;                                                                     // 0x017C (size: 0x4)
     FSynth2DSliderValueXDelegate ValueXDelegate;                                      // 0x0180 (size: 0x10)
-    float GetFloat();
+    void GetFloat();
     FSynth2DSliderValueYDelegate ValueYDelegate;                                      // 0x0190 (size: 0x10)
-    float GetFloat();
+    void GetFloat();
     FSynth2DSliderStyle WidgetStyle;                                                  // 0x01A0 (size: 0x430)
     FLinearColor SliderHandleColor;                                                   // 0x05D0 (size: 0x10)
     bool IndentHandle;                                                                // 0x05E0 (size: 0x1)
@@ -863,7 +863,7 @@ class USynth2DSlider : public UWidget
     void SetSliderHandleColor(FLinearColor InValue);
     void SetLocked(bool InValue);
     void SetIndentHandle(bool InValue);
-    FVector2D GetValue();
+    void GetValue();
 }; // Size: 0x660
 
 class USynthComponentMonoWaveTable : public USynthComponent
@@ -899,9 +899,9 @@ class USynthComponentMonoWaveTable : public USynthComponent
     void SetFilterEnvelopeBiasInvert(const bool bInBiasInvert);
     void SetFilterEnvelopeBiasDepth(const float InDepth);
     void SetFilterEnvelopeAttackTime(const float InAttackTimeMsec);
-    bool SetCurveValue(int32 TableIndex, int32 KeyframeIndex, const float NewValue);
-    bool SetCurveTangent(int32 TableIndex, float InNewTangent);
-    bool SetCurveInterpolationType(CurveInterpolationType InterpolationType, int32 TableIndex);
+    void SetCurveValue(int32 TableIndex, int32 KeyframeIndex, const float NewValue);
+    void SetCurveTangent(int32 TableIndex, float InNewTangent);
+    void SetCurveInterpolationType(CurveInterpolationType InterpolationType, int32 TableIndex);
     void SetAmpEnvelopeSustainGain(const float InSustainGain);
     void SetAmpEnvelopeReleaseTime(const float InReleaseTimeMsec);
     void SetAmpEnvelopeInvert(const bool bInInvert);
@@ -914,10 +914,10 @@ class USynthComponentMonoWaveTable : public USynthComponent
     void RefreshAllWaveTables();
     void NoteOn(const float InMidiNote, const float InVelocity);
     void NoteOff(const float InMidiNote);
-    int32 GetNumTableEntries();
-    int32 GetMaxTableIndex();
-    TArray<float> GetKeyFrameValuesForTable(float TableIndex);
-    float GetCurveTangent(int32 TableIndex);
+    void GetNumTableEntries();
+    void GetMaxTableIndex();
+    void GetKeyFrameValuesForTable(float TableIndex);
+    void GetCurveTangent(int32 TableIndex);
 }; // Size: 0xFF0
 
 class USynthComponentToneGenerator : public USynthComponent
@@ -942,7 +942,7 @@ class USynthKnob : public UWidget
     FText ParameterName;                                                              // 0x0190 (size: 0x10)
     FText ParameterUnits;                                                             // 0x01A0 (size: 0x10)
     FSynthKnobValueDelegate ValueDelegate;                                            // 0x01B0 (size: 0x10)
-    float GetFloat();
+    void GetFloat();
     FSynthKnobStyle WidgetStyle;                                                      // 0x01C0 (size: 0x360)
     bool Locked;                                                                      // 0x0520 (size: 0x1)
     bool IsFocusable;                                                                 // 0x0521 (size: 0x1)
@@ -960,7 +960,7 @@ class USynthKnob : public UWidget
     void SetValue(float InValue);
     void SetStepSize(float InValue);
     void SetLocked(bool InValue);
-    float GetValue();
+    void GetValue();
 }; // Size: 0x590
 
 class USynthSamplePlayer : public USynthComponent
@@ -976,17 +976,17 @@ class USynthSamplePlayer : public USynthComponent
     void SetScrubMode(bool bScrubMode);
     void SetPitch(float InPitch, float TimeSec);
     void SeekToTime(float TimeSec, ESamplePlayerSeekType SeekType, bool bWrap);
-    bool IsLoaded();
-    float GetSampleDuration();
-    float GetCurrentPlaybackProgressTime();
-    float GetCurrentPlaybackProgressPercent();
+    void IsLoaded();
+    void GetSampleDuration();
+    void GetCurrentPlaybackProgressTime();
+    void GetCurrentPlaybackProgressPercent();
 }; // Size: 0x9D0
 
 class USynthesisUtilitiesBlueprintFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
-    float GetLogFrequency(float InLinearValue, float InDomainMin, float InDomainMax, float InRangeMin, float InRangeMax);
-    float GetLinearFrequency(float InLogFrequencyValue, float InDomainMin, float InDomainMax, float InRangeMin, float InRangeMax);
+    void GetLogFrequency(float InLinearValue, float InDomainMin, float InDomainMax, float InRangeMin, float InRangeMax);
+    void GetLinearFrequency(float InLogFrequencyValue, float InDomainMin, float InDomainMax, float InRangeMin, float InRangeMax);
 }; // Size: 0x28
 
 #endif

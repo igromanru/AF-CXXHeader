@@ -59,7 +59,7 @@ class UCSGMeshesTool : public UBaseCreateFromSelectedTool
 {
     class UCSGMeshesToolProperties* CSGProperties;                                    // 0x0108 (size: 0x8)
     class UTrimMeshesToolProperties* TrimProperties;                                  // 0x0110 (size: 0x8)
-    TArray<class UPreviewMesh*> OriginalMeshPreviews;                                 // 0x0128 (size: 0x10)
+    TArray<UPreviewMesh*> OriginalMeshPreviews;                                       // 0x0128 (size: 0x10)
     class UMaterialInstanceDynamic* PreviewsGhostMaterial;                            // 0x0138 (size: 0x8)
     class ULineSetComponent* DrawnLineSet;                                            // 0x0140 (size: 0x8)
 
@@ -328,7 +328,7 @@ class UExistingMeshMaterialProperties : public UInteractiveToolPropertySet
     TArray<FString> UVChannelNamesList;                                               // 0x00C8 (size: 0x10)
     class UMaterialInstanceDynamic* CheckerMaterial;                                  // 0x00D8 (size: 0x8)
 
-    TArray<FString> GetUVChannelNamesFunc();
+    void GetUVChannelNamesFunc();
 }; // Size: 0xE0
 
 class UGroupEdgeInsertionProperties : public UInteractiveToolPropertySet
@@ -358,7 +358,7 @@ class UMeshUVChannelProperties : public UInteractiveToolPropertySet
     FString UVChannel;                                                                // 0x00A8 (size: 0x10)
     TArray<FString> UVChannelNamesList;                                               // 0x00B8 (size: 0x10)
 
-    TArray<FString> GetUVChannelNamesFunc();
+    void GetUVChannelNamesFunc();
 }; // Size: 0xC8
 
 class UModifyGeometrySelectionCommand : public UGeometrySelectionEditCommand
@@ -753,8 +753,8 @@ class UUVLayoutTool : public UMultiSelectionMeshEditingTool
     class UMeshUVChannelProperties* UVChannelProperties;                              // 0x00C0 (size: 0x8)
     class UUVLayoutProperties* BasicProperties;                                       // 0x00C8 (size: 0x8)
     class UExistingMeshMaterialProperties* MaterialSettings;                          // 0x00D0 (size: 0x8)
-    TArray<class UMeshOpPreviewWithBackgroundCompute*> Previews;                      // 0x00D8 (size: 0x10)
-    TArray<class UUVLayoutOperatorFactory*> Factories;                                // 0x00E8 (size: 0x10)
+    TArray<UMeshOpPreviewWithBackgroundCompute*> Previews;                            // 0x00D8 (size: 0x10)
+    TArray<UUVLayoutOperatorFactory*> Factories;                                      // 0x00E8 (size: 0x10)
     class UUVLayoutPreview* UVLayoutView;                                             // 0x0160 (size: 0x8)
 
 }; // Size: 0x170

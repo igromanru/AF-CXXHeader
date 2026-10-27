@@ -14,8 +14,7 @@ class UW_Compendium_FishDatabase_C : public UAbioticWidget
     int32 CurrentColumn;                                                              // 0x031C (size: 0x4)
     int32 MaxColumn;                                                                  // 0x0320 (size: 0x4)
 
-    void GetFishRowsToIgnore(FName Row, bool& Allowed);
-    void GetAlphabetizedFish(TArray<FName>& Array, TArray<FName>& AlphabetizedArray);
+    void GetFishRowsToIgnore(FFishRowHandle Row, bool& Allowed);
     void RefreshFishList();
     void Construct();
     void ExecuteUbergraph_W_Compendium_FishDatabase(int32 EntryPoint);

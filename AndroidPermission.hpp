@@ -11,8 +11,8 @@ class UAndroidPermissionCallbackProxy : public UObject
 class UAndroidPermissionFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
-    bool CheckPermission(FString permission);
-    class UAndroidPermissionCallbackProxy* AcquirePermissions(const TArray<FString>& Permissions);
+    void CheckPermission(FString permission);
+    void AcquirePermissions(const TArray<FString>& Permissions);
 }; // Size: 0x28
 
 #endif

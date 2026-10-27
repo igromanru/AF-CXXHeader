@@ -3,8 +3,8 @@
 
 class ANPCSpawn_Trader_Marion_C : public ANPCSpawn_Narrative_C
 {
-    class UStaticMeshComponent* StaticMesh1;                                          // 0x0338 (size: 0x8)
+    class UStaticMeshComponent* StaticMesh1;                                          // 0x0328 (size: 0x8)
 
-}; // Size: 0x340
+}; // Size: 0x330
 
 #endif

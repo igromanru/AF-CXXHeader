@@ -19,14 +19,14 @@ class UW_Inventory_ArmorStand_C : public UUserWidget
     class UW_InventoryItemSlot_C* W_LegsArmorSlot;                                    // 0x0348 (size: 0x8)
     class UW_InventoryItemSlot_C* W_SuitArmorSlot;                                    // 0x0350 (size: 0x8)
     class UW_InventoryItemSlot_C* W_TorsoArmorSlot;                                   // 0x0358 (size: 0x8)
-    TArray<class UW_InventoryItemSlot_C*> ArmorMeshEquipmentSlots;                    // 0x0360 (size: 0x10)
-    TArray<FName> PoseNames;                                                          // 0x0370 (size: 0x10)
+    TArray<UW_InventoryItemSlot_C*> ArmorMeshEquipmentSlots;                          // 0x0360 (size: 0x10)
+    TArray<FArmorStandPoseRowHandle> PoseRows;                                        // 0x0370 (size: 0x10)
     int32 PoseNumber;                                                                 // 0x0380 (size: 0x4)
     ECheckBoxState EmptySlot;                                                         // 0x0384 (size: 0x1)
     bool SwapEmptySlot;                                                               // 0x0385 (size: 0x1)
 
     void SetArmorStandDynamicProperties(FDynamicProperty NewDynamicProperty);
-    void Highlight Armor Slots(TEnumAsByte<E_InventorySlotType::Type> SlotType, bool StopHighlight);
+    void Highlight Armor Slots(EInventorySlotType SlotType, bool StopHighlight);
     void Setup Armor Stand Slots(class UAbiotic_InventoryComponent_C* MainInventoryComponent);
     void Refresh Armor Stand Slots();
     void Construct();
@@ -34,7 +34,7 @@ class UW_Inventory_ArmorStand_C : public UUserWidget
     void BndEvt__W_Inventory_ArmorStand_Button_PreviousPose_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
     void BndEvt__W_Inventory_ArmorStand_Button_NextPose_K2Node_ComponentBoundEvent_1_OnButtonClickedEvent__DelegateSignature();
     void SetNewPose(int32 PoseNumber);
-    void OnItemDragStarted(TEnumAsByte<E_InventorySlotType::Type> Item Type);
+    void OnItemDragStarted(EInventorySlotType Item Type);
     void OnItemDragFinished();
     void BndEvt__W_Inventory_ArmorStand_SwapEmptySlots_K2Node_ComponentBoundEvent_2_OnCheckBoxComponentStateChanged__DelegateSignature(bool bIsChecked);
     void SwapEmptySlotChanged();

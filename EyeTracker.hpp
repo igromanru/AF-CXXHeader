@@ -31,10 +31,10 @@ class UEyeTrackerFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
     void SetEyeTrackedPlayer(class APlayerController* PlayerController);
-    bool IsStereoGazeDataAvailable();
-    bool IsEyeTrackerConnected();
-    bool GetStereoGazeData(FEyeTrackerStereoGazeData& OutGazeData);
-    bool GetGazeData(FEyeTrackerGazeData& OutGazeData);
+    void IsStereoGazeDataAvailable();
+    void IsEyeTrackerConnected();
+    void GetStereoGazeData(FEyeTrackerStereoGazeData& OutGazeData);
+    void GetGazeData(FEyeTrackerGazeData& OutGazeData);
 }; // Size: 0x28
 
 #endif

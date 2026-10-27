@@ -9,8 +9,8 @@ class UBTS_CheckDistancedBasedAbility_C : public UBTService_BlueprintBase
     double MaximumDistance;                                                           // 0x00B0 (size: 0x8)
     bool UsePathfinding;                                                              // 0x00B8 (size: 0x1)
 
-    bool CheckMaximumDistance(class AActor* NPC, class AActor* Target);
-    bool CheckMinimumDistance(class AActor* NPC, class AActor* Target);
+    void CheckMaximumDistance(class AActor* NPC, class AActor* Target);
+    void CheckMinimumDistance(class AActor* NPC, class AActor* Target);
     void ReceiveTickAI(class AAIController* OwnerController, class APawn* ControlledPawn, float DeltaSeconds);
     void ExecuteUbergraph_BTS_CheckDistancedBasedAbility(int32 EntryPoint);
 }; // Size: 0xB9

@@ -3,6 +3,6 @@
 
 class ADestructible_CafeteriaDoor_C : public AAbiotic_GenericDestructible_BP_C
 {
-}; // Size: 0x390
+}; // Size: 0x370
 
 #endif

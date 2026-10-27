@@ -16,16 +16,16 @@ class UW_Inventory_Transmog_C : public UUserWidget
     class UW_TransmogItemSlot_C* W_SuitArmorSlot;                                     // 0x0330 (size: 0x8)
     class UW_TransmogItemSlot_C* W_TorsoArmorSlot;                                    // 0x0338 (size: 0x8)
     class UW_TransmogToggleButton_C* W_TransmogToggleButton;                          // 0x0340 (size: 0x8)
-    TArray<class UW_InventoryItemSlot_C*> TransmogInvSlots;                           // 0x0348 (size: 0x10)
+    TArray<UW_InventoryItemSlot_C*> TransmogInvSlots;                                 // 0x0348 (size: 0x10)
     TArray<FName> PoseNames;                                                          // 0x0358 (size: 0x10)
     int32 PoseNumber;                                                                 // 0x0368 (size: 0x4)
 
-    void HighlightTransmogSlots(TEnumAsByte<E_InventorySlotType::Type> SlotType, bool StopHighlight);
+    void HighlightTransmogSlots(EInventorySlotType SlotType, bool StopHighlight);
     void SetupTransmogSlots(class UAbiotic_InventoryComponent_C* MainInventoryComponent);
     void RefreshTransmogSlots();
     void Construct();
     void InventoryUpdated_Event(class UAbiotic_InventoryComponent_C* Inventory);
-    void OnItemDragStarted(TEnumAsByte<E_InventorySlotType::Type> Item Type);
+    void OnItemDragStarted(EInventorySlotType Item Type);
     void OnItemDragFinished();
     void ExecuteUbergraph_W_Inventory_Transmog(int32 EntryPoint);
 }; // Size: 0x36C

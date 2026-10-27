@@ -8,12 +8,12 @@ class UStructUtilsFunctionLibrary : public UBlueprintFunctionLibrary
 
     void SetInstancedStructValue(FInstancedStruct& InstancedStruct, const int32& Value);
     void Reset(FInstancedStruct& InstancedStruct, const class UScriptStruct* StructType);
-    bool NotEqual_InstancedStruct(const FInstancedStruct& A, const FInstancedStruct& B);
-    FInstancedStruct MakeInstancedStruct(const int32& Value);
-    bool IsValid_InstancedStruct(const FInstancedStruct& InstancedStruct);
-    EStructUtilsResult IsInstancedStructValid(const FInstancedStruct& InstancedStruct);
+    void NotEqual_InstancedStruct(const FInstancedStruct& A, const FInstancedStruct& B);
+    void MakeInstancedStruct(const int32& Value);
+    void IsValid_InstancedStruct(const FInstancedStruct& InstancedStruct);
+    void IsInstancedStructValid(const FInstancedStruct& InstancedStruct);
     void GetInstancedStructValue(EStructUtilsResult& ExecResult, const FInstancedStruct& InstancedStruct, int32& Value);
-    bool EqualEqual_InstancedStruct(const FInstancedStruct& A, const FInstancedStruct& B);
+    void EqualEqual_InstancedStruct(const FInstancedStruct& A, const FInstancedStruct& B);
 }; // Size: 0x28
 
 #endif

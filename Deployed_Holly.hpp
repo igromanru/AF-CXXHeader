@@ -3,6 +3,6 @@
 
 class ADeployed_Holly_C : public ADeployed_Figurine_ParentBP_C
 {
-}; // Size: 0x86A
+}; // Size: 0x85A
 
 #endif

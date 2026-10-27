@@ -3,6 +3,6 @@
 
 class UDamageType_DeathPit_C : public UDamageType_FallDamage_C
 {
-}; // Size: 0x290
+}; // Size: 0x280
 
 #endif

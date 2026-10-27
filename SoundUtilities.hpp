@@ -20,18 +20,18 @@ class USoundSimple : public USoundBase
 class USoundUtilitiesBPFunctionLibrary : public UBlueprintFunctionLibrary
 {
 
-    float GetQFromBandwidth(const float InBandwidth);
-    float GetPitchScaleFromMIDIPitch(const int32 BaseMidiNote, const int32 TargetMidiNote);
-    int32 GetMIDIPitchFromFrequency(const float Frequency);
-    float GetLogFrequencyClamped(const float InValue, const FVector2D& InDomain, const FVector2D& InRange);
-    float GetLinearFrequencyClamped(const float InValue, const FVector2D& InDomain, const FVector2D& InRange);
-    float GetGainFromMidiVelocity(int32 InVelocity);
-    float GetFrequencyMultiplierFromSemitones(const float InPitchSemitones);
-    float GetFrequencyFromMIDIPitch(const int32 MidiNote);
-    float GetBeatTempo(float BeatsPerMinute, int32 BeatMultiplier, int32 DivisionsOfWholeNote);
-    float GetBandwidthFromQ(const float InQ);
-    float ConvertLinearToDecibels(const float InLinear, const float InFloor);
-    float ConvertDecibelsToLinear(const float InDecibels);
+    void GetQFromBandwidth(const float InBandwidth);
+    void GetPitchScaleFromMIDIPitch(const int32 BaseMidiNote, const int32 TargetMidiNote);
+    void GetMIDIPitchFromFrequency(const float Frequency);
+    void GetLogFrequencyClamped(const float InValue, const FVector2D& InDomain, const FVector2D& InRange);
+    void GetLinearFrequencyClamped(const float InValue, const FVector2D& InDomain, const FVector2D& InRange);
+    void GetGainFromMidiVelocity(int32 InVelocity);
+    void GetFrequencyMultiplierFromSemitones(const float InPitchSemitones);
+    void GetFrequencyFromMIDIPitch(const int32 MidiNote);
+    void GetBeatTempo(float BeatsPerMinute, int32 BeatMultiplier, int32 DivisionsOfWholeNote);
+    void GetBandwidthFromQ(const float InQ);
+    void ConvertLinearToDecibels(const float InLinear, const float InFloor);
+    void ConvertDecibelsToLinear(const float InDecibels);
 }; // Size: 0x28
 
 #endif

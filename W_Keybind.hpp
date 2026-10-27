@@ -9,15 +9,15 @@ class UW_Keybind_C : public UUserWidget
     class UImage* HoldImage;                                                          // 0x02F8 (size: 0x8)
     class UProgressBar* ProgressBar_182;                                              // 0x0300 (size: 0x8)
     class UStyledKeyLabel_C* StyledKeyLabel;                                          // 0x0308 (size: 0x8)
-    FKeybindSettingRowHandle KeyBind;                                                 // 0x0310 (size: 0x20)
-    bool PreviewGamepad;                                                              // 0x0330 (size: 0x1)
-    FSlateColor TextColor;                                                            // 0x0334 (size: 0x14)
-    FSlateFontInfo TextFont;                                                          // 0x0348 (size: 0x60)
-    bool UseBrackets;                                                                 // 0x03A8 (size: 0x1)
-    bool HoldKey;                                                                     // 0x03A9 (size: 0x1)
-    FW_Keybind_CKeybindUpdated KeybindUpdated;                                        // 0x03B0 (size: 0x10)
+    FKeybindSettingRowHandle KeyBind;                                                 // 0x0310 (size: 0x10)
+    bool PreviewGamepad;                                                              // 0x0320 (size: 0x1)
+    FSlateColor TextColor;                                                            // 0x0324 (size: 0x14)
+    FSlateFontInfo TextFont;                                                          // 0x0338 (size: 0x60)
+    bool UseBrackets;                                                                 // 0x0398 (size: 0x1)
+    bool HoldKey;                                                                     // 0x0399 (size: 0x1)
+    FW_Keybind_CKeybindUpdated KeybindUpdated;                                        // 0x03A0 (size: 0x10)
     void KeybindUpdated();
-    bool HideIfUnbound;                                                               // 0x03C0 (size: 0x1)
+    bool HideIfUnbound;                                                               // 0x03B0 (size: 0x1)
 
     void ShowHoldIcon(bool Hold);
     void IsBound(bool& bIsBound);
@@ -33,6 +33,6 @@ class UW_Keybind_C : public UUserWidget
     void StopHoldProgressAnimation();
     void ExecuteUbergraph_W_Keybind(int32 EntryPoint);
     void KeybindUpdated__DelegateSignature();
-}; // Size: 0x3C1
+}; // Size: 0x3B1
 
 #endif

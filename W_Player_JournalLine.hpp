@@ -7,7 +7,7 @@ class UW_Player_JournalLine_C : public UUserWidget
     class UButton* Button_Pin;                                                        // 0x02E8 (size: 0x8)
     class UTextBlock* NoteText;                                                       // 0x02F0 (size: 0x8)
     class UTextBlock* TitleText;                                                      // 0x02F8 (size: 0x8)
-    FDataTableRowHandle JournalEntry;                                                 // 0x0300 (size: 0x10)
+    FJournalEntryRowHandle JournalEntry;                                              // 0x0300 (size: 0x10)
     FButtonStyle Style_Unpinned;                                                      // 0x0310 (size: 0x3F0)
     FButtonStyle Style_Pinned;                                                        // 0x0700 (size: 0x3F0)
 

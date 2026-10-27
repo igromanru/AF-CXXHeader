@@ -10,7 +10,7 @@ class UW_DescriptiveSettingDisplay_C : public UUserWidget
     class UImage* Image_172;                                                          // 0x0300 (size: 0x8)
     FText Title;                                                                      // 0x0308 (size: 0x10)
     FText Description;                                                                // 0x0318 (size: 0x10)
-    TSoftObjectPtr<UTexture2D> SampleImage;                                           // 0x0328 (size: 0x28)
+    TSoftObjectPtr<class UTexture2D> SampleImage;                                     // 0x0328 (size: 0x28)
 
     void OnLoaded_C88BCC0F4F89BE66950137ACBE60CC53(class UObject* Loaded);
     void RefreshDisplay();

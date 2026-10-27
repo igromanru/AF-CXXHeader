@@ -15,15 +15,15 @@ class AAbiotic_TriggerVolume_ParentBP_C : public AActor
     bool HasBeenTriggeredOnce;                                                        // 0x02F0 (size: 0x1)
     int32 TriggerLimit;                                                               // 0x02F4 (size: 0x4)
     int32 TimesTriggered;                                                             // 0x02F8 (size: 0x4)
-    TArray<class AAbiotic_TriggerVolume_ParentBP_C*> OtherTriggersToTrigger;          // 0x0300 (size: 0x10)
-    TArray<class AAbiotic_TriggerVolume_ParentBP_C*> OtherTriggersToAllowOverlaps;    // 0x0310 (size: 0x10)
+    TArray<AAbiotic_TriggerVolume_ParentBP_C*> OtherTriggersToTrigger;                // 0x0300 (size: 0x10)
+    TArray<AAbiotic_TriggerVolume_ParentBP_C*> OtherTriggersToAllowOverlaps;          // 0x0310 (size: 0x10)
     class AButton_Generic_C* TriggeredByButton;                                       // 0x0320 (size: 0x8)
-    FSaveData_Trigger_Struct CurrentSaveData;                                         // 0x0328 (size: 0x18)
+    FAbioticTriggerSave CurrentSaveData;                                              // 0x0328 (size: 0x18)
     bool RunTriggerOnWorldLoad;                                                       // 0x0340 (size: 0x1)
     bool LocalOnlyTrigger;                                                            // 0x0341 (size: 0x1)
-    FWorldFlagRowHandle BlockingWorldFlag;                                            // 0x0348 (size: 0x20)
+    FWorldFlagRowHandle BlockingWorldFlag;                                            // 0x0348 (size: 0x10)
 
-    bool ShouldAllowTriggerOverlap();
+    void ShouldAllowTriggerOverlap();
     void ResetTriggerState();
     void TriggerLimitReached?(bool& LimitReached);
     void SaveTriggerData();
@@ -38,6 +38,6 @@ class AAbiotic_TriggerVolume_ParentBP_C : public AActor
     void OnLoadedFromSave();
     void ExecuteUbergraph_Abiotic_TriggerVolume_ParentBP(int32 EntryPoint);
     void WasTriggered__DelegateSignature();
-}; // Size: 0x368
+}; // Size: 0x358
 
 #endif

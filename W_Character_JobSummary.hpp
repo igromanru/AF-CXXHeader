@@ -8,13 +8,13 @@ class UW_Character_JobSummary_C : public UUserWidget
     class UImage* Image_1;                                                            // 0x02F0 (size: 0x8)
     class UImage* Image_JobIcon;                                                      // 0x02F8 (size: 0x8)
     class UImage* JobImage;                                                           // 0x0300 (size: 0x8)
-    FDataTableRowHandle JobData;                                                      // 0x0308 (size: 0x10)
+    FAnyTraitRowHandle JobData;                                                       // 0x0308 (size: 0x10)
     FName JobRow;                                                                     // 0x0318 (size: 0x8)
 
     void OnLoaded_84CC6ABD4628711B44750AB0686CBC13(class UObject* Loaded);
     void OnLoaded_5909CC744C0DDC544B64E5957FA3971A(class UObject* Loaded);
     void Construct();
-    void RefreshSummary(FDataTableRowHandle JobData);
+    void RefreshSummary(FAnyTraitRowHandle JobData);
     void ExecuteUbergraph_W_Character_JobSummary(int32 EntryPoint);
 }; // Size: 0x320
 

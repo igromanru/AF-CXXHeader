@@ -1,7 +1,7 @@
 #ifndef UE4SS_SDK_W_SettingsMenu_HPP
 #define UE4SS_SDK_W_SettingsMenu_HPP
 
-class UW_SettingsMenu_C : public UUserWidget
+class UW_SettingsMenu_C : public UAbioticMenuWidget
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x02E0 (size: 0x8)
     class UCheckBox* Checkbox_Accessibility;                                          // 0x02E8 (size: 0x8)
@@ -10,7 +10,7 @@ class UW_SettingsMenu_C : public UUserWidget
     class UCheckBox* Checkbox_Gameplay;                                               // 0x0300 (size: 0x8)
     class UCheckBox* Checkbox_Graphics;                                               // 0x0308 (size: 0x8)
     class UCheckBox* Checkbox_Keybinds;                                               // 0x0310 (size: 0x8)
-    class UOverlay* DisplayDescSlot;                                                  // 0x0318 (size: 0x8)
+    class UWidgetSwitcher* DisplayDesc_WidgetSwitcher;                                // 0x0318 (size: 0x8)
     class UImage* Icon_Accessibility;                                                 // 0x0320 (size: 0x8)
     class UImage* Icon_Audio;                                                         // 0x0328 (size: 0x8)
     class UImage* Icon_Controls;                                                      // 0x0330 (size: 0x8)
@@ -21,23 +21,26 @@ class UW_SettingsMenu_C : public UUserWidget
     class UW_Keybind_C* Keybind_MenuRight;                                            // 0x0358 (size: 0x8)
     class UImage* NavBG;                                                              // 0x0360 (size: 0x8)
     class UWidgetSwitcher* SettingsMenu_WidgetSwitcher;                               // 0x0368 (size: 0x8)
-    class UW_DescriptiveSettingDisplay_C* W_DescriptiveSettingDisplay;                // 0x0370 (size: 0x8)
-    class UW_MainMenu_BackgroundSelection_C* W_MainMenu_BackgroundSelection;          // 0x0378 (size: 0x8)
-    class UW_MainMenuButton_C* W_MainMenuButton_Back;                                 // 0x0380 (size: 0x8)
-    class UW_MenuTitleBig_C* W_MenuTitleBig;                                          // 0x0388 (size: 0x8)
-    class UW_MainMenuButton_C* W_ResetSettings;                                       // 0x0390 (size: 0x8)
-    class UW_SettingsPage_Accessibility_C* W_SettingsPage_Accessibility;              // 0x0398 (size: 0x8)
-    class UW_SettingsPage_Audio_C* W_SettingsPage_Audio;                              // 0x03A0 (size: 0x8)
-    class UW_SettingsPage_Controls_C* W_SettingsPage_Controls;                        // 0x03A8 (size: 0x8)
-    class UW_SettingsPage_Gameplay_C* W_SettingsPage_Gameplay;                        // 0x03B0 (size: 0x8)
-    class UW_SettingsPage_Keybinds_C* W_SettingsPage_Keybinds;                        // 0x03B8 (size: 0x8)
-    class UW_SettingsPage_Video_C* W_SettingsPage_Video;                              // 0x03C0 (size: 0x8)
-    TArray<class UW_SettingsPanel_C*> SettingsPanels;                                 // 0x03C8 (size: 0x10)
-    TEnumAsByte<ESettingsMode::Type> SettingsPanelMode;                               // 0x03D8 (size: 0x1)
-    FW_SettingsMenu_CSettingDescChanged SettingDescChanged;                           // 0x03E0 (size: 0x10)
+    class UW_CommandConfigMenu_C* W_CommandConfigMenu;                                // 0x0370 (size: 0x8)
+    class UW_CustomGameCommandShortcuts_C* W_CustomGameCommandShortcuts;              // 0x0378 (size: 0x8)
+    class UW_DescriptiveSettingDisplay_C* W_DescriptiveSettingDisplay;                // 0x0380 (size: 0x8)
+    class UW_MainMenuButton_C* W_DevSettings;                                         // 0x0388 (size: 0x8)
+    class UW_MainMenu_BackgroundSelection_C* W_MainMenu_BackgroundSelection;          // 0x0390 (size: 0x8)
+    class UW_MainMenuButton_C* W_MainMenuButton_Back;                                 // 0x0398 (size: 0x8)
+    class UW_MenuTitleBig_C* W_MenuTitleBig;                                          // 0x03A0 (size: 0x8)
+    class UW_MainMenuButton_C* W_ResetSettings;                                       // 0x03A8 (size: 0x8)
+    class UW_SettingsPage_Accessibility_C* W_SettingsPage_Accessibility;              // 0x03B0 (size: 0x8)
+    class UW_SettingsPage_Audio_C* W_SettingsPage_Audio;                              // 0x03B8 (size: 0x8)
+    class UW_SettingsPage_Controls_C* W_SettingsPage_Controls;                        // 0x03C0 (size: 0x8)
+    class UW_SettingsPage_Gameplay_C* W_SettingsPage_Gameplay;                        // 0x03C8 (size: 0x8)
+    class UW_SettingsPage_Keybinds_C* W_SettingsPage_Keybinds;                        // 0x03D0 (size: 0x8)
+    class UW_SettingsPage_Video_C* W_SettingsPage_Video;                              // 0x03D8 (size: 0x8)
+    TArray<UW_SettingsPanel_C*> SettingsPanels;                                       // 0x03E0 (size: 0x10)
+    TEnumAsByte<ESettingsMode::Type> SettingsPanelMode;                               // 0x03F0 (size: 0x1)
+    FW_SettingsMenu_CSettingDescChanged SettingDescChanged;                           // 0x03F8 (size: 0x10)
     void SettingDescChanged();
-    FTimerHandle DescriptionCloseTimer;                                               // 0x03F0 (size: 0x8)
-    class UUserWidget* HoveredSetting;                                                // 0x03F8 (size: 0x8)
+    FTimerHandle DescriptionCloseTimer;                                               // 0x0408 (size: 0x8)
+    class UUserWidget* HoveredSetting;                                                // 0x0410 (size: 0x8)
 
     void UncheckAllTabs();
     void CycleWidgetSettingsTab(bool Next);
@@ -60,8 +63,9 @@ class UW_SettingsMenu_C : public UUserWidget
     void CloseDescription();
     void OnSettingHovered(class USettingRow_C* Setting);
     void Construct();
+    void BndEvt__W_SettingsMenu_W_DevSettings_K2Node_ComponentBoundEvent_3_ButtonPressed__DelegateSignature();
     void ExecuteUbergraph_W_SettingsMenu(int32 EntryPoint);
     void SettingDescChanged__DelegateSignature();
-}; // Size: 0x400
+}; // Size: 0x418
 
 #endif

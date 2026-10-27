@@ -17,12 +17,12 @@ class ADynamicMeshActor : public AActor
     bool bEnableComputeMeshPool;                                                      // 0x02A0 (size: 0x1)
     class UDynamicMeshPool* DynamicMeshPool;                                          // 0x02A8 (size: 0x8)
 
-    bool ReleaseComputeMesh(class UDynamicMesh* Mesh);
+    void ReleaseComputeMesh(class UDynamicMesh* Mesh);
     void ReleaseAllComputeMeshes();
-    class UDynamicMeshComponent* GetDynamicMeshComponent();
-    class UDynamicMeshPool* GetComputeMeshPool();
+    void GetDynamicMeshComponent();
+    void GetComputeMeshPool();
     void FreeAllComputeMeshes();
-    class UDynamicMesh* AllocateComputeMesh();
+    void AllocateComputeMesh();
 }; // Size: 0x2B0
 
 class IMeshCommandChangeTarget : public IInterface
@@ -49,7 +49,7 @@ class UBaseDynamicMeshComponent : public UMeshComponent
     class UMaterialInterface* OverrideRenderMaterial;                                 // 0x0598 (size: 0x8)
     class UMaterialInterface* SecondaryRenderMaterial;                                // 0x05A0 (size: 0x8)
     bool bEnableRayTracing;                                                           // 0x05A9 (size: 0x1)
-    TArray<class UMaterialInterface*> BaseMaterials;                                  // 0x05B0 (size: 0x10)
+    TArray<UMaterialInterface*> BaseMaterials;                                        // 0x05B0 (size: 0x10)
 
     void SetViewModeOverridesEnabled(bool bEnabled);
     void SetVertexColorSpaceTransformMode(EDynamicMeshVertexColorTransformMode NewMode);
@@ -62,19 +62,19 @@ class UBaseDynamicMeshComponent : public UMeshComponent
     void SetEnableFlatShading(bool bEnable);
     void SetConstantOverrideColor(FColor NewColor);
     void SetColorOverrideMode(EDynamicMeshComponentColorOverrideMode NewMode);
-    bool HasOverrideRenderMaterial(int32 K);
-    bool GetViewModeOverridesEnabled();
-    EDynamicMeshVertexColorTransformMode GetVertexColorSpaceTransformMode();
-    bool GetShadowsEnabled();
-    class UMaterialInterface* GetSecondaryRenderMaterial();
-    bool GetSecondaryBuffersVisibility();
-    class UMaterialInterface* GetOverrideRenderMaterial(int32 MaterialIndex);
-    bool GetFlatShadingEnabled();
-    bool GetEnableWireframeRenderPass();
-    bool GetEnableRaytracing();
-    class UDynamicMesh* GetDynamicMesh();
-    FColor GetConstantOverrideColor();
-    EDynamicMeshComponentColorOverrideMode GetColorOverrideMode();
+    void HasOverrideRenderMaterial(int32 K);
+    void GetViewModeOverridesEnabled();
+    void GetVertexColorSpaceTransformMode();
+    void GetShadowsEnabled();
+    void GetSecondaryRenderMaterial();
+    void GetSecondaryBuffersVisibility();
+    void GetOverrideRenderMaterial(int32 MaterialIndex);
+    void GetFlatShadingEnabled();
+    void GetEnableWireframeRenderPass();
+    void GetEnableRaytracing();
+    void GetDynamicMesh();
+    void GetConstantOverrideColor();
+    void GetColorOverrideMode();
     void ClearSecondaryRenderMaterial();
     void ClearOverrideRenderMaterial();
 }; // Size: 0x5C0
@@ -86,10 +86,10 @@ class UDynamicMesh : public UObject
     class UDynamicMeshGenerator* MeshGenerator;                                       // 0x00A0 (size: 0x8)
     bool bEnableMeshGenerator;                                                        // 0x00A8 (size: 0x1)
 
-    class UDynamicMesh* ResetToCube();
-    class UDynamicMesh* Reset();
-    bool IsEmpty();
-    int32 GetTriangleCount();
+    void ResetToCube();
+    void Reset();
+    void IsEmpty();
+    void GetTriangleCount();
 }; // Size: 0xB0
 
 class UDynamicMeshComponent : public UBaseDynamicMeshComponent
@@ -102,9 +102,9 @@ class UDynamicMeshComponent : public UBaseDynamicMeshComponent
     bool bDeferCollisionUpdates;                                                      // 0x0753 (size: 0x1)
     class UBodySetup* MeshBodySetup;                                                  // 0x0758 (size: 0x8)
     FKAggregateGeom AggGeom;                                                          // 0x0798 (size: 0x80)
-    TArray<class UBodySetup*> AsyncBodySetupQueue;                                    // 0x0818 (size: 0x10)
+    TArray<UBodySetup*> AsyncBodySetupQueue;                                          // 0x0818 (size: 0x10)
 
-    bool ValidateMaterialSlots(bool bCreateIfMissing, bool bDeleteExtraSlots);
+    void ValidateMaterialSlots(bool bCreateIfMissing, bool bDeleteExtraSlots);
     void UpdateCollision(bool bOnlyIfPending);
     void SetTangentsType(EDynamicMeshComponentTangentsMode NewTangentsType);
     void SetDynamicMesh(class UDynamicMesh* NewMesh);
@@ -112,10 +112,10 @@ class UDynamicMeshComponent : public UBaseDynamicMeshComponent
     void SetComplexAsSimpleCollisionEnabled(bool bEnabled, bool bImmediateUpdate);
     void NotifyMeshVertexAttributesModified(bool bPositions, bool bNormals, bool bUVs, bool bColors);
     void NotifyMeshModified();
-    EDynamicMeshComponentTangentsMode GetTangentsTypePure();
-    EDynamicMeshComponentTangentsMode GetTangentsType();
+    void GetTangentsTypePure();
+    void GetTangentsType();
     void EnableComplexAsSimpleCollision();
-    void ConfigureMaterialSet(const TArray<class UMaterialInterface*>& NewMaterialSet);
+    void ConfigureMaterialSet(const TArray<UMaterialInterface*>& NewMaterialSet);
 }; // Size: 0x830
 
 class UDynamicMeshGenerator : public UObject
@@ -124,12 +124,12 @@ class UDynamicMeshGenerator : public UObject
 
 class UDynamicMeshPool : public UObject
 {
-    TArray<class UDynamicMesh*> CachedMeshes;                                         // 0x0028 (size: 0x10)
-    TArray<class UDynamicMesh*> AllCreatedMeshes;                                     // 0x0038 (size: 0x10)
+    TArray<UDynamicMesh*> CachedMeshes;                                               // 0x0028 (size: 0x10)
+    TArray<UDynamicMesh*> AllCreatedMeshes;                                           // 0x0038 (size: 0x10)
 
     void ReturnMesh(class UDynamicMesh* Mesh);
     void ReturnAllMeshes();
-    class UDynamicMesh* RequestMesh();
+    void RequestMesh();
     void FreeAllMeshes();
 }; // Size: 0x48
 

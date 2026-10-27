@@ -42,7 +42,7 @@ struct FLevelSequenceBindingReferenceArray
 
 struct FLevelSequenceBindingReferences
 {
-    TMap<class FGuid, class FLevelSequenceBindingReferenceArray> BindingIdToReferences; // 0x0000 (size: 0x50)
+    TMap<FGuid, FLevelSequenceBindingReferenceArray> BindingIdToReferences;           // 0x0000 (size: 0x50)
     TSet<FGuid> AnimSequenceInstances;                                                // 0x0050 (size: 0x50)
     TSet<FGuid> PostProcessInstances;                                                 // 0x00A0 (size: 0x50)
 
@@ -80,7 +80,7 @@ struct FLevelSequencePlayerSnapshot
     FQualifiedFrameTime CurrentShotLocalTime;                                         // 0x0040 (size: 0x10)
     FQualifiedFrameTime CurrentShotSourceTime;                                        // 0x0050 (size: 0x10)
     FString SourceTimecode;                                                           // 0x0060 (size: 0x10)
-    TSoftObjectPtr<UCameraComponent> CameraComponent;                                 // 0x0070 (size: 0x28)
+    TSoftObjectPtr<class UCameraComponent> CameraComponent;                           // 0x0070 (size: 0x28)
     class ULevelSequence* ActiveShot;                                                 // 0x0098 (size: 0x8)
     FMovieSceneSequenceID ShotID;                                                     // 0x00A0 (size: 0x4)
     FString MasterName;                                                               // 0x00A8 (size: 0x10)
@@ -111,18 +111,18 @@ class ALevelSequenceActor : public AActor
     void ShowBurnin();
     void SetSequence(class ULevelSequence* InSequence);
     void SetReplicatePlayback(bool ReplicatePlayback);
-    void SetBindingByTag(FName BindingTag, const TArray<class AActor*>& Actors, bool bAllowBindingsFromAsset);
-    void SetBinding(FMovieSceneObjectBindingID Binding, const TArray<class AActor*>& Actors, bool bAllowBindingsFromAsset);
+    void SetBindingByTag(FName BindingTag, const TArray<AActor*>& Actors, bool bAllowBindingsFromAsset);
+    void SetBinding(FMovieSceneObjectBindingID Binding, const TArray<AActor*>& Actors, bool bAllowBindingsFromAsset);
     void ResetBindings();
     void ResetBinding(FMovieSceneObjectBindingID Binding);
     void RemoveBindingByTag(FName Tag, class AActor* Actor);
     void RemoveBinding(FMovieSceneObjectBindingID Binding, class AActor* Actor);
     void OnLevelSequenceLoaded__DelegateSignature();
     void HideBurnin();
-    class ULevelSequencePlayer* GetSequencePlayer();
-    class ULevelSequence* GetSequence();
-    TArray<FMovieSceneObjectBindingID> FindNamedBindings(FName Tag);
-    FMovieSceneObjectBindingID FindNamedBinding(FName Tag);
+    void GetSequencePlayer();
+    void GetSequence();
+    void FindNamedBindings(FName Tag);
+    void FindNamedBinding(FName Tag);
     void AddBindingByTag(FName BindingTag, class AActor* Actor, bool bAllowBindingsFromAsset);
     void AddBinding(FMovieSceneObjectBindingID Binding, class AActor* Actor, bool bAllowBindingsFromAsset);
 }; // Size: 0x340
@@ -136,8 +136,8 @@ class ALevelSequenceMediaController : public AActor
     void SynchronizeToServer(float DesyncThresholdSeconds);
     void Play();
     void OnRep_ServerStartTimeSeconds();
-    class ALevelSequenceActor* GetSequence();
-    class UMediaComponent* GetMediaComponent();
+    void GetSequence();
+    void GetMediaComponent();
 }; // Size: 0x2C0
 
 class AReplicatedLevelSequenceActor : public ALevelSequenceActor
@@ -167,12 +167,12 @@ class ULevelSequence : public UMovieSceneSequence
     class UMovieScene* MovieScene;                                                    // 0x0070 (size: 0x8)
     FUpgradedLevelSequenceBindingReferences BindingReferences;                        // 0x0078 (size: 0x10)
     UClass* DirectorClass;                                                            // 0x0088 (size: 0x8)
-    TArray<class UAssetUserData*> AssetUserData;                                      // 0x0090 (size: 0x10)
+    TArray<UAssetUserData*> AssetUserData;                                            // 0x0090 (size: 0x10)
 
     void RemoveMetaDataByClass(UClass* InClass);
-    class UObject* FindOrAddMetaDataByClass(UClass* InClass);
-    class UObject* FindMetaDataByClass(UClass* InClass);
-    class UObject* CopyMetaData(class UObject* InMetaData);
+    void FindOrAddMetaDataByClass(UClass* InClass);
+    void FindMetaDataByClass(UClass* InClass);
+    void CopyMetaData(class UObject* InMetaData);
 }; // Size: 0xA0
 
 class ULevelSequenceAnimSequenceLink : public UAssetUserData
@@ -187,7 +187,7 @@ class ULevelSequenceBurnIn : public UUserWidget
     class ALevelSequenceActor* LevelSequenceActor;                                    // 0x03A8 (size: 0x8)
 
     void SetSettings(class UObject* InSettings);
-    TSubclassOf<class ULevelSequenceBurnInInitSettings> GetSettingsClass();
+    void GetSettingsClass();
 }; // Size: 0x3B0
 
 class ULevelSequenceBurnInInitSettings : public UObject
@@ -213,14 +213,14 @@ class ULevelSequenceDirector : public UObject
     int32 MovieScenePlayerIndex;                                                      // 0x0040 (size: 0x4)
 
     void OnCreated();
-    class UMovieSceneSequence* GetSequence();
-    FQualifiedFrameTime GetRootSequenceTime();
-    FQualifiedFrameTime GetMasterSequenceTime();
-    FQualifiedFrameTime GetCurrentTime();
-    TArray<class UObject*> GetBoundObjects(FMovieSceneObjectBindingID ObjectBinding);
-    class UObject* GetBoundObject(FMovieSceneObjectBindingID ObjectBinding);
-    TArray<class AActor*> GetBoundActors(FMovieSceneObjectBindingID ObjectBinding);
-    class AActor* GetBoundActor(FMovieSceneObjectBindingID ObjectBinding);
+    void GetSequence();
+    void GetRootSequenceTime();
+    void GetMasterSequenceTime();
+    void GetCurrentTime();
+    void GetBoundObjects(FMovieSceneObjectBindingID ObjectBinding);
+    void GetBoundObject(FMovieSceneObjectBindingID ObjectBinding);
+    void GetBoundActors(FMovieSceneObjectBindingID ObjectBinding);
+    void GetBoundActor(FMovieSceneObjectBindingID ObjectBinding);
 }; // Size: 0x48
 
 class ULevelSequencePlayer : public UMovieSceneSequencePlayer
@@ -228,8 +228,8 @@ class ULevelSequencePlayer : public UMovieSceneSequencePlayer
     FLevelSequencePlayerOnCameraCut OnCameraCut;                                      // 0x0470 (size: 0x10)
     void OnLevelSequencePlayerCameraCutEvent(class UCameraComponent* CameraComponent);
 
-    class UCameraComponent* GetActiveCameraComponent();
-    class ULevelSequencePlayer* CreateLevelSequencePlayer(class UObject* WorldContextObject, class ULevelSequence* LevelSequence, FMovieSceneSequencePlaybackSettings Settings, class ALevelSequenceActor*& OutActor);
+    void GetActiveCameraComponent();
+    void CreateLevelSequencePlayer(class UObject* WorldContextObject, class ULevelSequence* LevelSequence, FMovieSceneSequencePlaybackSettings Settings, class ALevelSequenceActor*& OutActor);
 }; // Size: 0x5A0
 
 class ULevelSequenceProjectSettings : public UDeveloperSettings

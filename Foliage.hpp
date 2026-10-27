@@ -89,9 +89,9 @@ class UFoliageInstancedStaticMeshComponent : public UHierarchicalInstancedStatic
 class UFoliageStatistics : public UBlueprintFunctionLibrary
 {
 
-    int32 FoliageOverlappingSphereCount(class UObject* WorldContextObject, const class UStaticMesh* StaticMesh, FVector CenterPosition, float Radius);
+    void FoliageOverlappingSphereCount(class UObject* WorldContextObject, const class UStaticMesh* StaticMesh, FVector CenterPosition, float Radius);
     void FoliageOverlappingBoxTransforms(class UObject* WorldContextObject, const class UStaticMesh* StaticMesh, FBox Box, TArray<FTransform>& OutTransforms);
-    int32 FoliageOverlappingBoxCount(class UObject* WorldContextObject, const class UStaticMesh* StaticMesh, FBox Box);
+    void FoliageOverlappingBoxCount(class UObject* WorldContextObject, const class UStaticMesh* StaticMesh, FBox Box);
 }; // Size: 0x28
 
 class UFoliageType : public UObject
@@ -191,7 +191,7 @@ class UFoliageType : public UObject
     uint8 bEnableDensityScaling;                                                      // 0x04AD (size: 0x1)
     uint8 bEnableDiscardOnLoad;                                                       // 0x04AE (size: 0x1)
     uint8 bEnableCullDistanceScaling;                                                 // 0x04AE (size: 0x1)
-    TArray<class URuntimeVirtualTexture*> RuntimeVirtualTextures;                     // 0x04B0 (size: 0x10)
+    TArray<URuntimeVirtualTexture*> RuntimeVirtualTextures;                           // 0x04B0 (size: 0x10)
     int32 VirtualTextureCullMips;                                                     // 0x04C0 (size: 0x4)
     ERuntimeVirtualTextureMainPassType VirtualTextureRenderPassType;                  // 0x04C4 (size: 0x1)
 
@@ -209,8 +209,8 @@ class UFoliageType_Actor : public UFoliageType
 class UFoliageType_InstancedStaticMesh : public UFoliageType
 {
     class UStaticMesh* Mesh;                                                          // 0x04C8 (size: 0x8)
-    TArray<class UMaterialInterface*> OverrideMaterials;                              // 0x04D0 (size: 0x10)
-    TArray<class UMaterialInterface*> NaniteOverrideMaterials;                        // 0x04E0 (size: 0x10)
+    TArray<UMaterialInterface*> OverrideMaterials;                                    // 0x04D0 (size: 0x10)
+    TArray<UMaterialInterface*> NaniteOverrideMaterials;                              // 0x04E0 (size: 0x10)
     TSubclassOf<class UFoliageInstancedStaticMeshComponent> ComponentClass;           // 0x04F0 (size: 0x8)
 
 }; // Size: 0x4F8
@@ -240,7 +240,7 @@ class UProceduralFoliageSpawner : public UObject
     float MinimumQuadTreeSize;                                                        // 0x0034 (size: 0x4)
     TArray<FFoliageTypeObject> FoliageTypes;                                          // 0x0040 (size: 0x10)
     bool bUseOverrideFoliageTerrainMaterials;                                         // 0x0050 (size: 0x1)
-    TArray<TSoftObjectPtr<UMaterialInterface>> OverrideFoliageTerrainMaterials;       // 0x0058 (size: 0x10)
+    TArray<TSoftObjectPtr<class UMaterialInterface>> OverrideFoliageTerrainMaterials; // 0x0058 (size: 0x10)
 
     void Simulate(int32 NumSteps);
 }; // Size: 0x80

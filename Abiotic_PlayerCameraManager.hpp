@@ -4,10 +4,10 @@
 class AAbiotic_PlayerCameraManager_C : public APlayerCameraManager
 {
     FPointerToUberGraphFrame UberGraphFrame;                                          // 0x24D0 (size: 0x8)
-    TArray<class ACameraActor*> CinematicCameraActors;                                // 0x24D8 (size: 0x10)
+    TArray<ACameraActor*> CinematicCameraActors;                                      // 0x24D8 (size: 0x10)
 
     void SetCinematicCamera();
-    bool BlueprintUpdateCamera(class AActor* CameraTarget, FVector& NewCameraLocation, FRotator& NewCameraRotation, float& NewCameraFOV);
+    void BlueprintUpdateCamera(class AActor* CameraTarget, FVector& NewCameraLocation, FRotator& NewCameraRotation, float& NewCameraFOV);
     void CloseCinematicCamera();
     void CycleCinematicCamera();
     void CycleCinematicCameraMode();
